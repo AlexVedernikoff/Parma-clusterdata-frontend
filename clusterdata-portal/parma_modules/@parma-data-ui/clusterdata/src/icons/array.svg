@@ -1,0 +1,8 @@
+export default {
+      id: "eye-cross-usage",
+      viewBox: "0 0 24 24",
+      url: __webpack_public_path__ + "/sprites/sprite-2fc732.svg?" + __webpack_hash__ + "#array",
+      toString: function () {
+        return this.url;
+      }
+    }

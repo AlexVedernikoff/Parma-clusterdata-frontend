@@ -1,0 +1,12 @@
+const CONTEXT_PATH = '/cd';
+const BI_PATH = `${CONTEXT_PATH}/bi`;
+const EXPORT_PATH = `${CONTEXT_PATH}/export`;
+
+const PORTAL_PATH = `${CONTEXT_PATH}/portal`;
+const PORTAL_ASSETS_PATH = `${PORTAL_PATH}/assets`;
+
+exports.CONTEXT_PATH = CONTEXT_PATH;
+exports.PORTAL_PATH = PORTAL_PATH;
+exports.PORTAL_ASSETS_PATH = PORTAL_ASSETS_PATH;
+exports.BI_PATH = BI_PATH;
+exports.EXPORT_PATH = EXPORT_PATH;

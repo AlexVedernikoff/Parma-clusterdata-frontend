@@ -1,0 +1,8 @@
+export default {
+      id: "measures-usage",
+      viewBox: "0 0 24 24",
+      url: __webpack_public_path__ + "/sprites/sprite-da6479.svg?" + __webpack_hash__ + "#measures",
+      toString: function () {
+        return this.url;
+      }
+    }

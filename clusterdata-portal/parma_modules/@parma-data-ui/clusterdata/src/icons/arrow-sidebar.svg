@@ -1,0 +1,8 @@
+export default {
+      id: "arrow-sidebar-usage",
+      viewBox: "0 0 24 24",
+      url: __webpack_public_path__ + "/sprites/sprite-f6650d.svg?" + __webpack_hash__ + "#arrow-sidebar",
+      toString: function () {
+        return this.url;
+      }
+    }

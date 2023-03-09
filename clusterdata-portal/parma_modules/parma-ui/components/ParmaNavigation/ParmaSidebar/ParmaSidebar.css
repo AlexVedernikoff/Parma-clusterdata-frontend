@@ -1,0 +1,12 @@
+.parma-sidebar-places {
+  margin-bottom: 8px;
+}
+
+.parma-sidebar-header {
+  font-size: 15px;
+  font-weight: 500;
+  height: 56px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}

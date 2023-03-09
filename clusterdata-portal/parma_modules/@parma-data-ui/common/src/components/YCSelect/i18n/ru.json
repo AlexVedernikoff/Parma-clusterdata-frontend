@@ -1,0 +1,12 @@
+{
+  "apply_button_text": "Применить",
+  "item_except": "Кроме",
+  "item_only": "Только",
+  "items_add_new": "Добавить в список",
+  "items_not_found": "По запросу «${inputValue}» ничего не найдено",
+  "items_prompt": "Начните вводить...",
+  "items_show_more": "Показать еще",
+  "search_clear": "Очистить",
+  "search_placeholder": "Поиск",
+  "search_select_all": "Выбрать все"
+}

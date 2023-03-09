@@ -1,0 +1,8 @@
+export default {
+      id: "cast-boolean-usage",
+      viewBox: "0 0 16 16",
+      url: __webpack_public_path__ + "/sprites/sprite-da6479.svg?" + __webpack_hash__ + "#cast-boolean",
+      toString: function () {
+        return this.url;
+      }
+    }

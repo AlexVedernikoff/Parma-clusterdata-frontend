@@ -1,0 +1,8 @@
+export default {
+      id: "pencil-usage",
+      viewBox: "0 0 16 16",
+      url: __webpack_public_path__ + "/sprites/sprite-da6479.svg?" + __webpack_hash__ + "#pencil",
+      toString: function () {
+        return this.url;
+      }
+    }

@@ -1,0 +1,851 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <symbol viewBox="0 0 16 16" id="access-group">
+            <path fill="currentColor" fill-rule="evenodd"
+                  d="M9.498 9.88C8.495 8.72 7.075 8 5.5 8 2.463 8 0 10.687 0 14h16v-1c0-2.21-1.79-4-4-4-.947 0-1.817.33-2.502.88zM5.5 7C4.12 7 3 5.88 3 4.5S4.12 2 5.5 2 8 3.12 8 4.5 6.88 7 5.5 7zM12 8c-1.105 0-2-.896-2-2 0-1.105.895-2 2-2s2 .895 2 2c0 1.104-.895 2-2 2z"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="another-tab">
+            <path d="M9 2v2H3v9h10V8h2v6a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h7z"/>
+            <path d="M12.571 2H12a1 1 0 1 1 0-2h3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-.6L9.121 8.277a1 1 0 0 1-1.414-1.414L12.571 2z"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="bool">
+            <g fill="none" fill-rule="evenodd">
+                <path d="M10 10V9h5V1H6v5H5V1a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-5z" fill="currentColor"/>
+                <g stroke="currentColor" stroke-linecap="round" stroke-width="1.4">
+                    <path d="M8.5 2.5l4 5M12.5 2.5l-4 5"/>
+                </g>
+                <path d="M1 6h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm6.443 2.176l-2.976 3.912-.936-1.087a.7.7 0 0 0-1.062.913l2.064 2.398 4.024-5.288a.7.7 0 1 0-1.114-.848z"
+                      fill="currentColor"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="browse">
+            <path id="browse_Shape" fill="currentColor" opacity="0.5"
+                  d="M17.4444444,16.4 L6.55555556,16.4 L6.55555556,9.2 L17.4444444,9.2 L17.4444444,16.4 Z M10.5094596,7.6 L9.49255051,6.60355556 C9.18663636,6.22337778 8.7070303,6 8.19677273,6 L5,6 L5,7.86666667 L5,8.51937778 L5,18 L19,18 L19,7.6 L10.5094596,7.6 Z"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="cal">
+            <g style="mix-blend-mode:multiply" transform="translate(0 1)" fill="none" fill-rule="evenodd">
+                <rect stroke="currentColor" x=".5" y=".5" width="15" height="13" rx="2"/>
+                <path d="M2 0h12a2 2 0 0 1 2 2v2H0V2a2 2 0 0 1 2-2zM3 6h2v1H3zM7 6h2v1H7zM11 6h2v1h-2zM3 8h2v1H3zM7 8h2v1H7zM11 8h2v1h-2zM3 10h2v1H3z"
+                      fill="currentColor"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="calendar">
+            <path fill="currentColor"
+                  d="M12 7v3h3V7h-3zm0 0v3h3V7h-3zm4 0v3h3V7h-3zM4 11v3h3v-3H4zm8 0v3h3v-3h-3zm0 0v3h3v-3h-3zm4 0v3h3v-3h-3zM4 15v3h3v-3H4zm8 0v3h3v-3h-3zm0 0v3h3v-3h-3zM8 7v3h3V7H8zm0 0v3h3V7H8zm0 4v3h3v-3H8zm0 0v3h3v-3H8zm0 4v3h3v-3H8zm0 0v3h3v-3H8z"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="cast-boolean">
+            <g fill="none" fill-rule="evenodd">
+                <path d="M10 10V9h5V1H6v5H5V1a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-5z" fill="currentColor"/>
+                <g stroke="currentColor" stroke-linecap="round" stroke-width="1.4">
+                    <path d="M8.5 2.5l4 5M12.5 2.5l-4 5"/>
+                </g>
+                <path d="M1 6h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm6.443 2.176l-2.976 3.912-.936-1.087a.7.7 0 0 0-1.062.913l2.064 2.398 4.024-5.288a.7.7 0 1 0-1.114-.848z"
+                      fill="currentColor"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="cast-date">
+            <g transform="translate(0 1)" fill="none">
+                <rect stroke="currentColor" x=".5" y=".5" width="15" height="13" rx="2"/>
+                <path d="M2 0h12a2 2 0 0 1 2 2v2H0V2a2 2 0 0 1 2-2zM3 6h2v1H3zM7 6h2v1H7zM11 6h2v1h-2zM3 8h2v1H3zM7 8h2v1H7zM11 8h2v1h-2zM3 10h2v1H3z"
+                      fill="currentColor"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="cast-geo">
+            <defs>
+                <circle id="cast-geo_path-1" cx="8" cy="8" r="8"/>
+            </defs>
+            <g id="cast-geo_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="cast-geo_02-icons" transform="translate(-136.000000, -132.000000)">
+                    <g id="cast-geo_icons-16/type-geo-2" transform="translate(136.000000, 132.000000)">
+                        <g id="cast-geo_Group" style="mix-blend-mode: multiply;" stroke-width="1">
+                            <mask id="cast-geo_mask-2" fill="white">
+                                <use xlink:href="#cast-geo_path-1"/>
+                            </mask>
+                            <circle stroke="currentColor" cx="8" cy="8" r="7.5"/>
+                            <ellipse id="cast-geo_Mask" stroke="currentColor" mask="url(#cast-geo_mask-2)" cx="8" cy="8"
+                                     rx="4" ry="7.5"/>
+                            <circle id="cast-geo_Mask" stroke="currentColor" mask="url(#cast-geo_mask-2)" cx="8" cy="-5"
+                                    r="9.5"/>
+                            <circle id="cast-geo_Mask" stroke="currentColor" mask="url(#cast-geo_mask-2)" cx="8" cy="21"
+                                    r="9.5"/>
+                            <path d="M1,8 L15.5,8" id="cast-geo_Path-4" stroke="currentColor"
+                                  mask="url(#cast-geo_mask-2)"/>
+                            <path d="M8,0.5 L8,15.508331" id="cast-geo_Path-5" stroke="currentColor"
+                                  mask="url(#cast-geo_mask-2)"/>
+                        </g>
+                        <rect id="cast-geo_Mask" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="cast-number">
+            <defs></defs>
+            <g id="cast-number_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="cast-number_02-icons" transform="translate(-104.000000, -132.000000)" fill="currentColor">
+                    <g id="cast-number_icons-16/type-num-2" transform="translate(104.000000, 132.000000)">
+                        <path d="M14,11 L11,11 L11,14 L9,14 L9,11 L7,11 L7,14 L5,14 L5,11 L2,11 L2,9 L5,9 L5,7 L2,7 L2,5 L5,5 L5,2 L7,2 L7,5 L9,5 L9,2 L11,2 L11,5 L14,5 L14,7 L11,7 L11,9 L14,9 L14,11 Z M9,9 L9,7 L7,7 L7,9 L9,9 Z"
+                              id="cast-number_⌗"/>
+                        <rect id="cast-number_Mask" opacity="0" x="0" y="0" width="16" height="16"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="cast-string">
+            <defs></defs>
+            <g id="cast-string_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="cast-string_02-icons" transform="translate(-168.000000, -132.000000)">
+                    <g id="cast-string_icons-16/type-string-5" transform="translate(168.000000, 132.000000)">
+                        <g>
+                            <path d="M3,1 L13,1 C14.1045695,1 15,1.8954305 15,3 L15,13 C15,14.1045695 14.1045695,15 13,15 L3,15 C1.8954305,15 1,14.1045695 1,13 L1,3 C1,1.8954305 1.8954305,1 3,1 Z M9.2199999,9.86 L9.7599999,11.5 L11.3499999,11.5 L8.9499999,4.34 L7.1099999,4.34 L4.6999999,11.5 L6.0599999,11.5 L6.6099999,9.86 L9.2199999,9.86 Z M7.9199999,5.92 L8.8099999,8.62 L7.0199999,8.62 L7.9199999,5.92 Z"
+                                  id="cast-string_Combined-Shape" fill="currentColor"/>
+                            <rect id="cast-string_Mask" fill="#D8D8D8" opacity="0" x="0" y="0" width="16" height="16"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="chevron">
+            <path stroke="currentColor" fill="none" d="M3 6l5 5 5-5"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="chevron-right">
+            <path fill="currentColor" d="M5 2.7l4.7 4.8L5 12.3l.7.7L11 7.5 5.7 2l-.7.7z"/>
+        </symbol>
+        <symbol viewBox="0 0 13 10" id="cloud">
+            <path fill="currentColor"
+                  d="M10 4c1.7 0 3 1.3 3 3s-1.3 3-3 3H3.6C1.7 10 .1 8.4.1 6.5c0-1.7 1.3-3 3-3C3.1 1.6 4.7 0 6.6 0s3.5 1.6 3.5 3.5c-.1.2-.1.3-.1.5z"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="color">
+            <path d="M12.1211 5.343L17.7779 10.9999L10.3533 18.4245C10.1581 18.6197 9.84148 18.6197 9.64622 18.4245L4.69647 13.4747C4.50121 13.2795 4.50121 12.9629 4.69647 12.7676L12.1211 5.343Z"
+                  stroke="currentColor"/>
+            <path d="M5.66144 11.0956L18.4851 10.9999L10.7069 18.778C10.3164 19.1686 9.68319 19.1686 9.29267 18.778L4.35033 13.8357C3.96134 13.4467 3.95958 12.8166 4.34639 12.4254L5.66144 11.0956Z"
+                  fill="currentColor"/>
+            <rect x="10" y="2.51459" width="4" height="1" transform="rotate(45 10 2.51459)" fill="currentColor"/>
+            <path d="M21 17.4999C21 18.8806 19.8807 19.9999 18.5 19.9999C17.1193 19.9999 16 18.8806 16 17.4999C16 16.1192 18.5 12.9999 18.5 12.9999C18.5 12.9999 21 16.1192 21 17.4999Z"
+                  fill="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="columns">
+            <rect x="4.5" y="4.5" width="3" height="15" rx="0.5" stroke="currentColor"/>
+            <rect x="10.5" y="4.5" width="3" height="15" rx="0.5" stroke="currentColor"/>
+            <rect x="16.5" y="4.5" width="3" height="15" rx="0.5" stroke="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 32 32" id="comment">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 11h12v2H10v-2zm0 4h12v2H10v-2zm8 4h-8v2h8v-2z"
+                  fill="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="connected">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="connected_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="connected_02-icons" transform="translate(-225.000000, -477.000000)" fill-rule="nonzero">
+                    <g id="connected_Group" transform="translate(225.000000, 477.000000)">
+                        <rect id="connected_Rectangle-73" fill="#D8D8D8" opacity="0" x="0" y="0" width="24"
+                              height="24"/>
+                        <g id="connected_Group-53" transform="translate(4.000000, 4.000000)" fill="#000000"
+                           opacity="0.5">
+                            <path d="M12,6 L16,6 L16,16 L6,16 L6,12 L8,12 L8,14 L14,14 L14,8 L12,8 L12,6 Z"
+                                  id="connected_Rectangle-73"/>
+                            <path d="M2,2 L2,8 L8,8 L8,2 L2,2 Z M0,0 L10,0 L10,10 L0,10 L0,0 Z"
+                                  id="connected_Rectangle-73"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="copy-file">
+            <path fill="currentColor"
+                  d="M7 14h7V7H7v7zM5 5h11v11H5V5zm4-2v1-1zm1-3H0v10V0h10zM0 10v1h4-4v-1zM10 0h1v4-4h-1zM3 9h1-1zM0 0h11v4H9V2H2v7h2v2H0V0z"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="cross">
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <path d="M7.35714286,7.35714286 L16.6428571,16.6428571" stroke="currentColor" stroke-width="2"
+                      strokeLinecap="round"/>
+                <path d="M7.35714286,7.35714286 L16.6428571,16.6428571" stroke="currentColor" stroke-width="2"
+                      strokeLinecap="round"
+                      transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) "/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="dataset">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3 12C2.73478 12 2.48043 12.1054 2.29289 12.2929C2.10536 12.4804 2 12.7348 2 13V17C2 17.2652 2.10536 17.5196 2.29289 17.7071C2.48043 17.8946 2.73478 18 3 18H17C17.2652 18 17.5196 17.8946 17.7071 17.7071C17.8946 17.5196 18 17.2652 18 17V13C18 12.7348 17.8946 12.4804 17.7071 12.2929C17.5196 12.1054 17.2652 12 17 12H3ZM3 10C2.20435 10 1.44129 9.68393 0.87868 9.12132C0.316071 8.55871 0 7.79565 0 7V3C0 2.20435 0.316071 1.44129 0.87868 0.87868C1.44129 0.316071 2.20435 0 3 0H17C17.7956 0 18.5587 0.316071 19.1213 0.87868C19.6839 1.44129 20 2.20435 20 3V7C20 7.79565 19.6839 8.55871 19.1213 9.12132C18.5587 9.68393 17.7956 10 17 10C17.7956 10 18.5587 10.3161 19.1213 10.8787C19.6839 11.4413 20 12.2044 20 13V17C20 17.7956 19.6839 18.5587 19.1213 19.1213C18.5587 19.6839 17.7956 20 17 20H3C2.20435 20 1.44129 19.6839 0.87868 19.1213C0.316071 18.5587 0 17.7956 0 17V13C0 12.2044 0.316071 11.4413 0.87868 10.8787C1.44129 10.3161 2.20435 10 3 10ZM3 2C2.73478 2 2.48043 2.10536 2.29289 2.29289C2.10536 2.48043 2 2.73478 2 3V7C2 7.26522 2.10536 7.51957 2.29289 7.70711C2.48043 7.89464 2.73478 8 3 8H17C17.2652 8 17.5196 7.89464 17.7071 7.70711C17.8946 7.51957 18 7.26522 18 7V3C18 2.73478 17.8946 2.48043 17.7071 2.29289C17.5196 2.10536 17.2652 2 17 2H3ZM5 6C4.73478 6 4.48043 5.89464 4.29289 5.70711C4.10536 5.51957 4 5.26522 4 5C4 4.73478 4.10536 4.48043 4.29289 4.29289C4.48043 4.10536 4.73478 4 5 4C5.26522 4 5.51957 4.10536 5.70711 4.29289C5.89464 4.48043 6 4.73478 6 5C6 5.26522 5.89464 5.51957 5.70711 5.70711C5.51957 5.89464 5.26522 6 5 6ZM8 6C7.73478 6 7.48043 5.89464 7.29289 5.70711C7.10536 5.51957 7 5.26522 7 5C7 4.73478 7.10536 4.48043 7.29289 4.29289C7.48043 4.10536 7.73478 4 8 4C8.26522 4 8.51957 4.10536 8.70711 4.29289C8.89464 4.48043 9 4.73478 9 5C9 5.26522 8.89464 5.51957 8.70711 5.70711C8.51957 5.89464 8.26522 6 8 6ZM8 16C7.73478 16 7.48043 15.8946 7.29289 15.7071C7.10536 15.5196 7 15.2652 7 15C7 14.7348 7.10536 14.4804 7.29289 14.2929C7.48043 14.1054 7.73478 14 8 14C8.26522 14 8.51957 14.1054 8.70711 14.2929C8.89464 14.4804 9 14.7348 9 15C9 15.2652 8.89464 15.5196 8.70711 15.7071C8.51957 15.8946 8.26522 16 8 16ZM5 16C4.73478 16 4.48043 15.8946 4.29289 15.7071C4.10536 15.5196 4 15.2652 4 15C4 14.7348 4.10536 14.4804 4.29289 14.2929C4.48043 14.1054 4.73478 14 5 14C5.26522 14 5.51957 14.1054 5.70711 14.2929C5.89464 14.4804 6 14.7348 6 15C6 15.2652 5.89464 15.5196 5.70711 15.7071C5.51957 15.8946 5.26522 16 5 16Z"
+                  fill="#027BF3"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="decline">
+            <path fill="currentColor"
+                  d="M6 12c0-1.294.416-2.49 1.115-3.471l8.356 8.356A5.961 5.961 0 0 1 12 18c-3.309 0-6-2.691-6-6m12 0c0 1.294-.416 2.49-1.115 3.471L8.529 7.115A5.961 5.961 0 0 1 12 6c3.309 0 6 2.691 6 6m-6-8c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8"
+                  fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="delete-file">
+            <g fill="currentColor">
+                <path d="M13.29 1.605h-2.857V.522A.522.522 0 0 0 9.91 0H6.089a.522.522 0 0 0-.522.522v1.083H2.71a.522.522 0 0 0-.521.522v1.605a.52.52 0 0 0 .521.521h.159L3.345 15.5c.012.28.242.5.521.5h8.268c.28 0 .51-.22.521-.5l.477-11.247h.159a.522.522 0 0 0 .521-.521V2.127a.522.522 0 0 0-.521-.522zm-6.679-.562h2.778v.562H6.611v-.562zm5.023 13.914H4.366L3.912 4.253h8.176l-.454 10.704zM12.769 3.21H3.23v-.562h9.538v.562z"/>
+                <path d="M5.901 5.853a.522.522 0 0 0-.522.522v6.46a.522.522 0 0 0 1.044 0v-6.46a.522.522 0 0 0-.522-.522zm2.099 0a.522.522 0 0 0-.522.522v6.46a.522.522 0 1 0 1.044 0v-6.46A.522.522 0 0 0 8 5.853zm2.099 0a.522.522 0 0 0-.522.522v6.46a.522.522 0 0 0 1.044 0v-6.46a.522.522 0 0 0-.522-.522z"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="dimensions-pie">
+            <rect opacity="0.01" width="24" height="24" fill="black"/>
+            <path d="M20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C7.30558 20.5 3.5 16.6944 3.5 12C3.5 7.30558 7.30558 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12Z"
+                  stroke="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21 12H12V3C16.9706 3 21 7.02944 21 12Z"
+                  fill="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="dimensions-treemap">
+            <rect x="3.5" y="3.5" width="17" height="17" rx="1.5" stroke="currentColor"/>
+            <rect x="4" y="4" width="10" height="10" fill="currentColor"/>
+            <rect x="15" y="15" width="6" height="1" fill="currentColor"/>
+            <rect x="14" y="4" width="1" height="16" fill="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 9 6" id="disclose">
+            <path d="M8 1L4.5 4.5 1 1" stroke="currentColor" stroke-width="1.2" fill="none" fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="dots">
+            <path d="M14 6.125a1.874 1.874 0 1 1 .001 3.749A1.874 1.874 0 0 1 14 6.125zm-5.906 0a1.874 1.874 0 1 1 0 3.749 1.874 1.874 0 0 1 0-3.749zM2 6.125a1.874 1.874 0 1 1 .001 3.749A1.874 1.874 0 0 1 2 6.125z"
+                  fill="currentColor" fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="error">
+            <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm0-7a1 1 0 0 0 1-1V4a1 1 0 1 0-2 0v4a1 1 0 0 0 1 1zm0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+                  fill="#EF3125" fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="favorite-empty">
+            <path d="M13.959 16.477l1.979 1.153-1.006-4.404 3.427-2.969-4.543-.415L12 5.686l-1.816 4.156-4.543.415 3.427 2.969-1.006 4.403L12 15.324l1.979 1.152z"
+                  stroke="currentColor" stroke-width="1.35" fill="none"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="favorite-filled">
+            <path fill="currentColor"
+                  d="M12 16.106L7.056 19l1.264-5.53L4 9.73l5.726-.524L12 4l2.274 5.206L20 9.729l-4.32 3.741L16.944 19z"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="files-dashboard">
+            <defs>
+                <path d="M12 0l6 6h-4.002A2 2 0 0 1 12 4.002V0z" id="files-dashboard_a"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <path d="M15 1l6 6v16H3V1h12z" fill="#FDD835"/>
+                <path d="M6 19v-1h2v1H6zm3 0v-2h2v2H9zm3 0v-3h2v3h-2zm3 0v-4h2v4h-2zM6 8h10v1H6V8zm0 2h7v1H6v-1zm0-4V4h5v2H6z"
+                      fill="#D1461F"/>
+                <g opacity=".5" transform="translate(3 1)">
+                    <use fill="#FDD835" xlink:href="#files-dashboard_a"/>
+                    <use fill="#D1883F" xlink:href="#files-dashboard_a"/>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="files-dataset">
+            <g fill="none" fill-rule="evenodd">
+                <path d="M15 1l6 6v16H3V1h12z" fill="#43A047"/>
+                <path fill="#FFF"
+                      d="M16 16h2v2h-2zM12 16h2v2h-2zM6 16h4v2H6zM16 12h2v2h-2zM12 12h2v2h-2zM6 12h4v2H6zM16 8h2v2h-2zM12 8h2v2h-2zM6 8h4v2H6z"/>
+                <path d="M15 1l6 6h-4.002A2 2 0 0 1 15 5.002V1z" fill="#207A40" opacity=".75"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="files-folder">
+            <g fill="none" fill-rule="evenodd">
+                <path d="M2 2h9.333a1 1 0 0 1 .886.535l3.674 7A1 1 0 0 1 15.007 11H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"
+                      fill="#FFDB4D"/>
+                <path d="M1 6h21a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6z" fill="#FDE785"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="files-misc">
+            <g fill="none" fill-rule="evenodd">
+                <path d="M15 1l6 6v16H3V1h12z" fill="#47AABC"/>
+                <path d="M9 8h8v1H9V8zm-2 3h10v1H7v-1zm0 3h10v1H7v-1zm0 3h7v1H7v-1z" fill="#FFF"/>
+                <path d="M15 1l6 6h-4.002A2 2 0 0 1 15 5.002V1z" fill="#4491A6"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="files-monitoring">
+            <defs>
+                <path d="M12 0l6 6v16H0V0h12z" id="files-monitoring_a"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <g transform="translate(3 1)">
+                    <use fill="#FDD835" xlink:href="#files-monitoring_a"/>
+                    <use fill="#F57C00" xlink:href="#files-monitoring_a"/>
+                </g>
+                <text font-family="Arial-Black, Arial Black" font-size="9" font-weight="700" fill="#FFF"
+                      transform="translate(3 1)">
+                    <tspan x="3.997" y="14">{ }</tspan>
+                </text>
+                <path d="M15 1l6 6h-4.002A2 2 0 0 1 15 5.002V1z" fill="#000" opacity=".2"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="files-presentation">
+            <g fill="none" fill-rule="evenodd">
+                <path fill="#FDD835" d="M6 7h16v14H6z"/>
+                <path d="M11.5 6.535a3.5 3.5 0 1 0 3.965 3.965H11.5V6.535z" stroke="#F15123" fill="#F15123"/>
+                <path d="M13 5a4 4 0 0 1 4 4h-4V5z" fill="#F15123"/>
+                <g>
+                    <path fill="#E53935" d="M3 4h16v14H3z"/>
+                    <path fill="#FFF" d="M6 15h2v-3H6zM10 15h2v-5h-2zM14 15h2V8h-2z"/>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="files-widget">
+            <g fill="none" fill-rule="evenodd">
+                <path d="M15 1l6 6v16H3V1h12z" fill="#1E88E5"/>
+                <path d="M12 8v5h5a5 5 0 1 1-5-5z" fill="#FFF"/>
+                <path d="M14 7.2a5.006 5.006 0 0 1 3.9 3.9H14V7.2z" fill="#FFF"/>
+                <path d="M15 1l6 6h-4.002A2 2 0 0 1 15 5.002V1z" fill="#105FCC"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="filter">
+            <path d="M9.99247 11.7044L9.9763 11.5064L9.8286 11.3735L4.27104 6.37165C3.93043 6.0651 4.14729 5.5 4.60553 5.5H19.3936C19.8519 5.5 20.0687 6.0651 19.7281 6.37165L14.1184 11.4204L13.9741 11.5503L13.9552 11.7435L13.3022 18.4368C13.2864 18.5982 13.1934 18.742 13.0526 18.8224L11.3665 19.7859C11.0487 19.9675 10.6498 19.7573 10.6201 19.3925L9.99247 11.7044Z"
+                  stroke="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="folder-inline">
+            <path d="M13 12H3V6h10v6zM7 5l-.778-1.438C5.934 3.208 5.586 3 5.004 3H3c-.552 0-1 .453-1 1v8c0 .552.456 1 1.002 1h9.996c.553 0 1.002-.453 1.002-.997V5.997A.993.993 0 0 0 12.997 5H7z"
+                  fill="currentColor" fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 20 20" fill="none" id="formula2">
+            <rect opacity="0.01" width="20" height="20" rx="1.66667" fill="currentColor"/>
+            <path d="M5.21118 15.5V5.35921H12.1631V7.07471H7.25871V9.47502H11.4921V11.1905H7.25871V15.5H5.21118Z"
+                  fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.1479 12.4049H13.0259L13.9529 13.8088L14.8912 12.4049L15.7165 12.4235L14.3561 14.3488L15.7768 16.3932H14.9101L13.9077 14.8962L12.9355 16.3932H12.0763L13.497 14.3488L12.1479 12.4049Z"
+                  fill="currentColor" stroke="currentColor" stroke-width="0.5"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="fullscreen">
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="24"/>
+                <path d="M5,5 L10,5 L10,7 L7,7 L7,9.999 L5,9.999 L5,7 L5,5 Z M5,14 L7,14 L7,17.001 L10,17.001 L10,19 L5,19 L5,17.001 L5,14 Z M17,14 L19,14 L19,19 L17,19 L14,19 L14,17.001 L17,17.001 L17,14 Z M14,5 L18.999,5 L18.999,9.999 L17,9.999 L17,7 L14,7 L14,5 Z"
+                      fill="currentColor"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="geo">
+            <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+            <defs>
+                <circle id="geo_path-1" cx="8" cy="8" r="8"/>
+            </defs>
+            <g id="geo_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="geo_02-icons" transform="translate(-136.000000, -132.000000)">
+                    <g id="geo_icons-16/type-geo-2" transform="translate(136.000000, 132.000000)">
+                        <g id="geo_Group" style="mix-blend-mode: multiply;" stroke-width="1">
+                            <mask id="geo_mask-2" fill="white">
+                                <use xlink:href="#geo_path-1"/>
+                            </mask>
+                            <circle stroke="currentColor" cx="8" cy="8" r="7.5"/>
+                            <ellipse id="geo_Mask" stroke="currentColor" mask="url(#geo_mask-2)" cx="8" cy="8" rx="4"
+                                     ry="7.5"/>
+                            <circle id="geo_Mask" stroke="currentColor" mask="url(#geo_mask-2)" cx="8" cy="-5" r="9.5"/>
+                            <circle id="geo_Mask" stroke="currentColor" mask="url(#geo_mask-2)" cx="8" cy="21" r="9.5"/>
+                            <path d="M1,8 L15.5,8" id="geo_Path-4" stroke="currentColor" mask="url(#geo_mask-2)"/>
+                            <path d="M8,0.5 L8,15.508331" id="geo_Path-5" stroke="currentColor"
+                                  mask="url(#geo_mask-2)"/>
+                        </g>
+                        <rect id="geo_Mask" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="group">
+            <path d="M8 15a4 4 0 0 1 4 4H4a4 4 0 0 1 4-4zm4-1a4 4 0 0 1 8 0h-8zm-4 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8-5a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+                  fill="currentColor" fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 20 20" id="header-sidemenu">
+            <g fill="currentColor" fill-rule="evenodd">
+                <rect y="9" width="20" height="2" rx="1"/>
+                <rect y="3" width="14" height="2" rx="1"/>
+                <rect y="15" width="14" height="2" rx="1"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="legacy-wizard">
+            <g fill="none" fill-rule="evenodd" transform="translate(0 1)">
+                <path d="M15 0l6 6v16H3V0h12z" fill="#45D2C0"/>
+                <path d="M12 7v5h5a5 5 0 1 1-5-5z" fill="#FFF" opacity=".9"/>
+                <path d="M14 6.2a5.006 5.006 0 0 1 3.9 3.9H14V6.2z" fill="#FFF" opacity=".9"/>
+                <path d="M15 0l6 6h-4.002A2 2 0 0 1 15 4.002V0z" fill="#369E91"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="link">
+            <path fill="currentColor"
+                  d="M10.893 6.52l-.094.094-1.414 1.413-1.359 1.36L6.612 10.8l-.094.095a.997.997 0 0 1-1.414 0 .999.999 0 0 1 0-1.415l.094-.094 1.414-1.413 1.36-1.36L9.384 5.2l.094-.093a.997.997 0 0 1 1.414 0 .999.999 0 0 1 0 1.413zm4.298-3.968a2.758 2.758 0 0 1 0 3.896l-1.745 1.746A2.738 2.738 0 0 1 11.498 9c-.646 0-1.25-.231-1.74-.637l1.435-1.436c.277.117.62.07.84-.147l1.744-1.746a.757.757 0 0 0 0-1.068L12.032 2.22a.753.753 0 0 0-1.068 0L9.22 3.966a.753.753 0 0 0-.15.842L7.636 6.24a2.75 2.75 0 0 1 .168-3.69L9.55.808c1.041-1.041 2.855-1.041 3.896 0l1.745 1.745zm-8.264 8.64L8.361 9.76a2.748 2.748 0 0 1-.17 3.69l-1.745 1.744A2.735 2.735 0 0 1 4.5 16a2.735 2.735 0 0 1-1.948-.807L.804 13.448a2.76 2.76 0 0 1 0-3.897L2.55 7.806c.975-.977 2.627-1.025 3.688-.167L4.808 9.07a.743.743 0 0 0-.842.15l-1.747 1.746a.757.757 0 0 0 0 1.068l1.746 1.745a.778.778 0 0 0 1.067 0l1.745-1.745a.751.751 0 0 0 .15-.842z"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="lock">
+            <path d="M5.75 6.232C5.75 3.811 6.953 3.5 8 3.5s2.25.31 2.25 2.732V7h-4.5v-.768zm6 .768v-.768C11.75 2.55 9.4 2 8 2s-3.75.55-3.75 4.232V7H3v7h10V7h-1.25z"
+                  fill="currentColor" fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="lock">
+            <path d="M5.75 6.232C5.75 3.811 6.953 3.5 8 3.5s2.25.31 2.25 2.732V7h-4.5v-.768zm6 .768v-.768C11.75 2.55 9.4 2 8 2s-3.75.55-3.75 4.232V7H3v7h10V7h-1.25z"
+                  fill="currentColor" fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 34 34" id="loupe">
+            <g fill="none" fill-rule="evenodd">
+                <g transform="rotate(-43 26.26 26.58)">
+                    <rect fill="#D8D8D8" x="24.26" y="18.081" width="4" height="17" rx="2"/>
+                    <rect stroke="#293050" x="24.76" y="18.581" width="3" height="16" rx="1.5"/>
+                </g>
+                <circle stroke="#293050" fill="#FFF" transform="rotate(-43 16 15)" cx="16" cy="15" r="14"/>
+                <circle stroke="#293050" fill="#E9F3FF" transform="rotate(-43 16 15)" cx="16" cy="15" r="11"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="measures">
+            <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                <g fill="currentColor">
+                    <rect opacity="0" x="0" y="0" width="24" height="24"/>
+                    <g transform="translate(3.000000, 7.000000)">
+                        <rect x="12" y="5" width="1" height="4"/>
+                        <rect x="16" y="0" width="1" height="9"/>
+                        <rect x="0" y="0" width="1" height="9"/>
+                        <rect x="4" y="5" width="1" height="4"/>
+                        <rect x="8" y="0" width="1" height="9"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="measures-table">
+            <rect x="3.5" y="3.5" width="17" height="17" rx="1.5" stroke="currentColor"/>
+            <rect x="4" y="6" width="16" height="1" fill="currentColor"/>
+            <rect x="4" y="12" width="3" height="1" fill="currentColor"/>
+            <rect x="6" y="4" width="1" height="16" fill="currentColor"/>
+            <rect x="12" y="4" width="1" height="3" fill="currentColor"/>
+            <path d="M13.6028 15.647H12.0688L11.6918 18H10.5218L10.8988 15.647H9.5728V14.256H11.1198L11.4058 12.462H9.9108V11.071H11.6268L11.9648 8.965H13.1478L12.8098 11.071H14.3438L14.6818 8.965H15.8518L15.5138 11.071H16.8658V12.462H15.2928L15.0068 14.256H16.5148V15.647H14.7858L14.4088 18H13.2258L13.6028 15.647ZM13.8238 14.256L14.1228 12.462H12.5888L12.2898 14.256H13.8238Z"
+                  fill="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="minus">
+            <path d="M9 7h4a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2z" fill="currentColor" fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="mono-connection">
+            <path d="M10.708 13.775a1 1 0 0 0-.254-1.32l-2.19-1.643a1 1 0 0 1 .012-1.609L17 2.865l-3.415 6.378a1 1 0 0 0 .282 1.272l2.189 1.641a1 1 0 0 1-.041 1.63L7 19.864l3.708-6.09z"
+                  fill="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="mono-dashboard">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm10 0h-4v4h4V4zM4 10h4v4H4v-4zm10 0h-4v4h4v-4zm2 0h4v4h-4v-4zm-8 6H4v4h4v-4zm2 0h4v4h-4v-4zm10 0h-4v4h4v-4z"
+                  fill="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="mono-dataset">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M19 7h-2v2h2V7zm-2 4h2v2h-2v-2zm-6 4H5v2h6v-2zm2 0h2v2h-2v-2zm4 0h2v2h-2v-2zm-2-4h-2v2h2v-2zM5 11h6v2H5v-2zm8-4h2v2h-2V7zm-2 0H5v2h6V7z"
+                  fill="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="mono-widgetDto">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11 6.085A6.5 6.5 0 1 0 17.841 14H11V6.085z"
+                  fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.99 12H13V5.886A6.501 6.501 0 0 1 18.99 12z"
+                  fill="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="more">
+            <path id="more_Combined-Shape" fill="currentColor" opacity="0.5"
+                  d="M6.55555556,14 C5.69644594,14 5,13.3284271 5,12.5 C5,11.6715729 5.69644594,11 6.55555556,11 C7.41466517,11 8.11111111,11.6715729 8.11111111,12.5 C8.11111111,13.3284271 7.41466517,14 6.55555556,14 Z M12,14 C11.1408904,14 10.4444444,13.3284271 10.4444444,12.5 C10.4444444,11.6715729 11.1408904,11 12,11 C12.8591096,11 13.5555556,11.6715729 13.5555556,12.5 C13.5555556,13.3284271 12.8591096,14 12,14 Z M17.4444444,14 C16.5853348,14 15.8888889,13.3284271 15.8888889,12.5 C15.8888889,11.6715729 16.5853348,11 17.4444444,11 C18.3035541,11 19,11.6715729 19,12.5 C19,13.3284271 18.3035541,14 17.4444444,14 Z"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="move-file">
+            <g fill-rule="evenodd" fill="currentColor">
+                <path d="M11 13h3V5H2v5H0v5h11v-2zM6.687 3H16v12H0V1h4.005c.776 0 1.24.271 1.624.73L6.687 3z"/>
+                <path d="M9 11l-5 4v-3H0v-2h4V7z"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="now-arrow">
+            <path stroke="currentColor" stroke-width="2" fill="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" d="M12 8l4.003 4L12 16zm-8 4h7m8.5-5v10" fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="num">
+            <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="num_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="num_02-icons" transform="translate(-104.000000, -132.000000)" fill="currentColor">
+                    <g id="num_icons-16/type-num-2" transform="translate(104.000000, 132.000000)">
+                        <path d="M14,11 L11,11 L11,14 L9,14 L9,11 L7,11 L7,14 L5,14 L5,11 L2,11 L2,9 L5,9 L5,7 L2,7 L2,5 L5,5 L5,2 L7,2 L7,5 L9,5 L9,2 L11,2 L11,5 L14,5 L14,7 L11,7 L11,9 L14,9 L14,11 Z M9,9 L9,7 L7,7 L7,9 L9,9 Z"
+                              id="num_⌗"/>
+                        <rect id="num_Mask" opacity="0" x="0" y="0" width="16" height="16"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="okay">
+            <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="okay_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="okay_02-icons" transform="translate(-40.000000, -297.000000)" fill="#3BC935">
+                    <g id="okay_Group-4" transform="translate(40.000000, 297.000000)">
+                        <path d="M8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 Z M6.72583507,8.78250825 L5.41518434,7.1089457 C5.07124202,6.66976769 4.40904372,6.5726702 3.93612303,6.89207239 C3.46320234,7.21147458 3.35864471,7.82642534 3.70258703,8.26560335 L6.62718026,12 L12.2606316,5.60593568 C12.630927,5.18564402 12.5642195,4.56616455 12.1116362,4.22228956 C11.659053,3.87841457 10.991978,3.94036252 10.6216826,4.36065417 L6.72583507,8.78250825 Z"
+                              id="okay_Combined-Shape"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="pencil">
+            <g transform="translate(-76.000000, -92.000000)">
+                <path fill="currentColor"
+                      d="M77.6939,103.5314 L86.3249,94.9004 L89.0999,97.6754 L80.4689,106.3064 L76.9999,107.0004 L77.6939,103.5314 Z M89.0996,92.1248 L91.8756,94.9008 L90.4876,96.2868 L87.7126,93.5128 L89.0996,92.1248 Z"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="plus">
+            <path d="M9 7h4a1 1 0 1 1 0 2H9v4a1 1 0 1 1-2 0V9H3a1 1 0 1 1 0-2h4V3a1 1 0 1 1 2 0v4z" fill="currentColor"
+                  fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="plus">
+            <path fill="currentColor" fillRule="evenodd"
+                  d="M9 7h4a1 1 0 0 1 0 2H9v4a1 1 0 0 1-2 0V9H3a1 1 0 1 1 0-2h4V3a1 1 0 1 1 2 0v4z"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="points">
+            <path d="M7.5 7.5C7.5 8.60457 6.60457 9.5 5.5 9.5C4.39543 9.5 3.5 8.60457 3.5 7.5C3.5 6.39543 4.39543 5.5 5.5 5.5C6.60457 5.5 7.5 6.39543 7.5 7.5Z"
+                  stroke="currentColor"/>
+            <path d="M8.5 19.5C8.5 20.6046 7.60457 21.5 6.5 21.5C5.39543 21.5 4.5 20.6046 4.5 19.5C4.5 18.3954 5.39543 17.5 6.5 17.5C7.60457 17.5 8.5 18.3954 8.5 19.5Z"
+                  stroke="currentColor"/>
+            <path d="M13.5 10.5C13.5 11.6046 12.6046 12.5 11.5 12.5C10.3954 12.5 9.5 11.6046 9.5 10.5C9.5 9.39543 10.3954 8.5 11.5 8.5C12.6046 8.5 13.5 9.39543 13.5 10.5Z"
+                  stroke="currentColor"/>
+            <path d="M21.5 4.5C21.5 5.60457 20.6046 6.5 19.5 6.5C18.3954 6.5 17.5 5.60457 17.5 4.5C17.5 3.39543 18.3954 2.5 19.5 2.5C20.6046 2.5 21.5 3.39543 21.5 4.5Z"
+                  stroke="currentColor"/>
+            <path d="M17.5 17.5C17.5 18.6046 16.6046 19.5 15.5 19.5C14.3954 19.5 13.5 18.6046 13.5 17.5C13.5 16.3954 14.3954 15.5 15.5 15.5C16.6046 15.5 17.5 16.3954 17.5 17.5Z"
+                  stroke="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="preview-close">
+            <path d="M7.357 7.357l9.286 9.286m0-9.286l-9.286 9.286" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" fill="none"/>
+        </symbol>
+        <symbol viewBox="0 0 236 224" fill="none" id="preview-dataset-error">
+            <image id="preview-dataset-error_image0" width="236" height="224"
+                   xlink:href="data:image/png;base64,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"></image>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="rename-file">
+            <g fill-rule="evenodd" fill="currentColor">
+                <path d="M5 3h2L3 13H1z"/>
+                <path d="M7 3H5l4 10h2z"/>
+                <path d="M3 9h6v2H3zm10-9h2v16h-2z"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="rows">
+            <rect x="19.5" y="4.5" width="3" height="15" rx="0.5" transform="rotate(90 19.5 4.5)"
+                  stroke="currentColor"/>
+            <rect x="19.5" y="10.5" width="3" height="15" rx="0.5" transform="rotate(90 19.5 10.5)"
+                  stroke="currentColor"/>
+            <rect x="19.5" y="16.5" width="3" height="15" rx="0.5" transform="rotate(90 19.5 16.5)"
+                  stroke="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="scope-folder">
+            <g fill="none" fill-rule="evenodd">
+                <path d="M2 2h9.333a1 1 0 0 1 .886.535l3.674 7A1 1 0 0 1 15.007 11H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"
+                      fill="#FFDB4D"/>
+                <path d="M1 6h21a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6z" fill="#FDE785"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="script">
+            <defs>
+                <path d="M12 0l6 6v16H0V0h12z" id="script_a"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <g transform="translate(3 1)">
+                    <use fill="#FDD835" xlink:href="#script_a"/>
+                    <use fill="#F57C00" xlink:href="#script_a"/>
+                </g>
+                <text font-family="Arial-Black, Arial Black" font-size="9" font-weight="700" fill="#FFF"
+                      transform="translate(3)">
+                    <tspan x="3.997" y="14">{ }</tspan>
+                </text>
+                <path d="M15 0l6 6h-4.002A2 2 0 0 1 15 4.002V0z" fill="#000" opacity=".2"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="search-clear">
+            <path stroke="currentColor" d="M3.35714286,3.35714286 L12.6428571,12.6428571" stroke-width="2"
+                  stroke-linecap="round"/>
+            <path stroke="currentColor" d="M3.35714286,3.35714286 L12.6428571,12.6428571" stroke-width="2"
+                  stroke-linecap="round"
+                  transform="translate(8.000000, 8.000000) scale(-1, 1) translate(-8.000000, -8.000000)"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="share">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="share_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="share_02-icons" transform="translate(-264.000000, -477.000000)">
+                    <g id="share_Group" transform="translate(264.000000, 477.000000)">
+                        <rect id="share_Rectangle-75" fill="#D8D8D8" fill-rule="nonzero" opacity="0" x="4" y="4"
+                              width="16" height="16"/>
+                        <rect id="share_Rectangle-75" fill="#D8D8D8" fill-rule="nonzero" opacity="0" x="0" y="0"
+                              width="24" height="24"/>
+                        <path d="M16.375,12.5000406 L18,12.5000406 L18,19 L5,19 L5,12.5000406 L6.6241875,12.5000406 L6.6241875,17.3750102 L16.375,17.3750102 L16.375,12.5000406 Z M11.4997562,5 L14.7497562,9.06247461 L12.3122562,9.06247461 L12.3122562,13.9374441 L10.6872562,13.9374441 L10.6872562,9.06247461 L8.24894375,9.06247461 L11.4997562,5 Z"
+                              id="share_Shape" fill="#000000" opacity="0.5"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="sidebar-folder">
+            <path d="M3 5a1 1 0 0 1 1-1h6.032a1 1 0 0 1 .768.36L13 7h7a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5z"
+                  fill="#FDE785"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="size">
+            <rect x="3.5" y="3.5" width="17" height="17" rx="1.5" stroke="currentColor"/>
+            <path d="M18 6L6.19141 17.8086M18 6L17 9M18 6L15 7M6.19141 17.8086L7 15M6.19141 17.8086L9 17"
+                  stroke="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="sort">
+            <rect x="19.5" y="4.5" width="3" height="15" rx="0.5" transform="rotate(90 19.5 4.5)"
+                  stroke="currentColor"/>
+            <path d="M13 10.5C13.2761 10.5 13.5 10.7239 13.5 11V13C13.5 13.2761 13.2761 13.5 13 13.5H5C4.72386 13.5 4.5 13.2761 4.5 13V11C4.5 10.7239 4.72386 10.5 5 10.5H13Z"
+                  stroke="currentColor"/>
+            <rect x="7.5" y="16.5" width="3" height="3" rx="0.5" transform="rotate(90 7.5 16.5)" stroke="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="sort-asc">
+            <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="sort-asc_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="sort-asc_02-icons" transform="translate(-184.000000, -92.000000)">
+                    <g id="sort-asc_Group" transform="translate(184.000000, 92.000000)">
+                        <rect id="sort-asc_Rectangle-48" fill="currentColor" opacity="0" x="0" y="0" width="16"
+                              height="16"/>
+                        <path d="M2,13 L2,11 L6,11 L6,13 L2,13 Z M2,5 L2,3 L14,3 L14,5 L2,5 Z M2,9 L2,7 L10,7 L10,9 L2,9 Z"
+                              id="sort-asc_Shape" fill="currentColor"
+                              transform="translate(8.000000, 8.000000) scale(1, -1) translate(-8.000000, -8.000000) "/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="sort-desc">
+            <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="sort-desc_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="sort-desc_02-icons" transform="translate(-220.000000, -92.000000)">
+                    <g id="sort-desc_Group"
+                       transform="translate(228.000000, 100.000000) scale(1, -1) translate(-228.000000, -100.000000) translate(220.000000, 92.000000)">
+                        <rect id="sort-desc_Rectangle-48" fill="currentColor" opacity="0" x="0" y="0" width="16"
+                              height="16"/>
+                        <path d="M2,13 L2,11 L6,11 L6,13 L2,13 Z M2,5 L2,3 L14,3 L14,5 L2,5 Z M2,9 L2,7 L10,7 L10,9 L2,9 Z"
+                              id="sort-desc_Shape" fill="currentColor"
+                              transform="translate(8.000000, 8.000000) scale(1, -1) translate(-8.000000, -8.000000) "/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="star-active">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="star-active_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="star-active_02-icons" transform="translate(-91.000000, -477.000000)" fill-rule="nonzero">
+                    <g id="star-active_files-notfaved-hover" transform="translate(91.000000, 477.000000)">
+                        <rect id="star-active_Rectangle-30" fill="#000000" opacity="0" x="0" y="0" width="24"
+                              height="24" rx="4"/>
+                        <path d="M12,16.88 L7.34501917,20.2142552 C7.12052449,20.3750556 6.80818116,20.3234211 6.64738082,20.0989264 C6.55556567,19.9707426 6.52959336,19.8067599 6.57730376,19.6564773 L8.30990072,14.1989859 L3.70036739,10.8021776 C3.4780645,10.6383605 3.43065239,10.3253484 3.59446947,10.1030456 C3.68800713,9.97611317 3.83593807,9.90073859 3.99360858,9.89967402 L9.71939322,9.86101406 L11.5255258,4.42741585 C11.6126297,4.16537098 11.8956708,4.02355333 12.1577156,4.11065726 C12.3073402,4.1603926 12.4247389,4.27779126 12.4744742,4.42741585 L14.2806068,9.86101406 L20.0063914,9.89967402 C20.2825275,9.90153846 20.5048686,10.1269024 20.5030041,10.4030385 C20.5019396,10.560709 20.426565,10.7086399 20.2996326,10.8021776 L15.6900993,14.1989859 L17.4226962,19.6564773 C17.5062538,19.9196745 17.3606271,20.2007747 17.0974299,20.2843323 C16.9471474,20.3320427 16.7831647,20.3060703 16.6549808,20.2142552 L12,16.88 Z"
+                              id="star-active_Star" fill="#FFB54D"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="star-inactive">
+            <path id="star-inactive_Star" opacity="0.5" fill="currentColor"
+                  d="M8.91729819,17.242975 L12,15.034907 L15.0827018,17.242975 L13.9353115,13.6288208 L16.9879163,11.3793278 L13.1960883,11.3537257 L12,7.75539443 L10.8039117,11.3537257 L7.0120837,11.3793278 L10.0646885,13.6288208 L8.91729819,17.242975 Z M12,16.88 L7.34501917,20.2142552 C7.12052449,20.3750556 6.80818116,20.3234211 6.64738082,20.0989264 C6.55556567,19.9707426 6.52959336,19.8067599 6.57730376,19.6564773 L8.30990072,14.1989859 L3.70036739,10.8021776 C3.4780645,10.6383605 3.43065239,10.3253484 3.59446947,10.1030456 C3.68800713,9.97611317 3.83593807,9.90073859 3.99360858,9.89967402 L9.71939322,9.86101406 L11.5255258,4.42741585 C11.6126297,4.16537098 11.8956708,4.02355333 12.1577156,4.11065726 C12.3073402,4.1603926 12.4247389,4.27779126 12.4744742,4.42741585 L14.2806068,9.86101406 L20.0063914,9.89967402 C20.2825275,9.90153846 20.5048686,10.1269024 20.5030041,10.4030385 C20.5019396,10.560709 20.426565,10.7086399 20.2996326,10.8021776 L15.6900993,14.1989859 L17.4226962,19.6564773 C17.5062538,19.9196745 17.3606271,20.2007747 17.0974299,20.2843323 C16.9471474,20.3320427 16.7831647,20.3060703 16.6549808,20.2142552 L12,16.88 Z"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="swap">
+            <path fill="currentColor"
+                  d="M14.9998,4 L19.9998,8.001 L14.9998,12 L14.9998,9 L4.9998,9 L4.9998,7.001 L14.9998,7.001 L14.9998,4 Z M4,16.0006 L9,11.9996 L9,14.9996 L19,14.9996 L19,17.0006 L9,17.0006 L9,20 L4,16.0006 Z"
+                  transform="translate(11.999900, 12.000000) rotate(90.000000) translate(-11.999900, -12.000000)"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="tick">
+            <path fill="currentColor" d="M5.95 11.008L1.863 6.572.392 7.927l5.533 6.003 9.67-10.114-1.444-1.381z"
+                  fill-rule="evenodd"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="time-refresh">
+            <path fill="currentColor"
+                  d="M7.6 11.429c-2.21 0-4-1.76-4-3.929 0-2.17 1.79-3.929 4-3.929a3.99 3.99 0 0 1 2.652 1.008L8.399 6.244 14 7.6 13.12 2l-1.678 1.509A5.62 5.62 0 0 0 7.6 2C4.507 2 2 4.462 2 7.5S4.507 13 7.6 13a5.606 5.606 0 0 0 5.004-3.042l-1.441-.708a3.994 3.994 0 0 1-3.564 2.179"
+                  fill-rule="evenodd"/>
+        </symbol>
+        <symbol fill="none" viewBox="0 0 24 24" id="toast-attention">
+            <path opacity=".01" fill="#D8D8D8" d="M0 0h24v24H0z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M11.048 4.524c.41-.699 1.511-.699 1.92 0l7.902 13.022c.387.659-.138 1.454-.96 1.454H4.09c-.822 0-1.347-.795-.96-1.454l7.918-13.022zm2.093 9.41h-2.265V9.072h2.265v4.86zm-2.265 3.34h2.265v-1.98h-2.265v1.98z"
+                  fill="#FF0400"/>
+        </symbol>
+        <symbol fill="none" viewBox="0 0 24 24" id="toast-success">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" fill="#3BC935"/>
+            <path d="M8.25 11.688l2.5 3.437 5.625-6.875" stroke="#fff" stroke-width="1.667" stroke-linecap="round"/>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="type">
+            <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="type_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="type_02-icons" transform="translate(-168.000000, -132.000000)">
+                    <g id="type_icons-16/type-string-5" transform="translate(168.000000, 132.000000)">
+                        <g>
+                            <path d="M3,1 L13,1 C14.1045695,1 15,1.8954305 15,3 L15,13 C15,14.1045695 14.1045695,15 13,15 L3,15 C1.8954305,15 1,14.1045695 1,13 L1,3 C1,1.8954305 1.8954305,1 3,1 Z M9.2199999,9.86 L9.7599999,11.5 L11.3499999,11.5 L8.9499999,4.34 L7.1099999,4.34 L4.6999999,11.5 L6.0599999,11.5 L6.6099999,9.86 L9.2199999,9.86 Z M7.9199999,5.92 L8.8099999,8.62 L7.0199999,8.62 L7.9199999,5.92 Z"
+                                  id="type_Combined-Shape" fill="currentColor"/>
+                            <rect id="type_Mask" fill="#D8D8D8" opacity="0" x="0" y="0" width="16" height="16"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 16 16" id="undefined">
+            <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="undefined_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+               opacity="0.200000003">
+                <g id="undefined_02-icons" transform="translate(-158.000000, -373.000000)" fill="#000000">
+                    <g id="undefined_Group-4" transform="translate(158.000000, 373.000000)">
+                        <path fill="currentColor"
+                              d="M8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 Z M4,9 C4.55228475,9 5,8.55228475 5,8 C5,7.44771525 4.55228475,7 4,7 C3.44771525,7 3,7.44771525 3,8 C3,8.55228475 3.44771525,9 4,9 Z M8,9 C8.55228475,9 9,8.55228475 9,8 C9,7.44771525 8.55228475,7 8,7 C7.44771525,7 7,7.44771525 7,8 C7,8.55228475 7.44771525,9 8,9 Z M12,9 C12.5522847,9 13,8.55228475 13,8 C13,7.44771525 12.5522847,7 12,7 C11.4477153,7 11,7.44771525 11,8 C11,8.55228475 11.4477153,9 12,9 Z"
+                              id="undefined_Combined-Shape"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="vis-area">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="vis-area_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="vis-area_Artboard-3" transform="translate(-32.000000, -168.000000)">
+                    <g id="vis-area_Files/List/ic-wiz" transform="translate(32.000000, 168.000000)">
+                        <rect id="vis-area_Rectangle-17" fill="#7A7A7A" opacity="0" x="0" y="0" width="24" height="24"/>
+                        <path d="M2,19.1388167 L2,18 L6.77656178,11.4865067 C7.10316291,11.0411415 7.72896526,10.9448642 8.17433044,11.2714653 C8.22819825,11.3109684 8.27797234,11.3557696 8.32290685,11.4051975 L9.12497321,12.2874705 C9.49648014,12.6961281 10.1289285,12.7262447 10.5375861,12.3547378 C10.6018084,12.2963539 10.6581566,12.2298573 10.7052099,12.1569246 L14.262444,6.64321182 C14.5618524,6.1791288 15.1807845,6.04563364 15.6448675,6.34504205 C15.7299261,6.39991853 15.8061596,6.46739153 15.8709619,6.54515429 L16.6904826,7.52857917 C17.0440467,7.95285607 17.6746114,8.01018013 18.0988883,7.65661605 C18.1585072,7.60693362 18.2121401,7.55047992 18.2587039,7.48839477 L22,2.5 L22,8.31168761 L17.19057,13.420371 L16.2636906,12.9309786 C15.4045739,12.477365 14.3604597,12.5625471 13.5862286,13.1494142 L9.71218418,16.0859399 L8.43609329,15.6826952 C7.67543525,15.4423272 6.84573545,15.5794037 6.20281167,16.0516605 L2,19.1388167 Z"
+                              id="vis-area_Combined-Shape" fill="#1A82E3" fill-rule="nonzero"/>
+                        <path d="M2,21 L22,21 L22,10.5 L18.0218239,14.7257071 C17.7135264,15.0531875 17.2245321,15.134553 16.826801,14.924551 L15.5633221,14.2574341 C15.2196754,14.0759886 14.8020298,14.1100614 14.4923373,14.3448083 L10.4121953,17.437556 C10.1536657,17.6335214 9.81613918,17.6919 9.50680889,17.5941516 L7.98412244,17.1129827 C7.67985922,17.0168355 7.3479793,17.0716661 7.09080979,17.2605688 L2,21 Z"
+                              id="vis-area_Path-4" fill="#FC4F51" fill-rule="nonzero"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="vis-area-100p">
+            <g fill="none" fill-rule="nonzero" transform="translate(4.000000, 4.000000)">
+                <path fill="#1A82E3"
+                      d="M0 14.923l8.785 1.267H0v-1.267zm0-3.25V.809h16v2.1l-3.848 4.136-.741-.396a1.98 1.98 0 0 0-2.142.177l-3.1 2.377-1.02-.326a1.98 1.98 0 0 0-1.787.299L0 11.674z"/>
+                <path fill="#FC4F51"
+                      d="M0 13.492v2.712l16-.014V4.992l-3.183 3.421a.793.793 0 0 1-.956.161l-1.01-.54a.792.792 0 0 0-.857.07L6.73 10.61a.792.792 0 0 1-.725.126l-1.218-.39a.792.792 0 0 0-.714.12L0 13.492z"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="vis-column-100p">
+            <g fill="none" fill-rule="evenodd" transform="translate(-4 -5)">
+                <rect width="4" height="5.5" x="8" y="18.5" fill="#1A82E3" rx="1"/>
+                <rect width="4" height="7.5" x="8" y="10" fill="#FC4F51" rx="1"/>
+                <rect width="4" height="9.5" x="14" y="14.5" fill="#1A82E3" rx="1"/>
+                <rect width="4" height="3.5" x="14" y="10" fill="#FC4F51" rx="1"/>
+                <rect width="4" height="14" x="20" y="10" fill="#1A82E3" rx="1"/>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="vis-columns">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="vis-columns_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="vis-columns_Artboard-3" transform="translate(-32.000000, -120.000000)">
+                    <g id="vis-columns_Files/List/ic-wiz" transform="translate(32.000000, 120.000000)">
+                        <rect id="vis-columns_Rectangle-17" fill="#FFFFFF" opacity="0" x="0" y="0" width="24"
+                              height="24"/>
+                        <rect id="vis-columns_Rectangle-17" fill="#1A82E3" x="4" y="13.5" width="4" height="5.5"
+                              rx="1"/>
+                        <rect id="vis-columns_Rectangle-17" fill="#1A82E3" x="10" y="9.5" width="4" height="9.5"
+                              rx="1"/>
+                        <rect id="vis-columns_Rectangle-17" fill="#FC4F51" x="16" y="5" width="4" height="14" rx="1"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="vis-flat-table">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="vis-flat-table_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="vis-flat-table_Artboard-3" transform="translate(-80.000000, -72.000000)">
+                    <g id="vis-flat-table_Files/List/ic-wiz" transform="translate(80.000000, 72.000000)">
+                        <rect id="vis-flat-table_Rectangle-17" fill="#FFFFFF" opacity="0" x="0" y="0" width="24"
+                              height="24"/>
+                        <path d="M2.5,5 L6.5,5 C6.77614237,5 7,5.22385763 7,5.5 L7,6.5 C7,6.77614237 6.77614237,7 6.5,7 L2.5,7 C2.22385763,7 2,6.77614237 2,6.5 L2,5.5 C2,5.22385763 2.22385763,5 2.5,5 Z M9.5,5 L13.5,5 C13.7761424,5 14,5.22385763 14,5.5 L14,6.5 C14,6.77614237 13.7761424,7 13.5,7 L9.5,7 C9.22385763,7 9,6.77614237 9,6.5 L9,5.5 C9,5.22385763 9.22385763,5 9.5,5 Z M16.5,5 L20.5,5 C20.7761424,5 21,5.22385763 21,5.5 L21,6.5 C21,6.77614237 20.7761424,7 20.5,7 L16.5,7 C16.2238576,7 16,6.77614237 16,6.5 L16,5.5 C16,5.22385763 16.2238576,5 16.5,5 Z"
+                              id="vis-flat-table_Combined-Shape" fill="#FC4F51" fill-rule="nonzero"/>
+                        <path d="M2.5,9 L6.5,9 C6.77614237,9 7,9.22385763 7,9.5 L7,12.5 C7,12.7761424 6.77614237,13 6.5,13 L2.5,13 C2.22385763,13 2,12.7761424 2,12.5 L2,9.5 C2,9.22385763 2.22385763,9 2.5,9 Z M9.5,9 L13.5,9 C13.7761424,9 14,9.22385763 14,9.5 L14,12.5 C14,12.7761424 13.7761424,13 13.5,13 L9.5,13 C9.22385763,13 9,12.7761424 9,12.5 L9,9.5 C9,9.22385763 9.22385763,9 9.5,9 Z M16.5,9 L20.5,9 C20.7761424,9 21,9.22385763 21,9.5 L21,12.5 C21,12.7761424 20.7761424,13 20.5,13 L16.5,13 C16.2238576,13 16,12.7761424 16,12.5 L16,9.5 C16,9.22385763 16.2238576,9 16.5,9 Z"
+                              id="vis-flat-table_Combined-Shape" fill="#1A82E3" fill-rule="nonzero"/>
+                        <path d="M2.5,15 L6.5,15 C6.77614237,15 7,15.2238576 7,15.5 L7,18.5 C7,18.7761424 6.77614237,19 6.5,19 L2.5,19 C2.22385763,19 2,18.7761424 2,18.5 L2,15.5 C2,15.2238576 2.22385763,15 2.5,15 Z M9.5,15 L13.5,15 C13.7761424,15 14,15.2238576 14,15.5 L14,18.5 C14,18.7761424 13.7761424,19 13.5,19 L9.5,19 C9.22385763,19 9,18.7761424 9,18.5 L9,15.5 C9,15.2238576 9.22385763,15 9.5,15 Z M16.5,15 L20.5,15 C20.7761424,15 21,15.2238576 21,15.5 L21,18.5 C21,18.7761424 20.7761424,19 20.5,19 L16.5,19 C16.2238576,19 16,18.7761424 16,18.5 L16,15.5 C16,15.2238576 16.2238576,15 16.5,15 Z"
+                              id="vis-flat-table_Combined-Shape" fill="#1A82E3" fill-rule="nonzero"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="vis-lines">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="vis-lines_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="vis-lines_Artboard-3" transform="translate(-32.000000, -72.000000)">
+                    <g id="vis-lines_Group-115" transform="translate(32.000000, 72.000000)">
+                        <rect id="vis-lines_Rectangle-17" fill="#7A7A7A" opacity="0" x="0" y="0" width="24"
+                              height="24"/>
+                        <path d="M3.83817196,10.7142092 L2.02061818,11.9132898 L0.951053788,11.2108577 C0.48942234,10.9076831 0.360967702,10.2876852 0.664142323,9.82605379 C0.967316945,9.36442234 1.58731476,9.2359677 2.04894621,9.53914232 L3.83817196,10.7142092 Z M7.47825145,13.104817 L11.7873564,15.9348046 C11.9433377,16.0372447 12.1433852,16.0442967 12.3061927,15.9530943 L22.0112736,10.5164518 C22.4931074,10.2465356 23.102521,10.4183288 23.3724371,10.9001625 C23.6423532,11.3819963 23.4705601,11.9914099 22.9887264,12.261326 L13.2836454,17.6979686 C12.469608,18.1539803 11.4693706,18.1187205 10.689464,17.6065199 L5.66069768,14.3038976 L7.47825145,13.104817 Z"
+                              id="vis-lines_Combined-Shape" fill="#FC4F51" fill-rule="nonzero"/>
+                        <path d="M2.05068069,15.4874938 C1.58967978,15.7916263 0.969416557,15.6644594 0.665284012,15.2034585 C0.361151466,14.7424576 0.488318402,14.1221943 0.949319313,13.8180618 L7.43115491,9.54185081 C7.98415086,9.17702709 8.65934301,9.04661743 9.30842315,9.17926674 L14.8790075,10.3176996 C15.0491218,10.3524651 15.2250929,10.2964881 15.3438576,10.1698293 L21.7705263,3.31599116 C22.1482939,2.91311395 22.7811316,2.89275863 23.1840088,3.27052628 C23.5868861,3.64829394 23.6072414,4.28113163 23.2294737,4.68400884 L16.8028051,11.5378469 C16.2089815,12.1711409 15.3291257,12.451026 14.4785542,12.2771989 L8.90796993,11.138766 C8.7781539,11.1122361 8.64311547,11.138318 8.53251628,11.2112828 L2.05068069,15.4874938 Z"
+                              id="vis-lines_Path-35" fill="#1A82E3" fill-rule="nonzero"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="map">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none" class=""
+                  style=""/>
+            <g class="currentLayer" style="">
+                <title>Layer 1</title>
+                <g id="svg_1" class="" fill="#1A82E3" fill-opacity="1">
+                    <path d="M17.786774787124255,3.123454839087877 C14.348662462256446,-0.29627185837421965 8.796202985731945,-0.29627185837421965 5.35809066086413,3.123454839087877 c-3.419726697462106,3.419726697462106 -3.419726697462106,8.99057180139231 0,12.428684126260126 L11.572432723994195,21.61939600923239 l6.195956435724354,-6.085642671290093 l0,0 C21.206501484586376,12.114026640480198 21.206501484586376,6.543181536549987 17.786774787124255,3.123454839087877 zM16.73879402499878,14.485772575816817 L11.572432723994195,19.56020573979285 L6.406071422989614,14.50415820322253 c-1.3789220554282686,-1.3789220554282686 -2.1327327790623887,-3.2174847959992934 -2.1327327790623887,-5.1663613010045815 s0.7538107236341207,-3.7874392455763113 2.1327327790623887,-5.1663613010045815 S9.623556218988906,2.020317194745264 11.572432723994195,2.020317194745264 s3.7874392455763113,0.7538107236341207 5.1663613010045815,2.1327327790623887 s2.1327327790623887,3.2174847959992934 2.1327327790623887,5.1663613010045815 C18.889912431466875,11.286673407223237 18.117716080427044,13.106850520388548 16.73879402499878,14.485772575816817 z"
+                          id="svg_2" fill="#d50b0b" fill-opacity="1"/>
+                    <path d="M11.572432723994195,5.568743284047347 c-2.077575896845258,0 -3.7506679907648905,1.6914777213253425 -3.7506679907648905,3.7506679907648905 S9.494856827148944,13.088464892982834 11.572432723994195,13.088464892982834 S15.323100714759084,11.39698717165749 15.323100714759084,9.33779690221795 S13.650008620839449,5.568743284047347 11.572432723994195,5.568743284047347 zM11.572432723994195,11.617614700526019 c-1.2502226635882971,0 -2.279817798308071,-1.0295951347197738 -2.279817798308071,-2.279817798308071 S10.322210060405904,7.039593476504168 11.572432723994195,7.039593476504168 s2.279817798308071,1.0295951347197738 2.279817798308071,2.279817798308071 S12.822655387582488,11.617614700526019 11.572432723994195,11.617614700526019 z"
+                          id="svg_3" fill="#1A82E3" fill-opacity="1"/>
+                    <rect height="1.4708501708402935" width="13.605364362898285" x="4.769750503610396"
+                          y="22.24450655593887" id="svg_4" fill="#1A82E3" fill-opacity="1"/>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="vis-pie">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <defs></defs>
+            <g id="vis-pie_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="vis-pie_Artboard-3" transform="translate(-80.000000, -168.000000)">
+                    <g id="vis-pie_Files/List/ic-wiz" transform="translate(80.000000, 168.000000)">
+                        <rect id="vis-pie_Rectangle-17" fill="#BDBDBD" opacity="0" x="0" y="0" width="24" height="24"/>
+                        <g id="vis-pie_Group-33" transform="translate(3.000000, 0.000000)">
+                            <path d="M8,3.05492878 L8,13.8685171 L16.9983536,7.86961468 C17.6384493,9.1066279 18,10.5110916 18,12 C18,16.9705627 13.9705627,21 9,21 C4.02943725,21 0,16.9705627 0,12 C0,7.36744635 3.50004954,3.55237307 8,3.05492878 Z"
+                                  id="vis-pie_Combined-Shape" fill="#1A82E3"/>
+                            <path d="M10,10.1317178 L16.4086363,5.86026167 L18.0717771,4.6406251 C16.0316178,2.28467926 13.1516271,0.798657301 10,0.537752853 L10,10.1317178 Z"
+                                  id="vis-pie_Path" fill="#FC4F51" fill-rule="nonzero"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="vis-pivot">
+            <defs></defs>
+            <g id="vis-pivot_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="vis-pivot_Artboard-3" transform="translate(-80.000000, -120.000000)">
+                    <g id="vis-pivot_Files/List/ic-wiz" transform="translate(80.000000, 120.000000)">
+                        <rect id="vis-pivot_Rectangle-17" fill="#FFFFFF" opacity="0" x="0" y="0" width="24"
+                              height="24"/>
+                        <path d="M9.5,5 L13.5,5 C13.7761424,5 14,5.22385763 14,5.5 L14,6.5 C14,6.77614237 13.7761424,7 13.5,7 L9.5,7 C9.22385763,7 9,6.77614237 9,6.5 L9,5.5 C9,5.22385763 9.22385763,5 9.5,5 Z M2.5,5 L6.5,5 C6.77614237,5 7,5.22385763 7,5.5 L7,6.5 C7,6.77614237 6.77614237,7 6.5,7 L2.5,7 C2.22385763,7 2,6.77614237 2,6.5 L2,5.5 C2,5.22385763 2.22385763,5 2.5,5 Z M16.5,5 L20.5,5 C20.7761424,5 21,5.22385763 21,5.5 L21,6.5 C21,6.77614237 20.7761424,7 20.5,7 L16.5,7 C16.2238576,7 16,6.77614237 16,6.5 L16,5.5 C16,5.22385763 16.2238576,5 16.5,5 Z"
+                              id="vis-pivot_Combined-Shape" fill="#FC4F51" fill-rule="nonzero"/>
+                        <path d="M9.5,9 L13.5,9 C13.7761424,9 14,9.22385763 14,9.5 L14,12.5 C14,12.7761424 13.7761424,13 13.5,13 L9.5,13 C9.22385763,13 9,12.7761424 9,12.5 L9,9.5 C9,9.22385763 9.22385763,9 9.5,9 Z M16.5,9 L20.5,9 C20.7761424,9 21,9.22385763 21,9.5 L21,12.5 C21,12.7761424 20.7761424,13 20.5,13 L16.5,13 C16.2238576,13 16,12.7761424 16,12.5 L16,9.5 C16,9.22385763 16.2238576,9 16.5,9 Z M9.5,15 L13.5,15 C13.7761424,15 14,15.2238576 14,15.5 L14,18.5 C14,18.7761424 13.7761424,19 13.5,19 L9.5,19 C9.22385763,19 9,18.7761424 9,18.5 L9,15.5 C9,15.2238576 9.22385763,15 9.5,15 Z M16.5,15 L20.5,15 C20.7761424,15 21,15.2238576 21,15.5 L21,18.5 C21,18.7761424 20.7761424,19 20.5,19 L16.5,19 C16.2238576,19 16,18.7761424 16,18.5 L16,15.5 C16,15.2238576 16.2238576,15 16.5,15 Z"
+                              id="vis-pivot_Combined-Shape" fill="#1A82E3" fill-rule="nonzero"/>
+                        <path d="M2.5,9 L6.5,9 C6.77614237,9 7,9.22385763 7,9.5 L7,12.5 C7,12.7761424 6.77614237,13 6.5,13 L2.5,13 C2.22385763,13 2,12.7761424 2,12.5 L2,9.5 C2,9.22385763 2.22385763,9 2.5,9 Z M2.5,15 L6.5,15 C6.77614237,15 7,15.2238576 7,15.5 L7,18.5 C7,18.7761424 6.77614237,19 6.5,19 L2.5,19 C2.22385763,19 2,18.7761424 2,18.5 L2,15.5 C2,15.2238576 2.22385763,15 2.5,15 Z"
+                              id="vis-pivot_Combined-Shape" fill="#FC4F51" fill-rule="nonzero"/>
+                    </g>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="vis-scatter">
+            <circle cx="7" cy="7" r="3" stroke="#1A82E3" stroke-width="2"/>
+            <circle cx="17" cy="17" r="3" stroke="#1A82E3" stroke-width="2"/>
+            <circle cx="7" cy="17" r="3" stroke="#1A82E3" stroke-width="2"/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M17 4C16.4477 4 16 4.44772 16 5V6H15C14.4477 6 14 6.44772 14 7C14 7.55228 14.4477 8 15 8H16V9C16 9.55228 16.4477 10 17 10C17.5523 10 18 9.55228 18 9V8H19C19.5523 8 20 7.55228 20 7C20 6.44772 19.5523 6 19 6H18V5C18 4.44772 17.5523 4 17 4Z"
+                  fill="#FF0400"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="vis-treemap">
+            <rect x="5" y="5" width="8" height="9" fill="#1A82E3"/>
+            <rect x="14" y="5" width="5" height="9" fill="#1A82E3"/>
+            <path d="M5 15L10 15V19H5L5 15Z" fill="#1A82E3"/>
+            <path d="M11 15L16 15V19H11L11 15Z" fill="#1A82E3"/>
+            <path d="M17 15L19 15V19H17L17 15Z" fill="#FF0400"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="visualization">
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="24"/>
+                <g transform="translate(4.000000, 6.000000)">
+                    <rect fill="#43A047" x="0" y="8" width="4" height="4"/>
+                    <rect fill="#FF0400" x="6" y="4" width="4" height="8"/>
+                    <rect fill="#1E88E5" x="12" y="0" width="4" height="12"/>
+                </g>
+            </g>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="x">
+            <path d="M14.724 9.89539L12.2325 7.40381L14.0002 5.63604L20.3642 12L14.0002 18.364L12.2325 16.5962L14.7262 14.1025L15.5797 13.2489H14.3726H4.07129C3.79515 13.2489 3.57129 13.0251 3.57129 12.7489V11.2489C3.57129 10.9728 3.79515 10.7489 4.07129 10.7489H14.3705H15.5776L14.724 9.89539Z"
+                  stroke="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" fill="none" id="y">
+            <path d="M14.0851 8.35066L13.2316 7.4971V8.70421V19C13.2316 19.2761 13.0077 19.5 12.7316 19.5H11.2668C10.9906 19.5 10.7668 19.2761 10.7668 19V8.70631V7.4992L9.91322 8.35276L7.46267 10.8033L5.6949 9.03554L11.9884 2.74202L18.3049 9.03617L16.5378 10.8033L14.0851 8.35066Z"
+                  stroke="currentColor"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="indicator">
+            <g>
+                <path d="M3 17l1.372-.915a4 4 0 013.484-.466l1.409.47a4 4 0 004.465-1.395L15 13"
+                      stroke="#027BF3"/>
+                <path d="M3.722 11H2.338V6.816L1.202 7.888V6.696L2.538 5.44h1.184V11zm1.574.064a.674.674 0 01-.496-.2.674.674 0 01-.2-.496.683.683 0 01.696-.704c.192 0 .355.067.488.2a.67.67 0 01.208.504.66.66 0 01-.208.496.664.664 0 01-.488.2zM10.361 11H6.53v-.816c.411-.347.766-.653 1.064-.92.3-.267.544-.512.736-.736a2.66 2.66 0 00.432-.656 1.53 1.53 0 00.144-.648c0-.31-.082-.547-.248-.712-.165-.165-.41-.248-.736-.248-.154 0-.298.019-.432.056a1.69 1.69 0 00-.36.144 1.563 1.563 0 00-.288.184 2.45 2.45 0 00-.2.176v-.928c.043-.048.107-.101.192-.16.091-.059.206-.115.344-.168.14-.059.302-.107.488-.144.192-.037.414-.056.664-.056.326 0 .611.043.856.128.251.08.46.197.624.352.171.15.3.33.384.544.086.208.128.443.128.704 0 .304-.053.59-.16.856a3.057 3.057 0 01-.456.76c-.192.24-.429.477-.712.712-.277.23-.589.467-.936.712h2.304V11zm6.874-4.008l-1.288 3.336h-1l-1.28-3.416V11h-1.032V5.44h1.688l1.312 3.384 1.288-3.384h1.736V11h-1.424V6.992z"
+                      fill="#FC4F51"/>
+            </g>
+        </symbol>
+    </defs>
+</svg>

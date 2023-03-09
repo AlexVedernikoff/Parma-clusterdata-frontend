@@ -1,0 +1,15 @@
+.card__row {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    border-top: #e9eaec 1px solid;
+}
+
+.card__row_cell_key {
+    padding: 10px 10px 10px 15px;
+    background: rgb(181, 209, 235);
+}
+
+.card__row_cell_value {
+    padding: 10px 10px 10px 15px;
+    overflow: hidden;
+}

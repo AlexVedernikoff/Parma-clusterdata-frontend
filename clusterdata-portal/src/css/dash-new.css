@@ -1,0 +1,338 @@
+:root {
+    --item-shadow: 5px 15px 10px rgba(5, 66, 40, 0.1);
+    --item-border: solid 2px #c7d7e9;
+
+    --item-title-background: rgba(53, 130, 202, 0.10);
+    --item-title-height: 50px;
+    --item-title-font-size: 14px;
+
+    --table-head-background: #f2f8ff;
+    --table-head-font-size: 14px;
+    --table-body-background: white;
+    --table-body-font-size: 14px;
+
+    --title-vertical-align: flex-end;
+
+    --map-zoom-button-font-size: 25px;
+    --map-zoom-button-height: 45px;
+
+    --widget-tab__font-weight: 600;
+    --react-grid-item__border: solid 2px #c7d7e9;
+    --dashkit-plugin-widget__border: none;
+    --yc-select-control__border: 1px solid var(--color-divider);
+    --yc-select-control_focused__border-color: var(--color-divider);
+
+    --yc-root_theme_light-background: #F9FDFF;
+    --dash-tabs-margin: 0 0 30px 25px;
+    --dash-tabs-color: #4B4C63;
+    --dash-tabs-font-size: 16px;
+
+    --dash-tab-link-display: inline-block;
+    --dash-tab-link-text-decoration: none;
+    --dash-tab-link-color: inherit;
+    --dash-tab-link-opacity: .5;
+    --dash-tab-link-padding: 0 0 12px 0;
+    --dash-tab-link-position: relative;
+    --dash-tab-link-margin: 0 20px 0 0;
+    --dash-tab-link-height: 31px;
+    --dash-tab-link-border-radius: 0;
+    --dash-tab-link-font-weight: bold;
+
+    --dash-tab-link_selected-content-after: "";
+    --dash-tab-link_selected-content-before: none;
+
+    --dash-tab-link_selected-background: "";
+
+}
+
+.yc-root_theme_light {
+    background: var(--yc-root_theme_light-background);
+}
+
+.yc-header {
+    height: 58px;
+    border-bottom: 1px solid rgba(75, 76, 99, 0.12);
+    margin: 0 20px;
+    padding: 0;
+}
+
+.action-panel {
+    background: #F9FDFF;
+    margin: 0 20px;
+    padding: 0;
+}
+
+.dl-entry-panel__entry-title {
+    margin: 0 16px;
+    color: #4B4C63;
+}
+
+.dl-entry-panel__entry-actions {
+    margin-left: 45px;
+}
+
+.yc-root .button2_theme_flat {
+    color: #51596B;
+}
+
+.dash-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    white-space: nowrap;
+    margin: var(--dash-tabs-margin);
+    color: var(--dash-tabs-color);
+    font-size: var(--dash-tabs-font-size);
+}
+
+.dash-tabs-dropdown__toogle-btn {
+    width: 30px;
+    height: 48px;
+    border: none;
+    outline: none;
+}
+
+.dash-tabs-dropdown__toogle-btn-dots::after {
+    content: '\2807';
+    font-size: 16px;
+    color: #105DC7;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 4px;
+}
+
+.dash-tabs-dropdown__menu {
+    padding: 10px 12px;
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(138, 168, 198, 0.2);
+}
+
+.dash-tab-link {
+    display: var(--dash-tab-link-display);
+    align-items: center;
+    height: var(--dash-tab-link-height);
+    border-radius: var(--dash-tab-link-border-radius);
+    margin: var(--dash-tab-link-margin);
+    padding: var(--dash-tab-link-padding);
+    color: #717D8F;
+    position: relative;
+    overflow: hidden;
+    text-decoration: var(--dash-tab-link-text-decoration);
+}
+
+.dash-tab-link_selected {
+    font-weight: var(--dash-tab-link-font-weight);
+}
+
+.dash-tab-link:hover,
+.dash-tab-link_selected {
+    background: var(--dash-tab-link_selected-background);
+    color: #092040;
+}
+
+.dash-tab-link_selected:not(.dash-tab-link_is-menu-item)::before {
+    content: var(--dash-tab-link_selected-content-before);
+    display: block;
+    position: absolute;
+    left: -3px;
+    width: 3px;
+    height: 24px;
+    border-radius: 3px;
+    border: 3px solid #105DC7;
+}
+
+.dash-tab-link_selected:not(.dash-tab-link_is-menu-item):after {
+    content: var(--dash-tab-link_selected-content-after);
+}
+
+.dash-tab-link_is-menu-item {
+    margin: 2px 0;
+    height: auto;
+    padding: 8px 12px;
+    color: #717D8F;
+    font-size: 14px;
+    border-radius: 8px;
+    line-height: inherit;
+}
+
+.dash-tab-link_is-menu-item:hover,
+.dash-tab-link_is-menu-item.dash-tab-link_selected {
+    background: #F1F5FC;
+}
+
+.dashkit-plugin-widget__tabs {
+    background: var(--item-title-background);
+    height: var(--item-title-height);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.data-table__head {
+    background: #fff;
+    color: #242534;
+    line-height: 1.8;
+}
+
+.dashkit_theme_clusterdata .dashkit-plugin-widget__tab {
+    font-size: 14px;
+    font-weight: var(--widget-tab__font-weight);
+    margin: 0 auto;
+    color: rgb(36,37,52);
+    padding: 0 28px;
+    text-align: center;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.dashkit-grid-item .chartkit-menu__button {
+    visibility: hidden;
+}
+
+.dashkit-grid-item:hover .chartkit-menu__button {
+    visibility: visible;
+}
+
+.dashkit-grid-item__item {
+    box-shadow: var(--item-shadow);
+}
+
+.data-table__row {
+    background: #fff;
+}
+
+.data-table__row.selected {
+    background-color: rgba(2, 123, 243, 0.2)!important;
+}
+
+.data-table__row:hover {
+    background-color: rgba(2, 123, 243, 0.1)!important;
+}
+
+.data-table__row_odd {
+    background: #F2F9FD;
+}
+
+.data-table__td {
+    vertical-align: middle;
+    border-right: 1px solid rgba(53, 130, 202, 0.15);
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.data-table__td.selected {
+    background-color: rgba(2, 123, 243, 0.2)!important;
+}
+
+.data-table__th {
+    position: sticky;
+    top: 0;
+    background: rgb(181, 209, 235);
+}
+
+.data-table__foot tr td {
+    position: sticky;
+    top: 46px;
+    background: #fff;
+}
+
+.ol-zoom-in, .ol-zoom-out {
+    font-size: var(--map-zoom-button-font-size);
+    display: block;
+    box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, .26);
+    border: 2px solid #dfe6e9;
+    background-color: #fafafa;
+    border-radius: 5px;
+    width: var(--map-zoom-button-height);
+    height: var(--map-zoom-button-height);
+    cursor: pointer;
+}
+
+.ol-rotate-reset {
+    display: none;
+}
+
+.ol-overlaycontainer-stopevent {
+    margin: 10px;
+}
+
+.data-table__box {
+    /*Для того, чтобы не повлялась нижняя полоса прокрутки*/
+    width: calc(100% - 1px);
+}
+
+.chartkit-table__head-cell {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.button2__icon_side_right {
+    color: #027BF3;
+}
+
+.dashkit-plugin-widget .chartkit-menu__button {
+    top: -38px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.chartkit-table{
+    overflow: hidden;
+}
+
+.chartkit-table:hover{
+    overflow: overlay;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 50px;
+    background-color: rgba(56, 100, 140, 0.5);
+    border-radius: 3px;
+}
+
+.chartkit-table__cell {
+    line-height: 16px;
+}
+
+.data-table__head-cell {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 36px;
+}
+
+.chartkit-table .data-table__sort-icon_shadow {
+    display: inherit;
+}
+
+.dashkit-plugin-widget .chartkit .chartkit-table {
+    margin-bottom: 38px;
+}
+
+.dashkit-plugin-widget .pagination {
+    position: absolute;
+    bottom: 2px;
+    left: 9px;
+}
+
+/* ---------------- dashkit-canvas ---> */
+.dashkit-canvas {
+    display: block;
+    position: absolute;
+    width: calc(100vw - 84px);
+    height: calc(100vw * 0.71);
+}
+
+.dashkit-canvas.edit {
+    background-color: rgba(255, 255, 255, 1);
+    background-size: 10px 10px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    box-shadow: 0 10px 10px rgb(0 0 0 / 16%);
+}

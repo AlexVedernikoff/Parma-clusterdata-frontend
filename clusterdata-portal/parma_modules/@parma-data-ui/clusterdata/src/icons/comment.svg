@@ -1,0 +1,8 @@
+export default {
+      id: "comment-usage",
+      viewBox: "0 0 32 32",
+      url: __webpack_public_path__ + "/sprites/sprite-2fc732.svg?" + __webpack_hash__ + "#comment",
+      toString: function () {
+        return this.url;
+      }
+    }

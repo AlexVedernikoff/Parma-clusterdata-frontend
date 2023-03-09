@@ -1,0 +1,9 @@
+.parma-create-dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.parma-create-dropdown-item-icon {
+  margin-right: 8px;
+  width: 20px;
+}

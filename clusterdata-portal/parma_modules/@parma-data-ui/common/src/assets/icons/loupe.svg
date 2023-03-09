@@ -1,0 +1,8 @@
+export default {
+      id: "loupe-usage",
+      viewBox: "0 0 34 34",
+      url: __webpack_public_path__ + "/sprites/sprite-2fc732.svg?" + __webpack_hash__ + "#loupe",
+      toString: function () {
+        return this.url;
+      }
+    }

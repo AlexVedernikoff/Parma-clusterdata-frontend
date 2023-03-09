@@ -1,0 +1,8 @@
+export default {
+      id: "mysql-usage",
+      viewBox: "0 0 56 56",
+      url: __webpack_public_path__ + "/sprites/sprite-2fc732.svg?" + __webpack_hash__ + "#mysql",
+      toString: function () {
+        return this.url;
+      }
+    }

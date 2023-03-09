@@ -1,0 +1,8 @@
+export default {
+      id: "table-count-usage",
+      viewBox: "0 0 10 11",
+      url: __webpack_public_path__ + "/sprites/sprite-2fc732.svg?" + __webpack_hash__ + "#table-count",
+      toString: function () {
+        return this.url;
+      }
+    }

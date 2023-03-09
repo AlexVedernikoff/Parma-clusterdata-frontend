@@ -1,0 +1,261 @@
+.yc-select-search .parma-textinput__box {
+  border: none
+}
+
+.yc-navigation-search .parma-textinput__box {
+  border: none
+}
+
+.yc-datepicker .parma-textinput__box {
+  background-color: transparent!important
+}
+
+.yc-root .parma-textinput__control {
+  font-family: var(--yc-font-family)
+}
+
+.yc-root .parma-textinput__control.parma-textinput__control:-webkit-autofill {
+  box-shadow: inset 0 0 0 50px var(--yc-lego-color-base);
+  -webkit-text-fill-color: var(--yc-lego-color-text-primary)
+}
+
+.yc-root .parma-textinput_theme_normal .parma-textinput__control {
+  color: var(--yc-lego-color-text-primary)
+}
+
+.yc-root .parma-textinput_view_classic.parma-textinput_disabled_yes.parma-textinput_theme_normal .parma-textinput__control {
+  color: var(--yc-lego-color-dark-disabled);
+  -webkit-text-fill-color: var(--yc-lego-color-dark-disabled)
+}
+
+.yc-root .parma-textinput_view_classic.parma-textinput_theme_normal .parma-textinput__control::-webkit-input-placeholder {
+  color: var(--yc-lego-color-placeholder)
+}
+
+.yc-root .parma-textinput_view_classic.parma-textinput_theme_normal .parma-textinput__control::-moz-placeholder {
+  color: var(--yc-lego-color-placeholder)
+}
+
+.yc-root .parma-textinput_view_classic.parma-textinput_theme_normal .parma-textinput__control:-ms-input-placeholder {
+  color: var(--yc-lego-color-placeholder)
+}
+
+.yc-root .parma-textinput_view_classic.parma-textinput_theme_normal .parma-textinput__box {
+  border: 1px solid var(--yc-lego-color-border-medium);
+  background-color: var(--yc-lego-color-base)
+}
+
+.yc-root .parma-textinput_view_classic.parma-textinput_theme_normal.parma-textinput_hovered_yes .parma-textinput__box {
+  border-color: var(--yc-lego-color-dark-light-hover)
+}
+
+.yc-root .parma-textinput_view_classic.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__box {
+  background-color: var(--yc-lego-color-medium-light-disabled)
+}
+
+.yc-root .parma-textinput_theme_websearch .parma-textinput__control {
+  font-family: var(--yc-font-family);
+  color: var(--yc-lego-color-text-primary)
+}
+
+.yc-root .parma-textinput_theme_websearch .parma-textinput__box {
+  background-color: var(--yc-lego-color-base)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control {
+  color: var(--yc-lego-color-text-primary)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__icon {
+  color: var(--yc-lego-color-input-control)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__clear.parma-textinput__clear_hovered_yes {
+  color: var(--yc-lego-color-text-primary)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__box {
+  border-color: var(--yc-lego-color-border-medium-solid);
+  background-color: var(--yc-lego-color-base)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_hovered_yes .parma-textinput__box  {
+  border-color: var(--yc-lego-color-dark-light-hover-solid);
+  background-color: var(--yc-lego-color-base)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_focused_yes .parma-textinput__box {
+  border-color: var(--yc-lego-color-utilityfocus-solid)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control::-webkit-input-placeholder {
+  color: var(--yc-lego-color-input-control)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control::-ms-input-placeholder {
+  color: var(--yc-lego-color-input-control)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control::placeholder {
+  color: var(--yc-lego-color-input-control)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control::-moz-placeholder {
+  color: var(--yc-lego-color-input-control)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control:-ms-input-placeholder {
+  color: var(--yc-lego-color-input-control)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_disabled_yes.parma-textinput_theme_normal .parma-textinput__control {
+  color: var(--yc-lego-color-dark-disabled)
+}
+
+.yc-root .parma-textinput.parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__box {
+  background-color: var(--yc-lego-color-medium-disabled-solid)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control::-webkit-input-placeholder {
+  color: var(--yc-lego-color-input-disabled)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control:-ms-input-placeholder {
+  color: var(--yc-lego-color-input-disabled)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control::-ms-input-placeholder {
+  color: var(--yc-lego-color-input-disabled)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control::placeholder {
+  color: var(--yc-lego-color-input-disabled)
+}
+
+.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control::-moz-placeholder {
+  color: var(--yc-lego-color-input-disabled)
+}
+
+
+.parma-textinput__control {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  border: 0 solid transparent;
+  outline: 0;
+  background: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+.parma-textinput_disabled_yes .parma-textinput__control {
+  z-index: 3;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+
+.parma-textinput__control::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none
+}
+
+.parma-textinput__control::-webkit-search-cancel-button {
+  display: none
+}
+
+.parma-textinput__control::-ms-clear {
+  display: none
+}
+
+.parma-textinput__control.parma-textinput__control:-webkit-autofill {
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+  background-clip: content-box;
+  box-shadow: inset 0 0 0 50px #fff;
+  -webkit-text-fill-color: #000
+}
+
+.parma-textinput__control::-moz-placeholder {
+  opacity: 1
+}
+
+.parma-textinput_theme_normal {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  vertical-align: top;
+}
+
+.parma-textinput_size_s {
+  height: 28px;
+}
+
+.parma-textinput_size_s .parma-textinput__control {
+  height: 28px;
+  font-size: 13px;
+  border-width: 0 8px;
+  border-right-width: 28px;
+}
+
+.parma-textinput__box {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  border-style: solid
+}
+
+.parma-textinput_view_default .parma-textinput__box {
+  border-width: 2px;
+  border-radius: 4px;
+}
+
+.parma-textinput__clear {
+  right: 0;
+  display: none;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.parma-textinput_size_s .parma-textinput__icon {
+  width: 28px;
+  height: 28px;
+}
+
+.parma-textinput__icon.parma-textinput__icon {
+  position: absolute;
+}
+
+.parma-textinput__clear.parma-textinput__clear_visible_yes {
+  display: block;
+  visibility: visible;
+}
+
+.parma-textinput__icon {
+  z-index: 3;
+  top: 0;
+}
+
+.parma-textinput_view_default.parma-textinput_size_s .parma-textinput__clear svg {
+  width: 12px;
+  height: 12px;
+}
+
+.parma-textinput__clear svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

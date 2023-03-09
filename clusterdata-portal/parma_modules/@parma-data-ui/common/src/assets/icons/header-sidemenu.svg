@@ -1,0 +1,8 @@
+export default {
+      id: "header-sidemenu-usage",
+      viewBox: "0 0 20 20",
+      url: __webpack_public_path__ + "/sprites/sprite-2fc732.svg?" + __webpack_hash__ + "#header-sidemenu",
+      toString: function () {
+        return this.url;
+      }
+    }

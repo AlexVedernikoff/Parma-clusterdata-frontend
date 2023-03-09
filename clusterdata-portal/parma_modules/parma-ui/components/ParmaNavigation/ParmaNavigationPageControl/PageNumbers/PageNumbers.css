@@ -1,0 +1,11 @@
+.pagination__page-numbers {
+    white-space: nowrap;
+}
+
+.pagination__page-numbers-current {
+    margin-right: 4px;
+}
+
+.pagination__page-numbers-total {
+    margin-left: 4px;
+}

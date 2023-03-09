@@ -1,0 +1,8 @@
+export default {
+      id: "preview-expand-usage",
+      viewBox: "0 0 24 24",
+      url: __webpack_public_path__ + "/sprites/sprite-2fc732.svg?" + __webpack_hash__ + "#preview-expand",
+      toString: function () {
+        return this.url;
+      }
+    }

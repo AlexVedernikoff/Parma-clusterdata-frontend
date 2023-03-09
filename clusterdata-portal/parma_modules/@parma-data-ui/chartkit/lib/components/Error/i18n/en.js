@@ -1,0 +1,23 @@
+export const en = {
+    'error-includes-load': 'Modules loading error',
+    'error-too-many-lines': 'Too many series on the chart (>50)',
+    'error-anyway': 'Draw anyway',
+    'error-canceled-request': 'Canceled',
+    'error-no-view-rights': 'No view rights',
+    'error-not-found': 'Not found',
+    'error-not-loaded': 'Script loading error',
+    'error-processing': 'Script execution error',
+    'error-authorization': 'Authorization error',
+    'error-no-data': 'No data',
+    'error-data-fetching': 'Error getting data',
+    'error-render': 'Rendering error',
+    'error-unknown': 'Error',
+    'error-unsupported-extension': 'Unsupported script type',
+    'retry': 'Retry',
+    'unexpected': 'Network error',
+    'no-view-rights': 'No view rights',
+    'more': 'More',
+    'close': 'Close',
+    'copy': 'Copy',
+    'exceeded-data-limit': 'Data limit exceeded. Try adding filters'
+};

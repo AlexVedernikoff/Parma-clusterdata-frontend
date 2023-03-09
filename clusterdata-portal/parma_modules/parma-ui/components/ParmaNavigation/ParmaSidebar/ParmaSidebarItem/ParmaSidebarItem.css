@@ -1,0 +1,28 @@
+.parma-slidebar-item {
+  display: flex;
+  height: 40px;
+  padding: 0 16px;
+  align-items: center;
+  color: var(--color-text-complementary);
+  text-decoration: none;
+  cursor: default;
+}
+
+.parma-slidebar-item:hover:not(.parma-slidebar-item_current) {
+  cursor: pointer;
+  color: var(--color-text-primary);
+  background: var(--color-hover-area);
+}
+
+.parma-slidebar-item_current {
+  color: var(--color-text-primary);
+  background: var(--color-selection);
+}
+
+.parma-slidebar-item-icon {
+  position: relative;
+  margin-right: 12px;
+  color: var(--color-text-primary);
+  width: 20px;
+  top: 3px;
+}

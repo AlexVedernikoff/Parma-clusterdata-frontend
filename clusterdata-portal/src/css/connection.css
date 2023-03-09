@@ -1,0 +1,405 @@
+.connectors {
+    display: flex;
+    flex-direction: column
+}
+
+.connectors__panel {
+    flex: 0 0 56px;
+    display: flex;
+    align-items: center
+}
+
+.connectors__search-connector-inp {
+    width: 220px;
+    margin-left: 20px
+}
+
+.connectors__list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px
+}
+
+.connectors__link {
+    text-decoration: none
+}
+
+.connectors__connector-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 160px;
+    height: 120px;
+    margin: 0 24px 24px 0;
+    text-decoration: none
+}
+
+.connectors__connector-icon {
+    margin: 0 50px
+}
+
+.connector-title-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    margin-right: 4px
+}
+
+.dl-connector-title {
+    flex: 0 0 56px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px
+}
+
+.dl-connector-title__icon {
+    margin-right: 10px
+}
+
+.dl-connector-field-caption {
+    display: flex;
+    align-items: center;
+    height: 28px
+}
+
+.dl-connector-field-caption_fixed {
+    width: 164px
+}
+
+.dl-connector-field-caption_comment {
+    height: auto;
+    margin: 3px 0 0;
+    color: var(--color-text-hint)
+}
+
+.dl-connector-field-caption_section {
+    margin: 28px 0 12px;
+    line-height: var(--text-body2-line-height);
+    font-size: var(--text-body2-font-size);
+    font-weight: 500
+}
+
+.dl-connector-input-field_width-s {
+    width: 70px
+}
+
+.dl-connector-input-field_width-m {
+    width: 240px
+}
+
+.dl-connector-input-field_width-l {
+    width: 490px
+}
+
+.dl-connector-input-field.db-name-oracle {
+    width: 310px
+}
+
+.yc-field-wrapper__error-text {
+    white-space: nowrap
+}
+
+.dl-connector-verify {
+    display: flex;
+    align-items: center
+}
+
+.dl-connector-verify__icon {
+    margin-left: 5px
+}
+
+.dl-connector {
+    display: flex;
+    flex-direction: column
+}
+
+.dl-connector__fields {
+    padding-left: 20px;
+    overflow-y: auto
+}
+
+.dl-connector__row {
+    display: flex;
+    margin-top: 20px
+}
+
+.dl-connector__row:last-child {
+    margin-bottom: 20px
+}
+
+.dl-connector__row-group {
+    display: flex
+}
+
+.dl-connector__connect-method-radio,
+.dl-connector__counter-input-method-radio,
+.dl-connector__get-token-btn {
+    margin-left: 10px
+}
+
+.dl-connector__alias-info {
+    margin-top: 5px;
+    color: var(--ds-color-text-hint)
+}
+
+.dl-connector .yc-path-select .yc-field-wrapper {
+    width: 490px
+}
+
+.dl-connector .yc-path-select__button-place {
+    width: 156px
+}
+
+.dl-connector-select-field_width-s {
+    width: 70px
+}
+
+.dl-connector-select-field_width-m {
+    width: 240px
+}
+
+.dl-connector-select-field_width-l {
+    width: 490px
+}
+
+.dl-connector-select-field__control {
+    border-width: 2px
+}
+
+.yc-field-wrapper_state_error .dl-connector-select-field__control {
+    border-color: var(--color-text-danger)
+}
+
+.dl-connector-help {
+    display: flex;
+    align-items: center;
+    height: 32px
+}
+
+.dl-connector-help__btn {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.dl-connector-help__icon {
+    color: var(--ds-color-border)
+}
+
+.csv-connector2 {
+    display: flex;
+    flex-direction: column
+}
+
+.csv-connector2__csv-loading {
+    height: 100%
+}
+
+.csv-connector2__csv-loading .csv-connector2__dropzone {
+    height: calc(100vh - 182px)
+}
+
+.csv-connector2__csv-loading .csv-connector2__text-error {
+    color: var(--ds-color-text-danger)
+}
+
+.csv-connector2__csv-loading .csv-connector2__dragzone {
+    position: relative;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ds-color-base-area);
+    border: 1px dashed var(--ds-color-border);
+    color: var(--ds-color-text-secondary)
+}
+
+.csv-connector2__csv-loading .csv-connector2__selected-file {
+    height: 48px;
+    display: flex;
+    align-items: center
+}
+
+.csv-connector2__csv-loading .csv-connector2__selected-file .csv-connector2__name,
+.csv-connector2__csv-loading .csv-connector2__selected-file .csv-connector2__size {
+    font-weight: 700
+}
+
+.csv-connector2__csv-loading .csv-connector2__file-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 182px)
+}
+
+.csv-connector2__csv-loading .csv-connector2__drop-here-hint {
+    margin-left: 12px;
+    color: var(--ds-color-text-hint)
+}
+
+.csv-connector2__csv-setting {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 126px)
+}
+
+.csv-connector2__csv-setting .csv-connector2__loader {
+    height: calc(100vh - 126px);
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.csv-connector2__csv-setting .csv-connector2__panel {
+    flex: 0 0 48px;
+    display: flex;
+    align-items: center;
+    padding-left: 14px
+}
+
+.csv-connector2__csv-setting .csv-connector2__panel>:not(:last-child) {
+    margin-right: 10px
+}
+
+.csv-connector2__csv-setting .csv-connector2__panel .csv-connector2__created-at {
+    color: var(--ds-color-text-secondary)
+}
+
+.csv-connector2__csv-setting .csv-connector2__setting-panel {
+    flex: 0 0 68px;
+    display: flex;
+    padding-left: 20px
+}
+
+.csv-connector2__csv-setting .csv-connector2__setting-panel>:not(:last-child) {
+    margin-right: 20px
+}
+
+.csv-connector2__csv-setting .csv-connector2__setting-panel .csv-connector2__field:first-child {
+    width: 422px
+}
+
+.csv-connector2__csv-setting .csv-connector2__setting-panel .csv-connector2__field:not(:first-child) {
+    flex: 1
+}
+
+.csv-connector2__csv-setting .csv-connector2__setting-panel .csv-connector2__csv-header-rb {
+    margin-left: 10px
+}
+
+.csv-connector2__csv-setting .csv-connector2__setting-panel .csv-connector2__caption {
+    margin-bottom: 3px
+}
+
+.csv-connector2__csv-setting .csv-connector2__preview-loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center
+}
+
+.csv-connector2__csv-setting .csv-connector2__preview {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    overflow: auto;
+    border: 1px solid var(--ds-color-divider)
+}
+
+.csv-connector2__csv-setting .csv-connector2__preview .data-table {
+    flex-grow: 1
+}
+
+.csv-connector2__csv-setting .csv-connector2__preview .data-table__table {
+    min-width: 100%
+}
+
+.csv-connector2__csv-setting .csv-connector2__preview .data-table_theme_csv-preview {
+    --data-table-color-base: var(--ds-color-base);
+    --data-table-color-hover-area: var(--ds-color-hover-area)
+}
+
+.csv-connector2__csv-setting .csv-connector2__preview .data-table__head-row {
+    height: 32px;
+    line-height: 32px;
+    border-bottom: 1px solid var(--ds-color-divider)
+}
+
+.csv-connector2__csv-setting .csv-connector2__preview .csv-connector2__table-row {
+    height: 32px;
+    line-height: 32px;
+    border-bottom: 1px solid var(--ds-color-divider);
+    border-left: 1px solid var(--ds-color-divider)
+}
+
+.csv-connector2__csv-select {
+    border-width: 2px
+}
+
+.csv-connector2 .yc-path-select {
+    margin-top: 19px
+}
+
+.dl-connector-loader-field {
+    width: 40px;
+    position: relative
+}
+
+.dl-connector-loader-field__animation {
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%)
+}
+
+.connection-page__select-wrap {
+    border: 1px solid var(--ds-color-divider);
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-right: none
+}
+
+.connection-page__select {
+    height: 34px;
+    border-color: transparent;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+.connection-page__select:hover {
+    background-color: transparent
+}
+
+.connection-page__create-dataset-btn-wrap {
+    padding-top: 6px
+}
+
+.connection-page__create-dataset-btn {
+    margin-right: 10px
+}
+
+.connection-page__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%
+}
+
+.connections-router {
+    height: 100%;
+    display: flex;
+    flex-direction: column
+}
+
+.connections-router>header {
+    flex-shrink: 0;
+    background: var(--color-base)
+}

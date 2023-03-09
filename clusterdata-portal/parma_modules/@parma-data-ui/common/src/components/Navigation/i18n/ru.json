@@ -1,0 +1,13 @@
+{
+  "button_cancel": "Отмена",
+  "button_create": "Создать",
+  "button_done": "Готово",
+  "filter_order-ascending": "Сперва старые",
+  "filter_order-descending": "Сперва новые",
+  "label_empty-folder": "Пустая папка",
+  "label_not-found": "Ничего не найдено",
+  "placeholder_filter-by-name": "Фильтр по имени",
+  "placeholder_search": "Поиск",
+  "radiobutton_ownership-all": "Все",
+  "radiobutton_ownership-only-mine": "Только мои"
+}
