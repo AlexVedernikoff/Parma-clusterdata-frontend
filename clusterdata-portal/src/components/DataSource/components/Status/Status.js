@@ -1,23 +1,16 @@
 import React from 'react';
 import moment from 'moment';
 import block from 'bem-cn-lite';
-import {i18n} from '@parma-data-ui/clusterdata';
-import {ProgressBar} from '../ProgressBar/ProgressBar';
-import {Stage} from '../../Stage';
+import { i18n } from '@parma-data-ui/clusterdata';
+import { ProgressBar } from '../ProgressBar/ProgressBar';
+import { Stage } from '../../Stage';
 
 const b = block('data-source-status');
 
-export const Status = (
-    {
-      isDirectDsMode,
-      status: {
-        isProcessing,
-        updated,
-        percent_complete: percentComplete,
-        stage,
-      } = {},
-    },
-) => {
+export const Status = ({
+  isDirectDsMode,
+  status: { isProcessing, updated, percent_complete: percentComplete, stage } = {},
+}) => {
   const lastDateTime = updated * 1000;
   const lastDate = moment(lastDateTime).format('DD.MM.YYYY');
   const lastTime = moment(lastDateTime).format('HH:mm');
@@ -50,23 +43,9 @@ export const Status = (
   }
 
   return (
-      <React.Fragment>
-        {
-            !isDirectDsMode && (
-                <ProgressBar
-                    current={percentComplete}
-                    stage={stage}
-                />
-            )
-        }
-        {
-            !isProcessing && (
-                <span
-                    className={b('last-loaded')}
-                    dangerouslySetInnerHTML={{__html: statusLabel}}
-                />
-            )
-        }
-      </React.Fragment>
+    <React.Fragment>
+      {!isDirectDsMode && <ProgressBar current={percentComplete} stage={stage} />}
+      {!isProcessing && <span className={b('last-loaded')} dangerouslySetInnerHTML={{ __html: statusLabel }} />}
+    </React.Fragment>
   );
 };

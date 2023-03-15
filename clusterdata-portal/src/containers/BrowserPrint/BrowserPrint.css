@@ -1,71 +1,71 @@
 @media print {
-    @page {
-        size: A4 landscape;
-    }
+  @page {
+    size: A4 landscape;
+  }
 
-    * {
-        -webkit-print-color-adjust: exact !important;
-        color-adjust: exact !important;
-    }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
 
-    .dash-tabs {
-        display: none !important;
-    }
+  .dash-tabs {
+    display: none !important;
+  }
 
-    .react-grid-layout {
-        height: 100% !important;
-    }
+  .react-grid-layout {
+    height: 100% !important;
+  }
 
-    .react-grid-item {
-        display: inline-block !important;
-        vertical-align: top;
+  .react-grid-item {
+    display: inline-block !important;
+    vertical-align: top;
 
-        margin: 10px;
-        max-width: calc(100% - 20px) !important;
+    margin: 10px;
+    max-width: calc(100% - 20px) !important;
 
-        position: relative !important;
-        transform: unset !important;
+    position: relative !important;
+    transform: unset !important;
 
-        border: 1px solid #E7E9ED !important;
-        border-radius: 4px;
-        box-shadow: none !important;
+    border: 1px solid #e7e9ed !important;
+    border-radius: 4px;
+    box-shadow: none !important;
 
-        page-break-inside: avoid;
-    }
+    page-break-inside: avoid;
+  }
 
-    .chartkit-menu__button {
-        display: none !important;
-    }
+  .chartkit-menu__button {
+    display: none !important;
+  }
 
-    header,
-    .action-panel,
-    .dashkit-canvas {
-        display: none !important;
-    }
+  header,
+  .action-panel,
+  .dashkit-canvas {
+    display: none !important;
+  }
 
-    .dash-body__content {
-        -moz-transform-origin: 0 0 !important;
-        -webkit-transform-origin: 0 0 !important;
-        transform-origin: 0 0 !important;
-    }
+  .dash-body__content {
+    -moz-transform-origin: 0 0 !important;
+    -webkit-transform-origin: 0 0 !important;
+    transform-origin: 0 0 !important;
+  }
 
-    .yc-root,
-    .dash-body__content {
-        padding: 0 !important;
-        background-color: rgba(255,255,255,0) !important;
-    }
+  .yc-root,
+  .dash-body__content {
+    padding: 0 !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+  }
 
-    .chartkit-table__head-cell {
-        display: block !important;
-    }
+  .chartkit-table__head-cell {
+    display: block !important;
+  }
 
-    .dashkit-plugin-widget__tabs {
-        height: auto !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-    }
+  .dashkit-plugin-widget__tabs {
+    height: auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
 
-    .dashkit_theme_clusterdata .dashkit-plugin-widget__tab {
-        display: block !important;
-    }
+  .dashkit_theme_clusterdata .dashkit-plugin-widget__tab {
+    display: block !important;
+  }
 }

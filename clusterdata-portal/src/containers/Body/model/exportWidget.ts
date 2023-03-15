@@ -1,5 +1,8 @@
-import { exportWidget as exportWidgetService, ExportWidgetOptions } from '../../../services/dashboard/export/export-widget';
-import { createDashState } from "../../../services/dashboard/create-dash-state";
+import {
+  exportWidget as exportWidgetService,
+  ExportWidgetOptions,
+} from '../../../services/dashboard/export/export-widget';
+import { createDashState } from '../../../services/dashboard/create-dash-state';
 
 export const exportWidget = (
   id: string,

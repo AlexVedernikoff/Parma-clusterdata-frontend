@@ -8,7 +8,7 @@ import Wrapper from '../Control/Wrapper/Wrapper';
 import { getSettings, isDialogVisible } from '../../../store/selectors/dash';
 import { closeDialog, setSettings } from '../../../store/actions/dash';
 import { DIALOG_TYPE } from '../../../modules/constants/constants';
-import { getStyles } from "../../../services/dashboard/get-styles";
+import { getStyles } from '../../../services/dashboard/get-styles';
 
 const b = block('dialog-settings');
 

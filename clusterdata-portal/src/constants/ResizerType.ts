@@ -1,4 +1,4 @@
 export enum ResizerType {
-    PREVIEW = 'preview',
-    HISTORY = 'history'
+  PREVIEW = 'preview',
+  HISTORY = 'history',
 }

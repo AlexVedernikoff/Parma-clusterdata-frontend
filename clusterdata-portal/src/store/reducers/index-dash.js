@@ -1,11 +1,12 @@
-import {combineReducers} from 'redux';
-import {connectRouter} from 'connected-react-router';
+import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
 
 import dash from './dash';
 
-const createRootReducer = history => combineReducers({
+const createRootReducer = history =>
+  combineReducers({
     dash,
-    router: connectRouter(history)
-});
+    router: connectRouter(history),
+  });
 
 export default createRootReducer;

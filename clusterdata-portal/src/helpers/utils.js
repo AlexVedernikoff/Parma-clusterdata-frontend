@@ -164,7 +164,7 @@ export default class Utils {
     port,
     materializationStartDate,
     matSchedConfig,
-    maxPoolSize
+    maxPoolSize,
   }) {
     let aliasNext;
 

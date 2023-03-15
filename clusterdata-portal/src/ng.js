@@ -1,8 +1,7 @@
-import {Component, NgModule} from '@angular/core';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {AngularReactBrowserModule} from '@angular-react/core';
-import ChartsModule
-  from '../parma_modules/@parma-data-ui/chartkit/lib/modules/charts/charts';
+import { Component, NgModule } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AngularReactBrowserModule } from '@angular-react/core';
+import ChartsModule from '../parma_modules/@parma-data-ui/chartkit/lib/modules/charts/charts';
 import Widget from '@parma-data-ui/chartkit/lib/components/Widget/Widget';
 
 import React from 'react';
@@ -10,10 +9,9 @@ import ReactDOM from 'react-dom';
 
 @Component({
   selector: 'hellow-app',
-  template: '<div id="root"></div>'
+  template: '<div id="root"></div>',
 })
 export class HelloComponent {
-
   constructor() {
     this.data = {};
     this.onLoad = () => {};
@@ -32,18 +30,13 @@ export class HelloComponent {
   async getProps() {
     await this.load();
 
-    const {
-      data,
-      onLoad,
-      onChange,
-      onError
-    } = this;
+    const { data, onLoad, onChange, onError } = this;
 
     return {
       data,
       onLoad,
       onChange,
-      onError
+      onError,
     };
   }
 
@@ -59,7 +52,7 @@ export class HelloComponent {
 
 @NgModule({
   imports: [AngularReactBrowserModule], // import Angular's BrowserModule
-  bootstrap: [HelloComponent],  // indicate the bootstrap component
+  bootstrap: [HelloComponent], // indicate the bootstrap component
   declarations: [HelloComponent], // register our component with the module
 })
 export class AppModule {}

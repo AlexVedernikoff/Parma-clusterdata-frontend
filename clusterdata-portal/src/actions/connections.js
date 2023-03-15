@@ -1,4 +1,4 @@
-import {createActionTypes} from '../store/utils/api';
+import { createActionTypes } from '../store/utils/api';
 
 export const FETCH_CONNECTIONS = createActionTypes('CONNECTIONS', 'FETCH');
 

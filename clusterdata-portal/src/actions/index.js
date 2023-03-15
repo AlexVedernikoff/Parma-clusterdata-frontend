@@ -1,6 +1,6 @@
-import {MEASURE_TYPE, VISUALIZATIONS} from '../constants';
-import {MapConstant} from '../../parma_modules/@parma-data-ui/chartkit/lib/components/Widget/OLMap/map-constant';
-import Charts from "../../parma_modules/@parma-data-ui/chartkit/lib/modules/charts/charts";
+import { MEASURE_TYPE, VISUALIZATIONS } from '../constants';
+import { MapConstant } from '../../parma_modules/@parma-data-ui/chartkit/lib/components/Widget/OLMap/map-constant';
+import Charts from '../../parma_modules/@parma-data-ui/chartkit/lib/modules/charts/charts';
 
 export const REQUEST_WIDGET = 'REQUEST_WIDGET';
 export const RECEIVE_WIDGET = 'RECEIVE_WIDGET';
@@ -53,18 +53,19 @@ export const RESET_SETTINGS = 'RESET_SETTINGS';
 export const RESET_WIDGET = 'RESET_WIDGET';
 
 export const resetPreview = () => ({ type: RESET_PREVIEW });
-export const resetVisualization  = () => ({ type: RESET_VISUALIZATION });
-export const resetDataset  = () => ({ type: RESET_DATASET });
-export const resetSettings  = () => ({ type: RESET_SETTINGS });
-export const resetWidget  = () => ({ type: RESET_WIDGET });
+export const resetVisualization = () => ({ type: RESET_VISUALIZATION });
+export const resetDataset = () => ({ type: RESET_DATASET });
+export const resetSettings = () => ({ type: RESET_SETTINGS });
+export const resetWidget = () => ({ type: RESET_WIDGET });
 
-export const resetWizard = () => dispatch => { // TODO почитать
+export const resetWizard = () => dispatch => {
+  // TODO почитать
   dispatch(resetPreview());
   dispatch(resetVisualization());
   dispatch(resetDataset());
   dispatch(resetSettings());
   dispatch(resetWidget());
-}
+};
 
 export function requestDataset() {
   return {
@@ -119,7 +120,7 @@ export function requestWidget() {
 }
 
 export function receiveWidget({ data, error }) {
-  const wizardPath = "/wizard";
+  const wizardPath = '/wizard';
 
   if (data && location.pathname.includes(wizardPath)) {
     const { entryId } = data;
@@ -257,8 +258,8 @@ export function fetchDataset({ datasetId, sdk }) {
           } = {},
         } = getState();
 
-        receiveVisualization({visualization, fields: [...dimensions, ...measures], filters, colors, sort});
-        dispatch(setVisualization({visualization}));
+        receiveVisualization({ visualization, fields: [...dimensions, ...measures], filters, colors, sort });
+        dispatch(setVisualization({ visualization }));
 
         dispatch(
           updatePreview({
@@ -616,11 +617,11 @@ export function fetchWidget({ entryId, preview, sdk }) {
           needUniqueRows,
           needTotal,
           diagramMagnitude,
-          paginateInfo = {page: 0, pageSize: 150},
+          paginateInfo = { page: 0, pageSize: 150 },
           labels,
           updates,
           mapLayerOpacity,
-          exportLimit
+          exportLimit,
         } = data.data);
 
         diagramMagnitude = diagramMagnitude || MEASURE_TYPE.ABSOLUTE;
@@ -699,7 +700,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
           paginateInfo,
           labels,
           diagramMagnitude,
-          mapLayerOpacity
+          mapLayerOpacity,
         });
 
         const searchPairs = decodeURI(location.search).match(/[^&?]+=[^&]+/g);
@@ -857,7 +858,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
             updates,
             diagramMagnitude,
             mapLayerOpacity,
-            exportLimit
+            exportLimit,
           }),
         );
       })
@@ -1096,10 +1097,12 @@ export function updatePreview(preview) {
 export function setDefaults({ preview, sdk, entryId }) {
   if (preview) {
     return function(dispatch) {
-      entryId = entryId || location.pathname
-        .replace('/wizard', '')
-        .replace('/preview', '')
-        .slice(1);
+      entryId =
+        entryId ||
+        location.pathname
+          .replace('/wizard', '')
+          .replace('/preview', '')
+          .slice(1);
 
       dispatch(
         updatePreview({
@@ -1159,4 +1162,3 @@ export function setDefaults({ preview, sdk, entryId }) {
     };
   }
 }
-
