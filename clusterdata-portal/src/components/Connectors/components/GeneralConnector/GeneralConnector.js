@@ -11,7 +11,7 @@ import { getErrorMessage } from '../../utils';
 import { FIELD_TYPES } from '../../../../constants';
 import Utils from '../../../../helpers/utils';
 import { getSearchParam } from '../../../../helpers/QueryParams';
-import PageHead from "../../../PageHeader/PageHeader";
+import PageHead from '../../../PageHeader/PageHeader';
 
 const b = block('dl-connector');
 const i18n = I18n.keyset('connections.form');
@@ -193,7 +193,7 @@ class GeneralConnector extends React.Component {
 
     return (
       <div className={b()}>
-        <PageHead title={name}/>
+        <PageHead title={name} />
         <Title dbType={dbType} isNewConnection={isNewConnection} />
         <div className={b('fields')}>
           {isNewConnection && (

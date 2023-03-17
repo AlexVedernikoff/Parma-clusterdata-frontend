@@ -7,29 +7,32 @@ export const PREFIX = IS_DEVELOPMENT || IS_INTERNAL ? '' : '/dashboards';
 export const ENTRY_ID_REGEXP = /^[0-9a-z]{13}$/;
 
 export const ITEM_TYPE = {
-    TITLE: 'title',
-    TEXT: 'text',
-    WIDGET: 'widget',
-    CONTROL: 'control'
+  TITLE: 'title',
+  TEXT: 'text',
+  WIDGET: 'widget',
+  CONTROL: 'control',
 };
 
-export const DIALOG_TYPE = Object.assign({
+export const DIALOG_TYPE = Object.assign(
+  {
     TABS: 'tabs',
     CONNECTIONS: 'connections',
-    SETTINGS: 'settings'
-}, ITEM_TYPE);
+    SETTINGS: 'settings',
+  },
+  ITEM_TYPE,
+);
 
 export const MODE = {
-    LOADING: 'loading',
-    UPDATING: 'updating',
-    VIEW: 'view',
-    EDIT: 'edit',
-    ERROR: 'error'
+  LOADING: 'loading',
+  UPDATING: 'updating',
+  VIEW: 'view',
+  EDIT: 'edit',
+  ERROR: 'error',
 };
 
 export const STATUS = {
-    PENDING: 'pending',
-    SUCCESS: 'success',
-    FAIL: 'fail',
-    DONE: 'done'
+  PENDING: 'pending',
+  SUCCESS: 'success',
+  FAIL: 'fail',
+  DONE: 'done',
 };

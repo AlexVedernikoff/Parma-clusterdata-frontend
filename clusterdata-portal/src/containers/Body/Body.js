@@ -56,7 +56,7 @@ class Body extends React.PureComponent {
     toggleWidgetVisibility: PropTypes.func.isRequired,
     // router
     location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
   };
 
   componentDidCatch() {
@@ -77,9 +77,9 @@ class Body extends React.PureComponent {
       this.props.setCurrentTabData(config);
     }
     if (
-        this.props.hashState !== itemsStateAndParams &&
-        itemsStateAndParams &&
-        Object.keys(itemsStateAndParams).length
+      this.props.hashState !== itemsStateAndParams &&
+      itemsStateAndParams &&
+      Object.keys(itemsStateAndParams).length
     ) {
       this.onStateChange(itemsStateAndParams);
     }
@@ -112,7 +112,7 @@ class Body extends React.PureComponent {
       openItemDialog,
       settings,
       widgetForReloadUUID,
-      setWidgetForReloadUUID
+      setWidgetForReloadUUID,
     } = this.props;
 
     switch (mode) {
@@ -125,27 +125,27 @@ class Body extends React.PureComponent {
     }
 
     return (
-        <React.Fragment>
-          <TableOfContent />
-          <div className={b('content', { 'table-of-content': showTableOfContent })}>
-            <Tabs />
-            <DashKit
-                config={tabData}
-                editMode={mode === MODE.EDIT}
-                itemsStateAndParams={hashState}
-                onItemEdit={openItemDialog}
-                onChange={this.onChange}
-                widgetMenu={this.widgetMenu}
-                widgetForReloadUUID={widgetForReloadUUID}
-                setWidgetForReloadUUID={setWidgetForReloadUUID}
-                onToggleWidgetVisibility={this.toggleWidgetVisibility}
-                settings={settings}
-                ref={this.dashKitRef}
-                layoutId={LAYOUT_ID.DASHBOARD}
-                exportWidget = {this.#exportWidget}
-            />
-          </div>
-        </React.Fragment>
+      <React.Fragment>
+        <TableOfContent />
+        <div className={b('content', { 'table-of-content': showTableOfContent })}>
+          <Tabs />
+          <DashKit
+            config={tabData}
+            editMode={mode === MODE.EDIT}
+            itemsStateAndParams={hashState}
+            onItemEdit={openItemDialog}
+            onChange={this.onChange}
+            widgetMenu={this.widgetMenu}
+            widgetForReloadUUID={widgetForReloadUUID}
+            setWidgetForReloadUUID={setWidgetForReloadUUID}
+            onToggleWidgetVisibility={this.toggleWidgetVisibility}
+            settings={settings}
+            ref={this.dashKitRef}
+            layoutId={LAYOUT_ID.DASHBOARD}
+            exportWidget={this.#exportWidget}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 

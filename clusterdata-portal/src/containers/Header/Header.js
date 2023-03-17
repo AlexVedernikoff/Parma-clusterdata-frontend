@@ -32,9 +32,9 @@ import { LAYOUT_ID } from '../../constants/constants';
 import { getLayoutId } from '../../utils/helpers';
 import BrowserPrint from '../BrowserPrint/BrowserPrint';
 import { exportDashboard } from './model/exportDashboard';
-import {Toaster} from "../../../parma_modules/@parma-data-ui/common/src";
-import {NOTIFY_TYPES} from "../../../parma_modules/@parma-data-ui/clusterdata/src/constants/common";
-import {ExportStatusEnum} from "../../../parma_modules/parma-ui/enums/export-status.enum";
+import { Toaster } from '../../../parma_modules/@parma-data-ui/common/src';
+import { NOTIFY_TYPES } from '../../../parma_modules/@parma-data-ui/clusterdata/src/constants/common';
+import { ExportStatusEnum } from '../../../parma_modules/parma-ui/enums/export-status.enum';
 
 const b = block('dash-header');
 

@@ -6,18 +6,18 @@ import block from 'bem-cn-lite';
 
 const b = block('control-wrapper');
 
-function Wrapper({title, children}) {
-    return (
-        <div className={b()}>
-            <div className={b('title')}>{title}</div>
-            <div className={b('children')}>{children}</div>
-        </div>
-    );
+function Wrapper({ title, children }) {
+  return (
+    <div className={b()}>
+      <div className={b('title')}>{title}</div>
+      <div className={b('children')}>{children}</div>
+    </div>
+  );
 }
 
 Wrapper.propTypes = {
-    title: PropTypes.string,
-    children: PropTypes.any
+  title: PropTypes.string,
+  children: PropTypes.any,
 };
 
 export default Wrapper;

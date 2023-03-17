@@ -1,15 +1,16 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
-import {dataset} from './dataset';
-import {connections} from './connections';
+import { dataset } from './dataset';
+import { connections } from './connections';
 import dash from './dash';
-import {connectRouter} from "connected-react-router";
+import { connectRouter } from 'connected-react-router';
 
-const rootReducer =history => combineReducers({
+const rootReducer = history =>
+  combineReducers({
     connections,
     dataset,
     router: connectRouter(history),
-    dash
-});
+    dash,
+  });
 
 export default rootReducer;

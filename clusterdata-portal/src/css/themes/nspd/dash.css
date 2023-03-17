@@ -463,7 +463,10 @@
   color: #105dc7;
 }
 
-.yc-root .menu_view_default.menu_tone_default.menu_theme_normal .menu__item.menu__item_hovered_yes .chartkit-menu__icon {
+.yc-root
+  .menu_view_default.menu_tone_default.menu_theme_normal
+  .menu__item.menu__item_hovered_yes
+  .chartkit-menu__icon {
   color: #105dc7;
 }
 
@@ -608,7 +611,7 @@
 
 .chartkit__widget_map .ol-zoom-in,
 .chartkit__widget_map .ol-zoom-out {
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #ededed;
   border-radius: 8px;
   box-shadow: 0px 3px 8px rgba(16, 93, 199, 0.15);
@@ -731,10 +734,10 @@
   background-repeat: no-repeat;
 }
 
-.dash-header__action-panel_is-edit .dash-header__action-right_button-settings>.icon,
-.dash-header__action-panel_is-edit .dash-header__action-right_expand-filter-panel>.icon,
-.dash-header__action-panel_is-edit .dash-header__action-right_button-settings>.icon,
-.widget-visibility-dropdown__btn>.icon {
+.dash-header__action-panel_is-edit .dash-header__action-right_button-settings > .icon,
+.dash-header__action-panel_is-edit .dash-header__action-right_expand-filter-panel > .icon,
+.dash-header__action-panel_is-edit .dash-header__action-right_button-settings > .icon,
+.widget-visibility-dropdown__btn > .icon {
   visibility: hidden;
 }
 
@@ -801,7 +804,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #BFE2FF;
+  background-color: #bfe2ff;
   border-radius: inherit;
 }
 
@@ -905,7 +908,7 @@
 }
 
 .chartkit-table .data-table .data-table__box .data-table__head .data-table__th {
-  background: #F6F6F6 !important;
+  background: #f6f6f6 !important;
   padding: 12px 24px;
 }
 
@@ -1032,7 +1035,7 @@
   border-left: none;
 }
 
-.pagination__go-to-input:focus+.pagination__go-to-btn {
+.pagination__go-to-input:focus + .pagination__go-to-btn {
   background-color: #105dc7;
   background-image: url("data:image/svg+xml;utf8,<svg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M6.29289 1.70735C5.90237 1.31683 5.90237 0.683662 6.29289 0.293137C6.68342 -0.097387 7.31658 -0.097387 7.70711 0.293137L13.6525 6.2385C13.8653 6.42189 14 6.69338 14 6.99634L14 6.99829C14.0005 7.25487 13.9029 7.51159 13.7071 7.70735L7.70711 13.7074C7.31658 14.0979 6.68342 14.0979 6.29289 13.7074C5.90237 13.3168 5.90237 12.6837 6.29289 12.2931L10.5897 7.99634H1C0.447715 7.99634 0 7.54862 0 6.99634C0 6.44405 0.447715 5.99634 1 5.99634H10.5819L6.29289 1.70735Z' fill='%23FFFFFF'/></svg>");
 }

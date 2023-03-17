@@ -1,13 +1,13 @@
 /* Определяет стили для блока "Строка итоговых значений" в настройке визуализации виджета */
 .checkbox.checkbox_size_n .checkbox__box {
-    top: 10px;
+  top: 10px;
 }
 
 .checkbox_size_n .checkbox__label {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 /* Текст в кнопке с раскрывающимся меню, например, для выбора типа диаграммы */
 .dropdown__button {
-    font-weight: 400;
+  font-weight: 400;
 }

@@ -1,4 +1,4 @@
-import {createActionTypes} from '../store/utils/api';
+import { createActionTypes } from '../store/utils/api';
 
 export const FETCH_DATASET = createActionTypes('DATASET', 'FETCH');
 export const INITIAL_FETCH_DATASET = createActionTypes('DATASET', 'INITIAL_FETCH');

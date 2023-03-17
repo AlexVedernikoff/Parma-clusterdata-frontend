@@ -1,4 +1,4 @@
-import {VISUALIZATION_TYPES} from '../constants';
+import { VISUALIZATION_TYPES } from '../constants';
 
 import {
   CLEAR_VISUALIZATION,
@@ -21,10 +21,8 @@ import {
   SET_VISUALIZATION_TYPE,
   UPDATE_FILTER,
   SET_ORDER_BY,
-} from '../actions'
-import {
-  NULL_ALIAS_DEFAULT_VALUE
-} from '../../parma_modules/@parma-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
+} from '../actions';
+import { NULL_ALIAS_DEFAULT_VALUE } from '../../parma_modules/@parma-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
 // Reducers
 
@@ -496,7 +494,7 @@ export function visualization(state = initialState, action) {
       return {
         ...state,
         paginateInfo: paginateInfo,
-      }
+      };
     }
 
     case SET_ORDER_BY: {
@@ -505,7 +503,7 @@ export function visualization(state = initialState, action) {
       return {
         ...state,
         orderBy: orderBy,
-      }
+      };
     }
 
     case SET_DIAGRAM_MAGNITUDE: {
@@ -514,7 +512,7 @@ export function visualization(state = initialState, action) {
       return {
         ...state,
         diagramMagnitude: diagramMagnitude,
-      }
+      };
     }
 
     case SET_MAP_LAYER_OPACITY: {
@@ -523,7 +521,7 @@ export function visualization(state = initialState, action) {
       return {
         ...state,
         mapLayerOpacity,
-      }
+      };
     }
 
     case SET_EXPORT_LIMIT: {
