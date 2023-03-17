@@ -14,7 +14,8 @@
     "run": "cd dist && node index.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prettier": "prettier --config .prettierrc --write \"./src/**/*.{css,ts,tsx,js,jsx}\""
+    "prepare": "cd .. && husky install",
+    "prettier": "prettier --config .prettierrc"
   },
   "lint-staged": {
     "src/**/*.{css,js,jsx,ts,tsx}": "prettier --write"
