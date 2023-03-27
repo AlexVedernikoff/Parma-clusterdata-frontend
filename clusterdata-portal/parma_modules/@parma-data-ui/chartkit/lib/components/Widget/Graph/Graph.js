@@ -21,6 +21,7 @@ class Graph extends React.PureComponent {
         if (nextProps.data === prevState.prevData) {
             return null;
         }
+        
 
         try {
             const {data: {data, libraryConfig, config, comments}} = nextProps;
