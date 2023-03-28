@@ -7,7 +7,7 @@ const { PORTAL_ASSETS_PATH } = require('./../src/context-path');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { CleanWebpackPlugin } = require ('clean-webpack-plugin');
 
-exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, devtool, htmlPluginCard) => {
+exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, devtool, htmlPluginCard, envOption) => {
   return {
     mode,
     entry: {
@@ -107,7 +107,7 @@ exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, d
 
       new CopyWebpackPlugin([
         { from: './src/index.js' },
-        { from: './.env' },
+        { envOption },
         { from: './src/context-path.js' },
         { from: './src/favicon.ico' },
         { from: './src/sprite/sprite-2fc732.svg', to: 'sprites' },

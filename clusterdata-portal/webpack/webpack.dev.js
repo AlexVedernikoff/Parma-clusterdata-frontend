@@ -9,6 +9,7 @@ const exportHost = `${ EXPORT_PATH }`;
 const mode = 'production';
 const devServer = {};
 const devtool = false;
+const envOption = { from: './environment/.env' };
 const htmlPluginCard = new HtmlWebpackPlugin({
   filename: 'card.html',
   template: './src/card.html',
@@ -22,4 +23,4 @@ const htmlPluginCard = new HtmlWebpackPlugin({
   hash: true,
 });
 
-module.exports = generateConfig({ biHost, portalHost, exportHost }, mode, devServer, devtool, htmlPluginCard);
+module.exports = generateConfig({ biHost, portalHost, exportHost }, mode, devServer, devtool, htmlPluginCard, envOption);
