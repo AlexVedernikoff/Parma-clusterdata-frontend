@@ -18,7 +18,7 @@
     "prettier": "prettier --config .prettierrc"
   },
   "lint-staged": {
-    "src/**/*.{css,js,jsx,ts,tsx}": "prettier --write"
+    "*.{css,js,jsx,ts,tsx}": ["prettier --write", "eslint"]
   },
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "7.7.4",
@@ -118,6 +118,8 @@
     "@types/react-portal": "4.0.2",
     "@types/react-virtualized-auto-sizer": "1.0.0",
     "@types/react-window": "1.8.1",
+    "@typescript-eslint/eslint-plugin": "5.27.0",
+    "@typescript-eslint/parser": "5.27.0",
     "acorn": "8.7.0",
     "babel-loader": "8.0.6",
     "bem-i18n": "0.2.0",
@@ -127,21 +129,20 @@
     "cross-env": "5.2.1",
     "css-loader": "3.4.0",
     "dotenv": "5.0.1",
+    "eslint": "7.32.0",
     "file-loader": "6.2.0",
     "glob": "7.1.6",
     "html-webpack-plugin": "5.5.0",
     "husky": "^8.0.1",
     "jest": "27.4.7",
     "jest-watch-typeahead": "1.0.0",
-    "lint-staged": "^12.3.4",
+    "lint-staged": "12.3.4",
     "path": "0.12.7",
     "prettier": "1.19.1",
     "react-hot-loader": "4.12.18",
     "style-loader": "0.23.1",
     "ts-jest": "27.1.2",
     "ts-loader": "6.2.1",
-    "tslint": "5.20.1",
-    "tslint-config-prettier": "1.18.0",
     "typescript": "3.9.10",
     "webpack": "5.70.0",
     "webpack-bem-i18n-loader": "0.3.0",
