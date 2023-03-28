@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require("webpack");
 const {CONTEXT_PATH, PORTAL_ASSETS_PATH, BI_PATH, EXPORT_PATH} = require('./../src/context-path');
 
-const biHost = `http://clusterdata-web.parmalogica.ru${BI_PATH}`;
+const biHost = `http://localhost:8090${BI_PATH}`;
 const portalHost = 'http://localhost:8090';
 const exportHost = `http://localhost:8096${EXPORT_PATH}`;
 
@@ -113,7 +113,7 @@ module.exports = {
     // Копируем ресурсы
     new CopyWebpackPlugin([
       { from: './src/index.js' },
-      { from: './.env' },
+      { from: './environment/.env.local-front', to: '.env', toType: 'file' },
       { from: './src/context-path.js' },
       { from: './src/favicon.ico' },
       { from: './src/sprite/sprite-2fc732.svg', to: 'sprites' },

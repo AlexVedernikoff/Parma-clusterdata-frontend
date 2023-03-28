@@ -113,7 +113,7 @@ module.exports = {
     // Копируем ресурсы
     new CopyWebpackPlugin([
       { from: './src/index.js' },
-      { from: './.env' },
+      { from: './environment/.env' },
       { from: './src/context-path.js' },
       { from: './src/favicon.ico' },
       { from: './src/sprite/sprite-2fc732.svg', to: 'sprites' },
