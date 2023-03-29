@@ -1,1 +1,1 @@
-module.exports={"tumbler":{"off":"Откл","on":"Вкл"}};
+module.exports = { tumbler: { off: 'Откл', on: 'Вкл' } };

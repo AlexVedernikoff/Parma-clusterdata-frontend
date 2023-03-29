@@ -1,4 +1,4 @@
-import _user from "../../levels/common.blocks/user2/user2.react.js";
+import _user from '../../levels/common.blocks/user2/user2.react.js';
 
 var User = _user.applyDecls();
 

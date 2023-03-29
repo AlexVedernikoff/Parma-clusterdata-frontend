@@ -6,7 +6,7 @@
   "{{  count }} days": ["{{count}} день", "{{count}} дня", "{{count}} дней", "{{count}} дней"],
   "{{count}} hours": ["{{count}} час", "{{count}} часа", "{{count}} часов", "{{count}} часов"],
   "{{count}} minutes": ["{{count}} минута", "{{count}} минуты", "{{count}} минут", "{{count}} минут"],
-  "{{count}} months":  ["{{count}} месяц", "{{count}} месяца", "{{count}} месяцев", "{{count}} месяцев"],
+  "{{count}} months": ["{{count}} месяц", "{{count}} месяца", "{{count}} месяцев", "{{count}} месяцев"],
   "{{count}} seconds": ["{{count}} секунда", "{{count}} секунды", "{{count}} секунд", "{{count}} секунд"],
   "{{count}} weeks": ["{{count}} неделя", "{{count}} недели", "{{count}} недель", "{{count}} недель"],
   "{{count}} years": ["{{count}} год", "{{count}} года", "{{count}} лет", "{{count}} лет"]

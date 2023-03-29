@@ -1,7 +1,7 @@
-import "../../levels/common.blocks/tooltip/tooltip.react.js";
-import _tooltip_view_default from "../../levels/common.blocks/tooltip/_view/tooltip_view_default.react.js";
+import '../../levels/common.blocks/tooltip/tooltip.react.js';
+import _tooltip_view_default from '../../levels/common.blocks/tooltip/_view/tooltip_view_default.react.js';
 
-var Tooltip = _tooltip_view_default.applyDecls();
+var Tooltip = _tooltip_view_default.applyDecls(); // eslint-disable-line
 
 /*
 import "./../../levels/common.blocks/tooltip/tooltip.css";
@@ -24,6 +24,4 @@ import "./../../levels/common.blocks/tooltip/_tone/tooltip_tone_grey.css";
 import "./../../levels/common.blocks/tooltip/_tone/tooltip_tone_market.css";
 import "./../../levels/common.blocks/tooltip/_tone/tooltip_tone_red.css";
 import "./../../levels/common.blocks/tooltip/_view/tooltip_view_classic.css";
-import "./../../levels/common.blocks/tooltip/_view/tooltip_view_default.css"; */ // eslint-disable-line
-
-export default Tooltip;
+import "./../../levels/common.blocks/tooltip/_view/tooltip_view_default.css"; */ export default Tooltip;

@@ -1,4 +1,4 @@
-export {default as EXPORT} from '../components/Menu/Items/Export/Export';
+export { default as EXPORT } from '../components/Menu/Items/Export/Export';
 export {
   HIDE_COMMENTS,
   SHOW_COMMENTS,

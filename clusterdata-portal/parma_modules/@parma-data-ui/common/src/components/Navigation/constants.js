@@ -11,11 +11,11 @@ export const MODE_MINIMAL = 'minimal';
 export const MODE_FULL = 'full';
 
 export const ORDER = {
-    DESC: 'desc',
-    ASC: 'asc'
+  DESC: 'desc',
+  ASC: 'asc',
 };
 
 export const OWNERSHIP = {
-    ALL: 'all',
-    ONLY_MINE: 'onlyMine'
+  ALL: 'all',
+  ONLY_MINE: 'onlyMine',
 };

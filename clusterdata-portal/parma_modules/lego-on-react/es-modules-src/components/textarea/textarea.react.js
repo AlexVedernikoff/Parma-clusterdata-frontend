@@ -1,6 +1,6 @@
-import "../../levels/common.blocks/textarea/textarea.react.js";
-import "../../levels/desktop.blocks/textarea/textarea.react.js";
-import _textarea_hasClear_yes from "../../levels/common.blocks/textarea/_has-clear/textarea_has-clear_yes.react.js";
+import '../../levels/common.blocks/textarea/textarea.react.js';
+import '../../levels/desktop.blocks/textarea/textarea.react.js';
+import _textarea_hasClear_yes from '../../levels/common.blocks/textarea/_has-clear/textarea_has-clear_yes.react.js';
 
 var TextArea = _textarea_hasClear_yes.applyDecls();
 

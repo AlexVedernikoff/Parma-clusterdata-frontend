@@ -1,12 +1,12 @@
 .olmap__tooltip {
-    position: absolute;
-    top: 6px;
-    left: 10px;
-    padding: 3px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    opacity: 0.7;
-    white-space: nowrap;
-    font: 10pt sans-serif;
-    margin-bottom: 5px;
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  padding: 3px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  opacity: 0.7;
+  white-space: nowrap;
+  font: 10pt sans-serif;
+  margin-bottom: 5px;
 }

@@ -3,42 +3,43 @@
 import isEmpty from 'lodash/isEmpty';
 
 function formatDiff(data, colorize) {
-    let className = '';
-    const sign = data && data.sign || '';
+  let className = '';
+  const sign = (data && data.sign) || '';
 
-    if (colorize === 'more-green') {
-        if (sign === '+') {
-            className += ' chart-metric__diff_positive';
-        }
-        if (sign === '-') {
-            className += ' chart-metric__diff_negative';
-        }
+  if (colorize === 'more-green') {
+    if (sign === '+') {
+      className += ' chart-metric__diff_positive';
     }
-
-    if (colorize === 'less-green') {
-        if (sign === '+') {
-            className += ' chart-metric__diff_negative';
-        }
-        if (sign === '-') {
-            className += ' chart-metric__diff_positive';
-        }
+    if (sign === '-') {
+      className += ' chart-metric__diff_negative';
     }
+  }
 
-    return data && data.value ?
-`<div class="chart-metric__diff-abs${className}" ${data.color ? `style="color: ${data.color};"` : ''}>
+  if (colorize === 'less-green') {
+    if (sign === '+') {
+      className += ' chart-metric__diff_negative';
+    }
+    if (sign === '-') {
+      className += ' chart-metric__diff_positive';
+    }
+  }
+
+  return data && data.value
+    ? `<div class="chart-metric__diff-abs${className}" ${data.color ? `style="color: ${data.color};"` : ''}>
     ${sign}
     ${data.value}
     <span class="chart-metric__diff_unit">
         ${data.unit || ''}
     </span>
 </div>
-` : '';
+`
+    : '';
 }
 
 function formatMetric(data) {
-    const current = data.content.current;
-    const last = data.content.last;
-    return `
+  const current = data.content.current;
+  const last = data.content.last;
+  return `
 <div class="chart-metric" ${data.background ? `style="background: ${data.background}";` : ''}>
     <div class="chart-metric__content">
         <div class="chart-metric__title" title="${data.title}">
@@ -67,8 +68,8 @@ function formatMetric(data) {
         </div>
     
         ${
-        last ?
-            `<div class="chart-metric__last">
+          last
+            ? `<div class="chart-metric__last">
                     ${last.text || ''}
                 </div>
                 

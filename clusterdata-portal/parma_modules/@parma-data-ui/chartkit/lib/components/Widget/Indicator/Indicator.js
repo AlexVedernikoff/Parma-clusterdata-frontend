@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorDispatcher, { ERROR_TYPE } from '../../../modules/error-dispatcher/error-dispatcher';
 import './style.css';
-import {_valueFormatter} from "../Table/Table";
+import { _valueFormatter } from '../Table/Table';
 
 const FIRST_ELEMENT_INDEX = 0;
 
@@ -10,7 +10,7 @@ class Indicator extends React.PureComponent {
   static propTypes = {
     data: PropTypes.object.isRequired,
     onLoad: PropTypes.func.isRequired,
-    onError: PropTypes.func.isRequired
+    onError: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -29,25 +29,25 @@ class Indicator extends React.PureComponent {
   }
 
   render() {
-    const {data} = this.props.data;
+    const { data } = this.props.data;
     const head = data.head[FIRST_ELEMENT_INDEX];
     const rows = data.rows[FIRST_ELEMENT_INDEX];
 
     const indicatorData = {
       head: head.name,
       type: head.type,
-      cell: rows.cells[FIRST_ELEMENT_INDEX]
-    }
+      cell: rows.cells[FIRST_ELEMENT_INDEX],
+    };
 
     if (!indicatorData.head) {
       throw ErrorDispatcher.wrap({ type: ERROR_TYPE.NO_DATA });
     }
 
     return (
-        <div className="widget-indicator__metric">
-          <div className="widget-indicator__title">{indicatorData.head}</div>
-          <div className="widget-indicator__value">{_valueFormatter(indicatorData.type, indicatorData.cell)}</div>
-        </div>
+      <div className="widget-indicator__metric">
+        <div className="widget-indicator__title">{indicatorData.head}</div>
+        <div className="widget-indicator__value">{_valueFormatter(indicatorData.type, indicatorData.cell)}</div>
+      </div>
     );
   }
 }

@@ -1,7 +1,7 @@
-import "../../levels/common.blocks/radiobox/radiobox.react.js";
-import _radiobox_view_default from "../../levels/common.blocks/radiobox/_view/radiobox_view_default.react.js";
+import '../../levels/common.blocks/radiobox/radiobox.react.js';
+import _radiobox_view_default from '../../levels/common.blocks/radiobox/_view/radiobox_view_default.react.js';
 
-var RadioBox = _radiobox_view_default.applyDecls();
+var RadioBox = _radiobox_view_default.applyDecls(); // eslint-disable-line
 
 /*
 import "./../../levels/common.blocks/radiobox/radiobox.css";
@@ -20,6 +20,4 @@ import "./../../levels/common.blocks/radiobox/_tone/radiobox_tone_grey.css";
 import "./../../levels/common.blocks/radiobox/_tone/radiobox_tone_market.css";
 import "./../../levels/common.blocks/radiobox/_tone/radiobox_tone_red.css";
 import "./../../levels/common.blocks/radiobox/_view/radiobox_view_classic.css";
-import "./../../levels/common.blocks/radiobox/_view/radiobox_view_default.css"; */ // eslint-disable-line
-
-export default RadioBox;
+import "./../../levels/common.blocks/radiobox/_view/radiobox_view_default.css"; */ export default RadioBox;

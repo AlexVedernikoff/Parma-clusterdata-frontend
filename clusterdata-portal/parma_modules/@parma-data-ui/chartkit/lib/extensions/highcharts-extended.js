@@ -22,26 +22,26 @@ import indicators from 'highcharts/indicators/indicators';
 import ema from 'highcharts/indicators/ema';
 
 function extendHighcharts() {
-    highchartsMore(Highcharts);
+  highchartsMore(Highcharts);
 
-    stock(Highcharts);
+  stock(Highcharts);
 
-    solidGauge(Highcharts);
-    funnel(Highcharts);
-    histogramBellcurve(Highcharts);
-    sankey(Highcharts);
-    heatmap(Highcharts);
-    treemap(Highcharts);
-    variwide(Highcharts);
-    streamgraph(Highcharts);
-    drilldown(Highcharts);
+  solidGauge(Highcharts);
+  funnel(Highcharts);
+  histogramBellcurve(Highcharts);
+  sankey(Highcharts);
+  heatmap(Highcharts);
+  treemap(Highcharts);
+  variwide(Highcharts);
+  streamgraph(Highcharts);
+  drilldown(Highcharts);
 
-    annotations(Highcharts);
-    seriesLabel(Highcharts);
-    parallelCoordinates(Highcharts);
+  annotations(Highcharts);
+  seriesLabel(Highcharts);
+  parallelCoordinates(Highcharts);
 
-    indicators(Highcharts);
-    ema(Highcharts);
+  indicators(Highcharts);
+  ema(Highcharts);
 }
 
 export default extendHighcharts;

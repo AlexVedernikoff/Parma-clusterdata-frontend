@@ -3,5 +3,5 @@ export enum ScopeType {
   dataset = 'dataset',
   dash = 'dash',
   widget = 'widget',
-  connection = 'connection'
+  connection = 'connection',
 }
