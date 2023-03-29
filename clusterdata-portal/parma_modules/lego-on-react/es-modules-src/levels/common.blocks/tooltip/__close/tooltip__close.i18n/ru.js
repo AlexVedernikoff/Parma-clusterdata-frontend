@@ -1,1 +1,1 @@
-module.exports={"tooltip__close":{"close":"Закрыть"}};
+module.exports = { tooltip__close: { close: 'Закрыть' } };

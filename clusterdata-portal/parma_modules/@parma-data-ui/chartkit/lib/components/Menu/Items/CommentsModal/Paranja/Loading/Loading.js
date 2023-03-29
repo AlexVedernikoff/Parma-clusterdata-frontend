@@ -5,12 +5,12 @@ import Loader from '@parma-data-ui/react-components/src/components/Loader';
 import Paranja from '../Paranja';
 
 export default function Loading(props) {
-    return (
-        <Paranja visible={props.visible}>
-            <Loader size={'l'}/>
-        </Paranja>
-    );
+  return (
+    <Paranja visible={props.visible}>
+      <Loader size={'l'} />
+    </Paranja>
+  );
 }
 Loading.propTypes = {
-    visible: PropTypes.bool
+  visible: PropTypes.bool,
 };

@@ -9,113 +9,105 @@ import 'brace/ext/language_tools';
 import '../../libs/ace/theme/clusterdata';
 import FormulaAutocompleter from './utils/FormulaAutocompleter';
 
-
 // import './AceEditor.scss';
-
 
 const b = block('clusterdata-ace-editor');
 
-
 class AceEditor extends React.Component {
-    static propTypes = {
-        formula: PropTypes.string.isRequired,
-        modePath: PropTypes.string.isRequired,
-        aceModeUrl: PropTypes.string.isRequired,
-        annotations: PropTypes.array.isRequired,
-        onChange: PropTypes.func.isRequired,
-        forwardedRef: PropTypes.object,
-        isAutocompleteEnabled: PropTypes.bool
-    };
+  static propTypes = {
+    formula: PropTypes.string.isRequired,
+    modePath: PropTypes.string.isRequired,
+    aceModeUrl: PropTypes.string.isRequired,
+    annotations: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    forwardedRef: PropTypes.object,
+    isAutocompleteEnabled: PropTypes.bool,
+  };
 
-    static defaultProps = {
-        modePath: 'static/ace/'
-    };
+  static defaultProps = {
+    modePath: 'static/ace/',
+  };
 
-    _forwardedRef = createRef();
+  _forwardedRef = createRef();
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        const {forwardedRef} = props;
+    const { forwardedRef } = props;
 
-        if (forwardedRef) {
-            this._forwardedRef = forwardedRef;
-        }
+    if (forwardedRef) {
+      this._forwardedRef = forwardedRef;
     }
+  }
 
-    componentDidMount = () => {
-        this._disableAutocomplete();
-    };
+  componentDidMount = () => {
+    this._disableAutocomplete();
+  };
 
-    render() {
-        const {
-            onChange,
-            formula,
-            aceModeUrl,
-            annotations,
-            modePath
-        } = this.props;
+  render() {
+    const { onChange, formula, aceModeUrl, annotations, modePath } = this.props;
 
-        const mode = (aceModeUrl.match(/.*\/mode-(.*).js/) || [])[1];
+    const mode = (aceModeUrl.match(/.*\/mode-(.*).js/) || [])[1];
 
-        return (
-            <div className={b()}>
-                <ReactAceEditor
-                    name="clusterdata"
-                    ref={this._forwardedRef}
-                    mode={mode}
-                    theme="clusterdata"
-                    fontSize={14}
-                    width="100%"
-                    height="100%"
-                    showPrintMargin={false}
-                    showGutter={true}
-                    highlightActiveLine={true}
-                    value={formula}
-                    annotations={annotations}
-                    onChange={onChange}
-                    onBeforeLoad={(ace) => {
-                        ace.config.set('modePath', modePath);
-                    }}
-                    setOptions={{
-                        enableLiveAutocompletion: true,
-                        enableSnippets: false,
-                        showLineNumbers: true,
-                        tabSize: 2
-                    }}
-                    commands={[{
-                        name: 'startAutocomplete',
-                        exec: function (editor) {
-                            if (editor && editor.completer) {
-                                editor.completer.autoInsert = false;
-                                editor.completer.autoSelect = true;
-                                editor.completer.showPopup(editor);
-                                editor.completer.cancelContextMenu();
-                            }
-                        },
-                        bindKey: 'Ctrl-Space|Ctrl-Shift-Space|Alt-Space'
-                    }]}
-                />
-            </div>
-        );
+    return (
+      <div className={b()}>
+        <ReactAceEditor
+          name="clusterdata"
+          ref={this._forwardedRef}
+          mode={mode}
+          theme="clusterdata"
+          fontSize={14}
+          width="100%"
+          height="100%"
+          showPrintMargin={false}
+          showGutter={true}
+          highlightActiveLine={true}
+          value={formula}
+          annotations={annotations}
+          onChange={onChange}
+          onBeforeLoad={ace => {
+            ace.config.set('modePath', modePath);
+          }}
+          setOptions={{
+            enableLiveAutocompletion: true,
+            enableSnippets: false,
+            showLineNumbers: true,
+            tabSize: 2,
+          }}
+          commands={[
+            {
+              name: 'startAutocomplete',
+              exec: function(editor) {
+                if (editor && editor.completer) {
+                  editor.completer.autoInsert = false;
+                  editor.completer.autoSelect = true;
+                  editor.completer.showPopup(editor);
+                  editor.completer.cancelContextMenu();
+                }
+              },
+              bindKey: 'Ctrl-Space|Ctrl-Shift-Space|Alt-Space',
+            },
+          ]}
+        />
+      </div>
+    );
+  }
+
+  _disableAutocomplete() {
+    if (this._forwardedRef && this._forwardedRef.current && !this.props.isAutocompleteEnabled) {
+      const { editor } = this._forwardedRef.current;
+
+      const autocompleter = new FormulaAutocompleter({
+        getAutocomplete: () => null,
+      });
+
+      autocompleter.setupEditor(editor, true);
     }
-
-    _disableAutocomplete() {
-        if (this._forwardedRef && this._forwardedRef.current && !this.props.isAutocompleteEnabled) {
-            const {editor} = this._forwardedRef.current;
-
-            const autocompleter = new FormulaAutocompleter({
-                getAutocomplete: () => null,
-            });
-
-            autocompleter.setupEditor(editor, true);
-        }
-    }
+  }
 }
 
-
 function ForwardedAceEditor(props, ref) {
-    return (<AceEditor {...props} forwardedRef={ref}/>);
+  return <AceEditor {...props} forwardedRef={ref} />;
 }
 
 ForwardedAceEditor.displayName = 'AceEditor';

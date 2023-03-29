@@ -1,5 +1,5 @@
 export enum ExportStatusEnum {
-    PENDING = 'pending',
-    SUCCESS = 'success',
-    ERROR = 'error'
+  PENDING = 'pending',
+  SUCCESS = 'success',
+  ERROR = 'error',
 }

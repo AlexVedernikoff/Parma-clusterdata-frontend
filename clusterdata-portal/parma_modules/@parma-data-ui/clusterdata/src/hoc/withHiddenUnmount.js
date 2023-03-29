@@ -1,8 +1,9 @@
 import React from 'react';
 
-export const withHiddenUnmount = Component => function WithHiddenUnmount(props) {
+export const withHiddenUnmount = Component =>
+  function WithHiddenUnmount(props) {
     if (props.visible === false) {
-        return null;
+      return null;
     }
-    return <Component {...props}/>;
-};
+    return <Component {...props} />;
+  };

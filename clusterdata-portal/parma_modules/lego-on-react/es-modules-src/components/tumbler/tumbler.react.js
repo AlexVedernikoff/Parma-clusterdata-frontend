@@ -1,5 +1,5 @@
-import "../../levels/common.blocks/tumbler/tumbler.react.js";
-import _tumbler_view_default from "../../levels/common.blocks/tumbler/_view/tumbler_view_default.react.js";
+import '../../levels/common.blocks/tumbler/tumbler.react.js';
+import _tumbler_view_default from '../../levels/common.blocks/tumbler/_view/tumbler_view_default.react.js';
 
 var Tumbler = _tumbler_view_default.applyDecls();
 

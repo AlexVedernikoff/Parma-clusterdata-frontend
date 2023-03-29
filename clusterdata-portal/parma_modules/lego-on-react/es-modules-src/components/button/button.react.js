@@ -1,11 +1,11 @@
-import "../../levels/common.blocks/button2/button2.react.js";
-import "../../levels/common.blocks/button2/_has-control/button2_has-control_yes.react.js";
-import "../../levels/common.blocks/button2/_type/button2_type_check.react.js";
-import "../../levels/common.blocks/button2/_type/button2_type_link.react.js";
-import "../../levels/common.blocks/button2/_type/button2_type_radio.react.js";
-import _button2_type_submit from "../../levels/common.blocks/button2/_type/button2_type_submit.react.js";
+import '../../levels/common.blocks/button2/button2.react.js';
+import '../../levels/common.blocks/button2/_has-control/button2_has-control_yes.react.js';
+import '../../levels/common.blocks/button2/_type/button2_type_check.react.js';
+import '../../levels/common.blocks/button2/_type/button2_type_link.react.js';
+import '../../levels/common.blocks/button2/_type/button2_type_radio.react.js';
+import _button2_type_submit from '../../levels/common.blocks/button2/_type/button2_type_submit.react.js';
 
-var Button = _button2_type_submit.applyDecls();
+var Button = _button2_type_submit.applyDecls(); // eslint-disable-line
 
 /*
 import "./../../levels/common.blocks/button2/button2.css";
@@ -54,6 +54,4 @@ import "./../../levels/common.blocks/button2/_tone/button2_tone_red.css";
 import "./../../levels/common.blocks/button2/_view/button2_view_classic.css";
 import "./../../levels/common.blocks/button2/_view/button2_view_default.css";
 import "./../../levels/common.blocks/button2/_width/button2_width_auto.css";
-import "./../../levels/common.blocks/button2/_width/button2_width_max.css"; */ // eslint-disable-line
-
-export default Button;
+import "./../../levels/common.blocks/button2/_width/button2_width_max.css"; */ export default Button;

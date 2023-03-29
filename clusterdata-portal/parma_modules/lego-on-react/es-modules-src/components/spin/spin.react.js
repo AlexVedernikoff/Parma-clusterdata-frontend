@@ -1,6 +1,6 @@
-import _spin from "../../levels/common.blocks/spin2/spin2.react.js";
+import _spin from '../../levels/common.blocks/spin2/spin2.react.js';
 
-var Spin = _spin.applyDecls();
+var Spin = _spin.applyDecls(); // eslint-disable-line
 
 /*
 import "./../../levels/common.blocks/spin2/spin2.css";
@@ -20,6 +20,4 @@ import "./../../levels/common.blocks/spin2/_tone/spin2_tone_default.css";
 import "./../../levels/common.blocks/spin2/_tone/spin2_tone_grey.css";
 import "./../../levels/common.blocks/spin2/_tone/spin2_tone_market.css";
 import "./../../levels/common.blocks/spin2/_tone/spin2_tone_red.css";
-import "./../../levels/common.blocks/spin2/_view/spin2_view_default.css"; */ // eslint-disable-line
-
-export default Spin;
+import "./../../levels/common.blocks/spin2/_view/spin2_view_default.css"; */ export default Spin;

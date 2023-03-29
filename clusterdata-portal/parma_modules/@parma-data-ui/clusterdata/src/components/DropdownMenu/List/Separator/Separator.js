@@ -5,11 +5,9 @@ import cn from 'bem-cn-lite';
 const b = cn('header-menu');
 
 class Separator extends React.Component {
-    render() {
-        return (
-            <div className={b('separator')}/>
-        );
-    }
+  render() {
+    return <div className={b('separator')} />;
+  }
 }
 
 export default Separator;

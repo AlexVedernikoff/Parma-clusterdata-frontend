@@ -1,4 +1,4 @@
-import {I18N} from '@parma-data-ui/i18n';
+import { I18N } from '@parma-data-ui/i18n';
 import en from './en.json';
 import ru from './ru.json';
 

@@ -3,7 +3,7 @@ export default class FeatureColor {
     this._feature = feature;
   }
 
-  featureColorKey () {
+  featureColorKey() {
     if (this.hasColorName()) {
       return this.featureColorName();
     }
@@ -11,9 +11,8 @@ export default class FeatureColor {
     return this.featureColor();
   }
 
-  hasColorName () {
-    return ![undefined, null].includes(this.featureColorName())
-        && typeof this.featureColorName() === 'string'
+  hasColorName() {
+    return ![undefined, null].includes(this.featureColorName()) && typeof this.featureColorName() === 'string';
   }
 
   featureColor() {
@@ -33,8 +32,10 @@ export default class FeatureColor {
   }
 
   hasNotCustomProperties() {
-    return [undefined, null].includes(this._feature)
-        || [undefined, null].includes(this._feature.properties)
-        || [undefined, null].includes(this._feature.properties.customProperties)
+    return (
+      [undefined, null].includes(this._feature) ||
+      [undefined, null].includes(this._feature.properties) ||
+      [undefined, null].includes(this._feature.properties.customProperties)
+    );
   }
 }

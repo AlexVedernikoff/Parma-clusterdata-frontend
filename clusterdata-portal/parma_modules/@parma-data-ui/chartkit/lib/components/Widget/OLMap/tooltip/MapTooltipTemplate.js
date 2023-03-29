@@ -7,11 +7,11 @@ class MapTooltipTemplate {
   }
 
   static tooltipsTemplate(tooltips) {
-    return tooltips.map(tooltip => this.tooltipTemplate(tooltip)).join('\n')
+    return tooltips.map(tooltip => this.tooltipTemplate(tooltip)).join('\n');
   }
 
-  static tooltipTemplate (tooltip) {
-    return `<div>${tooltip.title}: ${tooltip.value}</div>`
+  static tooltipTemplate(tooltip) {
+    return `<div>${tooltip.title}: ${tooltip.value}</div>`;
   }
 }
 

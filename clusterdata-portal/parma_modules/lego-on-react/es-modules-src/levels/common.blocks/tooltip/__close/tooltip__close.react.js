@@ -1,16 +1,34 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
 
 import PropTypes from 'prop-types';
 import { decl } from '@parma-lego/i-bem-react';
 
-var i18n = function () {
-    var core = require('bem-i18n');
+var i18n = (function() {
+  var core = require('bem-i18n');
 
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'ru' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'ru' : 'en' === 'ru') {
-        return core().decl(require('./tooltip__close.i18n/ru'))('tooltip__close');
-    }
+  if (
+    process.env.BEM_LANG
+      ? process.env.BEM_LANG === 'ru'
+      : process.env.REACT_APP_BEM_LANG
+      ? process.env.REACT_APP_BEM_LANG === 'ru'
+      : 'en' === 'ru'
+  ) {
+    return core().decl(require('./tooltip__close.i18n/ru'))('tooltip__close');
+  }
 
-    /*
+  /*
     if (process.env.BEM_LANG ? process.env.BEM_LANG === 'en' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'en' : 'en' === 'en') {
         return core().decl(require('./tooltip__close.i18n/en'))('tooltip__close');
     }
@@ -43,33 +61,46 @@ var i18n = function () {
         return core().decl(require('./tooltip__close.i18n/uz'))('tooltip__close');
     }*/
 
-    if (process.env.NODE_ENV === 'development') {
-        process.env.BEM_LANG && console.error('No match of process.env.BEM_LANG { ' + process.env.BEM_LANG + ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }');
-        process.env.REACT_APP_BEM_LANG && console.error('No match of process.env.REACT_APP_BEM_LANG { ' + process.env.REACT_APP_BEM_LANG + ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }');
-    }
+  if (process.env.NODE_ENV === 'development') {
+    process.env.BEM_LANG &&
+      console.error(
+        'No match of process.env.BEM_LANG { ' +
+          process.env.BEM_LANG +
+          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+      );
+    process.env.REACT_APP_BEM_LANG &&
+      console.error(
+        'No match of process.env.REACT_APP_BEM_LANG { ' +
+          process.env.REACT_APP_BEM_LANG +
+          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+      );
+  }
 
-    return function () {};
-}();
+  return function() {};
+})();
 
-export default decl({
+export default decl(
+  {
     block: 'tooltip',
     elem: 'close',
     willInit: function willInit() {
-        this.__base.apply(this, arguments);
+      this.__base.apply(this, arguments);
 
-        this._onClick = this._onClick.bind(this);
+      this._onClick = this._onClick.bind(this);
     },
     attrs: function attrs() {
-        return _extends({}, this.__base.apply(this, arguments), {
-            onClick: this._onClick,
-            title: i18n('close')
-        });
+      return _extends({}, this.__base.apply(this, arguments), {
+        onClick: this._onClick,
+        title: i18n('close'),
+      });
     },
     _onClick: function _onClick(e) {
-        this.props.onClick && this.props.onClick(e);
-    }
-}, {
+      this.props.onClick && this.props.onClick(e);
+    },
+  },
+  {
     propTypes: {
-        onClick: PropTypes.func
-    }
-});
+      onClick: PropTypes.func,
+    },
+  },
+);

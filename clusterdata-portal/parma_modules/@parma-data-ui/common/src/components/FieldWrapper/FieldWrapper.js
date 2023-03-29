@@ -7,27 +7,23 @@ import block from 'bem-cn-lite';
 const b = block('yc-field-wrapper');
 
 function renderError(errorText) {
-    return (
-        <div className={b('error-text')}>
-            {errorText}
-        </div>
-    );
+  return <div className={b('error-text')}>{errorText}</div>;
 }
 
-export default function FieldWrapper({error, children}) {
-    return (
-        <span
-            className={b({
-                state: error ? 'error' : null
-            })}
-        >
-            {children}
-            {error && renderError(error)}
-        </span>
-    );
+export default function FieldWrapper({ error, children }) {
+  return (
+    <span
+      className={b({
+        state: error ? 'error' : null,
+      })}
+    >
+      {children}
+      {error && renderError(error)}
+    </span>
+  );
 }
 
 FieldWrapper.propTypes = {
-    children: PropTypes.node.isRequired,
-    error: PropTypes.string
+  children: PropTypes.node.isRequired,
+  error: PropTypes.string,
 };

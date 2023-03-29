@@ -1,28 +1,31 @@
 import PropTypes from 'prop-types';
 import { decl } from '@parma-lego/i-bem-react';
 
-export default decl({
+export default decl(
+  {
     block: 'ticker',
     elem: 'value',
     tag: 'span',
     content: function content(_ref) {
-        var count = _ref.count,
-            maxCount = _ref.maxCount;
+      var count = _ref.count,
+        maxCount = _ref.maxCount;
 
-        return count > maxCount ? '' + maxCount : count;
+      return count > maxCount ? '' + maxCount : count;
     },
     attrs: function attrs(_ref2) {
-        var title = _ref2.count;
+      var title = _ref2.count;
 
-        return { title: title };
-    }
-}, {
+      return { title: title };
+    },
+  },
+  {
     propTypes: {
-        count: PropTypes.number,
-        maxCount: PropTypes.number
+      count: PropTypes.number,
+      maxCount: PropTypes.number,
     },
     defaultProps: {
-        count: 0,
-        maxCount: 99
-    }
-});
+      count: 0,
+      maxCount: 99,
+    },
+  },
+);

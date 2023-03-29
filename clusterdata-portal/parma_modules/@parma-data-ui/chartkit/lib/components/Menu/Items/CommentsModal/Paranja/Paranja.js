@@ -7,14 +7,14 @@ import block from 'bem-cn-lite';
 const b = block('paranja');
 
 export default function Paranja(props) {
-    return (
-        <div className={b({visible: props.visible})} onClick={props.onClick}>
-            {props.children}
-        </div>
-    );
+  return (
+    <div className={b({ visible: props.visible })} onClick={props.onClick}>
+      {props.children}
+    </div>
+  );
 }
 Paranja.propTypes = {
-    visible: PropTypes.bool,
-    onClick: PropTypes.func,
-    children: PropTypes.any
+  visible: PropTypes.bool,
+  onClick: PropTypes.func,
+  children: PropTypes.any,
 };
