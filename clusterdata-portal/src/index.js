@@ -103,6 +103,6 @@ router.get('/*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.info(`App listening to http://127.0.0.1:${PORT}`);
+  console.info(`App listening to http://localhost:${PORT}`);
   console.info('Press Ctrl+C to quit');
 });
