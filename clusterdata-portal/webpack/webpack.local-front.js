@@ -12,7 +12,9 @@ const devServer = {
   port: 8090,
 };
 const devtool = 'inline-source-map';
-const envOption = { from: './environment/.env.local-front', to: '.env', toType: 'file' };
+const envCopyFrom = './environment/.env.local-front';
+const envCopyTo = '.env';
+const envCopyToType = 'file';
 const htmlPluginCard = new HtmlWebpackPlugin({
   filename: 'card.html',
   template: './src/card.html',
@@ -27,4 +29,4 @@ const htmlPluginCard = new HtmlWebpackPlugin({
   hash: true,
 });
 
-module.exports = generateConfig({ biHost, portalHost, exportHost }, mode, devServer, devtool, htmlPluginCard, envOption);
+module.exports = generateConfig({ biHost, portalHost, exportHost }, mode, devServer, devtool, htmlPluginCard, envCopyFrom, envCopyTo, envCopyToType);
