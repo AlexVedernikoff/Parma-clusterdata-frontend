@@ -9,47 +9,47 @@ import ReactComponentsLoader from '@parma-data-ui/react-components/src/component
 const b = block('chartkit-loader');
 
 class Loader extends React.PureComponent {
-    static propTypes = {
-        size: PropTypes.oneOf(['s', 'm', 'l']),
-        silentLoading: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
-        text: PropTypes.string
-    };
+  static propTypes = {
+    size: PropTypes.oneOf(['s', 'm', 'l']),
+    silentLoading: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+    text: PropTypes.string,
+  };
 
-    static defaultProps = {
-        size: 'm',
-        silentLoading: false
-    };
+  static defaultProps = {
+    size: 'm',
+    silentLoading: false,
+  };
 
-    state = {visible: !this.isSilent};
+  state = { visible: !this.isSilent };
 
-    componentDidMount() {
-        this.mounted = true;
+  componentDidMount() {
+    this.mounted = true;
 
-        const {silentLoading} = this.props;
-        if (typeof silentLoading === 'number') {
-            setTimeout(() => this.mounted && this.setState({visible: true}), silentLoading);
-        }
+    const { silentLoading } = this.props;
+    if (typeof silentLoading === 'number') {
+      setTimeout(() => this.mounted && this.setState({ visible: true }), silentLoading);
     }
+  }
 
-    componentWillUnmount() {
-        this.mounted = false;
-    }
+  componentWillUnmount() {
+    this.mounted = false;
+  }
 
-    get isSilent() {
-        return this.props.silentLoading === true || typeof this.props.silentLoading === 'number';
-    }
+  get isSilent() {
+    return this.props.silentLoading === true || typeof this.props.silentLoading === 'number';
+  }
 
-    mounted = false;
+  mounted = false;
 
-    render() {
-        const {size, text} = this.props;
-        return this.state.visible ?
-            <div className={b({silent: this.isSilent})}>
-                <ReactComponentsLoader size={size}/>
-                {text ? <div className={b('text')}>{text}</div> : null}
-            </div> :
-            null;
-    }
+  render() {
+    const { size, text } = this.props;
+    return this.state.visible ? (
+      <div className={b({ silent: this.isSilent })}>
+        <ReactComponentsLoader size={size} />
+        {text ? <div className={b('text')}>{text}</div> : null}
+      </div>
+    ) : null;
+  }
 }
 
 export default Loader;

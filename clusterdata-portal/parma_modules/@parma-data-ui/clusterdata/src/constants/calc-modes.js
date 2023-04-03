@@ -1,5 +1,5 @@
 export const CalcModes = {
-    Formula: 'formula',
-    Direct: 'direct',
-    Spel: 'spel'
+  Formula: 'formula',
+  Direct: 'direct',
+  Spel: 'spel',
 };

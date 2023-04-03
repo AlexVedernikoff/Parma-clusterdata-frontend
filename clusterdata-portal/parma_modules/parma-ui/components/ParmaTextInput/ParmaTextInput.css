@@ -1,141 +1,178 @@
 .yc-select-search .parma-textinput__box {
-  border: none
+  border: none;
 }
 
 .yc-navigation-search .parma-textinput__box {
-  border: none
+  border: none;
 }
 
 .yc-datepicker .parma-textinput__box {
-  background-color: transparent!important
+  background-color: transparent !important;
 }
 
 .yc-root .parma-textinput__control {
-  font-family: var(--yc-font-family)
+  font-family: var(--yc-font-family);
 }
 
 .yc-root .parma-textinput__control.parma-textinput__control:-webkit-autofill {
   box-shadow: inset 0 0 0 50px var(--yc-lego-color-base);
-  -webkit-text-fill-color: var(--yc-lego-color-text-primary)
+  -webkit-text-fill-color: var(--yc-lego-color-text-primary);
 }
 
 .yc-root .parma-textinput_theme_normal .parma-textinput__control {
-  color: var(--yc-lego-color-text-primary)
+  color: var(--yc-lego-color-text-primary);
 }
 
-.yc-root .parma-textinput_view_classic.parma-textinput_disabled_yes.parma-textinput_theme_normal .parma-textinput__control {
+.yc-root
+  .parma-textinput_view_classic.parma-textinput_disabled_yes.parma-textinput_theme_normal
+  .parma-textinput__control {
   color: var(--yc-lego-color-dark-disabled);
-  -webkit-text-fill-color: var(--yc-lego-color-dark-disabled)
+  -webkit-text-fill-color: var(--yc-lego-color-dark-disabled);
 }
 
-.yc-root .parma-textinput_view_classic.parma-textinput_theme_normal .parma-textinput__control::-webkit-input-placeholder {
-  color: var(--yc-lego-color-placeholder)
+.yc-root
+  .parma-textinput_view_classic.parma-textinput_theme_normal
+  .parma-textinput__control::-webkit-input-placeholder {
+  color: var(--yc-lego-color-placeholder);
 }
 
 .yc-root .parma-textinput_view_classic.parma-textinput_theme_normal .parma-textinput__control::-moz-placeholder {
-  color: var(--yc-lego-color-placeholder)
+  color: var(--yc-lego-color-placeholder);
 }
 
 .yc-root .parma-textinput_view_classic.parma-textinput_theme_normal .parma-textinput__control:-ms-input-placeholder {
-  color: var(--yc-lego-color-placeholder)
+  color: var(--yc-lego-color-placeholder);
 }
 
 .yc-root .parma-textinput_view_classic.parma-textinput_theme_normal .parma-textinput__box {
   border: 1px solid var(--yc-lego-color-border-medium);
-  background-color: var(--yc-lego-color-base)
+  background-color: var(--yc-lego-color-base);
 }
 
 .yc-root .parma-textinput_view_classic.parma-textinput_theme_normal.parma-textinput_hovered_yes .parma-textinput__box {
-  border-color: var(--yc-lego-color-dark-light-hover)
+  border-color: var(--yc-lego-color-dark-light-hover);
 }
 
 .yc-root .parma-textinput_view_classic.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__box {
-  background-color: var(--yc-lego-color-medium-light-disabled)
+  background-color: var(--yc-lego-color-medium-light-disabled);
 }
 
 .yc-root .parma-textinput_theme_websearch .parma-textinput__control {
   font-family: var(--yc-font-family);
-  color: var(--yc-lego-color-text-primary)
+  color: var(--yc-lego-color-text-primary);
 }
 
 .yc-root .parma-textinput_theme_websearch .parma-textinput__box {
-  background-color: var(--yc-lego-color-base)
+  background-color: var(--yc-lego-color-base);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control {
-  color: var(--yc-lego-color-text-primary)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal
+  .parma-textinput__control {
+  color: var(--yc-lego-color-text-primary);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__icon {
-  color: var(--yc-lego-color-input-control)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal
+  .parma-textinput__icon {
+  color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__clear.parma-textinput__clear_hovered_yes {
-  color: var(--yc-lego-color-text-primary)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal
+  .parma-textinput__clear.parma-textinput__clear_hovered_yes {
+  color: var(--yc-lego-color-text-primary);
 }
 
 .yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__box {
   border-color: var(--yc-lego-color-border-medium-solid);
-  background-color: var(--yc-lego-color-base)
+  background-color: var(--yc-lego-color-base);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_hovered_yes .parma-textinput__box  {
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_hovered_yes
+  .parma-textinput__box {
   border-color: var(--yc-lego-color-dark-light-hover-solid);
-  background-color: var(--yc-lego-color-base)
+  background-color: var(--yc-lego-color-base);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_focused_yes .parma-textinput__box {
-  border-color: var(--yc-lego-color-utilityfocus-solid)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_focused_yes
+  .parma-textinput__box {
+  border-color: var(--yc-lego-color-utilityfocus-solid);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control::-webkit-input-placeholder {
-  color: var(--yc-lego-color-input-control)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal
+  .parma-textinput__control::-webkit-input-placeholder {
+  color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control::-ms-input-placeholder {
-  color: var(--yc-lego-color-input-control)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal
+  .parma-textinput__control::-ms-input-placeholder {
+  color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control::placeholder {
-  color: var(--yc-lego-color-input-control)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal
+  .parma-textinput__control::placeholder {
+  color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control::-moz-placeholder {
-  color: var(--yc-lego-color-input-control)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal
+  .parma-textinput__control::-moz-placeholder {
+  color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal .parma-textinput__control:-ms-input-placeholder {
-  color: var(--yc-lego-color-input-control)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal
+  .parma-textinput__control:-ms-input-placeholder {
+  color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_disabled_yes.parma-textinput_theme_normal .parma-textinput__control {
-  color: var(--yc-lego-color-dark-disabled)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_disabled_yes.parma-textinput_theme_normal
+  .parma-textinput__control {
+  color: var(--yc-lego-color-dark-disabled);
 }
 
-.yc-root .parma-textinput.parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__box {
-  background-color: var(--yc-lego-color-medium-disabled-solid)
+.yc-root
+  .parma-textinput.parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes
+  .parma-textinput__box {
+  background-color: var(--yc-lego-color-medium-disabled-solid);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control::-webkit-input-placeholder {
-  color: var(--yc-lego-color-input-disabled)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes
+  .parma-textinput__control::-webkit-input-placeholder {
+  color: var(--yc-lego-color-input-disabled);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control:-ms-input-placeholder {
-  color: var(--yc-lego-color-input-disabled)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes
+  .parma-textinput__control:-ms-input-placeholder {
+  color: var(--yc-lego-color-input-disabled);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control::-ms-input-placeholder {
-  color: var(--yc-lego-color-input-disabled)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes
+  .parma-textinput__control::-ms-input-placeholder {
+  color: var(--yc-lego-color-input-disabled);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control::placeholder {
-  color: var(--yc-lego-color-input-disabled)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes
+  .parma-textinput__control::placeholder {
+  color: var(--yc-lego-color-input-disabled);
 }
 
-.yc-root .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes .parma-textinput__control::-moz-placeholder {
-  color: var(--yc-lego-color-input-disabled)
+.yc-root
+  .parma-textinput_view_default.parma-textinput_tone_default.parma-textinput_theme_normal.parma-textinput_disabled_yes
+  .parma-textinput__control::-moz-placeholder {
+  color: var(--yc-lego-color-input-disabled);
 }
-
 
 .parma-textinput__control {
   position: relative;
@@ -150,7 +187,7 @@
   border: 0 solid transparent;
   outline: 0;
   background: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .parma-textinput_disabled_yes .parma-textinput__control {
@@ -159,20 +196,20 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none
+  user-select: none;
 }
 
 .parma-textinput__control::-webkit-search-decoration {
   -webkit-appearance: none;
-  appearance: none
+  appearance: none;
 }
 
 .parma-textinput__control::-webkit-search-cancel-button {
-  display: none
+  display: none;
 }
 
 .parma-textinput__control::-ms-clear {
-  display: none
+  display: none;
 }
 
 .parma-textinput__control.parma-textinput__control:-webkit-autofill {
@@ -180,11 +217,11 @@
   border-bottom-width: 2px;
   background-clip: content-box;
   box-shadow: inset 0 0 0 50px #fff;
-  -webkit-text-fill-color: #000
+  -webkit-text-fill-color: #000;
 }
 
 .parma-textinput__control::-moz-placeholder {
-  opacity: 1
+  opacity: 1;
 }
 
 .parma-textinput_theme_normal {
@@ -214,7 +251,7 @@
   bottom: 0;
   left: 0;
   box-sizing: border-box;
-  border-style: solid
+  border-style: solid;
 }
 
 .parma-textinput_view_default .parma-textinput__box {

@@ -1,5 +1,5 @@
-import "../../levels/common.blocks/link/link.react.js";
-import _link_pseudo_yes from "../../levels/common.blocks/link/_pseudo/link_pseudo_yes.react.js";
+import '../../levels/common.blocks/link/link.react.js';
+import _link_pseudo_yes from '../../levels/common.blocks/link/_pseudo/link_pseudo_yes.react.js';
 
 var Link = _link_pseudo_yes.applyDecls();
 

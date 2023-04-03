@@ -7,17 +7,13 @@ import block from 'bem-cn-lite';
 const b = block('yc-dialog-body');
 
 const DialogBody = props => {
-    const {className} = props;
+  const { className } = props;
 
-    return (
-        <div className={b(false, className)}>
-            {props.children}
-        </div>
-    );
+  return <div className={b(false, className)}>{props.children}</div>;
 };
 
 DialogBody.propTypes = {
-    className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default DialogBody;

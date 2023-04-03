@@ -1,11 +1,11 @@
-import "../../levels/common.blocks/textinput/textinput.react.js";
-import "../../levels/desktop.blocks/textinput/textinput.react.js";
-import "../../levels/common.blocks/textinput/_has-clear/textinput_has-clear_yes.react.js";
-import "../../levels/common.blocks/textinput/_has-icon/textinput_has-icon_yes.react.js";
-import "../../levels/common.blocks/textinput/_pin/textinput_pin.react.js";
-import "../../levels/common.blocks/textinput/_suggest/textinput_suggest_yes.react.js";
-import "../../levels/common.blocks/textinput/_theme/textinput_theme_websearch.react.js";
-import _textinput_view_default from "../../levels/common.blocks/textinput/_view/textinput_view_default.react.js";
+import '../../levels/common.blocks/textinput/textinput.react.js';
+import '../../levels/desktop.blocks/textinput/textinput.react.js';
+import '../../levels/common.blocks/textinput/_has-clear/textinput_has-clear_yes.react.js';
+import '../../levels/common.blocks/textinput/_has-icon/textinput_has-icon_yes.react.js';
+import '../../levels/common.blocks/textinput/_pin/textinput_pin.react.js';
+import '../../levels/common.blocks/textinput/_suggest/textinput_suggest_yes.react.js';
+import '../../levels/common.blocks/textinput/_theme/textinput_theme_websearch.react.js';
+import _textinput_view_default from '../../levels/common.blocks/textinput/_view/textinput_view_default.react.js';
 
 var TextInput = _textinput_view_default.applyDecls();
 

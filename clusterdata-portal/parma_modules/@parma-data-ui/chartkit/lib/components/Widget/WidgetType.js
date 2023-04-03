@@ -3,7 +3,7 @@ export const WIDGET_TYPE = {
   TABLE: 'table',
   MAP: 'map',
   CARD: 'card',
-  HEAT_MAP: "heatmap",
+  HEAT_MAP: 'heatmap',
   TEXT: 'text',
   METRIC: 'metric',
   YMAP: 'ymap',

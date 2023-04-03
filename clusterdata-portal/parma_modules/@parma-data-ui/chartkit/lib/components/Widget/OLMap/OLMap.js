@@ -74,9 +74,9 @@ class OLMap extends React.Component {
 
     const titleLayerSourceDelimiter = ';';
     this.titleLayer = geoJson.titleLayerSource
-    .split(titleLayerSourceDelimiter)
-    .map(url => this.tileLayer(url))
-    .filter(layer => layer != null);
+      .split(titleLayerSourceDelimiter)
+      .map(url => this.tileLayer(url))
+      .filter(layer => layer != null);
 
     // Если тепловая карта
     if (this.isHeatMap()) {
@@ -143,24 +143,24 @@ class OLMap extends React.Component {
     const zoom = this.state.zoom;
 
     return !(
-        isEqual(data, this.props.data) &&
-        isEqual(chartEditMode, this.props.chartEditMode) &&
-        center === nextState.center &&
-        zoom === nextState.zoom
+      isEqual(data, this.props.data) &&
+      isEqual(chartEditMode, this.props.chartEditMode) &&
+      center === nextState.center &&
+      zoom === nextState.zoom
     );
   };
 
   #updateLegend = loadedData => {
     const mapColorField = loadedData.data.geoJson.customData && loadedData.data.geoJson.customData['mapColor'];
     const mapColorFieldName =
-        loadedData.data.geoJson.customData && loadedData.data.geoJson.customData['mapColorFieldName'];
+      loadedData.data.geoJson.customData && loadedData.data.geoJson.customData['mapColorFieldName'];
 
     MapLegend.getLegend(
-        this.colorMap,
-        mapColorField,
-        mapColorFieldName,
-        this.props.onStateAndParamsChange,
-        document.getElementById(`legend-${this.mapId}`),
+      this.colorMap,
+      mapColorField,
+      mapColorFieldName,
+      this.props.onStateAndParamsChange,
+      document.getElementById(`legend-${this.mapId}`),
     );
   };
 
@@ -184,39 +184,39 @@ class OLMap extends React.Component {
 
     //todo Внимание хардкор
     if (
-        this.id === 'af5585e8-3272-48a8-bf44-008b5c828bec' &&
-        feature.values_.customProperties &&
-        feature.values_.customProperties.id_group
+      this.id === 'af5585e8-3272-48a8-bf44-008b5c828bec' &&
+      feature.values_.customProperties &&
+      feature.values_.customProperties.id_group
     ) {
       let url =
-          '/card?id=6e15d2f8-8eca-40ab-99f6-d92e4e368fb3&22e71bc3-4ecd-41ba-ba90-89e6ca60f390=' +
-          feature.values_.customProperties.id_group[0];
+        '/card?id=6e15d2f8-8eca-40ab-99f6-d92e4e368fb3&22e71bc3-4ecd-41ba-ba90-89e6ca60f390=' +
+        feature.values_.customProperties.id_group[0];
       window.open(url);
     }
 
     if (
-        (this.id === 'cfa33666-d8a3-4ac8-b3f7-8e28e0a62d85' ||
-            this.id === '7e781e90-1b69-41ea-a6a8-84c996706539' ||
-            this.id === 'a9b35b49-552c-4985-91d6-a3b746552435') &&
-        feature.values_.customProperties &&
-        feature.values_.customProperties.id_group
+      (this.id === 'cfa33666-d8a3-4ac8-b3f7-8e28e0a62d85' ||
+        this.id === '7e781e90-1b69-41ea-a6a8-84c996706539' ||
+        this.id === 'a9b35b49-552c-4985-91d6-a3b746552435') &&
+      feature.values_.customProperties &&
+      feature.values_.customProperties.id_group
     ) {
       let url =
-          '/card?id=1d9f4a5e-f1d4-4ce0-8f50-84c6ea22056a&1ad8b5e8-afda-4e64-81b3-f5d460cd90e6=' +
-          feature.values_.customProperties.id_group[0];
+        '/card?id=1d9f4a5e-f1d4-4ce0-8f50-84c6ea22056a&1ad8b5e8-afda-4e64-81b3-f5d460cd90e6=' +
+        feature.values_.customProperties.id_group[0];
       window.open(url);
     }
 
     if (
-        (this.id === '150d80a8-b859-4215-bbfa-4cdf53549cb2' ||
-            this.id === '181bb224-6a16-4471-9a21-e329d2530d79' ||
-            this.id === 'ee00e0e1-aba2-4abd-a140-2f3a90f21415') &&
-        feature.values_.customProperties &&
-        feature.values_.customProperties.id_group
+      (this.id === '150d80a8-b859-4215-bbfa-4cdf53549cb2' ||
+        this.id === '181bb224-6a16-4471-9a21-e329d2530d79' ||
+        this.id === 'ee00e0e1-aba2-4abd-a140-2f3a90f21415') &&
+      feature.values_.customProperties &&
+      feature.values_.customProperties.id_group
     ) {
       let url =
-          '/card?id=e8e6f771-48e5-4e0a-aba1-91331c666c7c&7e1dcc65-8ceb-468d-8c46-d6cd559a34e9=' +
-          feature.values_.customProperties.id_group[0];
+        '/card?id=e8e6f771-48e5-4e0a-aba1-91331c666c7c&7e1dcc65-8ceb-468d-8c46-d6cd559a34e9=' +
+        feature.values_.customProperties.id_group[0];
       window.open(url);
     }
 
@@ -310,15 +310,15 @@ class OLMap extends React.Component {
     }
 
     const selectedFeature = features.find(
-        feature => feature.properties.customProperties.drill_down_filter === selectedFeatureValue,
+      feature => feature.properties.customProperties.drill_down_filter === selectedFeatureValue,
     );
 
     if (selectedFeature) {
       this.#updateFeatures(
-          [{ id: selectedFeature.id, value: selectedFeatureValue }],
-          this.#ownWidgetParamsFeature && this.#ownWidgetParamsFeature.id !== selectedFeature.id
-              ? [this.#ownWidgetParamsFeature]
-              : [],
+        [{ id: selectedFeature.id, value: selectedFeatureValue }],
+        this.#ownWidgetParamsFeature && this.#ownWidgetParamsFeature.id !== selectedFeature.id
+          ? [this.#ownWidgetParamsFeature]
+          : [],
       );
 
       this.#ownWidgetParamsFeature = { id: selectedFeature.id, value: selectedFeatureValue };
@@ -382,9 +382,9 @@ class OLMap extends React.Component {
 
   #featureClusterSize = feature => {
     if (
-        feature.getProperties() &&
-        feature.getProperties().customProperties &&
-        feature.getProperties().customProperties['cluster_size']
+      feature.getProperties() &&
+      feature.getProperties().customProperties &&
+      feature.getProperties().customProperties['cluster_size']
     ) {
       return feature.getProperties().customProperties['cluster_size'];
     }
@@ -409,9 +409,9 @@ class OLMap extends React.Component {
     return this.#roundedBbox(this.#extentToProjection(this.olmap.getView().calculateExtent(this.olmap.getSize())));
   };
 
-  #roundedBbox = (bbox) => {
-    return bbox.map(coordinate => +coordinate.toFixed(6))
-  }
+  #roundedBbox = bbox => {
+    return bbox.map(coordinate => +coordinate.toFixed(6));
+  };
 
   #clusterPrecision = () => {
     console.log('zoom:', this.#currentZoom());
@@ -486,8 +486,8 @@ class OLMap extends React.Component {
   #getMapLayerOpacity = loadedData => {
     const mapLayerOpacity = loadedData && loadedData.data.geoJson.mapLayerOpacity;
     return mapLayerOpacity === null
-        ? MapConstant.defaultMapLayerOpacity
-        : MapConstant.convertRangePickerValueToOpacity(mapLayerOpacity);
+      ? MapConstant.defaultMapLayerOpacity
+      : MapConstant.convertRangePickerValueToOpacity(mapLayerOpacity);
   };
 
   #featureProjection = () => {
@@ -612,10 +612,10 @@ class OLMap extends React.Component {
       }
 
       let circleStyle = MapUtils.getFeatureCircleStyle(
-          feature,
-          this.olmap.getView().getZoom(),
-          this.colorMap,
-          this.iconCache,
+        feature,
+        this.olmap.getView().getZoom(),
+        this.colorMap,
+        this.iconCache,
       );
 
       if (circleStyle) {
@@ -747,7 +747,6 @@ class OLMap extends React.Component {
         this.loadedData = data;
         this.#refreshVectorSourceForced();
       }
-
     } catch (err) {
       console.error('Ошибка получения данных');
     } finally {
@@ -763,12 +762,12 @@ class OLMap extends React.Component {
     if (this.isHeatMap()) {
       const mapLayerOpacity = this.#getMapLayerOpacity(loadedData);
       let heatmapFeatures = this.#vectorHeatmapSource
-      .getFormat()
-      .readFeatures(loadedData.data.geoJson, this.#featureProjection());
+        .getFormat()
+        .readFeatures(loadedData.data.geoJson, this.#featureProjection());
       this.colorMap = MapLegend.calcHeatmapLegend(
-          heatmapFeatures,
-          this.loadedData.data.geoJson.features,
-          mapLayerOpacity,
+        heatmapFeatures,
+        this.loadedData.data.geoJson.features,
+        mapLayerOpacity,
       );
       this.#vectorHeatmapSource.addFeatures(heatmapFeatures);
 
@@ -784,16 +783,16 @@ class OLMap extends React.Component {
 
   getColorValue = loadedData => {
     if (
-        loadedData.data.geoJson.features.length > 0 &&
-        loadedData.data.geoJson.features[0].properties &&
-        loadedData.data.geoJson.features[0].properties.customProperties &&
-        loadedData.data.geoJson.features[0].properties.customProperties['_color']
+      loadedData.data.geoJson.features.length > 0 &&
+      loadedData.data.geoJson.features[0].properties &&
+      loadedData.data.geoJson.features[0].properties.customProperties &&
+      loadedData.data.geoJson.features[0].properties.customProperties['_color']
     ) {
       let uniqueColorValues = loadedData.data.geoJson.features
-      .map(m => m.properties.customProperties)
-      .map(properties => properties['_color'])
-      .flat()
-      .filter((v, i, a) => a.indexOf(v) === i);
+        .map(m => m.properties.customProperties)
+        .map(properties => properties['_color'])
+        .flat()
+        .filter((v, i, a) => a.indexOf(v) === i);
       for (let k of this.colorMap.keys()) {
         if (!uniqueColorValues.includes(k)) {
           this.colorMap.delete(k);
@@ -811,10 +810,10 @@ class OLMap extends React.Component {
     this.titleLayer.forEach(item => item.getSource());
 
     return (
-        <div id={`map-${this.mapId}`} className="olmap" style={{ width: '100%', height: '100%' }}>
-          <div id={`legend-${this.mapId}`} className="olmap__legend" style={{ position: 'absolute', zIndex: 99 }}></div>
-          <div id={`tooltip-${this.mapId}`} className="olmap__tooltip"></div>
-        </div>
+      <div id={`map-${this.mapId}`} className="olmap" style={{ width: '100%', height: '100%' }}>
+        <div id={`legend-${this.mapId}`} className="olmap__legend" style={{ position: 'absolute', zIndex: 99 }}></div>
+        <div id={`tooltip-${this.mapId}`} className="olmap__tooltip"></div>
+      </div>
     );
   };
 }

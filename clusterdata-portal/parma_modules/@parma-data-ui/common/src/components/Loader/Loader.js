@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 // import './Loader.scss';
@@ -6,22 +6,20 @@ import block from 'bem-cn-lite';
 const b = block('yc-loader');
 
 const propTypes = {
-    size: PropTypes.string,
-    className: PropTypes.string
+  size: PropTypes.string,
+  className: PropTypes.string,
 };
 
 const defaultProps = {
-    size: 's'
+  size: 's',
 };
 
 export default class Loader extends Component {
-    render() {
-        const {size, className} = this.props;
+  render() {
+    const { size, className } = this.props;
 
-        return (
-            <div className={b({size}, className)}/>
-        );
-    }
+    return <div className={b({ size }, className)} />;
+  }
 }
 
 Loader.propTypes = propTypes;

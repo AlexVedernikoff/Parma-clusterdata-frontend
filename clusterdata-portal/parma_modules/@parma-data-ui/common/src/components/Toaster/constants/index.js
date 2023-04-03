@@ -1,4 +1,4 @@
 export default {
-    cNameToaster: 'yc-toaster',
-    cNameToast: 'yc-toast'
+  cNameToaster: 'yc-toaster',
+  cNameToast: 'yc-toast',
 };

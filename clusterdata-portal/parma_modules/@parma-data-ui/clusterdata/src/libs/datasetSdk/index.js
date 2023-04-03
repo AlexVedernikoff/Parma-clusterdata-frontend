@@ -1,174 +1,156 @@
 import uuid from 'uuid/v1';
 
 class DatasetSDK {
-    requiredPropertiesOnCreate = ['guid', 'title', 'calc_mode', 'type'];
-    requiredPropertiesOnModify = ['guid'];
-    requiredPropertiesOnDuplicate = ['guid'];
-    requiredPropertiesOnRemove = ['guid'];
+  requiredPropertiesOnCreate = ['guid', 'title', 'calc_mode', 'type'];
+  requiredPropertiesOnModify = ['guid'];
+  requiredPropertiesOnDuplicate = ['guid'];
+  requiredPropertiesOnRemove = ['guid'];
 
-    validation({mode, field, fields}) {
-        const processedMode = mode.slice(0, 1).toUpperCase() + mode.slice(1);
+  validation({ mode, field, fields }) {
+    const processedMode = mode.slice(0, 1).toUpperCase() + mode.slice(1);
 
-        const missingRequireProperties = this[`requiredPropertiesOn${processedMode}`]
-            .reduce((missingProperties, requiredProperty) => {
-                if (!field[requiredProperty]) {
-                    missingProperties.push(requiredProperty);
-                }
-
-                return missingProperties;
-            }, []);
-
-        if (missingRequireProperties.length) {
-            throw new Error(`You should specify ${missingRequireProperties.join(', ')}`);
+    const missingRequireProperties = this[`requiredPropertiesOn${processedMode}`].reduce(
+      (missingProperties, requiredProperty) => {
+        if (!field[requiredProperty]) {
+          missingProperties.push(requiredProperty);
         }
 
-        if (!fields.length) {
-            throw new Error('You should pass fields array');
-        }
+        return missingProperties;
+      },
+      [],
+    );
+
+    if (missingRequireProperties.length) {
+      throw new Error(`You should specify ${missingRequireProperties.join(', ')}`);
     }
 
-    modifyFieldSettings({field}) {
-        const {
-            title
-        } = field;
+    if (!fields.length) {
+      throw new Error('You should pass fields array');
+    }
+  }
 
-        return {
+  modifyFieldSettings({ field }) {
+    const { title } = field;
+
+    return {
+      ...field,
+      title: title.trim(),
+    };
+  }
+
+  createField({ field, fields }) {
+    this.validation({ mode: 'create', field, fields });
+
+    const fieldPrepared = this.modifyFieldSettings({ field });
+
+    return [fieldPrepared, ...fields];
+  }
+
+  modifyField({ field, fields }) {
+    this.validation({ mode: 'modify', field, fields });
+
+    const { guid: modifiedFieldId } = field;
+
+    return fields.map(fieldCurrent => {
+      const { guid: fieldId } = fieldCurrent;
+      let fieldNext = fieldCurrent;
+
+      if (fieldId === modifiedFieldId) {
+        fieldNext = this.modifyFieldSettings({
+          field: {
+            ...fieldCurrent,
             ...field,
-            title: title.trim()
-        };
-    }
-
-    createField({field, fields}) {
-        this.validation({mode: 'create', field, fields});
-
-        const fieldPrepared = this.modifyFieldSettings({field});
-
-        return [
-            fieldPrepared,
-            ...fields
-        ];
-    }
-
-    modifyField({field, fields}) {
-        this.validation({mode: 'modify', field, fields});
-
-        const {
-            guid: modifiedFieldId
-        } = field;
-
-        return fields.map((fieldCurrent) => {
-            const {
-                guid: fieldId
-            } = fieldCurrent;
-            let fieldNext = fieldCurrent;
-
-            if (fieldId === modifiedFieldId) {
-                fieldNext = this.modifyFieldSettings({
-                    field: {
-                        ...fieldCurrent,
-                        ...field
-                    }
-                });
-            }
-
-            return fieldNext;
+          },
         });
-    }
+      }
 
-    duplicateField({field, fields}) {
-        this.validation({mode: 'duplicate', field, fields});
+      return fieldNext;
+    });
+  }
 
-        const {
-            guid: duplicatedFieldId
-        } = field;
+  duplicateField({ field, fields }) {
+    this.validation({ mode: 'duplicate', field, fields });
 
-        return fields.reduce((duplicationField, fieldCurrent) => {
-            const {
-                guid: fieldId
-            } = fieldCurrent;
-            const {fieldsNext} = duplicationField;
+    const { guid: duplicatedFieldId } = field;
 
-            fieldsNext.push(fieldCurrent);
+    return fields.reduce(
+      (duplicationField, fieldCurrent) => {
+        const { guid: fieldId } = fieldCurrent;
+        const { fieldsNext } = duplicationField;
 
-            if (fieldId === duplicatedFieldId) {
-                const fieldNext = {
-                    ...fieldCurrent,
-                    guid: uuid(),
-                    title: this.getNextTitleField({field, fields})
-                };
+        fieldsNext.push(fieldCurrent);
 
-                duplicationField.fieldNext = fieldNext;
-                fieldsNext.push(fieldNext);
-            }
+        if (fieldId === duplicatedFieldId) {
+          const fieldNext = {
+            ...fieldCurrent,
+            guid: uuid(),
+            title: this.getNextTitleField({ field, fields }),
+          };
 
-            return duplicationField;
-        }, {
-            fieldNext: null,
-            fieldsNext: []
-        });
-    }
+          duplicationField.fieldNext = fieldNext;
+          fieldsNext.push(fieldNext);
+        }
 
-    removeField({field, fields}) {
-        this.validation({mode: 'remove', field, fields});
+        return duplicationField;
+      },
+      {
+        fieldNext: null,
+        fieldsNext: [],
+      },
+    );
+  }
 
-        const {
-            guid: removedFieldId
-        } = field;
+  removeField({ field, fields }) {
+    this.validation({ mode: 'remove', field, fields });
 
-        return fields.filter((fieldCurrent) => {
-            const {
-                guid: fieldId
-            } = fieldCurrent;
+    const { guid: removedFieldId } = field;
 
-            return fieldId !== removedFieldId;
-        });
-    }
+    return fields.filter(fieldCurrent => {
+      const { guid: fieldId } = fieldCurrent;
 
-    getNextTitleField({field, fields}) {
-        const {
-            title
-        } = field;
+      return fieldId !== removedFieldId;
+    });
+  }
 
-        const getTitleInfo = (currentTitle) => {
-            const regexNameByNumberDivider = /(.*)\s\((\d+)\)$/;
-            const matchedTitle = currentTitle.match(regexNameByNumberDivider);
-            let name, number;
+  getNextTitleField({ field, fields }) {
+    const { title } = field;
 
-            if (matchedTitle) {
-                name = matchedTitle[1];
-                number = Number(matchedTitle[2]);
-            } else {
-                name = currentTitle;
-                number = 0;
-            }
+    const getTitleInfo = currentTitle => {
+      const regexNameByNumberDivider = /(.*)\s\((\d+)\)$/;
+      const matchedTitle = currentTitle.match(regexNameByNumberDivider);
+      let name, number;
 
-            return {
-                name,
-                number
-            };
-        };
+      if (matchedTitle) {
+        name = matchedTitle[1];
+        number = Number(matchedTitle[2]);
+      } else {
+        name = currentTitle;
+        number = 0;
+      }
 
-        const {
-            name: currentName
-        } = getTitleInfo(title);
-        const allTitlesInfo = fields.map(({title}) => getTitleInfo(title));
+      return {
+        name,
+        number,
+      };
+    };
 
-        const nameWithoutSpaces = currentName.replace(/\s/g, '');
+    const { name: currentName } = getTitleInfo(title);
+    const allTitlesInfo = fields.map(({ title }) => getTitleInfo(title));
 
-        const filteredTitlesInfo = allTitlesInfo.filter((titlesInfo) => {
-            const {
-                name
-            } = titlesInfo;
-            const currentNameWithoutSpaces = name.replace(/\s/g, '');
+    const nameWithoutSpaces = currentName.replace(/\s/g, '');
 
-            return currentNameWithoutSpaces === nameWithoutSpaces;
-        });
+    const filteredTitlesInfo = allTitlesInfo.filter(titlesInfo => {
+      const { name } = titlesInfo;
+      const currentNameWithoutSpaces = name.replace(/\s/g, '');
 
-        const duplicationNumbers = filteredTitlesInfo.map(({number}) => number);
-        let duplicationNumber = Math.max(...duplicationNumbers);
+      return currentNameWithoutSpaces === nameWithoutSpaces;
+    });
 
-        return `${currentName} (${++duplicationNumber})`;
-    }
+    const duplicationNumbers = filteredTitlesInfo.map(({ number }) => number);
+    let duplicationNumber = Math.max(...duplicationNumbers);
+
+    return `${currentName} (${++duplicationNumber})`;
+  }
 }
 
 export default new DatasetSDK();

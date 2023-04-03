@@ -1,13 +1,16 @@
 const express = require('express');
 const url = require('url');
 const ejs = require('ejs');
-const { PORTAL_PATH, PORTAL_ASSETS_PATH } = require('./context-path');
+const { BI_PATH, PORTAL_PATH, PORTAL_ASSETS_PATH } = require('./context-path');
 const dotenv = require('dotenv').config();
+const httpProxy = require('http-proxy');
 
 const app = express();
 const router = express.Router();
+const apiProxy = httpProxy.createProxyServer();
 
 const PORT = process.env.PORT || 8090;
+const BI_SERVICE_HOST = dotenv.parsed.BI_SERVICE_HOST;
 
 const DIST_DIR = './';
 const ROOT_OPTIONS = { root: DIST_DIR };
@@ -75,6 +78,18 @@ router.get(`${PORTAL_PATH}/dashboards_simple/:id`, dashboardSimpleHandler);
 router.get('/', (req, res) => {
   res.render('navigation.ejs', RENDER_OPTIONS);
 });
+
+router.all(`${BI_PATH}/**`, (req, res) => {
+  if (req.url === `${BI_PATH}/`) {
+    res.redirect('/');
+  }
+
+  apiProxy.web(req, res, {
+    target: BI_SERVICE_HOST,
+    headers: req.headers,
+  });
+});
+
 router.get('/*', (req, res) => {
   const path = req.path.replace(PORTAL_ASSETS_PATH, '');
 
@@ -88,6 +103,6 @@ router.get('/*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.info(`App listening to http://127.0.0.1:${PORT}`);
+  console.info(`App listening to http://localhost:${PORT}`);
   console.info('Press Ctrl+C to quit');
 });

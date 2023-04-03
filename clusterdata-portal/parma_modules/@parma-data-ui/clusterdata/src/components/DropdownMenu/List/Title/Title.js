@@ -6,17 +6,13 @@ import cn from 'bem-cn-lite';
 const b = cn('dl-dropdown-menu');
 
 class Title extends React.Component {
-    static propTypes = {
-        content: PropTypes.string.isRequired
-    }
+  static propTypes = {
+    content: PropTypes.string.isRequired,
+  };
 
-    render() {
-        return (
-            <div className={b('title')}>
-                {this.props.content}
-            </div>
-        );
-    }
+  render() {
+    return <div className={b('title')}>{this.props.content}</div>;
+  }
 }
 
 export default Title;
