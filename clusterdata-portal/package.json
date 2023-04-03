@@ -64,7 +64,7 @@
     "prop-types": "15.7.2",
     "qs": "6.9.1",
     "rainbowvis.js": "1.0.1",
-    "react": "16.12.0",
+    "react": "18.1.0",
     "react-ace": "7.0.5",
     "react-copy-to-clipboard": "5.0.2",
     "react-datetime": "2.16.3",
