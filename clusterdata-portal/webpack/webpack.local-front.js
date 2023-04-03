@@ -1,32 +1,19 @@
-const { generateConfig } = require('./webpack.config-base');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { generateConfig } = require('./webpack.config-generator');
 const { BI_PATH, EXPORT_PATH } = require('./../src/context-path');
 
-const biHost = `http://localhost:8090${ BI_PATH }`;
+const biHost = `http://localhost:8090${BI_PATH}`;
 const portalHost = 'http://localhost:8090';
-const exportHost = `http://localhost:8096${ EXPORT_PATH }`;
+const exportHost = `http://localhost:8096${EXPORT_PATH}`;
 
-const mode = 'development';
 const devServer = {
   historyApiFallback: true,
   port: 8090,
 };
-const devtool = 'inline-source-map';
-const envCopyFrom = './environment/.env.local-front';
-const envCopyTo = '.env';
-const envCopyToType = 'file';
-const htmlPluginCard = new HtmlWebpackPlugin({
-  filename: 'card.html',
-  template: './src/card.html',
-  chunks: ['vendors', 'commons', 'app', 'card'],
-  component: 'card',
-  templateParameters: {
-    dotenv: '<%- dotenv %>',
-  },
-  biHost,
-  portalHost,
-  exportHost,
-  hash: true,
-});
 
-module.exports = generateConfig({ biHost, portalHost, exportHost }, mode, devServer, devtool, htmlPluginCard, envCopyFrom, envCopyTo, envCopyToType);
+const env = {
+  from: './environment/.env.local-front',
+  to: '.env',
+  toType: 'file',
+};
+
+module.exports = generateConfig({ biHost, portalHost, exportHost }, 'development', devServer, 'inline-source-map', env);

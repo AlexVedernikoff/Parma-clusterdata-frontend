@@ -1,6 +1,4 @@
 const express = require('express');
-const url = require('url');
-const ejs = require('ejs');
 const { BI_PATH, PORTAL_PATH, PORTAL_ASSETS_PATH } = require('./context-path');
 const dotenv = require('dotenv').config();
 const httpProxy = require('http-proxy');
