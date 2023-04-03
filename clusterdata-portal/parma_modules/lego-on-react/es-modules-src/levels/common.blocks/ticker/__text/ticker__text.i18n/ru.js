@@ -1,1 +1,1 @@
-module.exports={"ticker__text":{"notifications":"Уведомлений"}};
+module.exports = { ticker__text: { notifications: 'Уведомлений' } };

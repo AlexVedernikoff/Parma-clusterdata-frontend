@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import ReactList from 'react-list';
 import cn from 'bem-cn-lite';
 import { positionStickySupported } from './featureSupport';
-import {getSortOrder, getIndexedData, getSortedData} from './util';
+import { getSortOrder, getIndexedData, getSortedData } from './util';
 import { ASCENDING, DESCENDING, LEFT, RIGHT, CENTER, FIXED, MOVING, INDEX_COLUMN } from './constants';
 import { SignalContext } from '../../dashkit/src/context/SignalContext';
 import { SIGNAL } from '../../dashkit/src/constants/common';
-import {ORDER} from "../../common/src/components/Navigation/constants";
-import {TableTheme} from "./TableTheme";
+import { ORDER } from '../../common/src/components/Navigation/constants';
+import { TableTheme } from './TableTheme';
 
 const b = cn('data-table');
 
@@ -805,10 +805,7 @@ class DataTableView extends React.Component {
   };
 
   onSort = (column, multisort) => {
-    const {
-      onStateAndParamsChange: onOrderByClickInDash,
-      onOrderByClickInWizard
-    } = this.props
+    const { onStateAndParamsChange: onOrderByClickInDash, onOrderByClickInWizard } = this.props;
 
     if (column) {
       const { sortOrder, sortColumns } = getSortOrder(column, this.state, multisort, this.props.settings);
@@ -826,7 +823,7 @@ class DataTableView extends React.Component {
     }
 
     if (onOrderByClickInDash) {
-      onOrderByClickInDash({ });
+      onOrderByClickInDash({});
     } else if (onOrderByClickInWizard) {
       onOrderByClickInWizard();
     }
@@ -835,7 +832,7 @@ class DataTableView extends React.Component {
   };
 
   sortingDirection(sortOrder, sortColumns) {
-    const direction = sortOrder[sortColumns[0]]
+    const direction = sortOrder[sortColumns[0]];
 
     if (direction === ASCENDING) {
       return ORDER.ASC;
@@ -857,9 +854,9 @@ class DataTableView extends React.Component {
   _dataForTableByTableTheme(tableTheme, data, dataColumns, sortParams) {
     switch (tableTheme) {
       case TableTheme.CHARTKIT:
-        return getIndexedData(data)
+        return getIndexedData(data);
       default:
-        return getSortedData(data, dataColumns.dataColumns, sortParams)
+        return getSortedData(data, dataColumns.dataColumns, sortParams);
     }
   }
 
@@ -897,7 +894,7 @@ class DataTableView extends React.Component {
         renderEmptyRow={renderEmptyRow}
         rowClassName={rowClassName}
         onRowClick={onRowClick}
-        data={this._dataForTableByTableTheme(theme, data, dataColumns, {sortOrder, sortColumns })}
+        data={this._dataForTableByTableTheme(theme, data, dataColumns, { sortOrder, sortColumns })}
         footerData={footerData}
         onSort={this.onSort}
         selectedRow={selectedRow}

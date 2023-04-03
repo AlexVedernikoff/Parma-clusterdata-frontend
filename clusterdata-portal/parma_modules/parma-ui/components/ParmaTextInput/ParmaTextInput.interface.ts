@@ -1,53 +1,53 @@
-import {CallbackFunctionArgs} from "../../helpers";
+import { CallbackFunctionArgs } from '../../helpers';
 
 export interface ParmaTextInputInterface {
   /**
    * Подсказка в строке ввода
    */
-  placeholder: string
-  
+  placeholder: string;
+
   /**
    * Введенный текст
    */
-  text: string
+  text: string;
 
   /**
    * Данные для отрисовки иконки стирания текста
    */
-  iconClearData: any
+  iconClearData: any;
 
   /**
    * Обработчик изменения текста
    */
-  onChange: CallbackFunctionArgs
+  onChange: CallbackFunctionArgs;
 
   /**
    * Флаг, кнопка стирания текста
    */
-  hasClear: boolean
+  hasClear: boolean;
 
   /**
    * Тип компонента
    */
-  type: string
-  
+  type: string;
+
   /**
    * Размер компонента
    */
-  size: string
+  size: string;
 
   /**
    * Тема компонента
    */
-  theme: string
+  theme: string;
 
   /**
    * Тон компонента
    */
-  tone: string
+  tone: string;
 
   /**
    * Вид компонента
    */
-  view: string
+  view: string;
 }

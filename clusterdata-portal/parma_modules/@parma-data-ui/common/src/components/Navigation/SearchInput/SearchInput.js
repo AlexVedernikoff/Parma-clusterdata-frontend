@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextInput } from 'lego-on-react';
-import icon from '../../../../../clusterdata/src/icons/x-sign.svg'
+import icon from '../../../../../clusterdata/src/icons/x-sign.svg';
 
 import { ParmaTextInput } from '@parma-ui';
 
@@ -38,6 +38,5 @@ class SearchInput extends React.Component {
     );
   }
 }
-
 
 export default SearchInput;

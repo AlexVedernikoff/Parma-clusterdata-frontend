@@ -1,9 +1,9 @@
 export const SIGNAL = {
-    RESET_FILTERS: 'resetFilters',
+  RESET_FILTERS: 'resetFilters',
 };
 
 export const LOAD_STATUS = {
-    PENDING: 'pending',
-    SUCCESS: 'success',
-    FAIL: 'fail'
+  PENDING: 'pending',
+  SUCCESS: 'success',
+  FAIL: 'fail',
 };

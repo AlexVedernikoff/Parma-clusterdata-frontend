@@ -9,64 +9,37 @@ import DataTypeIconSelector from '../../../DataTypeIconSelector/DataTypeIconSele
 // import './AccessibleFields.scss';
 import iconFormula2 from 'icons/formula2.svg';
 
-
 const b = block('accessible-fields');
 
-
 function AccessibleFields(props) {
-    const {
-        fields,
-        onClick
-    } = props;
+  const { fields, onClick } = props;
 
-    return (
-        <div className={b()}>
-            {
-                fields.map((field, index) => {
-                    const {
-                        title,
-                        cast,
-                        calc_mode: calMode,
-                        type
-                    } = field;
+  return (
+    <div className={b()}>
+      {fields.map((field, index) => {
+        const { title, cast, calc_mode: calMode, type } = field;
 
-                    const isFormula = calMode === 'formula';
+        const isFormula = calMode === 'formula';
 
-                    return (
-                        <div
-                            className={b('row')}
-                            key={`accessible-fields-${index}`}
-                            onClick={() => onClick({title})}
-                        >
-                            <div className={b('data-type', {[type.toLowerCase()]: true})}>
-                                <DataTypeIconSelector
-                                    type={cast}
-                                />
-                            </div>
-                            <div className={b('title')}>
-                                <span>{title}</span>
-                            </div>
-                            {
-                                isFormula && (
-                                    <Icon
-                                        className={b('formula')}
-                                        data={iconFormula2}
-                                        width="24"
-                                        height="24"
-                                    />
-                                )
-                            }
-                        </div>
-                    );
-                })
-            }
-        </div>
-    );
+        return (
+          <div className={b('row')} key={`accessible-fields-${index}`} onClick={() => onClick({ title })}>
+            <div className={b('data-type', { [type.toLowerCase()]: true })}>
+              <DataTypeIconSelector type={cast} />
+            </div>
+            <div className={b('title')}>
+              <span>{title}</span>
+            </div>
+            {isFormula && <Icon className={b('formula')} data={iconFormula2} width="24" height="24" />}
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 AccessibleFields.propTypes = {
-    fields: PropTypes.array.isRequired,
-    onClick: PropTypes.func.isRequired
+  fields: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default AccessibleFields;

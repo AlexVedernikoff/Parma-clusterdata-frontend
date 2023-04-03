@@ -1,14 +1,14 @@
-import "../../levels/common.blocks/icon/icon.react.js";
-import "../../levels/common.blocks/icon/_glyph/icon_glyph.react.js";
-import "../../levels/common.blocks/icon/_glyph/icon_glyph_carets-v.react.js";
-import "../../levels/common.blocks/icon/_glyph/icon_glyph_type-arrow.react.js";
-import "../../levels/common.blocks/icon/_glyph/icon_glyph_type-check.react.js";
-import "../../levels/common.blocks/icon/_glyph/icon_glyph_type-close.react.js";
-import "../../levels/common.blocks/icon/_glyph/icon_glyph_type-cross.react.js";
-import "../../levels/common.blocks/icon/_glyph/icon_glyph_type-cross-websearch.react.js";
-import "../../levels/common.blocks/icon/_glyph/icon_glyph_type-filter.react.js";
-import "../../levels/common.blocks/icon/_glyph/icon_glyph_type-tick.react.js";
-import _icon_glyph_xSign from "../../levels/common.blocks/icon/_glyph/icon_glyph_x-sign.react.js";
+import '../../levels/common.blocks/icon/icon.react.js';
+import '../../levels/common.blocks/icon/_glyph/icon_glyph.react.js';
+import '../../levels/common.blocks/icon/_glyph/icon_glyph_carets-v.react.js';
+import '../../levels/common.blocks/icon/_glyph/icon_glyph_type-arrow.react.js';
+import '../../levels/common.blocks/icon/_glyph/icon_glyph_type-check.react.js';
+import '../../levels/common.blocks/icon/_glyph/icon_glyph_type-close.react.js';
+import '../../levels/common.blocks/icon/_glyph/icon_glyph_type-cross.react.js';
+import '../../levels/common.blocks/icon/_glyph/icon_glyph_type-cross-websearch.react.js';
+import '../../levels/common.blocks/icon/_glyph/icon_glyph_type-filter.react.js';
+import '../../levels/common.blocks/icon/_glyph/icon_glyph_type-tick.react.js';
+import _icon_glyph_xSign from '../../levels/common.blocks/icon/_glyph/icon_glyph_x-sign.react.js';
 
 var Icon = _icon_glyph_xSign.applyDecls();
 

@@ -1,7 +1,7 @@
-import "../../levels/common.blocks/radio-button/radio-button.react.js";
-import _radioButton_view_default from "../../levels/common.blocks/radio-button/_view/radio-button_view_default.react.js";
+import '../../levels/common.blocks/radio-button/radio-button.react.js';
+import _radioButton_view_default from '../../levels/common.blocks/radio-button/_view/radio-button_view_default.react.js';
 
-var RadioButton = _radioButton_view_default.applyDecls();
+var RadioButton = _radioButton_view_default.applyDecls(); // eslint-disable-line
 
 /*
 import "./../../levels/common.blocks/radio-button/radio-button.css";
@@ -23,6 +23,4 @@ import "./../../levels/common.blocks/radio-button/_tone/radio-button_tone_grey.c
 import "./../../levels/common.blocks/radio-button/_tone/radio-button_tone_market.css";
 import "./../../levels/common.blocks/radio-button/_tone/radio-button_tone_red.css";
 import "./../../levels/common.blocks/radio-button/_view/radio-button_view_classic.css";
-import "./../../levels/common.blocks/radio-button/_view/radio-button_view_default.css"; */ // eslint-disable-line
-
-export default RadioButton;
+import "./../../levels/common.blocks/radio-button/_view/radio-button_view_default.css"; */ export default RadioButton;

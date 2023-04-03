@@ -1,13 +1,12 @@
 import * as ol from 'ol';
 import MapTooltipTemplate from './MapTooltipTemplate';
 import MapUtils from './../MapUtils';
-import i18nFactory from "../../../../modules/i18n/i18n";
+import i18nFactory from '../../../../modules/i18n/i18n';
 
 const i18n = i18nFactory('OlMap');
 
 export default class MapTooltip {
-
-  static updateTooltip (olmap, mapId) {
+  static updateTooltip(olmap, mapId) {
     const tooltip = document.getElementById(`tooltip-${mapId}`);
 
     if (tooltip == null) {
@@ -29,7 +28,6 @@ export default class MapTooltip {
     olmap.addOverlay(MapTooltipTemplate.overlay);
   }
 
-
   /**
    * Должен быть подобран такой отступ для всплывающей подсказки,
    * чтобы он не мешал клику на фичу,
@@ -41,7 +39,7 @@ export default class MapTooltip {
     return [5, 5];
   }
 
-  static displayTooltip (evt) {
+  static displayTooltip(evt) {
     let pixel = evt.pixel;
     let feature = evt.map.forEachFeatureAtPixel(pixel, function(feat) {
       return feat;
@@ -49,18 +47,14 @@ export default class MapTooltip {
 
     if (feature) {
       const customProperties = feature.values_.customProperties;
-      const {
-        tooltips,
-        cluster_size: clusterSize
-      } = customProperties;
+      const { tooltips, cluster_size: clusterSize } = customProperties;
 
       if (tooltips && tooltips.length > 0) {
         MapTooltipTemplate.tooltip.style.display = '';
         MapTooltipTemplate.overlay.setPosition(evt.coordinate);
 
         const tooltipsValues = this._tooltipsValues(clusterSize, tooltips);
-        MapTooltipTemplate.tooltip.innerHTML = MapTooltipTemplate.tooltipsTemplate(
-            tooltipsValues);
+        MapTooltipTemplate.tooltip.innerHTML = MapTooltipTemplate.tooltipsTemplate(tooltipsValues);
       }
     } else {
       if (MapTooltipTemplate.tooltip) {
@@ -74,9 +68,9 @@ export default class MapTooltip {
       return [
         MapTooltip._tooltipValue({
           tooltip_placeholder_title: i18n('cluster-size'),
-          tooltip_value: clusterSize
-        })
-      ]
+          tooltip_value: clusterSize,
+        }),
+      ];
     }
 
     return tooltips.map(tooltip => MapTooltip._tooltipValue(tooltip));

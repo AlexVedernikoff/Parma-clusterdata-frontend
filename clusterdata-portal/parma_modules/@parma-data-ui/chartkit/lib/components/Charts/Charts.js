@@ -7,7 +7,7 @@ import Widget from '../Widget/Widget';
 import ChartsModule from '../../modules/charts/charts';
 import ErrorDispatcher from '../../modules/error-dispatcher/error-dispatcher';
 import { getParamsValue } from '../../../../dashkit/src/modules/utils';
-import {WIZARD_NODE_TYPE} from "../../../../../../src/constants/constants";
+import { WIZARD_NODE_TYPE } from '../../../../../../src/constants/constants';
 
 class Charts extends React.PureComponent {
   static propTypes = {
@@ -26,7 +26,7 @@ class Charts extends React.PureComponent {
     orderBy: PropTypes.object,
     onOrderByClickInWizard: PropTypes.func,
     widgetType: PropTypes.string,
-    ownWidgetParams: PropTypes.instanceOf(Map)
+    ownWidgetParams: PropTypes.instanceOf(Map),
   };
 
   state = {
@@ -73,7 +73,7 @@ class Charts extends React.PureComponent {
   /**
    * todo: onLoad вызывается дочерними виджетами (графики, таблицы, карты) после того как они монтируются/обновляются
    * нужно вызывать onLoad после того как закончится выполняться запрос (метод run)
-   * + подумать как убрать из Charkit логику с loading (по идее зона ответственности загрузки это Charts). Учесть чтобы не сломались контролы 
+   * + подумать как убрать из Charkit логику с loading (по идее зона ответственности загрузки это Charts). Учесть чтобы не сломались контролы
    */
   onLoad = data => this.props.onLoad({ ...data, loadedData: this.state.loadedData });
 
@@ -89,9 +89,21 @@ class Charts extends React.PureComponent {
 
   async run() {
     try {
-      const { id, source, params, editMode, requestId, requestCancelToken, paginateInfo, widgetType, orderBy } = this.props;
-      if (this.props.editMode && this.props.editMode.type && this.props.editMode.type === WIZARD_NODE_TYPE.MAP
-        || widgetType === 'map') {
+      const {
+        id,
+        source,
+        params,
+        editMode,
+        requestId,
+        requestCancelToken,
+        paginateInfo,
+        widgetType,
+        orderBy,
+      } = this.props;
+      if (
+        (this.props.editMode && this.props.editMode.type && this.props.editMode.type === WIZARD_NODE_TYPE.MAP) ||
+        widgetType === 'map'
+      ) {
         const mapLoadedData = {
           widgetType: 'map',
           params: params,
@@ -101,15 +113,15 @@ class Charts extends React.PureComponent {
               coordType: this.props.editMode.config.shared.coordType,
               titleLayerSource: this.props.editMode.config.shared.titleLayerSource,
               widgetType: this.props.editMode.config.shared.visualization.id,
-            }
-          }
+            },
+          },
         };
-        this.setState({loadedData: mapLoadedData});
+        this.setState({ loadedData: mapLoadedData });
         return;
       }
 
       if (this.props.editMode && this.props.editMode.type && this.props.editMode.type === WIZARD_NODE_TYPE.TABLE) {
-        editMode.config.shared.paginateInfo = paginateInfo
+        editMode.config.shared.paginateInfo = paginateInfo;
       }
 
       const loadedData = await ChartsModule.getData({
@@ -120,7 +132,7 @@ class Charts extends React.PureComponent {
         paginateInfo,
         headers: { 'X-Request-ID': requestId },
         cancelToken: requestCancelToken,
-        orderBy
+        orderBy,
       });
 
       if (this._isMounted) {
@@ -143,7 +155,7 @@ class Charts extends React.PureComponent {
       requestCancelToken,
       ownWidgetParams,
       orderBy,
-      onOrderByClickInWizard
+      onOrderByClickInWizard,
     } = this.props;
 
     if (editMode && editMode.type && editMode.type === WIZARD_NODE_TYPE.MAP) {

@@ -1,68 +1,68 @@
-import * as React from 'react'
-import '../ParmaTableView.css'
+import * as React from 'react';
+import '../ParmaTableView.css';
 
-import { ParmaRowInterface } from './ParmaRow.interface'
-import { ModeType } from '../../../../enums'
-import { ClassHelper } from '../../../../helpers'
+import { ParmaRowInterface } from './ParmaRow.interface';
+import { ModeType } from '../../../../enums';
+import { ClassHelper } from '../../../../helpers';
 
-import { ParmaIcon } from '../../..'
-import { ParmaRowModel } from "./ParmaRow.model"
+import { ParmaIcon } from '../../..';
+import { ParmaRowModel } from './ParmaRow.model';
 
 import moment from 'moment';
 
-moment.locale('ru')
+moment.locale('ru');
 
-const blockName = 'parma-table-view'
+const blockName = 'parma-table-view';
 
 export class ParmaRow extends React.Component<ParmaRowInterface> {
   constructor(props: ParmaRowInterface) {
-    super(props)
-    this.onClick = this.onClick.bind(this)
-    this.onChangeFavorite = this.onChangeFavorite.bind(this)
-    this.onEntryContextClick = this.onEntryContextClick.bind(this)
-    this.onEntryParentClick = this.onEntryParentClick.bind(this)
+    super(props);
+    this.onClick = this.onClick.bind(this);
+    this.onChangeFavorite = this.onChangeFavorite.bind(this);
+    this.onEntryContextClick = this.onEntryContextClick.bind(this);
+    this.onEntryParentClick = this.onEntryParentClick.bind(this);
   }
 
   onClick = (event: React.SyntheticEvent) => {
-    this.props.onEntryClick(this.props.entry, event)
-  }
+    this.props.onEntryClick(this.props.entry, event);
+  };
 
   onChangeFavorite = (event: React.SyntheticEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
-    this.props.onChangeFavorite(this.props.entry)
-  }
+    event.preventDefault();
+    event.stopPropagation();
+    this.props.onChangeFavorite(this.props.entry);
+  };
 
-  private buttonRef: any
+  private buttonRef: any;
 
   setButtonRef = (elem: any) => {
-    this.buttonRef = elem
-  }
+    this.buttonRef = elem;
+  };
 
   onEntryContextClick = (event: React.SyntheticEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
-    this.props.onEntryContextClick({ entry: this.props.entry, buttonRef: this.buttonRef })
-  }
+    event.preventDefault();
+    event.stopPropagation();
+    this.props.onEntryContextClick({ entry: this.props.entry, buttonRef: this.buttonRef });
+  };
 
   onEntryParentClick = (event: React.SyntheticEvent) => {
-    event.stopPropagation()
-    event.preventDefault()
-    const model = new ParmaRowModel(this.props)
-    const parentEntry = model.getParentFolderEntry(this.props.entry)
-    this.props.onEntryParentClick ? this.props.onEntryParentClick(parentEntry, event) : ''
-  }
+    event.stopPropagation();
+    event.preventDefault();
+    const model = new ParmaRowModel(this.props);
+    const parentEntry = model.getParentFolderEntry(this.props.entry);
+    this.props.onEntryParentClick ? this.props.onEntryParentClick(parentEntry, event) : '';
+  };
 
   renderDetails() {
-    const { entry, mode } = this.props
+    const { entry, mode } = this.props;
 
     switch (mode as ModeType) {
       case ModeType.MINIMAL:
-        return this.renderMinimalDetails(entry)
+        return this.renderMinimalDetails(entry);
       case ModeType.FULL:
-        return this.renderFullDetails(entry)
+        return this.renderFullDetails(entry);
       default:
-        return this.renderFullDetails(entry)
+        return this.renderFullDetails(entry);
     }
   }
 
@@ -71,17 +71,17 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
       <div className={`${blockName}__updatedAt`}>
         <span>{moment(entry.updatedAt).format('DD.MM.YY')}</span>
       </div>
-    )
+    );
   }
 
   renderFullDetails(entry: any) {
-    const { createdBy, updatedAt, isFavorite } = entry
+    const { createdBy, updatedAt, isFavorite } = entry;
 
     const starClassName = ClassHelper.merge(
       `${blockName}__row-btn`,
       `${blockName}__btn-change-favorite`,
       isFavorite ? `${blockName}__btn-change-favorite_isFavorite` : '',
-    )
+    );
 
     return (
       <React.Fragment>
@@ -93,20 +93,20 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
         </div>
         <div className={`${blockName}__row-btns`}>
           <div className={starClassName} onClick={this.onChangeFavorite}>
-            <ParmaIcon className={`${blockName}__icon-star-fill`} data={this.props.iconFavoriteFilled}/>
-            <ParmaIcon className={`${blockName}__icon-star-stroke`} data={this.props.iconFavoriteEmpty}/>
+            <ParmaIcon className={`${blockName}__icon-star-fill`} data={this.props.iconFavoriteFilled} />
+            <ParmaIcon className={`${blockName}__icon-star-stroke`} data={this.props.iconFavoriteEmpty} />
           </div>
 
           <div className={`${blockName}__row-btn`} onClick={this.onEntryContextClick} ref={this.setButtonRef}>
-            <ParmaIcon className={'parma-button-edit-entry__icon'} data={this.props.iconDots} width="24" height="24"/>
+            <ParmaIcon className={'parma-button-edit-entry__icon'} data={this.props.iconDots} width="24" height="24" />
           </div>
         </div>
       </React.Fragment>
-    )
+    );
   }
 
   renderParentFolder(model: ParmaRowModel) {
-    const parentEntry = model.getParentFolderEntry(this.props.entry)
+    const parentEntry = model.getParentFolderEntry(this.props.entry);
     return (
       <div className={`${blockName}__parent-folder`} onClick={this.onEntryParentClick}>
         <ParmaIcon
@@ -117,19 +117,23 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
         />
         <span className={`${blockName}__parent-folder-name`}>{parentEntry.name}</span>
       </div>
-    )
+    );
   }
 
   render() {
-    const model = new ParmaRowModel(this.props)
-    const { entry, iconEntry, linkWrapper } = this.props
+    const model = new ParmaRowModel(this.props);
+    const { entry, iconEntry, linkWrapper } = this.props;
 
     const node = (
       <div
-        className={ClassHelper.merge(`${blockName}__row`, `${blockName}__row_mode_${this.props.mode}`, `${blockName}__row_${this.props.isActive ? 'active' : 'inactive'}`)}
+        className={ClassHelper.merge(
+          `${blockName}__row`,
+          `${blockName}__row_mode_${this.props.mode}`,
+          `${blockName}__row_${this.props.isActive ? 'active' : 'inactive'}`,
+        )}
         onClick={this.onClick}
       >
-        <ParmaIcon data={iconEntry} className={`${blockName}__icon`} width="24" height="24"/>
+        <ParmaIcon data={iconEntry} className={`${blockName}__icon`} width="24" height="24" />
         <div className={`${blockName}__info`}>
           <div className={`${blockName}__name`}>
             <div className={`${blockName}__name-line`}>
@@ -140,12 +144,15 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
           {this.renderDetails()}
         </div>
       </div>
-    )
+    );
 
     return linkWrapper
       ? linkWrapper({
-        entry, className: `${blockName}__link`, children: node, onClick: this.onClick,
-      })
-      : node
+          entry,
+          className: `${blockName}__link`,
+          children: node,
+          onClick: this.onClick,
+        })
+      : node;
   }
 }

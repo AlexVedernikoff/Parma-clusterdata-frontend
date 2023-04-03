@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import {Header} from '@parma-data-ui/common/src';
+import { Header } from '@parma-data-ui/common/src';
 
-import {DL} from '../../constants/common';
+import { DL } from '../../constants/common';
 import CloudFolderSelect from './CloudFolderSelect/CloudFolderSelect';
 import withPreparedMenu from './withPreparedMenu';
 import withToggleTheme from './withToggleTheme';
@@ -11,48 +11,42 @@ import withSuperuserSwitch from './withSuperuserSwitch';
 
 // import './Header.scss';
 
-
 const b = block('dl-header');
 
-
 class HeaderClusterData extends React.Component {
-    static propTypes = {
-        logoText: PropTypes.string.isRequired,
-        menuData: PropTypes.object.isRequired,
-        endpoints: PropTypes.object.isRequired,
-        menuIcons: PropTypes.object,
-        toggleTheme: PropTypes.bool,
-        actionsMenu: PropTypes.array,
-        sdk: PropTypes.object,
-        withCloudFolderSelect: PropTypes.bool
-    };
+  static propTypes = {
+    logoText: PropTypes.string.isRequired,
+    menuData: PropTypes.object.isRequired,
+    endpoints: PropTypes.object.isRequired,
+    menuIcons: PropTypes.object,
+    toggleTheme: PropTypes.bool,
+    actionsMenu: PropTypes.array,
+    sdk: PropTypes.object,
+    withCloudFolderSelect: PropTypes.bool,
+  };
 
-    static defaultProps = {
-        withCloudFolderSelect: true
+  static defaultProps = {
+    withCloudFolderSelect: true,
+  };
+
+  renderCustomSection() {
+    if (DL.IS_INTERNAL || !this.props.withCloudFolderSelect || !DL.hideHeader) {
+      return null;
     }
-
-    renderCustomSection() {
-        if (DL.IS_INTERNAL || !this.props.withCloudFolderSelect || !DL.hideHeader) {
-            return null;
-        }
-        return (
-            <div className={b('custom-section')}>
-                {/*
+    return (
+      <div className={b('custom-section')}>
+        {/*
                 <CloudFolderSelect
                     sdk={this.props.sdk}
                 />
                 */}
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 
-    render() {
-        return (
-            <Header {...this.props}>
-                {this.renderCustomSection()}
-            </Header>
-        );
-    }
+  render() {
+    return <Header {...this.props}>{this.renderCustomSection()}</Header>;
+  }
 }
 
 export default withToggleTheme(withSuperuserSwitch(withPreparedMenu(HeaderClusterData)));

@@ -2,104 +2,112 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import { declMod } from '@parma-lego/i-bem-react';
 
-export default declMod({ target: 'anchor' }, {
+export default declMod(
+  { target: 'anchor' },
+  {
     block: 'popup2',
     willInit: function willInit() {
-        this.__base.apply(this, arguments);
+      this.__base.apply(this, arguments);
 
-        /*%%%ISLDEBUG%%%*/+0 && console.assert(typeof this.props.anchor === 'function', 'Передача ссылки на элемент в anchor является устаревшим, ' + 'и в следующей мажорной версии перестанет работать. ' + 'В anchor необходимо передать функцию, которая должна возвращать ссылку на элемент.');
+      /*%%%ISLDEBUG%%%*/ +0 &&
+        console.assert(
+          typeof this.props.anchor === 'function',
+          'Передача ссылки на элемент в anchor является устаревшим, ' +
+            'и в следующей мажорной версии перестанет работать. ' +
+            'В anchor необходимо передать функцию, которая должна возвращать ссылку на элемент.',
+        );
 
-        this._onDocumentChange = this._onDocumentChange.bind(this);
+      this._onDocumentChange = this._onDocumentChange.bind(this);
     },
     toggleWatchBaseEvents: function toggleWatchBaseEvents(watch) {
-        this.__base.apply(this, arguments);
+      this.__base.apply(this, arguments);
 
-        if (watch) {
-            document.addEventListener('documentchange', this._onDocumentChange);
-        } else {
-            document.removeEventListener('documentchange', this._onDocumentChange);
-        }
+      if (watch) {
+        document.addEventListener('documentchange', this._onDocumentChange);
+      } else {
+        document.removeEventListener('documentchange', this._onDocumentChange);
+      }
     },
     _onDocumentChange: function _onDocumentChange() {
-        // Используем low-level API для ре-рендера
-        // это необходимо, для того, чтобы разместить popup в другом положении
-        this.forceUpdate();
+      // Используем low-level API для ре-рендера
+      // это необходимо, для того, чтобы разместить popup в другом положении
+      this.forceUpdate();
     },
-
 
     _getAnchorDomNode: function _getAnchorDomNode(anchor) {
-        return typeof anchor === 'function' ? anchor() : anchor;
+      return typeof anchor === 'function' ? anchor() : anchor;
     },
     _calcBestDrawingParams: function _calcBestDrawingParams(_ref) {
-        var anchor = _ref.anchor;
+      var anchor = _ref.anchor;
 
-        var base = this.__base.apply(this, arguments);
+      var base = this.__base.apply(this, arguments);
 
-        anchor = findDOMNode(this._getAnchorDomNode(anchor));
+      anchor = findDOMNode(this._getAnchorDomNode(anchor));
 
-        var fixedAnchor = this._getFirstFixedParent(anchor);
+      var fixedAnchor = this._getFirstFixedParent(anchor);
 
-        if (fixedAnchor) {
-            var fixedLeftOffset = 0;
-            var fixedTopOffset = 0;
+      if (fixedAnchor) {
+        var fixedLeftOffset = 0;
+        var fixedTopOffset = 0;
 
-            var fixedScope = this._getFirstFixedParent(this._scope);
+        var fixedScope = this._getFirstFixedParent(this._scope);
 
-            if (fixedScope) {
-                var _fixedScope$getBoundi = fixedScope.getBoundingClientRect(),
-                    left = _fixedScope$getBoundi.left,
-                    top = _fixedScope$getBoundi.top;
+        if (fixedScope) {
+          var _fixedScope$getBoundi = fixedScope.getBoundingClientRect(),
+            left = _fixedScope$getBoundi.left,
+            top = _fixedScope$getBoundi.top;
 
-                fixedLeftOffset = left;
-                fixedTopOffset = top;
-            }
-
-            base.left -= window.pageXOffset - fixedLeftOffset;
-            base.top -= window.pageYOffset - fixedTopOffset;
+          fixedLeftOffset = left;
+          fixedTopOffset = top;
         }
 
-        this._style.popup.position = fixedAnchor ? 'fixed' : '';
+        base.left -= window.pageXOffset - fixedLeftOffset;
+        base.top -= window.pageYOffset - fixedTopOffset;
+      }
 
-        return base;
+      this._style.popup.position = fixedAnchor ? 'fixed' : '';
+
+      return base;
     },
     _getFirstFixedParent: function _getFirstFixedParent(elem) {
-        while (elem) {
-            if (elem.nodeType === 1 && getComputedStyle(elem).getPropertyValue('position') === 'fixed') {
-                return elem;
-            }
-
-            elem = elem.parentNode;
+      while (elem) {
+        if (elem.nodeType === 1 && getComputedStyle(elem).getPropertyValue('position') === 'fixed') {
+          return elem;
         }
+
+        elem = elem.parentNode;
+      }
     },
     _calcTargetDimensions: function _calcTargetDimensions(_ref2) {
-        var anchor = _ref2.anchor;
+      var anchor = _ref2.anchor;
 
-        this.__base.apply(this, arguments);
+      this.__base.apply(this, arguments);
 
-        // При первом рендере anchor может быть не установлен
-        if (anchor === undefined || anchor === null) {
-            return { left: 0, top: 0, width: 0, height: 0 };
-        }
+      // При первом рендере anchor может быть не установлен
+      if (anchor === undefined || anchor === null) {
+        return { left: 0, top: 0, width: 0, height: 0 };
+      }
 
-        var normalizedAnchor = findDOMNode(this._getAnchorDomNode(anchor));
+      var normalizedAnchor = findDOMNode(this._getAnchorDomNode(anchor));
 
-        var _normalizedAnchor$get = normalizedAnchor.getBoundingClientRect(),
-            left = _normalizedAnchor$get.left,
-            top = _normalizedAnchor$get.top;
+      var _normalizedAnchor$get = normalizedAnchor.getBoundingClientRect(),
+        left = _normalizedAnchor$get.left,
+        top = _normalizedAnchor$get.top;
 
-        // В ie10 document.documentElement.getBoundingClientRect() всегда будет возвращать
-        // 0 для top, поэтому использовать его нельзя.
+      // В ie10 document.documentElement.getBoundingClientRect() всегда будет возвращать
+      // 0 для top, поэтому использовать его нельзя.
 
-
-        return {
-            left: left + window.pageXOffset,
-            top: top + window.pageYOffset,
-            width: normalizedAnchor.offsetWidth,
-            height: normalizedAnchor.offsetHeight
-        };
-    }
-}, {
+      return {
+        left: left + window.pageXOffset,
+        top: top + window.pageYOffset,
+        width: normalizedAnchor.offsetWidth,
+        height: normalizedAnchor.offsetHeight,
+      };
+    },
+  },
+  {
     propTypes: {
-        anchor: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-    }
-});
+      anchor: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    },
+  },
+);
