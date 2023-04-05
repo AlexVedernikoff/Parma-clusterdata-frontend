@@ -1,4 +1,4 @@
-import { declMod } from '@parma-lego/i-bem-react';
+import { declMod } from '@kamatech-lego/i-bem-react';
 
 export default declMod(
   { motionless: true },

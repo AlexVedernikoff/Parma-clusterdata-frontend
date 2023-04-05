@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import { declMod } from '@parma-lego/i-bem-react';
+import { declMod } from '@kamatech-lego/i-bem-react';
 
 export default declMod(
   { target: 'anchor' },
@@ -13,8 +13,8 @@ export default declMod(
         console.assert(
           typeof this.props.anchor === 'function',
           'Передача ссылки на элемент в anchor является устаревшим, ' +
-            'и в следующей мажорной версии перестанет работать. ' +
-            'В anchor необходимо передать функцию, которая должна возвращать ссылку на элемент.',
+          'и в следующей мажорной версии перестанет работать. ' +
+          'В anchor необходимо передать функцию, которая должна возвращать ссылку на элемент.',
         );
 
       this._onDocumentChange = this._onDocumentChange.bind(this);

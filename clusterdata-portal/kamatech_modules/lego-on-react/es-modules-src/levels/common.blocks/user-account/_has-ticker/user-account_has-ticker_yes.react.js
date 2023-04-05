@@ -11,7 +11,7 @@ function _toConsumableArray(arr) {
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { declMod } from '@parma-lego/i-bem-react';
+import { declMod } from '@kamatech-lego/i-bem-react';
 import _ticker from '../../ticker/ticker.react.js';
 
 var Ticker = _ticker.applyDecls();
@@ -23,7 +23,7 @@ import "./../__ticker/user-account__ticker.css";
 */
 
 export default declMod(
-  function(_ref) {
+  function (_ref) {
     var hasTicker = _ref.hasTicker,
       tickerCount = _ref.tickerCount;
 

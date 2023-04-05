@@ -1,5 +1,5 @@
 import React from 'react';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 import '../../button2/button2.react.js';
 import _button2_type_link from '../../button2/_type/button2_type_link.react.js';
 
@@ -13,15 +13,15 @@ import "./../../button2/_theme/button2_theme_clear.css";
 import "./../../../desktop.blocks/button2/_theme/button2_theme_clear.css";
 */
 
-var i18n = (function() {
+var i18n = (function () {
   var core = require('bem-i18n');
 
   if (
     process.env.BEM_LANG
       ? process.env.BEM_LANG === 'ru'
       : process.env.REACT_APP_BEM_LANG
-      ? process.env.REACT_APP_BEM_LANG === 'ru'
-      : 'en' === 'ru'
+        ? process.env.REACT_APP_BEM_LANG === 'ru'
+        : 'en' === 'ru'
   ) {
     return core().decl(require('../user2.i18n/ru'))('user2');
   }
@@ -63,18 +63,18 @@ var i18n = (function() {
     process.env.BEM_LANG &&
       console.error(
         'No match of process.env.BEM_LANG { ' +
-          process.env.BEM_LANG +
-          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+        process.env.BEM_LANG +
+        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
       );
     process.env.REACT_APP_BEM_LANG &&
       console.error(
         'No match of process.env.REACT_APP_BEM_LANG { ' +
-          process.env.REACT_APP_BEM_LANG +
-          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+        process.env.REACT_APP_BEM_LANG +
+        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
       );
   }
 
-  return function() {};
+  return function () { };
 })();
 
 export default decl({

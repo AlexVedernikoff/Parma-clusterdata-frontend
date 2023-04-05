@@ -4,12 +4,12 @@ function _objectSpread(target) {
     var ownKeys = Object.keys(source);
     if (typeof Object.getOwnPropertySymbols === 'function') {
       ownKeys = ownKeys.concat(
-        Object.getOwnPropertySymbols(source).filter(function(sym) {
+        Object.getOwnPropertySymbols(source).filter(function (sym) {
           return Object.getOwnPropertyDescriptor(source, sym).enumerable;
         }),
       );
     }
-    ownKeys.forEach(function(key) {
+    ownKeys.forEach(function (key) {
       _defineProperty(target, key, source[key]);
     });
   }
@@ -26,7 +26,7 @@ function _defineProperty(obj, key, value) {
 }
 
 import React from 'react';
-import Bem, { decl } from '@parma-lego/i-bem-react';
+import Bem, { decl } from '@kamatech-lego/i-bem-react';
 // import "./../__sticker-label/tumbler__sticker-label.css";
 export default decl({
   block: 'tumbler',

@@ -1,4 +1,4 @@
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 
 export default decl({
   block: 'pointerfocus',
@@ -25,7 +25,7 @@ export default decl({
     this.isPointer = true;
     clearTimeout(this.timeoutId);
 
-    this.timeoutId = setTimeout(function() {
+    this.timeoutId = setTimeout(function () {
       _this.isPointer = false;
     }, 600);
   },
@@ -52,7 +52,7 @@ export default decl({
       return;
     }
     this.isPointer = true;
-    setTimeout(function() {
+    setTimeout(function () {
       _this2.isPointer = false;
     });
   },

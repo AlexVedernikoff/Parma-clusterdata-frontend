@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Bem, { decl, bool2string } from '@parma-lego/i-bem-react';
+import Bem, { decl, bool2string } from '@kamatech-lego/i-bem-react';
 
 /*
 import "./user-pic.css";

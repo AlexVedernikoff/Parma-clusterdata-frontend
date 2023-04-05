@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -12,7 +12,7 @@ var _extends =
     return target;
   };
 
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 
 var keysMap = {
   BACKSPACE: 8,
@@ -58,7 +58,7 @@ export default decl(
      * @returns {Boolean}
      */
     is: function is(code, name) {
-      return (Array.isArray(name) ? name : Array.prototype.slice.call(arguments, 1)).some(function(name) {
+      return (Array.isArray(name) ? name : Array.prototype.slice.call(arguments, 1)).some(function (name) {
         return this[name] === code;
       }, this);
     },

@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -14,7 +14,7 @@ var _extends =
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { decl, bool2string } from '@parma-lego/i-bem-react';
+import { decl, bool2string } from '@kamatech-lego/i-bem-react';
 import '../control/control.react.js';
 import _control from '../../desktop.blocks/control/control.react.js';
 
@@ -154,8 +154,8 @@ export default decl(
     defaultProps: {
       view: 'classic',
       type: 'text',
-      onChange: function onChange() {},
-      innerRef: function innerRef() {},
+      onChange: function onChange() { },
+      innerRef: function innerRef() { },
     },
   },
 );

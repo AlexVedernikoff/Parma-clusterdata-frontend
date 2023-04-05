@@ -1,4 +1,4 @@
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 import PropTypes from 'prop-types';
 
 export default decl(
@@ -22,7 +22,7 @@ export default decl(
         return;
       }
 
-      var checked = menu.items.filter(function(item) {
+      var checked = menu.items.filter(function (item) {
         return item.props.checked;
       })[0];
       var hovered = menu._hoveredItem;

@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -23,7 +23,7 @@ function _objectWithoutProperties(obj, keys) {
 }
 
 import { func } from 'prop-types';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 
 export default decl(
   {

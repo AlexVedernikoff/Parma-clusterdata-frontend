@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Bem, { decl } from '@parma-lego/i-bem-react';
+import Bem, { decl } from '@kamatech-lego/i-bem-react';
 
 export default decl(
   {
@@ -37,7 +37,7 @@ export default decl(
         );
       }
 
-      return [].concat(content, children).map(function(child, i) {
+      return [].concat(content, children).map(function (child, i) {
         return React.cloneElement(child, { key: 'in-group-' + i }); // eslint-disable-line react/no-array-index-key
       });
     },

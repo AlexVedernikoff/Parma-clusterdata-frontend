@@ -4,12 +4,12 @@ function _objectSpread(target) {
     var ownKeys = Object.keys(source);
     if (typeof Object.getOwnPropertySymbols === 'function') {
       ownKeys = ownKeys.concat(
-        Object.getOwnPropertySymbols(source).filter(function(sym) {
+        Object.getOwnPropertySymbols(source).filter(function (sym) {
           return Object.getOwnPropertyDescriptor(source, sym).enumerable;
         }),
       );
     }
-    ownKeys.forEach(function(key) {
+    ownKeys.forEach(function (key) {
       _defineProperty(target, key, source[key]);
     });
   }
@@ -26,7 +26,7 @@ function _defineProperty(obj, key, value) {
 }
 
 import PropTypes from 'prop-types';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 export default decl(
   {
     block: 'tumbler',

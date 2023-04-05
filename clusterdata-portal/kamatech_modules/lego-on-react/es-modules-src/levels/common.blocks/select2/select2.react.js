@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -14,7 +14,7 @@ var _extends =
 
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import { decl, bool2string } from '@parma-lego/i-bem-react';
+import { decl, bool2string } from '@kamatech-lego/i-bem-react';
 import _select2__button from './__button/select2__button.react.js';
 
 var SelectButton = _select2__button.applyDecls();
@@ -179,9 +179,9 @@ export default decl(
       val =
         val === undefined
           ? []
-          : [].concat(val).filter(function(val) {
-              return vals.indexOf(val) !== -1;
-            });
+          : [].concat(val).filter(function (val) {
+            return vals.indexOf(val) !== -1;
+          });
 
       // У этих типов может быть максимум один выбранный item.
       if (['radio', 'radiocheck'].indexOf(type) !== -1 && val.length > 1) {
@@ -194,8 +194,8 @@ export default decl(
         /*%%%ISLDEBUG%%%*/ +0 &&
           console.error(
             'В следующей мажорной версии значение vary для поля text ' +
-              'перестанет проставляться по умолчанию, пожалуйста, ' +
-              'при необходимости передавайте значение явно.',
+            'перестанет проставляться по умолчанию, пожалуйста, ' +
+            'при необходимости передавайте значение явно.',
           );
 
         text = 'vary';
@@ -205,11 +205,11 @@ export default decl(
         text !== 'vary' || !val.length
           ? placeholder
           : flattenItems
-              .reduce(function(res, item) {
-                val.indexOf(item.props.val) !== -1 && res.push(item.props.checkedText || item.props.children);
-                return res;
-              }, [])
-              .join(', ');
+            .reduce(function (res, item) {
+              val.indexOf(item.props.val) !== -1 && res.push(item.props.checkedText || item.props.children);
+              return res;
+            }, [])
+            .join(', ');
 
       var checked = Boolean(val.length && ['check', 'radiocheck'].indexOf(type) !== -1);
 
@@ -239,14 +239,14 @@ export default decl(
           ),
         ),
         control &&
-          React.createElement(SelectControl, {
-            val: val,
-            name: name,
-            disabled: disabled,
-            key: 'control',
-            items: flattenItems,
-            multiple: type !== 'radio',
-          }),
+        React.createElement(SelectControl, {
+          val: val,
+          name: name,
+          disabled: disabled,
+          key: 'control',
+          items: flattenItems,
+          multiple: type !== 'radio',
+        }),
         React.createElement(
           SelectPopup,
           _extends(

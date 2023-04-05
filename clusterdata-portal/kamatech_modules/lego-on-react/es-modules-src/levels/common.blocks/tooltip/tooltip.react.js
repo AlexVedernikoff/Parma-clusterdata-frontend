@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -14,7 +14,7 @@ var _extends =
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Bem, { decl, bool2string } from '@parma-lego/i-bem-react';
+import Bem, { decl, bool2string } from '@kamatech-lego/i-bem-react';
 
 import '../popup2/popup2.react.js';
 import '../popup2/_theme/popup2_theme_normal.react.js';
@@ -133,7 +133,7 @@ export default decl(
         );
 
       var mainOffset = this.props.mainOffset === undefined ? this.props.offset : this.props.mainOffset;
-      var to = [].concat(this.props.to).map(function(direction) {
+      var to = [].concat(this.props.to).map(function (direction) {
         if (direction.indexOf('-') < 0) {
           direction = direction + '-center';
         }

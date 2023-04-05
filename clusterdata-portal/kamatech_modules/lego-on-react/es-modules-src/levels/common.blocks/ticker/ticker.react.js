@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 import _ticker__count from './__count/ticker__count.react.js';
 
 var TickerCount = _ticker__count.applyDecls();

@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = void 0;
 
-var _iBemReact = _interopRequireDefault(require('@parma-lego/i-bem-react'));
+var _iBemReact = _interopRequireDefault(require('@kamatech-lego/i-bem-react'));
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };

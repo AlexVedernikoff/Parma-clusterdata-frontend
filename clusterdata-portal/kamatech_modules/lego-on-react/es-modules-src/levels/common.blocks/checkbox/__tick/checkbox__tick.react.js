@@ -1,5 +1,5 @@
 import React from 'react';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 import '../../icon/icon.react.js';
 import '../../icon/_glyph/icon_glyph.react.js';
 import _icon_glyph_typeTick from '../../icon/_glyph/icon_glyph_type-tick.react.js';

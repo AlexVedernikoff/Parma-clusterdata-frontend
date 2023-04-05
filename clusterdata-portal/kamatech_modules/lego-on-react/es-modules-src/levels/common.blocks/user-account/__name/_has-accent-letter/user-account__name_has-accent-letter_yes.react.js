@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { declMod } from '@parma-lego/i-bem-react';
+import { declMod } from '@kamatech-lego/i-bem-react';
 import _userAccount__accentLetter from '../../__accent-letter/user-account__accent-letter.react.js';
 
 var UserAccountAccentLetter = _userAccount__accentLetter.applyDecls();

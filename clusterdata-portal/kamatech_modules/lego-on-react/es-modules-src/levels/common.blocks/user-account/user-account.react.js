@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -14,7 +14,7 @@ var _extends =
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { decl, bool2string } from '@parma-lego/i-bem-react';
+import { decl, bool2string } from '@kamatech-lego/i-bem-react';
 import _userAccount__name from './__name/user-account__name.react.js';
 
 var UserAccountName = _userAccount__name.applyDecls();

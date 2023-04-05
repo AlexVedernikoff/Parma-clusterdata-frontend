@@ -1,5 +1,5 @@
 import React from 'react';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 
 export default decl(
   {
@@ -28,7 +28,7 @@ export default decl(
         native = _ref2.native,
         items = _ref2.items;
 
-      return items.map(function(item, i) {
+      return items.map(function (item, i) {
         return React.createElement(
           'option',
           {
@@ -44,7 +44,7 @@ export default decl(
   {
     defaultProps: {
       tabIndex: '-1',
-      onChange: function onChange() {},
+      onChange: function onChange() { },
     },
   },
 );

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { decl, bool2string } from '@parma-lego/i-bem-react';
+import { decl, bool2string } from '@kamatech-lego/i-bem-react';
 
 export default decl(
   {

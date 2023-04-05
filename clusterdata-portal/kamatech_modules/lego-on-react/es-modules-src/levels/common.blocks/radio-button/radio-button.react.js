@@ -1,5 +1,5 @@
 import { cloneElement, Children } from 'react';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 
 import _radiobox from '../radiobox/radiobox.react.js';
 
@@ -39,7 +39,7 @@ export default decl(
 
       var num = Children.count(children);
 
-      return Children.map(children, function(item, key) {
+      return Children.map(children, function (item, key) {
         var side = num === 1 ? 'both' : '';
 
         if (num > 1) {

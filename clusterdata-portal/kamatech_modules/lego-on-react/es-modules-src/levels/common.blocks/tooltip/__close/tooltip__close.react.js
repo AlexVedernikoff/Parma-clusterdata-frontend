@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -13,17 +13,17 @@ var _extends =
   };
 
 import PropTypes from 'prop-types';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 
-var i18n = (function() {
+var i18n = (function () {
   var core = require('bem-i18n');
 
   if (
     process.env.BEM_LANG
       ? process.env.BEM_LANG === 'ru'
       : process.env.REACT_APP_BEM_LANG
-      ? process.env.REACT_APP_BEM_LANG === 'ru'
-      : 'en' === 'ru'
+        ? process.env.REACT_APP_BEM_LANG === 'ru'
+        : 'en' === 'ru'
   ) {
     return core().decl(require('./tooltip__close.i18n/ru'))('tooltip__close');
   }
@@ -65,18 +65,18 @@ var i18n = (function() {
     process.env.BEM_LANG &&
       console.error(
         'No match of process.env.BEM_LANG { ' +
-          process.env.BEM_LANG +
-          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+        process.env.BEM_LANG +
+        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
       );
     process.env.REACT_APP_BEM_LANG &&
       console.error(
         'No match of process.env.REACT_APP_BEM_LANG { ' +
-          process.env.REACT_APP_BEM_LANG +
-          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+        process.env.REACT_APP_BEM_LANG +
+        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
       );
   }
 
-  return function() {};
+  return function () { };
 })();
 
 export default decl(

@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -15,7 +15,7 @@ var _extends =
 import React from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import { decl, bool2string } from '@parma-lego/i-bem-react';
+import { decl, bool2string } from '@kamatech-lego/i-bem-react';
 import '../../menu/menu.react.js';
 import '../../../desktop.blocks/menu/menu.react.js';
 import '../../menu/_type/menu_type_check.react.js';
@@ -53,7 +53,7 @@ import "./../../menu/_tone/menu_tone_grey.css";*/ export default decl(
         var menuWidth = menuDomElem.getBoundingClientRect().width;
         var bestHeight = 0;
 
-        drawingParams.forEach(function(params) {
+        drawingParams.forEach(function (params) {
           params.width >= menuWidth && params.height > bestHeight && (bestHeight = params.height);
         });
 

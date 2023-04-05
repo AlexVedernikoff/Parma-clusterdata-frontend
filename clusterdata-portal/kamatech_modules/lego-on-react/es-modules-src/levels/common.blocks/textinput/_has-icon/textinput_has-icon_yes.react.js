@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -14,7 +14,7 @@ var _extends =
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { declMod, bool2string } from '@parma-lego/i-bem-react';
+import { declMod, bool2string } from '@kamatech-lego/i-bem-react';
 import _textinput__icon from '../__icon/textinput__icon.react.js';
 
 var TextInputIcon = _textinput__icon.applyDecls();
@@ -24,7 +24,7 @@ var TextInputIcon = _textinput__icon.applyDecls();
 //import "./../__icon/_side/textinput__icon_side_right.css";
 
 export default declMod(
-  function(_ref) {
+  function (_ref) {
     var iconLeft = _ref.iconLeft,
       iconRight = _ref.iconRight,
       icon = _ref.icon;

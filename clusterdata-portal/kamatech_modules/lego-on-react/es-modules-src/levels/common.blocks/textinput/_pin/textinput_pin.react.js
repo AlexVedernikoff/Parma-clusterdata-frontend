@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -12,13 +12,13 @@ var _extends =
     return target;
   };
 
-import { declMod } from '@parma-lego/i-bem-react';
+import { declMod } from '@kamatech-lego/i-bem-react';
 import '../textinput.react.js';
 import '../../../desktop.blocks/textinput/textinput.react.js';
 // import "./../_has-pin/textinput_has-pin_yes.css";
 
 export default declMod(
-  function(props) {
+  function (props) {
     return props.pin;
   },
   {

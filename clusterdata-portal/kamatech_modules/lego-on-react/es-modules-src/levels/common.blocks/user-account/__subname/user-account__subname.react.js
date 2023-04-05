@@ -1,16 +1,16 @@
 var _typeof =
   typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol'
-    ? function(obj) {
-        return typeof obj;
-      }
-    : function(obj) {
-        return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype
-          ? 'symbol'
-          : typeof obj;
-      };
+    ? function (obj) {
+      return typeof obj;
+    }
+    : function (obj) {
+      return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype
+        ? 'symbol'
+        : typeof obj;
+    };
 
 import PropTypes from 'prop-types';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 
 export default decl(
   {

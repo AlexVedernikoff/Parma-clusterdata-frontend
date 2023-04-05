@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -14,7 +14,7 @@ var _extends =
 
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 import _radiobox__radio from './__radio/radiobox__radio.react.js';
 
 var RadioBoxRadio = _radiobox__radio.applyDecls();
@@ -51,15 +51,15 @@ export default decl(
         name = _ref3.name,
         children = _ref3.children;
 
-      return Children.map(children, function(item, key) {
+      return Children.map(children, function (item, key) {
         return typeof item.type === 'function'
           ? cloneElement(item, {
-              name: name,
-              key: key,
-              mainValue: mainValue,
-              mainDisabled: mainDisabled,
-              onChange: mainDisabled ? undefined : _this.onChange,
-            })
+            name: name,
+            key: key,
+            mainValue: mainValue,
+            mainDisabled: mainDisabled,
+            onChange: mainDisabled ? undefined : _this.onChange,
+          })
           : item;
       });
     },

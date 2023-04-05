@@ -1,5 +1,5 @@
 import React from 'react';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 
 export default decl({
   block: 'menu',

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 import '../../user-pic/user-pic.react.js';
 import _userPic_provider_yandexTeam from '../../user-pic/_provider/user-pic_provider.react.js';
 

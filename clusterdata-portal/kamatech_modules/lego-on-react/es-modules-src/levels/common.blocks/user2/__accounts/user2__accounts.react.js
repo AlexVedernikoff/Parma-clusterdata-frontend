@@ -1,6 +1,6 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import Bem, { decl, bool2string } from '@parma-lego/i-bem-react';
+import Bem, { decl, bool2string } from '@kamatech-lego/i-bem-react';
 import '../../menu/__item/menu__item.react.js';
 import _menu__item from '../../../desktop.blocks/menu/__item/menu__item.react.js';
 
@@ -35,15 +35,15 @@ import "./../../spin2/_size/spin2_size_xs.css";
 import "./../__add-account/user2__add-account.css";
 */
 
-var i18n = (function() {
+var i18n = (function () {
   var core = require('bem-i18n');
 
   if (
     process.env.BEM_LANG
       ? process.env.BEM_LANG === 'ru'
       : process.env.REACT_APP_BEM_LANG
-      ? process.env.REACT_APP_BEM_LANG === 'ru'
-      : 'en' === 'ru'
+        ? process.env.REACT_APP_BEM_LANG === 'ru'
+        : 'en' === 'ru'
   ) {
     return core().decl(require('../user2.i18n/ru'))('user2');
   }
@@ -85,18 +85,18 @@ var i18n = (function() {
     process.env.BEM_LANG &&
       console.error(
         'No match of process.env.BEM_LANG { ' +
-          process.env.BEM_LANG +
-          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+        process.env.BEM_LANG +
+        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
       );
     process.env.REACT_APP_BEM_LANG &&
       console.error(
         'No match of process.env.REACT_APP_BEM_LANG { ' +
-          process.env.REACT_APP_BEM_LANG +
-          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+        process.env.REACT_APP_BEM_LANG +
+        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
       );
   }
 
-  return function() {};
+  return function () { };
 })();
 
 export default decl(
@@ -148,9 +148,9 @@ export default decl(
 
       // user2 должен знать о menu__item, в который обернут account
       if (children) {
-        var registerItem = this.context.registerUserItem || function() {};
+        var registerItem = this.context.registerUserItem || function () { };
 
-        return Children.map(children, function(child, i) {
+        return Children.map(children, function (child, i) {
           return React.createElement(
             MenuItem,
             {

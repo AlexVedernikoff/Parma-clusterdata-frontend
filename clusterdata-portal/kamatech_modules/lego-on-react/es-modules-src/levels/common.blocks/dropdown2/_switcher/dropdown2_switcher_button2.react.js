@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -13,7 +13,7 @@ var _extends =
   };
 
 import React from 'react';
-import { declMod } from '@parma-lego/i-bem-react';
+import { declMod } from '@kamatech-lego/i-bem-react';
 import _button from '../../button2/button2.react.js';
 
 var Button = _button.applyDecls();

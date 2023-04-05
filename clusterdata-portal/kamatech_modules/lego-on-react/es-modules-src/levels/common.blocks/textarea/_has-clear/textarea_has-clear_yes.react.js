@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -14,7 +14,7 @@ var _extends =
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { declMod, bool2string } from '@parma-lego/i-bem-react';
+import { declMod, bool2string } from '@kamatech-lego/i-bem-react';
 import _textarea__clear from '../__clear/textarea__clear.react.js';
 
 var TextAreaClear = _textarea__clear.applyDecls();
@@ -23,7 +23,7 @@ var TextAreaClear = _textarea__clear.applyDecls();
 //import "./../__clear/_visible/textarea__clear_visible_yes.css";
 
 export default declMod(
-  function(props) {
+  function (props) {
     return props.hasClear && !(props.controlAttrs && props.controlAttrs.readOnly);
   },
   {

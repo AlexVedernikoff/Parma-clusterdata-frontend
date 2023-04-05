@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -24,7 +24,7 @@ function _toConsumableArray(arr) {
 }
 
 import PropTypes from 'prop-types';
-import { decl, bool2string } from '@parma-lego/i-bem-react';
+import { decl, bool2string } from '@kamatech-lego/i-bem-react';
 import '../../menu/__item/menu__item.react.js';
 import '../../../desktop.blocks/menu/__item/menu__item.react.js';
 import _menu__item_type_link from '../../menu/__item/_type/menu__item_type_link.react.js';
@@ -71,7 +71,7 @@ export default decl(
     defaultProps: {
       type: 'link',
       isNavigation: true,
-      onClick: function onClick() {},
+      onClick: function onClick() { },
       url: null,
       text: null,
     },

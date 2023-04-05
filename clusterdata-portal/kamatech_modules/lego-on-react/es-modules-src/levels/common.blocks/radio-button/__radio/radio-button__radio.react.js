@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -13,7 +13,7 @@ var _extends =
   };
 
 import React from 'react';
-import Bem, { decl, bool2string } from '@parma-lego/i-bem-react';
+import Bem, { decl, bool2string } from '@kamatech-lego/i-bem-react';
 import _radiobox__radio from '../../radiobox/__radio/radiobox__radio.react.js';
 
 var RadioBoxRadio = _radiobox__radio.applyDecls();

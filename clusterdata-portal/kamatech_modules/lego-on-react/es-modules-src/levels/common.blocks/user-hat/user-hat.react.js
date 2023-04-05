@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Bem, { decl, bool2string } from '@parma-lego/i-bem-react';
+import Bem, { decl, bool2string } from '@kamatech-lego/i-bem-react';
 import '../icon/icon.react.js';
 import '../icon/_glyph/icon_glyph.react.js';
 import _icon_glyph_typeClose from '../icon/_glyph/icon_glyph_type-close.react.js';
@@ -121,7 +121,7 @@ export default decl(
       var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       return Object.keys(params)
-        .reduce(function(result, param) {
+        .reduce(function (result, param) {
           param = param + '=' + params[param];
           return result.concat(param);
         }, [])

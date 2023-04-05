@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -15,7 +15,7 @@ var _extends =
 import PropTypes from 'prop-types';
 import React, { Children } from 'react';
 import ReactDOM from 'react-dom';
-import Bem, { declMod, bool2string } from '@parma-lego/i-bem-react';
+import Bem, { declMod, bool2string } from '@kamatech-lego/i-bem-react';
 import throttle from 'lodash.throttle';
 import _radioButton__radio from '../__radio/radio-button__radio.react.js';
 
@@ -64,7 +64,7 @@ export default declMod(
       var _this = this;
 
       this._setPlate({ isAnimatedOn: false });
-      setTimeout(function() {
+      setTimeout(function () {
         return _this.setState({ isAnimatedOn: true });
       }, 0);
     },
@@ -86,14 +86,14 @@ export default declMod(
       var radios = 0;
       var width = 100;
 
-      Children.forEach(children, function(child) {
+      Children.forEach(children, function (child) {
         if (RadioButtonRadio.isRadio(child)) {
           radios++;
         }
       });
 
       width = (100 / (radios || 1)).toFixed(4);
-      children = Children.map(children, function(child) {
+      children = Children.map(children, function (child) {
         if (!RadioButtonRadio.isRadio(child)) {
           return;
         }

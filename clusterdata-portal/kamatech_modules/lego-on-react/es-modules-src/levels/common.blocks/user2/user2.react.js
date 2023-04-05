@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -26,7 +26,7 @@ function _toConsumableArray(arr) {
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import Bem, { decl, bool2string } from '@parma-lego/i-bem-react';
+import Bem, { decl, bool2string } from '@kamatech-lego/i-bem-react';
 import '../button2/button2.react.js';
 import _button2_type_link from '../button2/_type/button2_type_link.react.js';
 
@@ -105,15 +105,15 @@ var UserMenuFooter = _user2__menuFooter.applyDecls();
 //import "./../a11y-hidden/a11y-hidden.css";
 //import "./__enter/user2__enter.css";
 
-var i18n = (function() {
+var i18n = (function () {
   var core = require('bem-i18n');
 
   if (
     process.env.BEM_LANG
       ? process.env.BEM_LANG === 'ru'
       : process.env.REACT_APP_BEM_LANG
-      ? process.env.REACT_APP_BEM_LANG === 'ru'
-      : 'en' === 'ru'
+        ? process.env.REACT_APP_BEM_LANG === 'ru'
+        : 'en' === 'ru'
   ) {
     return core().decl(require('./user2.i18n/ru'))('user2');
   }
@@ -156,18 +156,18 @@ var i18n = (function() {
     process.env.BEM_LANG &&
       console.error(
         'No match of process.env.BEM_LANG { ' +
-          process.env.BEM_LANG +
-          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+        process.env.BEM_LANG +
+        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
       );
     process.env.REACT_APP_BEM_LANG &&
       console.error(
         'No match of process.env.REACT_APP_BEM_LANG { ' +
-          process.env.REACT_APP_BEM_LANG +
-          ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
+        process.env.REACT_APP_BEM_LANG +
+        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
       );
   }
 
-  return function() {};
+  return function () { };
 })();
 
 import '../user-hat/user-hat.react.js';
@@ -353,7 +353,7 @@ export default decl(
       var plusItem = { action: 'plus' };
 
       actionsMenu = actionsMenu
-        .filter(function(item) {
+        .filter(function (item) {
           if (item.action === 'plus') {
             plusItem = _extends({}, plusItem, item);
             return false;
@@ -423,19 +423,19 @@ export default decl(
               mix: { block: block, elem: 'menu' },
             },
             hat &&
-              yaplus === false &&
-              React.createElement(
-                UserHat,
-                _extends(
-                  {
-                    onCloseButtonClick: this.onHatCloseClick,
-                    onSuccess: this.onSuccess,
-                    ready: this.state.hatReady,
-                    hidden: !this.state.hatVisible,
-                  },
-                  hat,
-                ),
+            yaplus === false &&
+            React.createElement(
+              UserHat,
+              _extends(
+                {
+                  onCloseButtonClick: this.onHatCloseClick,
+                  onSuccess: this.onSuccess,
+                  ready: this.state.hatReady,
+                  hidden: !this.state.hatVisible,
+                },
+                hat,
               ),
+            ),
             React.createElement(
               Bem,
               { block: 'user2', elem: 'menu-header' },
@@ -571,7 +571,7 @@ export default decl(
       var _this = this;
 
       return items
-        .map(function(item, index) {
+        .map(function (item, index) {
           if (item.action === 'plus' && options.plus === undefined) {
             return '';
           }

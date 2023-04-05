@@ -1,4 +1,4 @@
-import { declMod } from '@parma-lego/i-bem-react';
+import { declMod } from '@kamatech-lego/i-bem-react';
 
 // NOTE: потому что нужно гарантировать defaultMainOffset
 import '../popup2.react.js';

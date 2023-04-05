@@ -46,7 +46,7 @@ exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, d
       alias: {
         '@parma-ui': path.resolve('./kamatech_modules/parma-ui'),
         '@parma-data-ui': path.resolve('./kamatech_modules/@parma-data-ui/'),
-        '@parma-lego': path.resolve('./kamatech_modules/@parma-lego/'),
+        '@kamatech-lego': path.resolve('./kamatech_modules/@kamatech-lego/'),
         'lego-on-react': path.resolve('./kamatech_modules/lego-on-react/'),
         assets: path.resolve('./kamatech_modules/@parma-data-ui/clusterdata/src/assets/'),
         components: path.resolve('./kamatech_modules/@parma-data-ui/clusterdata/src/components/'),

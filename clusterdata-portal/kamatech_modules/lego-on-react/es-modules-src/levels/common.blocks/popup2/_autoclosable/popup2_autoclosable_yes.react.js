@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import { declMod } from '@parma-lego/i-bem-react';
+import { declMod } from '@kamatech-lego/i-bem-react';
 import _keycodes from '../../keycodes/keycodes.react.js';
 
 var Keys = _keycodes.applyDecls();
 
 export default declMod(
-  function(_ref) {
+  function (_ref) {
     var autoclosable = _ref.autoclosable,
       onOutsideClick = _ref.onOutsideClick,
       onClose = _ref.onClose;
@@ -40,7 +40,7 @@ export default declMod(
       }
 
       // Клик, открывающий попап, не должен рассматриваться как outsideClick.
-      setTimeout(function() {
+      setTimeout(function () {
         return _this.toggleWatchAutoClosableEvents(visible);
       }, 0);
     },

@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -13,7 +13,7 @@ var _extends =
   };
 
 import React from 'react';
-import { decl } from '@parma-lego/i-bem-react';
+import { decl } from '@kamatech-lego/i-bem-react';
 import '../../popup2/popup2.react.js';
 import '../../popup2/_theme/popup2_theme_normal.react.js';
 import '../../popup2/_target/popup2_target_anchor.react.js';
