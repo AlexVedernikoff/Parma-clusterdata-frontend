@@ -1,6 +1,6 @@
 import { saveAs } from 'file-saver';
 import moment from 'moment';
-import { ExportFormat } from '../../../../../parma_modules/@parma-data-ui/chartkit/lib/modules/export/ExportFormat';
+import { ExportFormat } from '../../../../../kamatech_modules/@parma-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { Entry } from './types/Entry';
 import { Tab } from './types/Tab';
 import { PORTAL_PATH } from '../../../../context-path';

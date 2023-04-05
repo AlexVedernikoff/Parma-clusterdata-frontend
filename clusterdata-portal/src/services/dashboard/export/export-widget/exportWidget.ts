@@ -1,9 +1,9 @@
 import { saveAs } from 'file-saver';
-import { Encoding } from '../../../../../parma_modules/@parma-data-ui/chartkit/lib/modules/export/Encoding';
+import { Encoding } from '../../../../../kamatech_modules/@parma-data-ui/chartkit/lib/modules/export/Encoding';
 import {
   getStorageState,
   setStorageState,
-} from '../../../../../parma_modules/@parma-data-ui/chartkit/lib/modules/export/export';
+} from '../../../../../kamatech_modules/@parma-data-ui/chartkit/lib/modules/export/export';
 import {
   Encoding as ApiEncoding,
   getExportExcelStatus,

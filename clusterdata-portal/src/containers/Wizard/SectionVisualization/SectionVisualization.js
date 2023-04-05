@@ -74,8 +74,8 @@ import {
 import { getIconForCast } from '../../../utils/helpers';
 
 import { i18n } from '@parma-data-ui/clusterdata';
-import Select from '../../../../parma_modules/lego-on-react/es-modules-src/components/select/select.react';
-import TextInput from '../../../../parma_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
+import Select from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
+import TextInput from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
 import DialogFormatTemplate from '../../../components/Dialogs/DialogFormatTemplate';
 import { ParmaRangePicker } from '@parma-ui';
 import { NullAlias } from '@parma-data-ui/chartkit/lib/components/Widget/Table/NullAlias';

@@ -16,7 +16,7 @@ import {
   toggleVisibilityHistory,
 } from '../../store/reducers/dataset';
 import { DATASET_TABS } from '../../constants';
-import { i18n } from '../../../parma_modules/@parma-data-ui/clusterdata';
+import { i18n } from '../../../kamatech_modules/@parma-data-ui/clusterdata';
 import { ResizerType } from '../../constants/ResizerType';
 
 const b = block('dataset-history');

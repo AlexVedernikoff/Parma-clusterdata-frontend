@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Icon } from '@parma-data-ui/common/src';
 
-import { i18n } from '../../../../parma_modules/@parma-data-ui/clusterdata/src/utils/i18n';
-import iconPencil from '../../../../parma_modules/@parma-data-ui/clusterdata/src/icons/pencil.svg';
-import iconAnotherTab from '../../../../parma_modules/@parma-data-ui/clusterdata/src/icons/another-tab.svg';
+import { i18n } from '../../../../kamatech_modules/@parma-data-ui/clusterdata/src/utils/i18n';
+import iconPencil from '../../../../kamatech_modules/@parma-data-ui/clusterdata/src/icons/pencil.svg';
+import iconAnotherTab from '../../../../kamatech_modules/@parma-data-ui/clusterdata/src/icons/another-tab.svg';
 
-import { EXPORT } from '../../../../parma_modules/@parma-data-ui/chartkit/lib/extensions/menu-items';
+import { EXPORT } from '../../../../kamatech_modules/@parma-data-ui/chartkit/lib/extensions/menu-items';
 
 const NEW_TAB = {
   get title() {

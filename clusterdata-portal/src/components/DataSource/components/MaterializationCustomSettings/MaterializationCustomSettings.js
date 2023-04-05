@@ -2,11 +2,11 @@ import React from 'react';
 import Utils from '../../../../helpers/utils';
 import { getConnectorsMap } from '../../../../constants';
 import SelectConnection from '../../../../containers/SelectConnection/SelectConnection';
-import { ParmaTextInput } from '../../../../../parma_modules/parma-ui';
-import iconXsign from '../../../../../parma_modules/@parma-data-ui/clusterdata/src/icons/x-sign.svg';
+import { ParmaTextInput } from '../../../../../kamatech_modules/parma-ui';
+import iconXsign from '../../../../../kamatech_modules/@parma-data-ui/clusterdata/src/icons/x-sign.svg';
 import block from 'bem-cn-lite';
-import { i18n } from '../../../../../parma_modules/@parma-data-ui/clusterdata-i18n';
-import { YCSelect } from '../../../../../parma_modules/@parma-data-ui/common/src';
+import { i18n } from '../../../../../kamatech_modules/@parma-data-ui/clusterdata-i18n';
+import { YCSelect } from '../../../../../kamatech_modules/@parma-data-ui/common/src';
 import { Icon } from '@parma-data-ui/common/src';
 
 const b = block('dataset-creation');

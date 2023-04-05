@@ -7,9 +7,9 @@ import { getIconForCast } from '../../utils/helpers';
 import Icon from '@parma-data-ui/common/src/components/Icon/Icon';
 import Dialog from '@parma-data-ui/common/src/components/Dialog/Dialog';
 import { i18n } from '@parma-data-ui/clusterdata';
-import Select from '../../../parma_modules/lego-on-react/es-modules-src/components/select/select.react';
+import Select from '../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import update from 'immutability-helper';
-import TextArea from '../../../parma_modules/lego-on-react/es-modules-src/components/textarea/textarea.react';
+import TextArea from '../../../kamatech_modules/lego-on-react/es-modules-src/components/textarea/textarea.react';
 
 const b = block('dialog-filter');
 

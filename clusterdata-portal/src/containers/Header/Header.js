@@ -27,14 +27,14 @@ import iconFilter from '@parma-data-ui/clusterdata/src/icons/filter-blue.svg';
 import { SignalContext } from '@parma-data-ui/dashkit/src/context/SignalContext';
 import { SIGNAL } from '@parma-data-ui/dashkit/src/constants/common';
 import WidgetVisibilityDropdown from '../../components/WidgetVisibilityDropdown/WidgetVisibilityDropdown';
-import { ExportFormat } from '../../../parma_modules/@parma-data-ui/chartkit/lib/modules/export/ExportFormat';
+import { ExportFormat } from '../../../kamatech_modules/@parma-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { LAYOUT_ID } from '../../constants/constants';
 import { getLayoutId } from '../../utils/helpers';
 import BrowserPrint from '../BrowserPrint/BrowserPrint';
 import { exportDashboard } from './model/exportDashboard';
-import { Toaster } from '../../../parma_modules/@parma-data-ui/common/src';
-import { NOTIFY_TYPES } from '../../../parma_modules/@parma-data-ui/clusterdata/src/constants/common';
-import { ExportStatusEnum } from '../../../parma_modules/parma-ui/enums/export-status.enum';
+import { Toaster } from '../../../kamatech_modules/@parma-data-ui/common/src';
+import { NOTIFY_TYPES } from '../../../kamatech_modules/@parma-data-ui/clusterdata/src/constants/common';
+import { ExportStatusEnum } from '../../../kamatech_modules/parma-ui/enums/export-status.enum';
 
 const b = block('dash-header');
 

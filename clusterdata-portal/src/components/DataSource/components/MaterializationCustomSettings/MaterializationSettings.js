@@ -1,7 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
-import { RadioBox } from '../../../../../parma_modules/lego-on-react';
-import { i18n } from '../../../../../parma_modules/@parma-data-ui/clusterdata';
+import { RadioBox } from '../../../../../kamatech_modules/lego-on-react';
+import { i18n } from '../../../../../kamatech_modules/@parma-data-ui/clusterdata';
 import MaterializationCustomSettings from './MaterializationCustomSettings';
 
 const DATASET_MATERIALIZED_MODES = {

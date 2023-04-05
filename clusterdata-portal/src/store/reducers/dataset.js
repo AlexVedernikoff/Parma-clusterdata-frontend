@@ -30,7 +30,7 @@ import {
   TOGGLE_HISTORY,
   CHANGE_AMOUNT_HISTORY_ROWS,
 } from '../../actions/dataset';
-import { CalcModes } from '../../../parma_modules/@parma-data-ui/clusterdata';
+import { CalcModes } from '../../../kamatech_modules/@parma-data-ui/clusterdata';
 
 function getMessageText() {
   return {
