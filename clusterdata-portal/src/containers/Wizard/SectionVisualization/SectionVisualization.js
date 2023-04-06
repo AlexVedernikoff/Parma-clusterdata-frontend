@@ -77,7 +77,7 @@ import { i18n } from '@kamatech-data-ui/clusterdata';
 import Select from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import TextInput from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
 import DialogFormatTemplate from '../../../components/Dialogs/DialogFormatTemplate';
-import { ParmaRangePicker } from '@parma-ui';
+import { ParmaRangePicker } from '@kamatech-ui';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
 // import './SectionVisualization.scss';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
 import i18n from '../i18n';
 
-import { ParmaDropdown, ParmaCreateDropdownItem, ParmaMenu, ParmaButton } from '@parma-ui';
+import { ParmaDropdown, ParmaCreateDropdownItem, ParmaMenu, ParmaButton } from '@kamatech-ui';
 
 const b = cn('yc-create-dropdown');
 

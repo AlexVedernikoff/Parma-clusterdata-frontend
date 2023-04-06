@@ -34,7 +34,7 @@ import BrowserPrint from '../BrowserPrint/BrowserPrint';
 import { exportDashboard } from './model/exportDashboard';
 import { Toaster } from '../../../kamatech_modules/@kamatech-data-ui/common/src';
 import { NOTIFY_TYPES } from '../../../kamatech_modules/@kamatech-data-ui/clusterdata/src/constants/common';
-import { ExportStatusEnum } from '../../../kamatech_modules/parma-ui/enums/export-status.enum';
+import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
 
 const b = block('dash-header');
 

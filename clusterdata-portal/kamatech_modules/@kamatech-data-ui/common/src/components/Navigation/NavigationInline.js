@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
 import NavigationEntries from './NavigationEntries';
 
-import { ParmaCreateDropdown, ParmaSidebar, ParmaNavigationBreadcrumbs } from '@parma-ui';
+import { ParmaCreateDropdown, ParmaSidebar, ParmaNavigationBreadcrumbs } from '@kamatech-ui';
 
 import './NavigationInline.css';
 

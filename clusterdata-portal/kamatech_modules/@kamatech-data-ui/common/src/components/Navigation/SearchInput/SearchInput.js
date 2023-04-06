@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TextInput } from 'lego-on-react';
 import icon from '../../../../../clusterdata/src/icons/x-sign.svg';
 
-import { ParmaTextInput } from '@parma-ui';
+import { ParmaTextInput } from '@kamatech-ui';
 
 class SearchInput extends React.Component {
   static propTypes = {

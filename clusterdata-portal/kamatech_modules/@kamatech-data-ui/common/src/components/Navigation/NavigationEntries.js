@@ -19,7 +19,7 @@ import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import iconFavoriteEmpty from '../../assets/icons/favorite-empty.svg';
 import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
-import { ParmaTableView, ParmaTextInput } from '@parma-ui';
+import { ParmaTableView, ParmaTextInput } from '@kamatech-ui';
 import iconXsign from '../../../../clusterdata/src/icons/x-sign.svg';
 
 const b = cn('yc-navigation');

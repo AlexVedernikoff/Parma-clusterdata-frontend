@@ -8,7 +8,7 @@ import DashKit from '@kamatech-data-ui/dashkit';
 import * as actionTypes from '../constants/actionTypes';
 import { MODE } from '../../modules/constants/constants';
 import { LAYOUT_ID } from '../../constants/constants';
-import { ExportStatusEnum } from '../../../kamatech_modules/parma-ui/enums/export-status.enum';
+import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
 
 const TAB_PROPERTIES = ['id', 'title', 'items', 'layout', 'filtersLayout', 'ignores', 'aliases'];
 
