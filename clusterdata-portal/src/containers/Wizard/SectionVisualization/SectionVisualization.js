@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Icon from '@parma-data-ui/common/src/components/Icon/Icon';
+import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
 import { CheckBox, Tooltip } from 'lego-on-react';
 
@@ -73,12 +73,12 @@ import {
 
 import { getIconForCast } from '../../../utils/helpers';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import Select from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import TextInput from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
 import DialogFormatTemplate from '../../../components/Dialogs/DialogFormatTemplate';
 import { ParmaRangePicker } from '@parma-ui';
-import { NullAlias } from '@parma-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
+import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
 // import './SectionVisualization.scss';
 

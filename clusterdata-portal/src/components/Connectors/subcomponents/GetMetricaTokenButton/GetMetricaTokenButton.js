@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
-import { I18n } from '@parma-data-ui/clusterdata';
+import { I18n } from '@kamatech-data-ui/clusterdata';
 
 const b = block('dl-connector');
 const i18n = I18n.keyset('connections.form');

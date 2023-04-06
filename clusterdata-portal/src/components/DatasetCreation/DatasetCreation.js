@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Icon, Loader, Toaster, YCSelect, TextInput } from '@parma-data-ui/common/src';
-import { i18n, PathSelect } from '@parma-data-ui/clusterdata';
+import { Icon, Loader, Toaster, YCSelect, TextInput } from '@kamatech-data-ui/common/src';
+import { i18n, PathSelect } from '@kamatech-data-ui/clusterdata';
 
 import getErrorMessageHelper from './getErrorMessageHelper';
 import UserName from '../UserName/UserName';

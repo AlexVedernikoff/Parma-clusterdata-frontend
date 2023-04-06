@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Widget from '@parma-data-ui/chartkit/lib/components/Widget/Widget';
-import ChartsModule from '@parma-data-ui/chartkit/lib/modules/charts/charts';
+import Widget from '@kamatech-data-ui/chartkit/lib/components/Widget/Widget';
+import ChartsModule from '@kamatech-data-ui/chartkit/lib/modules/charts/charts';
 
 (async function() {
   async function render() {

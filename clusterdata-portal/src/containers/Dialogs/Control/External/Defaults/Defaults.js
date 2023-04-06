@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
 import { Button, TextInput } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
-import { i18n } from '@parma-data-ui/clusterdata-i18n';
+import { Icon } from '@kamatech-data-ui/common/src';
+import { i18n } from '@kamatech-data-ui/clusterdata-i18n';
 
 import ButtonIcon from '../../../../../components/ButtonIcon/ButtonIcon';
 import WrappedButton from '../../Switchers/Button';
@@ -12,8 +12,8 @@ import SubDialog from '../../Dialog/Dialog';
 
 import { unwrapFromArray, wrapToArray } from '../../../../../helpers/utils-dash';
 
-import iconPlus from '@parma-data-ui/clusterdata/src/icons/plus.svg';
-import iconPreviewClose from '@parma-data-ui/clusterdata/src/icons/preview-close.svg';
+import iconPlus from '@kamatech-data-ui/clusterdata/src/icons/plus.svg';
+import iconPreviewClose from '@kamatech-data-ui/clusterdata/src/icons/preview-close.svg';
 
 // import './Defaults.scss';
 

@@ -3,8 +3,8 @@ import { ExportStatus } from '../types/ExportStatus';
 import { ExportStatusDto } from './dto/ExportStatusDto';
 import axiosInstance, {
   AxiosRequest,
-} from '../../../../kamatech_modules/@parma-data-ui/chartkit/lib/modules/axios/axios';
-import settings from '../../../../kamatech_modules/@parma-data-ui/chartkit/lib/modules/settings/settings';
+} from '../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/axios/axios';
+import settings from '../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/settings/settings';
 
 // @ts-ignore
 const ENDPOINTS: Endpoints = window.DL.endpoints;

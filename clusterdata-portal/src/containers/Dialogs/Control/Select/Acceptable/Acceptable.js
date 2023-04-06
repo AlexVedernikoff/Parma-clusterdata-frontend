@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
 import { Button as LegoButton, TextInput } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
+import { Icon } from '@kamatech-data-ui/common/src';
 
 import Button from '../../Switchers/Button';
 import Dialog from '../../Dialog/Dialog';
 
-import iconPreviewClose from '@parma-data-ui/clusterdata/src/icons/preview-close.svg';
+import iconPreviewClose from '@kamatech-data-ui/clusterdata/src/icons/preview-close.svg';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './Acceptable.scss';
 

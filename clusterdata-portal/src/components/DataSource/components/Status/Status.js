@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import block from 'bem-cn-lite';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import { ProgressBar } from '../ProgressBar/ProgressBar';
 import { Stage } from '../../Stage';
 

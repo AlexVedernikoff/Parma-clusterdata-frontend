@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ErrorContent, i18n } from '@parma-data-ui/clusterdata';
+import { ErrorContent, i18n } from '@kamatech-data-ui/clusterdata';
 import { load as loadDash } from '../../store/actions/dash';
 import { SDK } from '../../modules/sdk';
 

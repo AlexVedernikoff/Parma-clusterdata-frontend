@@ -4,7 +4,7 @@ import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 
 import { CheckBox, TextInput, Tooltip } from 'lego-on-react';
-import { Dialog } from '@parma-data-ui/common/src';
+import { Dialog } from '@kamatech-data-ui/common/src';
 
 import HoverRadioButton from './HoverRadioButton/HoverRadioButton';
 
@@ -12,7 +12,7 @@ import { getOpenedItemData, isDialogVisible } from '../../../store/selectors/das
 import { DIALOG_TYPE } from '../../../modules/constants/constants';
 import { closeDialog, setItemData } from '../../../store/actions/dash';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './Title.scss';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Navigation } from '@parma-data-ui/clusterdata';
+import { Navigation } from '@kamatech-data-ui/clusterdata';
 import { SDK } from '../../modules/sdk';
 
 function Index(props) {

@@ -8,7 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { I18n, Utils } from '@parma-data-ui/clusterdata';
+import { I18n, Utils } from '@kamatech-data-ui/clusterdata';
 import moment from 'moment';
 
 import reducers from '../reducers';

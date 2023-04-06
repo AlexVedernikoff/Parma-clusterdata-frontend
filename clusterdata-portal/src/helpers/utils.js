@@ -2,13 +2,13 @@ import iconMssql from '../icons/mssql.svg';
 import iconOracle from '../icons/oracle.svg';
 import iconMetrica from '../icons/metrica.svg';
 import iconAppMetrica from '../icons/appmetrica.svg';
-import iconChOverYt from '@parma-data-ui/clusterdata/src/icons/choveryt.svg';
-import iconClickHouse from '@parma-data-ui/clusterdata/src/icons/clickhouse.svg';
-import iconCsv from '@parma-data-ui/clusterdata/src/icons/csv.svg';
-import iconPostgres from '@parma-data-ui/clusterdata/src/icons/postgres.svg';
-import iconMysql from '@parma-data-ui/clusterdata/src/icons/mysql.svg';
-import iconYt from '@parma-data-ui/clusterdata/src/icons/yt.svg';
-import iconUndefined from '@parma-data-ui/clusterdata/src/icons/undefined.svg';
+import iconChOverYt from '@kamatech-data-ui/clusterdata/src/icons/choveryt.svg';
+import iconClickHouse from '@kamatech-data-ui/clusterdata/src/icons/clickhouse.svg';
+import iconCsv from '@kamatech-data-ui/clusterdata/src/icons/csv.svg';
+import iconPostgres from '@kamatech-data-ui/clusterdata/src/icons/postgres.svg';
+import iconMysql from '@kamatech-data-ui/clusterdata/src/icons/mysql.svg';
+import iconYt from '@kamatech-data-ui/clusterdata/src/icons/yt.svg';
+import iconUndefined from '@kamatech-data-ui/clusterdata/src/icons/undefined.svg';
 
 export default class Utils {
   static sizes = ['Bytes', 'Kb', 'Mb', 'Gb', 'Tb'];

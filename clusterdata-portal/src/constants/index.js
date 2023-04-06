@@ -1,7 +1,7 @@
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import React from 'react';
 
-import Icon from '@parma-data-ui/common/src/components/Icon/Icon';
+import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
 import iconVisLines from 'icons/vis-lines.svg';
 import iconOlMap from 'icons/map.svg';
@@ -27,7 +27,7 @@ import iconColumns from 'icons/columns.svg';
 import iconPoints from 'icons/points.svg';
 import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
-import { WIDGET_TYPE } from '@parma-data-ui/chartkit/lib/components/Widget/WidgetType';
+import { WIDGET_TYPE } from '@kamatech-data-ui/chartkit/lib/components/Widget/WidgetType';
 
 const _getSelectItemTitle = () => ({
   visits: i18n('connections.form', 'value_counter-source-visits'),

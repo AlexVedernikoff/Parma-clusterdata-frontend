@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import sortBy from 'lodash/sortBy';
-import { YCSelect } from '@parma-data-ui/common/src';
-import { DataTypeIconSelector } from '@parma-data-ui/clusterdata';
+import { YCSelect } from '@kamatech-data-ui/common/src';
+import { DataTypeIconSelector } from '@kamatech-data-ui/clusterdata';
 import withWrap from '../../withWrap/withWrap';
 import { SDK } from '../../../../../modules/sdk';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 const b = block('control-switcher-dataset-field');
 

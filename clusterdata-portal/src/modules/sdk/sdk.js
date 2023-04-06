@@ -1,4 +1,4 @@
-import { SDK } from '@parma-data-ui/clusterdata';
+import { SDK } from '@kamatech-data-ui/clusterdata';
 
 export default new SDK({
   endpoints: window.DL.endpoints,

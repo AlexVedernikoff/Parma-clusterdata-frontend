@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { YCSelect } from '@parma-data-ui/common/src';
+import { YCSelect } from '@kamatech-data-ui/common/src';
 
 import withWrap from '../withWrap/withWrap';
 
 import { ELEMENT_TYPE } from '../constants';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 const ITEMS = [
   {

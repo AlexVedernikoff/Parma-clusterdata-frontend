@@ -7,18 +7,18 @@ import { connect } from 'react-redux';
 
 import { TextInput } from 'lego-on-react';
 
-import { Dialog, Icon } from '@parma-data-ui/common/src';
+import { Dialog, Icon } from '@kamatech-data-ui/common/src';
 
 import { getCurrentPageTabs, isDialogVisible } from '../../../store/selectors/dash';
 import { closeDialog, setTabs } from '../../../store/actions/dash';
 import { DIALOG_TYPE } from '../../../modules/constants/constants';
 import DragSortable from '../../../components/DragSortable/DragSortable';
 
-import iconPreviewClose from '@parma-data-ui/clusterdata/src/icons/preview-close.svg';
-import iconPencil from '@parma-data-ui/clusterdata/src/icons/pencil.svg';
-import iconPlus from '@parma-data-ui/clusterdata/src/icons/plus.svg';
+import iconPreviewClose from '@kamatech-data-ui/clusterdata/src/icons/preview-close.svg';
+import iconPencil from '@kamatech-data-ui/clusterdata/src/icons/pencil.svg';
+import iconPlus from '@kamatech-data-ui/clusterdata/src/icons/plus.svg';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './Tabs.scss';
 

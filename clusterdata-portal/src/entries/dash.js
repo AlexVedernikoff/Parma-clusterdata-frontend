@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import moment from 'moment';
-import { I18n, Utils } from '@parma-data-ui/clusterdata';
+import { I18n, Utils } from '@kamatech-data-ui/clusterdata';
 import App from '../components/App/App';
 import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Link } from 'lego-on-react';
-import { I18n, PathSelect } from '@parma-data-ui/clusterdata';
+import { I18n, PathSelect } from '@kamatech-data-ui/clusterdata';
 import Title from '../../subcomponents/Title/Title';
 import Caption from '../../subcomponents/Caption/Caption';
 import InputField from '../../subcomponents/InputField/InputField';

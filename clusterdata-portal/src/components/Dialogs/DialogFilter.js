@@ -3,12 +3,12 @@ import block from 'bem-cn-lite';
 
 import { Select, TextInput, Button } from 'lego-on-react';
 
-import { Loader } from '@parma-data-ui/common/src';
+import { Loader } from '@kamatech-data-ui/common/src';
 
-import Datepicker from '@parma-data-ui/common/src/components/Datepicker';
+import Datepicker from '@kamatech-data-ui/common/src/components/Datepicker';
 
-import Icon from '@parma-data-ui/common/src/components/Icon/Icon';
-import Dialog from '@parma-data-ui/common/src/components/Dialog/Dialog';
+import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
+import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 
 import SearchInput from '../SearchInput/SearchInput';
 
@@ -25,7 +25,7 @@ import {
 
 import { getIconForCast } from '../../utils/helpers';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 const b = block('dialog-filter');
 

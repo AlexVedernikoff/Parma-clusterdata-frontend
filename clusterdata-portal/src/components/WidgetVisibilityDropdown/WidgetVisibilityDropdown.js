@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import iconOpenEye from '@parma-data-ui/clusterdata/src/icons/open-eye.svg';
-import iconCloseEye from '@parma-data-ui/clusterdata/src/icons/close-eye.svg';
+import iconOpenEye from '@kamatech-data-ui/clusterdata/src/icons/open-eye.svg';
+import iconCloseEye from '@kamatech-data-ui/clusterdata/src/icons/close-eye.svg';
 import { Button, Menu, Dropdown, Popup } from 'lego-on-react';
-import { i18n } from '@parma-data-ui/clusterdata';
-import { Icon } from '@parma-data-ui/common/src';
+import { i18n } from '@kamatech-data-ui/clusterdata';
+import { Icon } from '@kamatech-data-ui/common/src';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 
 const b = block('widget-visibility-dropdown');

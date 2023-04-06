@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { Button, Popup } from 'lego-on-react';
-import { I18n, NavigationMinimal } from '@parma-data-ui/clusterdata';
+import { I18n, NavigationMinimal } from '@kamatech-data-ui/clusterdata';
 
-import { PLACE, QUICK_ITEMS } from '@parma-data-ui/clusterdata/src/components/Navigation/constants';
+import { PLACE, QUICK_ITEMS } from '@kamatech-data-ui/clusterdata/src/components/Navigation/constants';
 import PropTypes from 'prop-types';
 
 const i18n = I18n.keyset('dataset.dataset-creation.create');

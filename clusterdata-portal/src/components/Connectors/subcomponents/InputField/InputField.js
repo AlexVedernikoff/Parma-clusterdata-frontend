@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { TextInput } from 'lego-on-react';
-import { FieldWrapper } from '@parma-data-ui/common/src';
+import { FieldWrapper } from '@kamatech-data-ui/common/src';
 
 // import './InputField.scss';
 

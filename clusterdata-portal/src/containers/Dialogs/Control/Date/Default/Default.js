@@ -5,9 +5,9 @@ import moment from 'moment';
 import cloneDeep from 'lodash/cloneDeep';
 
 import { RadioBox, TextInput } from 'lego-on-react';
-import { Datepicker, YCSelect } from '@parma-data-ui/common/src';
+import { Datepicker, YCSelect } from '@kamatech-data-ui/common/src';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 import Dialog from '../../Dialog/Dialog';
 import Button from '../../Switchers/Button';

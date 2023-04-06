@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import _intersection from 'lodash/intersection';
 import { Button } from 'lego-on-react';
-import { I18n, ActionPanel, ErrorContent, ErrorDialog } from '@parma-data-ui/clusterdata';
-import { Types } from '@parma-data-ui/clusterdata/src/components/ErrorContent/ErrorContent';
-import { Loader, Toaster, YCSelect } from '@parma-data-ui/common/src';
+import { I18n, ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clusterdata';
+import { Types } from '@kamatech-data-ui/clusterdata/src/components/ErrorContent/ErrorContent';
+import { Loader, Toaster, YCSelect } from '@kamatech-data-ui/common/src';
 import GeneralConnector from '../../components/Connectors/components/GeneralConnector/GeneralConnector';
 import ChOverYtConnector from '../../components/Connectors/components/ChOverYtConnector/ChOverYtConnector';
 import CsvConnector from '../../components/Connectors/components/CsvConnector/CsvConnector';
@@ -17,7 +17,7 @@ import Utils from '../../helpers/utils';
 import { createConnection, modifyConnection, verifyConnection, uploadCsv, saveCsv } from './actions';
 import { getEmptyFields } from './validator';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
-import { normalizeDestination } from '@parma-data-ui/clusterdata-core-plugins/utils';
+import { normalizeDestination } from '@kamatech-data-ui/clusterdata-core-plugins/utils';
 
 // import './ConnectionPage.scss';
 

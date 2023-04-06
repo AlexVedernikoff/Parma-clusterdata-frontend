@@ -4,8 +4,8 @@ import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 
 import { CheckBox as LegoCheckBox, TextInput as LegoTextInput } from 'lego-on-react';
-import { Dialog } from '@parma-data-ui/common/src';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { Dialog } from '@kamatech-data-ui/common/src';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 import Dataset from './Switchers/Dataset';
 import DatasetField from './Switchers/DatasetField/DatasetField';

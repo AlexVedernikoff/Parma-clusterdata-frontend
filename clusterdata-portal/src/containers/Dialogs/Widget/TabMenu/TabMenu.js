@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import { Icon } from '@parma-data-ui/common/src';
+import { Icon } from '@kamatech-data-ui/common/src';
 
-import iconStar from '@parma-data-ui/clusterdata/src/icons/star.svg';
-import iconPreviewClose from '@parma-data-ui/clusterdata/src/icons/preview-close.svg';
-import iconPlus from '@parma-data-ui/clusterdata/src/icons/plus.svg';
+import iconStar from '@kamatech-data-ui/clusterdata/src/icons/star.svg';
+import iconPreviewClose from '@kamatech-data-ui/clusterdata/src/icons/preview-close.svg';
+import iconPlus from '@kamatech-data-ui/clusterdata/src/icons/plus.svg';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './TabMenu.scss';
 

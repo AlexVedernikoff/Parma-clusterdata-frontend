@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
 import { Button, Spin } from 'lego-on-react';
-import { ErrorContent, EntryDialogues, ActionPanel, i18n, ErrorDialog } from '@parma-data-ui/clusterdata';
-import { Icon } from '@parma-data-ui/common/src';
-import { Types } from '@parma-data-ui/clusterdata/src/components/ErrorContent/ErrorContent';
+import { ErrorContent, EntryDialogues, ActionPanel, i18n, ErrorDialog } from '@kamatech-data-ui/clusterdata';
+import { Icon } from '@kamatech-data-ui/common/src';
+import { Types } from '@kamatech-data-ui/clusterdata/src/components/ErrorContent/ErrorContent';
 
 import DatasetPanel from '../../components/DatasetPanel/DatasetPanel';
 import DatasetTabs from '../../containers/DatasetTabs/DatasetTabs';
@@ -42,10 +42,10 @@ import {
 } from '../../store/reducers/dataset';
 
 // import './Dataset.scss';
-import iconData from '@parma-data-ui/clusterdata/src/icons/data.svg';
+import iconData from '@kamatech-data-ui/clusterdata/src/icons/data.svg';
 import PageHead from '../../components/PageHeader/PageHeader';
 import VerificationModal from '../../components/DataSource/VerificationModal';
-import iconVerificationRules from '@parma-data-ui/clusterdata/src/icons/verification-rules-blue.svg';
+import iconVerificationRules from '@kamatech-data-ui/clusterdata/src/icons/verification-rules-blue.svg';
 
 const b = block('dataset');
 

@@ -5,13 +5,13 @@ import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
+import { Icon } from '@kamatech-data-ui/common/src';
 import { ITEM_TYPE } from '../../modules/constants/constants';
 import { getCurrentPageTabs } from '../../store/selectors/dash';
 import { setPageTab, toggleTableOfContent } from '../../store/actions/dash';
-import iconPreviewClose from '@parma-data-ui/clusterdata/src/icons/preview-close.svg';
-import iconArrowSidebar from '@parma-data-ui/clusterdata/src/icons/arrow-sidebar.svg';
-import { i18n } from '@parma-data-ui/clusterdata';
+import iconPreviewClose from '@kamatech-data-ui/clusterdata/src/icons/preview-close.svg';
+import iconArrowSidebar from '@kamatech-data-ui/clusterdata/src/icons/arrow-sidebar.svg';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import { appendSearchParams } from '../../helpers/QueryParams';
 
 const b = block('table-of-content');

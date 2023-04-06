@@ -1,6 +1,6 @@
 import React from 'react';
 import block from 'bem-cn-lite';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import { Stage } from '../../Stage';
 
 const b = block('progress-bar');

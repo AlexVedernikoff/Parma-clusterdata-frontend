@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { YCSelect } from '@parma-data-ui/common/src';
+import { YCSelect } from '@kamatech-data-ui/common/src';
 import CheckBox from '../Switchers/CheckBox';
 import Acceptable from './Acceptable/Acceptable';
 import Wrapper from '../Wrapper/Wrapper';
 import { SDK } from '../../../../modules/sdk';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import { CONTROL_SOURCE_TYPE } from '../../../../constants/constants';
 
 class Select extends React.PureComponent {

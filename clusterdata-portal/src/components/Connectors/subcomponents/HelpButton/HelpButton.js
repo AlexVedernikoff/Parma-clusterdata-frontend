@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button, Link, Tooltip } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
-import iconBrandedQuestion from '@parma-data-ui/clusterdata/src/icons/branded-question.svg';
+import { Icon } from '@kamatech-data-ui/common/src';
+import iconBrandedQuestion from '@kamatech-data-ui/clusterdata/src/icons/branded-question.svg';
 
 // import './HelpButton.scss';
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Loader, Icon } from '@parma-data-ui/common/src';
+import { Loader, Icon } from '@kamatech-data-ui/common/src';
 
 import DatasetCreation from '../../components/DatasetCreation/DatasetCreation';
 import SelectConnection from '../../containers/SelectConnection/SelectConnection';
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 
 // import './ConnectionSelection.scss';
-import iconFolder from '@parma-data-ui/clusterdata/src/icons/folder-selection.svg';
+import iconFolder from '@kamatech-data-ui/clusterdata/src/icons/folder-selection.svg';
 
 const b = block('connection-selection');
 

@@ -4,19 +4,19 @@ import block from 'bem-cn-lite';
 import moment from 'moment';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
-import { Loader } from '@parma-data-ui/common/src';
-import ChartKitControl from '@parma-data-ui/chartkit/lib/components/Widget/Control/Control';
+import { Loader } from '@kamatech-data-ui/common/src';
+import ChartKitControl from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 import {
   ControlSelect,
   ControlInput,
   ControlDatepicker,
   ControlRangeDatepicker,
-} from '@parma-data-ui/chartkit/lib/components/Widget/Control/Items/Items';
+} from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Items/Items';
 import { prerenderMiddleware } from './prerenderMiddleware';
 import { LOAD_STATUS, CONTROL_SOURCE_TYPE, DATE_FORMAT_DAY } from '../../../../constants/constants';
 import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import { SDK } from '../../../../modules/sdk';
-import { getParamsValue } from '@parma-data-ui/dashkit/src/modules/utils';
+import { getParamsValue } from '@kamatech-data-ui/dashkit/src/modules/utils';
 
 const TYPE = {
   SELECT: 'select',

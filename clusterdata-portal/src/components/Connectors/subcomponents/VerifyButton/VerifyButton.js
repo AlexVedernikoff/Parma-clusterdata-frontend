@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
+import { Icon } from '@kamatech-data-ui/common/src';
 
-import iconOkay from '@parma-data-ui/clusterdata/src/icons/okay.svg';
-import iconError from '@parma-data-ui/clusterdata/src/icons/error.svg';
+import iconOkay from '@kamatech-data-ui/clusterdata/src/icons/okay.svg';
+import iconError from '@kamatech-data-ui/clusterdata/src/icons/error.svg';
 // import './VerifyButton.scss';
 
 const b = block('dl-connector-verify');

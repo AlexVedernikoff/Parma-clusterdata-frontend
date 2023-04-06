@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { DataTypeIconSelector } from '@parma-data-ui/clusterdata';
-import { YCSelect } from '@parma-data-ui/common/src';
+import { DataTypeIconSelector } from '@kamatech-data-ui/clusterdata';
+import { YCSelect } from '@kamatech-data-ui/common/src';
 
 import { getFieldTypeLabel } from '../../constants';
 

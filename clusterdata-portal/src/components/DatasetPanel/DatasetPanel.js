@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button, RadioButton, TextInput } from 'lego-on-react';
-import { i18n } from '@parma-data-ui/clusterdata-i18n';
+import { i18n } from '@kamatech-data-ui/clusterdata-i18n';
 
 // import './DatasetPanel.scss';
 import Utils from '../../helpers/utils';
 import { TAB_DATA, TAB_DATASET, DATASET_TABS } from '../../constants';
-import { Icon } from '@parma-data-ui/common/src';
-import iconPlus from '@parma-data-ui/clusterdata/src/icons/plus.svg';
+import { Icon } from '@kamatech-data-ui/common/src';
+import iconPlus from '@kamatech-data-ui/clusterdata/src/icons/plus.svg';
 
 const b = block('dataset-panel');
 

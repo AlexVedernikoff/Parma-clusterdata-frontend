@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { TextArea } from 'lego-on-react';
-import { Dialog } from '@parma-data-ui/common/src';
+import { Dialog } from '@kamatech-data-ui/common/src';
 
 // import './RLSDialog.scss';
-import { I18n } from '@parma-data-ui/clusterdata-i18n';
+import { I18n } from '@kamatech-data-ui/clusterdata-i18n';
 
 const b = block('rls-dialog');
 

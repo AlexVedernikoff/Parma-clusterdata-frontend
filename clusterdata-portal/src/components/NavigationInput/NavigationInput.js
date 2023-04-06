@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
 import { Button } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
-import { i18n, Utils } from '@parma-data-ui/clusterdata';
+import { Icon } from '@kamatech-data-ui/common/src';
+import { i18n, Utils } from '@kamatech-data-ui/clusterdata';
 
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import DropdownNavigation from '../../containers/DropdownNavigation/DropdownNavigation';
@@ -12,7 +12,7 @@ import InputLink from './InputLink/InputLink';
 
 import { ENTRY_SCOPE, ENTRY_TYPE } from '../../constants/constants';
 
-import iconLink from '@parma-data-ui/clusterdata/src/icons/link.svg';
+import iconLink from '@kamatech-data-ui/clusterdata/src/icons/link.svg';
 
 // import './NavigationInput.scss';
 

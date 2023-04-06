@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
 
 import { Button, Dropdown, Popup, Menu } from 'lego-on-react';
 
-import { NavigationMinimal } from '@parma-data-ui/clusterdata';
+import { NavigationMinimal } from '@kamatech-data-ui/clusterdata';
 
-import FieldEditor from '@parma-data-ui/clusterdata/src/components/FieldEditor/FieldEditor';
+import FieldEditor from '@kamatech-data-ui/clusterdata/src/components/FieldEditor/FieldEditor';
 
-import Icon from '@parma-data-ui/common/src/components/Icon/Icon';
+import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
 import iconCastBoolean from 'icons/cast-boolean.svg';
 import iconCastDate from 'icons/cast-date.svg';
@@ -36,7 +36,7 @@ import { DATASET_ERRORS, ITEM_TYPES } from '../../../constants';
 import DNDContainer from '../../../components/DND/DNDContainer';
 import SearchInput from '../../../components/SearchInput/SearchInput';
 
-import { Loader } from '@parma-data-ui/common/src';
+import { Loader } from '@kamatech-data-ui/common/src';
 
 import {
   selectIsNavigationVisible,
@@ -62,7 +62,7 @@ import { createStructuredSelector } from 'reselect';
 
 import isEqual from 'lodash/isEqual';
 
-import { i18n, CalcModes } from '@parma-data-ui/clusterdata';
+import { i18n, CalcModes } from '@kamatech-data-ui/clusterdata';
 
 // import './SectionDataset.scss';
 

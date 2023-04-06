@@ -3,7 +3,7 @@ import pick from 'lodash/pick';
 import Hashids from 'hashids';
 import { LOCATION_CHANGE } from 'connected-react-router';
 
-import DashKit from '@parma-data-ui/dashkit';
+import DashKit from '@kamatech-data-ui/dashkit';
 
 import * as actionTypes from '../constants/actionTypes';
 import { MODE } from '../../modules/constants/constants';

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import moment from 'moment';
 
-import { Datepicker } from '@parma-data-ui/common/src';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { Datepicker } from '@kamatech-data-ui/common/src';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 import Button from '../../Switchers/Button';
 import Dialog from '../../Dialog/Dialog';

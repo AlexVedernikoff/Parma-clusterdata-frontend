@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 import { Button, Dropdown, Icon as LegoIcon, Menu, Popup, Tooltip } from 'lego-on-react';
-import { ActionPanel, EntryDialogues, i18n } from '@parma-data-ui/clusterdata';
-import { Icon } from '@parma-data-ui/common/src';
+import { ActionPanel, EntryDialogues, i18n } from '@kamatech-data-ui/clusterdata';
+import { Icon } from '@kamatech-data-ui/common/src';
 import ButtonIcon from '../../components/ButtonIcon/ButtonIcon';
 import {
   cancelEditMode,
@@ -19,21 +19,21 @@ import {
 import { canEdit, getCurrentPageTabs, getStyle, isDraft, isEditMode, getCurrentTab } from '../../store/selectors/dash';
 import { DIALOG_TYPE, MODE } from '../../modules/constants/constants';
 import { SDK } from '../../modules/sdk';
-import iconPlus from '@parma-data-ui/clusterdata/src/icons/plus.svg';
-import iconCog from '@parma-data-ui/clusterdata/src/icons/cog.svg';
-import iconEraser from '@parma-data-ui/clusterdata/src/icons/eraser.svg';
-import iconExport from '@parma-data-ui/clusterdata/src/icons/export.svg';
-import iconFilter from '@parma-data-ui/clusterdata/src/icons/filter-blue.svg';
-import { SignalContext } from '@parma-data-ui/dashkit/src/context/SignalContext';
-import { SIGNAL } from '@parma-data-ui/dashkit/src/constants/common';
+import iconPlus from '@kamatech-data-ui/clusterdata/src/icons/plus.svg';
+import iconCog from '@kamatech-data-ui/clusterdata/src/icons/cog.svg';
+import iconEraser from '@kamatech-data-ui/clusterdata/src/icons/eraser.svg';
+import iconExport from '@kamatech-data-ui/clusterdata/src/icons/export.svg';
+import iconFilter from '@kamatech-data-ui/clusterdata/src/icons/filter-blue.svg';
+import { SignalContext } from '@kamatech-data-ui/dashkit/src/context/SignalContext';
+import { SIGNAL } from '@kamatech-data-ui/dashkit/src/constants/common';
 import WidgetVisibilityDropdown from '../../components/WidgetVisibilityDropdown/WidgetVisibilityDropdown';
-import { ExportFormat } from '../../../kamatech_modules/@parma-data-ui/chartkit/lib/modules/export/ExportFormat';
+import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { LAYOUT_ID } from '../../constants/constants';
 import { getLayoutId } from '../../utils/helpers';
 import BrowserPrint from '../BrowserPrint/BrowserPrint';
 import { exportDashboard } from './model/exportDashboard';
-import { Toaster } from '../../../kamatech_modules/@parma-data-ui/common/src';
-import { NOTIFY_TYPES } from '../../../kamatech_modules/@parma-data-ui/clusterdata/src/constants/common';
+import { Toaster } from '../../../kamatech_modules/@kamatech-data-ui/common/src';
+import { NOTIFY_TYPES } from '../../../kamatech_modules/@kamatech-data-ui/clusterdata/src/constants/common';
 import { ExportStatusEnum } from '../../../kamatech_modules/parma-ui/enums/export-status.enum';
 
 const b = block('dash-header');

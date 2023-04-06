@@ -1,4 +1,4 @@
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 import { REQUEST_WIDGET, RECEIVE_WIDGET, RESET_WIDGET } from '../actions';
 

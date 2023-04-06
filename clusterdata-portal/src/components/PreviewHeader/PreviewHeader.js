@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Icon } from '@parma-data-ui/common/src';
+import { Icon } from '@kamatech-data-ui/common/src';
 import { TextInput, Button } from 'lego-on-react';
 import _debounce from 'lodash/debounce';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './PreviewHeader.scss';
 
-import iconPreviewClose from '@parma-data-ui/clusterdata/src/icons/preview-close.svg';
-import iconPreviewBottom from '@parma-data-ui/clusterdata/src/icons/preview-bottom.svg';
-import iconPreviewExpand from '@parma-data-ui/clusterdata/src/icons/preview-expand.svg';
-import iconPreviewSide from '@parma-data-ui/clusterdata/src/icons/preview-side.svg';
+import iconPreviewClose from '@kamatech-data-ui/clusterdata/src/icons/preview-close.svg';
+import iconPreviewBottom from '@kamatech-data-ui/clusterdata/src/icons/preview-bottom.svg';
+import iconPreviewExpand from '@kamatech-data-ui/clusterdata/src/icons/preview-expand.svg';
+import iconPreviewSide from '@kamatech-data-ui/clusterdata/src/icons/preview-side.svg';
 import { changeAmountPreviewRows } from '../../store/reducers/dataset';
 
 const b = block('preview-header');

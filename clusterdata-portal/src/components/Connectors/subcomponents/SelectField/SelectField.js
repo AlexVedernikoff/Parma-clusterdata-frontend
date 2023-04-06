@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { FieldWrapper, YCSelect } from '@parma-data-ui/common/src';
+import { FieldWrapper, YCSelect } from '@kamatech-data-ui/common/src';
 
 // import './SelectField.scss';
 

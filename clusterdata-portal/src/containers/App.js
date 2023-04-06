@@ -7,12 +7,12 @@ import { withRouter, Switch, Route } from 'react-router-dom';
 import Wizard from '../containers/Wizard/Wizard';
 import { Pointerfocus } from 'lego-on-react';
 
-import { Utils, SDK, Header } from '@parma-data-ui/clusterdata';
+import { Utils, SDK, Header } from '@kamatech-data-ui/clusterdata';
 
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
 
-// import '@parma-data-ui/common/src/styles/styles.scss';
+// import '@kamatech-data-ui/common/src/styles/styles.scss';
 
 // import './App.scss';
 

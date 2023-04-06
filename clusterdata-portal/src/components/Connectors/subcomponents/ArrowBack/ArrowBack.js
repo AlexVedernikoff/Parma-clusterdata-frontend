@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
+import { Icon } from '@kamatech-data-ui/common/src';
 
-import iconArrow from '@parma-data-ui/clusterdata/src/icons/arrow-left.svg';
+import iconArrow from '@kamatech-data-ui/clusterdata/src/icons/arrow-left.svg';
 // import './ArrowBack.scss';
 
 const b = block('connector-title-arrow');

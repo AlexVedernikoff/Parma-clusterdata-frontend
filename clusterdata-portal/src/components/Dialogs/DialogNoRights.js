@@ -4,9 +4,9 @@ import React, { PureComponent } from 'react';
 
 import { Button } from 'lego-on-react';
 
-import Dialog from '@parma-data-ui/common/src/components/Dialog/Dialog';
+import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 class DialogNoRights extends PureComponent {
   constructor(props) {

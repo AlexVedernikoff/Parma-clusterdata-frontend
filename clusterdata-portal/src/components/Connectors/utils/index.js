@@ -1,4 +1,4 @@
-import { I18n } from '@parma-data-ui/clusterdata';
+import { I18n } from '@kamatech-data-ui/clusterdata';
 
 const i18n = I18n.keyset('connections.form');
 

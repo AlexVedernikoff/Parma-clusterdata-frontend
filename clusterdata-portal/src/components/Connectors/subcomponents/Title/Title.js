@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Icon } from '@parma-data-ui/common/src';
+import { Icon } from '@kamatech-data-ui/common/src';
 import ArrowBack from '../ArrowBack/ArrowBack';
 import Utils from '../../../../helpers/utils';
 import { getConnectorsMap } from '../../../../constants';

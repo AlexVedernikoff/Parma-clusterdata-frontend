@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header as ClusterDataHeader, Utils } from '@parma-data-ui/clusterdata';
+import { Header as ClusterDataHeader, Utils } from '@kamatech-data-ui/clusterdata';
 import { SDK } from '../../modules/sdk';
 import { IS_INTERNAL } from '../../modules/constants/constants';
 

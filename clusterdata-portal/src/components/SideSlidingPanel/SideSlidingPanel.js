@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
-import { Icon } from '@parma-data-ui/common/src';
-import closeBig from '@parma-data-ui/clusterdata/src/icons/close-big.svg';
+import { Icon } from '@kamatech-data-ui/common/src';
+import closeBig from '@kamatech-data-ui/clusterdata/src/icons/close-big.svg';
 import { Button } from 'lego-on-react';
 import LayoutShadow from '../LayoutShadow/LayoutShadow';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import block from 'bem-cn-lite';
 import { TextInput } from 'lego-on-react';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './MaterializationScheduler.scss';
 

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-import Icon from '@parma-data-ui/common/src/components/Icon/Icon';
+import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
 import { connect } from 'react-redux';
 
-import ChartKit from '@parma-data-ui/clusterdata/src/components/ChartKit/ChartKit';
+import ChartKit from '@kamatech-data-ui/clusterdata/src/components/ChartKit/ChartKit';
 
 import iconFullscreen from 'icons/fullscreen.svg';
 import iconPencil from 'icons/pencil.svg';
 import iconPreviewDatasetError from 'icons/preview-dataset-error.svg';
 
-import { EXPORT, NEW_WINDOW } from '@parma-data-ui/chartkit/lib/extensions/menu-items';
+import { EXPORT, NEW_WINDOW } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
 
 import { selectConfig, selectConfigType, selectPreviewEntryId } from '../../../reducers/preview';
 
@@ -22,7 +22,7 @@ import { setHighchartsWidget } from '../../../actions';
 
 import { createStructuredSelector } from 'reselect';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import { exportWidget } from '../model/exportWidget';
 
 function goAwayLink({ loadedData, propsData }, { extraParams = {}, urlPostfix = '', idPrefix = '' }) {

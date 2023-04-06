@@ -12,7 +12,7 @@ import { load as loadDash, setErrorMode } from '../../store/actions/dash';
 import { isDraft, getEntryTitle, canEdit, isEditMode, getWidgetEditorUUID } from '../../store/selectors/dash';
 import { setWidgetEditorUUID, setWidgetForReloadUUID } from '../../store/actions/dash';
 
-import { i18n, SDK } from '@parma-data-ui/clusterdata';
+import { i18n, SDK } from '@kamatech-data-ui/clusterdata';
 import Wizard from '../Wizard/Wizard';
 import SideSlidingPanel from '../../components/SideSlidingPanel/SideSlidingPanel';
 import ExpandedFilter from '../ExpandedFilter/ExpandedFilter';

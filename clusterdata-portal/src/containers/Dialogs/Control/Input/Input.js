@@ -5,7 +5,7 @@ import TextInput from '../Switchers/TextInput';
 
 import { CONTROL_SOURCE_TYPE } from '../../../../constants/constants';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 function Input(props) {
   return (

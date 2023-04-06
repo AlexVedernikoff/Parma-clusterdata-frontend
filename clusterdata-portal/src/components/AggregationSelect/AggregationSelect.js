@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { YCSelect } from '@parma-data-ui/common/src';
+import { YCSelect } from '@kamatech-data-ui/common/src';
 
 import { getAggregationLabel } from '../../constants';
-import { FieldAggregation } from '../../../kamatech_modules/@parma-data-ui/clusterdata/src/constants/field-aggregation';
+import { FieldAggregation } from '../../../kamatech_modules/@kamatech-data-ui/clusterdata/src/constants/field-aggregation';
 
 // import './AggregationSelect.scss';
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import DataTable from '@parma-data-ui/dt100/lib';
+import DataTable from '@kamatech-data-ui/dt100/lib';
 import { Button, CheckBox, TextInput } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
-import { i18n, CalcModes } from '@parma-data-ui/clusterdata';
+import { Icon } from '@kamatech-data-ui/common/src';
+import { i18n, CalcModes } from '@kamatech-data-ui/clusterdata';
 
 import TypeSelect from '../../components/TypeSelect/TypeSelect';
 import AggregationSelect from '../../components/AggregationSelect/AggregationSelect';
@@ -13,15 +13,15 @@ import { getAggregationLabel, getFieldTypeLabel } from '../../constants';
 
 // import './DatasetTable.scss';
 
-import iconEyeCross from '@parma-data-ui/clusterdata/src/icons/eye-cross.svg';
-import indexIcon from '@parma-data-ui/clusterdata/src/icons/index.svg';
-import arrayIcon from '@parma-data-ui/clusterdata/src/icons/array.svg';
-import iconVersion from '@parma-data-ui/clusterdata/src/icons/version.svg';
-import iconFormula2 from '@parma-data-ui/clusterdata/src/icons/formula2.svg';
-import iconTableCount from '@parma-data-ui/clusterdata/src/icons/table-count.svg';
-import iconAsc from '@parma-data-ui/clusterdata/src/icons/sort-arrow.svg';
-import iconLinkedDataset from '@parma-data-ui/clusterdata/src/icons/linked-dataset.svg';
-import iconVerificationRules from '@parma-data-ui/clusterdata/src/icons/verification-rules.svg';
+import iconEyeCross from '@kamatech-data-ui/clusterdata/src/icons/eye-cross.svg';
+import indexIcon from '@kamatech-data-ui/clusterdata/src/icons/index.svg';
+import arrayIcon from '@kamatech-data-ui/clusterdata/src/icons/array.svg';
+import iconVersion from '@kamatech-data-ui/clusterdata/src/icons/version.svg';
+import iconFormula2 from '@kamatech-data-ui/clusterdata/src/icons/formula2.svg';
+import iconTableCount from '@kamatech-data-ui/clusterdata/src/icons/table-count.svg';
+import iconAsc from '@kamatech-data-ui/clusterdata/src/icons/sort-arrow.svg';
+import iconLinkedDataset from '@kamatech-data-ui/clusterdata/src/icons/linked-dataset.svg';
+import iconVerificationRules from '@kamatech-data-ui/clusterdata/src/icons/verification-rules.svg';
 
 const b = block('dataset-table');
 const rowClass = block('dataset-table')('row');

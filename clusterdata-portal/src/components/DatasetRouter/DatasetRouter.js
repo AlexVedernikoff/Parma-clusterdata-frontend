@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import block from 'bem-cn-lite';
 import PropTypes from 'prop-types';
-import { Header, Utils } from '@parma-data-ui/clusterdata';
+import { Header, Utils } from '@kamatech-data-ui/clusterdata';
 import { Pointerfocus } from 'lego-on-react';
 
 import DatasetPage from '../../containers/DatasetPage/DatasetPage';

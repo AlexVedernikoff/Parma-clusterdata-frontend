@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Utils, Navigation, Header } from '@parma-data-ui/clusterdata';
-import { DL } from '@parma-data-ui/clusterdata/src/constants/common';
+import { Utils, Navigation, Header } from '@kamatech-data-ui/clusterdata';
+import { DL } from '@kamatech-data-ui/clusterdata/src/constants/common';
 
 import { Pointerfocus } from 'lego-on-react';
 

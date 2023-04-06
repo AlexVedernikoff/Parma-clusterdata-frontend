@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Loader } from '@parma-data-ui/common/src';
+import { Loader } from '@kamatech-data-ui/common/src';
 
 // import './LoaderField.scss';
 

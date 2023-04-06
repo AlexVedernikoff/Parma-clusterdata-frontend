@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import { Dialog as CommonDialog } from '@parma-data-ui/common/src';
+import { Dialog as CommonDialog } from '@kamatech-data-ui/common/src';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './Dialog.scss';
 

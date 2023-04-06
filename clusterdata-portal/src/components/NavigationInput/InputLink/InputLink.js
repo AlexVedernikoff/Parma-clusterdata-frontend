@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
 import { TextInput, Button, Tooltip } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
+import { Icon } from '@kamatech-data-ui/common/src';
 
 import { getEntryByIdOrKey } from '../../../helpers/utils-dash';
 
-import iconTick from '@parma-data-ui/clusterdata/src/icons/tick.svg';
-import iconSearchClear from '@parma-data-ui/clusterdata/src/icons/search-clear.svg';
+import iconTick from '@kamatech-data-ui/clusterdata/src/icons/tick.svg';
+import iconSearchClear from '@kamatech-data-ui/clusterdata/src/icons/search-clear.svg';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './InputLink.scss';
 

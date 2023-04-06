@@ -10,7 +10,7 @@ import {
   toggleWidgetVisibility,
 } from '../../store/actions/dash';
 import { Button } from 'lego-on-react';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import DashKit from '../../components/DashKit/DashKit';
 import { getCurrentTab, getHashState } from '../../store/selectors/dash';
 import SideSlidingPanel from '../../components/SideSlidingPanel/SideSlidingPanel';

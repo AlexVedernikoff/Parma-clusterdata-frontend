@@ -1,4 +1,4 @@
-import { DL } from '@parma-data-ui/clusterdata/src/constants/common';
+import { DL } from '@kamatech-data-ui/clusterdata/src/constants/common';
 import { ADMIN_PARTICIPANT, EXECUTE_PARTICIPANT } from '../../constants';
 import Utils from '../../helpers/utils';
 

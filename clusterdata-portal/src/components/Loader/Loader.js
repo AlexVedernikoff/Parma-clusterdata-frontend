@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import { Loader as CommonLoader } from '@parma-data-ui/common/src';
+import { Loader as CommonLoader } from '@kamatech-data-ui/common/src';
 
 // import './Loader.scss';
 

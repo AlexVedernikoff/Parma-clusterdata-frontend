@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Dialog, Loader } from '@parma-data-ui/common/src';
+import { Dialog, Loader } from '@kamatech-data-ui/common/src';
 import { RadioBox } from 'lego-on-react';
-import { ErrorDialog, i18n } from '@parma-data-ui/clusterdata';
-import Toaster from '@parma-data-ui/common/src/components/Toaster';
+import { ErrorDialog, i18n } from '@kamatech-data-ui/clusterdata';
+import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 import { ConnectionInfo, DataSourceButton, MaterializationScheduler, Status } from './components';

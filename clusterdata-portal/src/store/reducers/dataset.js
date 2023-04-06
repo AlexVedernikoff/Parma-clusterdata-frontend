@@ -2,7 +2,7 @@ import React from 'react';
 import Utils from '../../helpers/utils';
 import _debounce from 'lodash/debounce';
 import _isEqual from 'lodash/isEqual';
-import { DatasetSDK, i18n } from '@parma-data-ui/clusterdata';
+import { DatasetSDK, i18n } from '@kamatech-data-ui/clusterdata';
 
 import DatasetFieldErrors from '../../components/DatasetFieldErrors/DatasetFieldErrors';
 
@@ -30,7 +30,7 @@ import {
   TOGGLE_HISTORY,
   CHANGE_AMOUNT_HISTORY_ROWS,
 } from '../../actions/dataset';
-import { CalcModes } from '../../../kamatech_modules/@parma-data-ui/clusterdata';
+import { CalcModes } from '../../../kamatech_modules/@kamatech-data-ui/clusterdata';
 
 function getMessageText() {
   return {

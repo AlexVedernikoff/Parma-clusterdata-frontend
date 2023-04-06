@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import DataTable from '@parma-data-ui/dt100/lib';
+import DataTable from '@kamatech-data-ui/dt100/lib';
 import ContainerLoader from './../ContainerLoader/ContainerLoader';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 const b = block('preview-table');
 

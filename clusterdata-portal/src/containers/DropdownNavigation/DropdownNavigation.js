@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 import { Button, Icon } from 'lego-on-react';
-import { NavigationMinimal, EntryTitle, i18n } from '@parma-data-ui/clusterdata';
+import { NavigationMinimal, EntryTitle, i18n } from '@kamatech-data-ui/clusterdata';
 import Loader from '../../components/Loader/Loader';
 import { SDK } from '../../modules/sdk';
 import { getPersonalFolderPath, getNavigationPathFromKey } from '../../helpers/utils-dash';

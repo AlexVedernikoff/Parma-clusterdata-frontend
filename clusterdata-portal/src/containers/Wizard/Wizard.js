@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import Icon from '@parma-data-ui/common/src/components/Icon/Icon';
+import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
 import iconFullscreen from 'icons/fullscreen.svg';
 import iconDisclose from 'icons/disclose.svg';
@@ -16,9 +16,9 @@ import iconLock from 'icons/lock.svg';
 
 import { Button, Dropdown, Popup, Menu } from 'lego-on-react';
 
-import { ErrorContent, EntryDialogues, ActionPanel } from '@parma-data-ui/clusterdata';
+import { ErrorContent, EntryDialogues, ActionPanel } from '@kamatech-data-ui/clusterdata';
 
-import Toaster from '@parma-data-ui/common/src/components/Toaster';
+import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import SectionDataset from './SectionDataset/SectionDataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
@@ -26,7 +26,7 @@ import SectionPreview from './SectionPreview/SectionPreview';
 
 import DialogNoRights from '../../components/Dialogs/DialogNoRights';
 
-import { Loader } from '@parma-data-ui/common/src';
+import { Loader } from '@kamatech-data-ui/common/src';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -42,7 +42,7 @@ import { selectConfig, selectConfigType, selectHighchartsWidget, selectPreviewHa
 
 import { fetchWidget, setDefaults, toggleFullscreen, requestUpdateWidget, receiveWidget } from '../../actions';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 import PageHead from '../../components/PageHeader/PageHeader';
 

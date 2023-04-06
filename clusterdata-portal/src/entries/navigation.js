@@ -5,14 +5,14 @@ import { Provider } from 'react-redux';
 import moment from 'moment';
 import { AppContainer } from 'react-hot-loader';
 import configureStore from 'store/configureStore';
-import { SDK, I18n, Utils } from '@parma-data-ui/clusterdata';
+import { SDK, I18n, Utils } from '@kamatech-data-ui/clusterdata';
 I18n.registerKeysets(window.DL_I18N);
 
 import NavigationPage from '../containers/NavigationPage/NavigationPage';
 
 /*
-import '@parma-data-ui/common/src/styles/styles.scss';
-import '@parma-data-ui/clusterdata/src/styles/variables.scss';
+import '@kamatech-data-ui/common/src/styles/styles.scss';
+import '@kamatech-data-ui/clusterdata/src/styles/variables.scss';
 import '../styles/variables.scss';
 */
 

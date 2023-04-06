@@ -16,7 +16,7 @@ import {
   toggleVisibilityPreview,
 } from '../../store/reducers/dataset';
 import { DATASET_TABS } from '../../constants';
-import { i18n } from '../../../kamatech_modules/@parma-data-ui/clusterdata';
+import { i18n } from '../../../kamatech_modules/@kamatech-data-ui/clusterdata';
 import { ResizerType } from '../../constants/ResizerType';
 
 // import './DatasetPreview.scss';

@@ -4,15 +4,15 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import moment from 'moment';
 import configureStore from 'store/configureStore';
-import Toaster from '@parma-data-ui/common/src/components/Toaster';
-import { SDK, I18n, Utils } from '@parma-data-ui/clusterdata';
+import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
+import { SDK, I18n, Utils } from '@kamatech-data-ui/clusterdata';
 I18n.registerKeysets(window.DL_I18N);
 
 import ConnectionsRouter from '../components/ConnectionsRouter/ConnectionsRouter';
 
 /*
-import '@parma-data-ui/common/src/styles/styles.scss';
-import '@parma-data-ui/clusterdata/src/styles/variables.scss';
+import '@kamatech-data-ui/common/src/styles/styles.scss';
+import '@kamatech-data-ui/clusterdata/src/styles/variables.scss';
 import '../styles/variables.scss';
 */
 

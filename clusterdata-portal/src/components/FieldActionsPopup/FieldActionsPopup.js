@@ -2,12 +2,12 @@ import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button, Menu, Popup } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
-import { i18n } from '@parma-data-ui/clusterdata';
+import { Icon } from '@kamatech-data-ui/common/src';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './FieldActionsPopup.scss';
 
-import iconMore from '@parma-data-ui/clusterdata/src/icons/more.svg';
+import iconMore from '@kamatech-data-ui/clusterdata/src/icons/more.svg';
 
 const b = block('field-actions-popup');
 

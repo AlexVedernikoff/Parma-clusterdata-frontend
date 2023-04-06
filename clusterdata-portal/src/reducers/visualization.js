@@ -22,7 +22,7 @@ import {
   UPDATE_FILTER,
   SET_ORDER_BY,
 } from '../actions';
-import { NULL_ALIAS_DEFAULT_VALUE } from '../../kamatech_modules/@parma-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
+import { NULL_ALIAS_DEFAULT_VALUE } from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
 // Reducers
 

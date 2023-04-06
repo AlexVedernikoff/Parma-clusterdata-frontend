@@ -4,13 +4,13 @@ import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 
 import { TextArea } from 'lego-on-react';
-import { Dialog, FieldWrapper } from '@parma-data-ui/common/src';
+import { Dialog, FieldWrapper } from '@kamatech-data-ui/common/src';
 
 import { DIALOG_TYPE } from '../../../modules/constants/constants';
 import { isDialogVisible, getOpenedItemData } from '../../../store/selectors/dash';
 import { closeDialog, setItemData } from '../../../store/actions/dash';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 
 // import './Text.scss';
 

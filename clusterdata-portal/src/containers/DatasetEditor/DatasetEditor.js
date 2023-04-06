@@ -6,7 +6,7 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import FieldEditor from '@parma-data-ui/clusterdata/src/components/FieldEditor/FieldEditor';
+import FieldEditor from '@kamatech-data-ui/clusterdata/src/components/FieldEditor/FieldEditor';
 import DatasetTable from '../../components/DatasetTable/DatasetTable';
 import RLSDialog from '../../components/RLSDialog/RLSDialog';
 import Utils from '../../helpers/utils';

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import mergeWith from 'lodash/mergeWith';
 
 import { TextArea, TextInput, Tooltip, Button } from 'lego-on-react';
-import { Dialog, Icon } from '@parma-data-ui/common/src';
+import { Dialog, Icon } from '@kamatech-data-ui/common/src';
 
 import TabMenu from './TabMenu/TabMenu';
 import NavigationInput from '../../../components/NavigationInput/NavigationInput';
@@ -17,10 +17,10 @@ import { DIALOG_TYPE, IS_INTERNAL } from '../../../modules/constants/constants';
 import { closeDialog, setItemData } from '../../../store/actions/dash';
 import { ENTRY_TYPE } from '../../../constants/constants';
 
-import iconPlus from '@parma-data-ui/clusterdata/src/icons/plus.svg';
-import iconPreviewClose from '@parma-data-ui/clusterdata/src/icons/preview-close.svg';
+import iconPlus from '@kamatech-data-ui/clusterdata/src/icons/plus.svg';
+import iconPreviewClose from '@kamatech-data-ui/clusterdata/src/icons/preview-close.svg';
 
-import { i18n } from '@parma-data-ui/clusterdata';
+import { i18n } from '@kamatech-data-ui/clusterdata';
 import CheckBox from '../Control/Switchers/CheckBox';
 
 // import './Widget.scss';

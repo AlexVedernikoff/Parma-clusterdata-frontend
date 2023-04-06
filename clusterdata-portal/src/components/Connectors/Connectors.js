@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import block from 'bem-cn-lite';
 import { Button, TextInput } from 'lego-on-react';
-import { Icon } from '@parma-data-ui/common/src';
-import { i18n, ActionPanel } from '@parma-data-ui/clusterdata';
+import { Icon } from '@kamatech-data-ui/common/src';
+import { i18n, ActionPanel } from '@kamatech-data-ui/clusterdata';
 import Utils from './../../helpers/utils';
 import { getConnectorsMap, getFakeEntry } from '../../constants';
 
