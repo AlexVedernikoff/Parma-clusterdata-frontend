@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    library: 'kamatech-ui-core',
+    library: 'parma-ui-core',
     libraryTarget: 'umd',
   },
   devtool: 'none',

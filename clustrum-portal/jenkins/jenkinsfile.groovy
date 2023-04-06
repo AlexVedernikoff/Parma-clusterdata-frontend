@@ -10,15 +10,15 @@ env.NODE_NAME = 'clusterdata-web.parmalogica.ru'
 env.SERVER_NAME = 'clusterdata-web.parmalogica.ru'
 
 /** Имя пользователя, под которым заходим на удалённую машину по SSH */
-env.USER_NAME = 'clustrum'
+env.USER_NAME = 'clusterdata'
 
 /** Пароль пользователя для входа на сервер по SSH */
 env.SSH_PASSWORD = "dZU-8Nw-YMS-sDM"
 
 /** Наименование сервиса (будет использоваться для наименования папок и файлов) */
-env.SERVICE_NAME = 'clustrum-portal'
-env.PARMA_UI_CORE = 'kamatech-ui-core'
-env.PARMA_UI_REACT = 'kamatech-ui-react'
+env.SERVICE_NAME = 'clusterdata-portal'
+env.PARMA_UI_CORE = 'parma-ui-core'
+env.PARMA_UI_REACT = 'parma-ui-react'
 
 node("${env.NODE_NAME}") {
   /**
