@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=yes,width=device-width" />
+    <meta name="csrf-token" content="9f9a3cb1257844ccd0aff0a057fdedbdc66dc844:1563181848" />
+
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <script>
+      const dotenv = JSON.parse('<%= dotenv %>');
+
+      window.DL = {
+        env: 'development',
+        appEnv: 'development',
+        dotenv: dotenv,
+        installationType: 'external',
+        hideHeader: true,
+        hideSubHeader:
+          '<%= hideSubHeader  %>' === 'true' ||
+          (searchParams = new URL(window.location.href).searchParams.get('hide-header-btns') === 'true'),
+        hideTabs:
+          '<%= hideTabs  %>' === 'true' ||
+          (searchParams = new URL(window.location.href).searchParams.get('hide-tabs') === 'true'),
+        hideEdit:
+          '<%= hideEdit  %>' === 'true' ||
+          (searchParams = new URL(window.location.href).searchParams.get('hide-edit') === 'true'),
+        enableCaching:
+          '<%= enableCaching  %>' === 'true' ||
+          (searchParams = new URL(window.location.href).searchParams.get('enable-caching') === 'true'),
+        cacheMode: '<%= cacheMode  %>' || (searchParams = new URL(window.location.href).searchParams.get('cache-mode')),
+        exportMode: '<%= exportMode  %>' || (searchParams = new URL(window.location.href).searchParams.get('export-mode')),
+        user: {
+          lang: 'ru',
+          login: null,
+          uid: '38832482',
+          avatarHost: '',
+          passportHost: '',
+          name: 'evg-shcherbakov',
+          avatarId: '0/0-0',
+        },
+        currentCloudFolderId: 'b1gv7h11svmfudripdnc',
+        clouds: [],
+        title: dotenv.SYSTEM_TITLE,
+        endpoints: {
+          charts: '<%= htmlWebpackPlugin.options.biHost %>',
+          connections: '<%= htmlWebpackPlugin.options.portalHost %>/connections',
+          favorites: '<%= htmlWebpackPlugin.options.portalHost %>/favorites',
+          dash: '<%= htmlWebpackPlugin.options.portalHost %>/dashboards',
+          dataset: '<%= htmlWebpackPlugin.options.portalHost %>/datasets',
+          docsSyntax: '',
+          extPassportOAuth: '',
+          gateway: '<%= htmlWebpackPlugin.options.biHost %>',
+          navigation: '<%= htmlWebpackPlugin.options.portalHost %>/navigation',
+          support: '',
+          uploader: '',
+          widgets: '<%= htmlWebpackPlugin.options.portalHost %>/widgets',
+          wizard: '<%= htmlWebpackPlugin.options.portalHost %>/wizard',
+          card: '<%= htmlWebpackPlugin.options.portalHost %>/card',
+          dashboards_in_folder: '<%= htmlWebpackPlugin.options.portalHost %>/dashboards_in_folder',
+          datasets_in_folder: '<%= htmlWebpackPlugin.options.portalHost %>/datasets_in_folder',
+          widgets_in_folder: '<%= htmlWebpackPlugin.options.portalHost %>/widgets_in_folder',
+          connections_in_folder: '<%= htmlWebpackPlugin.options.portalHost %>/connections_in_folder',
+          export: '<%= htmlWebpackPlugin.options.biHost %>/export',
+          exportPdf: '<%= htmlWebpackPlugin.options.exportHost %>/export',
+        },
+        features: {
+          logoText: dotenv.SYSTEM_TITLE,
+          toggleTheme: true,
+          dataset: {
+            appMetricaEnabled: false,
+          },
+        },
+        chartkit: {
+          chartsEndpoint: '',
+          lang: 'ru',
+          config: false,
+        },
+        menu: {
+          currentGroup: 'clustrum',
+          common: [],
+          groups: [
+            {
+              name: 'clustrum',
+              title: dotenv.SYSTEM_TITLE,
+              items: [
+                {
+                  icon: 'folder',
+                  name: 'files',
+                  title: 'Все объекты',
+                  url: '/navigation',
+                },
+                {
+                  icon: 'favorites',
+                  name: 'favorites',
+                  title: 'Избранное',
+                  url: '/favorites',
+                },
+                {
+                  icon: 'connections',
+                  name: 'connections',
+                  title: 'Подключения',
+                  url: '/connections',
+                },
+                {
+                  icon: 'datasets',
+                  name: 'datasets',
+                  title: 'Наборы данных',
+                  url: '/datasets',
+                },
+                {
+                  icon: 'widgets',
+                  name: 'widgets',
+                  title: 'Диаграммы',
+                  url: '/widgets',
+                },
+                {
+                  icon: 'dashboards',
+                  name: 'dashboards',
+                  title: 'Аналитические панели',
+                  url: '/dashboards',
+                },
+              ],
+            },
+          ],
+        },
+        metrikaOAuthClientId: '4f802221a95340dd9417c04bc30606b5',
+      };
+
+    document.title = window.DL.title;
+
+    window.DL_I18N = {
+      wizard: {
+        'button_access-rights': 'Запросить права',
+        button_apply: 'Применить',
+        'button_apply-filter': 'Применить фильтр',
+        button_cancel: 'Отменить',
+        'button_choose-dataset': 'Выберите датасет',
+        'button_choose-visualization': 'Выберите тип чарта',
+        button_clear: 'Очистить',
+        'button_copy-link': 'Копировать ссылку',
+        button_duplicate: 'Дублировать',
+        button_edit: 'Редактировать',
+        button_remove: 'Удалить',
+        button_retry: 'Повторить',
+        button_save: 'Сохранить',
+        'button_save-as': 'Сохранить как',
+        button_select: 'Выбрать',
+        'button_select-all': 'Выбрать все',
+        'button_to-dataset': 'Перейти к датасету',
+        'button_toggle-fullscreen': 'На весь экран',
+        diagram_magnitude: 'Единицы измерения диаграммы',
+        field_search: 'Поиск',
+        'label_add-value': 'Добавить значение',
+        'label_chartkit-menu-open-in-new-tab': 'Открыть в новой вкладке',
+        'label_choose-from-list': 'Выбрать значение из списка',
+        'label_choose-visualization-type': 'Тип чарта',
+        'label_dataset-blank': 'Для начала работы выберите датасет',
+        'label_enter-manualy': 'Ввести значение вручную',
+        'label_error-dataset-no-access-rights': 'У вас нет доступа к датасету',
+        'label_error-dataset-not-found': 'Набор данных не найден',
+        'label_error-dataset-server-error': 'Ошибка: не удалось загрузить датасет',
+        'label_error-dataset-unknown-error': 'Ошибка: не удалось загрузить датасет',
+        'label_error-loading-filter-values': 'Ошибка: не удалось загрузить значения для фильтра',
+        'label_error-remove-field': 'Ошибка: нельзя удалить поле, используемое в формуле',
+        'label_error-widget-no-access': 'Нет доступа к чарту',
+        'label_error-widget-not-found': 'Диаграмма не найдена',
+        'label_error-widget-unknown-error': 'Произошла ошибка',
+        'label_field-has-wrong-type': 'Поле имеет недопустимый тип',
+        'label_field-not-exist': 'Поле отсутствует в датасете',
+        'label_invalid-name': 'Диаграмма с таким именем уже существует',
+        'label_items-available': 'Доступны',
+        'label_items-selected': 'Выбраны',
+        'label_message-link-copied': 'Ссылка скопирована',
+        'label_new-widget': 'Новая диаграмма',
+        'label_no-rights-text':
+          'Диаграмма доступен в режиме «Только для чтения». Запросите права на редактирование  или сохраните изменения новым чартом',
+        'label_no-rights-title': 'Нет прав для редактирования',
+        label_operation: 'Операция',
+        'label_operation-contains': 'Содержит',
+        'label_operation-endswith': 'Заканчивается на',
+        'label_operation-equals': 'Равно',
+        'label_operation-gt': 'Больше',
+        'label_operation-gte': 'Больше или равно',
+        'label_operation-in': 'Принадлежит множеству',
+        'label_operation-date-in': 'Принадлежит диапазону',
+        'label_operation-is-not-null': 'Не пусто и определено',
+        'label_operation-is-null': 'Пусто или не определено',
+        'label_operation-lt': 'Меньше',
+        'label_operation-lte': 'Меньше или равно',
+        'label_operation-nequals': 'Не равно',
+        'label_operation-nin': 'Не принадлежит множеству',
+        'label_operation-startswith': 'Начинается на',
+        'label_preview-dataset-error': 'Невозможно отобразить график',
+        'label_save-widget': 'Сохранить чарт',
+        'label_time-interval': 'Временной интервал',
+        label_value: 'Значение',
+        'label_visualization-area': 'Диаграмма с областями',
+        'label_visualization-area-100p': '100% диаграмма с областями',
+        'label_visualization-column': 'Столбчатая диаграмма',
+        'label_visualization-column-100p': '100% cтолбчатая диаграмма',
+        'label_visualization-flat-table': 'Таблица',
+        'label_visualization-line': 'Линейная диаграмма',
+        'label_visualization-pie': 'Круговая диаграмма',
+        'label_visualization-pivot-table': 'Сводная таблица',
+        map: 'Карта',
+        heatmap: 'Фоновая карта',
+        map_cluster_focus_point: 'Карта очагов по кластеризации',
+        label_visualization_card: 'Карточка объекта',
+        map_cluster: 'Карта кластеров',
+        map_cluster_point: 'Карта кластеризации по координатам',
+        focusmap: 'Карта очагов',
+        'label_visualization-scatter': 'Точечная  диаграмма',
+        'label_visualization-treemap': 'Древовидная диаграмма',
+        'label_visualization-types-all': 'Все',
+        'label_visualization-types-column': 'Столбчатые',
+        'label_visualization-types-line': 'Графики',
+        'label_visualization-types-pie': 'Круговые',
+        'label_visualization-types-table': 'Таблицы',
+        'label_limit-message': 'Значений больше 1000, ограничьте значения',
+        section_colors: 'Цвета',
+        section_columns: 'Столбцы',
+        section_dimensions: 'Измерения',
+        section_filters: 'Фильтры',
+        section_measures: 'Показатели',
+        additional_measure: 'Дополнительные показатели',
+        signatures: 'Подписи',
+        additional_data: 'Сопроводительные данные',
+        map_color: 'Цвет',
+        focus_count: 'Количественные показатели',
+        array_join: 'Связываение по полю-массив',
+        array_last_item_join: 'Связываение по последнему полю массива',
+        map_size: 'Размер',
+        tooltip_measure: 'Подписи',
+        drill_down_measure: 'Поле DrillDown',
+        drill_down_filter: 'Фильтр для детализации',
+        section_measures_map_cluster: 'Измерение',
+        administrative_divisions: 'Административные деления',
+        section_measures_heatmap_district: 'Указатель районов',
+        section_measures_heatmap_county: 'Указатель округов',
+        section_measures_heatmap: 'Показатель значения',
+        section_geopolygon: 'Геополигон',
+        section_latitudes: 'Широта',
+        section_longitudes: 'Долгота',
+        focus_distance: 'Расстояние расчета фокуса',
+        focus_point_from: 'Указатели начальных точек',
+        focus_point_to: 'Указатели конечных точек',
+        section_points: 'Точки',
+        section_rows: 'Строки',
+        section_size: 'Размер',
+        section_sort: 'Сортировка',
+        section_coord: 'Система координат',
+        section_title_layer: 'Адрес топосновы',
+        section_cluster_precision: 'Точность кластера',
+        nullAlias: 'Подпись для пустых данных',
+        summary: 'Строка итоговых значений',
+        summaryControl: 'Показывать строку итоговых значений',
+        uniqueRowsControl: 'Показывать только уникальные строки',
+        section_x: 'X',
+        section_y: 'Y',
+        map_opacity: 'Прозрачность карты',
+        label_visualization_indicator: 'Индикатор',
+        label_visualization_multiline: 'График',
+        label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
+        section_plan: 'План',
+        section_fact: 'Факт',
+        export_limit: 'Лимит экспортируемых записей'
+      },
+      'wizard.null-alias': {
+        'null': 'Без подписи',
+        'empty': 'Пустая строка " "',
+        'dash': '"—"',
+        'no-data': '"Нет данных"',
+        'undefined': '"Не указано"',
+        'zero': 'Значение "0"'
+      },
+      'dataset.dataset-editor.modify': {
+        value_boolean: 'Логический',
+        value_date: 'Дата',
+        value_datetime: 'Дата и время',
+        value_timestamp: 'Отметка времени',
+        value_float: 'Дробное число',
+        value_double: 'Дробное число (64)',
+        value_integer: 'Целое число',
+        value_long: "Целое число (64)",
+        value_string: 'Строка',
+        value_auto: 'Авто',
+        value_geopoint: 'Геоточка',
+        value_geopolygon: 'Геополигон',
+        value_none: 'Нет',
+        value_count: 'Количество',
+        value_countunique: 'Количество уникальных',
+        value_uniquearray: 'Массив уникальных',
+        value_max: 'Максимум',
+        value_min: 'Минимум',
+        value_avg: 'Среднее',
+        value_sum: 'Сумма',
+        value_dataset: 'Набор данных',
+        value_data: 'Данные',
+        'field_display-rows': 'Количество строк:',
+        'field_history-display-rows': 'Количество ревизий:',
+        'field_find-field': 'Имя поля',
+        'field_display-hidden-fields': 'Отображать скрытые поля',
+        button_preview: 'Предпросмотр',
+        button_sync: 'Синхронизировать',
+        button_history: 'Версионность',
+        'button_preview-full': 'На весь экран',
+        'button_preview-bottom': 'Развернуть снизу',
+        'button_preview-right': 'Развернуть справа',
+        'button_preview-close': 'Закрыть',
+        'button_enter-amount-rows': '',
+        'button_add-field': 'Добавить поле',
+        'button_create-widget': 'Создать чарт',
+        button_save: 'Сохранить',
+        button_remove: 'Удалить',
+        'button_row-level-security': 'Права доступа',
+        button_duplicate: 'Продублировать',
+        button_edit: 'Редактировать',
+        'button_open-field-editor': 'Редактировать',
+        'button_hide-field': 'Скрыть поле',
+        'button_display-field': 'Показать поле',
+        'button_has_index-field': 'Имеется индекс',
+        'button_without_index-field': 'Отсутствует индекс',
+        'button_has_version-field': 'Поле используется для версионирования',
+        'button_without_version-field': 'Поле не используется для версионирования',
+        'button_has_verification_rules-field': 'Имеются правила верификации и/или сопоставления',
+        'button_has_array-field': 'Поле-массив',
+        'button_without_array-field': 'Поле-не масив',
+        'button_ask-access-rights': 'Запросить права доступа на датасет',
+        button_apply: 'Применить',
+        button_data: 'Материализация данных',
+        button_verify_data: 'Верификация данных',
+        column_title: 'Имя',
+        column_cast: 'Тип',
+        column_aggregation: 'Агрегация',
+        column_description: 'Описание',
+        'column_field-name': 'Имя',
+        "column_field-source": "Источник поля",
+        'column_field-cast': 'Тип',
+        'column_field-aggregation': 'Агрегация',
+        'column_filed-description': 'Описание',
+        section_preview: 'Предпросмотр',
+        section_history: 'Версионность',
+        'label_max-amount-rows': 'не более 10 000',
+        'label_max-amount-history-rows': 'не более 100',
+        label_field: 'Поле',
+        'label_loading-dataset': 'Загрузка датасета',
+        'label_no-data': 'Нет данных',
+        'label_loading-dataset-preview': 'Загрузка данных для предпросмотра',
+        'label_materialization-preview': 'Загрузка данных для предпросмотра',
+        'label_request-dataset-preview-error': 'Ошибка: не удалось загрузить данные для предпросмотра',
+        'label_request-dataset-history-error': 'Ошибка: не удалось загрузить данные о версионности',
+        'label_preview-not-supported': 'Для данного типа источника предпросмотр не доступен',
+        'label_error-500-title': 'Ошибка: не удалось загрузить датасет',
+        'label_error-500-description': '',
+        'label_error-404-title': 'Ошибка: датасет не найден',
+        'label_error-403-title': 'У вас нет доступа к датасету или к его подключению',
+        'label_error-400-title': 'Ошибка: некорректный запрос к датасету',
+        'label_error-400-description': '',
+        'label_error-400-no-connection-title': 'Ошибка: отсутствует подключение',
+      },
+      'dataset.notifications.view': {
+        'toast_create-dataset-msgs-success': 'Набор данных создан',
+        'toast_create-dataset-msgs-failure': 'Ошибка: не удалось создать датасет',
+        'toast_sync-dataset-msgs-success': 'Набор данных синхронизирован',
+        'toast_sync-dataset-msgs-failure': 'Ошибка: не удалось синхронизировать датасет',
+        'toast_field-duplicated-msgs-success': 'Поле продублировано',
+        'toast_field-duplicated-msgs-failure': '',
+        'toast_field-remove-msgs-success': 'Поле удалено',
+        'toast_field-remove-msgs-failure': '',
+        'toast_dataset-save-msgs-success': 'Набор данных сохранен',
+        'toast_dataset-save-msgs-failure': 'Ошибка: не удалось сохранить датасет',
+        'toast_dataset-fetch-preview-msgs-success': '',
+        'toast_dataset-fetch-preview-msgs-failure': 'Ошибка: не удалось загрузить данные для предпросмотра',
+        'toast_dataset-fetch-history-msgs-success': '',
+        'toast_dataset-fetch-history-msgs-failure': 'Ошибка: не удалось загрузить данные о версионности',
+        'toast_dataset-validation-msgs-success': '',
+        'toast_dataset-validation-msgs-failure': 'Ошибка: датасет не прошел валидацию',
+        'toast_preview-not-supported': 'Для данного типа источника предпросмотр не доступен',
+        'toast_fetch-types-msgs-success': '',
+        'toast_fetch-types-msgs-failure': 'Ошибка: не удалось загрузить типы данных',
+        'toast_fetch-materialization-status-failure': 'Ошибка: не удалось получить статус материализации',
+        'toast_fetch-verification-status-failure': 'Ошибка: не удалось получить статус верификации',
+        'toast_fetch-database-failure': 'Ошибка: не удалось получить список баз данных',
+        'toast_save-data-failure': 'Ошибка: не удалось сохранить',
+        'toast_materialize-dataset-failure': 'Ошибка: не удалось произвести материализацию',
+        'toast_delete-materialization-dataset-failure': 'Ошибка: не удалось удалить материализацию',
+        'toast_clear-verification-dataset-failure': 'Ошибка: не удалось очистить результаты верификации',
+        'toast_verify-dataset-failure': 'Ошибка: не удалось произвести верификацию',
+        'toast_click-connection-more-menu-item-failure': 'Ошибка: не удалось выполнить запрос',
+        'toast_update-dataset-schema-failure': 'Ошибка: не удалось обновить схему',
+        'toast_replace-source-failure': 'Ошибка: не удалось заменить источник',
+        'toast_default-error': 'Ошибка',
+        'toast_error-action-label': 'Подробнее',
+      },
+      'dataset.dataset-history': {
+        'resultSchemaId': 'Идентификатор поля',
+        'resultSchemaTitle': 'Наименование поля',
+        'revisionTime': 'Дата и время изменения',
+        'verificationRulesPrevious': 'Предыдущее значение правил',
+        'verificationRulesCurrent': 'Текущее значение правил',
+      },
+      'dash.connections-dialog.edit': {
+        label_connections: 'Связи',
+        'label_no-information': 'Нет информации',
+        'label_no-connections': 'Нет элементов для связей',
+        label_alias: 'Алиас',
+        'label_alias-influence': 'Связанные виджеты',
+        'label_manage-alias': 'Настройка алиаса',
+        'context_choose-element': 'Выберите элемент',
+        value_connected: 'Связь',
+        value_input: 'Вх. связь',
+        value_output: 'Исх. связь',
+        value_ignore: 'Игнор',
+        value_none: 'Нет связи',
+        button_save: 'Сохранить',
+        button_add: 'Добавить',
+        button_cancel: 'Отменить',
+        'button_remove-alias': 'Удалить',
+      },
+      'dash.text-dialog.edit': {
+        label_text: 'Текст',
+        'context_fill-text': 'Введите текст',
+        'toast_required-field': 'Поле должно быть заполнено',
+        button_add: 'Добавить',
+        button_save: 'Сохранить',
+        button_cancel: 'Отменить',
+      },
+      'dash.title-dialog.edit': {
+        label_title: 'Заголовок',
+        value_default: 'Заголовок',
+        'field_show-in-toc': 'Отображать в оглавлении',
+        'context_fill-title': 'Введите заголовок',
+        'toast_required-field': 'Поле должно быть заполнено',
+        button_add: 'Добавить',
+        button_save: 'Сохранить',
+        button_cancel: 'Отменить',
+      },
+      'dash.tabs-dialog.edit': {
+        label_tabs: 'Вкладки',
+        value_default: 'Вкладка {{index}}',
+        'button_add-tab': 'Добавить',
+        button_save: 'Сохранить',
+        button_cancel: 'Отменить',
+      },
+      'dash.widget-dialog.edit': {
+        label_widget: 'Диаграмма',
+        'label_new-param': 'Новый параметр',
+        'label_empty-list': 'Список пуст',
+        'value_title-default': 'Заголовок {{index}}',
+        field_title: 'Заголовок',
+        field_widget: 'Диаграмма',
+        field_description: 'Описание',
+        field_params: 'Параметры',
+        'field_param-name': 'Имя',
+        'field_param-value': 'Значение',
+        'context_fill-title': 'Введите заголовок',
+        'context_fill-description': 'Введите описание',
+        'toast_required-field': 'Поле должно быть заполнено',
+        button_add: 'Добавить',
+        button_save: 'Сохранить',
+        button_cancel: 'Отменить',
+        'button_add-param': 'Добавить параметр',
+        is_display_only_with_filter: 'Отображать информацию только при примененном фильтре',
+      },
+      'dash.control-dialog.edit': {
+        label_control: 'Фильтр',
+        'label_acceptable-values': 'Возможные значения',
+        'label_default-value': 'Значение по умолчанию',
+        label_params: 'Параметры',
+        'label_empty-list': 'Список пуст',
+        'value_source-dataset': 'На основе датасета',
+        'value_source-manual': 'Ручной ввод',
+        'value_source-external': 'Внешний селектор',
+        'value_date-no-limits': 'Не ограничено',
+        'value_date-accepted-start': 'Начало допустимого интервала',
+        'value_date-accepted-end': 'Конец допустимого интервала',
+        'value_date-accepted-all': 'Весь допустимый интервал',
+        'value_date-relative': 'Выбор значения относительно текущего дня',
+        'value_date-manual': 'Выбор определенного значения из календаря',
+        'value_date-days-ago': 'Дней назад: {{value}}',
+        'value_date-days-ago-from-to': 'Начало, дней назад: {{from}}. Конец, дней назад: {{to}}',
+        'value_date-default-ranges': 'Выбор значения по умолчанию',
+        'value_current_month': 'Текущий месяц',
+        'value_current_quarter': 'Текущий квартал',
+        'value_current_year': 'Текущий год',
+        value_undefined: 'Не определено',
+        'value_not-chosen': 'Не выбрано',
+        'value_select-values': 'Значений: {{count}}',
+        'value_element-select': 'Список',
+        'value_element-date': 'Календарь',
+        'value_element-input': 'Поле ввода',
+        field_dataset: 'Набор данных',
+        field_control: 'Фильтр',
+        field_field: 'Поле',
+        'field_field-name': 'Имя поля',
+        'field_element-type': 'Тип элемента',
+        'field_date-from': 'Начало',
+        'field_date-to': 'Конец',
+        'field_date-range': 'Диапазон',
+        'field_acceptable-values': 'Возможные значения',
+        'field_default-value': 'Значение по умолчанию',
+        'field_available-values': 'Доступные значения',
+        'field_show-title': 'Показывать',
+        field_multiselectable: 'Множественный выбор',
+        context_title: 'Заголовок',
+        'context_add-value': 'Добавить значение',
+        context_choose: 'Выбрать',
+        'context_date-days-ago': 'Дней назад',
+        'context_date-from-days-ago': 'Начало, дней назад',
+        'context_date-to-days-ago': 'Конец, дней назад',
+        'toast_required-fields': 'Следующие поля должны быть заполнены: Заголовок, Поле/Имя поля',
+        button_add: 'Добавить',
+        button_save: 'Сохранить',
+        button_apply: 'Применить',
+        button_cancel: 'Отменить',
+        button_setup: 'Настроить',
+        'button_add-key': 'Добавить ключ',
+        'button_add-value': 'Добавить значение',
+      },
+      'dash.navigation-input.edit': {
+        'context_fill-link': 'Ссылка на чарт',
+        'toast_incorrect-url': 'Некорректный URL',
+        toast_error: 'Ошибка',
+        button_choose: 'Выбрать',
+        'button_use-link': 'Указать ссылку',
+      },
+      'dash.table-of-content.view': {
+        'label_table-of-content': 'Оглавление',
+        'context_table-of-content': 'Оглавление',
+      },
+      'dash.error.view': {
+        label_error: 'Ошибка',
+        button_retry: 'Повторить',
+      },
+      'dash.main.view': {
+        label_loading: 'Загрузка',
+        label_updating: 'Обновление',
+        toast_unsaved: 'На странице есть несохраненные изменения. Вы уверены?',
+        widget_editor_title: 'Режим редактирования элемента',
+      },
+      'dash.header.view': {
+        value_title: 'Заголовок',
+        value_text: 'Текст',
+        value_widget: 'Диаграмма',
+        value_control: 'Фильтр',
+        toast_error: 'Произошла ошибка',
+        button_edit: 'Редактировать',
+        button_save: 'Сохранить',
+        button_cancel: 'Отменить',
+        'button_request-rights': 'Запросить права',
+        button_add: 'Добавить',
+        button_tabs: 'Вкладки',
+        button_connections: 'Связи',
+        button_export_pdf: 'Экспорт в PDF',
+        button_clear_filters: 'Сбросить фильтры',
+        widgets_visibility_dropdown: 'Показать или скрыть виджеты',
+        button_expanded_filter_panel: 'Открыть панель расширенных фильтров'
+      },
+      'dash.chartkit-menu.view': {
+        'button_new-tab': 'Открыть в новой вкладке',
+        button_edit: 'Редактировать',
+      },
+      'dash.dashkit-plugin-control.view': {
+        value_undefined: 'Не определено',
+      },
+      'dash.settings-dialog.edit': {
+        label_settings: 'Настройки',
+        label_autoupdate: 'Автообновление',
+        'label_autoupdate-interval': 'Интервал',
+        field_seconds: 'сек.',
+        button_save: 'Сохранить',
+        button_cancel: 'Отменить',
+        theme_select: 'Выбор темы'
+      },
+      'dash.expanded-filter.view': {
+        button_clear: 'Очистить'
+      },
+      'dash.export': {
+        'start_export': 'Экспорт выполняется, ожидайте загрузку файла',
+        'end_export': 'Экспорт выполнен',
+        'export_error': 'Ошибка выполнения экспорта',
+      },
+      'component.entry-context-menu.view': {
+        'value_copy-link': 'Копировать идентификатор',
+      },
+    };
+  </script>
+
+    <script>
+      if (dotenv.HEADER_SCRIPT) {
+        const headerScript = document.createElement('script');
+        headerScript.innerHTML = dotenv.HEADER_SCRIPT;
+        window.document.head.appendChild(headerScript);
+      }
+    </script>
+</head>
+  <body>
+    <style>
+      /*
+      Возвращаем отображения редактирование визардов в дашборде
+
+      .dropdown2.chartkit-menu__button {
+        display: none;
+      }
+      */
+
+      .dashkit-grid-item.react-grid-item {
+        touch-action: auto !important;
+      }
+
+      .dl-entry-panel__entry-title {
+        color: #092040;
+        margin: 0;
+        max-width: initial;
+      }
+
+      .dl-entry-panel__entry-title-text {
+        font-size: 24px;
+        line-height: 24px;
+        white-space: initial;
+      }
+
+      .dl-entry-panel__entry-actions {
+        display: none;
+      }
+
+      .dash-header__action-panel {
+        position: sticky;
+        top: 0;
+        background: #eff1f5;
+        height: 84px;
+        margin: 0;
+        padding: 14px 24px 0;
+        justify-content: end;
+        border-bottom: none;
+      }
+
+      .dash-header__action-panel_is-view .dash-header__action-right:last-child {
+        margin-right: 0 !important;
+      }
+
+      .dash-tabs {
+        margin: 0;
+      }
+
+      .dash-tab-link {
+        margin-bottom: 16px;
+      }
+
+      .dash-tab-link:only-child {
+        display: none;
+      }
+
+      .widget-visibility-dropdown {
+        min-width: 48px;
+      }
+
+      .widget-visibility-dropdown__btn,
+      .dash-header__action-panel_is-view .dash-header__action-right,
+      .dash-header__action-panel_is-edit .dash-header__action-right_expand-filter-panel,
+      .dash-header__action-panel_is-edit .dash-header__action-right_button-settings {
+        width: 48px;
+        min-width: 48px;
+        height: 48px;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: none;
+        background-color: #fff;
+        box-shadow: 0px 4px 15px rgba(138, 168, 198, 0.15);
+        border-radius: 8px;
+      }
+
+      .dash-header__export-dropdown-button {
+        width: 48px;
+        height: 48px;
+      }
+
+      .widget-visibility-dropdown__btn *,
+      .dash-header__action-panel_is-view .dash-header__action-right *,
+      .dash-header__action-panel_is-edit .dash-header__action-right_expand-filter-panel *,
+      .dash-header__action-panel_is-edit .dash-header__action-right_button-settings * {
+        display: none;
+      }
+
+      .dash-header__action-panel_is-view .dash-header__action-right.button2_hovered_yes:before {
+        content: none;
+      }
+
+      .dash-header__action-panel_is-view .dash-header__action-right_edit,
+      .dash-header__action-panel_is-view .dash-header__action-right_clear-filters,
+      .dash-header__action-panel_is-view .dash-header__action-right_export-pdf,
+      .dash-header__action-panel_is-view .dash-header__action-right_expand-filter-panel,
+      .dash-header__action-panel_is-edit .dash-header__action-right_expand-filter-panel,
+      .dash-header__action-panel_is-edit .dash-header__action-right_button-settings,
+      .dash-header__action-panel_is-view .dash-header__export-dropdown-button {
+        display: block;
+      }
+
+      .dash-header__action-panel_is-view .dash-header__action-right_clear-filters {
+        background-image: url("data:image/svg+xml;utf8,<svg width='23' height='20' viewBox='0 0 23 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M15.0982 0.559419C15.3608 0.596329 15.598 0.73606 15.7576 0.947871L22.1895 9.48328C22.5219 9.92435 22.4338 10.5514 21.9927 10.8837L15.0296 16.1308C15.0196 16.1384 15.0094 16.1458 14.9991 16.153L13.7304 17.036L21.2826 17.036C21.8349 17.036 22.2826 17.4837 22.2827 18.036C22.2827 18.5883 21.8349 19.036 21.2827 19.036L10.8829 19.036C10.8655 19.0369 10.8481 19.0374 10.8306 19.0374L5.54883 19.037C5.2349 19.037 4.9392 18.8895 4.75027 18.6388L0.234082 12.6456C0.0744713 12.4338 0.00553943 12.1673 0.0424512 11.9046C0.079363 11.642 0.219095 11.4048 0.430907 11.2452L5.64809 7.31376L5.64813 7.31381L14.3572 0.751052C14.569 0.59144 14.8355 0.522508 15.0982 0.559419ZM5.89805 9.62967L2.43317 12.2406L6.04677 17.036L10.4812 17.036L11.3401 16.3481L5.89805 9.62967ZM12.9418 15.1481L13.8411 14.5222L19.9905 9.88828L14.7622 2.95014L7.49634 8.42535L12.9418 15.1481Z' fill='%23105DC7'/></svg>");
+      }
+
+      .dash-header__action-panel_is-view .dash-header__action-right_export-pdf {
+        background-image: url("data:image/svg+xml;utf8,<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M10.9958 1C10.9958 0.447715 10.5481 0 9.99585 0C9.44356 0 8.99585 0.447715 8.99585 1V11.5816L6.20711 8.79289C5.81658 8.40237 5.18342 8.40237 4.79289 8.79289C4.40237 9.18342 4.40237 9.81658 4.79289 10.2071L9.23651 14.6507C9.41992 14.8645 9.69206 15 9.99585 15L9.99787 15C10.2545 15.0005 10.5113 14.9029 10.7071 14.7071L15.2071 10.2071C15.5976 9.81658 15.5976 9.18342 15.2071 8.79289C14.8166 8.40237 14.1834 8.40237 13.7929 8.79289L10.9958 11.5899V1Z' fill='%23105DC7'/><path d='M19 9C19.5523 9 20 9.44771 20 10V19C20 19.5523 19.5523 20 19 20H1C0.447715 20 0 19.5523 0 19V10.0042C0 9.45187 0.447715 9.00415 1 9.00415C1.55228 9.00415 2 9.45187 2 10.0042V18H18V10C18 9.44771 18.4477 9 19 9Z' fill='%23105DC7'/></svg>");
+      }
+
+      .dash-header__action-panel_is-view .dash-header__action-right_edit {
+        background-image: url("data:image/svg+xml;utf8,<svg width='21' height='20' viewBox='0 0 21 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M13.8474 1.80815e-08C14.1127 -5.04074e-05 14.3672 0.10537 14.5548 0.293048L18.2073 3.9471C18.5976 4.33759 18.5976 4.97051 18.2073 5.361L7.86586 15.707C7.67831 15.8946 7.42389 16 7.1586 16H3.5C2.94772 16 2.5 15.5523 2.5 15V11.36C2.5 11.0949 2.60519 10.8408 2.79247 10.6533L13.14 0.293317C13.3275 0.105568 13.582 5.04436e-05 13.8474 1.80815e-08ZM13.8478 2.41479L4.5 11.7738V14H6.74426L16.0861 4.65405L13.8478 2.41479ZM0.5 19C0.5 18.4477 0.947715 18 1.5 18H19.5C20.0523 18 20.5 18.4477 20.5 19C20.5 19.5523 20.0523 20 19.5 20H1.5C0.947715 20 0.5 19.5523 0.5 19Z' fill='%23105DC7'/></svg>");
+      }
+
+      .dash-header__action-panel_is-view .dash-header__action-right_expand-filter-panel,
+      .dash-header__action-panel_is-edit .dash-header__action-right_expand-filter-panel {
+        background-image: url("data:image/svg+xml;utf8,<svg width='20' height='19' viewBox='0 0 20 19' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M0.0916106 1.08191C0.254849 0.727233 0.609579 0.5 1.00001 0.5H19C19.3904 0.5 19.7452 0.727233 19.9084 1.08191C20.0717 1.43658 20.0135 1.85382 19.7596 2.15039L12.8 10.2785V18C12.8 18.3457 12.6215 18.6669 12.3278 18.8493C12.0342 19.0318 11.6672 19.0497 11.3572 18.8966L7.75723 17.1189C7.41602 16.9503 7.20001 16.6028 7.20001 16.2222V10.2785L0.240418 2.15039C-0.0135192 1.85382 -0.071628 1.43658 0.0916106 1.08191ZM3.17274 2.5L8.95961 9.25849C9.11475 9.43968 9.20001 9.67036 9.20001 9.90889V15.6008L10.8 16.3909V9.90889C10.8 9.67036 10.8853 9.43968 11.0404 9.25849L16.8273 2.5H3.17274Z' fill='%23105DC7'/></svg>");
+      }
+
+      .dash-header__action-panel_is-edit .dash-header__action-right_button-settings {
+        background-image: url("data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='-1 -2 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M8.05927 0.39769C8.51711 0.27095 9.00093 0.483825 9.21683 0.907002C9.54885 1.55781 10.2237 1.99994 11 1.99994C11.7763 1.99994 12.4512 1.55781 12.7832 0.907002C12.9991 0.483825 13.4829 0.27095 13.9407 0.39769C15.6647 0.874914 17.2174 1.76058 18.4886 2.9426C18.8122 3.24343 18.9 3.72091 18.7046 4.11715C18.5739 4.38222 18.5 4.68103 18.5 4.99994C18.5 6.1045 19.3954 6.99994 20.5 6.99994L20.5278 6.99974C20.9699 6.99342 21.3637 7.27816 21.4961 7.69997C21.8237 8.74295 22 9.8518 22 10.9999C22 11.7577 21.9232 12.4986 21.7767 13.2148C21.6741 13.7166 21.2089 14.0597 20.6992 14.0096C20.6341 14.0032 20.5676 13.9999 20.5 13.9999C19.3954 13.9999 18.5 14.8954 18.5 15.9999C18.5 16.4919 18.6763 16.94 18.9704 17.2885C19.3006 17.68 19.2818 18.2577 18.9266 18.6268C17.6286 19.9756 15.9882 20.9947 14.1434 21.544C13.6216 21.6993 13.0714 21.4086 12.9056 20.89C12.6475 20.0826 11.8905 19.4999 11 19.4999C10.1095 19.4999 9.35253 20.0826 9.09442 20.89C8.92863 21.4086 8.3784 21.6993 7.85655 21.544C6.01182 20.9947 4.37142 19.9756 3.0734 18.6268C2.71823 18.2577 2.69934 17.68 3.02964 17.2885C3.32369 16.94 3.5 16.4919 3.5 15.9999C3.5 14.8954 2.60457 13.9999 1.5 13.9999C1.43238 13.9999 1.36594 14.0032 1.30078 14.0096C0.791076 14.0597 0.325918 13.7166 0.223281 13.2148C0.0767675 12.4986 0 11.7577 0 10.9999C0 9.85181 0.176237 8.74296 0.503854 7.69996C0.636345 7.27816 1.0301 6.99343 1.47217 6.99974L1.5 6.99994C2.60457 6.99994 3.5 6.1045 3.5 4.99994C3.5 4.68103 3.42608 4.38222 3.29539 4.11715C3.10003 3.72091 3.18782 3.24343 3.51135 2.9426C4.78257 1.76058 6.33529 0.874914 8.05927 0.39769ZM5.36833 3.9792C5.45429 4.30561 5.5 4.64788 5.5 4.99994C5.5 6.95677 4.09485 8.58541 2.2385 8.9319C2.08262 9.59514 2 10.2874 2 10.9999C2 11.3516 2.02012 11.6982 2.05921 12.0387C4.00362 12.3107 5.5 13.9806 5.5 15.9999C5.5 16.6392 5.3495 17.2444 5.08229 17.781C5.8323 18.4362 6.69143 18.9685 7.62831 19.3474C8.33859 18.2369 9.5824 17.4999 11 17.4999C12.4176 17.4999 13.6614 18.2369 14.3717 19.3474C15.3086 18.9685 16.1677 18.4362 16.9177 17.781C16.6505 17.2444 16.5 16.6392 16.5 15.9999C16.5 13.9806 17.9964 12.3107 19.9408 12.0387C19.9799 11.6982 20 11.3516 20 10.9999C20 10.2874 19.9174 9.59515 19.7615 8.9319C17.9052 8.58541 16.5 6.95676 16.5 4.99994C16.5 4.64788 16.5457 4.30561 16.6317 3.9792C15.8739 3.3705 15.0161 2.88233 14.0873 2.54315C13.3545 3.4318 12.2441 3.99994 11 3.99994C9.75588 3.99994 8.64553 3.4318 7.91267 2.54315C6.98386 2.88233 6.12606 3.3705 5.36833 3.9792ZM6.5 10.9999C6.5 8.51465 8.51472 6.49994 11 6.49994C13.4853 6.49994 15.5 8.51465 15.5 10.9999C15.5 13.4852 13.4853 15.4999 11 15.4999C8.51472 15.4999 6.5 13.4852 6.5 10.9999ZM11 8.49994C9.61928 8.49994 8.5 9.61922 8.5 10.9999C8.5 12.3807 9.61928 13.4999 11 13.4999C12.3807 13.4999 13.5 12.3807 13.5 10.9999C13.5 9.61922 12.3807 8.49994 11 8.49994Z' fill='%23105DC7'/></svg>");
+      }
+
+      .dash-header__export-menu {
+        box-shadow: 0px 4px 15px rgba(138, 168, 198, 0.2);
+        border-radius: 8px;
+        min-width: 110px;
+        padding: 16px 12px !important;
+      }
+
+      .dash-header__export-menu .menu__item {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px !important;
+      }
+
+      .dash-header__export-menu .menu__item_hovered_yes {
+        background-color: #f1f5fc !important;
+      }
+
+      .widget-visibility-dropdown__btn,
+      .widget-visibility-dropdown__item-icon {
+        display: block;
+        background-image: url("data:image/svg+xml;utf8,<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M10.0044 0.5C10.5567 0.5 11.0044 0.947715 11.0044 1.5V3.55076C12.1376 3.66529 13.2103 3.96796 14.1919 4.39979L14.9997 3.27267C15.3214 2.82377 15.9461 2.72068 16.395 3.04241C16.8439 3.36413 16.947 3.98885 16.6253 4.43775L15.956 5.37166C16.3311 5.62372 16.6848 5.89348 17.0145 6.17592C18.7522 7.66445 20 9.66704 20 11.5C20 13.333 18.7522 15.3355 17.0145 16.8241C15.2376 18.3462 12.7639 19.5 10 19.5C7.23586 19.5 4.76222 18.3453 2.98539 16.8229C1.24791 15.3342 0 13.3316 0 11.5C0 9.66837 1.24791 7.66581 2.98539 6.1771C3.43399 5.79273 3.927 5.43181 4.45788 5.10699L3.81904 4.21558C3.49732 3.76668 3.60042 3.14196 4.04933 2.82025C4.49823 2.49853 5.12295 2.60163 5.44466 3.05054L6.274 4.20774C7.12845 3.87733 8.04475 3.6461 9.0044 3.5499V1.5C9.0044 0.947715 9.45212 0.5 10.0044 0.5ZM10 5.50001C7.79359 5.50001 5.76723 6.4273 4.28669 7.69585C2.76682 8.99811 2 10.4955 2 11.5C2 12.5045 2.76682 14.0019 4.28669 15.3042C5.76723 16.5727 7.79359 17.5 10 17.5C12.2066 17.5 14.233 16.5733 15.7134 15.3052C17.2331 14.0034 18 12.506 18 11.5C18 10.494 17.233 8.99657 15.7134 7.69485C14.233 6.42673 12.2066 5.50001 10 5.50001ZM6 11.5C6 9.29088 7.79087 7.50001 10 7.50001C12.2091 7.50001 14 9.29088 14 11.5C14 13.7091 12.2091 15.5 10 15.5C7.79087 15.5 6 13.7091 6 11.5ZM10 9.50001C8.89544 9.50001 8 10.3954 8 11.5C8 12.6046 8.89544 13.5 10 13.5C11.1046 13.5 12 12.6046 12 11.5C12 10.3954 11.1046 9.50001 10 9.50001Z' fill='%23105DC7'/></svg>");
+      }
+
+      .widget-visibility-dropdown__btn::before {
+        content: none;
+      }
+
+      .widget-visibility-dropdown__item-icon {
+        width: 22px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .widget-visibility-dropdown__item-icon svg {
+        display: none;
+      }
+
+      .widget-visibility-dropdown__item_hidden .widget-visibility-dropdown__item-icon {
+        background-image: url("data:image/svg+xml;utf8,<svg width='22' height='10' viewBox='0 0 22 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M20.4617 0.112943C20.9516 0.367951 21.142 0.971808 20.887 1.46169C20.5072 2.19146 19.942 2.86142 19.2225 3.45109L19.022 3.60776L21.2123 5.79805C21.6028 6.18857 21.6028 6.82173 21.2123 7.21226C20.8518 7.57275 20.2846 7.60048 19.8923 7.29546L19.7981 7.21227L17.2632 4.67823C16.4741 5.05518 15.604 5.35817 14.6786 5.57847L15.49 8.60485C15.633 9.13832 15.3164 9.68665 14.7829 9.82959C14.2876 9.96232 13.7794 9.69882 13.5949 9.23338L13.5582 9.12247L12.6981 5.91294C12.1424 5.97044 11.5749 5.99996 11 5.99996C10.421 5.99996 9.84944 5.97001 9.28995 5.9117L8.42973 9.12249C8.28679 9.65595 7.73845 9.97253 7.20499 9.82959C6.70962 9.69685 6.40127 9.21457 6.4742 8.71923L6.49789 8.60484L7.30952 5.57563C6.38973 5.35585 5.52475 5.05433 4.73982 4.67966L2.20711 7.21227C1.81658 7.60279 1.18342 7.60279 0.792892 7.21227C0.432409 6.85178 0.40468 6.28455 0.709706 5.89226L0.792894 5.79805L2.98004 3.61185C2.91135 3.55904 2.84383 3.50545 2.77752 3.45111C2.05802 2.86144 1.49289 2.19149 1.113 1.46171C0.857983 0.971822 1.04838 0.367963 1.53827 0.112949C2.02815 -0.142065 2.63201 0.0483338 2.88702 0.538218C3.1357 1.01593 3.52611 1.47876 4.04527 1.90423C5.62346 3.19767 8.18918 3.99996 11 3.99996C13.8108 3.99996 16.3766 3.19767 17.9547 1.90422C18.4739 1.47874 18.8643 1.01591 19.113 0.538229C19.368 0.0483419 19.9719 -0.142065 20.4617 0.112943Z' fill='%23B8BEC7'/></svg>");
+      }
+    </style>
+    <div id="root"></div>
+  </body>
+</html>
