@@ -19,7 +19,7 @@ import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import iconFavoriteEmpty from '../../assets/icons/favorite-empty.svg';
 import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
-import { ParmaTableView, ParmaTextInput } from '@kamatech-ui';
+import { ParmaTableView, KamatechTextInput } from '@kamatech-ui';
 import iconXsign from '../../../../clustrum/src/icons/x-sign.svg';
 
 const b = cn('yc-navigation');
@@ -351,7 +351,7 @@ class NavigationEntries extends React.Component {
       <div className={b('entries-header')}>
         {!isMinimalMode && (
           <div className={b('search')}>
-            <ParmaTextInput
+            <KamatechTextInput
               ref={this.refSearchInput}
               view="default"
               tone="default"

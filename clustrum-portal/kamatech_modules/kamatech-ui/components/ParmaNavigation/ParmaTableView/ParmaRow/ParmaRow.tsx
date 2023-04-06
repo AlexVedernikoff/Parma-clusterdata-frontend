@@ -5,7 +5,7 @@ import { ParmaRowInterface } from './ParmaRow.interface';
 import { ModeType } from '../../../../enums';
 import { ClassHelper } from '../../../../helpers';
 
-import { ParmaIcon } from '../../..';
+import { KamatechIcon } from '../../..';
 import { ParmaRowModel } from './ParmaRow.model';
 
 import moment from 'moment';
@@ -93,12 +93,17 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
         </div>
         <div className={`${blockName}__row-btns`}>
           <div className={starClassName} onClick={this.onChangeFavorite}>
-            <ParmaIcon className={`${blockName}__icon-star-fill`} data={this.props.iconFavoriteFilled} />
-            <ParmaIcon className={`${blockName}__icon-star-stroke`} data={this.props.iconFavoriteEmpty} />
+            <KamatechIcon className={`${blockName}__icon-star-fill`} data={this.props.iconFavoriteFilled} />
+            <KamatechIcon className={`${blockName}__icon-star-stroke`} data={this.props.iconFavoriteEmpty} />
           </div>
 
           <div className={`${blockName}__row-btn`} onClick={this.onEntryContextClick} ref={this.setButtonRef}>
-            <ParmaIcon className={'parma-button-edit-entry__icon'} data={this.props.iconDots} width="24" height="24" />
+            <KamatechIcon
+              className={'parma-button-edit-entry__icon'}
+              data={this.props.iconDots}
+              width="24"
+              height="24"
+            />
           </div>
         </div>
       </React.Fragment>
@@ -109,7 +114,7 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
     const parentEntry = model.getParentFolderEntry(this.props.entry);
     return (
       <div className={`${blockName}__parent-folder`} onClick={this.onEntryParentClick}>
-        <ParmaIcon
+        <KamatechIcon
           className={`${blockName}__folder-inline`}
           data={this.props.iconFolderInline}
           width="16"
@@ -133,7 +138,7 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
         )}
         onClick={this.onClick}
       >
-        <ParmaIcon data={iconEntry} className={`${blockName}__icon`} width="24" height="24" />
+        <KamatechIcon data={iconEntry} className={`${blockName}__icon`} width="24" height="24" />
         <div className={`${blockName}__info`}>
           <div className={`${blockName}__name`}>
             <div className={`${blockName}__name-line`}>

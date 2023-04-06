@@ -1,9 +1,9 @@
 import * as React from 'react';
-import './ParmaButton.css';
-import { ParmaButtonInterface } from './ParmaButton.interface';
+import './KamatechButton.css';
+import { KamatechButtonInterface } from './KamatechButton.interface';
 import { ClassHelper } from '../../helpers';
 
-export class ParmaButton extends React.Component<ParmaButtonInterface, any> {
+export class KamatechButton extends React.Component<KamatechButtonInterface, any> {
   private baseClass = 'parma-button';
 
   onClick() {

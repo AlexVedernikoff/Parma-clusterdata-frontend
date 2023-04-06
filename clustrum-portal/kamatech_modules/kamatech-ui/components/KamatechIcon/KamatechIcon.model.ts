@@ -1,19 +1,19 @@
-import { ParmaIconInterface } from './ParmaIcon.interface';
+import { KamatechIconInterface } from './KamatechIcon.interface';
 import { UnitsHelper, CallbackFunctionArgs } from '../../helpers';
 
 /**
  * Модель пиктограммы
  */
-export class ParmaIconModel implements ParmaIconInterface {
-  constructor({ data, width, height, className, prefix, onClick, fill, stroke }: ParmaIconInterface) {
+export class KamatechIconModel implements KamatechIconInterface {
+  constructor({ data, width, height, className, prefix, onClick, fill, stroke }: KamatechIconInterface) {
     this.data = data;
     this.width = width;
     this.height = height;
     this.className = className;
     this.prefix = prefix;
     this.onClick = onClick;
-    this.fill = fill || ParmaIconModel.fill;
-    this.stroke = stroke || ParmaIconModel.stroke;
+    this.fill = fill || KamatechIconModel.fill;
+    this.stroke = stroke || KamatechIconModel.stroke;
   }
 
   public static fill = 'currentColor';
@@ -78,7 +78,7 @@ export class ParmaIconModel implements ParmaIconInterface {
   private viewBoxValue(index: number): number {
     return UnitsHelper.isNullOrUndefined(this.data.viewBox)
       ? 0
-      : UnitsHelper.convertToNumber(ParmaIconModel.splitViewBox(this.data.viewBox)[index]);
+      : UnitsHelper.convertToNumber(KamatechIconModel.splitViewBox(this.data.viewBox)[index]);
   }
 
   /**

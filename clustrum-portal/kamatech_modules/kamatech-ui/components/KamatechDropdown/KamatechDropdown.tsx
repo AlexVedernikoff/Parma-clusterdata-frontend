@@ -1,9 +1,9 @@
 import * as React from 'react';
-import './ParmaDropdown.css';
+import './KamatechDropdown.css';
 import { Portal } from 'react-portal';
-import { ParmaPopup } from '../ParmaPopup/ParmaPopup';
+import { KamatechPopup } from '../KamatechPopup/KamatechPopup';
 
-export class ParmaDropdown extends React.Component<any, any> {
+export class KamatechDropdown extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.switcherRef = React.createRef();
@@ -30,13 +30,13 @@ export class ParmaDropdown extends React.Component<any, any> {
         <div ref={this.switcherRef}>{switcher}</div>
         {this.state.opened && (
           <Portal>
-            <ParmaPopup
+            <KamatechPopup
               popupClass={'parma-dropdown-popup'}
               anchor={this.switcherRef.current}
               clickOutside={this.clickOutside.bind(this)}
             >
               {this.props.popup}
-            </ParmaPopup>
+            </KamatechPopup>
           </Portal>
         )}
       </React.Fragment>

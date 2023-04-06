@@ -2,7 +2,7 @@ import React from 'react';
 import Utils from '../../../../helpers/utils';
 import { getConnectorsMap } from '../../../../constants';
 import SelectConnection from '../../../../containers/SelectConnection/SelectConnection';
-import { ParmaTextInput } from '../../../../../kamatech_modules/kamatech-ui';
+import { KamatechTextInput } from '../../../../../kamatech_modules/kamatech-ui';
 import iconXsign from '../../../../../kamatech_modules/@kamatech-data-ui/clustrum/src/icons/x-sign.svg';
 import block from 'bem-cn-lite';
 import { i18n } from '../../../../../kamatech_modules/@kamatech-data-ui/clustrum-i18n';
@@ -99,7 +99,7 @@ function MaterializationCustomSettingsParamsItem(props) {
     <div className={b('params-item')}>
       <div className={b('params_label')}>{label}</div>
       <div className={'parma-textinput__control'}>
-        <ParmaTextInput
+        <KamatechTextInput
           view="default"
           tone="default"
           theme="normal"

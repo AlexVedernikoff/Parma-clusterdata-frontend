@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { ParmaRangePicker } from './ParmaRangePicker';
+import { KamatechRangePicker } from './KamatechRangePicker';
 
 describe('range picker', () => {
   let rangeInput: HTMLInputElement;
@@ -12,7 +12,7 @@ describe('range picker', () => {
 
   beforeEach(() => {
     mockFn = jest.fn();
-    render(<ParmaRangePicker initialValue={initialValue} min={minValue} max={maxValue} onChange={mockFn} />);
+    render(<KamatechRangePicker initialValue={initialValue} min={minValue} max={maxValue} onChange={mockFn} />);
     rangeInput = screen.getByRole('slider');
     output = screen.getByRole('status');
   });

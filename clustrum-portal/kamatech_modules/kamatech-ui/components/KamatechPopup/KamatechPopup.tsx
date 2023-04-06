@@ -1,9 +1,9 @@
 import * as React from 'react';
-import './ParmaPopup.css';
+import './KamatechPopup.css';
 import { PopupHelper, ClassHelper } from '../../helpers';
 import { NodeModel } from '../../models';
 
-export class ParmaPopup extends React.Component<any> {
+export class KamatechPopup extends React.Component<any> {
   constructor(props: any) {
     super(props);
     this.popupRef = React.createRef();

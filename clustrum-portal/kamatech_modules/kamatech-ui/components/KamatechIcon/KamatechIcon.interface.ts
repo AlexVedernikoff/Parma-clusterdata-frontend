@@ -3,7 +3,7 @@ import { CallbackFunctionArgs } from '../../helpers';
 /**
  * Интерфейс пиктограммы
  */
-export interface ParmaIconInterface {
+export interface KamatechIconInterface {
   /**
    * Данные пиктограммы
    */

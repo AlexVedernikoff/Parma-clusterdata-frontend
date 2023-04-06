@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
 import i18n from '../i18n';
 
-import { ParmaDropdown, ParmaCreateDropdownItem, ParmaMenu, ParmaButton } from '@kamatech-ui';
+import { KamatechDropdown, ParmaCreateDropdownItem, KamatechMenu, KamatechButton } from '@kamatech-ui';
 
 const b = cn('yc-create-dropdown');
 
@@ -24,25 +24,25 @@ class CreateDropdown extends React.Component {
   renderPopup() {
     const { items, onMenuClick } = this.props;
     return (
-      <ParmaMenu size="n" view="default" tone="default" theme="normal">
+      <KamatechMenu size="n" view="default" tone="default" theme="normal">
         {items.map((item, index) => (
           <ParmaCreateDropdownItem key={index} {...item} onClick={onMenuClick}></ParmaCreateDropdownItem>
         ))}
-      </ParmaMenu>
+      </KamatechMenu>
     );
   }
 
   renderSwitcher() {
     return (
-      <ParmaButton view="default" tone="default" theme="action" size={this.props.size}>
+      <KamatechButton view="default" tone="default" theme="action" size={this.props.size}>
         {i18n('button_create')}
-      </ParmaButton>
+      </KamatechButton>
     );
   }
   render() {
     return (
       <div className={b()}>
-        <ParmaDropdown switcher={this.renderSwitcher()} popup={this.renderPopup()}></ParmaDropdown>
+        <KamatechDropdown switcher={this.renderSwitcher()} popup={this.renderPopup()}></KamatechDropdown>
       </div>
     );
   }

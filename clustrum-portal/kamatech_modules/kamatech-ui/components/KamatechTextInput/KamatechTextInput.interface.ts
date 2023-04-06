@@ -1,6 +1,6 @@
 import { CallbackFunctionArgs } from '../../helpers';
 
-export interface ParmaTextInputInterface {
+export interface KamatechTextInputInterface {
   /**
    * Подсказка в строке ввода
    */

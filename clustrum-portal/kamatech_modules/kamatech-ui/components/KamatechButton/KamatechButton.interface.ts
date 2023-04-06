@@ -4,7 +4,7 @@ import { ControlSize } from '../../enums';
 /**
  * Интерфейс кнопки
  */
-export interface ParmaButtonInterface {
+export interface KamatechButtonInterface {
   theme: string;
   tone?: string;
   baseline?: boolean;

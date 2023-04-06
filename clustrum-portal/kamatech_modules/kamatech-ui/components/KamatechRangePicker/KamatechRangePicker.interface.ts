@@ -1,4 +1,4 @@
-export interface ParmaRangePicker {
+export interface KamatechRangePicker {
   min?: number;
   max?: number;
   step?: number;

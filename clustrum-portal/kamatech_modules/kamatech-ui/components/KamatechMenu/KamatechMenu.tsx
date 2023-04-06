@@ -1,8 +1,8 @@
 import * as React from 'react';
-import './ParmaMenu.css';
+import './KamatechMenu.css';
 import { ClassHelper } from '../../helpers';
 
-export class ParmaMenu extends React.Component<any, any> {
+export class KamatechMenu extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
   }

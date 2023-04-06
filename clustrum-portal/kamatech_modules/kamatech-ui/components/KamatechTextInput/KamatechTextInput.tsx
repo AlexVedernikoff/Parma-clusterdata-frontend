@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { ParmaTextInputInterface } from './ParmaTextInput.interface';
+import { KamatechTextInputInterface } from './KamatechTextInput.interface';
 import { ClassHelper } from '../../helpers';
-import { ParmaIcon } from '..';
-import './ParmaTextInput.css';
-import { ParmaTextInputModel } from './ParmaTextInput.model';
+import { KamatechIcon } from '..';
+import './KamatechTextInput.css';
+import { KamatechTextInputModel } from './KamatechTextInput.model';
 
 let blockName = 'parma-textinput';
 
-type ParmaTextInputState = {
+type KamatechTextInputState = {
   hovered: boolean;
   focused: boolean;
 };
 
-export class ParmaTextInput extends React.Component<ParmaTextInputInterface, ParmaTextInputState> {
-  constructor(props: ParmaTextInputInterface) {
+export class KamatechTextInput extends React.Component<KamatechTextInputInterface, KamatechTextInputState> {
+  constructor(props: KamatechTextInputInterface) {
     super(props);
     this.state = {
       hovered: false,
@@ -65,7 +65,7 @@ export class ParmaTextInput extends React.Component<ParmaTextInputInterface, Par
   };
 
   render() {
-    const model = new ParmaTextInputModel(this.props);
+    const model = new KamatechTextInputModel(this.props);
 
     let { theme, view, size, hasClear, tone, type, placeholder } = model;
 
@@ -107,7 +107,7 @@ export class ParmaTextInput extends React.Component<ParmaTextInputInterface, Par
             )}
             onClick={this.cleanValue}
           >
-            <ParmaIcon data={model.iconClearData} width={28} height={28} />
+            <KamatechIcon data={model.iconClearData} width={28} height={28} />
           </span>
         )}
       </span>

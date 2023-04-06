@@ -1,8 +1,8 @@
-import { ParmaTextInputInterface } from './ParmaTextInput.interface';
+import { KamatechTextInputInterface } from './KamatechTextInput.interface';
 import { CallbackFunctionArgs } from '../../helpers';
 
-export class ParmaTextInputModel implements ParmaTextInputInterface {
-  constructor(value: ParmaTextInputInterface) {
+export class KamatechTextInputModel implements KamatechTextInputInterface {
+  constructor(value: KamatechTextInputInterface) {
     const { hasClear, iconClearData, onChange, placeholder, size, text, theme, tone, type, view } = value || {};
     this.hasClear = hasClear;
     this.iconClearData = iconClearData;
@@ -12,8 +12,8 @@ export class ParmaTextInputModel implements ParmaTextInputInterface {
     this.text = text;
     this.theme = theme;
     this.tone = tone;
-    this.type = type || ParmaTextInputModel.type;
-    this.view = view || ParmaTextInputModel.view;
+    this.type = type || KamatechTextInputModel.type;
+    this.view = view || KamatechTextInputModel.view;
   }
 
   public static type = 'text';

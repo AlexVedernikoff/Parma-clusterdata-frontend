@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './ParmaSidebarItem.css';
 import { ParmaSidebarItemInterface } from './ParmaSidebarItem.interface';
-import { ParmaIcon } from '../../../ParmaIcon/ParmaIcon';
+import { KamatechIcon } from '../../../KamatechIcon/KamatechIcon';
 import { ClassHelper } from '../../../../helpers';
 
 export class ParmaSidebarItem extends React.Component<ParmaSidebarItemInterface> {
@@ -18,7 +18,7 @@ export class ParmaSidebarItem extends React.Component<ParmaSidebarItemInterface>
     const className = ClassHelper.merge(baseClass, currentClass);
     const node = (
       <React.Fragment>
-        <ParmaIcon data={item.icon} className={ClassHelper.merge(`${baseClass}-icon`, item.iconClassName)} />
+        <KamatechIcon data={item.icon} className={ClassHelper.merge(`${baseClass}-icon`, item.iconClassName)} />
         {item.text}
       </React.Fragment>
     );
