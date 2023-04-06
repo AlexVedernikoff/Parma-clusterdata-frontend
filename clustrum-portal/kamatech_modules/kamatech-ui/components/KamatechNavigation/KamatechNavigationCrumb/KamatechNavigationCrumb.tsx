@@ -1,9 +1,9 @@
 import * as React from 'react';
-import './ParmaNavigationCrumb.css';
-import { ParmaNavigationCrumbInterface } from './ParmaNavigationCrumb.interface';
+import './KamatechNavigationCrumb.css';
+import { KamatechNavigationCrumbInterface } from './KamatechNavigationCrumb.interface';
 import { ClassHelper } from '../../../helpers';
 
-export class ParmaNavigationCrumb extends React.PureComponent<ParmaNavigationCrumbInterface> {
+export class KamatechNavigationCrumb extends React.PureComponent<KamatechNavigationCrumbInterface> {
   onClick = (event: React.SyntheticEvent) => {
     if (this.props.onClick) {
       this.props.onClick(this.props.item, event, this.props.last, this.props.first);

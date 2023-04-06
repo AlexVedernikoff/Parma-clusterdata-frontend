@@ -1,19 +1,19 @@
 import * as React from 'react';
-import './ParmaNavigationBreadcrumbs.css';
+import './KamatechNavigationBreadcrumbs.css';
 
-import { ParmaNavigationCrumb } from '../ParmaNavigationCrumb/ParmaNavigationCrumb';
-import { ParmaNavigationBreadcrumbsInterface } from './ParmaNavigationBreadcrumbs.interface';
-import { ParmaNavigationBreadcrumbsModel } from './ParmaNavigationBreadcrumbs.model';
+import { KamatechNavigationCrumb } from '../KamatechNavigationCrumb/KamatechNavigationCrumb';
+import { KamatechNavigationBreadcrumbsInterface } from './KamatechNavigationBreadcrumbs.interface';
+import { KamatechNavigationBreadcrumbsModel } from './KamatechNavigationBreadcrumbs.model';
 import { ClassHelper } from '../../../helpers';
 
-export class ParmaNavigationBreadcrumbs extends React.PureComponent<ParmaNavigationBreadcrumbsInterface> {
+export class KamatechNavigationBreadcrumbs extends React.PureComponent<KamatechNavigationBreadcrumbsInterface> {
   static defaultProps = {
-    size: ParmaNavigationBreadcrumbsModel.size,
-    path: ParmaNavigationBreadcrumbsModel.path,
-    place: ParmaNavigationBreadcrumbsModel.place,
+    size: KamatechNavigationBreadcrumbsModel.size,
+    path: KamatechNavigationBreadcrumbsModel.path,
+    place: KamatechNavigationBreadcrumbsModel.place,
   };
 
-  renderBreadcrumbs(model: ParmaNavigationBreadcrumbsModel) {
+  renderBreadcrumbs(model: KamatechNavigationBreadcrumbsModel) {
     return model
       .getFolderParts()
       .filter(Boolean)
@@ -21,7 +21,7 @@ export class ParmaNavigationBreadcrumbs extends React.PureComponent<ParmaNavigat
         const isFirst = index === 0;
         const isLast = index === array.length - 1;
         return (
-          <ParmaNavigationCrumb
+          <KamatechNavigationCrumb
             key={`brd-folder-name-${index}`}
             onClick={this.props.onClick}
             linkWrapper={this.props.linkWrapper}
@@ -34,7 +34,7 @@ export class ParmaNavigationBreadcrumbs extends React.PureComponent<ParmaNavigat
   }
 
   render() {
-    const model = new ParmaNavigationBreadcrumbsModel(this.props);
+    const model = new KamatechNavigationBreadcrumbsModel(this.props);
     const baseClass = 'parma-navigation-breadcrumbs';
     const sizeClass = model.size ? `${baseClass}_size_${model.size}` : '';
     const className = ClassHelper.merge(baseClass, sizeClass);

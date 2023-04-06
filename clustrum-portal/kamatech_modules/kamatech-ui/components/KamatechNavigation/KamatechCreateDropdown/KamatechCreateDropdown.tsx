@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { ParmaCreateDropdownInterface } from './ParmaCreateDropdown.interface';
+import { KamatechCreateDropdownInterface } from './KamatechCreateDropdown.interface';
 import { ControlSize } from '../../../enums';
-import { KamatechMenu, ParmaCreateDropdownItem, KamatechButton, KamatechDropdown } from '../..';
+import { KamatechMenu, KamatechCreateDropdownItem, KamatechButton, KamatechDropdown } from '../..';
 
-export class ParmaCreateDropdown extends React.Component<ParmaCreateDropdownInterface> {
+export class KamatechCreateDropdown extends React.Component<KamatechCreateDropdownInterface> {
   static defaultProps = {
     size: ControlSize.N,
     items: [] as any[],
@@ -18,7 +18,7 @@ export class ParmaCreateDropdown extends React.Component<ParmaCreateDropdownInte
     return (
       <KamatechMenu view="default" tone="default" theme="normal" size={this.props.size}>
         {items.map((item, index) => (
-          <ParmaCreateDropdownItem key={index} {...item} onClick={onMenuClick}></ParmaCreateDropdownItem>
+          <KamatechCreateDropdownItem key={index} {...item} onClick={onMenuClick}></KamatechCreateDropdownItem>
         ))}
       </KamatechMenu>
     );

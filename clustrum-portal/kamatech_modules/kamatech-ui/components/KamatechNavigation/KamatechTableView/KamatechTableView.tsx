@@ -1,19 +1,19 @@
 import * as React from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { VariableSizeList as List } from 'react-window';
-import { ParmaRow } from './ParmaRow/ParmaRow';
-import { ParmaTableViewInterface } from './ParmaTableView.interface';
-import { ParmaRowModel } from './ParmaRow/ParmaRow.model';
+import { KamatechRow } from './KamatechRow/KamatechRow';
+import { KamatechTableViewInterface } from './KamatechTableView.interface';
+import { KamatechRowModel } from './KamatechRow/KamatechRow.model';
 
 const blockName = 'parma-table-view';
 
-type ParmaTableViewState = {
+type KamatechTableViewState = {
   entries: any[];
   currentEntryContext: object;
 };
 
-export class ParmaTableView extends React.Component<ParmaTableViewInterface, ParmaTableViewState> {
-  constructor(props: ParmaTableViewInterface) {
+export class KamatechTableView extends React.Component<KamatechTableViewInterface, KamatechTableViewState> {
+  constructor(props: KamatechTableViewInterface) {
     super(props);
     this.state = {
       entries: this.props.entries,
@@ -38,11 +38,11 @@ export class ParmaTableView extends React.Component<ParmaTableViewInterface, Par
     const entry = entries[index];
     const iconEntryData = this.props.iconEntry(entry.scope);
 
-    const model = new ParmaRowModel(this.props);
+    const model = new KamatechRowModel(this.props);
 
     return (
       <div style={style}>
-        <ParmaRow
+        <KamatechRow
           {...this.props}
           entry={entry}
           isActive={model.isEntryActive(entry.scope, this.props.clickableScope)}
@@ -52,7 +52,7 @@ export class ParmaTableView extends React.Component<ParmaTableViewInterface, Par
     );
   };
 
-  componentDidUpdate(prevProps: ParmaTableViewInterface) {
+  componentDidUpdate(prevProps: KamatechTableViewInterface) {
     if (this.props.entries !== prevProps.entries) {
       this.setState(state => {
         return { entries: this.props.entries };

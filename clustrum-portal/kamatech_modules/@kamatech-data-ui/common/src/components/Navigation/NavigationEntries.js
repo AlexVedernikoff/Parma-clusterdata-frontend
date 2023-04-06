@@ -19,7 +19,7 @@ import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import iconFavoriteEmpty from '../../assets/icons/favorite-empty.svg';
 import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
-import { ParmaTableView, KamatechTextInput } from '@kamatech-ui';
+import { KamatechTableView, KamatechTextInput } from '@kamatech-ui';
 import iconXsign from '../../../../clustrum/src/icons/x-sign.svg';
 
 const b = cn('yc-navigation');
@@ -439,7 +439,7 @@ class NavigationEntries extends React.Component {
     return (
       <React.Fragment>
         <div className={b('table-view')}>
-          <ParmaTableView
+          <KamatechTableView
             linkWrapper={this.props.linkWrapper}
             mode={this.props.mode}
             clickableScope={this.props.clickableScope}

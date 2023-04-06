@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DataTable from '@kamatech-data-ui/dt100/lib';
 import block from 'bem-cn-lite';
 import ErrorDispatcher, { ERROR_TYPE } from '../../../modules/error-dispatcher/error-dispatcher';
-import { ParmaNavigationPageControl } from './../../../../../../kamatech-ui/components';
+import { KamatechNavigationPageControl } from './../../../../../../kamatech-ui/components';
 import DateFormat from '../../../modules/date/date-format';
 import { FILTER_CONDITION_TYPE } from '../../../../../../../src/constants/FilterConditionType';
 import { NullAlias } from './NullAlias';
@@ -501,7 +501,7 @@ class Table extends React.PureComponent {
           onStateAndParamsChange={this.props.onStateAndParamsChange}
           onOrderByClickInWizard={this.props.onOrderByClickInWizard}
         />
-        <ParmaNavigationPageControl
+        <KamatechNavigationPageControl
           page={this.props.paginateInfo.page}
           pageSize={this.props.paginateInfo.pageSize}
           rowsCount={this.props.data.data.rowsCount}

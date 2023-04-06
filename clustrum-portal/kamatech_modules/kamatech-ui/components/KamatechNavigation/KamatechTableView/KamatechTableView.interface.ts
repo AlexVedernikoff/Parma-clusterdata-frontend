@@ -1,7 +1,7 @@
 import { CallbackFunctionArgs } from '../../../helpers';
-import { ParmaRowInterface } from './ParmaRow/ParmaRow.interface';
+import { KamatechRowInterface } from './KamatechRow/KamatechRow.interface';
 
-export interface ParmaTableViewInterface extends ParmaRowInterface {
+export interface KamatechTableViewInterface extends KamatechRowInterface {
   /**
    * Массив строк
    */

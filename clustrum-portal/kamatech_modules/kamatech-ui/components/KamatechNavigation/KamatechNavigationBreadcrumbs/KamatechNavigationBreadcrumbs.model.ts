@@ -1,13 +1,13 @@
 import { CallbackFunctionArgs, CallbackFunctionArgsReturnAny } from '../../../helpers';
-import { ParmaNavigationBreadcrumbsInterface } from './ParmaNavigationBreadcrumbs.interface';
-import { NavigationPlace } from './ParmaNavigationBreadcrumbs.enum';
+import { KamatechNavigationBreadcrumbsInterface } from './KamatechNavigationBreadcrumbs.interface';
+import { NavigationPlace } from './KamatechNavigationBreadcrumbs.enum';
 
-export class ParmaNavigationBreadcrumbsModel implements ParmaNavigationBreadcrumbsInterface {
-  constructor(value?: ParmaNavigationBreadcrumbsInterface) {
+export class KamatechNavigationBreadcrumbsModel implements KamatechNavigationBreadcrumbsInterface {
+  constructor(value?: KamatechNavigationBreadcrumbsInterface) {
     const { size, path, place, onClick, linkWrapper, getPlaceParameters } = value || {};
-    this.size = size || ParmaNavigationBreadcrumbsModel.size;
-    this.path = path || ParmaNavigationBreadcrumbsModel.path;
-    this.place = place || ParmaNavigationBreadcrumbsModel.place;
+    this.size = size || KamatechNavigationBreadcrumbsModel.size;
+    this.path = path || KamatechNavigationBreadcrumbsModel.path;
+    this.place = place || KamatechNavigationBreadcrumbsModel.place;
     this.onClick = onClick;
     this.linkWrapper = linkWrapper;
     this.getPlaceParameters = getPlaceParameters;

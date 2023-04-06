@@ -1,10 +1,10 @@
 import * as React from 'react';
-import './ParmaSidebarItem.css';
-import { ParmaSidebarItemInterface } from './ParmaSidebarItem.interface';
+import './KamatechSidebarItem.css';
+import { KamatechSidebarItemInterface } from './KamatechSidebarItem.interface';
 import { KamatechIcon } from '../../../KamatechIcon/KamatechIcon';
 import { ClassHelper } from '../../../../helpers';
 
-export class ParmaSidebarItem extends React.Component<ParmaSidebarItemInterface> {
+export class KamatechSidebarItem extends React.Component<KamatechSidebarItemInterface> {
   onClick = (event: React.SyntheticEvent) => {
     if (this.props.onClick) {
       this.props.onClick(this.props.item, event);

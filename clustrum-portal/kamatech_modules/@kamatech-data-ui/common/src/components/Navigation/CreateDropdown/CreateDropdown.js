@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
 import i18n from '../i18n';
 
-import { KamatechDropdown, ParmaCreateDropdownItem, KamatechMenu, KamatechButton } from '@kamatech-ui';
+import { KamatechDropdown, KamatechCreateDropdownItem, KamatechMenu, KamatechButton } from '@kamatech-ui';
 
 const b = cn('yc-create-dropdown');
 
@@ -26,7 +26,7 @@ class CreateDropdown extends React.Component {
     return (
       <KamatechMenu size="n" view="default" tone="default" theme="normal">
         {items.map((item, index) => (
-          <ParmaCreateDropdownItem key={index} {...item} onClick={onMenuClick}></ParmaCreateDropdownItem>
+          <KamatechCreateDropdownItem key={index} {...item} onClick={onMenuClick}></KamatechCreateDropdownItem>
         ))}
       </KamatechMenu>
     );

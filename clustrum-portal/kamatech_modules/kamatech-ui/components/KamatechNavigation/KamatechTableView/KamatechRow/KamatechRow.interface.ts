@@ -4,7 +4,7 @@ import { CallbackFunctionArgs, CallbackFunctionArgsReturnAny } from '../../../..
 /**
  * Интерфейс строки в навигаторе объектов
  */
-export interface ParmaRowInterface {
+export interface KamatechRowInterface {
   entry: any;
 
   /**

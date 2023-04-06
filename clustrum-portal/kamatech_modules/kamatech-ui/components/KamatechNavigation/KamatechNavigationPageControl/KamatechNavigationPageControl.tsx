@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { ParmaNavigationPageControlInterface } from './ParmaNavigationPageControl.interface';
-import './ParmaNavigationPageControl.css';
+import { KamatechNavigationPageControlInterface } from './KamatechNavigationPageControl.interface';
+import './KamatechNavigationPageControl.css';
 import GoToPage from './GoToPage/GoToPage';
 import PageNumbers from './PageNumbers/PageNumbers';
 import { NumberValueHelper } from '../../../helpers';
 
-export const ParmaNavigationPageControl = ({
+export const KamatechNavigationPageControl = ({
   page,
   pageSize,
   rowsCount,
   dataLength,
   onClick,
   onStateAndParamsChange,
-}: ParmaNavigationPageControlInterface) => {
+}: KamatechNavigationPageControlInterface) => {
   let viewPage: number = page + 1;
 
   const handleChangePage = (viewPage: number, viewPageSize = pageSize) => {

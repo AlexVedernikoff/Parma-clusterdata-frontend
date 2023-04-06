@@ -3,7 +3,7 @@ import { CallbackFunctionArgsReturnAny, CallbackFunctionArgs } from '../../../he
 /**
  * Интерфейс бокового меню
  */
-export interface ParmaSidebarInterface {
+export interface KamatechSidebarInterface {
   /**
    * Путь
    */

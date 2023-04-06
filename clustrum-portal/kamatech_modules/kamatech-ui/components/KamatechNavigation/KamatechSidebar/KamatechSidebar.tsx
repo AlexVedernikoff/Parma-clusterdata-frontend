@@ -1,9 +1,9 @@
 import * as React from 'react';
-import './ParmaSidebar.css';
-import { ParmaSidebarInterface } from './ParmaSidebar.interface';
-import { ParmaSidebarItem } from './ParmaSidebarItem/ParmaSidebarItem';
+import './KamatechSidebar.css';
+import { KamatechSidebarInterface } from './KamatechSidebar.interface';
+import { KamatechSidebarItem } from './KamatechSidebarItem/KamatechSidebarItem';
 
-export class ParmaSidebar extends React.Component<ParmaSidebarInterface> {
+export class KamatechSidebar extends React.Component<KamatechSidebarInterface> {
   public static defaultProps = { quickItems: [] as any[] };
 
   renderPlaces() {
@@ -11,7 +11,7 @@ export class ParmaSidebar extends React.Component<ParmaSidebarInterface> {
     const locatedAtQuickItems = this.locatedAtQuickItems();
     return getPlaceParameters().map((item: any, index: number) => {
       return (
-        <ParmaSidebarItem
+        <KamatechSidebarItem
           key={index}
           item={item}
           current={!locatedAtQuickItems && item.place === currentPlace}

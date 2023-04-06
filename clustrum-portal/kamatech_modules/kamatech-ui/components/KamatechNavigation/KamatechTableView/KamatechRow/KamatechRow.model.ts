@@ -1,11 +1,11 @@
-import { ParmaRowInterface } from './ParmaRow.interface';
+import { KamatechRowInterface } from './KamatechRow.interface';
 import { ModeType, ScopeType } from '../../../../enums';
 import { CallbackFunctionArgs, CallbackFunctionArgsReturnAny } from '../../../../helpers';
 
 const NAVIGATION_ROOT_NAME = 'Все файлы';
 
-export class ParmaRowModel implements ParmaRowInterface {
-  constructor(value: ParmaRowInterface) {
+export class KamatechRowModel implements KamatechRowInterface {
+  constructor(value: KamatechRowInterface) {
     this.iconEntry = value.iconEntry;
     this.iconFavoriteFilled = value.iconFavoriteFilled;
     this.iconFavoriteEmpty = value.iconDots;

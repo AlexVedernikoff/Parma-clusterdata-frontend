@@ -1,6 +1,6 @@
 import { CallbackFunctionArgs } from '../../../helpers';
 
-export interface ParmaNavigationPageControlInterface {
+export interface KamatechNavigationPageControlInterface {
   /**
    * Текущий номер страницы
    * нумерация начинается с 0

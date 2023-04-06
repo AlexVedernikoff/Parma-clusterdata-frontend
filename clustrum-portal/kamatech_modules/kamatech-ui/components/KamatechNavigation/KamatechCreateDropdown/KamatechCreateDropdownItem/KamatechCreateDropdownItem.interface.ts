@@ -1,6 +1,6 @@
 import { CallbackFunctionArgs } from '../../../../helpers';
 
-export interface ParmaCreateDropdownItemInterface {
+export interface KamatechCreateDropdownItemInterface {
   /**
    * Иконка
    */

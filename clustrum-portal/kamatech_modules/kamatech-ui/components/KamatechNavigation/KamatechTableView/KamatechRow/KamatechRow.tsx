@@ -1,12 +1,12 @@
 import * as React from 'react';
-import '../ParmaTableView.css';
+import '../KamatechTableView.css';
 
-import { ParmaRowInterface } from './ParmaRow.interface';
+import { KamatechRowInterface } from './KamatechRow.interface';
 import { ModeType } from '../../../../enums';
 import { ClassHelper } from '../../../../helpers';
 
 import { KamatechIcon } from '../../..';
-import { ParmaRowModel } from './ParmaRow.model';
+import { KamatechRowModel } from './KamatechRow.model';
 
 import moment from 'moment';
 
@@ -14,8 +14,8 @@ moment.locale('ru');
 
 const blockName = 'parma-table-view';
 
-export class ParmaRow extends React.Component<ParmaRowInterface> {
-  constructor(props: ParmaRowInterface) {
+export class KamatechRow extends React.Component<KamatechRowInterface> {
+  constructor(props: KamatechRowInterface) {
     super(props);
     this.onClick = this.onClick.bind(this);
     this.onChangeFavorite = this.onChangeFavorite.bind(this);
@@ -48,7 +48,7 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
   onEntryParentClick = (event: React.SyntheticEvent) => {
     event.stopPropagation();
     event.preventDefault();
-    const model = new ParmaRowModel(this.props);
+    const model = new KamatechRowModel(this.props);
     const parentEntry = model.getParentFolderEntry(this.props.entry);
     this.props.onEntryParentClick ? this.props.onEntryParentClick(parentEntry, event) : '';
   };
@@ -110,7 +110,7 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
     );
   }
 
-  renderParentFolder(model: ParmaRowModel) {
+  renderParentFolder(model: KamatechRowModel) {
     const parentEntry = model.getParentFolderEntry(this.props.entry);
     return (
       <div className={`${blockName}__parent-folder`} onClick={this.onEntryParentClick}>
@@ -126,7 +126,7 @@ export class ParmaRow extends React.Component<ParmaRowInterface> {
   }
 
   render() {
-    const model = new ParmaRowModel(this.props);
+    const model = new KamatechRowModel(this.props);
     const { entry, iconEntry, linkWrapper } = this.props;
 
     const node = (

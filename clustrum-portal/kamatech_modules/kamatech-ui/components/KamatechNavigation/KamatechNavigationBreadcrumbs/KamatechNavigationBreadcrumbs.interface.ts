@@ -3,7 +3,7 @@ import { CallbackFunctionArgs, CallbackFunctionArgsReturnAny } from '../../../he
 /**
  * Интерфейс хлебных крошек для навигации
  */
-export interface ParmaNavigationBreadcrumbsInterface {
+export interface KamatechNavigationBreadcrumbsInterface {
   /**
    * Размер
    */
