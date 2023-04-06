@@ -15,11 +15,16 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "prepare": "cd .. && husky install",
-    "prettier": "prettier --config .prettierrc",
-    "lint": "eslint ./src"
+    "prettier": "prettier src/**/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
+    "prettier:fix": "prettier --write src/**/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
+    "prettier:pre-commit": "prettier --write --config .prettierrc",
+    "eslint": "eslint src/**/*.{ts,tsx,json}",
+    "eslint:fix": "eslint src/**/*.{ts,tsx,json} --fix",
+    "eslint:pre-commit": "eslint --fix"
   },
   "lint-staged": {
-    "src/**/*.{css,js,jsx,ts,tsx}": "prettier --write"
+    "src/**/*.{ts,tsx,json}": "npm run eslint:pre-commit",
+    "src/**/*.{css,js,jsx,ts,tsx,md,json}": "npm run prettier:pre-commit"
   },
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "7.7.4",
@@ -131,6 +136,7 @@
     "css-loader": "3.4.0",
     "dotenv": "5.0.1",
     "eslint": "7.32.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-react": "7.29.2",
     "eslint-plugin-react-hooks": "4.5.0",
     "file-loader": "6.2.0",
