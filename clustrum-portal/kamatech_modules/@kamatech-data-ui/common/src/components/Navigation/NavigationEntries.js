@@ -14,7 +14,7 @@ import iconDataset from '../../../../clustrum/src/icons/files-dataset.svg';
 import iconDashboard from '../../../../clustrum/src/icons/files-dashboard.svg';
 import iconWidget from '../../../../clustrum/src/icons/files-widget.svg';
 import iconConnection from '../../../../clustrum/src/icons/files-misc.svg';
-import { ScopeType } from '../../../../../../../parma-ui-core/src/components/table-view/scope-type.enum';
+import { ScopeType } from '../../../../../../../kamatech-ui-core/src/components/table-view/scope-type.enum';
 import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import iconFavoriteEmpty from '../../assets/icons/favorite-empty.svg';
 import iconDots from '../../assets/icons/dots.svg';

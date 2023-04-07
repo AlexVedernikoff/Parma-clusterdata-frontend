@@ -17,8 +17,8 @@ env.SSH_PASSWORD = "dZU-8Nw-YMS-sDM"
 
 /** Наименование сервиса (будет использоваться для наименования папок и файлов) */
 env.SERVICE_NAME = 'clusterdata-portal'
-env.PARMA_UI_CORE = 'parma-ui-core'
-env.PARMA_UI_REACT = 'parma-ui-react'
+env.PARMA_UI_CORE = 'kamatech-ui-core'
+env.PARMA_UI_REACT = 'kamatech-ui-react'
 
 node("${env.NODE_NAME}") {
   /**
