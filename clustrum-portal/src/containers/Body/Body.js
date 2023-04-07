@@ -117,9 +117,9 @@ class Body extends React.PureComponent {
 
     switch (mode) {
       case MODE.LOADING:
-        return <Loader size='l' />;
+        return <Loader size="l" />;
       case MODE.UPDATING:
-        return <Loader size='l' />;
+        return <Loader size="l" />;
       case MODE.ERROR:
         return <Error />;
     }

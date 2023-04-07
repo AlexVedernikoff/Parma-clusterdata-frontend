@@ -62,10 +62,10 @@ class ConnectionPage extends React.Component {
       <Button
         key={'create-dataset-btn'}
         cls={b('create-dataset-btn')}
-        theme='pseudo'
-        size='n'
-        view='default'
-        tone='default'
+        theme="pseudo"
+        size="n"
+        view="default"
+        tone="default"
         text={i18n('button_create-dataset')}
         onClick={() => {
           let currentPathParam = currentPath ? `&currentPath=${encodeURIComponent(currentPath)}` : '';
@@ -521,10 +521,10 @@ class ConnectionPage extends React.Component {
       <Button
         key={'action-btn'}
         cls={b('action-btn')}
-        theme='action'
-        size='n'
-        view='default'
-        tone='default'
+        theme="action"
+        size="n"
+        view="default"
+        tone="default"
         pin={permissionsSelectVisible ? 'clear-round' : null}
         text={
           connectionId && !permissionsSelectVisible

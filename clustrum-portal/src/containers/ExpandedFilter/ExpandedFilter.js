@@ -91,10 +91,10 @@ function ExpandedFilter({
   const footerContent = (
     <Button
       cls={b('clear-filters')}
-      theme='normal'
-      view='default'
-      tone='default'
-      size='n'
+      theme="normal"
+      view="default"
+      tone="default"
+      size="n"
       onClick={clearExpandedFilter}
     >
       {i18n('dash.expanded-filter.view', 'button_clear')}

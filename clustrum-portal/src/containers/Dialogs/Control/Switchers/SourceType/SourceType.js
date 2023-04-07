@@ -13,10 +13,10 @@ const b = block('control-switcher-source-type');
 function SourceType({ type, selectedType, title, onChange }) {
   return (
     <RadioBox
-      theme='normal'
-      view='default'
-      tone='default'
-      size='s'
+      theme="normal"
+      view="default"
+      tone="default"
+      size="s"
       name={type}
       value={selectedType}
       onChange={event => onChange(event.target.value)}

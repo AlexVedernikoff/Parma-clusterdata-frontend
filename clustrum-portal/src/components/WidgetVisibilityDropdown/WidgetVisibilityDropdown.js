@@ -62,34 +62,34 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
 
   return (
     <Dropdown
-      theme='default'
-      view='default'
-      tone='default'
-      size='n'
+      theme="default"
+      view="default"
+      tone="default"
+      size="n"
       cls={b()}
       switcher={
         <Button
           cls={b('btn')}
-          theme='flat'
-          view='default'
-          tone='default'
-          size='n'
+          theme="flat"
+          view="default"
+          tone="default"
+          size="n"
           title={i18n('dash.header.view', 'widgets_visibility_dropdown')}
         >
           <ButtonIcon>
-            <Icon data={iconOpenEye} width='18' height='18' />
+            <Icon data={iconOpenEye} width="18" height="18" />
           </ButtonIcon>
         </Button>
       }
       popup={
         <Popup hiding autoclosable onOutsideClick={() => {}}>
-          <Menu theme='normal' tone='default' view='default' size='n' type='navigation'>
+          <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
             {widgetList.map(({ id, title, isHidden }) => {
               const iconData = isHidden ? iconCloseEye : iconOpenEye;
               return (
                 <Menu.Item key={id} onClick={() => toggleWidgetVisibility(id)} cls={b('item', { hidden: isHidden })}>
                   <div className={b('item-icon')}>
-                    <Icon data={iconData} width='18' height={isHidden ? 10 : 18} />
+                    <Icon data={iconData} width="18" height={isHidden ? 10 : 18} />
                   </div>
                   <div className={b('item-title')}>{title}</div>
                 </Menu.Item>

@@ -80,9 +80,9 @@ class InputLink extends React.PureComponent {
     return (
       <div className={b()}>
         <TextInput
-          theme='normal'
-          view='default'
-          tone='default'
+          theme="normal"
+          view="default"
+          tone="default"
           size={this.props.size}
           placeholder={i18n('dash.navigation-input.edit', 'context_fill-link')}
           text={this.state.value}
@@ -90,38 +90,38 @@ class InputLink extends React.PureComponent {
           onChange={value => this.setState({ value })}
         />
         <Button
-          theme='normal'
-          view='default'
-          tone='default'
-          size='xs'
-          width='max'
+          theme="normal"
+          view="default"
+          tone="default"
+          size="xs"
+          width="max"
           disabled={this.state.progress}
           onClick={this.props.onCancel}
           cls={b('button')}
         >
-          <Icon data={iconSearchClear} width='16' />
+          <Icon data={iconSearchClear} width="16" />
         </Button>
         <Button
-          theme='action'
-          view='default'
-          tone='default'
-          size='xs'
-          width='max'
+          theme="action"
+          view="default"
+          tone="default"
+          size="xs"
+          width="max"
           progress={this.state.progress}
           onClick={this.onApply}
           ref={this.applyButtonRef}
           cls={b('button')}
         >
-          <Icon data={iconTick} width='16' />
+          <Icon data={iconTick} width="16" />
         </Button>
         <Tooltip
-          theme='error'
-          view='classic'
-          size='n'
+          theme="error"
+          view="classic"
+          size="n"
           autoclosable
           anchor={this.applyButtonRef.current}
           visible={Boolean(this.state.error)}
-          to='bottom-right'
+          to="bottom-right"
           onOutsideClick={() => this.setState({ error: null })}
         >
           {this.state.error && ERROR[this.state.error].text}

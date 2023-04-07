@@ -147,10 +147,10 @@ class GeneralConnector extends React.Component {
       dbConnectMethodSelect = (
         <div className={b('connect-method-radio')}>
           <RadioButton
-            theme='normal'
-            size='s'
-            view='default'
-            tone='default'
+            theme="normal"
+            size="s"
+            view="default"
+            tone="default"
             value={dbConnectMethod}
             onChange={e => this.changeValue({ dbConnectMethod: e.target.value })}
             freeWidth={true}

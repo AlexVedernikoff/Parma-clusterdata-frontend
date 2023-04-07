@@ -289,10 +289,10 @@ class Default extends React.PureComponent {
         <React.Fragment key={item.val}>
           <div className={b('radiobox-place')}>
             <RadioBox
-              theme='normal'
-              view='default'
-              tone='default'
-              size='s'
+              theme="normal"
+              view="default"
+              tone="default"
+              size="s"
               name={item.val}
               value={type}
               onChange={this.onChangeRadioBox}
@@ -331,17 +331,17 @@ class Default extends React.PureComponent {
             {item.val === FILTER_TYPES.Relative && type === item.val && (
               <div className={b('inputs-range-place')}>
                 <TextInput
-                  theme='normal'
-                  view='default'
-                  tone='default'
+                  theme="normal"
+                  view="default"
+                  tone="default"
                   placeholder={i18n('dash.control-dialog.edit', 'context_date-from-days-ago')}
                   onChange={this.onChangeInput('from')}
                   text={fromInput}
                 />
                 <TextInput
-                  theme='normal'
-                  view='default'
-                  tone='default'
+                  theme="normal"
+                  view="default"
+                  tone="default"
                   placeholder={i18n('dash.control-dialog.edit', 'context_date-to-days-ago')}
                   onChange={this.onChangeInput('to')}
                   text={toInput}
@@ -391,10 +391,10 @@ class Default extends React.PureComponent {
         <React.Fragment key={item.val}>
           <div className={b('radiobox-place')}>
             <RadioBox
-              theme='normal'
-              view='default'
-              tone='default'
-              size='s'
+              theme="normal"
+              view="default"
+              tone="default"
+              size="s"
               name={item.val}
               value={type}
               onChange={this.onChangeRadioBox}
@@ -411,7 +411,7 @@ class Default extends React.PureComponent {
                   minDate={minDate}
                   maxDate={maxDate}
                   date={dateValue}
-                  scale='day'
+                  scale="day"
                   allowEmptyValue={true}
                   hasClear={false}
                   showApply={false}
@@ -434,9 +434,9 @@ class Default extends React.PureComponent {
             {item.val === FILTER_TYPES.Relative && type === item.val && (
               <div className={b('input-single-place')}>
                 <TextInput
-                  theme='normal'
-                  view='default'
-                  tone='default'
+                  theme="normal"
+                  view="default"
+                  tone="default"
                   placeholder={i18n('dash.control-dialog.edit', 'context_date-days-ago')}
                   onChange={this.onChangeInput('from')}
                   text={dateValue || ''}

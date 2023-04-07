@@ -23,10 +23,10 @@ function SelectConnection(props) {
     <React.Fragment>
       <Button
         ref={connectionBtnRef}
-        theme='normal'
-        size='s'
-        view='default'
-        tone='default'
+        theme="normal"
+        size="s"
+        view="default"
+        tone="default"
         text={connectionId ? i18n('button_change-connection') : i18n('button_select-connection')}
         onClick={() => setNavVisibility(!isNavVisible)}
       />
@@ -37,7 +37,7 @@ function SelectConnection(props) {
         onClose={() => setNavVisibility(false)}
         onEntryClick={onEntryClick}
         popupDirections={POPUP_DIRECTIONS}
-        clickableScope='connection'
+        clickableScope="connection"
         startFrom={'connections'}
         placeSelectParameters={{
           items: [PLACE.ORIGIN_ROOT, PLACE.FAVORITES, PLACE.CONNECTIONS],

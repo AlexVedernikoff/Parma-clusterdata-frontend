@@ -30,10 +30,10 @@ function MaterializationSettings(props) {
         <RadioBox
           disabled={false}
           cls={customSettingsBlock('settings_items')}
-          view='default'
-          theme='normal'
-          size='m'
-          name='modeType'
+          view="default"
+          theme="normal"
+          size="m"
+          name="modeType"
           value={materializationCustomSettings.modeType}
           onChange={handleChange}
         >

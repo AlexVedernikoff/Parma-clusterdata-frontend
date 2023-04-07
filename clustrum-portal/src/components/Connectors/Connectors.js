@@ -41,10 +41,10 @@ class Connectors extends React.Component {
           <TextInput
             tabIndex={1}
             cls={b('search-connector-inp')}
-            theme='normal'
-            size='s'
-            view='default'
-            tone='default'
+            theme="normal"
+            size="s"
+            view="default"
+            tone="default"
             text={searchConnectorName}
             placeholder={i18n('connections.form', 'button_connection-name')}
             onChange={this.changeSearchConnectorName}
@@ -62,13 +62,13 @@ class Connectors extends React.Component {
             .map(([connector, title]) => {
               return (
                 <Link key={connector} className={b('link')} to={`/connections/new/${connector}${search}`}>
-                  <Button cls={b('connector-btn')} theme='pseudo' size='n' view='default' tone='default'>
+                  <Button cls={b('connector-btn')} theme="pseudo" size="n" view="default" tone="default">
                     <Icon
                       key={connector}
                       className={b('connector-icon')}
                       data={Utils.getConnectorIcon({ type: connector })}
-                      width='56'
-                      height='56'
+                      width="56"
+                      height="56"
                     />
                     <div className={b('connector-title')}>{title}</div>
                   </Button>

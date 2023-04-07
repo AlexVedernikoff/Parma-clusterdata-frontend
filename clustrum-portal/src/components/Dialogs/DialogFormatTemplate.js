@@ -95,13 +95,13 @@ class DialogFormatTemplate extends PureComponent {
             <span className={b('label')}>{i18n('wizard', 'Вид события')}</span>
             <div className={b('value custom-text-input')}>
               <Select
-                theme='normal'
-                size='m'
-                view='default'
-                tone='default'
-                type='radio'
-                placeholder='size m'
-                width='70'
+                theme="normal"
+                size="m"
+                view="default"
+                tone="default"
+                type="radio"
+                placeholder="size m"
+                width="70"
                 val={this.state.actionType}
                 options={data}
                 onChange={newValue => {
@@ -124,10 +124,10 @@ class DialogFormatTemplate extends PureComponent {
             <span className={b('label')}>{i18n('wizard', 'Шаблон записи')}</span>
             <div className={b('value custom-text-input')}>
               <TextArea
-                theme='normal'
-                view='default'
-                tone='default'
-                size='m'
+                theme="normal"
+                view="default"
+                tone="default"
+                size="m"
                 text={this.state.valueTemplate}
                 onChange={newValue =>
                   this.setState({
@@ -142,10 +142,10 @@ class DialogFormatTemplate extends PureComponent {
             <span className={b('label')}>{i18n('wizard', 'Событие')}</span>
             <div className={b('value custom-text-input')}>
               <TextArea
-                theme='normal'
-                view='default'
-                tone='default'
-                size='m'
+                theme="normal"
+                view="default"
+                tone="default"
+                size="m"
                 text={this.state.action}
                 onChange={newValue => {
                   this.setState({
@@ -160,13 +160,13 @@ class DialogFormatTemplate extends PureComponent {
             <span className={b('label')}>{i18n('wizard', 'Формат поля')}</span>
             <div className={b('value custom-text-input')}>
               <TextInput
-                theme='normal'
-                size='m'
-                width='70'
-                view='default'
-                tone='default'
+                theme="normal"
+                size="m"
+                width="70"
+                view="default"
+                tone="default"
                 hasClear={false}
-                pin='round-round'
+                pin="round-round"
                 text={this.state.viewFormat}
                 onChange={newValue => {
                   this.setState({
@@ -221,10 +221,10 @@ class DialogFormatTemplate extends PureComponent {
       return (
         <Dialog visible={this.state.visible} onClose={this.onClose}>
           <div className={`dialog-filter dialog-filter-${itemType}${isDate ? ' dialog-filter-date' : ''}`}>
-            <Dialog.Header caption={item.title} insertBefore={<Icon data={castIconData} width='16' />} />
+            <Dialog.Header caption={item.title} insertBefore={<Icon data={castIconData} width="16" />} />
             <Dialog.Body>{this.renderBody()}</Dialog.Body>
             <Dialog.Footer
-              preset='default'
+              preset="default"
               onClickButtonCancel={this.onCancel}
               onClickButtonApply={this.onApply}
               propsButtonApply={{

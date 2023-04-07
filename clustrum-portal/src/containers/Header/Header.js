@@ -168,68 +168,68 @@ class Header extends React.PureComponent {
     return [
       <Button
         cls={b('action-right', { 'button-settings': true })}
-        theme='flat'
-        view='default'
-        tone='default'
-        size='n'
+        theme="flat"
+        view="default"
+        tone="default"
+        size="n"
         onClick={() => this.props.openDialog(DIALOG_TYPE.SETTINGS)}
-        key='button-settings'
+        key="button-settings"
       >
         <ButtonIcon>
-          <Icon data={iconCog} width='22' height='22' />
+          <Icon data={iconCog} width="22" height="22" />
         </ButtonIcon>
       </Button>,
       <WidgetVisibilityDropdown
-        key='widget-visibility'
+        key="widget-visibility"
         items={items}
         layout={jointLayout}
         toggleWidgetVisibility={this.toggleWidgetVisibility}
       />,
       <Button
         cls={b('action-right', { 'expand-filter-panel': true })}
-        theme='flat'
-        view='default'
-        tone='default'
-        size='n'
+        theme="flat"
+        view="default"
+        tone="default"
+        size="n"
         title={i18n('dash.header.view', 'button_expanded_filter_panel')}
         onClick={this.props.openExpandedFilter}
-        key='button-expanded-filter-panel'
+        key="button-expanded-filter-panel"
       >
         <ButtonIcon>
-          <Icon data={iconFilter} width='22' height='22' />
+          <Icon data={iconFilter} width="22" height="22" />
         </ButtonIcon>
       </Button>,
       <Button
-        key='tabs'
-        theme='flat'
-        view='default'
-        tone='default'
-        size='n'
+        key="tabs"
+        theme="flat"
+        view="default"
+        tone="default"
+        size="n"
         cls={b('action-right', { tabs: true })}
         onClick={() => this.props.openDialog(DIALOG_TYPE.TABS)}
       >
         <ButtonIcon>
-          <Icon data={iconPlus} width='16' />
+          <Icon data={iconPlus} width="16" />
         </ButtonIcon>
         {i18n('dash.header.view', 'button_tabs')}
       </Button>,
       <Dropdown
-        key='add'
-        theme='flat'
-        view='default'
-        tone='default'
-        size='n'
+        key="add"
+        theme="flat"
+        view="default"
+        tone="default"
+        size="n"
         cls={b('action-right')}
         ref={this.addRef}
         switcher={
-          <Button theme='flat' view='default' tone='default' size='n'>
+          <Button theme="flat" view="default" tone="default" size="n">
             {i18n('dash.header.view', 'button_add')}
-            <LegoIcon size='n' glyph='carets-v' />
+            <LegoIcon size="n" glyph="carets-v" />
           </Button>
         }
         popup={
           <Popup hiding autoclosable onOutsideClick={() => {}}>
-            <Menu theme='normal' tone='default' view='default' size='n' type='navigation'>
+            <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>
                 {i18n('dash.header.view', 'value_widget')}
               </Menu.Item>
@@ -247,22 +247,22 @@ class Header extends React.PureComponent {
         }
       />,
       <Button
-        key='cancel'
-        theme='normal'
-        view='default'
-        tone='default'
-        size='n'
+        key="cancel"
+        theme="normal"
+        view="default"
+        tone="default"
+        size="n"
         cls={b('action-right', { cancel: true })}
         onClick={this.props.cancelEditMode}
       >
         {i18n('dash.header.view', 'button_cancel')}
       </Button>,
       <Button
-        key='save'
-        theme='action'
-        view='default'
-        tone='default'
-        size='n'
+        key="save"
+        theme="action"
+        view="default"
+        tone="default"
+        size="n"
         progress={this.state.progress}
         disabled={!this.props.isDraft}
         cls={b('action-right', { save: true })}
@@ -272,16 +272,16 @@ class Header extends React.PureComponent {
         {i18n('dash.header.view', 'button_save')}
       </Button>,
       <Tooltip
-        key='tooltip'
-        theme='error'
-        view='classic'
-        tone='default'
-        size='n'
+        key="tooltip"
+        theme="error"
+        view="classic"
+        tone="default"
+        size="n"
         autoclosable
         visible={this.state.error}
         anchor={this.saveRef.current}
         onOutsideClick={() => this.setState({ error: false })}
-        to='bottom-right'
+        to="bottom-right"
       >
         {i18n('dash.header.view', 'toast_error')}
       </Tooltip>,
@@ -296,57 +296,57 @@ class Header extends React.PureComponent {
         this.#hasVisibleExpandedFilters() ? (
           <Button
             cls={b('action-right', { 'expand-filter-panel': true })}
-            theme='flat'
-            view='default'
-            tone='default'
-            size='n'
+            theme="flat"
+            view="default"
+            tone="default"
+            size="n"
             title={i18n('dash.header.view', 'button_expanded_filter_panel')}
             onClick={openExpandedFilter}
-            key='button-expanded-filter-panel'
+            key="button-expanded-filter-panel"
           >
             <ButtonIcon>
-              <Icon data={iconFilter} width='22' height='22' />
+              <Icon data={iconFilter} width="22" height="22" />
             </ButtonIcon>
           </Button>
         ) : null,
         <Button
           cls={b('action-right', { 'clear-filters': true })}
-          theme='flat'
-          view='default'
-          tone='default'
-          size='n'
+          theme="flat"
+          view="default"
+          tone="default"
+          size="n"
           title={i18n('dash.header.view', 'button_clear_filters')}
           onClick={() => this.onClearFilters()}
-          key='button-clear-filters'
+          key="button-clear-filters"
         >
           <ButtonIcon>
-            <Icon data={iconEraser} width='22' height='22' />
+            <Icon data={iconEraser} width="22" height="22" />
           </ButtonIcon>
         </Button>,
 
         <Dropdown
-          key='export'
-          theme='flat'
-          size='n'
+          key="export"
+          theme="flat"
+          size="n"
           cls={b('action-right', { 'export-pdf': true })}
           switcher={
             <Button
               cls={b('action-right', { 'export-pdf': true })}
               progress={this.isExportInProgress()}
               action={this.isExportInProgress()}
-              theme='flat'
-              view='default'
-              tone='default'
-              size='n'
+              theme="flat"
+              view="default"
+              tone="default"
+              size="n"
             >
               <ButtonIcon>
-                <Icon data={iconExport} width='22' height='22' />
+                <Icon data={iconExport} width="22" height="22" />
               </ButtonIcon>
             </Button>
           }
           popup={
             <Popup hiding autoclosable onOutsideClick={() => {}}>
-              <Menu theme='normal' type='navigation' cls={b('export-menu')}>
+              <Menu theme="normal" type="navigation" cls={b('export-menu')}>
                 <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</Menu.Item>
                 <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.XLSX)}>XLSX</Menu.Item>
                 <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.XLS)}>XLS</Menu.Item>
@@ -360,13 +360,13 @@ class Header extends React.PureComponent {
           {!window.DL.hideEdit && (
             <Button
               cls={b('action-right', { edit: true })}
-              theme='flat'
-              view='default'
-              tone='default'
-              size='n'
+              theme="flat"
+              view="default"
+              tone="default"
+              size="n"
               title={i18n('dash.header.view', 'button_edit')}
               onClick={() => setMode(MODE.EDIT)}
-              key='button-edit'
+              key="button-edit"
             >
               {i18n('dash.header.view', 'button_edit')}
             </Button>
@@ -380,12 +380,12 @@ class Header extends React.PureComponent {
     return [
       <Button
         cls={b('action-right', { edit: true })}
-        theme='flat'
-        view='default'
-        tone='default'
-        size='n'
+        theme="flat"
+        view="default"
+        tone="default"
+        size="n"
         onClick={() => this.setState({ showRightsDialog: true })}
-        key='button-edit'
+        key="button-edit"
       >
         {i18n('dash.header.view', 'button_request-rights')}
       </Button>,
@@ -394,7 +394,7 @@ class Header extends React.PureComponent {
         onClose={() => this.setState({ showRightsDialog: false })}
         visible={this.state.showRightsDialog}
         dialogProps={{ entry }}
-        key='dialog-unlock'
+        key="dialog-unlock"
       />,
     ];
   }

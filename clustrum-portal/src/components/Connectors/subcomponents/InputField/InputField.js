@@ -41,10 +41,10 @@ class InputField extends React.Component {
         <FieldWrapper error={error}>
           <TextInput
             type={inputType}
-            theme='normal'
-            size='s'
-            view='default'
-            tone='default'
+            theme="normal"
+            size="s"
+            view="default"
+            tone="default"
             text={value}
             placeholder={placeholder}
             onChange={this._onChange}

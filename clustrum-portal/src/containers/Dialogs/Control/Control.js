@@ -333,20 +333,20 @@ class Control extends React.PureComponent {
           <Dialog.Body>
             <div className={b('title')}>
               <LegoTextInput
-                theme='normal'
-                view='default'
-                tone='default'
-                size='s'
+                theme="normal"
+                view="default"
+                tone="default"
+                size="s"
                 text={title}
                 placeholder={i18n('dash.control-dialog.edit', 'context_title')}
                 onChange={title => this.setState({ title, isManualTitle: true })}
               />
               <LegoCheckBox
                 disabled={!title}
-                theme='normal'
-                view='default'
-                tone='default'
-                size='s'
+                theme="normal"
+                view="default"
+                tone="default"
+                size="s"
                 checked={showTitle}
                 onChange={() => this.setState({ showTitle: !showTitle })}
               >
@@ -363,10 +363,10 @@ class Control extends React.PureComponent {
             })}
             {this.renderSourceTypeExternal()}
             <LegoCheckBox
-              theme='normal'
-              view='default'
-              tone='default'
-              size='s'
+              theme="normal"
+              view="default"
+              tone="default"
+              size="s"
               checked={isExpandedFilter}
               onChange={() => this.setState({ isExpandedFilter: !isExpandedFilter })}
             >

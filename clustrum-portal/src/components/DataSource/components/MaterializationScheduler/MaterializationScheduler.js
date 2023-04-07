@@ -18,10 +18,10 @@ function PeriodSetup(props) {
       </div>
       <TextInput
         cls={b('width', { 120: true })}
-        theme='normal'
-        size='s'
-        view='default'
-        tone='default'
+        theme="normal"
+        size="s"
+        view="default"
+        tone="default"
         placeholder={i18n('dataset.materialization.modify', 'label_placeholder-cron')}
         onChange={text =>
           changeScheduleSettings({

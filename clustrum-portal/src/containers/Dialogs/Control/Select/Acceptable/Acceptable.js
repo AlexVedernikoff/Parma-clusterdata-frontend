@@ -43,9 +43,9 @@ class Acceptable extends React.PureComponent {
       <React.Fragment>
         <div className={b('header')}>
           <TextInput
-            theme='normal'
-            view='default'
-            tone='default'
+            theme="normal"
+            view="default"
+            tone="default"
             placeholder={i18n('dash.control-dialog.edit', 'context_add-value')}
             onChange={newValue => this.setState({ newValue })}
             text={newValue}
@@ -54,7 +54,7 @@ class Acceptable extends React.PureComponent {
               onKeyPress: event => event.charCode === 13 && this.addItem(),
             }}
           />
-          <LegoButton theme='normal' view='default' tone='default' size='s' onClick={this.addItem}>
+          <LegoButton theme="normal" view="default" tone="default" size="s" onClick={this.addItem}>
             {i18n('dash.control-dialog.edit', 'button_add')}
           </LegoButton>
         </div>
@@ -67,7 +67,7 @@ class Acceptable extends React.PureComponent {
                   <Icon
                     className={b('remove')}
                     data={iconPreviewClose}
-                    width='16'
+                    width="16"
                     onClick={() =>
                       this.setState({
                         acceptableValues: [...acceptableValues.slice(0, index), ...acceptableValues.slice(index + 1)],

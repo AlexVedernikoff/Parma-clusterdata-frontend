@@ -66,10 +66,10 @@ class AppMetricaConnector extends React.Component {
     return (
       <Button
         cls={b('get-token-btn')}
-        theme='pseudo'
-        size='s'
-        view='default'
-        tone='default'
+        theme="pseudo"
+        size="s"
+        view="default"
+        tone="default"
         text={i18n('field_get-token')}
         onClick={this.onGetTokenBtnClick}
       />

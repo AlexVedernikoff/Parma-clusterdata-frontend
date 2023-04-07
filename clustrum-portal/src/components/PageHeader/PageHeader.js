@@ -6,7 +6,7 @@ function PageHead({ title }) {
   const systemTitle = window.DL.dotenv.SYSTEM_TITLE;
 
   return (
-    <Helmet defaultTitle={systemTitle} titleTemplate={`%s - ${systemTitle}`} key='helmet'>
+    <Helmet defaultTitle={systemTitle} titleTemplate={`%s - ${systemTitle}`} key="helmet">
       <title>{title}</title>
     </Helmet>
   );

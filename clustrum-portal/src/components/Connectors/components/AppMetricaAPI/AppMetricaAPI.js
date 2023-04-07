@@ -174,10 +174,10 @@ class AppMetricaConnector extends React.Component {
               {Utils.isInternal() && (
                 <div className={b('counter-input-method-radio')}>
                   <RadioButton
-                    theme='normal'
-                    size='s'
-                    view='default'
-                    tone='default'
+                    theme="normal"
+                    size="s"
+                    view="default"
+                    tone="default"
                     value={counterInputMethod}
                     onChange={e => this.changeValue({ counterInputMethod: e.target.value })}
                     freeWidth={true}

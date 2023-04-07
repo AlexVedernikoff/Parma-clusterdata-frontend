@@ -87,8 +87,8 @@ class RLSDialog extends React.Component {
           </div>
           <TextArea
             rows={5}
-            theme='normal'
-            size='s'
+            theme="normal"
+            size="s"
             text={rlsField}
             onChange={this.changeRlsSettings}
             placeholder={i18n('field_placeholder-row-level-security')}
@@ -98,7 +98,7 @@ class RLSDialog extends React.Component {
           />
         </Dialog.Body>
         <Dialog.Footer
-          preset='default'
+          preset="default"
           onClickButtonCancel={onClose}
           onClickButtonApply={this.saveRls}
           textButtonCancel={i18n('button_cancel')}

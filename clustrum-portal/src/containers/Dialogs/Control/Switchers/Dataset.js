@@ -15,7 +15,7 @@ function Dataset({
 }) {
   return (
     <DropdownNavigation
-      size='s'
+      size="s"
       entryId={datasetId}
       clickableScope={ENTRY_SCOPE.DATASET}
       onClick={({ entry: { entryId } }) => onClick(entryId)}

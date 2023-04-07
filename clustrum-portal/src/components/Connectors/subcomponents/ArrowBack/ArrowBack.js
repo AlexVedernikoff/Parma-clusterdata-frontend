@@ -26,7 +26,7 @@ class ArrowBack extends React.Component {
     return (
       <div className={b()}>
         <Link to={url || getDefaultUrl()}>
-          <Button cls={b()} theme='flat' size='m' view='default' tone='default'>
+          <Button cls={b()} theme="flat" size="m" view="default" tone="default">
             <Icon data={iconArrow} width={20} />
           </Button>
         </Link>

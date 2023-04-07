@@ -35,7 +35,7 @@ function MaterializationCustomSettings(props) {
         <Icon
           className={b('connector-ic')}
           data={Utils.getConnectorIcon({ type: materializationCustomSettings.connectionType })}
-          width='32'
+          width="32"
         />
         <span className={b('label-connection-type')}>
           {getConnectorsMap()[materializationCustomSettings.connectionType]}
@@ -47,7 +47,7 @@ function MaterializationCustomSettings(props) {
           onEntryClick={entryClick}
         />
       </div>
-      <div className='row'>
+      <div className="row">
         <div className={b('caption')}>
           <span>{i18n('dataset.dataset-creation.create', 'field_db-name')}</span>
         </div>
@@ -100,10 +100,10 @@ function MaterializationCustomSettingsParamsItem(props) {
       <div className={b('params_label')}>{label}</div>
       <div className={'parma-textinput__control'}>
         <ParmaTextInput
-          view='default'
-          tone='default'
-          theme='normal'
-          size='s'
+          view="default"
+          tone="default"
+          theme="normal"
+          size="s"
           hasClear={true}
           text={value}
           onChange={textNext => onChangeValue(name, textNext)}

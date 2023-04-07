@@ -405,7 +405,7 @@ class VerificationModal extends React.Component {
     if (isLoading) {
       return (
         <div className={b('loader')}>
-          <Loader size='l' />
+          <Loader size="l" />
         </div>
       );
     }
@@ -462,7 +462,7 @@ class VerificationModal extends React.Component {
             message={errorMessage}
           />
           <Dialog.Footer
-            preset='default'
+            preset="default"
             onClickButtonCancel={onClose}
             onClickButtonApply={this.clickSaveBtn}
             textButtonApply={i18n('dataset.materialization.modify', 'button_save')}

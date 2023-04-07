@@ -41,10 +41,10 @@ function CustomTextInput(props) {
     <TextInput
       tabIndex={tabIndex}
       cls={cls}
-      theme='normal'
-      size='s'
-      view='default'
-      tone='default'
+      theme="normal"
+      size="s"
+      view="default"
+      tone="default"
       text={localText}
       onFocus={onFocus}
       onBlur={text !== localText ? onBlur : null}
@@ -409,7 +409,7 @@ class DatasetTable extends React.Component {
     align: DataTable.CENTER,
     width: '50px',
     sortable: false,
-    header: <Icon className={b('header-icon-table-count')} data={iconTableCount} width='10' />,
+    header: <Icon className={b('header-icon-table-count')} data={iconTableCount} width="10" />,
     render: ({ index }) => index + 1,
   };
 
@@ -449,7 +449,7 @@ class DatasetTable extends React.Component {
     width: '70px',
     align: DataTable.LEFT,
     sortable: true,
-    header: <Icon className={b('header-icon')} data={iconLinkedDataset} width='18' height='18' />,
+    header: <Icon className={b('header-icon')} data={iconLinkedDataset} width="18" height="18" />,
     render: ({ index, row }) => {
       const { linkedDataset } = row;
 
@@ -457,14 +457,14 @@ class DatasetTable extends React.Component {
         <Button
           key={index}
           cls={b('btn-linked')}
-          theme='flat'
-          size='m'
-          view='default'
-          tone='default'
+          theme="flat"
+          size="m"
+          view="default"
+          tone="default"
           title={i18n('dataset.dataset-editor.modify', 'button_open-field-editor')}
           onClick={() => this.openFieldEditor({ field: row })}
         >
-          <Icon className={b('linked')} data={iconLinkedDataset} width='18' height='18' />
+          <Icon className={b('linked')} data={iconLinkedDataset} width="18" height="18" />
         </Button>
       ) : null;
     },
@@ -484,23 +484,23 @@ class DatasetTable extends React.Component {
         <Button
           key={index}
           cls={b('btn-formula')}
-          theme='flat'
-          size='m'
-          view='default'
-          tone='default'
+          theme="flat"
+          size="m"
+          view="default"
+          tone="default"
           title={i18n('dataset.dataset-editor.modify', 'button_open-field-editor')}
           onClick={() => this.openFieldEditor({ field: row })}
         >
-          <Icon className={b('formula')} data={iconFormula2} width='28' height='28' />
+          <Icon className={b('formula')} data={iconFormula2} width="28" height="28" />
         </Button>
       ) : (
         <Button
           key={index}
           cls={b('btn-source')}
-          theme='flat'
-          size='m'
-          view='default'
-          tone='default'
+          theme="flat"
+          size="m"
+          view="default"
+          tone="default"
           title={i18n('dataset.dataset-editor.modify', 'button_open-field-editor')}
           onClick={() => this.openFieldEditor({ field: row })}
           text={source}
@@ -515,16 +515,16 @@ class DatasetTable extends React.Component {
     width: '70px',
     align: DataTable.CENTER,
     sortable: true,
-    header: <Icon className={b('header-icon')} data={iconEyeCross} width='24' />,
+    header: <Icon className={b('header-icon')} data={iconEyeCross} width="24" />,
     render: ({ value, index, row }) => {
       return (
         <Button
           key={index}
           cls={b('btn-hidden')}
-          theme='light'
-          size='n'
-          view='default'
-          tone='default'
+          theme="light"
+          size="n"
+          view="default"
+          tone="default"
           title={
             value
               ? i18n('dataset.dataset-editor.modify', 'button_hide-field')
@@ -532,7 +532,7 @@ class DatasetTable extends React.Component {
           }
           onClick={() => this.toggleHidden({ row })}
         >
-          <Icon className={b('hidden', { hidden: value })} data={iconEyeCross} width='24' height='28' />
+          <Icon className={b('hidden', { hidden: value })} data={iconEyeCross} width="24" height="28" />
         </Button>
       );
     },
@@ -544,7 +544,7 @@ class DatasetTable extends React.Component {
     width: '70px',
     align: DataTable.LEFT,
     sortable: true,
-    header: <Icon className={b('header-icon')} data={iconVerificationRules} width='24' />,
+    header: <Icon className={b('header-icon')} data={iconVerificationRules} width="24" />,
     render: ({ index, row }) => {
       const { verification_rules: verificationRules } = row;
 
@@ -552,14 +552,14 @@ class DatasetTable extends React.Component {
         <Button
           key={index}
           cls={b('btn-with-no-toggle')}
-          theme='flat'
-          size='n'
-          view='default'
-          tone='default'
+          theme="flat"
+          size="n"
+          view="default"
+          tone="default"
           title={i18n('dataset.dataset-editor.modify', 'button_has_verification_rules-field')}
           onClick={() => this.openFieldEditor({ field: row })}
         >
-          <Icon className={b('verification_rules')} data={iconVerificationRules} width='24' height='28' />
+          <Icon className={b('verification_rules')} data={iconVerificationRules} width="24" height="28" />
         </Button>
       ) : null;
     },
@@ -571,16 +571,16 @@ class DatasetTable extends React.Component {
     width: '70px',
     align: DataTable.CENTER,
     sortable: true,
-    header: <Icon className={b('header-icon')} data={indexIcon} width='24' />,
+    header: <Icon className={b('header-icon')} data={indexIcon} width="24" />,
     render: ({ value, index, row }) => {
       return (
         <Button
           key={index}
           cls={b('btn-hidden')}
-          theme='light'
-          size='n'
-          view='default'
-          tone='default'
+          theme="light"
+          size="n"
+          view="default"
+          tone="default"
           title={
             value
               ? i18n('dataset.dataset-editor.modify', 'button_has_index-field')
@@ -588,7 +588,7 @@ class DatasetTable extends React.Component {
           }
           onClick={() => this.toggleHasIndex({ row })}
         >
-          <Icon className={b('hidden', { hidden: value })} data={indexIcon} width='24' height='28' />
+          <Icon className={b('hidden', { hidden: value })} data={indexIcon} width="24" height="28" />
         </Button>
       );
     },
@@ -625,16 +625,16 @@ class DatasetTable extends React.Component {
     width: '70px',
     align: DataTable.CENTER,
     sortable: true,
-    header: <Icon className={b('header-icon')} data={arrayIcon} width='24' />,
+    header: <Icon className={b('header-icon')} data={arrayIcon} width="24" />,
     render: ({ value, index, row }) => {
       return (
         <Button
           key={index}
           cls={b('btn-hidden')}
-          theme='light'
-          size='n'
-          view='default'
-          tone='default'
+          theme="light"
+          size="n"
+          view="default"
+          tone="default"
           title={
             value
               ? i18n('dataset.dataset-editor.modify', 'button_has_array-field')
@@ -642,7 +642,7 @@ class DatasetTable extends React.Component {
           }
           onClick={() => this.toggleHasArray({ row })}
         >
-          <Icon className={b('hidden', { hidden: value })} data={arrayIcon} width='24' height='28' />
+          <Icon className={b('hidden', { hidden: value })} data={arrayIcon} width="24" height="28" />
         </Button>
       );
     },
@@ -654,16 +654,16 @@ class DatasetTable extends React.Component {
     width: '70px',
     align: DataTable.CENTER,
     sortable: true,
-    header: <Icon className={b('header-icon')} data={iconVersion} width='24' />,
+    header: <Icon className={b('header-icon')} data={iconVersion} width="24" />,
     render: ({ value, index, row }) => {
       return (
         <Button
           key={index}
           cls={b('btn-hidden')}
-          theme='light'
-          size='n'
-          view='default'
-          tone='default'
+          theme="light"
+          size="n"
+          view="default"
+          tone="default"
           title={
             value
               ? i18n('dataset.dataset-editor.modify', 'button_has_version-field')
@@ -671,7 +671,7 @@ class DatasetTable extends React.Component {
           }
           onClick={() => this.toggleHasVersion({ row })}
         >
-          <Icon className={b('hidden', { hidden: value })} data={iconVersion} width='24' height='28' />
+          <Icon className={b('hidden', { hidden: value })} data={iconVersion} width="24" height="28" />
         </Button>
       );
     },
@@ -762,10 +762,10 @@ class DatasetTable extends React.Component {
       <div ref={this._datasetTableRef} className={b()}>
         <CheckBox
           cls={b('cb-display-hidden-fields')}
-          theme='normal'
-          size='n'
-          view='default'
-          tone='default'
+          theme="normal"
+          size="n"
+          view="default"
+          tone="default"
           checked={displayHiddenFields}
           onChange={toggleFilterFieldsByHidden}
           text={i18n('dataset.dataset-editor.modify', 'field_display-hidden-fields')}

@@ -38,10 +38,10 @@ class DatasetPanel extends React.Component {
         {multisourcesEnabled && (
           <RadioButton
             cls={b('tabs')}
-            theme='normal'
-            size='s'
-            view='default'
-            tone='default'
+            theme="normal"
+            size="s"
+            view="default"
+            tone="default"
             value={tab}
             onChange={e => switchTab(e.target.value)}
           >
@@ -57,48 +57,48 @@ class DatasetPanel extends React.Component {
           <React.Fragment>
             <Button
               cls={b('sync-btn')}
-              theme='flat'
-              size='n'
-              view='default'
-              tone='default'
+              theme="flat"
+              size="n"
+              view="default"
+              tone="default"
               text={i18n('dataset.dataset-editor.modify', 'button_sync')}
               onClick={syncDataSet}
             />
             <Button
               disabled={!previewEnabled}
               cls={b('preview-btn')}
-              theme='flat'
-              size='n'
-              view='default'
-              tone='default'
+              theme="flat"
+              size="n"
+              view="default"
+              tone="default"
               text={i18n('dataset.dataset-editor.modify', 'button_preview')}
               onClick={toggleVisibilityPreview}
             />
             <Button
               cls={b('history-btn')}
-              theme='flat'
-              size='n'
-              view='default'
-              tone='default'
+              theme="flat"
+              size="n"
+              view="default"
+              tone="default"
               text={i18n('dataset.dataset-editor.modify', 'button_history')}
               onClick={toggleVisibilityHistory}
             />
             <Button
               cls={b('add-field-btn')}
-              theme='flat'
-              size='n'
-              view='default'
-              tone='default'
-              iconLeft={<Icon className={b('add-field-btn-ic')} data={iconPlus} width='18' />}
+              theme="flat"
+              size="n"
+              view="default"
+              tone="default"
+              iconLeft={<Icon className={b('add-field-btn-ic')} data={iconPlus} width="18" />}
               text={i18n('dataset.dataset-editor.modify', 'button_add-field')}
               onClick={openFieldEditor}
             />
             <TextInput
               cls={b('find-field')}
-              theme='normal'
-              size='s'
-              view='default'
-              tone='default'
+              theme="normal"
+              size="s"
+              view="default"
+              tone="default"
               text={searchKeyword}
               onChange={changeSearchKeyword}
               placeholder={i18n('dataset.dataset-editor.modify', 'field_find-field')}

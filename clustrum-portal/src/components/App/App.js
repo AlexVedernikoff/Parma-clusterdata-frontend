@@ -14,12 +14,12 @@ import { PREFIX } from '../../modules/constants/constants';
 
 function App() {
   return (
-    <div className='app'>
+    <div className="app">
       <Pointerfocus />
       <Header />
       <Switch>
-        <Route path='/:root(dashboards)' exact={true} component={Index} />
-        <Route path='/:root(datasets|widgets|favorites|navigation|connections)/:path*' component={Index} />
+        <Route path="/:root(dashboards)" exact={true} component={Index} />
+        <Route path="/:root(datasets|widgets|favorites|navigation|connections)/:path*" component={Index} />
         <Route path={`${PREFIX}/:id`} component={Dash} />
         <Route path={`${PREFIX}/`} component={Index} />
       </Switch>

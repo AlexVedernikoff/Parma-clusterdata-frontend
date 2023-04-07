@@ -22,11 +22,11 @@ function FieldActionsPopup(props) {
       <Button
         cls={b('control')}
         ref={buttonRef}
-        size='s'
-        theme='light'
-        type='default'
-        view='default'
-        icon={<Icon className={b('more')} data={iconMore} width='26' height='28' />}
+        size="s"
+        theme="light"
+        type="default"
+        view="default"
+        icon={<Icon className={b('more')} data={iconMore} width="26" height="28" />}
         onClick={() => setVisible(!visible)}
       />
       {visible && (
@@ -34,15 +34,15 @@ function FieldActionsPopup(props) {
           cls={b('popup')}
           hiding
           anchor={buttonRef.current}
-          theme='normal'
+          theme="normal"
           directions={['bottom-right', 'top-right']}
           visible={visible}
           onOutsideClick={() => setVisible(false)}
         >
-          <Menu theme='normal' view='default' tone='default' size='s' type='navigation'>
+          <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
             <Menu.Item
-              type='option'
-              val='duplicate'
+              type="option"
+              val="duplicate"
               onClick={() => {
                 setVisible(false);
 
@@ -55,8 +55,8 @@ function FieldActionsPopup(props) {
               {i18n('dataset.dataset-editor.modify', 'button_duplicate')}
             </Menu.Item>
             <Menu.Item
-              type='option'
-              val='edit'
+              type="option"
+              val="edit"
               onClick={() => {
                 setVisible(false);
 
@@ -69,8 +69,8 @@ function FieldActionsPopup(props) {
               {i18n('dataset.dataset-editor.modify', 'button_edit')}
             </Menu.Item>
             <Menu.Item
-              type='option'
-              val='remove'
+              type="option"
+              val="remove"
               onClick={() => {
                 setVisible(false);
 
@@ -83,8 +83,8 @@ function FieldActionsPopup(props) {
               {i18n('dataset.dataset-editor.modify', 'button_remove')}
             </Menu.Item>
             <Menu.Item
-              type='option'
-              val='remove'
+              type="option"
+              val="remove"
               onClick={() => {
                 setVisible(false);
 

@@ -382,11 +382,11 @@ class Dataset extends React.Component {
           additionalEntryItems={[
             <Button
               cls={b('materialization-btn')}
-              key='materialization'
-              theme='flat'
-              size='n'
-              view='default'
-              tone='default'
+              key="materialization"
+              theme="flat"
+              size="n"
+              view="default"
+              tone="default"
               title={i18n('dataset.dataset-editor.modify', 'button_data')}
               onClick={this.openDataSource}
             >
@@ -394,11 +394,11 @@ class Dataset extends React.Component {
             </Button>,
             <Button
               cls={b('verification-btn')}
-              key='verification'
-              theme='flat'
-              size='n'
-              view='default'
-              tone='default'
+              key="verification"
+              theme="flat"
+              size="n"
+              view="default"
+              tone="default"
               title={i18n('dataset.dataset-editor.modify', 'button_verify_data')}
               onClick={this.openVerificationModal}
             >
@@ -407,12 +407,12 @@ class Dataset extends React.Component {
           ]}
           rightItems={[
             <Button
-              key='create-widget'
+              key="create-widget"
               cls={b('create-widget-btn')}
-              theme='flat'
-              size='n'
-              view='default'
-              tone='default'
+              theme="flat"
+              size="n"
+              view="default"
+              tone="default"
               text={i18n('dataset.dataset-editor.modify', 'button_create-widget')}
               onClick={this.openCreationWidgetPage}
             />,
@@ -420,11 +420,11 @@ class Dataset extends React.Component {
               disabled={savingDatasetDisabled}
               progress={isProcessingSavingDataset}
               cls={b('save-dataset-btn')}
-              key='save-dataset'
-              theme='action'
-              size='n'
-              view='default'
-              tone='default'
+              key="save-dataset"
+              theme="action"
+              size="n"
+              view="default"
+              tone="default"
               text={isProcessingDataset ? null : i18n('dataset.dataset-editor.modify', 'button_save')}
               onClick={() =>
                 saveDataset({
@@ -434,7 +434,7 @@ class Dataset extends React.Component {
             >
               {isProcessingDataset && (
                 <React.Fragment>
-                  <Spin size='xs' progress />
+                  <Spin size="xs" progress />
                   &nbsp;&nbsp;
                 </React.Fragment>
               )}

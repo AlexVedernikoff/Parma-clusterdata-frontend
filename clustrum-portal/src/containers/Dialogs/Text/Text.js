@@ -60,10 +60,10 @@ class Text extends React.PureComponent {
         <Dialog.Body className={b()}>
           <FieldWrapper error={this.state.error ? i18n('dash.text-dialog.edit', 'toast_required-field') : null}>
             <TextArea
-              theme='normal'
-              view='default'
-              tone='default'
-              size='m'
+              theme="normal"
+              view="default"
+              tone="default"
+              size="m"
               text={this.state.text}
               placeholder={i18n('dash.text-dialog.edit', 'context_fill-text')}
               rows={8}

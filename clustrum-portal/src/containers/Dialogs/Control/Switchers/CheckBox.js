@@ -8,10 +8,10 @@ import withWrap from '../withWrap/withWrap';
 function CheckBox(props) {
   return (
     <LegoCheckBox
-      theme='normal'
-      view='default'
-      tone='default'
-      size='s'
+      theme="normal"
+      view="default"
+      tone="default"
+      size="s"
       checked={props.checked}
       onChange={props.onChange}
     >

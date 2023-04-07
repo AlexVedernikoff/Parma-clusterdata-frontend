@@ -178,7 +178,7 @@ class Control extends React.PureComponent {
       case LOAD_STATUS.PENDING:
         return (
           <div className={b()}>
-            <Loader size='s' />
+            <Loader size="s" />
           </div>
         );
       case LOAD_STATUS.FAIL:

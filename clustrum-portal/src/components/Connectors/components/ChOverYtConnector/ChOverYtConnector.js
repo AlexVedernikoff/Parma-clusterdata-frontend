@@ -132,7 +132,7 @@ class ChOverYtConnector extends React.Component {
               <div className={b('alias-info')}>
                 <span>{i18n('label_alias-info')}</span>
                 &nbsp;
-                <Link theme='ghost' target='_blank' url=''>
+                <Link theme="ghost" target="_blank" url="">
                   {i18n('label_documentation')}
                 </Link>
               </div>

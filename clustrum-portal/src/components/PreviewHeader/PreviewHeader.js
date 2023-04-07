@@ -128,11 +128,11 @@ class PreviewHeader extends React.Component {
           <span>{fieldDisplayRowsTitle}</span>
           <TextInput
             cls={b('amount-preview-rows-inp')}
-            theme='normal'
-            type='number'
-            size='s'
-            view='default'
-            tone='default'
+            theme="normal"
+            type="number"
+            size="s"
+            view="default"
+            tone="default"
             text={String(this.state.amountPreviewRows)}
             onChange={this.changeAmountPreviewRows}
             placeholder={i18n('dataset.dataset-editor.modify', 'button_enter-amount-rows')}
@@ -143,52 +143,52 @@ class PreviewHeader extends React.Component {
           {view !== 'full' && (
             <Button
               cls={b('preview-switcher-btn')}
-              theme='flat'
-              size='s'
-              view='default'
-              tone='default'
+              theme="flat"
+              size="s"
+              view="default"
+              tone="default"
               title={i18n('dataset.dataset-editor.modify', 'button_preview-full')}
               onClick={this.togglePreviewFull}
             >
-              <Icon data={iconPreviewExpand} width='24' height='28' />
+              <Icon data={iconPreviewExpand} width="24" height="28" />
             </Button>
           )}
           {view !== 'right' && (
             <Button
               cls={b('preview-switcher-btn')}
-              theme='flat'
-              size='s'
-              view='default'
-              tone='default'
+              theme="flat"
+              size="s"
+              view="default"
+              tone="default"
               title={i18n('dataset.dataset-editor.modify', 'button_preview-right')}
               onClick={this.togglePreviewRigth}
             >
-              <Icon data={iconPreviewSide} width='24' height='28' />
+              <Icon data={iconPreviewSide} width="24" height="28" />
             </Button>
           )}
           {view !== 'bottom' && (
             <Button
               cls={b('preview-switcher-btn')}
-              theme='flat'
-              size='s'
-              view='default'
-              tone='default'
+              theme="flat"
+              size="s"
+              view="default"
+              tone="default"
               title={i18n('dataset.dataset-editor.modify', 'button_preview-bottom')}
               onClick={this.togglePreviewBottom}
             >
-              <Icon data={iconPreviewBottom} width='24' height='28' />
+              <Icon data={iconPreviewBottom} width="24" height="28" />
             </Button>
           )}
           <Button
             cls={b('preview-switcher-btn')}
-            theme='flat'
-            size='s'
-            view='default'
-            tone='default'
+            theme="flat"
+            size="s"
+            view="default"
+            tone="default"
             title={i18n('dataset.dataset-editor.modify', 'button_preview-close')}
             onClick={this.closePreview}
           >
-            <Icon data={iconPreviewClose} width='24' height='28' />
+            <Icon data={iconPreviewClose} width="24" height="28" />
           </Button>
         </div>
       </div>

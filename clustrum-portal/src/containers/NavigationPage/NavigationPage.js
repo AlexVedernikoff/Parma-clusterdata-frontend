@@ -55,7 +55,7 @@ class NavigationPage extends React.Component {
         />
         <div className={b('navigation')}>
           <Route
-            path='/:root?/:path*'
+            path="/:root?/:path*"
             render={({ match, location, history }) => (
               <Navigation sdk={sdk} match={match} location={location} history={history} startFrom={startFrom} />
             )}

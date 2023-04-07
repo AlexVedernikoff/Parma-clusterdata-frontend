@@ -71,15 +71,15 @@ class TableOfContent extends React.PureComponent {
     return (
       <React.Fragment>
         <Button
-          view='classic'
-          theme='raised'
-          pin='circle-circle'
-          size='m'
+          view="classic"
+          theme="raised"
+          pin="circle-circle"
+          size="m"
           title={i18n('dash.table-of-content.view', 'context_table-of-content')}
           cls={b('toggle', { opened })}
           onClick={() => toggleTableOfContent(!opened)}
         >
-          <Icon className={b('arrow', { opened })} data={iconArrowSidebar} width='16' height='16' />
+          <Icon className={b('arrow', { opened })} data={iconArrowSidebar} width="16" height="16" />
         </Button>
         <div className={b()}>
           {/*<div className={b('hidebar')}>*/}
@@ -89,7 +89,7 @@ class TableOfContent extends React.PureComponent {
               <Icon
                 className={b('header-close')}
                 data={iconPreviewClose}
-                width='20'
+                width="20"
                 onClick={() => toggleTableOfContent(false)}
               />
             </div>

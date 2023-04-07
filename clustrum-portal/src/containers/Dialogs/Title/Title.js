@@ -72,10 +72,10 @@ class Title extends React.PureComponent {
         <Dialog.Header caption={i18n('dash.title-dialog.edit', 'label_title')} />
         <Dialog.Body className={b()}>
           <TextInput
-            theme='normal'
-            view='default'
-            tone='default'
-            size='n'
+            theme="normal"
+            view="default"
+            tone="default"
+            size="n"
             autoFocus
             onChange={text => this.setState({ text })}
             placeholder={i18n('dash.title-dialog.edit', 'context_fill-title')}
@@ -84,10 +84,10 @@ class Title extends React.PureComponent {
             ref={this.textRef}
           />
           <Tooltip
-            theme='error'
-            view='classic'
-            tone='default'
-            size='n'
+            theme="error"
+            view="classic"
+            tone="default"
+            size="n"
             autoclosable
             visible={this.state.error}
             anchor={this.textRef.current}
@@ -102,10 +102,10 @@ class Title extends React.PureComponent {
             radioText={RADIO_TEXT}
           />
           <CheckBox
-            theme='normal'
-            view='default'
-            tone='default'
-            size='n'
+            theme="normal"
+            view="default"
+            tone="default"
+            size="n"
             checked={this.state.showInTOC}
             onChange={() => this.setState({ showInTOC: !this.state.showInTOC })}
             mix={{ block: b('checkbox') }}

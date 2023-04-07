@@ -371,7 +371,7 @@ class DatasetCreation extends React.Component {
     return (
       <div className={b()}>
         <div className={b('panel')}>
-          <Icon className={b('connector-ic')} data={Utils.getConnectorIcon({ type: connectionType })} width='32' />
+          <Icon className={b('connector-ic')} data={Utils.getConnectorIcon({ type: connectionType })} width="32" />
           <span className={b('label-connection-type')}>{getConnectorsMap()[connectionType]}</span>
           <span className={b('label-connection-name')}>{connectionName}</span>
           <SelectConnection sdk={sdk} connectionId={connectionId} onEntryClick={onEntryClick} />
@@ -382,7 +382,7 @@ class DatasetCreation extends React.Component {
               connectionType,
               section: SECTIONS.SECTION_PATH_SELECTION,
             }) && (
-              <div className='row'>
+              <div className="row">
                 <PathSelect
                   inputRef={this._setDatabaseNameInpInnerRef}
                   inputError={
@@ -443,7 +443,7 @@ class DatasetCreation extends React.Component {
             section: SECTIONS.SECTION_SELECTION_DB_TABLES_HINTS,
             isInternal,
           }) && (
-            <div className='row'>
+            <div className="row">
               <span className={b('caption')}>
                 {i18n('dataset.dataset-creation.create', 'section_select-db-and-table')}
               </span>
@@ -454,7 +454,7 @@ class DatasetCreation extends React.Component {
             section: SECTIONS.SECTION_DATABASE_TABLE_SELECTION,
           }) && (
             <React.Fragment>
-              <div className='row'>
+              <div className="row">
                 <div className={b('caption')}>
                   <span>{i18n('dataset.dataset-creation.create', 'field_db-name')}</span>
                 </div>
@@ -475,12 +475,12 @@ class DatasetCreation extends React.Component {
                   />
                   {isLoadingDatabasesList && (
                     <div className={b('loader-wrap')}>
-                      <Loader size='s' className={b('loader')} />
+                      <Loader size="s" className={b('loader')} />
                     </div>
                   )}
                 </div>
               </div>
-              <div className='row'>
+              <div className="row">
                 <div className={b('caption')}>
                   <span>{i18n('dataset.dataset-creation.create', 'field_table-name')}</span>
                 </div>
@@ -501,7 +501,7 @@ class DatasetCreation extends React.Component {
                   />
                   {isLoadingDatabaseTablesList && (
                     <div className={b('loader-wrap')}>
-                      <Loader size='s' className={b('loader')} />
+                      <Loader size="s" className={b('loader')} />
                     </div>
                   )}
                 </div>
@@ -520,10 +520,10 @@ class DatasetCreation extends React.Component {
                 </div>
                 <TextInput
                   cls={b('field-yql-id')}
-                  theme='normal'
-                  size='s'
-                  view='default'
-                  tone='default'
+                  theme="normal"
+                  size="s"
+                  view="default"
+                  tone="default"
                   text={entityId}
                   onChange={entityId => this.changeValue({ entityId })}
                   hasClear
@@ -541,10 +541,10 @@ class DatasetCreation extends React.Component {
               </div>
               <TextInput
                 cls={b('field-yt-id')}
-                theme='normal'
-                size='s'
-                view='default'
-                tone='default'
+                theme="normal"
+                size="s"
+                view="default"
+                tone="default"
                 text={ytId}
                 onChange={this.changeYtId}
                 error={ytIdErrorText}

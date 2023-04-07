@@ -42,10 +42,10 @@ function SelectionMaterializationType(props) {
       <RadioBox
         disabled={disableChangeMaterialization}
         cls={b('materialization-type-selection')}
-        view='default'
-        theme='normal'
-        size='m'
-        name='materialization'
+        view="default"
+        theme="normal"
+        size="m"
+        name="materialization"
         value={selectedDsMode}
         onChange={changeMaterializationType}
       >
@@ -759,7 +759,7 @@ class DataSource extends React.Component {
     if (isLoading) {
       return (
         <div className={b('loader')}>
-          <Loader size='l' />
+          <Loader size="l" />
         </div>
       );
     }
@@ -849,7 +849,7 @@ class DataSource extends React.Component {
             message={errorMessage}
           />
           <Dialog.Footer
-            preset='default'
+            preset="default"
             onClickButtonCancel={onClose}
             onClickButtonApply={this.clickSaveBtn}
             textButtonApply={i18n('dataset.materialization.modify', 'button_save')}

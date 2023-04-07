@@ -20,22 +20,22 @@ import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close
 const b = block('control-external-defaults');
 
 const Input = ({ text, onChange }) => (
-  <TextInput theme='normal' view='default' tone='default' size='s' text={text} onChange={onChange} />
+  <TextInput theme="normal" view="default" tone="default" size="s" text={text} onChange={onChange} />
 );
 
 const Remove = ({ onClick }) => (
-  <Icon width='18' height='18' className={b('icon')} onClick={onClick} data={iconPreviewClose} />
+  <Icon width="18" height="18" className={b('icon')} onClick={onClick} data={iconPreviewClose} />
 );
 
 const AddButton = ({ text, onClick }) => (
   <Button
-    theme='flat'
-    view='default'
-    tone='default'
-    size='s'
+    theme="flat"
+    view="default"
+    tone="default"
+    size="s"
     iconLeft={
       <ButtonIcon>
-        <Icon data={iconPlus} width='16' />
+        <Icon data={iconPlus} width="16" />
       </ButtonIcon>
     }
     text={text}

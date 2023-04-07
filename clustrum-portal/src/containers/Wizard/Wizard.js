@@ -247,47 +247,47 @@ class Wizard extends Component {
             entry={widget}
             rightItems={[
               <Button
-                key='fullscreen'
+                key="fullscreen"
                 cls={b('fullscreen-btn')}
-                theme='flat'
-                size='n'
-                view='default'
-                tone='default'
+                theme="flat"
+                size="n"
+                view="default"
+                tone="default"
                 text={i18n('wizard', 'button_toggle-fullscreen')}
-                iconLeft={<Icon data={iconFullscreen} width='24' />}
+                iconLeft={<Icon data={iconFullscreen} width="24" />}
                 onClick={toggleFullscreen}
               />,
               <Button
                 disabled={saveDisabled}
                 cls={b('save-btn')}
-                key='save-dataset'
-                theme='action'
-                size='n'
-                view='default'
-                tone='default'
+                key="save-dataset"
+                theme="action"
+                size="n"
+                view="default"
+                tone="default"
                 text={i18n('wizard', 'button_save')}
-                iconLeft={entryLocked ? <Icon data={iconLock} width='24' /> : null}
+                iconLeft={entryLocked ? <Icon data={iconLock} width="24" /> : null}
                 onClick={this.openSaveWidgetDialog}
               ></Button>,
               <div className={`pseudosave-btn${entryLocked ? ' active' : ''}`} onClick={this.openNoRightsDialog}></div>,
               <Dropdown
                 disabled={saveMoreDisabled}
-                cls='save-more-dropdown'
-                view='default'
-                tone='default'
-                theme='flat'
-                size='n'
+                cls="save-more-dropdown"
+                view="default"
+                tone="default"
+                theme="flat"
+                size="n"
                 switcher={
-                  <Button cls='save-more-btn' theme='action' size='n' width='max' view='default' tone='default'>
-                    <Icon data={iconDisclose} width='20' />
+                  <Button cls="save-more-btn" theme="action" size="n" width="max" view="default" tone="default">
+                    <Icon data={iconDisclose} width="20" />
                   </Button>
                 }
                 popup={
                   <Popup autoclosable onOutsideClick={() => {}}>
-                    <Menu theme='normal' view='default' tone='default' size='s' type='navigation'>
+                    <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
                       <Menu.Item
-                        type='option'
-                        val='access'
+                        type="option"
+                        val="access"
                         onClick={() => {
                           this.openSaveAsWidgetDialog();
                         }}
@@ -302,7 +302,7 @@ class Wizard extends Component {
             ]}
           />
         )}
-        <div className='columns'>
+        <div className="columns">
           {this.props.preview ? (
             ''
           ) : (
@@ -317,7 +317,7 @@ class Wizard extends Component {
               <SectionVisualization entryDialoguesRef={entryDialoguesRef} sdk={sdk} />
             </div>
           )}
-          <div className='column preview-column'>
+          <div className="column preview-column">
             <SectionPreview entryDialoguesRef={entryDialoguesRef} sdk={sdk} />
           </div>
         </div>

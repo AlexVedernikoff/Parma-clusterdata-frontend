@@ -44,7 +44,7 @@ class Acceptable extends React.PureComponent {
             <Datepicker
               locale={getLang()}
               date={acceptableValues.from || ''}
-              scale='day'
+              scale="day"
               allowEmptyValue={true}
               hasClear={false}
               emptyValueText={i18n('dash.control-dialog.edit', 'value_date-no-limits')}
@@ -59,7 +59,7 @@ class Acceptable extends React.PureComponent {
             <Datepicker
               locale={getLang()}
               date={acceptableValues.to || ''}
-              scale='day'
+              scale="day"
               allowEmptyValue={true}
               hasClear={false}
               emptyValueText={i18n('dash.control-dialog.edit', 'value_date-no-limits')}

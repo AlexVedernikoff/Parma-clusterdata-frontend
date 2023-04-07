@@ -7,9 +7,9 @@ import withWrap from '../withWrap/withWrap';
 
 function Button(props) {
   return (
-    <LegoButton theme='pseudo' view='default' tone='default' size='s' disabled={props.disabled} onClick={props.onClick}>
+    <LegoButton theme="pseudo" view="default" tone="default" size="s" disabled={props.disabled} onClick={props.onClick}>
       {props.text}
-      <Icon glyph='type-arrow' direction='bottom' />
+      <Icon glyph="type-arrow" direction="bottom" />
     </LegoButton>
   );
 }

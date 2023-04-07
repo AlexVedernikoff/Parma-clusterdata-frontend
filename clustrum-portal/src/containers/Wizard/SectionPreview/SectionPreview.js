@@ -52,7 +52,7 @@ window.DL.chartkit.requestDecorator = request => {
 
 const EDIT = {
   title: 'Редактировать',
-  icon: <Icon size='20' data={iconPencil} />,
+  icon: <Icon size="20" data={iconPencil} />,
   isVisible: () => true,
   action: ({ loadedData = {}, propsData }) => window.open(goAwayLink({ loadedData, propsData }, { idPrefix: '/' })),
 };
@@ -69,8 +69,8 @@ class SectionPreview extends Component {
 
     if (datasetError) {
       return (
-        <div className='dataset-error-container'>
-          <Icon width='236' data={iconPreviewDatasetError} />
+        <div className="dataset-error-container">
+          <Icon width="236" data={iconPreviewDatasetError} />
           <span>{i18n('wizard', 'label_preview-dataset-error')}</span>
         </div>
       );
@@ -82,7 +82,7 @@ class SectionPreview extends Component {
       if (DL.installationType === 'external') {
         LINK_NEW_WINDOW = {
           title: i18n('wizard', 'label_chartkit-menu-open-in-new-tab'),
-          icon: <Icon width='20' data={iconFullscreen} />,
+          icon: <Icon width="20" data={iconFullscreen} />,
           isVisible: () => true,
           action: ({ loadedData, propsData }) =>
             window.open(goAwayLink({ loadedData, propsData }, { urlPostfix: '/preview', idPrefix: '/' })),
@@ -135,8 +135,8 @@ class SectionPreview extends Component {
 
   render() {
     return (
-      <div className='container preview-container'>
-        <div className='preview-chartkit'>{this.renderChartkit()}</div>
+      <div className="container preview-container">
+        <div className="preview-chartkit">{this.renderChartkit()}</div>
       </div>
     );
   }

@@ -79,14 +79,14 @@ class NavigationInput extends React.PureComponent {
           excludeClickableType={this.props.excludeClickableType}
         />
         <Button
-          theme='flat'
-          view='default'
-          tone='default'
+          theme="flat"
+          view="default"
+          tone="default"
           size={size}
           onClick={() => this.setState({ showInput: !showInput })}
         >
           <ButtonIcon>
-            <Icon data={iconLink} width='16' />
+            <Icon data={iconLink} width="16" />
           </ButtonIcon>
           {i18n('dash.navigation-input.edit', 'button_use-link')}
         </Button>

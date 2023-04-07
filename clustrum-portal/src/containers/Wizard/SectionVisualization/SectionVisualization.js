@@ -134,8 +134,8 @@ class SectionVisualization extends Component {
 
     return (
       <div key={`placeholder-${placeholder.id}`} className={'subcontainer'}>
-        <div className='subheader'>
-          <div className='placeholder-icon'>{placeholder.icon}</div>
+        <div className="subheader">
+          <div className="placeholder-icon">{placeholder.icon}</div>
           <span>{i18n('wizard', placeholder.title)}</span>
         </div>
         <DNDContainer
@@ -143,7 +143,7 @@ class SectionVisualization extends Component {
           capacity={placeholder.capacity}
           allowedTypes={placeholder.allowedTypes}
           items={items}
-          itemsClassName='placeholder-item'
+          itemsClassName="placeholder-item"
           wrapTo={this.renderDatasetItem}
           disabled={datasetError}
           onItemClick={(e, item) => {
@@ -321,19 +321,19 @@ class SectionVisualization extends Component {
           return this.renderPlaceholder(placeholder, index);
         })}
         {visualization.allowFilters && (
-          <div className='subcontainer'>
-            <div className='subheader'>
-              <div className='placeholder-icon'>
-                <Icon data={iconFilter} width='24' />
+          <div className="subcontainer">
+            <div className="subheader">
+              <div className="placeholder-icon">
+                <Icon data={iconFilter} width="24" />
               </div>
               <span>{i18n('wizard', 'section_filters')}</span>
             </div>
             <DNDContainer
-              id='filter-container'
+              id="filter-container"
               noSwap={true}
               items={[...filters]}
               allowedTypes={ITEM_TYPES.ALL}
-              itemsClassName='placeholder-item'
+              itemsClassName="placeholder-item"
               wrapTo={this.renderDatasetItem}
               disabled={datasetError}
               onItemClick={(e, item) => {
@@ -504,21 +504,21 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowColors && (
-          <div className='subcontainer'>
-            <div className='subheader'>
-              <div className='placeholder-icon'>
-                <Icon data={iconColor} width='24' />
+          <div className="subcontainer">
+            <div className="subheader">
+              <div className="placeholder-icon">
+                <Icon data={iconColor} width="24" />
               </div>
               <span>{i18n('wizard', 'section_colors')}</span>
             </div>
             <DNDContainer
-              id='colors-container'
+              id="colors-container"
               items={colors}
               capacity={visualization.colorsCapacity || 1}
               checkAllowed={item => {
                 return visualization.checkAllowedColors(item, visualization);
               }}
-              itemsClassName='placeholder-item'
+              itemsClassName="placeholder-item"
               wrapTo={this.renderDatasetItem}
               disabled={datasetError}
               onUpdate={items => {
@@ -550,21 +550,21 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowSort && (
-          <div className='subcontainer'>
-            <div className='subheader'>
-              <div className='placeholder-icon'>
-                <Icon data={iconSort} width='24' />
+          <div className="subcontainer">
+            <div className="subheader">
+              <div className="placeholder-icon">
+                <Icon data={iconSort} width="24" />
               </div>
               <span>{i18n('wizard', 'section_sort')}</span>
             </div>
             <DNDContainer
-              id='sort-container'
+              id="sort-container"
               items={sort}
               capacity={10}
               checkAllowed={item => {
                 return visualization.checkAllowedSort(item, visualization, colors);
               }}
-              itemsClassName='placeholder-item sort-item'
+              itemsClassName="placeholder-item sort-item"
               wrapTo={this.renderDatasetItem}
               disabled={datasetError}
               onItemClick={(e, item) => {
@@ -623,19 +623,19 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowCoordType && (
-          <div className='subcontainer'>
-            <div className='subheader'>
+          <div className="subcontainer">
+            <div className="subheader">
               <span>{i18n('wizard', 'section_coord')}</span>
             </div>
-            <div className='subitem'>
+            <div className="subitem">
               <Select
-                theme='normal'
-                size='m'
-                view='default'
-                tone='default'
-                type='radio'
-                placeholder='size m'
-                width='max'
+                theme="normal"
+                size="m"
+                view="default"
+                tone="default"
+                type="radio"
+                placeholder="size m"
+                width="max"
                 options={coordsItems}
                 val={coordType}
                 onChange={newValue => {
@@ -676,18 +676,18 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowTitleLayerSource && (
-          <div className='subcontainer'>
-            <div className='subheader'>
+          <div className="subcontainer">
+            <div className="subheader">
               <span>{i18n('wizard', 'section_title_layer')}</span>
             </div>
-            <div className='subitem'>
+            <div className="subitem">
               <TextInput
                 text={titleLayerSource}
                 widthSize={'m'}
-                theme='normal'
-                size='m'
-                view='default'
-                tone='default'
+                theme="normal"
+                size="m"
+                view="default"
+                tone="default"
                 onChange={text => {
                   setTitleLayerSource({
                     titleLayerSource: text,
@@ -719,18 +719,18 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowClusterPrecision && (
-          <div className='subcontainer'>
-            <div className='subheader'>
+          <div className="subcontainer">
+            <div className="subheader">
               <span>{i18n('wizard', 'section_cluster_precision')}</span>
             </div>
-            <div className='subitem'>
+            <div className="subitem">
               <TextInput
                 text={clusterPrecision}
                 widthSize={'m'}
-                theme='normal'
-                size='m'
-                view='default'
-                tone='default'
+                theme="normal"
+                size="m"
+                view="default"
+                tone="default"
                 onChange={text => {
                   setClusterPrecision({
                     clusterPrecision: text,
@@ -762,18 +762,18 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowNullAlias && (
-          <div className='subcontainer'>
-            <div className='subheader'>
+          <div className="subcontainer">
+            <div className="subheader">
               <span>{i18n('wizard', 'nullAlias')}</span>
             </div>
-            <div className='subitem'>
+            <div className="subitem">
               <Select
-                theme='normal'
-                size='n'
-                view='default'
-                tone='default'
-                type='radio'
-                width='max'
+                theme="normal"
+                size="n"
+                view="default"
+                tone="default"
+                type="radio"
+                width="max"
                 options={nullAliasItems}
                 val={nullAlias}
                 onChange={newValue => {
@@ -814,16 +814,16 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowUniqueRows && (
-          <div className='subcontainer'>
-            <div className='subheader'>
+          <div className="subcontainer">
+            <div className="subheader">
               <span>{i18n('wizard', 'section_rows')}</span>
             </div>
-            <div className='subitem'>
+            <div className="subitem">
               <CheckBox
-                theme='normal'
-                size='n'
-                view='default'
-                tone='default'
+                theme="normal"
+                size="n"
+                view="default"
+                tone="default"
                 checked={needUniqueRows}
                 text={i18n('wizard', 'uniqueRowsControl')}
                 onChange={() => {
@@ -854,16 +854,16 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowTotal && (
-          <div className='subcontainer'>
-            <div className='subheader'>
+          <div className="subcontainer">
+            <div className="subheader">
               <span>{i18n('wizard', 'summary')}</span>
             </div>
-            <div className='subitem'>
+            <div className="subitem">
               <CheckBox
-                theme='normal'
-                size='n'
-                view='default'
-                tone='default'
+                theme="normal"
+                size="n"
+                view="default"
+                tone="default"
                 checked={needTotal}
                 text={i18n('wizard', 'summaryControl')}
                 onChange={() => {
@@ -894,18 +894,18 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowDiagramMagnitude && (
-          <div className='subcontainer'>
-            <div className='subheader'>
+          <div className="subcontainer">
+            <div className="subheader">
               <span>{i18n('wizard', 'diagram_magnitude')}</span>
             </div>
-            <div className='subitem'>
+            <div className="subitem">
               <Select
-                theme='normal'
-                size='n'
-                view='default'
-                tone='default'
-                type='radio'
-                width='max'
+                theme="normal"
+                size="n"
+                view="default"
+                tone="default"
+                type="radio"
+                width="max"
                 options={diagramMagnitudeItems}
                 val={diagramMagnitude}
                 onChange={newValue => {
@@ -944,11 +944,11 @@ class SectionVisualization extends Component {
           </div>
         )}
         {visualization.allowMapLayerOpacity && (
-          <div className='subcontainer'>
-            <div className='subheader'>
+          <div className="subcontainer">
+            <div className="subheader">
               <span>{i18n('wizard', 'map_opacity')}</span>
             </div>
-            <div className='subitem'>
+            <div className="subitem">
               <ParmaRangePicker
                 initialValue={mapLayerOpacity}
                 onChange={value => {
@@ -980,19 +980,19 @@ class SectionVisualization extends Component {
           </div>
         )}
         {
-          <div className='subcontainer'>
-            <div className='subheader'>
+          <div className="subcontainer">
+            <div className="subheader">
               <span>{i18n('wizard', 'export_limit')}</span>
             </div>
-            <div className='subitem'>
+            <div className="subitem">
               <TextInput
                 text={exportLimit}
                 widthSize={'m'}
-                theme='normal'
-                size='m'
-                view='default'
-                tone='default'
-                type='number'
+                theme="normal"
+                size="m"
+                view="default"
+                tone="default"
+                type="number"
                 onChange={text => {
                   setExportLimit({
                     exportLimit: text,
@@ -1153,47 +1153,47 @@ class SectionVisualization extends Component {
           }
         }}
       >
-        <div className='item-icon'>
-          <Icon data={castIconData} width='16' />
+        <div className="item-icon">
+          <Icon data={castIconData} width="16" />
         </div>
-        <div className='item-title' title={item.datasetName + '.' + item.title}>
+        <div className="item-title" title={item.datasetName + '.' + item.title}>
           {item.title}
         </div>
         {item.type === 'PSEUDO' ? null : (
-          <div className='item-right-icons-container'>
-            <div className='item-right-icon swap-icon'>
-              <Icon data={iconSwap} width='16' />
+          <div className="item-right-icons-container">
+            <div className="item-right-icon swap-icon">
+              <Icon data={iconSwap} width="16" />
             </div>
             <div
-              className='item-right-icon cross-icon'
+              className="item-right-icon cross-icon"
               onClick={e => {
                 props.remove(props.index);
                 e.stopPropagation();
                 return false;
               }}
             >
-              <Icon data={iconCross} width='16' />
+              <Icon data={iconCross} width="16" />
             </div>
-            <div className='item-right-icon error-icon'>
-              <Icon data={iconError} width='16' />
+            <div className="item-right-icon error-icon">
+              <Icon data={iconError} width="16" />
             </div>
             {item.conflict ? (
               <Tooltip
                 anchor={itemComponent}
                 visible={itemComponent.state.tooltipVisible}
-                theme='error'
-                view='classic'
-                tone='default'
-                to='top'
-                size='xs'
+                theme="error"
+                view="classic"
+                tone="default"
+                to="top"
+                size="xs"
                 tail={false}
               >
                 {i18n('wizard', CONFLICT_TOOLTIPS[item.conflict])}
               </Tooltip>
             ) : null}
             {this.props.id === 'sort-container' ? (
-              <div className='item-right-icon sort-icon'>
-                <Icon data={item.direction === 'ASC' ? iconSortAsc : iconSortDesc} width='16' />
+              <div className="item-right-icon sort-icon">
+                <Icon data={item.direction === 'ASC' ? iconSortAsc : iconSortDesc} width="16" />
               </div>
             ) : null}
           </div>
@@ -1250,11 +1250,11 @@ class SectionVisualization extends Component {
 
     return (
       <div>
-        <div className='dropdown-header'>
+        <div className="dropdown-header">
           <h1>{i18n('wizard', 'label_choose-visualization-type')}</h1>
         </div>
-        <div className='visualizations-content'>
-          <div className='items-grid'>
+        <div className="visualizations-content">
+          <div className="items-grid">
             {VISUALIZATIONS.filter(item => {
               return visualizationTypeValue === 'all' || visualizationTypeValue === item.type;
             }).map(item => {
@@ -1316,9 +1316,9 @@ class SectionVisualization extends Component {
     const buttonText = visualization
       ? i18n('wizard', visualization.name)
       : i18n('wizard', 'button_choose-visualization');
-    const iconChooseVisualization = <Icon data={iconVisualization} width='24' />;
+    const iconChooseVisualization = <Icon data={iconVisualization} width="24" />;
     return (
-      <div className='container visualization-container'>
+      <div className="container visualization-container">
         {this.state && this.state.dialogType === 'column' ? (
           <DialogFormatTemplate item={this.state.dialogItem} callback={this.state.dialogCallBack} visible={true} />
         ) : (
@@ -1330,19 +1330,19 @@ class SectionVisualization extends Component {
             sdk={sdk}
           />
         )}
-        <div className='actions-container visualization-actions-container'>
+        <div className="actions-container visualization-actions-container">
           <Dropdown
             ref={this.setDropdownRef}
             buttonText={
               <div>
-                <div className='icon'>{visualization ? visualization.icon : iconChooseVisualization}</div>
+                <div className="icon">{visualization ? visualization.icon : iconChooseVisualization}</div>
                 {buttonText}
               </div>
             }
             content={this.renderVisualizationSelection()}
           />
         </div>
-        <div className='placeholders-wrapper'>{this.renderVisualizationPlaceholdersOrBlank()}</div>
+        <div className="placeholders-wrapper">{this.renderVisualizationPlaceholdersOrBlank()}</div>
       </div>
     );
   }
@@ -1351,20 +1351,20 @@ class SectionVisualization extends Component {
 
   columnTemplate(dataset, updates, sdk, buttonText, visualization, iconChooseVisualization) {
     return (
-      <div className='container visualization-container'>
-        <div className='actions-container visualization-actions-container'>
+      <div className="container visualization-container">
+        <div className="actions-container visualization-actions-container">
           <Dropdown
             ref={this.setDropdownRef}
             buttonText={
               <div>
-                <div className='icon'>{visualization ? visualization.icon : iconChooseVisualization}</div>
+                <div className="icon">{visualization ? visualization.icon : iconChooseVisualization}</div>
                 {buttonText}
               </div>
             }
             content={this.renderVisualizationSelection()}
           />
         </div>
-        <div className='placeholders-wrapper'>{this.renderVisualizationPlaceholdersOrBlank()}</div>
+        <div className="placeholders-wrapper">{this.renderVisualizationPlaceholdersOrBlank()}</div>
       </div>
     );
   }

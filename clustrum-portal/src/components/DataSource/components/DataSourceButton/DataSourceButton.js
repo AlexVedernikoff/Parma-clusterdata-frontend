@@ -13,10 +13,10 @@ export const DataSourceButton = ({ disabled = false, label = '', cls = '', text,
           <span>{label}</span>
         </div>
       )}
-      <Button disabled={disabled} cls={cls} size='s' theme='pseudo' tone='default' view='default' onClick={onClick}>
+      <Button disabled={disabled} cls={cls} size="s" theme="pseudo" tone="default" view="default" onClick={onClick}>
         {isLoading ? (
           <div className={b('loader')}>
-            <Spin size='xxs' progress />
+            <Spin size="xxs" progress />
           </div>
         ) : (
           <span>{text}</span>

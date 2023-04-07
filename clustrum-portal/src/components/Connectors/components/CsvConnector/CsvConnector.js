@@ -77,10 +77,10 @@ function CsvDropZone(props) {
           <div className={b('file-selection')}>
             <div>
               <Button
-                theme='pseudo'
-                size='s'
-                view='default'
-                tone='default'
+                theme="pseudo"
+                size="s"
+                view="default"
+                tone="default"
                 text={i18n('button_select-csv-file')}
                 onClick={() => open()}
               />
@@ -105,7 +105,7 @@ function CsvDropZoneWrapper(props) {
     return (
       <div className={b('csv-setting')}>
         <div className={b('loader')}>
-          <ContainerLoader text={i18n('label_loading-csv-file')} size='m' />
+          <ContainerLoader text={i18n('label_loading-csv-file')} size="m" />
         </div>
       </div>
     );
@@ -149,7 +149,7 @@ function CsvPreview(props) {
   if (isPreviewLoading) {
     return (
       <div className={b('preview-loader')}>
-        <ContainerLoader text={i18n('label_loading-csv-preview')} size='m' />
+        <ContainerLoader text={i18n('label_loading-csv-preview')} size="m" />
       </div>
     );
   }
@@ -200,7 +200,7 @@ function CsvSettings(props) {
     return (
       <div className={b('csv-setting')}>
         <div className={b('loader')}>
-          <ContainerLoader text={i18n('label_loading-csv-connection')} size='m' />
+          <ContainerLoader text={i18n('label_loading-csv-connection')} size="m" />
         </div>
       </div>
     );
@@ -213,7 +213,7 @@ function CsvSettings(props) {
     <div className={b('csv-setting')}>
       <div className={b('panel')}>
         {!disabled && <ArrowBack url={`/connections/new/csv${search}`} />}
-        <Icon className={b('connector-ic')} data={iconCsv} width='32' />
+        <Icon className={b('connector-ic')} data={iconCsv} width="32" />
         <span className={b('name')}>{nameFixed}</span>
         <span className={b('created-at')}>
           {moment(createdAt)
@@ -270,10 +270,10 @@ function CsvSettings(props) {
           <RadioButton
             cls={b('csv-header-rb')}
             disabled={disabled}
-            theme='normal'
-            size='s'
-            view='default'
-            tone='default'
+            theme="normal"
+            size="s"
+            view="default"
+            tone="default"
             value={hasHeader ? 1 : 2}
             onChange={e =>
               changeValue({

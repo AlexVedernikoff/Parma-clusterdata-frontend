@@ -114,13 +114,13 @@ export default class TabMenu extends React.PureComponent {
             <span className={b('item-text')}>{title}</span>
             {items.length > 1 ? (
               <div className={b('item-del')} onClick={this.onAction({ action: 'delete', index })}>
-                <Icon data={iconPreviewClose} width='22px' />
+                <Icon data={iconPreviewClose} width="22px" />
               </div>
             ) : null}
           </div>
         ))}
         <div className={b('add-tab')} onClick={this.onAction({ action: 'add' })}>
-          <Icon className={b('add-tab-icon')} data={iconPlus} width='16px' />
+          <Icon className={b('add-tab-icon')} data={iconPlus} width="16px" />
           <span>{i18n('dash.widget-dialog.edit', 'button_add', { index: 1 })}</span>
         </div>
       </div>

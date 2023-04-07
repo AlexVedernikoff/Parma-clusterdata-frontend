@@ -497,12 +497,12 @@ class DialogFilter extends PureComponent {
               </div>
               <div className={b('value custom-text-input')}>
                 <TextInput
-                  theme='normal'
-                  size='s'
-                  view='default'
-                  tone='default'
+                  theme="normal"
+                  size="s"
+                  view="default"
+                  tone="default"
                   hasClear={false}
-                  pin='round-round'
+                  pin="round-round"
                   text={value}
                   onChange={newValue => this.onTextInputChange(newValue, i)}
                 />
@@ -520,7 +520,7 @@ class DialogFilter extends PureComponent {
                     });
                   }}
                 >
-                  <Icon data={iconCross} width='16' />
+                  <Icon data={iconCross} width="16" />
                 </span>
               ) : null}
             </div>
@@ -529,11 +529,11 @@ class DialogFilter extends PureComponent {
         {operation && operation.manyOperands ? (
           <Button
             cls={b('btn-add-row')}
-            theme='flat'
-            size='n'
-            view='default'
-            tone='default'
-            iconLeft={<Icon data={iconPlus} width='16' />}
+            theme="flat"
+            size="n"
+            view="default"
+            tone="default"
+            iconLeft={<Icon data={iconPlus} width="16" />}
             onClick={() => {
               const { value } = this.state;
 
@@ -568,14 +568,14 @@ class DialogFilter extends PureComponent {
       }
 
       return (
-        <div className='calendar-input'>
+        <div className="calendar-input">
           <div className={b('label')}>
             <span>{i18n('wizard', 'label_value')}</span>
           </div>
           <Datepicker
-            locale='ru'
+            locale="ru"
             scale={state.operation.oneDay ? 'day' : undefined}
-            emptyValueText='-'
+            emptyValueText="-"
             allowTime={withTime}
             timePrecision={'sec'}
             fromDate={state.value[0]}
@@ -624,8 +624,8 @@ class DialogFilter extends PureComponent {
 
     return (
       <div>
-        <div className='left-column'>
-          <span className='column-title'>{i18n('wizard', 'label_items-available')}</span>
+        <div className="left-column">
+          <span className="column-title">{i18n('wizard', 'label_items-available')}</span>
           <span
             className={`column-action${dimensions && dimensions.length ? ' active' : ''}`}
             onClick={() => {
@@ -638,12 +638,12 @@ class DialogFilter extends PureComponent {
             {i18n('wizard', 'button_select-all')}
           </span>
           <SearchInput
-            className='find-field-inp'
+            className="find-field-inp"
             hasClear={true}
             borderDisabled={true}
             text={state.leftSearchPhrase}
             placeholder={i18n('wizard', 'field_search')}
-            size='s'
+            size="s"
             onChange={this.onFilterInputChange('leftSearchPhrase')}
           />
           <div className={'options-list'}>
@@ -651,7 +651,7 @@ class DialogFilter extends PureComponent {
               (leftFilteredDimensions || dimensions).map((dimension, i) => {
                 return (
                   <div
-                    className='dimension-option'
+                    className="dimension-option"
                     key={`dimension-option-${i}`}
                     title={dimension}
                     onClick={() => {
@@ -680,8 +680,8 @@ class DialogFilter extends PureComponent {
                       });
                     }}
                   >
-                    <span className='dimension-value'>{dimension}</span>
-                    <span className='dimension-select'>{i18n('wizard', 'button_select')}</span>
+                    <span className="dimension-value">{dimension}</span>
+                    <span className="dimension-select">{i18n('wizard', 'button_select')}</span>
                   </div>
                 );
               })
@@ -692,7 +692,7 @@ class DialogFilter extends PureComponent {
             )}
           </div>
           {dimensions && !leftFilteredDimensions && dimensions.length >= VALUES_LOAD_LIMIT && (
-            <span className='limit-message'>{i18n('wizard', 'label_limit-message')}</span>
+            <span className="limit-message">{i18n('wizard', 'label_limit-message')}</span>
           )}
         </div>
         <div className={'right-column'}>
@@ -709,19 +709,19 @@ class DialogFilter extends PureComponent {
             {i18n('wizard', 'button_clear')}
           </span>
           <SearchInput
-            className='find-field-inp'
+            className="find-field-inp"
             hasClear={true}
             borderDisabled={true}
             text={state.rightSearchPhrase}
             placeholder={i18n('wizard', 'field_search')}
-            size='s'
+            size="s"
             onChange={this.onFilterInputChange('rightSearchPhrase')}
           />
           <div className={'options-list'}>
             {(rightFilteredDimensions ? rightFilteredDimensions : value ? value : []).map((dimension, i) => {
               return (
                 <div
-                  className='dimension-option'
+                  className="dimension-option"
                   key={`dimension-selected-option-${i}`}
                   title={dimension}
                   onClick={() => {
@@ -750,8 +750,8 @@ class DialogFilter extends PureComponent {
                     });
                   }}
                 >
-                  <span className='dimension-value'>{dimension}</span>
-                  <span className='dimension-select'>{i18n('wizard', 'button_remove')}</span>
+                  <span className="dimension-value">{dimension}</span>
+                  <span className="dimension-select">{i18n('wizard', 'button_remove')}</span>
                 </div>
               );
             })}
@@ -773,7 +773,7 @@ class DialogFilter extends PureComponent {
     if (state.error) {
       return (
         <div>
-          <div className='error-text'>{i18n('wizard', 'label_error-loading-filter-values')}</div>
+          <div className="error-text">{i18n('wizard', 'label_error-loading-filter-values')}</div>
         </div>
       );
     }
@@ -783,13 +783,13 @@ class DialogFilter extends PureComponent {
         <div className={b('row')}>
           <span className={b('label')}>{i18n('wizard', 'label_operation')}</span>
           <Select
-            theme='pseudo'
-            size='s'
-            view='default'
-            tone='default'
-            type='radio'
-            placeholder='size s'
-            width='min'
+            theme="pseudo"
+            size="s"
+            view="default"
+            tone="default"
+            type="radio"
+            placeholder="size s"
+            width="min"
             val={operation}
             onChange={newValue => this.onSelectChange(newValue)}
           >
@@ -837,10 +837,10 @@ class DialogFilter extends PureComponent {
       return (
         <Dialog visible={this.state.visible} onClose={this.onClose}>
           <div className={`dialog-filter dialog-filter-${itemType}${isDate ? ' dialog-filter-date' : ''}`}>
-            <Dialog.Header caption={item.title} insertBefore={<Icon data={castIconData} width='16' />} />
+            <Dialog.Header caption={item.title} insertBefore={<Icon data={castIconData} width="16" />} />
             <Dialog.Body>{this.renderModalBody()}</Dialog.Body>
             <Dialog.Footer
-              preset='default'
+              preset="default"
               onClickButtonCancel={this.onCancel}
               onClickButtonApply={this.onApply}
               propsButtonApply={{

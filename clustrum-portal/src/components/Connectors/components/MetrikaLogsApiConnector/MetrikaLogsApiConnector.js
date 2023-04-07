@@ -280,10 +280,10 @@ class MetricaConnector extends React.Component {
               {Utils.isInternal() && (isNewConnection || dbType === 'metrika_api') && (
                 <div className={b('counter-input-method-radio')}>
                   <RadioButton
-                    theme='normal'
-                    size='s'
-                    view='default'
-                    tone='default'
+                    theme="normal"
+                    size="s"
+                    view="default"
+                    tone="default"
                     value={counterInputMethod}
                     onChange={e => this.changeValue({ counterInputMethod: e.target.value })}
                     freeWidth={true}
@@ -303,10 +303,10 @@ class MetricaConnector extends React.Component {
             <div className={b('row')}>
               <Caption text={i18n('field_metrica-db-type')} />
               <RadioButton
-                theme='normal'
-                size='s'
-                view='default'
-                tone='default'
+                theme="normal"
+                size="s"
+                view="default"
+                tone="default"
                 value={dbType}
                 onChange={this.onDbTypeRadioButtonChange}
                 freeWidth={true}
@@ -323,10 +323,10 @@ class MetricaConnector extends React.Component {
           {isNewConnection && !Utils.isInternal() && dbType === 'metrika_api' && (
             <div className={b('row')}>
               <CheckBox
-                theme='normal'
-                size='n'
-                view='default'
-                tone='default'
+                theme="normal"
+                size="n"
+                view="default"
+                tone="default"
                 checked={isAutoCreateDashboard}
                 onChange={this.toggleDashboardAutoCreation}
                 text={i18n('field_auto-create-dashboard')}
@@ -351,7 +351,7 @@ class MetricaConnector extends React.Component {
                 <Caption text={i18n('field_datepicker')} />
                 <div>
                   <Datepicker
-                    scale='day'
+                    scale="day"
                     inputWidth={240}
                     callback={({ from }) => this.changeValue({ materializationStartDate: from })}
                     minDate={counterCreationDate}
@@ -364,10 +364,10 @@ class MetricaConnector extends React.Component {
               <div className={b('row')}>
                 <Caption text={i18n('field_metrica-materialization-regularity')} />
                 <RadioButton
-                  theme='normal'
-                  size='s'
-                  view='default'
-                  tone='default'
+                  theme="normal"
+                  size="s"
+                  view="default"
+                  tone="default"
                   value={materializationRegularity}
                   onChange={e => {
                     const materializationRegularity = e.target.value;

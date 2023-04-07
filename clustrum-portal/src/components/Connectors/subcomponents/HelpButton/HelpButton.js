@@ -36,27 +36,27 @@ class HelpButton extends React.Component {
         <Button
           ref={this._btnRef}
           cls={b('btn')}
-          theme='flat'
-          size='m'
-          view='default'
-          tone='default'
+          theme="flat"
+          size="m"
+          view="default"
+          tone="default"
           title={title}
           onClick={this._toggleTooltip}
         >
-          <Icon className={b('icon')} data={iconBrandedQuestion} width='18' />
+          <Icon className={b('icon')} data={iconBrandedQuestion} width="18" />
         </Button>
         <Tooltip
           visible={visible}
           anchor={this._btnRef.current}
-          theme='white'
-          view='classic'
-          tone='default'
-          to='right'
-          size='s'
+          theme="white"
+          view="classic"
+          tone="default"
+          to="right"
+          size="s"
           tail={true}
           onOutsideClick={this._toggleTooltip}
         >
-          <Link theme='normal' target='_blank' url={url}>
+          <Link theme="normal" target="_blank" url={url}>
             {url}
           </Link>
         </Tooltip>

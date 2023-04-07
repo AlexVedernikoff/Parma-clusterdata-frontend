@@ -14,7 +14,7 @@ function External({ config: { entryId }, defaults, onEntrySelect, onChange }) {
   return (
     <React.Fragment>
       <NavigationInput
-        size='s'
+        size="s"
         entryId={entryId}
         onChange={onEntrySelect}
         className={b('navigation-input')}

@@ -12,7 +12,7 @@ const NEW_TAB = {
   get title() {
     return i18n('dash.chartkit-menu.view', 'button_new-tab');
   },
-  icon: <Icon data={iconAnotherTab} width='16' height='16' />,
+  icon: <Icon data={iconAnotherTab} width="16" height="16" />,
   isVisible: () => true,
   action: ({ propsData: { id } }) => window.open(window.DL.endpoints.wizard + `/preview/${id}`),
 };
@@ -21,7 +21,7 @@ const createWidgetEditorOpeningItem = onOpenWidgetEditor => ({
   get title() {
     return i18n('dash.chartkit-menu.view', 'button_edit');
   },
-  icon: <Icon data={iconPencil} width='16' height='16' />,
+  icon: <Icon data={iconPencil} width="16" height="16" />,
   isVisible: () => !window.DL.hideEdit,
   action: ({ propsData: { id } }) => onOpenWidgetEditor(id),
 });

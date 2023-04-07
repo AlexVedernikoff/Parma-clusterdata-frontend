@@ -378,14 +378,14 @@ class SectionDataset extends Component {
 
     return (
       <div className={resultClassName} title={item.title}>
-        <div className='item-icon'>
-          <Icon data={castIconData} width='16' />
+        <div className="item-icon">
+          <Icon data={castIconData} width="16" />
         </div>
-        <div className='item-title' title={item.title}>
+        <div className="item-title" title={item.title}>
           {item.title}
         </div>
         <div
-          className='item-right-icon item-more-icon'
+          className="item-right-icon item-more-icon"
           onMouseEnter={e => {
             addIgnoreDrag(e.currentTarget.parentElement);
           }}
@@ -394,23 +394,23 @@ class SectionDataset extends Component {
           }}
         >
           <Dropdown
-            cls='dataset-item-more-btn'
-            view='default'
-            tone='default'
-            theme='flat'
-            size='n'
+            cls="dataset-item-more-btn"
+            view="default"
+            tone="default"
+            theme="flat"
+            size="n"
             switcher={
-              <Button size='xs' theme='flat' type='default' view='default' width='max'>
-                <Icon data={iconMore} width='20' height='20' />
+              <Button size="xs" theme="flat" type="default" view="default" width="max">
+                <Icon data={iconMore} width="20" height="20" />
               </Button>
             }
             popup={
               <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
                 {item.local ? (
-                  <Menu theme='normal' view='default' tone='default' size='s' type='navigation'>
+                  <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
                     <Menu.Item
-                      type='option'
-                      val='access'
+                      type="option"
+                      val="access"
                       onClick={() => {
                         this.onClickRemoveDatasetItem(item);
                       }}
@@ -418,8 +418,8 @@ class SectionDataset extends Component {
                       {i18n('wizard', 'button_remove')}
                     </Menu.Item>
                     <Menu.Item
-                      type='option'
-                      val='access'
+                      type="option"
+                      val="access"
                       onClick={() => {
                         this.onClickEditDatasetItem(item);
                       }}
@@ -428,10 +428,10 @@ class SectionDataset extends Component {
                     </Menu.Item>
                   </Menu>
                 ) : (
-                  <Menu theme='normal' view='default' tone='default' size='s' type='navigation'>
+                  <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
                     <Menu.Item
-                      type='option'
-                      val='access'
+                      type="option"
+                      val="access"
                       onClick={() => {
                         this.onClickDuplicateDatasetItem(item);
                       }}
@@ -467,32 +467,32 @@ class SectionDataset extends Component {
     const datasetNames = [...new Set(dimensions.map(d => d.datasetName))];
 
     return (
-      <div className='dataset-wrapper'>
-        <div className='subcontainer actions-subcontainer'>
-          <div className='subheader actions-subheader'>
+      <div className="dataset-wrapper">
+        <div className="subcontainer actions-subcontainer">
+          <div className="subheader actions-subheader">
             <SearchInput
-              className='find-field-inp'
+              className="find-field-inp"
               hasClear={true}
               borderDisabled={true}
               text={searchPhrase}
               placeholder={i18n('wizard', 'field_search')}
-              size='s'
+              size="s"
               onChange={this.onChangeSearchInputField('searchPhrase')}
             />
             <Button
               cls={'add-param-btn'}
-              theme='cancel'
-              view='default'
-              tone='default'
-              size='s'
+              theme="cancel"
+              view="default"
+              tone="default"
+              size="s"
               onClick={this.onButtonAddParamClick}
             >
-              <Icon data={iconPlus} width='16' />
+              <Icon data={iconPlus} width="16" />
             </Button>
           </div>
         </div>
-        <div className='subcontainer dimensions-subcontainer'>
-          <div className='subheader dimensions-subheader'>
+        <div className="subcontainer dimensions-subcontainer">
+          <div className="subheader dimensions-subheader">
             <span>{i18n('wizard', 'section_dimensions')}</span>
           </div>
           {datasetNames.map(value => {
@@ -504,7 +504,7 @@ class SectionDataset extends Component {
               ) {
                 return (
                   <DNDContainer
-                    id='dimensions-container'
+                    id="dimensions-container"
                     noRemove={true}
                     title={value}
                     items={
@@ -521,8 +521,8 @@ class SectionDataset extends Component {
             }
           })}
         </div>
-        <div className='subcontainer measures-subcontainer'>
-          <div className='subheader measures-subheader'>
+        <div className="subcontainer measures-subcontainer">
+          <div className="subheader measures-subheader">
             <span>{i18n('wizard', 'section_measures')}</span>
           </div>
           {datasetNames.map(value => {
@@ -534,7 +534,7 @@ class SectionDataset extends Component {
               ) {
                 return (
                   <DNDContainer
-                    id='measures-container'
+                    id="measures-container"
                     noRemove={true}
                     title={value}
                     allowedTypes={ITEM_TYPES.MEASURES}
@@ -556,7 +556,7 @@ class SectionDataset extends Component {
   };
 
   renderBlank() {
-    return <div className='dataset-blank'>{i18n('wizard', 'label_dataset-blank')}</div>;
+    return <div className="dataset-blank">{i18n('wizard', 'label_dataset-blank')}</div>;
   }
 
   renderSectionsOrBlank = () => {
@@ -575,17 +575,17 @@ class SectionDataset extends Component {
       }
 
       return (
-        <div className='error'>
+        <div className="error">
           {i18n('wizard', datasetErrorText)}
           {datasetErrorText === DATASET_ERRORS[403] ? (
             <div>
               <Button
                 text={i18n('wizard', 'button_access-rights')}
                 onClick={this.onButtonDatasetRequestRightsClick}
-                theme='action'
-                tone='default'
-                view='default'
-                size='s'
+                theme="action"
+                tone="default"
+                view="default"
+                size="s"
               />
             </div>
           ) : datasetErrorText === DATASET_ERRORS[404] ? (
@@ -594,12 +594,12 @@ class SectionDataset extends Component {
             <div>
               <Button
                 text={i18n('wizard', 'button_retry')}
-                cls='btn-retry'
+                cls="btn-retry"
                 onClick={this.onButtonDatasetTryAgainClick}
-                theme='action'
-                tone='default'
-                view='default'
-                size='s'
+                theme="action"
+                tone="default"
+                view="default"
+                size="s"
               />
             </div>
           )}
@@ -614,38 +614,38 @@ class SectionDataset extends Component {
     const { sdk, dataset, isNavigationVisible, toggleNavigation, defaultPath } = this.props;
 
     return (
-      <div className='container datasets-container'>
-        <div className='actions-container datasets-actions-container'>
-          <div className='icon'>
-            <Icon data={iconDataset} width='24' />
+      <div className="container datasets-container">
+        <div className="actions-container datasets-actions-container">
+          <div className="icon">
+            <Icon data={iconDataset} width="24" />
           </div>
-          <div className='dataset-custom-button' ref={this.setNavigationButtonRef}>
+          <div className="dataset-custom-button" ref={this.setNavigationButtonRef}>
             <Button
-              cls='select-dataset-btn'
-              theme='cancel'
-              view='default'
-              tone='default'
-              size='m'
+              cls="select-dataset-btn"
+              theme="cancel"
+              view="default"
+              tone="default"
+              size="m"
               onClick={toggleNavigation}
             >
               {dataset.realName || i18n('wizard', 'button_choose-dataset')}
             </Button>
             {dataset.realName ? (
               <Dropdown
-                cls='dataset-more-btn'
-                view='default'
-                tone='default'
-                theme='flat'
-                size='n'
+                cls="dataset-more-btn"
+                view="default"
+                tone="default"
+                theme="flat"
+                size="n"
                 switcher={
-                  <Button size='s' theme='flat' type='default' view='default' width='max'>
-                    <Icon data={iconMore} width='22' height='22' />
+                  <Button size="s" theme="flat" type="default" view="default" width="max">
+                    <Icon data={iconMore} width="22" height="22" />
                   </Button>
                 }
                 popup={
                   <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
-                    <Menu theme='normal' view='default' tone='default' size='s' type='navigation'>
-                      <Menu.Item type='option' val='access' onClick={this.onOpenDatasetClick}>
+                    <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
+                      <Menu.Item type="option" val="access" onClick={this.onOpenDatasetClick}>
                         {i18n('wizard', 'button_to-dataset')}
                       </Menu.Item>
                     </Menu>
@@ -658,7 +658,7 @@ class SectionDataset extends Component {
           {defaultPath ? (
             <NavigationMinimal
               anchor={this.state.navigationButtonRef}
-              scope='dataset'
+              scope="dataset"
               sdk={sdk}
               hasTail={true}
               onClose={this.onNavigationClose}

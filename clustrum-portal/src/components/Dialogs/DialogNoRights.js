@@ -16,16 +16,16 @@ class DialogNoRights extends PureComponent {
   render() {
     return (
       <Dialog visible={this.props.visible} onClose={this.props.onClose}>
-        <div className='dialog-no-rights'>
+        <div className="dialog-no-rights">
           <Dialog.Header caption={i18n('wizard', 'label_no-rights-title')} />
           <Dialog.Body>
             <div>{i18n('wizard', 'label_no-rights-text')}</div>
           </Dialog.Body>
-          <Dialog.Footer preset='default' listenKeyEnter hr={false}>
-            <Button theme='pseudo' view='default' tone='default' size='n' onClick={this.props.onAccessRights}>
+          <Dialog.Footer preset="default" listenKeyEnter hr={false}>
+            <Button theme="pseudo" view="default" tone="default" size="n" onClick={this.props.onAccessRights}>
               {i18n('wizard', 'button_access-rights')}
             </Button>
-            <Button theme='pseudo' view='default' tone='default' size='n' onClick={this.props.onSaveAs}>
+            <Button theme="pseudo" view="default" tone="default" size="n" onClick={this.props.onSaveAs}>
               {i18n('wizard', 'button_save-as')}
             </Button>
           </Dialog.Footer>

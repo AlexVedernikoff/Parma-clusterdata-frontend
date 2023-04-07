@@ -7,7 +7,7 @@ import { Bem } from 'lego-on-react';
 
 function ButtonIcon({ children, size, mix }) {
   return (
-    <Bem block='icon' mods={{ size, svg: true }} mix={mix}>
+    <Bem block="icon" mods={{ size, svg: true }} mix={mix}>
       {children}
     </Bem>
   );

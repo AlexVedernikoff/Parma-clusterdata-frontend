@@ -125,7 +125,7 @@ class HistoryTable extends React.Component {
       return (
         <div className={b()}>
           <div className={b('loader')}>
-            <ContainerLoader size='m' text={this.textPreviewLoader} />
+            <ContainerLoader size="m" text={this.textPreviewLoader} />
           </div>
         </div>
       );

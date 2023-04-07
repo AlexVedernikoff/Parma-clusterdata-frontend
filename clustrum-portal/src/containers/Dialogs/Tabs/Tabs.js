@@ -116,10 +116,10 @@ class Tabs extends React.PureComponent {
               editIndex === index ? (
                 <div className={b('row', { input: true })} key={id || tempId}>
                   <TextInput
-                    theme='normal'
-                    view='default'
-                    tone='default'
-                    size='n'
+                    theme="normal"
+                    view="default"
+                    tone="default"
+                    size="n"
                     autoFocus
                     text={editTitle}
                     onChange={value => this.setState({ editTitle: value })}
@@ -140,16 +140,16 @@ class Tabs extends React.PureComponent {
                     <Icon
                       className={b('control')}
                       data={iconPencil}
-                      width='18'
-                      height='18'
+                      width="18"
+                      height="18"
                       onClick={() => this.setState({ editIndex: index, editTitle: title })}
                     />
                     {tabs.length > 1 && (
                       <Icon
                         className={b('control')}
                         data={iconPreviewClose}
-                        width='18'
-                        height='18'
+                        width="18"
+                        height="18"
                         onClick={() => this.onRemove(id, index)}
                       />
                     )}
@@ -179,7 +179,7 @@ class Tabs extends React.PureComponent {
               })
             }
           >
-            <Icon className={b('icon')} data={iconPlus} width='18' height='18' />
+            <Icon className={b('icon')} data={iconPlus} width="18" height="18" />
             {i18n('dash.tabs-dialog.edit', 'button_add-tab')}
           </div>
         </Dialog.Body>

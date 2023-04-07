@@ -7,7 +7,7 @@ import withWrap from '../withWrap/withWrap';
 
 function Button(props) {
   return (
-    <LegoTextInput theme='normal' view='default' tone='default' size='s' text={props.text} onChange={props.onChange} />
+    <LegoTextInput theme="normal" view="default" tone="default" size="s" text={props.text} onChange={props.onChange} />
   );
 }
 

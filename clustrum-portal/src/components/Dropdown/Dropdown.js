@@ -8,26 +8,26 @@ const b = cn('dropdown');
 
 class Dropdown extends React.Component {
   static Hamburger = (
-    <svg width={24} height={24} viewBox='0 0 24 24'>
-      <path fill='currentColor' d='M3,6H17V8H3V6M3,11H23V13H3V11M3,16H17V18H3V16Z' />
+    <svg width={24} height={24} viewBox="0 0 24 24">
+      <path fill="currentColor" d="M3,6H17V8H3V6M3,11H23V13H3V11M3,16H17V18H3V16Z" />
     </svg>
   );
 
   static ChevronUp = (
-    <svg width={9} height={9} viewBox='0 0 9 9'>
-      <g stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
-        <g stroke='#000000' strokeWidth='1.2'>
-          <polyline points='8 4.5 4.5 1 1 4.5 1 4.5'></polyline>
+    <svg width={9} height={9} viewBox="0 0 9 9">
+      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g stroke="#000000" strokeWidth="1.2">
+          <polyline points="8 4.5 4.5 1 1 4.5 1 4.5"></polyline>
         </g>
       </g>
     </svg>
   );
 
   static ChevronDown = (
-    <svg width={9} height={9} viewBox='0 0 9 9'>
-      <g stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
-        <g stroke='#000000' strokeWidth='1.2'>
-          <polyline points='8 1 4.5 4.5 1 1 1 1'></polyline>
+    <svg width={9} height={9} viewBox="0 0 9 9">
+      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g stroke="#000000" strokeWidth="1.2">
+          <polyline points="8 1 4.5 4.5 1 1 1 1"></polyline>
         </g>
       </g>
     </svg>

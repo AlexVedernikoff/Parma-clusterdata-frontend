@@ -26,9 +26,9 @@ function SideSlidingPanel({
       <div className={b({ view: isOpen ? 'open' : 'close', ...styleMods })}>
         <div className={b('header')}>
           {title}
-          <Button theme='flat' view='default' tone='default' size='n' cls={b('close')} onClick={onCloseAction}>
+          <Button theme="flat" view="default" tone="default" size="n" cls={b('close')} onClick={onCloseAction}>
             <ButtonIcon>
-              <Icon data={closeBig} width='22' height='22' />
+              <Icon data={closeBig} width="22" height="22" />
             </ButtonIcon>
           </Button>
         </div>

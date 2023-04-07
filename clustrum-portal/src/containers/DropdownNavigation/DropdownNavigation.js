@@ -71,7 +71,7 @@ class DropdownNavigation extends React.PureComponent {
     if (this.loading) {
       return (
         <div className={b()}>
-          <Loader size='s' />
+          <Loader size="s" />
         </div>
       );
     }
@@ -79,20 +79,20 @@ class DropdownNavigation extends React.PureComponent {
     return (
       <div className={b()}>
         <Button
-          theme='pseudo'
+          theme="pseudo"
           size={this.props.size}
-          view='default'
-          tone='default'
+          view="default"
+          tone="default"
           onClick={() => this.setState({ showNavigation: !this.state.showNavigation })}
           innerRef={this.setButtonRef}
           cls={b('button')}
         >
           {this.state.entry ? (
-            <EntryTitle entry={this.state.entry} theme='inline' />
+            <EntryTitle entry={this.state.entry} theme="inline" />
           ) : (
             i18n('dash.navigation-input.edit', 'button_choose')
           )}
-          <Icon glyph='type-arrow' direction={this.state.showNavigation ? 'top' : 'bottom'} />
+          <Icon glyph="type-arrow" direction={this.state.showNavigation ? 'top' : 'bottom'} />
         </Button>
         <NavigationMinimal
           sdk={SDK}

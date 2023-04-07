@@ -54,8 +54,8 @@ function Param({ name, value, onRemove }) {
       <Icon
         className={b('param-icon')}
         data={iconPreviewClose}
-        width='20'
-        height='20'
+        width="20"
+        height="20"
         onClick={() => onRemove(name, value)}
       />
     </span>
@@ -250,10 +250,10 @@ class Widget extends React.PureComponent {
           <div className={b('dialog-params-row')}>
             {i18n('dash.widget-dialog.edit', 'field_param-name')}
             <TextInput
-              theme='normal'
-              view='default'
-              tone='default'
-              size='s'
+              theme="normal"
+              view="default"
+              tone="default"
+              size="s"
               text={paramKey}
               onChange={paramKey => this.setState({ paramKey })}
             />
@@ -261,10 +261,10 @@ class Widget extends React.PureComponent {
           <div className={b('dialog-params-row')}>
             {i18n('dash.widget-dialog.edit', 'field_param-value')}
             <TextInput
-              theme='normal'
-              view='default'
-              tone='default'
-              size='s'
+              theme="normal"
+              view="default"
+              tone="default"
+              size="s"
               text={paramValue}
               onChange={paramValue => this.setState({ paramValue })}
             />
@@ -292,14 +292,14 @@ class Widget extends React.PureComponent {
         <React.Fragment>
           <Line caption={i18n('dash.widget-dialog.edit', 'field_params')}>
             <Button
-              theme='flat'
-              view='default'
-              tone='default'
-              size='s'
+              theme="flat"
+              view="default"
+              tone="default"
+              size="s"
               onClick={() => this.setState({ showParamsDialog: true })}
             >
               <ButtonIcon>
-                <Icon data={iconPlus} width='16' />
+                <Icon data={iconPlus} width="16" />
               </ButtonIcon>
               {i18n('dash.widget-dialog.edit', 'button_add-param')}
             </Button>
@@ -342,10 +342,10 @@ class Widget extends React.PureComponent {
               <div className={b('content')}>
                 <Line caption={i18n('dash.widget-dialog.edit', 'field_title')}>
                   <TextInput
-                    theme='normal'
-                    view='default'
-                    tone='default'
-                    size='s'
+                    theme="normal"
+                    view="default"
+                    tone="default"
+                    size="s"
                     placeholder={i18n('dash.widget-dialog.edit', 'context_fill-title')}
                     text={title}
                     onChange={value =>
@@ -359,17 +359,17 @@ class Widget extends React.PureComponent {
 
                 <Line caption={i18n('dash.widget-dialog.edit', 'field_widget')} className={b('line-widget')}>
                   <NavigationInput
-                    size='s'
+                    size="s"
                     entryId={uuid}
                     onChange={this._onAddWidget}
                     excludeClickableType={ENTRY_TYPE.CONTROL_NODE}
                     ref={this.navigationInputRef}
                   />
                   <Tooltip
-                    theme='error'
-                    view='classic'
-                    tone='default'
-                    size='n'
+                    theme="error"
+                    view="classic"
+                    tone="default"
+                    size="n"
                     autoclosable
                     visible={this.state.error}
                     anchor={this.navigationInputRef.current}
@@ -381,10 +381,10 @@ class Widget extends React.PureComponent {
 
                 <Line caption={i18n('dash.widget-dialog.edit', 'field_description')} />
                 <TextArea
-                  theme='normal'
-                  view='default'
-                  tone='default'
-                  size='s'
+                  theme="normal"
+                  view="default"
+                  tone="default"
+                  size="s"
                   text={description}
                   placeholder={i18n('dash.widget-dialog.edit', 'context_fill-description')}
                   onChange={value =>

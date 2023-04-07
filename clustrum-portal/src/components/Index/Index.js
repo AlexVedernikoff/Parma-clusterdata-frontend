@@ -5,7 +5,7 @@ import { SDK } from '../../modules/sdk';
 
 function Index(props) {
   return (
-    <div className='index'>
+    <div className="index">
       <Navigation sdk={SDK} {...props} />
     </div>
   );

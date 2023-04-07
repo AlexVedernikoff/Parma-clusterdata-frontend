@@ -197,7 +197,7 @@ class DNDContainer extends Component {
     let title;
     if (this.props.title) {
       title = (
-        <div className='subheader dimensions-subheader dimensions-dataset'>
+        <div className="subheader dimensions-subheader dimensions-dataset">
           <span> {this.props.title}</span>
         </div>
       );
@@ -207,7 +207,7 @@ class DNDContainer extends Component {
       <div className={`dnd-container${canDrop ? ' can-drop' : ''}${isOver ? ' is-over' : ''}`}>
         {
           <div
-            className='drop-place'
+            className="drop-place"
             style={{
               display: dropPlaceExists ? 'block' : 'none',
               top: dropPlaceExists ? (dropPlace === 0 ? -4 : dropPlace * 32 + 4 * (dropPlace - 1) + 1) : 'auto',

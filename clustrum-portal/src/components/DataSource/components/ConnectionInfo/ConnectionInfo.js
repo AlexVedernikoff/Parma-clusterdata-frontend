@@ -31,26 +31,26 @@ function ConnectionInfo(props) {
           <ConnectionName {...connection} />
           <Dropdown
             cls={b('more-dropdown')}
-            view='default'
-            tone='default'
-            theme='flat'
-            size='n'
+            view="default"
+            tone="default"
+            theme="flat"
+            size="n"
             switcher={
-              <Button size='n' theme='flat' type='default' view='default' width='max'>
-                <Icon className={b('more')} data={iconMore} width='22' />
+              <Button size="n" theme="flat" type="default" view="default" width="max">
+                <Icon className={b('more')} data={iconMore} width="22" />
               </Button>
             }
             popup={
               <Popup cls={b('entry-panel-more-popup')} hiding autoclosable onOutsideClick={() => ({})}>
-                <Menu theme='normal' view='default' tone='default' size='s' onClick={onClickConnectionMoreMenuItem}>
-                  <Menu.Item disabled={isProcessing} type='option' val='update-dataset-schema'>
+                <Menu theme="normal" view="default" tone="default" size="s" onClick={onClickConnectionMoreMenuItem}>
+                  <Menu.Item disabled={isProcessing} type="option" val="update-dataset-schema">
                     {i18n('dataset.materialization.modify', 'value_update-dataset-schema')}
                   </Menu.Item>
-                  <Menu.Item disabled={isProcessing} type='option' val='replace-source'>
+                  <Menu.Item disabled={isProcessing} type="option" val="replace-source">
                     {i18n('dataset.materialization.modify', 'value_replace-source')}
                   </Menu.Item>
                   <Menu.Group>
-                    <Menu.Item type='option' val='open-connection'>
+                    <Menu.Item type="option" val="open-connection">
                       {i18n('dataset.materialization.modify', 'value_open-connection')}
                     </Menu.Item>
                   </Menu.Group>
