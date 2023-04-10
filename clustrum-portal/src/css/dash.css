@@ -346,21 +346,21 @@
   position: relative;
 }
 
-.dashkit_theme_clusterdata .dashkit-plugin-title {
+.dashkit_theme_clustrum .dashkit-plugin-title {
   align-items: var(--title-vertical-align);
 }
 
-.dashkit_theme_clusterdata .dashkit-plugin-widget {
+.dashkit_theme_clustrum .dashkit-plugin-widget {
   border: var(--dashkit-plugin-widget__border);
   background-color: var(--yc-color-float-area);
 }
 
-.dashkit_theme_clusterdata .dashkit-plugin-widget__tab {
+.dashkit_theme_clustrum .dashkit-plugin-widget__tab {
   margin: 0;
   padding: 14px 6px;
 }
 
-.dashkit_theme_clusterdata .dashkit-plugin-widget .chartkit-menu__button {
+.dashkit_theme_clustrum .dashkit-plugin-widget .chartkit-menu__button {
   right: 8px;
 }
 
@@ -3468,7 +3468,7 @@ td.rdtYear:hover {
   text-align: right;
 }
 
-.chartkit_theme_clusterdata {
+.chartkit_theme_clustrum {
   --ck-loader-active-color: var(--yc-color-special-area);
   --ck-loader-off-color: var(--yc-color-celestial-thunder);
   --ck-control-backgound: var(--yc-color-hover-area);
@@ -4643,6 +4643,7 @@ span.chartkit-table__head-cell {
 td.data-table__td.chartkit-table__cell.chartkit-table__cell_type_STRING {
   border-bottom: 1px solid #e8f0f9;
 }
+
 td.data-table__td.chartkit-table__cell.chartkit-table__cell_type_INTEGER {
   border-bottom: 1px solid #e8f0f9;
 }
