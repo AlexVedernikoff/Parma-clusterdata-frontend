@@ -7,11 +7,11 @@ export class KamatechMenu extends React.Component<any, any> {
     super(props);
   }
 
-  private baseClass = 'parma-menu';
+  private baseClass = 'kamatech-menu';
 
   render() {
     const wrapper = React.Children.map(this.props.children, child => {
-      return <div className={'parma-menu-item'}>{child}</div>;
+      return <div className={'kamatech-menu-item'}>{child}</div>;
     });
     const sizeClass = this.props.size ? `${this.baseClass}_size_${this.props.size}` : '';
 

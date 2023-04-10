@@ -30,9 +30,9 @@ export class KamatechSidebar extends React.Component<KamatechSidebarInterface> {
 
   render() {
     return (
-      <div className={'parma-sidebar'}>
-        <div className={'parma-sidebar-places'}>
-          <div className={'parma-sidebar-header'}>Навигатор объектов</div>
+      <div className={'kamatech-sidebar'}>
+        <div className={'kamatech-sidebar-places'}>
+          <div className={'kamatech-sidebar-header'}>Навигатор объектов</div>
           {this.renderPlaces()}
         </div>
       </div>

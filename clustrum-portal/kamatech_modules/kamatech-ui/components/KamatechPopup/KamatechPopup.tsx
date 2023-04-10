@@ -17,7 +17,7 @@ export class KamatechPopup extends React.Component<any> {
     setTimeout(this.check.bind(this));
     return (
       <div
-        className={ClassHelper.merge('parma-popup', this.props.popupClass)}
+        className={ClassHelper.merge('kamatech-popup', this.props.popupClass)}
         style={this.getStyle}
         ref={this.popupRef}
       >

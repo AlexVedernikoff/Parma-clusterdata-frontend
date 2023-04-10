@@ -12,7 +12,7 @@ import moment from 'moment';
 
 moment.locale('ru');
 
-const blockName = 'parma-table-view';
+const blockName = 'kamatech-table-view';
 
 export class KamatechRow extends React.Component<KamatechRowInterface> {
   constructor(props: KamatechRowInterface) {

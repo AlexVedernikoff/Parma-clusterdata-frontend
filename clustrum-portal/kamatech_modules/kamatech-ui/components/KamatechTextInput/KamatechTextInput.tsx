@@ -5,7 +5,7 @@ import { KamatechIcon } from '..';
 import './KamatechTextInput.css';
 import { KamatechTextInputModel } from './KamatechTextInput.model';
 
-let blockName = 'parma-textinput';
+let blockName = 'kamatech-textinput';
 
 type KamatechTextInputState = {
   hovered: boolean;

@@ -1,13 +1,13 @@
-.parma-table-view__createdBy > span,
-.parma-table-view__name a,
-.parma-table-view__name span,
-.parma-table-view__updatedAt > span {
+.kamatech-table-view__createdBy>span,
+.kamatech-table-view__name a,
+.kamatech-table-view__name span,
+.kamatech-table-view__updatedAt>span {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.parma-table-view {
+.kamatech-table-view {
   --yc-navigation-item-height: 40px;
   --yc-navigation-bottom-padding: 20px;
   font-size: 13px;
@@ -15,44 +15,44 @@
   height: 100%;
 }
 
-.parma-table-view__row {
+.kamatech-table-view__row {
   display: flex;
   align-items: center;
   padding: 0 var(--yc-navigation-side-padding);
 }
 
-.parma-table-view__row:hover {
+.kamatech-table-view__row:hover {
   cursor: pointer;
   background: var(--color-hover-area);
 }
 
-.parma-table-view__row_hidden .parma-table-view__name {
+.kamatech-table-view__row_hidden .kamatech-table-view__name {
   color: var(--color-text-special);
 }
 
-.parma-table-view__row_inactive {
+.kamatech-table-view__row_inactive {
   cursor: default;
   pointer-events: none;
   opacity: 0.5;
 }
 
-.parma-table-view__row_mode_minimal {
+.kamatech-table-view__row_mode_minimal {
   padding: 0 20px;
 }
 
-.parma-table-view__row_mode_minimal .parma-table-view__createdBy {
+.kamatech-table-view__row_mode_minimal .kamatech-table-view__createdBy {
   display: none;
 }
 
-.parma-table-view__row_mode_minimal .parma-table-view__info {
+.kamatech-table-view__row_mode_minimal .kamatech-table-view__info {
   padding-right: 0;
 }
 
-.parma-table-view__row_mode_minimal .parma-table-view__row-btns {
+.kamatech-table-view__row_mode_minimal .kamatech-table-view__row-btns {
   display: none;
 }
 
-.parma-table-view__icon {
+.kamatech-table-view__icon {
   margin-right: 12px;
   position: relative;
   top: 2px;
@@ -60,7 +60,7 @@
   width: 22px;
 }
 
-.parma-table-view__info {
+.kamatech-table-view__info {
   width: 100%;
   display: flex;
   align-items: center;
@@ -70,7 +70,7 @@
   overflow: hidden;
 }
 
-.parma-table-view__row-btns {
+.kamatech-table-view__row-btns {
   position: absolute;
   right: 0;
   top: 0;
@@ -82,7 +82,7 @@
   justify-content: space-between;
 }
 
-.parma-table-view__row-btn {
+.kamatech-table-view__row-btn {
   visibility: hidden;
   width: 32px;
   height: 32px;
@@ -93,47 +93,43 @@
   border-radius: 4px;
 }
 
-.parma-table-view__row:hover .parma-table-view__row-btn {
+.kamatech-table-view__row:hover .kamatech-table-view__row-btn {
   visibility: visible;
 }
 
-.parma-table-view__row-btn:hover {
+.kamatech-table-view__row-btn:hover {
   background: var(--color-hover-area);
 }
 
-.parma-table-view__btn-change-favorite {
+.kamatech-table-view__btn-change-favorite {
   visibility: hidden;
   color: var(--color-text-hint);
 }
 
-.parma-table-view__btn-change-favorite_isFavorite {
+.kamatech-table-view__btn-change-favorite_isFavorite {
   visibility: visible;
 }
 
-.parma-table-view__row:hover .parma-table-view__btn-change-favorite {
+.kamatech-table-view__row:hover .kamatech-table-view__btn-change-favorite {
   color: #ffb54d;
 }
 
-.parma-table-view__row:hover
-  .parma-table-view__btn-change-favorite:not(.parma-table-view__btn-change-favorite_isFavorite)
-  .parma-table-view__icon-star-stroke {
+.kamatech-table-view__row:hover .kamatech-table-view__btn-change-favorite:not(.kamatech-table-view__btn-change-favorite_isFavorite) .kamatech-table-view__icon-star-stroke {
   display: block;
 }
 
-.parma-table-view__icon-star-stroke,
-.parma-table-view__row:hover
-  .parma-table-view__btn-change-favorite:not(.parma-table-view__btn-change-favorite_isFavorite)
-  .parma-table-view__icon-star-fill {
+.kamatech-table-view__icon-star-stroke,
+.kamatech-table-view__row:hover .kamatech-table-view__btn-change-favorite:not(.kamatech-table-view__btn-change-favorite_isFavorite) .kamatech-table-view__icon-star-fill {
   display: none;
 }
 
-.parma-table-view__lock {
+.kamatech-table-view__lock {
   margin: 0 10px;
   flex: 0 0 16px;
   color: var(--color-text-hint);
 }
 
-.parma-table-view__name {
+.kamatech-table-view__name {
   flex: 3 1 30%;
   display: flex;
   overflow: hidden;
@@ -141,13 +137,13 @@
   color: var(--color-text-primary);
 }
 
-.parma-table-view__createdBy {
+.kamatech-table-view__createdBy {
   flex: 1 0 20%;
   padding: 0 10px;
 }
 
-.parma-table-view__createdBy,
-.parma-table-view__updatedAt {
+.kamatech-table-view__createdBy,
+.kamatech-table-view__updatedAt {
   color: var(--color-text-primary);
   display: flex;
   opacity: 0.5;
@@ -155,45 +151,45 @@
   overflow: hidden;
 }
 
-.parma-table-view__updatedAt {
+.kamatech-table-view__updatedAt {
   flex: 0 0 140px;
   justify-content: flex-end;
   align-items: center;
 }
 
-.parma-table-view__updatedAt_mode_minimal {
+.kamatech-table-view__updatedAt_mode_minimal {
   flex: 0 0 25%;
   min-width: auto;
 }
 
-.parma-table-view__link,
-.parma-table-view__link:active,
-.parma-table-view__link:focus,
-.parma-table-view__link:hover,
-.parma-table-view__link:visited {
+.kamatech-table-view__link,
+.kamatech-table-view__link:active,
+.kamatech-table-view__link:focus,
+.kamatech-table-view__link:hover,
+.kamatech-table-view__link:visited {
   text-decoration: none;
   outline: none;
   color: inherit;
 }
 
-.parma-table-view__link_inactive,
-.parma-table-view__link_inactive:active,
-.parma-table-view__link_inactive:focus {
+.kamatech-table-view__link_inactive,
+.kamatech-table-view__link_inactive:active,
+.kamatech-table-view__link_inactive:focus {
   pointer-events: none;
 }
 
-.parma-table-view__list {
+.kamatech-table-view__list {
   margin-bottom: var(--yc-navigation-bottom-padding);
 }
 
-.parma-table-view__name-line {
+.kamatech-table-view__name-line {
   display: flex;
   flex: 1 1 auto;
   line-height: 20px;
   overflow: hidden;
 }
 
-.parma-table-view__parent-folder {
+.kamatech-table-view__parent-folder {
   height: 20px;
   display: flex;
   align-items: center;
@@ -202,16 +198,16 @@
   overflow: hidden;
 }
 
-.parma-table-view__folder-inline {
+.kamatech-table-view__folder-inline {
   flex: 0 0 16px;
   color: var(--color-text-hint);
   margin-right: 2px;
 }
 
-.parma-table-view__parent-folder-name {
+.kamatech-table-view__parent-folder-name {
   opacity: 0.5;
 }
 
-.parma-table-view__parent-folder-name:hover {
+.kamatech-table-view__parent-folder-name:hover {
   opacity: 0.7;
 }

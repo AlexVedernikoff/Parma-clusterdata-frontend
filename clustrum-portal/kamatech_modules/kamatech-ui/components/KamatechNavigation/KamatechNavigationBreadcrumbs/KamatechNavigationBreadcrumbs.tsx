@@ -35,7 +35,7 @@ export class KamatechNavigationBreadcrumbs extends React.PureComponent<KamatechN
 
   render() {
     const model = new KamatechNavigationBreadcrumbsModel(this.props);
-    const baseClass = 'parma-navigation-breadcrumbs';
+    const baseClass = 'kamatech-navigation-breadcrumbs';
     const sizeClass = model.size ? `${baseClass}_size_${model.size}` : '';
     const className = ClassHelper.merge(baseClass, sizeClass);
     return <div className={className}>{this.renderBreadcrumbs(model)}</div>;

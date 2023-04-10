@@ -12,7 +12,7 @@ export class KamatechCreateDropdownItem extends React.Component<KamatechCreateDr
 
   render() {
     const { icon, text } = this.props;
-    const className = 'parma-create-dropdown-item';
+    const className = 'kamatech-create-dropdown-item';
     return (
       <div className={className} onClick={this.onClick}>
         <KamatechIcon data={icon} className={`${className}-icon`} />
