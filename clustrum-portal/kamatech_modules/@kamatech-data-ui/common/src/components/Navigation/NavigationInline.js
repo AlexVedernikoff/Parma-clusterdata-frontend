@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
 import NavigationEntries from './NavigationEntries';
 
-import { ParmaCreateDropdown, ParmaSidebar, ParmaNavigationBreadcrumbs } from '@kamatech-ui';
+import { KamatechCreateDropdown, KamatechSidebar, KamatechNavigationBreadcrumbs } from '@kamatech-ui';
 
 import './NavigationInline.css';
 
@@ -42,7 +42,7 @@ class NavigationInline extends React.Component {
     } = this.props;
     return (
       <div className={b('header')}>
-        <ParmaNavigationBreadcrumbs
+        <KamatechNavigationBreadcrumbs
           size={size}
           path={path}
           place={place}
@@ -51,11 +51,11 @@ class NavigationInline extends React.Component {
           getPlaceParameters={getPlaceParameters}
         />
         <div className={'parma-navigation-inline-dropdown'}>
-          <ParmaCreateDropdown
+          <KamatechCreateDropdown
             items={createMenuItems}
             size={size}
             onMenuClick={onCreateMenuClick}
-          ></ParmaCreateDropdown>
+          ></KamatechCreateDropdown>
         </div>
       </div>
     );
@@ -65,14 +65,14 @@ class NavigationInline extends React.Component {
     return (
       <div className={b({ inline: true })}>
         <div className={b('sidebar')}>
-          <ParmaSidebar
+          <KamatechSidebar
             path={this.props.path}
             currentPlace={this.props.place}
             quickItems={quickItems}
             linkWrapper={linkWrapper}
             onItemClick={onSidebarItemClick}
             getPlaceParameters={this.props.getPlaceParameters}
-          ></ParmaSidebar>
+          ></KamatechSidebar>
         </div>
         <div className={b('content')}>
           {this.renderHeader()}
