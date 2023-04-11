@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TextInput } from 'lego-on-react';
 import icon from '../../../../../clustrum/src/icons/x-sign.svg';
 
-import { ParmaTextInput } from '@kamatech-ui';
+import { KamatechTextInput } from '@kamatech-ui';
 
 class SearchInput extends React.Component {
   static propTypes = {
@@ -22,7 +22,7 @@ class SearchInput extends React.Component {
     const { text, placeholder, onChange } = this.props;
     return (
       <div>
-        <ParmaTextInput
+        <KamatechTextInput
           ref={this.refInput}
           view="default"
           tone="default"
