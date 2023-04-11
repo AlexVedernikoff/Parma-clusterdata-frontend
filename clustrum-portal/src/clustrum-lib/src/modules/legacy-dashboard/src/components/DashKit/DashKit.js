@@ -4,7 +4,7 @@ import { RegisterManager } from '../../modules/register-manager/register-manager
 import DashKitView from '../DashKitView/DashKitView';
 import { UpdateManager } from '../../modules/update-manager/update-manager';
 import noop from 'lodash/noop';
-import { LAYOUT_ID } from '../../../../../../src/constants/constants';
+import { LAYOUT_ID } from 'clustrum-lib/constants/constants';
 
 const registerManager = new RegisterManager();
 
