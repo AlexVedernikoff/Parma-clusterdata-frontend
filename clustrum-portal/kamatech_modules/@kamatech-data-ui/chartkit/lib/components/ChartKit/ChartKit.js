@@ -14,9 +14,9 @@ import Menu from '../Menu/Menu';
 import URI from '../../modules/uri/uri';
 import settings from '../../modules/settings/settings';
 import { removeEmptyProperties } from '../../helpers/helpers';
-import { SignalContext } from '../../../../dashkit/src/context/SignalContext';
-import { SIGNAL } from '../../../../dashkit/src/constants/common';
-import { getParamsValue } from '../../../../dashkit/src/modules/utils';
+import { SignalContext } from 'dashboard/src/context/SignalContext';
+import { SIGNAL } from 'dashboard/src/constants/common';
+import { getParamsValue } from 'dashboard/src/modules/utils';
 
 const b = block('chartkit');
 
