@@ -1,4 +1,4 @@
-import { ITEM_TYPE } from '../constants/constants';
+import { ITEM_TYPE } from 'clustrum-lib/constants/constants';
 import sdk from '../sdk/sdk';
 
 const CURRENT_SCHEME_VERSION = 6;

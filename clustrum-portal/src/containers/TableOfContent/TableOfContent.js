@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from 'lego-on-react';
 import { Icon } from '@kamatech-data-ui/common/src';
-import { ITEM_TYPE } from '../../modules/constants/constants';
+import { ITEM_TYPE } from 'clustrum-lib/constants/constants';
 import { getCurrentPageTabs } from '../../store/selectors/dash';
 import { setPageTab, toggleTableOfContent } from '../../store/actions/dash';
 import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close.svg';

@@ -1,7 +1,8 @@
 import { replace } from 'connected-react-router';
 
 import * as actionTypes from '../constants/actionTypes';
-import { ITEM_TYPE, MODE } from '../../modules/constants/constants';
+import { MODE } from '../../modules/constants/constants';
+import { ITEM_TYPE } from 'clustrum-lib/constants/constants';
 import { CONTROL_SOURCE_TYPE } from '../../constants/constants';
 import SchemeConverter from '../../modules/schemeConverter/schemeConverter';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
