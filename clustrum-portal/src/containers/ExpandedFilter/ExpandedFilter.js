@@ -16,7 +16,7 @@ import { getCurrentTab, getHashState } from '../../store/selectors/dash';
 import SideSlidingPanel from '../../components/SideSlidingPanel/SideSlidingPanel';
 import block from 'bem-cn-lite';
 import { MODE } from '../../modules/constants/constants';
-import { LAYOUT_ID } from '../../constants/constants';
+import { LAYOUT_ID } from 'clustrum-lib/constants/constants';
 import cloneDeep from 'lodash-es/cloneDeep';
 import { getLayoutId } from '../../clustrum-lib/src/utils/helpers';
 

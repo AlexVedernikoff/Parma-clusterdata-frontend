@@ -29,7 +29,7 @@ import {
   setWidgetForReloadUUID,
   toggleWidgetVisibility,
 } from '../../store/actions/dash';
-import { LAYOUT_ID } from '../../constants/constants';
+import { LAYOUT_ID } from 'clustrum-lib/constants/constants';
 import { getLayoutId } from '../../clustrum-lib/src/utils/helpers';
 import { exportWidget } from './model/exportWidget';
 

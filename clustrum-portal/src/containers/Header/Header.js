@@ -28,7 +28,7 @@ import { SignalContext } from 'dashboard/src/context/SignalContext';
 import { SIGNAL } from 'dashboard/src/constants/common';
 import WidgetVisibilityDropdown from '../../components/WidgetVisibilityDropdown/WidgetVisibilityDropdown';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
-import { LAYOUT_ID } from '../../constants/constants';
+import { LAYOUT_ID } from 'clustrum-lib/constants/constants';
 import { getLayoutId } from '../../clustrum-lib/src/utils/helpers';
 import BrowserPrint from '../BrowserPrint/BrowserPrint';
 import { exportDashboard } from './model/exportDashboard';

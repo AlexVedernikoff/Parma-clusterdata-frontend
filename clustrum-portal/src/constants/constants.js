@@ -31,11 +31,6 @@ export const FILTER_TYPES = {
   DefaultRanges: 'defaultRanges',
 };
 
-export const LAYOUT_ID = {
-  DASHBOARD: 'layout',
-  SIDEBAR: 'filtersLayout',
-};
-
 export const WIZARD_NODE_TYPE = {
   TABLE: 'table_wizard_node',
   MAP: 'map_wizard_node',
