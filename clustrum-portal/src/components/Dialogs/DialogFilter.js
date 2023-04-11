@@ -23,7 +23,7 @@ import {
   DATE_OPERATIONS,
 } from '../../constants';
 
-import { getIconForCast } from '../../utils/helpers';
+import { getIconForCast } from '../../clustrum-lib/src/utils/helpers';
 
 import { i18n } from '@kamatech-data-ui/clustrum';
 

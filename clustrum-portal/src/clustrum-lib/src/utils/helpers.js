@@ -1,4 +1,4 @@
-import { LAYOUT_ID } from '../constants/constants';
+import { LAYOUT_ID } from '../../../constants/constants';
 
 export function getUniqueId(prefix = 'id') {
   return `${prefix}-${Date.now()}`;

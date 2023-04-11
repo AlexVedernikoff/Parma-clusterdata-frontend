@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import block from 'bem-cn-lite';
 import { TextInput } from 'lego-on-react';
 
-import { getIconForCast } from '../../utils/helpers';
+import { getIconForCast } from '../../clustrum-lib/src/utils/helpers';
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 import { i18n } from '@kamatech-data-ui/clustrum';

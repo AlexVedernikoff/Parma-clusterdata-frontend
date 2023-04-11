@@ -3,7 +3,7 @@ import Hashids from 'hashids';
 import omit from 'lodash/omit';
 import pick from 'lodash/pick';
 import { matchParamsWithAliases } from '../utils';
-import { getLayoutId } from '../../../../../../src/utils/helpers';
+import { getLayoutId } from 'clustrum-lib/utils/helpers';
 
 extend('$auto', (value, object) => {
   return object ? update(object, value) : update({}, value);

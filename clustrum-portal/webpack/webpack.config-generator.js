@@ -56,7 +56,7 @@ exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, d
         libs: path.resolve('./kamatech_modules/@kamatech-data-ui/clustrum/src/libs/'),
         utils: path.resolve('./kamatech_modules/@kamatech-data-ui/clustrum/src/utils/'),
         store: path.resolve('./src/store/'),
-        'clustrum-lib': path.resolve('./src/clustrum-lib/src/modules'),
+        'clustrum-lib': path.resolve('./src/clustrum-lib/src'),
         'dashboard': path.resolve('./src/clustrum-lib/src/modules/legacy-dashboard'),
         'components/ContainerLoader/ContainerLoader': path.resolve('./src/components/ContainerLoader/ContainerLoader'),
         'react-dom': '@hot-loader/react-dom',

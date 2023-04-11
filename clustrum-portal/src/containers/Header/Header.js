@@ -29,7 +29,7 @@ import { SIGNAL } from 'dashboard/src/constants/common';
 import WidgetVisibilityDropdown from '../../components/WidgetVisibilityDropdown/WidgetVisibilityDropdown';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { LAYOUT_ID } from '../../constants/constants';
-import { getLayoutId } from '../../utils/helpers';
+import { getLayoutId } from '../../clustrum-lib/src/utils/helpers';
 import BrowserPrint from '../BrowserPrint/BrowserPrint';
 import { exportDashboard } from './model/exportDashboard';
 import { Toaster } from '../../../kamatech_modules/@kamatech-data-ui/common/src';
