@@ -1,8 +1,0 @@
-export default {
-      id: "files-widget-usage",
-      viewBox: "0 0 24 24",
-      url: __webpack_public_path__ + "sprite-2fc732.svg#files-widget",
-      toString: function () {
-        return this.url;
-      }
-    }

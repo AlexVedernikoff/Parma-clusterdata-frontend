@@ -1,0 +1,33 @@
+# Base
+node_modules
+dist
+.vscode
+kamatech_modules
+webpack
+
+# Clustrum Portal Legacy
+src/actions
+src/api
+src/components
+src/constants
+src/containers
+src/css
+src/entries
+src/fonts
+src/helpers
+src/hooks
+src/icons
+src/modules
+src/reducers
+src/services
+src/sprite
+src/store
+src/utils
+src/context-path.js
+src/index.js
+src/polyfills.ts
+
+# Clustrum Lib Legacy
+src/clustrum-lib/src/modules/legacy-dashboard
+src/clustrum-lib/src/modules/legacy-wizard
+src/clustrum-lib/src/modules/legacy-datasets
