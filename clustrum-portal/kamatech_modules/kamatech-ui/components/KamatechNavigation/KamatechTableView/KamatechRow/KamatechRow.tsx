@@ -99,7 +99,7 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
 
           <div className={`${blockName}__row-btn`} onClick={this.onEntryContextClick} ref={this.setButtonRef}>
             <KamatechIcon
-              className={'parma-button-edit-entry__icon'}
+              className={'kamatech-button-edit-entry__icon'}
               data={this.props.iconDots}
               width="24"
               height="24"
