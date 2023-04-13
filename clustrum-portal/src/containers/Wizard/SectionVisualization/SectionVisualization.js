@@ -77,7 +77,7 @@ import { i18n } from '@kamatech-data-ui/clustrum';
 import Select from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import TextInput from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
 import DialogFormatTemplate from '../../../components/Dialogs/DialogFormatTemplate';
-import { ParmaRangePicker } from '@kamatech-ui';
+import { KamatechRangePicker } from '@kamatech-ui';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
 // import './SectionVisualization.scss';
@@ -949,7 +949,7 @@ class SectionVisualization extends Component {
               <span>{i18n('wizard', 'map_opacity')}</span>
             </div>
             <div className="subitem">
-              <ParmaRangePicker
+              <KamatechRangePicker
                 initialValue={mapLayerOpacity}
                 onChange={value => {
                   setMapLayerOpacity({ mapLayerOpacity: value });

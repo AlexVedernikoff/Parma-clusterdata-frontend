@@ -14,12 +14,12 @@ import iconDataset from '../../../../clustrum/src/icons/files-dataset.svg';
 import iconDashboard from '../../../../clustrum/src/icons/files-dashboard.svg';
 import iconWidget from '../../../../clustrum/src/icons/files-widget.svg';
 import iconConnection from '../../../../clustrum/src/icons/files-misc.svg';
-import { ScopeType } from '../../../../../../../parma-ui-core/src/components/table-view/scope-type.enum';
 import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import iconFavoriteEmpty from '../../assets/icons/favorite-empty.svg';
 import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
-import { ParmaTableView, ParmaTextInput } from '@kamatech-ui';
+import { KamatechTableView, KamatechTextInput } from '@kamatech-ui';
+import { ScopeType } from '@kamatech-ui/enums';
 import iconXsign from '../../../../clustrum/src/icons/x-sign.svg';
 
 const b = cn('yc-navigation');
@@ -351,7 +351,7 @@ class NavigationEntries extends React.Component {
       <div className={b('entries-header')}>
         {!isMinimalMode && (
           <div className={b('search')}>
-            <ParmaTextInput
+            <KamatechTextInput
               ref={this.refSearchInput}
               view="default"
               tone="default"
@@ -439,7 +439,7 @@ class NavigationEntries extends React.Component {
     return (
       <React.Fragment>
         <div className={b('table-view')}>
-          <ParmaTableView
+          <KamatechTableView
             linkWrapper={this.props.linkWrapper}
             mode={this.props.mode}
             clickableScope={this.props.clickableScope}
