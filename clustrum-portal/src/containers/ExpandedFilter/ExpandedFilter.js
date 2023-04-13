@@ -18,7 +18,7 @@ import block from 'bem-cn-lite';
 import { MODE } from '../../modules/constants/constants';
 import { LAYOUT_ID } from 'clustrum-lib/constants/constants';
 import cloneDeep from 'lodash-es/cloneDeep';
-import { getLayoutId } from '../../clustrum-lib/src/utils/helpers';
+import { getLayoutId } from '../../utils/helpers';
 
 const b = block('expanded-filter');
 

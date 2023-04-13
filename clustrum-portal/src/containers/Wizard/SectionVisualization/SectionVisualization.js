@@ -71,7 +71,7 @@ import {
   selectUpdates,
 } from '../../../reducers/dataset';
 
-import { getIconForCast } from '../../../clustrum-lib/src/utils/helpers';
+import { getIconForCast } from '../../../utils/helpers';
 
 import { i18n } from '@kamatech-data-ui/clustrum';
 import Select from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';

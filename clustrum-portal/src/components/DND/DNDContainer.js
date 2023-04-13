@@ -4,7 +4,7 @@ import { DragDropContext, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import DNDItem from './DNDItem';
 
-import { getUniqueId } from '../../clustrum-lib/src/utils/helpers';
+import { getUniqueId } from '../../utils/helpers';
 
 class DNDContainer extends Component {
   constructor(props) {

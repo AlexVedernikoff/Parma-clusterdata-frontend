@@ -4,7 +4,7 @@ import { REQUEST_WIDGET, RECEIVE_WIDGET, RESET_WIDGET } from '../actions';
 
 import sha1 from 'js-sha1';
 
-import { versionExtractor } from '../clustrum-lib/src/utils/helpers';
+import { versionExtractor } from '../utils/helpers';
 
 // Reducers
 

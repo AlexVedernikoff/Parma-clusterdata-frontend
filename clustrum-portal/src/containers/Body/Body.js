@@ -30,7 +30,7 @@ import {
   toggleWidgetVisibility,
 } from '../../store/actions/dash';
 import { LAYOUT_ID } from 'clustrum-lib/constants/constants';
-import { getLayoutId } from '../../clustrum-lib/src/utils/helpers';
+import { getLayoutId } from '../../utils/helpers';
 import { exportWidget } from './model/exportWidget';
 
 const b = block('dash-body');

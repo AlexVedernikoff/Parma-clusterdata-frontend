@@ -4,7 +4,7 @@ import sha1 from 'js-sha1';
 
 import { RESET_PREVIEW, SET_HIGHCHARTS_WIDGET, UPDATE_PREVIEW } from '../actions';
 
-import { versionExtractor } from '../clustrum-lib/src/utils/helpers';
+import { versionExtractor } from '../utils/helpers';
 
 // Reducers
 
