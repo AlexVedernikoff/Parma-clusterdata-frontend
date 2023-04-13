@@ -16,7 +16,7 @@ import { prerenderMiddleware } from './prerenderMiddleware';
 import { LOAD_STATUS, CONTROL_SOURCE_TYPE, DATE_FORMAT_DAY } from '../../../../constants/constants';
 import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import { SDK } from '../../../../modules/sdk';
-import { getParamsValue } from 'clustrum-lib';
+import { getParamsValue } from '@clustrum-lib';
 
 const TYPE = {
   SELECT: 'select',

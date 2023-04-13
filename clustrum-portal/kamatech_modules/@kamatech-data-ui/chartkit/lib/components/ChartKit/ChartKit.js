@@ -14,7 +14,7 @@ import Menu from '../Menu/Menu';
 import URI from '../../modules/uri/uri';
 import settings from '../../modules/settings/settings';
 import { removeEmptyProperties } from '../../helpers/helpers';
-import { SignalContext, SIGNAL, getParamsValue } from 'clustrum-lib';
+import { SignalContext, SIGNAL, getParamsValue } from '@clustrum-lib';
 
 const b = block('chartkit');
 

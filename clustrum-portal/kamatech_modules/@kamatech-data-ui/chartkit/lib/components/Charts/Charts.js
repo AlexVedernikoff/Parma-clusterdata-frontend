@@ -6,7 +6,7 @@ import Widget from '../Widget/Widget';
 
 import ChartsModule from '../../modules/charts/charts';
 import ErrorDispatcher from '../../modules/error-dispatcher/error-dispatcher';
-import { getParamsValue } from 'clustrum-lib';
+import { getParamsValue } from '@clustrum-lib';
 import { WIZARD_NODE_TYPE } from '../../../../../../src/constants/constants';
 
 class Charts extends React.PureComponent {
