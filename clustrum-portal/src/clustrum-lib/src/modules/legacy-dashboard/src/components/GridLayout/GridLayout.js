@@ -3,7 +3,7 @@ import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import GridItem from '../GridItem/GridItem';
 import { DashKitContext } from '../../context/DashKitContext';
 
-import { ITEM_TYPE } from 'clustrum-lib/constants/constants';
+import { ITEM_TYPE } from '../../../../../../../modules/constants/constants';
 
 const Layout = WidthProvider(ReactGridLayout); // eslint-disable-line new-cap
 
