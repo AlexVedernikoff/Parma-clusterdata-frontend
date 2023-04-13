@@ -1,4 +1,4 @@
-import DashKit from 'dashboard';
+import { DashKit } from 'clustrum-lib';
 import pluginText from 'dashboard/src/plugins/Text/Text';
 import pluginTitle from 'dashboard/src/plugins/Title/Title';
 import pluginWidget from 'dashboard/src/plugins/Widget/Widget';

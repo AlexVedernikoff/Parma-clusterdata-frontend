@@ -3,7 +3,7 @@ import pick from 'lodash/pick';
 import Hashids from 'hashids';
 import { LOCATION_CHANGE } from 'connected-react-router';
 
-import DashKit from 'dashboard';
+import { DashKit } from 'clustrum-lib';
 
 import * as actionTypes from '../constants/actionTypes';
 import { MODE } from '../../modules/constants/constants';

@@ -8,7 +8,7 @@ import { LAYOUT_ID } from '../../../../../../../constants/constants';
 
 const registerManager = new RegisterManager();
 
-class DashKit extends React.PureComponent {
+export class DashKit extends React.PureComponent {
   static registerPlugins(...plugins) {
     plugins.forEach(plugin => {
       registerManager.addItem(plugin);
@@ -109,5 +109,3 @@ DashKit.defaultProps = {
   itemsStateAndParams: {},
   settings: {},
 };
-
-export default DashKit;
