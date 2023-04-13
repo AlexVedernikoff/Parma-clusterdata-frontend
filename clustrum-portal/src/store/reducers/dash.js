@@ -7,7 +7,7 @@ import DashKit from 'dashboard';
 
 import * as actionTypes from '../constants/actionTypes';
 import { MODE } from '../../modules/constants/constants';
-import { LAYOUT_ID } from 'clustrum-lib/constants/constants';
+import { LAYOUT_ID } from '../../constants/constants';
 import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
 
 const TAB_PROPERTIES = ['id', 'title', 'items', 'layout', 'filtersLayout', 'ignores', 'aliases'];

@@ -18,8 +18,7 @@ import External from './External/External';
 import SourceType from './Switchers/SourceType/SourceType';
 
 import { ELEMENT_TYPE } from './constants';
-import { CONTROL_SOURCE_TYPE } from '../../../constants/constants';
-import { LAYOUT_ID } from 'clustrum-lib/constants/constants';
+import { CONTROL_SOURCE_TYPE, LAYOUT_ID } from '../../../constants/constants';
 import { DIALOG_TYPE, IS_INTERNAL } from '../../../modules/constants/constants';
 import {
   getOpenedItemAvailableItems,
