@@ -10,7 +10,7 @@ import Datepicker from '@kamatech-data-ui/common/src/components/Datepicker';
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 
-import SearchInput from '../../../../../../components/SearchInput/SearchInput';
+import SearchInput from '../SearchInput/SearchInput';
 
 import iconPlus from 'icons/plus.svg';
 import iconCross from 'icons/cross.svg';

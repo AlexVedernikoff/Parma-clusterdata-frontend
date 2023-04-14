@@ -34,7 +34,7 @@ import {
 import { DATASET_ERRORS, ITEM_TYPES } from '../../../../../constants';
 
 import DNDContainer from '../components/DND/DNDContainer';
-import SearchInput from '../../../../../components/SearchInput/SearchInput';
+import SearchInput from '../components/SearchInput/SearchInput';
 
 import { Loader } from '@kamatech-data-ui/common/src';
 
