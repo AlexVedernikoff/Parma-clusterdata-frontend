@@ -29,12 +29,12 @@ import {
   setSearchPhrase,
   toggleFullscreen,
   updateDatasetByValidation,
-} from '../../../actions';
+} from '../../../../../actions';
 
-import { DATASET_ERRORS, ITEM_TYPES } from '../../../constants';
+import { DATASET_ERRORS, ITEM_TYPES } from '../../../../../constants';
 
-import DNDContainer from '../../../components/DND/DNDContainer';
-import SearchInput from '../../../components/SearchInput/SearchInput';
+import DNDContainer from '../components/DND/DNDContainer';
+import SearchInput from '../../../../../components/SearchInput/SearchInput';
 
 import { Loader } from '@kamatech-data-ui/common/src';
 
@@ -44,7 +44,7 @@ import {
   selectFilteredMeasures,
   selectDefaultPath,
   selectSearchPhrase,
-} from '../../../reducers/settings';
+} from '../../../../../reducers/settings';
 
 import {
   selectDataset,
@@ -56,7 +56,7 @@ import {
   selectDatasetError,
   selectFields,
   selectAceModeUrl,
-} from '../../../reducers/dataset';
+} from '../../../../../reducers/dataset';
 
 import { createStructuredSelector } from 'reselect';
 

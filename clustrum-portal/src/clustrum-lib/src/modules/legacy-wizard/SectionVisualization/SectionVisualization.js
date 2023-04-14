@@ -14,12 +14,12 @@ import iconSort from 'icons/sort.svg';
 import iconSortDesc from 'icons/sort-desc.svg';
 import iconSortAsc from 'icons/sort-asc.svg';
 
-import { CONFLICT_TOOLTIPS, ITEM_TYPES, MEASURE_TYPE, VISUALIZATIONS } from '../../../constants';
+import { CONFLICT_TOOLTIPS, ITEM_TYPES, MEASURE_TYPE, VISUALIZATIONS } from '../../../../../constants';
 
-import DNDContainer from '../../../components/DND/DNDContainer';
-import Dropdown from '../../../components/Dropdown/Dropdown';
+import DNDContainer from '../components/DND/DNDContainer';
+import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
-import DialogFilter from '../../../components/Dialogs/DialogFilter';
+import DialogFilter from '../components/Dialogs/DialogFilter';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -42,7 +42,7 @@ import {
   setVisualizationPlaceholderItems,
   setVisualizationType,
   updatePreview,
-} from '../../../actions';
+} from '../../../../../actions';
 
 import {
   selectClusterPrecision,
@@ -61,7 +61,7 @@ import {
   selectVisualization,
   selectVisualizationType,
   selectOrderBy,
-} from '../../../reducers/visualization';
+} from '../../../../../reducers/visualization';
 
 import {
   selectDataset,
@@ -69,14 +69,14 @@ import {
   selectDimensions,
   selectMeasures,
   selectUpdates,
-} from '../../../reducers/dataset';
+} from '../../../../../reducers/dataset';
 
-import { getIconForCast } from '../../../utils/helpers';
+import { getIconForCast } from '../../../../../utils/helpers';
 
 import { i18n } from '@kamatech-data-ui/clustrum';
-import Select from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
-import TextInput from '../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
-import DialogFormatTemplate from '../../../components/Dialogs/DialogFormatTemplate';
+import Select from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
+import TextInput from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
+import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
 import { KamatechRangePicker } from '@kamatech-ui';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 

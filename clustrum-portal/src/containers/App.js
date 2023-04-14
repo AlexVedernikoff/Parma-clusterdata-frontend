@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Switch, Route } from 'react-router-dom';
 
-import Wizard from '../containers/Wizard/Wizard';
+import { Wizard } from '../clustrum-lib/src/index';
 import { Pointerfocus } from 'lego-on-react';
 
 import { Utils, SDK, Header } from '@kamatech-data-ui/clustrum';
