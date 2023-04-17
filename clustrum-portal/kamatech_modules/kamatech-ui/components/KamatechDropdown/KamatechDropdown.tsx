@@ -31,7 +31,7 @@ export class KamatechDropdown extends React.Component<any, any> {
         {this.state.opened && (
           <Portal>
             <KamatechPopup
-              popupClass={'parma-dropdown-popup'}
+              popupClass={'kamatech-dropdown-popup'}
               anchor={this.switcherRef.current}
               clickOutside={this.clickOutside.bind(this)}
             >

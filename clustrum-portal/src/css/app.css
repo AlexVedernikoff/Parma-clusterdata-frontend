@@ -3979,7 +3979,7 @@ td.rdtYear:hover {
   text-align: right;
 }
 
-.chartkit_theme_clusterdata {
+.chartkit_theme_clustrum {
   --ck-loader-active-color: var(--color-special-area);
   --ck-loader-off-color: var(--color-celestial-thunder);
   --ck-control-backgound: var(--color-hover-area);

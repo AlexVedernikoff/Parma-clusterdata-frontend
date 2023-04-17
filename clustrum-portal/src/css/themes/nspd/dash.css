@@ -500,7 +500,7 @@
   padding-left: 24px;
 }
 
-.dashkit_theme_clusterdata .dashkit-plugin-widget__tab {
+.dashkit_theme_clustrum .dashkit-plugin-widget__tab {
   padding: 0;
   margin: 0;
   text-align: left;
@@ -511,7 +511,7 @@
   color: #252625;
 }
 
-.dashkit_theme_clusterdata .dashkit-plugin-widget .chartkit-menu__button {
+.dashkit_theme_clustrum .dashkit-plugin-widget .chartkit-menu__button {
   top: -64px;
   right: 20px;
 }
@@ -542,7 +542,7 @@
   padding: 0 20px;
 }
 
-.dashkit_theme_clusterdata .dashkit-plugin-title {
+.dashkit_theme_clustrum .dashkit-plugin-title {
   align-items: center;
   padding: 0 24px;
   color: #092040;

@@ -12,7 +12,7 @@ export class KamatechNavigationCrumb extends React.PureComponent<KamatechNavigat
 
   render() {
     const { last, item, linkWrapper } = this.props;
-    const baseClass = 'parma-navigation-crumb';
+    const baseClass = 'kamatech-navigation-crumb';
     const nodeClass = `${baseClass}-node`;
     const itemClass = `${baseClass}-item`;
     const lastClass = last ? `${itemClass}_last` : '';
