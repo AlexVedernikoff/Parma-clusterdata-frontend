@@ -1,3 +1,5 @@
+// TODO: типизировать
+// @ts-nocheck
 import _get from 'lodash/get';
 
 export function matchParamsWithAliases({ aliases, namespace, params, initiatorItem }) {
