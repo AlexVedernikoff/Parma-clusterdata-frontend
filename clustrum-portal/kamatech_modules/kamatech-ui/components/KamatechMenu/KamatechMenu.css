@@ -1,4 +1,4 @@
-.parma-menu {
+.kamatech-menu {
   display: inline-block;
   overflow-x: hidden;
   overflow-y: auto;
@@ -9,12 +9,14 @@
   user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-.parma-menu:after,
-.parma-menu:before {
+
+.kamatech-menu:after,
+.kamatech-menu:before {
   display: block;
   content: '';
 }
-.parma-menu-item {
+
+.kamatech-menu-item {
   white-space: nowrap;
   display: block;
   cursor: pointer;
@@ -23,56 +25,65 @@
   outline: none;
   background-repeat: no-repeat;
 }
-.parma-menu-item:hover {
+
+.kamatech-menu-item:hover {
   color: var(--color-text-primary);
   background: var(--color-hover-area);
 }
 
-.parma-menu.parma-menu_size_m {
+.kamatech-menu.kamatech-menu_size_m {
   font-size: 15px;
   line-height: 28px;
 }
-.parma-menu.parma-menu_size_m::after,
-.parma-menu.parma-menu_size_m::before {
+
+.kamatech-menu.kamatech-menu_size_m::after,
+.kamatech-menu.kamatech-menu_size_m::before {
   height: 5px;
 }
-.parma-menu.parma-menu_size_m .parma-menu-item {
+
+.kamatech-menu.kamatech-menu_size_m .kamatech-menu-item {
   padding: 0 15px;
 }
 
-.parma-menu.parma-menu_size_n {
+.kamatech-menu.kamatech-menu_size_n {
   font-size: 13px;
   line-height: 36px;
 }
-.parma-menu.parma-menu_size_n::after,
-.parma-menu.parma-menu_size_n::before {
+
+.kamatech-menu.kamatech-menu_size_n::after,
+.kamatech-menu.kamatech-menu_size_n::before {
   height: 8px;
 }
-.parma-menu.parma-menu_size_n .parma-menu-item {
+
+.kamatech-menu.kamatech-menu_size_n .kamatech-menu-item {
   height: 36px;
   padding: 0 13px 0 10px;
 }
 
-.parma-menu.parma-menu_size_s {
+.kamatech-menu.kamatech-menu_size_s {
   font-size: 13px;
   line-height: 24px;
 }
-.parma-menu.parma-menu_size_s::after,
-.parma-menu.parma-menu_size_s::before {
+
+.kamatech-menu.kamatech-menu_size_s::after,
+.kamatech-menu.kamatech-menu_size_s::before {
   height: 4px;
 }
-.parma-menu.parma-menu_size_s .parma-menu-item {
+
+.kamatech-menu.kamatech-menu_size_s .kamatech-menu-item {
   padding: 0 13px;
 }
 
-.parma-menu.parma-menu_size_xs {
+.kamatech-menu.kamatech-menu_size_xs {
   font-size: 13px;
   line-height: 24px;
 }
-.parma-menu.parma-menu_size_xs::after,
-.parma-menu.parma-menu_size_xs::before {
+
+.kamatech-menu.kamatech-menu_size_xs::after,
+.kamatech-menu.kamatech-menu_size_xs::before {
   height: 3px;
 }
-.parma-menu.parma-menu_size_xs .parma-menu-item {
+
+.kamatech-menu.kamatech-menu_size_xs .kamatech-menu-item {
   padding: 0 10px;
 }

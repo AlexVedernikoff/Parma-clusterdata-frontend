@@ -13,7 +13,7 @@ import withSuperuserSwitch from './withSuperuserSwitch';
 
 const b = block('dl-header');
 
-class HeaderClusterData extends React.Component {
+class HeaderClustrum extends React.Component {
   static propTypes = {
     logoText: PropTypes.string.isRequired,
     menuData: PropTypes.object.isRequired,
@@ -49,4 +49,4 @@ class HeaderClusterData extends React.Component {
   }
 }
 
-export default withToggleTheme(withSuperuserSwitch(withPreparedMenu(HeaderClusterData)));
+export default withToggleTheme(withSuperuserSwitch(withPreparedMenu(HeaderClustrum)));

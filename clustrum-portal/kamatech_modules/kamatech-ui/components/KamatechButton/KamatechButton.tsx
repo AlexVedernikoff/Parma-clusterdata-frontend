@@ -4,7 +4,7 @@ import { KamatechButtonInterface } from './KamatechButton.interface';
 import { ClassHelper } from '../../helpers';
 
 export class KamatechButton extends React.Component<KamatechButtonInterface, any> {
-  private baseClass = 'parma-button';
+  private baseClass = 'kamatech-button';
 
   onClick() {
     if (this.props.onClick) {

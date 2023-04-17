@@ -13,7 +13,7 @@ export class KamatechSidebarItem extends React.Component<KamatechSidebarItemInte
 
   render() {
     const { item, linkWrapper, current } = this.props;
-    const baseClass = 'parma-slidebar-item';
+    const baseClass = 'kamatech-slidebar-item';
     const currentClass = current ? `${baseClass}_current` : '';
     const className = ClassHelper.merge(baseClass, currentClass);
     const node = (

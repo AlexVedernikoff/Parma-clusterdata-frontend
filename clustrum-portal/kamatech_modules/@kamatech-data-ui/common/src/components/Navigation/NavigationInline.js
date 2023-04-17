@@ -50,7 +50,7 @@ class NavigationInline extends React.Component {
           onClick={onCrumbClick}
           getPlaceParameters={getPlaceParameters}
         />
-        <div className={'parma-navigation-inline-dropdown'}>
+        <div className={'kamatech-navigation-inline-dropdown'}>
           <KamatechCreateDropdown
             items={createMenuItems}
             size={size}

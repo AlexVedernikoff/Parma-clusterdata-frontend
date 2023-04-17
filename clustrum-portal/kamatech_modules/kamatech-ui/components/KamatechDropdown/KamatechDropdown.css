@@ -1,4 +1,4 @@
-.parma-dropdown-popup {
+.kamatech-dropdown-popup {
   box-shadow: 0 1.5ex 2ex -1ex var(--yc-lego-color-dark-light-hover);
   color: var(--yc-lego-color-text-primary);
   background-color: var(--yc-lego-color-base);
@@ -6,6 +6,7 @@
   border-radius: 4px;
   box-sizing: border-box;
 }
-.parma-dropdown-popup:before {
+
+.kamatech-dropdown-popup:before {
   box-shadow: 0 0 0 1px var(--yc-lego-color-medium-light-hover);
 }

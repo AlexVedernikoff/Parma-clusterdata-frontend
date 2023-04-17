@@ -1,4 +1,4 @@
-.parma-slidebar-item {
+.kamatech-slidebar-item {
   display: flex;
   height: 40px;
   padding: 0 16px;
@@ -8,18 +8,18 @@
   cursor: default;
 }
 
-.parma-slidebar-item:hover:not(.parma-slidebar-item_current) {
+.kamatech-slidebar-item:hover:not(.kamatech-slidebar-item_current) {
   cursor: pointer;
   color: var(--color-text-primary);
   background: var(--color-hover-area);
 }
 
-.parma-slidebar-item_current {
+.kamatech-slidebar-item_current {
   color: var(--color-text-primary);
   background: var(--color-selection);
 }
 
-.parma-slidebar-item-icon {
+.kamatech-slidebar-item-icon {
   position: relative;
   margin-right: 12px;
   color: var(--color-text-primary);

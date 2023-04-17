@@ -6,7 +6,7 @@ import block from 'bem-cn-lite';
 import 'brace';
 import 'brace/ext/language_tools';
 // import '../../libs/ace/mode/clickhouse';
-import '../../libs/ace/theme/clusterdata';
+import '../../libs/ace/theme/clustrum';
 import FormulaAutocompleter from './utils/FormulaAutocompleter';
 
 // import './AceEditor.scss';

@@ -1,4 +1,4 @@
-.parma-button {
+.kamatech-button {
   display: inline-block;
   overflow: visible;
   box-sizing: border-box;
@@ -19,7 +19,7 @@
   cursor: pointer;
 }
 
-.parma-button:before {
+.kamatech-button:before {
   position: absolute;
   z-index: -1;
   top: 0;
@@ -28,12 +28,13 @@
   left: 0;
   content: '';
 }
-.parma-button::-moz-focus-inner {
+
+.kamatech-button::-moz-focus-inner {
   padding: 0;
   border: 0;
 }
 
-.parma-button-text {
+.kamatech-button-text {
   position: relative;
   pointer-events: none;
   display: inline-block;
@@ -42,17 +43,18 @@
 }
 
 /* SIZE */
-.parma-button_size_n {
+.kamatech-button_size_n {
   height: 36px;
   font-size: 13px;
   line-height: 36px;
 }
-.parma-button_size_n .parma-button-text {
+
+.kamatech-button_size_n .kamatech-button-text {
   margin: 0 20px;
 }
 
 /* THEME */
-.parma-button_theme_action {
+.kamatech-button_theme_action {
   position: relative;
   z-index: 0;
   color: #000;
@@ -61,26 +63,30 @@
 }
 
 /* VIEW */
-.parma-button_view_default {
+.kamatech-button_view_default {
   transition: transform 0.1s ease-out, color 0.15s linear;
   transform: scale(1);
 }
-.parma-button_view_default:active {
+
+.kamatech-button_view_default:active {
   transition: none;
   transform: scale(0.96);
 }
-.parma-button_view_default:before {
+
+.kamatech-button_view_default:before {
   border-radius: 4px;
   transition: background-color 0.15s linear, opacity 0.15s linear;
 }
 
 /* TONE */
-.parma-button_view_default.parma-button_tone_default.parma-button_theme_action {
+.kamatech-button_view_default.kamatech-button_tone_default.kamatech-button_theme_action {
   color: var(--color-contrast-0-solid);
 }
-.parma-button_view_default.parma-button_tone_default.parma-button_theme_action:before {
+
+.kamatech-button_view_default.kamatech-button_tone_default.kamatech-button_theme_action:before {
   background-color: rgb(30, 136, 229);
 }
-.parma-button_view_default.parma-button_tone_default.parma-button_theme_action:hover:before {
+
+.kamatech-button_view_default.kamatech-button_tone_default.kamatech-button_theme_action:hover:before {
   background-color: rgb(75, 160, 235);
 }

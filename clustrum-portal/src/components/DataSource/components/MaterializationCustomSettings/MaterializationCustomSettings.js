@@ -98,7 +98,7 @@ function MaterializationCustomSettingsParamsItem(props) {
   return (
     <div className={b('params-item')}>
       <div className={b('params_label')}>{label}</div>
-      <div className={'parma-textinput__control'}>
+      <div className={'kamatech-textinput__control'}>
         <KamatechTextInput
           view="default"
           tone="default"

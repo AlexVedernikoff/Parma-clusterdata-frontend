@@ -118,7 +118,7 @@
     "label_loading": "Загрузка…",
     "label_error": "Ошибка",
     "label_not-found": "Ничего не нашлось",
-    "label_not-active-folders": "У вас нет ни одного каталога с активным ClusterData",
+    "label_not-active-folders": "У вас нет ни одного каталога с активным Clustrum",
     "label_placeholder-none": "Каталог"
   },
   "component.access-rights.view": {
@@ -316,11 +316,11 @@
     "label_title-fail": "Что-то пошло не так",
     "label_description-fail": "Пожалуйста, обратитесь в тех. поддержку",
     "label_description-auth-denied": "Пожалуйста, обратитесь в тех. поддержку",
-    "label_title-inaccessible-entry-folder": "У вас нет доступа к ClusterData в этом каталоге",
+    "label_title-inaccessible-entry-folder": "У вас нет доступа к Clustrum в этом каталоге",
     "label_title-missing-entry": "Не найдено",
-    "label_title-missing-current-cloud-folder": "Выберите каталог для работы с ClusterData",
+    "label_title-missing-current-cloud-folder": "Выберите каталог для работы с Clustrum",
     "label_title-forbidden-entry": "У вас нет прав доступа к этому объекту",
-    "label_title-cloud-folder-access-denied": "У вас нет доступа к объектам ClusterData в этом каталоге"
+    "label_title-cloud-folder-access-denied": "У вас нет доступа к объектам Clustrum в этом каталоге"
   },
   "connection.connections-list.modify": {
     "field_title": "Название подключения",

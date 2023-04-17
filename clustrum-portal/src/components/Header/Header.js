@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header as ClusterDataHeader, Utils } from '@kamatech-data-ui/clustrum';
+import { Header as ClustrumHeader, Utils } from '@kamatech-data-ui/clustrum';
 import { SDK } from '../../modules/sdk';
 import { IS_INTERNAL } from '../../modules/constants/constants';
 
@@ -7,7 +7,7 @@ function Header() {
   const { DL: { installationType, endpoints, user, menu, features: { toggleTheme } } = {} } = window;
 
   return (
-    <ClusterDataHeader
+    <ClustrumHeader
       installationType={installationType}
       endpoints={endpoints}
       userData={{
@@ -16,7 +16,7 @@ function Header() {
       }}
       toggleTheme={toggleTheme}
       menuData={menu}
-      logoText={IS_INTERNAL ? 'Dash' : 'ClusterData'}
+      logoText={IS_INTERNAL ? 'Dash' : 'Clustrum'}
       sdk={SDK}
     />
   );
