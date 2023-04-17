@@ -3,7 +3,6 @@ import { DashKitContext } from '../context/DashKitContext';
 import { UpdateManager } from '../modules/update-manager/update-manager';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
-// import { matchParamsWithAliases } from '../../../../../../../kamatech_modules/@kamatech-data-ui/utils/param-utils';
 import { matchParamsWithAliases } from '@kamatech-data-ui/utils/param-utils';
 const START_ROLE = 'control';
 

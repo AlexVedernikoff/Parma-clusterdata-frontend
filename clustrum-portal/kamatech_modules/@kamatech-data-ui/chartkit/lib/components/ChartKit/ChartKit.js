@@ -14,8 +14,9 @@ import Menu from '../Menu/Menu';
 import URI from '../../modules/uri/uri';
 import settings from '../../modules/settings/settings';
 import { removeEmptyProperties } from '../../helpers/helpers';
-import { SignalContext, SIGNAL } from '@clustrum-lib';
+import { SIGNAL } from '@clustrum-lib';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
+import { SignalContext } from '@kamatech-data-ui/context/SignalContext';
 
 const b = block('chartkit');
 

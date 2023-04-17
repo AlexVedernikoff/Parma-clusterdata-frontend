@@ -1,3 +1,5 @@
+// TODO: типизировать
+// @ts-nocheck
 import React from 'react';
 
 const SignalContext = React.createContext({

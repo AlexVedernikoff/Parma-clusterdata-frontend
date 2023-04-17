@@ -2,7 +2,6 @@ import update, { extend } from 'immutability-helper';
 import Hashids from 'hashids';
 import omit from 'lodash/omit';
 import pick from 'lodash/pick';
-// import { matchParamsWithAliases } from '../../../../../../../../kamatech_modules/@kamatech-data-ui/utils/param-utils';
 import { matchParamsWithAliases } from '@kamatech-data-ui/utils/param-utils';
 import { getLayoutId } from '../../../../../../../utils/helpers';
 
