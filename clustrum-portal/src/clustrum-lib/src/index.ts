@@ -1,2 +1,1 @@
-import Wizard from './modules/legacy-wizard/Wizard';
-export { Wizard };
+export { default as Wizard } from './modules/legacy-wizard/Wizard';
