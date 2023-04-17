@@ -28,6 +28,6 @@ src/index.js
 src/polyfills.ts
 
 # Clustrum Lib Legacy
-src/@clustrum-lib/src/modules/legacy-dashboard
-src/@clustrum-lib/src/modules/legacy-wizard
-src/@clustrum-lib/src/modules/legacy-datasets
+src/clustrum-lib/src/modules/legacy-dashboard
+src/clustrum-lib/src/modules/legacy-wizard
+src/clustrum-lib/src/modules/legacy-datasets
