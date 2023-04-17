@@ -14,7 +14,7 @@ import Menu from '../Menu/Menu';
 import URI from '../../modules/uri/uri';
 import settings from '../../modules/settings/settings';
 import { removeEmptyProperties } from '../../helpers/helpers';
-import { SIGNAL } from '@clustrum-lib';
+import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
 import { SignalContext } from '@kamatech-data-ui/context/SignalContext';
 
