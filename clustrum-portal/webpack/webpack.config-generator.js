@@ -44,6 +44,7 @@ exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, d
       extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
       preferRelative: false,
       alias: {
+        '@clustrum-lib': path.resolve('./src/clustrum-lib/src/'),
         '@kamatech-ui': path.resolve('./kamatech_modules/kamatech-ui'),
         '@kamatech-data-ui': path.resolve('./kamatech_modules/@kamatech-data-ui/'),
         '@kamatech-lego': path.resolve('./kamatech_modules/@kamatech-lego/'),

@@ -12,13 +12,13 @@ import iconPreviewDatasetError from 'icons/preview-dataset-error.svg';
 
 import { EXPORT, NEW_WINDOW } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
 
-import { selectConfig, selectConfigType, selectPreviewEntryId } from '../../../reducers/preview';
+import { selectConfig, selectConfigType, selectPreviewEntryId } from '../../../../../reducers/preview';
 
-import { selectDatasetError } from '../../../reducers/dataset';
+import { selectDatasetError } from '../../../../../reducers/dataset';
 
-import { selectWidget } from '../../../reducers/widget';
+import { selectWidget } from '../../../../../reducers/widget';
 
-import { setHighchartsWidget } from '../../../actions';
+import { setHighchartsWidget } from '../../../../../actions';
 
 import { createStructuredSelector } from 'reselect';
 

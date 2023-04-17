@@ -13,7 +13,7 @@ import { isDraft, getEntryTitle, canEdit, isEditMode, getWidgetEditorUUID } from
 import { setWidgetEditorUUID, setWidgetForReloadUUID } from '../../store/actions/dash';
 
 import { i18n, SDK } from '@kamatech-data-ui/clustrum';
-import Wizard from '../Wizard/Wizard';
+import { Wizard } from '@clustrum-lib';
 import SideSlidingPanel from '../../components/SideSlidingPanel/SideSlidingPanel';
 import ExpandedFilter from '../ExpandedFilter/ExpandedFilter';
 

@@ -3,13 +3,13 @@ import React, { PureComponent } from 'react';
 import block from 'bem-cn-lite';
 import { TextInput } from 'lego-on-react';
 
-import { getIconForCast } from '../../utils/helpers';
+import { getIconForCast } from '../../../../../../utils/helpers';
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 import { i18n } from '@kamatech-data-ui/clustrum';
-import Select from '../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
+import Select from '../../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import update from 'immutability-helper';
-import TextArea from '../../../kamatech_modules/lego-on-react/es-modules-src/components/textarea/textarea.react';
+import TextArea from '../../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/textarea/textarea.react';
 
 const b = block('dialog-filter');
 
