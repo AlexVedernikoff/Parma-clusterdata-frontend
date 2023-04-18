@@ -21,9 +21,9 @@ import {
   STRING_OPERATIONS,
   BOOLEAN_OPERATIONS,
   DATE_OPERATIONS,
-} from '../../constants';
+} from '../../../../../../constants';
 
-import { getIconForCast } from '../../utils/helpers';
+import { getIconForCast } from '../../../../../../utils/helpers';
 
 const b = block('dialog-filter');
 

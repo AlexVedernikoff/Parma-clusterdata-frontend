@@ -29,7 +29,7 @@ class SupportDialog extends PureComponent {
     return (
       <Dialog visible={isVisible} onClose={this.onClose}>
         <div className={b()}>
-          <Dialog.Header caption={'ClusterData Support'} />
+          <Dialog.Header caption={'Clustrum Support'} />
           <div className={b('content')}>
             <iframe
               className={b('support-iframe')}

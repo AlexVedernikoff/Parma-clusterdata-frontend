@@ -24,26 +24,31 @@ import SectionDataset from './SectionDataset/SectionDataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
 import SectionPreview from './SectionPreview/SectionPreview';
 
-import DialogNoRights from '../../components/Dialogs/DialogNoRights';
+import DialogNoRights from './components/Dialogs/DialogNoRights';
 
 import { Loader } from '@kamatech-data-ui/common/src';
 
 import { createStructuredSelector } from 'reselect';
 
-import { selectDataset } from '../../reducers/dataset';
+import { selectDataset } from '../../../../reducers/dataset';
 
-import { selectVisualization } from '../../reducers/visualization';
+import { selectVisualization } from '../../../../reducers/visualization';
 
-import { selectSettings, selectIsFullscreen, selectIsDefaultsSet } from '../../reducers/settings';
+import { selectSettings, selectIsFullscreen, selectIsDefaultsSet } from '../../../../reducers/settings';
 
-import { selectIsWidgetLoading, selectWidgetError, selectWidget, selectWidgetHash } from '../../reducers/widget';
+import { selectIsWidgetLoading, selectWidgetError, selectWidget, selectWidgetHash } from '../../../../reducers/widget';
 
-import { selectConfig, selectConfigType, selectHighchartsWidget, selectPreviewHash } from '../../reducers/preview';
+import {
+  selectConfig,
+  selectConfigType,
+  selectHighchartsWidget,
+  selectPreviewHash,
+} from '../../../../reducers/preview';
 
-import { fetchWidget, setDefaults, toggleFullscreen, requestUpdateWidget, receiveWidget } from '../../actions';
+import { fetchWidget, setDefaults, toggleFullscreen, requestUpdateWidget, receiveWidget } from '../../../../actions';
 
-import { getNavigationPathFromKey } from '../../helpers/utils-dash';
-import PageHead from '../../components/PageHeader/PageHeader';
+import { getNavigationPathFromKey } from '../../../../helpers/utils-dash';
+import PageHead from '../../../../components/PageHeader/PageHeader';
 
 // import './Wizard.scss';
 

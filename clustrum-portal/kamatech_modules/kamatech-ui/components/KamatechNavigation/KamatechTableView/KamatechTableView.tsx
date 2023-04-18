@@ -5,7 +5,7 @@ import { KamatechRow } from './KamatechRow/KamatechRow';
 import { KamatechTableViewInterface } from './KamatechTableView.interface';
 import { KamatechRowModel } from './KamatechRow/KamatechRow.model';
 
-const blockName = 'parma-table-view';
+const blockName = 'kamatech-table-view';
 
 type KamatechTableViewState = {
   entries: any[];

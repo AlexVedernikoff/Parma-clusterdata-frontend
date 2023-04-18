@@ -18,7 +18,7 @@ const STATUS = {
   NOT_FOUND_AVAILABLE_FOLDERS: 'not-found-available-folders',
 };
 
-class CloudFolderSelectClusterData extends React.PureComponent {
+class CloudFolderSelectClustrum extends React.PureComponent {
   static propTypes = {
     sdk: PropTypes.object,
     onNotify: PropTypes.func,
@@ -177,4 +177,4 @@ class CloudFolderSelectClusterData extends React.PureComponent {
   }
 }
 
-export default CloudFolderSelectClusterData;
+export default CloudFolderSelectClustrum;
