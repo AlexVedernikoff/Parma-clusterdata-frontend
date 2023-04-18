@@ -3,7 +3,6 @@ import '../PathSelect/PathSelect';
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import { NOTIFY_TYPES } from '../../constants/common';
 import Utils from '../../utils';
-import { i18n } from '../../utils/i18n';
 
 import EntryDialogues from '@kamatech-data-ui/common/src/components/EntryDialogues/EntryDialogues';
 import DialogSaveWidget from './DialogSaveWidget/DialogSaveWidget';
@@ -46,7 +45,7 @@ export const entryDialoguesNotify = (dialogName, errorDialogRef) => ({ message: 
           allowAutoHiding = false;
           actions = [
             {
-              label: i18n('component.toast.view', 'label_error-detail'),
+              label: 'Подробнее',
               onClick() {
                 errorDialogRef.current.open({
                   message,

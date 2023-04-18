@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
-import { i18n, PERMISSION_ACTION } from '../constants';
+import { PERMISSION_ACTION } from '../constants';
 import { withHiddenUnmount } from '../../../hoc/withHiddenUnmount';
 import SectionPreviousRequests from './SectionPreviousRequests/SectionPreviousRequests';
 import SectionPrepareRequests from './SectionPrepareRequests/SectionPrepareRequests';
@@ -104,11 +104,7 @@ class DialogAddParticipants extends React.Component {
     return (
       <Dialog visible={this.props.visible} onClose={this.onClose}>
         <div className={b()}>
-          <Dialog.Header
-            caption={
-              mode === 'add' ? i18n('section_add-participant-title') : i18n('section_request-access-rights-title')
-            }
-          />
+          <Dialog.Header caption={mode === 'add' ? 'Добавить участника' : 'Запрос прав доступа'} />
           <Dialog.Body className={b('body')}>
             <div className={b('adding-panel')}>
               <div className={b('adding-panel-top-group')}>
@@ -125,7 +121,7 @@ class DialogAddParticipants extends React.Component {
                 >
                   <div className={b('btn-add-comment-content')}>
                     <Icon className={b('btn-add-comment-icon')} data={iconPlus} width="16" height="16" />
-                    {i18n('button_add-comment')}
+                    Добавить комментарий
                   </div>
                 </Button>
               </div>
@@ -136,7 +132,7 @@ class DialogAddParticipants extends React.Component {
                   size="s"
                   text={this.state.comment}
                   onChange={this.onChangeTextArea}
-                  placeholder={i18n('label_placeholder-comment')}
+                  placeholder="Комментарий (не обязательно)"
                   cls={b('comment')}
                   hasClear
                   focused
@@ -163,12 +159,12 @@ class DialogAddParticipants extends React.Component {
           <Dialog.Footer
             onClickButtonCancel={this.onClose}
             onClickButtonApply={this.onClickApply}
-            textButtonApply={mode === 'add' ? i18n('button_add') : i18n('button_to-request')}
-            textButtonCancel={i18n('button_cancel')}
+            textButtonApply={mode === 'add' ? 'Добавить' : 'Запросить'}
+            textButtonCancel="Отменить"
             propsButtonCancel={{ disabled: this.state.progress }}
             propsButtonApply={{ disabled: this.state.participants.length === 0 }}
             progress={this.state.progress}
-            errorText={i18n('label_error-general')}
+            errorText="Что-то пошло не так. Пожалуйста, повторите запрос позже."
             showError={this.state.showError}
           />
         </div>

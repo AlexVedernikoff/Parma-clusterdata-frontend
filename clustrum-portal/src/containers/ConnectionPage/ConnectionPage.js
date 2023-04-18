@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import _intersection from 'lodash/intersection';
 import { Button } from 'lego-on-react';
-import { I18n, ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
+import { ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
 import { Loader, Toaster, YCSelect } from '@kamatech-data-ui/common/src';
 import GeneralConnector from '../../components/Connectors/components/GeneralConnector/GeneralConnector';
@@ -22,21 +22,20 @@ import { normalizeDestination } from '@kamatech-data-ui/clustrum-core-plugins/ut
 // import './ConnectionPage.scss';
 
 const b = block('connection-page');
-const i18n = I18n.keyset('connections.form');
 
 const DEFAULT_PERMISSIONS_MODE = 'owner_only';
 
 const getErrorTitle = () => ({
-  createConnection: i18n('toast_create-connection-error'),
-  modifyConnection: i18n('toast_modify-connection-error'),
-  verifyConnection: i18n('toast_verify-error'),
-  uploadCsv: i18n('toast_upload-csv-error'),
-  saveCsv: i18n('toast_save-csv-error'),
+  createConnection: 'Не удалось создать подключение',
+  modifyConnection: 'Не удалось сохранить подключение',
+  verifyConnection: 'Не удалось проверить параметры подключения',
+  uploadCsv: 'Не удалось загрузить csv-файл',
+  saveCsv: 'Не удалось сохранить csv-файл',
 });
 
 const getSuccessTitle = () => ({
-  createConnection: i18n('toast_create-connection-success'),
-  modifyConnection: i18n('toast_modify-connection-success'),
+  createConnection: 'Подключение создано',
+  modifyConnection: 'Подключение сохранено',
 });
 
 const _getConnectorComponent = connectorType => {
@@ -66,7 +65,7 @@ class ConnectionPage extends React.Component {
         size="n"
         view="default"
         tone="default"
-        text={i18n('button_create-dataset')}
+        text="Создать датасет"
         onClick={() => {
           let currentPathParam = currentPath ? `&currentPath=${encodeURIComponent(currentPath)}` : '';
           window.open(`/datasets/new?id=${connectionId}${currentPathParam}`, '_self');
@@ -393,7 +392,7 @@ class ConnectionPage extends React.Component {
     if (type === 'error') {
       title = getErrorTitle()[name];
       actions.push({
-        label: i18n('toast_error-action-label'),
+        label: 'Подробнее',
         onClick: this.errorDialogRef.current.open,
       });
     } else {
@@ -419,34 +418,34 @@ class ConnectionPage extends React.Component {
           case 'NO_CONNECTION':
             return {
               type: 'error',
-              title: i18n('label_error-400-no-connection-title'),
+              title: 'Отсутствует подключение',
             };
           default:
             return {
               type: 'error',
-              title: i18n('label_error-400-title'),
-              description: i18n('label_error-400-description'),
+              title: 'Некорректный запрос к подключению',
+              description: '',
             };
         }
       case 403:
       case Types.NO_ACCESS:
         return {
           type: 'not-found',
-          title: i18n('label_error-403-title'),
+          title: 'У вас нет доступа к подключению',
         };
       case 404:
       case Types.NOT_FOUND:
         return {
           type: 'not-found',
-          title: i18n('label_error-404-title'),
+          title: 'Подключение не найдено',
         };
       case 500:
       case Types.ERROR:
       default:
         return {
           type: 'error',
-          title: i18n('label_error-500-title'),
-          description: i18n('label_error-500-description'),
+          title: 'Не удалось загрузить подключение',
+          description: '',
         };
     }
   };
@@ -529,9 +528,9 @@ class ConnectionPage extends React.Component {
         text={
           connectionId && !permissionsSelectVisible
             ? !isStateChanged && isChangesSaved && !isActionProgress
-              ? i18n('button_already-saved')
-              : i18n('button_save')
-            : i18n('button_create')
+              ? 'Сохранено'
+              : 'Сохранить'
+            : 'Создать'
         }
         onClick={this._getActionHandler()}
         progress={isActionProgress}
@@ -569,7 +568,7 @@ class ConnectionPage extends React.Component {
     return (
       <ErrorDialog
         ref={this.errorDialogRef}
-        title={getErrorTitle()[type] || i18n('toast_default-error')}
+        title={getErrorTitle()[type] || 'Ошибка'}
         requestId={requestId}
         message={message}
       />

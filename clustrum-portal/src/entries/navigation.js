@@ -5,8 +5,7 @@ import { Provider } from 'react-redux';
 import moment from 'moment';
 import { AppContainer } from 'react-hot-loader';
 import configureStore from 'store/configureStore';
-import { SDK, I18n, Utils } from '@kamatech-data-ui/clustrum';
-I18n.registerKeysets(window.DL_I18N);
+import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
 import NavigationPage from '../containers/NavigationPage/NavigationPage';
 

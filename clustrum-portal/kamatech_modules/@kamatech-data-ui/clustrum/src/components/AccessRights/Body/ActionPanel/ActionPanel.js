@@ -4,7 +4,7 @@ import block from 'bem-cn-lite';
 import moment from 'moment';
 import { Button } from 'lego-on-react';
 import EntryTitle from '../../../EntryTitle/EntryTitle';
-import { i18n, TIMESTAMP_FORMAT } from '../../constants';
+import { TIMESTAMP_FORMAT } from '../../constants';
 import DialogAddParticipants from '../../DialogAddParticipants/DialogAddParticipants';
 
 // import './ActionPanel.scss';
@@ -48,7 +48,7 @@ class ActionPanel extends React.Component {
                         cls={b('btn-apply-deeper')}
                         disabled={disabled}
                     >
-                        {i18n('button_recursive')}
+                        Применить рекурсивно
                     </Button> */}
           <Button
             theme="action"
@@ -59,7 +59,7 @@ class ActionPanel extends React.Component {
             disabled={disabled}
             onClick={this.onClick}
           >
-            {i18n('button_add')}
+            Добавить
           </Button>
         </div>
         <DialogAddParticipants

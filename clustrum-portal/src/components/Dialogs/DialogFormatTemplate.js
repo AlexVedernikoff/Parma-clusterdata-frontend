@@ -6,7 +6,6 @@ import { TextInput } from 'lego-on-react';
 import { getIconForCast } from '../../utils/helpers';
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
-import { i18n } from '@kamatech-data-ui/clustrum';
 import Select from '../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import update from 'immutability-helper';
 import TextArea from '../../../kamatech_modules/lego-on-react/es-modules-src/components/textarea/textarea.react';
@@ -92,7 +91,7 @@ class DialogFormatTemplate extends PureComponent {
         <div className={b('divider')} />
         <div className={b('fields')}>
           <div className={b('row')}>
-            <span className={b('label')}>{i18n('wizard', 'Вид события')}</span>
+            <span className={b('label')}>Вид события</span>
             <div className={b('value custom-text-input')}>
               <Select
                 theme="normal"
@@ -113,7 +112,7 @@ class DialogFormatTemplate extends PureComponent {
                 {data.map((actionType, i) => {
                   return (
                     <Select.Item key={`operation-${i}`} val={actionType}>
-                      {i18n('wizard', actionType)}
+                      actionType
                     </Select.Item>
                   );
                 })}
@@ -121,7 +120,7 @@ class DialogFormatTemplate extends PureComponent {
             </div>
           </div>
           <div className={b('row')}>
-            <span className={b('label')}>{i18n('wizard', 'Шаблон записи')}</span>
+            <span className={b('label')}>Шаблон записи</span>
             <div className={b('value custom-text-input')}>
               <TextArea
                 theme="normal"
@@ -139,7 +138,7 @@ class DialogFormatTemplate extends PureComponent {
             </div>
           </div>
           <div className={b('row')}>
-            <span className={b('label')}>{i18n('wizard', 'Событие')}</span>
+            <span className={b('label')}>Событие</span>
             <div className={b('value custom-text-input')}>
               <TextArea
                 theme="normal"
@@ -157,7 +156,7 @@ class DialogFormatTemplate extends PureComponent {
             </div>
           </div>
           <div className={b('row')}>
-            <span className={b('label')}>{i18n('wizard', 'Формат поля')}</span>
+            <span className={b('label')}>Формат поля</span>
             <div className={b('value custom-text-input')}>
               <TextInput
                 theme="normal"
@@ -230,8 +229,8 @@ class DialogFormatTemplate extends PureComponent {
               propsButtonApply={{
                 disabled: !valid,
               }}
-              textButtonApply={i18n('wizard', 'button_apply')}
-              textButtonCancel={i18n('wizard', 'button_cancel')}
+              textButtonApply="Применить"
+              textButtonCancel="Отменить"
               listenKeyEnter
               hr={false}
             />

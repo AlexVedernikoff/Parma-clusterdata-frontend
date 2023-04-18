@@ -1,6 +1,5 @@
 import React from 'react';
 import block from 'bem-cn-lite';
-import { i18n } from '@kamatech-data-ui/clustrum';
 import { Stage } from '../../Stage';
 
 const b = block('progress-bar');
@@ -12,26 +11,26 @@ export const ProgressBar = props => {
 
   switch (stage) {
     case Stage.EMPTY:
-      labelStage = i18n('dataset.materialization.modify', 'label_status-empty');
+      labelStage = 'Не запущено';
       break;
     case Stage.INITIALIZING:
-      labelStage = i18n('dataset.materialization.modify', 'label_initializing');
+      labelStage = 'Инициализация';
       break;
     case Stage.COPYING:
-      labelStage = i18n('dataset.materialization.modify', 'label_copying');
+      labelStage = 'Загрузка данных';
       break;
     case Stage.SAVING_META:
-      labelStage = i18n('dataset.materialization.modify', 'label_saving-meta');
+      labelStage = 'Сохранение';
       break;
     case Stage.DONE:
-      labelStage = i18n('dataset.materialization.modify', 'label_done');
+      labelStage = 'Выполнено';
       break;
     case Stage.FAILED:
       barColor = 'failed';
-      labelStage = i18n('dataset.materialization.modify', 'label_failed');
+      labelStage = 'Ошибка';
       break;
     default:
-      labelStage = i18n('dataset.materialization.modify', 'label_loading');
+      labelStage = 'Загрузка данных';
   }
 
   return (

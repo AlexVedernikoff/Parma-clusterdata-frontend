@@ -3,15 +3,12 @@ import axios from 'axios';
 import axiosInstance from '../axios/axios';
 import settings from '../settings/settings';
 import ErrorDispatcher, { ERROR_TYPE } from '../error-dispatcher/error-dispatcher';
-import i18nFactory from '../i18n/i18n';
 
 import { URL_OPTIONS } from '../constants/constants';
 import { WIDGET_TYPE } from '../../components/Widget/Widget';
 
 import runNode from './engines/node';
 import runWizard from './engines/wizard';
-
-const i18n = i18nFactory('chartkit');
 
 function isWizard(type) {
   return /_wizard$/.test(type);
@@ -57,7 +54,7 @@ function graphToTable(data, config) {
   if (data.categories_ms) {
     head.push({
       id: 'categories_ms',
-      name: i18n('date'),
+      name: 'Дата',
       type: 'date',
       scale: config.scale,
     });
@@ -65,7 +62,7 @@ function graphToTable(data, config) {
   } else if (data.categories) {
     head.push({
       id: 'categories',
-      name: i18n('categories'),
+      name: 'Категории',
       type: 'string',
     });
     categories = 'categories';

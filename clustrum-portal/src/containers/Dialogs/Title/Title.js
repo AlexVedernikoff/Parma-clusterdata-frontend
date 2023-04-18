@@ -12,8 +12,6 @@ import { getOpenedItemData, isDialogVisible } from '../../../store/selectors/das
 import { DIALOG_TYPE } from '../../../modules/constants/constants';
 import { closeDialog, setItemData } from '../../../store/actions/dash';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 // import './Title.scss';
 
 const SIZES = ['l', 'm', 's', 'xs'];
@@ -44,7 +42,7 @@ class Title extends React.PureComponent {
     return {
       prevVisible: nextProps.visible,
       error: false,
-      text: i18n('dash.title-dialog.edit', 'value_default'),
+      text: 'Заголовок',
       size: SIZES[0],
       showInTOC: true,
       ...nextProps.data,
@@ -69,7 +67,7 @@ class Title extends React.PureComponent {
     const { id, visible, closeDialog } = this.props;
     return (
       <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
-        <Dialog.Header caption={i18n('dash.title-dialog.edit', 'label_title')} />
+        <Dialog.Header caption="Заголовок" />
         <Dialog.Body className={b()}>
           <TextInput
             theme="normal"
@@ -78,7 +76,7 @@ class Title extends React.PureComponent {
             size="n"
             autoFocus
             onChange={text => this.setState({ text })}
-            placeholder={i18n('dash.title-dialog.edit', 'context_fill-title')}
+            placeholder="Введите заголовок"
             text={this.state.text}
             mix={{ block: b('input', { size: this.state.size }) }}
             ref={this.textRef}
@@ -93,7 +91,7 @@ class Title extends React.PureComponent {
             anchor={this.textRef.current}
             onOutsideClick={() => this.setState({ error: false })}
           >
-            {i18n('dash.title-dialog.edit', 'toast_required-field')}
+            Поле должно быть заполнено
           </Tooltip>
           <HoverRadioButton
             onChange={size => this.setState({ size })}
@@ -110,16 +108,14 @@ class Title extends React.PureComponent {
             onChange={() => this.setState({ showInTOC: !this.state.showInTOC })}
             mix={{ block: b('checkbox') }}
           >
-            {i18n('dash.title-dialog.edit', 'field_show-in-toc')}
+            Отображать в оглавлении
           </CheckBox>
         </Dialog.Body>
         <Dialog.Footer
           onClickButtonCancel={closeDialog}
           onClickButtonApply={this.onApply}
-          textButtonApply={
-            id ? i18n('dash.title-dialog.edit', 'button_save') : i18n('dash.title-dialog.edit', 'button_add')
-          }
-          textButtonCancel={i18n('dash.title-dialog.edit', 'button_cancel')}
+          textButtonApply={id ? 'Сохранить' : 'Добавить'}
+          textButtonCancel="Отменить"
         />
       </Dialog>
     );

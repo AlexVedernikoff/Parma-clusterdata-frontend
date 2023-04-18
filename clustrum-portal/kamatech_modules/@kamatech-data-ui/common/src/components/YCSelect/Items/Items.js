@@ -1,13 +1,11 @@
 import React from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import template from 'es6-template-strings';
 import { FixedSizeList as List } from 'react-window';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Link, Button } from 'lego-on-react';
 import Loader from '../../Loader';
 import Item from '../Item/Item';
-import trans from '../i18n';
 import { SelectTypes } from '../types/SelectTypes';
 
 const b = block('yc-select-items');
@@ -103,7 +101,7 @@ export default class ItemsWrapper extends React.PureComponent {
 
       return (
         <div className={b('show-more-link')} style={style} onClick={this._onShowMoreLinkClick}>
-          <Link theme="ghost" text={trans('items_show_more')} />
+          <Link theme="ghost" text="Показать еще" />
         </div>
       );
     }
@@ -175,7 +173,7 @@ export default class ItemsWrapper extends React.PureComponent {
     if (isDynamic && !inputValue) {
       return (
         <div className={b('prompt')}>
-          <span>{trans('items_prompt')}</span>
+          <span>Начните вводить...</span>
         </div>
       );
     }
@@ -185,7 +183,7 @@ export default class ItemsWrapper extends React.PureComponent {
     if (isNotFound) {
       return (
         <div className={b('not-found')}>
-          <span>{template(trans('items_not_found'), { inputValue })}</span>
+          <span>По запросу {inputValue} ничего не найдено</span>
           {addNewItem && !isItemsGrouped && (
             <Button
               cls={b('add-button')}
@@ -193,7 +191,7 @@ export default class ItemsWrapper extends React.PureComponent {
               size="s"
               view="default"
               tone="default"
-              text={trans('items_add_new')}
+              text="Добавить в список"
               onClick={this._onAddButtonClick}
               disabled={isAddingUserItem}
             />

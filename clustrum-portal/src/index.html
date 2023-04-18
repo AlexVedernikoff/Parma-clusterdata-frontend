@@ -248,7 +248,7 @@
           label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
           section_plan: 'План',
           section_fact: 'Факт',
-          export_limit: 'Лимит экспортируемых записей'
+          export_limit: 'Лимит экспортируемых записей',
         },
         'wizard.null-alias': {
           null: 'Без подписи',
@@ -800,8 +800,9 @@
           'field_saturday-short': 'Сб',
           'field_sunday-short': 'Вс',
           field_materialization: 'Расписание',
-          cron_help: '<p>Расписание материализации задается в виде cron-выражения.</p><p>Cron-выражение имеет вид: <code>s min h d mon w</code>, где:<ul><li><code>s</code> - секунды (0 - 59),</li><li><code>min</code> - минуты (0 - 59),</li><li><code>d</code> - день месяца (1 - 31),</li><li><code>mon</code> - месяц (1 - 12 или JAN-DEC),</li><li><code>w</code> - день недели (0 - 7 (0 или 7 Sunday) или MON-SUN.</li></ul></p><p>Также в cron-выражении применяются специальные символы:<ul><li><code>*</code> - любое значение,</li><li><code>,</code> - разделение символов,</li><li><code>-</code> - диапазон,</li><li><code>/</code> - интервал,</li><li><code>?</code> - любое значение (для дней месяца и дней недели).</li></ul></p><p>Примеры:<ul><li><code>0 0 * * * *</code> - каждый час в 0 минут 0 секунд,</li><li><code>0 */5 * * * *</code> - каждые 5 минут 0 секунд,</li><li><code>*/10 * * * * *</code> - каждые 10 секунд,</li><li><code>0 0 8-10 * * *</code> - в 8:00, 9:00, 10:00 часов каждого дня,</li><li><code>0 0 6,19 * * *</code> - в 9:00 и 19:00 часов каждого дня,</li><li><code>0 0 9-17 * *</code> MON-FRI - с 9:00 до 17:00 в рабочие дни,<li><code>0 0 0 1 1 ?</code> - каждый Новый Год в полночь.</li></ul></p>',
-          "label_placeholder-cron": "0 */5 * * * *",
+          cron_help:
+            '<p>Расписание материализации задается в виде cron-выражения.</p><p>Cron-выражение имеет вид: <code>s min h d mon w</code>, где:<ul><li><code>s</code> - секунды (0 - 59),</li><li><code>min</code> - минуты (0 - 59),</li><li><code>d</code> - день месяца (1 - 31),</li><li><code>mon</code> - месяц (1 - 12 или JAN-DEC),</li><li><code>w</code> - день недели (0 - 7 (0 или 7 Sunday) или MON-SUN.</li></ul></p><p>Также в cron-выражении применяются специальные символы:<ul><li><code>*</code> - любое значение,</li><li><code>,</code> - разделение символов,</li><li><code>-</code> - диапазон,</li><li><code>/</code> - интервал,</li><li><code>?</code> - любое значение (для дней месяца и дней недели).</li></ul></p><p>Примеры:<ul><li><code>0 0 * * * *</code> - каждый час в 0 минут 0 секунд,</li><li><code>0 */5 * * * *</code> - каждые 5 минут 0 секунд,</li><li><code>*/10 * * * * *</code> - каждые 10 секунд,</li><li><code>0 0 8-10 * * *</code> - в 8:00, 9:00, 10:00 часов каждого дня,</li><li><code>0 0 6,19 * * *</code> - в 9:00 и 19:00 часов каждого дня,</li><li><code>0 0 9-17 * *</code> MON-FRI - с 9:00 до 17:00 в рабочие дни,<li><code>0 0 0 1 1 ?</code> - каждый Новый Год в полночь.</li></ul></p>',
+          'label_placeholder-cron': '0 */5 * * * *',
           'button_repeat-action': 'Повторить',
           button_save: 'Сохранить',
           button_cancel: 'Отменить',
@@ -891,11 +892,11 @@
           'toast_error-action-label': 'Подробнее',
         },
         'dataset.dataset-history': {
-          'resultSchemaId': 'Идентификатор поля',
-          'resultSchemaTitle': 'Наименование поля',
-          'revisionTime': 'Дата и время изменения',
-          'verificationRulesPrevious': 'Предыдущее значение правил',
-          'verificationRulesCurrent': 'Текущее значение правил',
+          resultSchemaId: 'Идентификатор поля',
+          resultSchemaTitle: 'Наименование поля',
+          revisionTime: 'Дата и время изменения',
+          verificationRulesPrevious: 'Предыдущее значение правил',
+          verificationRulesCurrent: 'Текущее значение правил',
         },
         'dash.connections-dialog.edit': {
           label_connections: 'Связи',
@@ -1074,9 +1075,9 @@
           button_clear: 'Очистить',
         },
         'dash.export': {
-          'start_export': 'Экспорт выполняется, ожидайте загрузку файла',
-          'end_export': 'Экспорт выполнен',
-          'export_error': 'Ошибка выполнения экспорта',
+          start_export: 'Экспорт выполняется, ожидайте загрузку файла',
+          end_export: 'Экспорт выполнен',
+          export_error: 'Ошибка выполнения экспорта',
         },
         'component.dialog-revisions.view': {
           section_title: 'Revisions',

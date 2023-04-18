@@ -4,8 +4,6 @@ import block from 'bem-cn-lite';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 
 // import './SupportDialog.scss';
-import { I18n } from 'utils/i18n';
-const i18n = I18n.keyset('component.support-dialog.view');
 const b = block('support-dialog');
 
 class SupportDialog extends PureComponent {
@@ -43,7 +41,7 @@ class SupportDialog extends PureComponent {
           <Dialog.Footer
             onClickButtonCancel={this.onClose}
             onClickButtonApply={this.onClose}
-            textButtonCancel={i18n('button_done')}
+            textButtonCancel="Готово"
             textButtonApply={''}
             progress={false}
           />

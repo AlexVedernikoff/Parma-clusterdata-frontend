@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
 import { Button } from 'lego-on-react';
-import i18nFactory from '../../../../../../modules/i18n/i18n';
 
 import Paranja from '../Paranja';
 
 // import './Confirm.scss';
 
-const i18n = i18nFactory('CommentsModal');
 const b = block('confirm-paranja');
 
 // TODO: закрытие по Esc, по didMount на document слушать Esc, по willUnmount отвязаться
@@ -29,7 +27,7 @@ export default function Confirm(props) {
               props.onConfirm();
             }}
           >
-            {props.confirmText || i18n('yes')}
+            {props.confirmText || 'Да'}
           </Button>
           <Button
             theme="normal"
@@ -40,7 +38,7 @@ export default function Confirm(props) {
               props.onCancel();
             }}
           >
-            {i18n('no')}
+            Нет
           </Button>
         </div>
       </div>

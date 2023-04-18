@@ -1,9 +1,6 @@
 import * as ol from 'ol';
 import MapTooltipTemplate from './MapTooltipTemplate';
 import MapUtils from './../MapUtils';
-import i18nFactory from '../../../../modules/i18n/i18n';
-
-const i18n = i18nFactory('OlMap');
 
 export default class MapTooltip {
   static updateTooltip(olmap, mapId) {
@@ -67,7 +64,7 @@ export default class MapTooltip {
     if (clusterSize > 1) {
       return [
         MapTooltip._tooltipValue({
-          tooltip_placeholder_title: i18n('cluster-size'),
+          tooltip_placeholder_title: 'Количество объектов',
           tooltip_value: clusterSize,
         }),
       ];

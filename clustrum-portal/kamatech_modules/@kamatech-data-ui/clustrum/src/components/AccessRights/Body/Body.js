@@ -6,7 +6,7 @@ import SectionParticipants from './SectionParticipants/SectionParticipants';
 import SectionRequests from './SectionRequests/SectionRequests';
 import ActionPanel from './ActionPanel/ActionPanel';
 import Utils from '../../../utils';
-import { STATUS, i18n } from '../constants';
+import { STATUS } from '../constants';
 import { Button } from 'lego-on-react';
 
 // import './Body.scss';
@@ -113,15 +113,17 @@ class AccessRightsBodyContent extends React.Component {
     return (
       <div className={b()}>
         {this.renderActionPanel()}
-        {this.state.pendingParticipants.length !== 0 && this.section(i18n('section_requests'), this.sectionRequests())}
-        {this.state.participants.length !== 0 && this.section(i18n('section_participants'), this.sectionParticipants())}
+        {this.state.pendingParticipants.length !== 0 && this.section('Запросы', this.sectionRequests())}
+        {this.state.participants.length !== 0 && this.section('Участники', this.sectionParticipants())}
       </div>
     );
   }
 
   renderError() {
     const isFail = this.state.status === STATUS.FAIL;
-    const text = isFail ? i18n('label_error-general') : i18n('label_error-not-found-entry');
+    const text = isFail
+      ? 'Что-то пошло не так. Пожалуйста, повторите запрос позже.'
+      : 'Данной сущности нет в системе DLS. Обратитесь к администратору.';
     return (
       <div className={b()}>
         {isFail && this.renderActionPanel()}
@@ -130,7 +132,7 @@ class AccessRightsBodyContent extends React.Component {
           <br />
           {isFail && (
             <Button theme="action" size="m" view="default" tone="default" onClick={this.refresh}>
-              {i18n('button_repeat')}
+              Повторить
             </Button>
           )}
         </div>

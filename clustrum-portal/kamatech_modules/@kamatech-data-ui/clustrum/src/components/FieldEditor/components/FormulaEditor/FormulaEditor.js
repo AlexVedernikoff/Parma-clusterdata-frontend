@@ -6,8 +6,6 @@ import { Link, TextInput } from 'lego-on-react';
 import AceEditor from '../../../AceEditor/AceEditor';
 import AccessibleFields from '../AccessibleFields/AccessibleFields';
 import FunctionManual from '../FunctionManual/FunctionManual';
-import { I18n } from 'utils/i18n';
-const i18n = I18n.keyset('component.field-editor.view');
 
 // import './FormulaEditor.scss';
 
@@ -120,7 +118,7 @@ class FormulaEditor extends React.Component {
                 size="s"
                 view="default"
                 tone="default"
-                placeholder={i18n('label_placeholder-field')}
+                placeholder="Поле"
                 text={searchKeyword}
                 onChange={this.onChangeSearchInput}
               />
@@ -144,7 +142,7 @@ class FormulaEditor extends React.Component {
           docsSyntax && (
             <div className={b('helper-syntax')}>
               <Link theme="ghost" target="_blank" url={docsSyntax}>
-                <span>{i18n('label_information-about-syntax-on-wiki')}</span>
+                <span>Справка по синтаксису функций</span>
               </Link>
             </div>
           )

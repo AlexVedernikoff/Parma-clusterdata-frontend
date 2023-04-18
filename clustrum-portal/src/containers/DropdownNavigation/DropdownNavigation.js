@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 import { Button, Icon } from 'lego-on-react';
-import { NavigationMinimal, EntryTitle, i18n } from '@kamatech-data-ui/clustrum';
+import { NavigationMinimal, EntryTitle } from '@kamatech-data-ui/clustrum';
 import Loader from '../../components/Loader/Loader';
 import { SDK } from '../../modules/sdk';
 import { getPersonalFolderPath, getNavigationPathFromKey } from '../../helpers/utils-dash';
@@ -87,11 +87,7 @@ class DropdownNavigation extends React.PureComponent {
           innerRef={this.setButtonRef}
           cls={b('button')}
         >
-          {this.state.entry ? (
-            <EntryTitle entry={this.state.entry} theme="inline" />
-          ) : (
-            i18n('dash.navigation-input.edit', 'button_choose')
-          )}
+          {this.state.entry ? <EntryTitle entry={this.state.entry} theme="inline" /> : 'Выбрать'}
           <Icon glyph="type-arrow" direction={this.state.showNavigation ? 'top' : 'bottom'} />
         </Button>
         <NavigationMinimal

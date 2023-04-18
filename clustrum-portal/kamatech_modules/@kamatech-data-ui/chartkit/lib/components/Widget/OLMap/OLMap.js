@@ -19,14 +19,11 @@ import TileWMS from 'ol/source/TileWMS';
 import Url from '../../../helpers/url';
 import Select from 'ol/interaction/Select';
 import Zoom from 'ol/control/Zoom';
-import i18nFactory from '../../../modules/i18n/i18n';
 import { MapConstant } from './map-constant';
 import MapTooltip from './tooltip/MapTooltip';
 
 const EPSG_3857 = 'EPSG:3857';
 const EPSG_4326 = 'EPSG:4326';
-
-const i18n = i18nFactory('OlMap');
 
 /**
  * todo выделить в OLMap 2 разные сущности (тепловая карта и карта кластеров)
@@ -540,8 +537,8 @@ class OLMap extends React.Component {
     this.olmap = new ol.Map({
       controls: [
         new Zoom({
-          zoomInTipLabel: i18n('zoom-in'),
-          zoomOutTipLabel: i18n('zoom-out'),
+          zoomInTipLabel: 'Увеличить',
+          zoomOutTipLabel: 'Уменьшить',
         }),
       ],
       target: null,
@@ -565,8 +562,8 @@ class OLMap extends React.Component {
     this.olmap = new ol.Map({
       controls: [
         new Zoom({
-          zoomInTipLabel: i18n('zoom-in'),
-          zoomOutTipLabel: i18n('zoom-out'),
+          zoomInTipLabel: 'Увеличить',
+          zoomOutTipLabel: 'Уменьшить',
         }),
       ],
       target: null,

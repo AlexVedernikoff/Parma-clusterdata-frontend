@@ -5,7 +5,6 @@ import SelectConnection from '../../../../containers/SelectConnection/SelectConn
 import { KamatechTextInput } from '../../../../../kamatech_modules/kamatech-ui';
 import iconXsign from '../../../../../kamatech_modules/@kamatech-data-ui/clustrum/src/icons/x-sign.svg';
 import block from 'bem-cn-lite';
-import { i18n } from '../../../../../kamatech_modules/@kamatech-data-ui/clustrum-i18n';
 import { YCSelect } from '../../../../../kamatech_modules/@kamatech-data-ui/common/src';
 import { Icon } from '@kamatech-data-ui/common/src';
 
@@ -49,7 +48,7 @@ function MaterializationCustomSettings(props) {
       </div>
       <div className="row">
         <div className={b('caption')}>
-          <span>{i18n('dataset.dataset-creation.create', 'field_db-name')}</span>
+          <span>База данных</span>
         </div>
         <div className={b('field')}>
           <YCSelect
@@ -70,20 +69,20 @@ function MaterializationCustomSettings(props) {
       </div>
 
       <MaterializationCustomSettingsParamsItem
-        label={i18n('dataset.materialization.modify', 'materialization_table')}
+        label="Таблица"
         value={materializationCustomSettings.materializationTableName}
         name={'materializationTableName'}
         onChangeValue={handleChange}
       />
 
       <MaterializationCustomSettingsParamsItem
-        label={i18n('dataset.materialization.modify', 'materialization_page_size')}
+        label="Размер пачки"
         value={materializationCustomSettings.materializationPageSize}
         name={'materializationPageSize'}
         onChangeValue={handleChange}
       />
       <MaterializationCustomSettingsParamsItem
-        label={i18n('dataset.materialization.modify', 'materialization_thread_count')}
+        label="Количество потоков"
         value={materializationCustomSettings.materializationThreadCount}
         name={'materializationThreadCount'}
         onChangeValue={handleChange}

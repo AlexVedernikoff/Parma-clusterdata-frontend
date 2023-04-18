@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import moment from 'moment';
-import { I18n, Utils } from '@kamatech-data-ui/clustrum';
+import { Utils } from '@kamatech-data-ui/clustrum';
 import App from '../components/App/App';
 import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
@@ -15,7 +15,6 @@ import './../css/dash.css';
 import './../css/dash-new.css';
 import './../css/card.css';
 
-I18n.registerKeysets(window.DL_I18N);
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');
 

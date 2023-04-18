@@ -5,8 +5,6 @@ import CloudFolderSelect from '@kamatech-data-ui/common/src/components/CloudFold
 import noop from 'lodash/noop';
 import Utils from '../../../utils';
 // import './CloudFolderSelect.scss';
-import { I18n } from '../../../utils/i18n';
-const i18n = I18n.keyset('component.cloud-folder-select.status');
 
 const CURRENT_FOLDER_COOKIE_NAME = 'dl_current_cloud_folder_id';
 const STORE_KEY = 'dl_current_cloud';
@@ -55,7 +53,7 @@ class CloudFolderSelectClusterData extends React.PureComponent {
       });
     } else {
       this.setState({
-        cloudId: i18n('label_loading'),
+        cloudId: 'Загрузка…',
       });
       this.getAvailableCloudFolders();
     }
@@ -91,7 +89,7 @@ class CloudFolderSelectClusterData extends React.PureComponent {
         {
           status: STATUS.SUCCESS,
           cloudTree: availableCloudFolders,
-          cloudId: folderId ? cloudId : i18n('label_placeholder-none'),
+          cloudId: folderId ? cloudId : 'Каталог',
           folderId,
           cloudTreeLoading: false,
         },
@@ -109,7 +107,7 @@ class CloudFolderSelectClusterData extends React.PureComponent {
         status: STATUS.FAIL,
         cloudTree: [],
         cloudTreeLoading: false,
-        cloudId: i18n('label_error'),
+        cloudId: 'Ошибка',
       });
     }
   }
@@ -158,7 +156,7 @@ class CloudFolderSelectClusterData extends React.PureComponent {
       return null;
     }
     if (this.state.status === STATUS.NOT_FOUND_AVAILABLE_FOLDERS) {
-      return <div className={b('error-not-active-folders')}>{i18n('label_not-active-folders')}</div>;
+      return <div className={b('error-not-active-folders')}>У вас нет ни одного каталога с активным ClusterData</div>;
     }
     return (
       <CloudFolderSelect
@@ -170,7 +168,9 @@ class CloudFolderSelectClusterData extends React.PureComponent {
         handleCloudClick={noop}
         onOpen={this.handleOpen}
         textEmptyListMessage={
-          this.state.cloudTree.length === 0 ? i18n('label_not-active-folders') : i18n('label_not-found')
+          this.state.cloudTree.length === 0
+            ? 'У вас нет ни одного каталога с активным ClusterData'
+            : 'Ничего не нашлось'
         }
       />
     );

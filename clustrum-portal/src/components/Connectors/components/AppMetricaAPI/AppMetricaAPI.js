@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import _debounce from 'lodash/debounce';
 import { RadioButton } from 'lego-on-react';
-import { I18n, PathSelect } from '@kamatech-data-ui/clustrum';
+import { PathSelect } from '@kamatech-data-ui/clustrum';
 import Title from '../../subcomponents/Title/Title';
 import Caption from '../../subcomponents/Caption/Caption';
 import InputField from '../../subcomponents/InputField/InputField';
@@ -16,7 +16,6 @@ import Utils from '../../../../helpers/utils';
 import { getSearchParam } from '../../../../helpers/QueryParams';
 
 const b = block('dl-connector');
-const i18n = I18n.keyset('connections.form');
 const DEFAULT_DB_TYPE = 'appmetrica_api';
 
 class AppMetricaConnector extends React.Component {
@@ -128,12 +127,12 @@ class AppMetricaConnector extends React.Component {
                 onChoosePath={dirPath => this.changeValue({ dirPath })}
                 inputValue={name}
                 onChangeInput={name => this.changeValue({ name })}
-                placeholder={i18n('field_connection-title')}
+                placeholder="Название подключения"
               />
             </div>
           )}
           <div className={b('row')}>
-            <Caption text={i18n('field_token-metrika')} />
+            <Caption text="OAuth-токен" />
             <div className={b('row-group')}>
               <InputField
                 valueType={FIELD_TYPES.TOKEN}
@@ -147,7 +146,7 @@ class AppMetricaConnector extends React.Component {
             </div>
           </div>
           <div className={b('row')}>
-            <Caption text={i18n('field_application')} />
+            <Caption text="Приложение" />
             <div className={b('row-group')}>
               {counterInputMethod === COUNTER_INPUT_METHODS.LIST ? (
                 <SelectField
@@ -166,7 +165,7 @@ class AppMetricaConnector extends React.Component {
                   value={counter}
                   error={getErrorMessage(emptyFields, FIELD_TYPES.COUNTER)}
                   widthSize={'m'}
-                  placeholder={i18n('label_placeholder-appmetrica-id')}
+                  placeholder="ID приложения"
                   onChange={this.changeValue}
                 />
               )}
@@ -182,12 +181,8 @@ class AppMetricaConnector extends React.Component {
                     onChange={e => this.changeValue({ counterInputMethod: e.target.value })}
                     freeWidth={true}
                   >
-                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.LIST}>
-                      {i18n('value_metrica-counter-input-method-list')}
-                    </RadioButton.Radio>
-                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.MANUALLY}>
-                      {i18n('value_metrica-counter-input-method-manually')}
-                    </RadioButton.Radio>
+                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.LIST}>Из списка</RadioButton.Radio>
+                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.MANUALLY}>Вручную</RadioButton.Radio>
                   </RadioButton>
                 </div>
               )}

@@ -2,7 +2,6 @@ import { Icon } from '@kamatech-data-ui/common/src';
 import React from 'react';
 import block from 'bem-cn-lite';
 import { Button, Dropdown, Menu, Popup } from 'lego-on-react';
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 import Utils from '../../../../helpers/utils';
 import ConnectionName from '../ConnectionName/ConnectionName';
@@ -44,14 +43,14 @@ function ConnectionInfo(props) {
               <Popup cls={b('entry-panel-more-popup')} hiding autoclosable onOutsideClick={() => ({})}>
                 <Menu theme="normal" view="default" tone="default" size="s" onClick={onClickConnectionMoreMenuItem}>
                   <Menu.Item disabled={isProcessing} type="option" val="update-dataset-schema">
-                    {i18n('dataset.materialization.modify', 'value_update-dataset-schema')}
+                    Обновить схему
                   </Menu.Item>
                   <Menu.Item disabled={isProcessing} type="option" val="replace-source">
-                    {i18n('dataset.materialization.modify', 'value_replace-source')}
+                    Заменить источник
                   </Menu.Item>
                   <Menu.Group>
                     <Menu.Item type="option" val="open-connection">
-                      {i18n('dataset.materialization.modify', 'value_open-connection')}
+                      Перейти к подключению
                     </Menu.Item>
                   </Menu.Group>
                 </Menu>

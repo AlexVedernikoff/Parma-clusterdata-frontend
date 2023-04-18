@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
 import { Button, Spin } from 'lego-on-react';
-import { ErrorContent, EntryDialogues, ActionPanel, i18n, ErrorDialog } from '@kamatech-data-ui/clustrum';
+import { ErrorContent, EntryDialogues, ActionPanel, ErrorDialog } from '@kamatech-data-ui/clustrum';
 import { Icon } from '@kamatech-data-ui/common/src';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
 
@@ -205,22 +205,22 @@ class Dataset extends React.Component {
           case 'NO_CONNECTION':
             return {
               type: 'error',
-              title: i18n('dataset.dataset-editor.modify', 'label_error-400-no-connection-title'),
+              title: 'Ошибка: отсутствует подключение',
             };
           default:
             return {
               type: 'error',
-              title: i18n('dataset.dataset-editor.modify', 'label_error-400-title'),
-              description: i18n('dataset.dataset-editor.modify', 'label_error-400-description'),
+              title: 'Ошибка: некорректный запрос к датасету',
+              description: '',
             };
         }
       case 403:
       case Types.NO_ACCESS:
         return {
           type: 'not-found',
-          title: i18n('dataset.dataset-editor.modify', 'label_error-403-title'),
+          title: 'У вас нет доступа к датасету или к его подключению',
           action: {
-            text: i18n('dataset.dataset-editor.modify', 'button_ask-access-rights'),
+            text: 'Запросить права доступа на датасет',
             handler: this.askAccessRights,
           },
         };
@@ -228,15 +228,15 @@ class Dataset extends React.Component {
       case Types.NOT_FOUND:
         return {
           type: 'not-found',
-          title: i18n('dataset.dataset-editor.modify', 'label_error-404-title'),
+          title: 'Ошибка: датасет не найден',
         };
       case 500:
       case Types.ERROR:
       default:
         return {
           type: 'error',
-          title: i18n('dataset.dataset-editor.modify', 'label_error-500-title'),
-          description: i18n('dataset.dataset-editor.modify', 'label_error-500-description'),
+          title: 'Ошибка: не удалось загрузить датасет',
+          description: '',
         };
     }
   };
@@ -289,7 +289,7 @@ class Dataset extends React.Component {
 
       return {
         requestId,
-        errorDialogTitle: i18n('dataset.notifications.view', 'toast_dataset-save-msgs-failure'),
+        errorDialogTitle: 'Ошибка: не удалось сохранить датасет',
         errorDialogMessage: message,
       };
     }
@@ -299,7 +299,7 @@ class Dataset extends React.Component {
 
       return {
         requestId: requestId,
-        errorDialogTitle: i18n('dataset.notifications.view', 'toast_dataset-fetch-preview-msgs-failure'),
+        errorDialogTitle: 'Ошибка: не удалось загрузить данные для предпросмотра',
         errorDialogMessage: message,
       };
     }
@@ -359,7 +359,7 @@ class Dataset extends React.Component {
     if (isLoading) {
       return (
         <div className={b('loader')}>
-          <ContainerLoader text={i18n('dataset.dataset-editor.modify', 'label_loading-dataset')} />
+          <ContainerLoader text="Загрузка датасета" />
         </div>
       );
     }
@@ -387,7 +387,7 @@ class Dataset extends React.Component {
               size="n"
               view="default"
               tone="default"
-              title={i18n('dataset.dataset-editor.modify', 'button_data')}
+              title="Материализация данных"
               onClick={this.openDataSource}
             >
               <Icon data={iconData} width={22} height={22} />
@@ -399,7 +399,7 @@ class Dataset extends React.Component {
               size="n"
               view="default"
               tone="default"
-              title={i18n('dataset.dataset-editor.modify', 'button_verify_data')}
+              title="Верификация данных"
               onClick={this.openVerificationModal}
             >
               <Icon data={iconVerificationRules} width={22} height={22} />
@@ -413,7 +413,7 @@ class Dataset extends React.Component {
               size="n"
               view="default"
               tone="default"
-              text={i18n('dataset.dataset-editor.modify', 'button_create-widget')}
+              text="Создать чарт"
               onClick={this.openCreationWidgetPage}
             />,
             <Button
@@ -425,7 +425,7 @@ class Dataset extends React.Component {
               size="n"
               view="default"
               tone="default"
-              text={isProcessingDataset ? null : i18n('dataset.dataset-editor.modify', 'button_save')}
+              text={isProcessingDataset ? null : 'Сохранить'}
               onClick={() =>
                 saveDataset({
                   datasetErrorDialogRef: this.datasetErrorDialogRef,

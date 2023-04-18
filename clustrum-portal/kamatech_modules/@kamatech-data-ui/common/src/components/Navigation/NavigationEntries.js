@@ -8,7 +8,6 @@ import { NOTIFICATIONS, ERROR_TEXT } from './i18n/constants';
 import { ERROR, MODE_FULL, MODE_MINIMAL, NAVIGATION_ROOT, ORDER, OWNERSHIP } from './constants';
 import EntryContextMenu from './EntryContextMenu/EntryContextMenu';
 import { normalizeDestination } from './util';
-import i18n from './i18n';
 import iconFolder from '../../../../clustrum/src/icons/files-folder';
 import iconDataset from '../../../../clustrum/src/icons/files-dataset.svg';
 import iconDashboard from '../../../../clustrum/src/icons/files-dashboard.svg';
@@ -27,12 +26,12 @@ const itemsOrderBy = [
   {
     key: ORDER.DESC,
     value: ORDER.DESC,
-    title: i18n('filter_order-descending'),
+    title: 'Сперва новые',
   },
   {
     key: ORDER.ASC,
     value: ORDER.ASC,
-    title: i18n('filter_order-ascending'),
+    title: 'Сперва старые',
   },
 ];
 
@@ -69,7 +68,7 @@ class NavigationEntries extends React.Component {
   static defaultProps = {
     mode: MODE_FULL,
     place: NAVIGATION_ROOT,
-    searchPlaceholder: i18n('placeholder_filter-by-name'),
+    searchPlaceholder: 'Фильтр по имени',
   };
   static getDerivedStateFromProps(nextProps, prevState) {
     const { sdk, scope, path, place } = nextProps;
@@ -387,10 +386,8 @@ class NavigationEntries extends React.Component {
                   onChange={this.onChangeOwnership}
                   freeWidth={true}
                 >
-                  <RadioButton.Radio value={OWNERSHIP.ALL}>{i18n('radiobutton_ownership-all')}</RadioButton.Radio>
-                  <RadioButton.Radio value={OWNERSHIP.ONLY_MINE}>
-                    {i18n('radiobutton_ownership-only-mine')}
-                  </RadioButton.Radio>
+                  <RadioButton.Radio value={OWNERSHIP.ALL}>Все</RadioButton.Radio>
+                  <RadioButton.Radio value={OWNERSHIP.ONLY_MINE}>Только мои</RadioButton.Radio>
                 </RadioButton>
               </div>
             )}
@@ -427,8 +424,7 @@ class NavigationEntries extends React.Component {
     const filteredEntriesEmpty = filteredEntries.length === 0;
     const entriesEmpty = entries.length === 0;
     const showEmpty = filteredEntriesEmpty || entriesEmpty;
-    // i18n
-    const emptyText = entriesEmpty ? i18n('label_empty-folder') : i18n('label_not-found');
+    const emptyText = entriesEmpty ? 'Пустая папка' : 'Ничего не найдено';
 
     if (showEmpty) {
       return <div className={b('empty-entries')}>{emptyText}</div>;

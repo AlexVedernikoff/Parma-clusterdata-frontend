@@ -25,8 +25,6 @@ import {
 
 import { getIconForCast } from '../../utils/helpers';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 const b = block('dialog-filter');
 
 const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
@@ -493,7 +491,7 @@ class DialogFilter extends PureComponent {
           return (
             <div className={b('row value-row')} key={`measure-row-${i}`}>
               <div className={b('label')}>
-                <span>{`${i18n('wizard', 'label_value')}${operation.manyOperands ? ' ' + (i + 1) : ''}`}</span>
+                <span>{`Значение${operation.manyOperands ? ' ' + (i + 1) : ''}`}</span>
               </div>
               <div className={b('value custom-text-input')}>
                 <TextInput
@@ -544,7 +542,7 @@ class DialogFilter extends PureComponent {
               });
             }}
           >
-            {i18n('wizard', 'label_add-value')}
+            Добавить значение
           </Button>
         ) : null}
       </div>
@@ -570,7 +568,7 @@ class DialogFilter extends PureComponent {
       return (
         <div className="calendar-input">
           <div className={b('label')}>
-            <span>{i18n('wizard', 'label_value')}</span>
+            <span>Значение</span>
           </div>
           <Datepicker
             locale="ru"
@@ -625,7 +623,7 @@ class DialogFilter extends PureComponent {
     return (
       <div>
         <div className="left-column">
-          <span className="column-title">{i18n('wizard', 'label_items-available')}</span>
+          <span className="column-title">Доступны</span>
           <span
             className={`column-action${dimensions && dimensions.length ? ' active' : ''}`}
             onClick={() => {
@@ -635,14 +633,14 @@ class DialogFilter extends PureComponent {
               });
             }}
           >
-            {i18n('wizard', 'button_select-all')}
+            Выбрать все
           </span>
           <SearchInput
             className="find-field-inp"
             hasClear={true}
             borderDisabled={true}
             text={state.leftSearchPhrase}
-            placeholder={i18n('wizard', 'field_search')}
+            placeholder="Поиск"
             size="s"
             onChange={this.onFilterInputChange('leftSearchPhrase')}
           />
@@ -681,7 +679,7 @@ class DialogFilter extends PureComponent {
                     }}
                   >
                     <span className="dimension-value">{dimension}</span>
-                    <span className="dimension-select">{i18n('wizard', 'button_select')}</span>
+                    <span className="dimension-select">Выбрать</span>
                   </div>
                 );
               })
@@ -692,11 +690,11 @@ class DialogFilter extends PureComponent {
             )}
           </div>
           {dimensions && !leftFilteredDimensions && dimensions.length >= VALUES_LOAD_LIMIT && (
-            <span className="limit-message">{i18n('wizard', 'label_limit-message')}</span>
+            <span className="limit-message">Значений больше 1000, ограничьте значения</span>
           )}
         </div>
         <div className={'right-column'}>
-          <span className={'column-title'}>{i18n('wizard', 'label_items-selected')}</span>
+          <span className={'column-title'}>Выбраны</span>
           <span
             className={`column-action${state.value && state.value.length ? ' active' : ''}`}
             onClick={() => {
@@ -706,14 +704,14 @@ class DialogFilter extends PureComponent {
               });
             }}
           >
-            {i18n('wizard', 'button_clear')}
+            Очистить
           </span>
           <SearchInput
             className="find-field-inp"
             hasClear={true}
             borderDisabled={true}
             text={state.rightSearchPhrase}
-            placeholder={i18n('wizard', 'field_search')}
+            placeholder="Поиск"
             size="s"
             onChange={this.onFilterInputChange('rightSearchPhrase')}
           />
@@ -751,7 +749,7 @@ class DialogFilter extends PureComponent {
                   }}
                 >
                   <span className="dimension-value">{dimension}</span>
-                  <span className="dimension-select">{i18n('wizard', 'button_remove')}</span>
+                  <span className="dimension-select">Удалить</span>
                 </div>
               );
             })}
@@ -773,15 +771,32 @@ class DialogFilter extends PureComponent {
     if (state.error) {
       return (
         <div>
-          <div className="error-text">{i18n('wizard', 'label_error-loading-filter-values')}</div>
+          <div className="error-text">Ошибка: не удалось загрузить значения для фильтра</div>
         </div>
       );
     }
 
+    const labelOperations = {
+      'label_operation-contains': 'Содержит',
+      'label_operation-endswith': 'Заканчивается на',
+      'label_operation-equals': 'Равно',
+      'label_operation-gt': 'Больше',
+      'label_operation-gte': 'Больше или равно',
+      'label_operation-in': 'Принадлежит множеству',
+      'label_operation-date-in': 'Принадлежит диапазону',
+      'label_operation-is-not-null': 'Не пусто и определено',
+      'label_operation-is-null': 'Пусто или не определено',
+      'label_operation-lt': 'Меньше',
+      'label_operation-lte': 'Меньше или равно',
+      'label_operation-nequals': 'Не равно',
+      'label_operation-nin': 'Не принадлежит множеству',
+      'label_operation-startswith': 'Начинается на',
+    };
+
     return (
       <div>
         <div className={b('row')}>
-          <span className={b('label')}>{i18n('wizard', 'label_operation')}</span>
+          <span className={b('label')}>Операция</span>
           <Select
             theme="pseudo"
             size="s"
@@ -796,7 +811,7 @@ class DialogFilter extends PureComponent {
             {availableOperations.map((operation, i) => {
               return (
                 <Select.Item key={`operation-${i}`} val={operation}>
-                  {i18n('wizard', operation.title)}
+                  {labelOperations[operation.title] ? labelOperations[operation.title] : ''}
                 </Select.Item>
               );
             })}
@@ -846,8 +861,8 @@ class DialogFilter extends PureComponent {
               propsButtonApply={{
                 disabled: !valid,
               }}
-              textButtonApply={i18n('wizard', 'button_apply-filter')}
-              textButtonCancel={i18n('wizard', 'button_cancel')}
+              textButtonApply="Применить фильтр"
+              textButtonCancel="Отменить"
               listenKeyEnter
               hr={false}
             />

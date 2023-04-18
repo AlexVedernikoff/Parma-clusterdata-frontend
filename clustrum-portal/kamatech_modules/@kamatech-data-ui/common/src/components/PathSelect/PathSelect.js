@@ -19,7 +19,6 @@ const b = block('yc-path-select');
 const popupDirections = ['right-center', 'right-bottom', 'right-top'];
 const btnMix = { block: b('button') };
 
-// i18n
 class PathSelect extends React.PureComponent {
   static propTypes = {
     sdk: PropTypes.object,

@@ -9,11 +9,9 @@ import DataTypeIconSelector from '../../../DataTypeIconSelector/DataTypeIconSele
 import iconPlus from '../../../../icons/plus.svg';
 
 import { FormulaEditor } from '../index';
-import { I18n } from 'utils/i18n';
 import { Spel } from './components/Spel';
 import { CalcModes } from '../../../../constants/calc-modes';
 
-const i18n = I18n.keyset('component.field-editor.view');
 const b = block('field-settings-editor');
 
 const FieldSettingsEditor = props => {
@@ -61,16 +59,67 @@ const FieldSettingsEditor = props => {
 
   const { aggregations = [] } = types.find(({ name }) => name === cast) || {};
 
+  const getTitle = str => {
+    switch (str) {
+      case 'formula':
+        return 'Формула';
+      case 'spel':
+        return 'Формула EL';
+      case 'boolean':
+        return 'Логический';
+      case 'date':
+        return 'Дата';
+      case 'datetime':
+        return 'Дата и время';
+      case 'timestamp':
+        return 'Отметка времени';
+      case 'float':
+        return 'Дробное число';
+      case 'double':
+        return 'Дробное число (64)';
+      case 'integer':
+        return 'Целое число';
+      case 'long':
+        return 'Целое число (64)';
+      case 'string':
+        return 'Строка';
+      case 'auto':
+        return 'Авто';
+      case 'geopoint':
+        return 'Геоточка';
+      case 'geopolygon':
+        return 'Геополигон';
+      case 'none':
+        return 'Нет';
+      case 'count':
+        return 'Количество';
+      case 'countunique':
+        return 'Количество уникальных';
+      case 'uniquearray':
+        return 'Массив уникальных';
+      case 'max':
+        return 'Максимум';
+      case 'min':
+        return 'Минимум';
+      case 'avg':
+        return 'Среднее';
+      case 'sum':
+        return 'Сумма';
+      default:
+        return '';
+    }
+  };
+
   const aggregationsList = aggregations.map((aggregation, index) => ({
     value: aggregation,
     key: `select-aggregation-${index}`,
-    title: i18n(`value_${aggregation}`),
+    title: getTitle(aggregation),
   }));
 
   const fieldTypesList = types.map(({ name }, index) => ({
     value: name,
     key: `select-cast-${index}`,
-    title: i18n(`value_${name}`),
+    title: getTitle(name),
     icon: <DataTypeIconSelector className={b('cast')} type={name} />,
   }));
 
@@ -93,9 +142,9 @@ const FieldSettingsEditor = props => {
     isTitleError = true;
 
     if (isTitleEmptyError) {
-      titleErrorMessage = i18n('label_title-is-empty');
+      titleErrorMessage = 'Имя поля не должно быть пустым';
     } else if (isTitleDuplicateError) {
-      titleErrorMessage = i18n('label_field-already-exist');
+      titleErrorMessage = 'Поле с таким именем уже существует';
     }
   }
 
@@ -114,7 +163,7 @@ const FieldSettingsEditor = props => {
     <div className={b()}>
       <div className={b('content-row')}>
         <div className={b('label')}>
-          <span>{i18n('field_field-name')}</span>
+          <span>Имя</span>
         </div>
         <TextInput
           autoFocus={true}
@@ -136,7 +185,7 @@ const FieldSettingsEditor = props => {
             tone="default"
             checked={!isDisplayInWizard}
             onChange={() => modifyField({ hidden: !hidden })}
-            text={i18n('field_not-display-in-wizard')}
+            text="Не отображать в визарде"
           />
         )}
         {!isDisplayDescription && (
@@ -147,7 +196,7 @@ const FieldSettingsEditor = props => {
             view="default"
             tone="default"
             iconLeft={<Icon className={b('plus')} data={iconPlus} width="16" height="16" />}
-            text={i18n('button_add-description')}
+            text="Добавить описание"
             onClick={displayDescriptionInput}
           />
         )}
@@ -155,7 +204,7 @@ const FieldSettingsEditor = props => {
       {isDisplayDescription && (
         <div className={b('content-row')}>
           <div className={b('label', { align: 'top' })}>
-            <span>{i18n('field_description')}</span>
+            <span>Описание</span>
           </div>
           <TextArea
             rows={3}
@@ -170,7 +219,7 @@ const FieldSettingsEditor = props => {
       {isDisplayElement && (
         <div className={b('content-row')}>
           <div className={b('label')}>
-            <span>{i18n('field_source-data')}</span>
+            <span>Источник данных</span>
           </div>
           <RadioButton
             cls={b('rb-calc-mode')}
@@ -181,9 +230,9 @@ const FieldSettingsEditor = props => {
             value={calcMode}
             onChange={e => modifyField({ calc_mode: e.target.value })}
           >
-            <RadioButton.Radio value={CalcModes.Formula}>{i18n('value_formula')}</RadioButton.Radio>
-            <RadioButton.Radio value={CalcModes.Direct}>{i18n('value_source-from-field')}</RadioButton.Radio>
-            <RadioButton.Radio value={CalcModes.Spel}>{i18n('value_spel')}</RadioButton.Radio>
+            <RadioButton.Radio value={CalcModes.Formula}>Формула</RadioButton.Radio>
+            <RadioButton.Radio value={CalcModes.Direct}>Поле из источника</RadioButton.Radio>
+            <RadioButton.Radio value={CalcModes.Spel}>Формула EL</RadioButton.Radio>
           </RadioButton>
         </div>
       )}
@@ -191,7 +240,7 @@ const FieldSettingsEditor = props => {
         <React.Fragment>
           <div className={b('content-row')}>
             <div className={b('label')}>
-              <span>{i18n('field_source-field')}</span>
+              <span>Поле источника</span>
             </div>
             <YCSelect
               showSearch={true}
@@ -204,7 +253,7 @@ const FieldSettingsEditor = props => {
           </div>
           <div className={b('content-row')}>
             <div className={b('label')}>
-              <span>{i18n('field_field-type')}</span>
+              <span>Тип поля</span>
             </div>
             <YCSelect
               controlWidth={200}
@@ -216,7 +265,7 @@ const FieldSettingsEditor = props => {
           </div>
           <div className={b('content-row')}>
             <div className={b('label')}>
-              <span>{i18n('field_aggregation')}</span>
+              <span>Агрегация</span>
             </div>
             <YCSelect
               controlWidth={200}

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import CommentDialogBase from '../../CommentDialogBase/CommentDialogBase';
-import { i18n } from '../../../constants';
 import Utils from '../../../../../utils';
 
 // import './DialogDenyAllRequests.scss';
@@ -23,7 +22,7 @@ class DialogDenyAllRequests extends React.Component {
   };
 
   renderContent = () => {
-    return <div className={b()}>{i18n('label_deny-all-requests')}</div>;
+    return <div className={b()}>Будут отклонены все запросы на получение прав доступа</div>;
   };
 
   render() {
@@ -31,9 +30,9 @@ class DialogDenyAllRequests extends React.Component {
       <CommentDialogBase
         {...this.props}
         preset="danger"
-        caption={i18n('section_deny-request-title')}
-        textButtonApply={i18n('button_deny-all-requests')}
-        placeholder={i18n('label_placeholder-deny-request')}
+        caption="Отклонить запрос"
+        textButtonApply="Отклонить все запросы"
+        placeholder="Причина отзыва прав (не обязательно)"
         apiHandler={this.apiHandler}
         render={this.renderContent}
       />

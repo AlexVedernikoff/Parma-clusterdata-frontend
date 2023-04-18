@@ -4,7 +4,7 @@ import block from 'bem-cn-lite';
 import DataTable from '@kamatech-data-ui/dt100/lib';
 import { Button, CheckBox, TextInput } from 'lego-on-react';
 import { Icon } from '@kamatech-data-ui/common/src';
-import { i18n, CalcModes } from '@kamatech-data-ui/clustrum';
+import { CalcModes } from '@kamatech-data-ui/clustrum';
 
 import TypeSelect from '../../components/TypeSelect/TypeSelect';
 import AggregationSelect from '../../components/AggregationSelect/AggregationSelect';
@@ -419,7 +419,7 @@ class DatasetTable extends React.Component {
     width: '20%',
     sortable: true,
     sortAscending: this.sortTitleColumn,
-    header: <div className={b('header')}>{i18n('dataset.dataset-editor.modify', 'column_field-name')}</div>,
+    header: <div className={b('header')}>Имя</div>,
     render: ({ value, index, row }) => {
       const { valid } = row;
       const maxTabIndex = (index + 1) * 4;
@@ -461,7 +461,7 @@ class DatasetTable extends React.Component {
           size="m"
           view="default"
           tone="default"
-          title={i18n('dataset.dataset-editor.modify', 'button_open-field-editor')}
+          title="Редактировать"
           onClick={() => this.openFieldEditor({ field: row })}
         >
           <Icon className={b('linked')} data={iconLinkedDataset} width="18" height="18" />
@@ -476,7 +476,7 @@ class DatasetTable extends React.Component {
     width: '250px',
     align: DataTable.LEFT,
     sortable: true,
-    header: <div className={b('header')}>{i18n('dataset.dataset-editor.modify', 'column_field-source')}</div>,
+    header: <div className={b('header')}>Источник поля</div>,
     render: ({ index, row }) => {
       const { calc_mode: calcMode, source: source } = row;
 
@@ -488,7 +488,7 @@ class DatasetTable extends React.Component {
           size="m"
           view="default"
           tone="default"
-          title={i18n('dataset.dataset-editor.modify', 'button_open-field-editor')}
+          title="Редактировать"
           onClick={() => this.openFieldEditor({ field: row })}
         >
           <Icon className={b('formula')} data={iconFormula2} width="28" height="28" />
@@ -501,7 +501,7 @@ class DatasetTable extends React.Component {
           size="m"
           view="default"
           tone="default"
-          title={i18n('dataset.dataset-editor.modify', 'button_open-field-editor')}
+          title="Редактировать"
           onClick={() => this.openFieldEditor({ field: row })}
           text={source}
         ></Button>
@@ -525,11 +525,7 @@ class DatasetTable extends React.Component {
           size="n"
           view="default"
           tone="default"
-          title={
-            value
-              ? i18n('dataset.dataset-editor.modify', 'button_hide-field')
-              : i18n('dataset.dataset-editor.modify', 'button_display-field')
-          }
+          title={value ? 'Скрыть поле' : 'Показать поле'}
           onClick={() => this.toggleHidden({ row })}
         >
           <Icon className={b('hidden', { hidden: value })} data={iconEyeCross} width="24" height="28" />
@@ -556,7 +552,7 @@ class DatasetTable extends React.Component {
           size="n"
           view="default"
           tone="default"
-          title={i18n('dataset.dataset-editor.modify', 'button_has_verification_rules-field')}
+          title="Имеются правила верификации и/или сопоставления"
           onClick={() => this.openFieldEditor({ field: row })}
         >
           <Icon className={b('verification_rules')} data={iconVerificationRules} width="24" height="28" />
@@ -581,11 +577,7 @@ class DatasetTable extends React.Component {
           size="n"
           view="default"
           tone="default"
-          title={
-            value
-              ? i18n('dataset.dataset-editor.modify', 'button_has_index-field')
-              : i18n('dataset.dataset-editor.modify', 'button_without_index-field')
-          }
+          title={value ? 'Имеется индекс' : 'Отсутствует индекс'}
           onClick={() => this.toggleHasIndex({ row })}
         >
           <Icon className={b('hidden', { hidden: value })} data={indexIcon} width="24" height="28" />
@@ -600,7 +592,7 @@ class DatasetTable extends React.Component {
     width: '175px',
     sortable: true,
     sortAscending: this.sortCastColumn,
-    header: <div className={b('header-cast')}>{i18n('dataset.dataset-editor.modify', 'column_field-cast')}</div>,
+    header: <div className={b('header-cast')}>Тип</div>,
     render: ({ value, index, row }) => {
       const { types } = this.props;
       const maxTabIndex = (index + 1) * 4;
@@ -635,11 +627,7 @@ class DatasetTable extends React.Component {
           size="n"
           view="default"
           tone="default"
-          title={
-            value
-              ? i18n('dataset.dataset-editor.modify', 'button_has_array-field')
-              : i18n('dataset.dataset-editor.modify', 'button_without_array-field')
-          }
+          title={value ? 'Поле-массив' : 'Поле-не масив'}
           onClick={() => this.toggleHasArray({ row })}
         >
           <Icon className={b('hidden', { hidden: value })} data={arrayIcon} width="24" height="28" />
@@ -664,11 +652,7 @@ class DatasetTable extends React.Component {
           size="n"
           view="default"
           tone="default"
-          title={
-            value
-              ? i18n('dataset.dataset-editor.modify', 'button_has_version-field')
-              : i18n('dataset.dataset-editor.modify', 'button_without_version-field')
-          }
+          title={value ? 'Поле используется для версионирования' : 'Поле не используется для версионирования'}
           onClick={() => this.toggleHasVersion({ row })}
         >
           <Icon className={b('hidden', { hidden: value })} data={iconVersion} width="24" height="28" />
@@ -683,7 +667,7 @@ class DatasetTable extends React.Component {
     width: '160px',
     sortable: true,
     sortAscending: this.sortAggregationColumn,
-    header: <div className={b('header')}>{i18n('dataset.dataset-editor.modify', 'column_field-aggregation')}</div>,
+    header: <div className={b('header')}>Агрегация</div>,
     render: ({ value, index, row }) => {
       const { types } = this.props;
       const maxTabIndex = (index + 1) * 4;
@@ -708,7 +692,7 @@ class DatasetTable extends React.Component {
     width: '40%',
     sortable: true,
     sortAscending: this.sortDescriptionColumn,
-    header: <div className={b('header')}>{i18n('dataset.dataset-editor.modify', 'column_filed-description')}</div>,
+    header: <div className={b('header')}>Описание</div>,
     render: ({ value, index, row }) => {
       const maxTabIndex = (index + 1) * 4;
 
@@ -768,12 +752,12 @@ class DatasetTable extends React.Component {
           tone="default"
           checked={displayHiddenFields}
           onChange={toggleFilterFieldsByHidden}
-          text={i18n('dataset.dataset-editor.modify', 'field_display-hidden-fields')}
+          text="Отображать скрытые поля"
         />
         <DataTable
           columns={this.columns}
           data={fields}
-          emptyDataMessage={i18n('dataset.dataset-editor.modify', 'label_no-data')}
+          emptyDataMessage="Нет данных"
           settings={{
             stickyHead: DataTable.MOVING,
             stickyTop: 0,

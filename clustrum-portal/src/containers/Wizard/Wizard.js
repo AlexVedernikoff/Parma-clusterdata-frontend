@@ -42,7 +42,6 @@ import { selectConfig, selectConfigType, selectHighchartsWidget, selectPreviewHa
 
 import { fetchWidget, setDefaults, toggleFullscreen, requestUpdateWidget, receiveWidget } from '../../actions';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 import PageHead from '../../components/PageHeader/PageHeader';
 
@@ -80,17 +79,27 @@ class Wizard extends Component {
   openSaveAsWidgetDialog = async () => {
     const { config, dataset, visualization, defaultPath, receiveWidget } = this.props;
 
+    const labelVisualization = {
+      'label_visualization-scatter': 'Точечная  диаграмма',
+      'label_visualization-treemap': 'Древовидная диаграмма',
+      'label_visualization-types-all': 'Все',
+      'label_visualization-types-column': 'Столбчатые',
+      'label_visualization-types-line': 'Графики',
+      'label_visualization-types-pie': 'Круговые',
+      'label_visualization-types-table': 'Таблицы',
+    };
+
     const result = await this.entryDialoguesRef.current.openDialog({
       dialog: 'save_widget',
       dialogProps: {
         path: `${getNavigationPathFromKey(dataset.key)}`,
-        widgetName: `${dataset.name} — ${i18n('wizard', visualization.name)}`,
+        widgetName: `${dataset.name} — ${labelVisualization[visualization.name]}`,
         widgetData: config.shared,
-        title: i18n('wizard', 'label_save-widget'),
+        title: 'Сохранить чарт',
         onNotify: ({ error, message, type }) => {
           if (error && error.response && error.response.status === 400) {
             this.toaster.createToast({
-              title: i18n('wizard', 'label_invalid-name'),
+              title: 'Диаграмма с таким именем уже существует',
               name: 'WIZARD',
               type: 'error',
               allowAutoHiding: true,
@@ -158,20 +167,20 @@ class Wizard extends Component {
       case 'no-access':
         return {
           type: 'no-access',
-          title: i18n('wizard', 'label_error-widget-no-access'),
+          title: 'Нет доступа к чарту',
         };
       case 404:
       case 'not-found':
         return {
           type: 'not-found',
-          title: i18n('wizard', 'label_error-widget-not-found'),
+          title: 'Диаграмма не найдена',
         };
       case 500:
       case 'error':
       default:
         return {
           type: 'error',
-          title: i18n('wizard', 'label_error-widget-unknown-error'),
+          title: 'Произошла ошибка',
         };
     }
   };
@@ -253,7 +262,7 @@ class Wizard extends Component {
                 size="n"
                 view="default"
                 tone="default"
-                text={i18n('wizard', 'button_toggle-fullscreen')}
+                text="На весь экран"
                 iconLeft={<Icon data={iconFullscreen} width="24" />}
                 onClick={toggleFullscreen}
               />,
@@ -265,7 +274,7 @@ class Wizard extends Component {
                 size="n"
                 view="default"
                 tone="default"
-                text={i18n('wizard', 'button_save')}
+                text="Сохранить"
                 iconLeft={entryLocked ? <Icon data={iconLock} width="24" /> : null}
                 onClick={this.openSaveWidgetDialog}
               ></Button>,
@@ -292,7 +301,7 @@ class Wizard extends Component {
                           this.openSaveAsWidgetDialog();
                         }}
                       >
-                        {i18n('wizard', 'button_save-as')}
+                        Сохранить как
                       </Menu.Item>
                     </Menu>
                   </Popup>

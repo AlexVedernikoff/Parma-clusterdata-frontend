@@ -16,7 +16,6 @@ import {
   toggleVisibilityPreview,
 } from '../../store/reducers/dataset';
 import { DATASET_TABS } from '../../constants';
-import { i18n } from '../../../kamatech_modules/@kamatech-data-ui/clustrum';
 import { ResizerType } from '../../constants/ResizerType';
 
 // import './DatasetPreview.scss';
@@ -61,9 +60,9 @@ class DatasetPreview extends React.Component {
             togglePreview={togglePreview}
             toggleVisibilityPreview={toggleVisibilityPreview}
             changeAmountPreviewRows={changeAmountPreviewRows}
-            headerTitle={i18n('dataset.dataset-editor.modify', 'section_preview')}
-            fieldDisplayRowsTitle={i18n('dataset.dataset-editor.modify', 'field_display-rows')}
-            maxAmountRowsTitle={i18n('dataset.dataset-editor.modify', 'label_max-amount-rows')}
+            headerTitle="Предпросмотр"
+            fieldDisplayRowsTitle="Количество строк:"
+            maxAmountRowsTitle="не более 10 000"
             datasetUpdated={datasetUpdated}
           />
           <PreviewTable preview={datasetPreview} />

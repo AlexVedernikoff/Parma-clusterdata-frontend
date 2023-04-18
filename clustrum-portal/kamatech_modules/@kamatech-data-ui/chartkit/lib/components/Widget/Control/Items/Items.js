@@ -6,12 +6,9 @@ import { Button, CheckBox, TextInput } from 'lego-on-react';
 import YCSelect from '@kamatech-data-ui/common/src/components/YCSelect/YCSelect';
 import Datepicker from '@kamatech-data-ui/common/src/components/Datepicker';
 import settings from '../../../../modules/settings/settings';
-import { i18nV2 as i18nFactory } from '../../../../modules/i18n/i18n';
-import * as keyset from './i18n';
 import useDebounce from '../../../../../../../../src/hooks/use-debounce';
 
 const DATE_FORMAT = 'YYYY-MM-DD';
-const i18n = i18nFactory(keyset);
 const b = block('chartkit-control-item');
 
 function Label({ text }) {
@@ -31,7 +28,7 @@ function ControlSelect({ label, searchable = true, multiselect, content, value, 
         value={value}
         onChange={onChange}
         cls={b('component')}
-        placeholder={i18n('control.select_placeholder')}
+        placeholder="Все"
         items={content.map(({ title, value }) => ({
           value,
           title,
@@ -84,8 +81,8 @@ function ControlInput({ label, placeholder, value, onChange, className = '' }) {
         controlAttrs={{
           onKeyPress: event => event.charCode === 13 && onChange(text),
         }}
-      // срабатывает дважды, поэтому используется controlAttrs.onKeyPress
-      // onKeyDown={event => event.keyCode === 13 && props.onEnter(text)}
+        // срабатывает дважды, поэтому используется controlAttrs.onKeyPress
+        // onKeyDown={event => event.keyCode === 13 && props.onEnter(text)}
       />
       {value && (
         <div
@@ -185,7 +182,7 @@ function ControlButton({ text, theme, onChange, className = '' }) {
       // setTimeout в частности для того, чтобы отработал onBlur от ControlInput
       onClick={() => setTimeout(() => onChange(), 0)}
     >
-      {text || i18n('apply')}
+      {text || 'Применить'}
     </Button>
   );
 }

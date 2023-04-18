@@ -35,70 +35,6 @@ import "./../../spin2/_size/spin2_size_xs.css";
 import "./../__add-account/user2__add-account.css";
 */
 
-var i18n = (function () {
-  var core = require('bem-i18n');
-
-  if (
-    process.env.BEM_LANG
-      ? process.env.BEM_LANG === 'ru'
-      : process.env.REACT_APP_BEM_LANG
-        ? process.env.REACT_APP_BEM_LANG === 'ru'
-        : 'en' === 'ru'
-  ) {
-    return core().decl(require('../user2.i18n/ru'))('user2');
-  }
-
-  /*
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'en' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'en' : 'en' === 'en') {
-        return core().decl(require('./../user2.i18n/en'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'be' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'be' : 'en' === 'be') {
-        return core().decl(require('./../user2.i18n/be'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'id' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'id' : 'en' === 'id') {
-        return core().decl(require('./../user2.i18n/id'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'kk' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'kk' : 'en' === 'kk') {
-        return core().decl(require('./../user2.i18n/kk'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'tr' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'tr' : 'en' === 'tr') {
-        return core().decl(require('./../user2.i18n/tr'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'tt' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'tt' : 'en' === 'tt') {
-        return core().decl(require('./../user2.i18n/tt'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'uk' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'uk' : 'en' === 'uk') {
-        return core().decl(require('./../user2.i18n/uk'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'uz' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'uz' : 'en' === 'uz') {
-        return core().decl(require('./../user2.i18n/uz'))('user2');
-    }*/
-
-  if (process.env.NODE_ENV === 'development') {
-    process.env.BEM_LANG &&
-      console.error(
-        'No match of process.env.BEM_LANG { ' +
-        process.env.BEM_LANG +
-        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
-      );
-    process.env.REACT_APP_BEM_LANG &&
-      console.error(
-        'No match of process.env.REACT_APP_BEM_LANG { ' +
-        process.env.REACT_APP_BEM_LANG +
-        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
-      );
-  }
-
-  return function () { };
-})();
-
 export default decl(
   {
     block: 'user2',
@@ -138,7 +74,7 @@ export default decl(
               mix: [mix, { block: this.block, elem: 'add-account', mods: { hidden: bool2string(addAccountHidden) } }],
             },
             React.createElement(UserAccountPic, null),
-            React.createElement(UserAccountName, { text: i18n('add-account') }),
+            React.createElement(UserAccountName, { text: 'Добавить аккаунт' }),
           ),
         ),
       ];
@@ -148,9 +84,9 @@ export default decl(
 
       // user2 должен знать о menu__item, в который обернут account
       if (children) {
-        var registerItem = this.context.registerUserItem || function () { };
+        var registerItem = this.context.registerUserItem || function() {};
 
-        return Children.map(children, function (child, i) {
+        return Children.map(children, function(child, i) {
           return React.createElement(
             MenuItem,
             {

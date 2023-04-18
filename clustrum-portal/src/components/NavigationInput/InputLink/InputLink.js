@@ -10,21 +10,19 @@ import { getEntryByIdOrKey } from '../../../helpers/utils-dash';
 import iconTick from '@kamatech-data-ui/clustrum/src/icons/tick.svg';
 import iconSearchClear from '@kamatech-data-ui/clustrum/src/icons/search-clear.svg';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 // import './InputLink.scss';
 
 const ERROR = {
   INPUT_LINK_INCORRECT: {
     key: 'INPUT_LINK_INCORRECT',
     get text() {
-      return i18n('dash.navigation-input.edit', 'toast_incorrect-url');
+      return 'Некорректный URL';
     },
   },
   INPUT_LINK_APPLY: {
     key: 'INPUT_LINK_APPLY',
     get text() {
-      return i18n('dash.navigation-input.edit', 'toast_error');
+      return 'Ошибка';
     },
   },
 };
@@ -84,7 +82,7 @@ class InputLink extends React.PureComponent {
           view="default"
           tone="default"
           size={this.props.size}
-          placeholder={i18n('dash.navigation-input.edit', 'context_fill-link')}
+          placeholder="Ссылка на чарт"
           text={this.state.value}
           disabled={this.state.progress}
           onChange={value => this.setState({ value })}

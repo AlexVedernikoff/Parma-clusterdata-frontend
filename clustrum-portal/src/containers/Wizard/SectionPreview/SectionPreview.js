@@ -22,7 +22,6 @@ import { setHighchartsWidget } from '../../../actions';
 
 import { createStructuredSelector } from 'reselect';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
 import { exportWidget } from '../model/exportWidget';
 
 function goAwayLink({ loadedData, propsData }, { extraParams = {}, urlPostfix = '', idPrefix = '' }) {
@@ -71,7 +70,7 @@ class SectionPreview extends Component {
       return (
         <div className="dataset-error-container">
           <Icon width="236" data={iconPreviewDatasetError} />
-          <span>{i18n('wizard', 'label_preview-dataset-error')}</span>
+          <span>Невозможно отобразить график</span>
         </div>
       );
     }
@@ -81,7 +80,7 @@ class SectionPreview extends Component {
 
       if (DL.installationType === 'external') {
         LINK_NEW_WINDOW = {
-          title: i18n('wizard', 'label_chartkit-menu-open-in-new-tab'),
+          title: 'Открыть в новой вкладке',
           icon: <Icon width="20" data={iconFullscreen} />,
           isVisible: () => true,
           action: ({ loadedData, propsData }) =>

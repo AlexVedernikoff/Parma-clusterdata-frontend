@@ -1,4 +1,3 @@
-import { i18n } from '@kamatech-data-ui/clustrum';
 import React from 'react';
 
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
@@ -30,17 +29,17 @@ import { WIZARD_NODE_TYPE } from './constants';
 import { WIDGET_TYPE } from '@kamatech-data-ui/chartkit/lib/components/Widget/WidgetType';
 
 const _getSelectItemTitle = () => ({
-  visits: i18n('connections.form', 'value_counter-source-visits'),
-  hits: i18n('connections.form', 'value_counter-source-hits'),
-  hahn: i18n('connections.form', 'value_cluster-hahn'),
-  arnold: i18n('connections.form', 'value_cluster-arnold'),
-  owner_only: i18n('connections.form', 'value_permission-owner-only'),
-  explicit: i18n('connections.form', 'value_permission-explicit'),
-  installs: i18n('connections.form', 'value_metrica-namespace-installs'),
-  audience: i18n('connections.form', 'value_metrica-namespace-audience'),
-  client_events: i18n('connections.form', 'value_metrica-namespace-client-events'),
-  push_events: i18n('connections.form', 'value_metrica-namespace-push-events'),
-  audience_socdem: i18n('connections.form', 'value_metrica-namespace-audience-socdem'),
+  visits: 'Визиты',
+  hits: 'Просмотры',
+  hahn: 'Hahn',
+  arnold: 'Arnold',
+  owner_only: 'Доступно только мне',
+  explicit: 'Доступно для компании',
+  installs: 'Установки',
+  audience: 'Аудитории',
+  client_events: 'Клиентские события',
+  push_events: 'Push-кампании',
+  audience_socdem: 'Аудитории + соц.дем',
 });
 
 export const getStaticSelectItems = values => {
@@ -59,38 +58,61 @@ export const getConnectorsMap = () => {
   const { features: { dataset: { chOverYtEnabled, oracleEnabled, appMetricaEnabled } = {} } = {} } = window.DL;
 
   const connectorsList = {
-    clickhouse: i18n('connections.form', 'label_name-clickhouse'),
-    csv: i18n('connections.form', 'label_name-csv'),
-    postgres: i18n('connections.form', 'label_name-postgres'),
-    mysql: i18n('connections.form', 'label_name-mysql'),
-    mssql: i18n('connections.form', 'label_name-mssql'),
-    //'metrica': i18n('connections.form', 'label_name-metrika-api'),
-    oracle: i18n('connections.form', 'label_name-oracle'),
+    clickhouse: 'ClickHouse',
+    csv: 'CSV',
+    postgres: 'PostgreSQL',
+    mysql: 'MySQL',
+    mssql: 'MS SQL Server',
+    oracle: 'Oracle Database',
   };
 
-  /*
-    if (appMetricaEnabled) {
-        connectorsList['appmetrica_api'] = i18n('connections.form', 'label_name-appmetrica');
-    }
-    */
-
   if (chOverYtEnabled) {
-    connectorsList['ch_over_yt'] = i18n('connections.form', 'label_name-ch-over-yt');
+    connectorsList['ch_over_yt'] = 'CH over YT';
   }
 
   if (oracleEnabled) {
-    connectorsList['oracle'] = i18n('connections.form', 'label_name-oracle');
+    connectorsList['oracle'] = 'Oracle Database';
   }
 
   return connectorsList;
 };
 
+const aggregationValue = {
+  boolean: 'Логический',
+  date: 'Дата',
+  datetime: 'Дата и время',
+  timestamp: 'Отметка времени',
+  float: 'Дробное число',
+  double: 'Дробное число (64)',
+  integer: 'Целое число',
+  long: 'Целое число (64)',
+  string: 'Строка',
+  auto: 'Авто',
+  geopoint: 'Геоточка',
+  geopolygon: 'Геополигон',
+  none: 'Нет',
+  count: 'Количество',
+  countunique: 'Количество уникальных',
+  uniquearray: 'Массив уникальных',
+  max: 'Максимум',
+  min: 'Минимум',
+  avg: 'Среднее',
+  sum: 'Сумма',
+  dataset: 'Набор данных',
+  data: 'Данные',
+};
+
 export const getAggregationLabel = aggregation => {
-  return i18n('dataset.dataset-editor.modify', `value_${aggregation}`);
+  return aggregationValue[aggregation];
 };
 
 export const getFieldTypeLabel = aggregation => {
-  return i18n('dataset.dataset-editor.modify', `value_${aggregation}`);
+  return aggregationValue[aggregation];
+};
+
+const sectionCreationType = {
+  connection: 'Создание подключения',
+  dataset: 'Создание набора данных',
 };
 
 export const getFakeEntry = entryType => {
@@ -101,8 +123,8 @@ export const getFakeEntry = entryType => {
   return {
     fake: true,
     key: window.DL.user.login
-      ? `/Users/${login}/${i18n('connections.form', `section_creation-${entryType}`)}`
-      : `/${i18n('connections.form', `section_creation-${entryType}`)}`,
+      ? `/Users/${login}/${sectionCreationType[entryType]}`
+      : `/${sectionCreationType[entryType]}`,
     entryId: null,
   };
 };
@@ -194,15 +216,15 @@ export const ITEM_TYPES = {
 };
 
 export const CONFLICT_TOOLTIPS = {
-  'not-existing': 'label_field-not-exist',
-  'wrong-type': 'label_field-has-wrong-type',
+  'not-existing': 'Поле отсутствует в датасете',
+  'wrong-type': 'Поле имеет недопустимый тип',
 };
 
 export const DATASET_ERRORS = {
-  403: 'label_error-dataset-no-access-rights',
-  404: 'label_error-dataset-not-found',
-  500: 'label_error-dataset-server-error',
-  UNKNOWN: 'label_error-dataset-unknown-error',
+  403: 'У вас нет доступа к датасету',
+  404: 'Набор данных не найден',
+  500: 'Ошибка: не удалось загрузить датасет',
+  UNKNOWN: 'Ошибка: не удалось загрузить датасет',
 };
 
 export const VISUALIZATION_TYPES = [
