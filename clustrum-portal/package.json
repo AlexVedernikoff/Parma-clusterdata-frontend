@@ -23,7 +23,7 @@
     "eslint:pre-commit": "eslint --fix"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,json}": "npm run eslint:pre-commit",
+    "./clustrum-portal/src/**/*.{ts,tsx,json}": "npm run eslint:pre-commit",
     "src/**/*.{css,js,jsx,ts,tsx,md,json}": "npm run prettier:pre-commit"
   },
   "dependencies": {
