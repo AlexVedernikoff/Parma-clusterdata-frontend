@@ -61,6 +61,7 @@ class Wizard extends Component {
     entryId: PropTypes.string,
     onSavingStart: PropTypes.func,
     onSavingEnd: PropTypes.func,
+    onExport: PropTypes.func,
   };
 
   entryDialoguesRef = React.createRef();
@@ -201,6 +202,7 @@ class Wizard extends Component {
       toggleFullscreen,
       previewHash,
       widgetHash,
+      onExport,
     } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
@@ -323,7 +325,7 @@ class Wizard extends Component {
             </div>
           )}
           <div className="column preview-column">
-            <SectionPreview entryDialoguesRef={entryDialoguesRef} sdk={sdk} />
+            <SectionPreview entryDialoguesRef={entryDialoguesRef} sdk={sdk} onExport={onExport} />
           </div>
         </div>
       </div>
