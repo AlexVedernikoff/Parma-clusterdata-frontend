@@ -25,7 +25,7 @@ import iconEraser from '@kamatech-data-ui/clustrum/src/icons/eraser.svg';
 import iconExport from '@kamatech-data-ui/clustrum/src/icons/export.svg';
 import iconFilter from '@kamatech-data-ui/clustrum/src/icons/filter-blue.svg';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
-import { SignalContext } from '@kamatech-data-ui/context/SignalContext';
+import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 import WidgetVisibilityDropdown from '../../components/WidgetVisibilityDropdown/WidgetVisibilityDropdown';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { LAYOUT_ID } from '../../constants/constants';

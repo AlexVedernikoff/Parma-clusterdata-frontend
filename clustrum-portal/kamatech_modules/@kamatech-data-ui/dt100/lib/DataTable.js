@@ -6,7 +6,7 @@ import { positionStickySupported } from './featureSupport';
 import { getSortOrder, getIndexedData, getSortedData } from './util';
 import { ASCENDING, DESCENDING, LEFT, RIGHT, CENTER, FIXED, MOVING, INDEX_COLUMN } from './constants';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
-import { SignalContext } from '@kamatech-data-ui/context/SignalContext';
+import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 import { ORDER } from '../../common/src/components/Navigation/constants';
 import { TableTheme } from './TableTheme';
 
@@ -176,8 +176,8 @@ class TableHead extends React.Component {
     }
     return sortable
       ? event => {
-        this.onSort(column, event.ctrlKey);
-      }
+          this.onSort(column, event.ctrlKey);
+        }
       : undefined;
   }
   renderHeadCell = headCell => {
@@ -721,8 +721,8 @@ class DataTableView extends React.Component {
       typeof accessor === 'function'
         ? row => accessor(row)
         : row => {
-          return row.hasOwnProperty(accessor) ? row[accessor] : undefined;
-        };
+            return row.hasOwnProperty(accessor) ? row[accessor] : undefined;
+          };
 
     const _getTitle =
       typeof column.title === 'function'
