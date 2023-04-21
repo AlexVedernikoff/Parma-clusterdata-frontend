@@ -6,7 +6,7 @@ import Widget from '../Widget/Widget';
 
 import ChartsModule from '../../modules/charts/charts';
 import ErrorDispatcher from '../../modules/error-dispatcher/error-dispatcher';
-import { getParamsValue } from '../../../../dashkit/src/modules/utils';
+import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
 import { WIZARD_NODE_TYPE } from '../../../../../../src/constants/constants';
 
 class Charts extends React.PureComponent {

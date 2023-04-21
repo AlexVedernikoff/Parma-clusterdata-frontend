@@ -14,9 +14,9 @@ import Menu from '../Menu/Menu';
 import URI from '../../modules/uri/uri';
 import settings from '../../modules/settings/settings';
 import { removeEmptyProperties } from '../../helpers/helpers';
-import { SignalContext } from '../../../../dashkit/src/context/SignalContext';
-import { SIGNAL } from '../../../../dashkit/src/constants/common';
-import { getParamsValue } from '../../../../dashkit/src/modules/utils';
+import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
+import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
+import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 
 const b = block('chartkit');
 
@@ -107,14 +107,14 @@ class ChartKit extends React.Component {
       prevEditMode !== editMode
         ? editMode.config.shared.paginateInfo
         : paginateInfoFromProps
-          ? paginateInfoFromProps
-          : paginateInfoFromState;
+        ? paginateInfoFromProps
+        : paginateInfoFromState;
     const orderBy =
       prevEditMode !== editMode
         ? editMode.config.shared.orderBy
         : orderByFromProps
-          ? orderByFromProps
-          : orderByFromState;
+        ? orderByFromProps
+        : orderByFromState;
 
     if (
       !forceUpdate &&

@@ -24,20 +24,3 @@ export function matchParamsWithAliases({ aliases, namespace, params, initiatorIt
     };
   }, {});
 }
-
-function paramsValue(params, paramKey) {
-  if (params[paramKey].value === null || params[paramKey].value === undefined) {
-    return params[paramKey];
-  }
-
-  return params[paramKey].value;
-}
-
-export function getParamsValue(params) {
-  return Object.keys(params).reduce((acc, paramKey) => {
-    return {
-      ...acc,
-      [paramKey]: paramsValue(params, paramKey),
-    };
-  }, {});
-}
