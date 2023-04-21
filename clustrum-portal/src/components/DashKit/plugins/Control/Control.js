@@ -15,8 +15,8 @@ import { prerenderMiddleware } from './prerenderMiddleware';
 import { LOAD_STATUS, CONTROL_SOURCE_TYPE, DATE_FORMAT_DAY } from '../../../../constants/constants';
 import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import { SDK } from '../../../../modules/sdk';
-import { getParamsValue } from '@kamatech-data-ui/dashkit/src/modules/utils';
 import { InputFilterControl } from '@clustrum-lib';
+import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
 
 const TYPE = {
   SELECT: 'select',

@@ -11,6 +11,7 @@ import { Utils, SDK, Header } from '@kamatech-data-ui/clustrum';
 
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
+import { exportWidget } from '../services/dashboard/export/export-widget';
 
 // import '@kamatech-data-ui/common/src/styles/styles.scss';
 
@@ -25,6 +26,10 @@ const sdk = new SDK({
 const b = block('app');
 
 class App extends Component {
+  _handleExport(id, name, options) {
+    exportWidget({ id, name }, undefined, options);
+  }
+
   renderHeader = () => {
     const {
       installationType,
@@ -54,8 +59,11 @@ class App extends Component {
   renderContent = () => {
     return (
       <Switch>
-        <Route path={'/wizard/preview/:id'} component={props => <Wizard {...props} preview={true} sdk={sdk} />} />
-        <Route path={'/wizard'} component={props => <Wizard {...props} sdk={sdk} />} />
+        <Route
+          path={'/wizard/preview/:id'}
+          component={props => <Wizard {...props} onExport={this._handleExport} preview={true} sdk={sdk} />}
+        />
+        <Route path={'/wizard'} component={props => <Wizard {...props} onExport={this._handleExport} sdk={sdk} />} />
       </Switch>
     );
   };

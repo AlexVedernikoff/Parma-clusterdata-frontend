@@ -1,7 +1,4 @@
-import DashKit from '@kamatech-data-ui/dashkit';
-import pluginText from '@kamatech-data-ui/dashkit/src/plugins/Text/Text';
-import pluginTitle from '@kamatech-data-ui/dashkit/src/plugins/Title/Title';
-import pluginWidget from '@kamatech-data-ui/dashkit/src/plugins/Widget/Widget';
+import { DashKit, pluginText, pluginTitle, pluginWidget } from '@clustrum-lib';
 import pluginControl from './plugins/Control/Control';
 import ChartKit from '@kamatech-data-ui/clustrum/src/components/ChartKit/ChartKit';
 import { SDK } from '../../modules/sdk';

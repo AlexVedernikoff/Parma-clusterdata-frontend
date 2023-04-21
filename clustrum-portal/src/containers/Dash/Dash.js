@@ -19,6 +19,7 @@ import ExpandedFilter from '../ExpandedFilter/ExpandedFilter';
 
 import { resetWizard } from '../../actions';
 import { WizardSavingStatus } from './WizardSavingStatus';
+import { exportWidget } from '../../services/dashboard/export/export-widget';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -66,6 +67,10 @@ class Dash extends React.PureComponent {
 
   _wizardSavingStatus = WizardSavingStatus.SAVED;
 
+  _handleExport(id, name, options) {
+    exportWidget({ id, name }, undefined, options);
+  }
+
   _handleSavingStart = () => {
     this._wizardSavingStatus = WizardSavingStatus.SAVING;
   };
@@ -112,6 +117,7 @@ class Dash extends React.PureComponent {
               entryId={widgetEditorUUID}
               onSavingStart={this._handleSavingStart}
               onSavingEnd={this._handleSavingEnd}
+              onExport={this._handleExport}
             />
           )}
         </SideSlidingPanel>

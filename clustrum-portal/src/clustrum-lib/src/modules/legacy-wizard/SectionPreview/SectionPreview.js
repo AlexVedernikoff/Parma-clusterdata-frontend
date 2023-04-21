@@ -23,7 +23,6 @@ import { setHighchartsWidget } from '../../../../../actions';
 import { createStructuredSelector } from 'reselect';
 
 import { i18n } from '@kamatech-data-ui/clustrum';
-import { exportWidget } from '../model/exportWidget';
 
 function goAwayLink({ loadedData, propsData }, { extraParams = {}, urlPostfix = '', idPrefix = '' }) {
   let url = window.DL.endpoints.wizard + urlPostfix;
@@ -59,9 +58,9 @@ const EDIT = {
 
 class SectionPreview extends Component {
   #exportWidget = (runPayload, options) => {
-    const { widget } = this.props;
+    const { widget, onExport } = this.props;
 
-    exportWidget(runPayload.id, widget?.name ?? '', options);
+    onExport(runPayload.id, widget?.name ?? '', options);
   };
 
   renderChartkit() {

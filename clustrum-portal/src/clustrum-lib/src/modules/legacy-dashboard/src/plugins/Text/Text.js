@@ -4,7 +4,12 @@ import block from 'bem-cn-lite';
 // import './Text.scss';
 import Loader from '@kamatech-data-ui/react-components/src/components/Loader';
 import { Button } from 'lego-on-react';
-import { LOAD_STATUS } from '../../constants/common';
+
+const LOAD_STATUS = {
+  PENDING: 'pending',
+  SUCCESS: 'success',
+  FAIL: 'fail',
+};
 
 const b = block('dashkit-plugin-text');
 
