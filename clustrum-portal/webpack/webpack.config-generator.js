@@ -58,7 +58,6 @@ exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, d
         utils: path.resolve('./kamatech_modules/@kamatech-data-ui/clustrum/src/utils/'),
         store: path.resolve('./src/store/'),
         'components/ContainerLoader/ContainerLoader': path.resolve('./src/components/ContainerLoader/ContainerLoader'),
-        'react-dom': '@hot-loader/react-dom',
         process: 'process/browser',
       },
     },
