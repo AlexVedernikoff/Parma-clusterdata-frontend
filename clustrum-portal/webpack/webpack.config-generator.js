@@ -4,7 +4,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const { PORTAL_ASSETS_PATH } = require('../src/context-path');
 const CompressionPlugin = require('compression-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, devtool, env) => {
   return {
@@ -20,6 +19,7 @@ exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, d
       path: path.resolve('./dist/'),
       filename: 'js/[name].js',
       publicPath: PORTAL_ASSETS_PATH,
+      clean: true,
     },
     optimization: {
       splitChunks: {
@@ -94,17 +94,18 @@ exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, d
       ],
     },
     plugins: [
-      new CleanWebpackPlugin(),
-      new CopyWebpackPlugin([
-        { from: './src/index.js' },
-        env,
-        { from: './src/context-path.js' },
-        { from: './src/favicon.ico' },
-        { from: './src/sprite/sprite-2fc732.svg', to: 'sprites' },
-        { from: './src/sprite/sprite-da6479.svg', to: 'sprites' },
-        { from: './src/css', to: 'css' },
-        { from: './src/fonts', to: 'fonts' },
-      ]),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: './src/index.js' },
+          env,
+          { from: './src/context-path.js' },
+          { from: './src/favicon.ico' },
+          { from: './src/sprite/sprite-2fc732.svg', to: 'sprites' },
+          { from: './src/sprite/sprite-da6479.svg', to: 'sprites' },
+          { from: './src/css', to: 'css' },
+          { from: './src/fonts', to: 'fonts' },
+        ],
+      }),
       new HtmlWebpackPlugin({
         filename: 'views/index.ejs',
         template: './src/index.html',
