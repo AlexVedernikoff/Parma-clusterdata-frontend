@@ -13,16 +13,10 @@ import iconPreviewDatasetError from 'icons/preview-dataset-error.svg';
 import { EXPORT, NEW_WINDOW } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
 
 import { selectConfig, selectConfigType, selectPreviewEntryId } from '../../../../../reducers/preview';
-
 import { selectDatasetError } from '../../../../../reducers/dataset';
-
 import { selectWidget } from '../../../../../reducers/widget';
-
 import { setHighchartsWidget } from '../../../../../actions';
-
 import { createStructuredSelector } from 'reselect';
-
-import { exportWidget } from '../model/exportWidget';
 
 function goAwayLink({ loadedData, propsData }, { extraParams = {}, urlPostfix = '', idPrefix = '' }) {
   let url = window.DL.endpoints.wizard + urlPostfix;
@@ -58,9 +52,9 @@ const EDIT = {
 
 class SectionPreview extends Component {
   #exportWidget = (runPayload, options) => {
-    const { widget } = this.props;
+    const { widget, onExport } = this.props;
 
-    exportWidget(runPayload.id, widget?.name ?? '', options);
+    onExport(runPayload.id, widget?.name ?? '', options);
   };
 
   renderChartkit() {

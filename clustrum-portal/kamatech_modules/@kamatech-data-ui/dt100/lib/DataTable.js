@@ -5,8 +5,8 @@ import cn from 'bem-cn-lite';
 import { positionStickySupported } from './featureSupport';
 import { getSortOrder, getIndexedData, getSortedData } from './util';
 import { ASCENDING, DESCENDING, LEFT, RIGHT, CENTER, FIXED, MOVING, INDEX_COLUMN } from './constants';
-import { SignalContext } from '../../dashkit/src/context/SignalContext';
-import { SIGNAL } from '../../dashkit/src/constants/common';
+import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
+import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 import { ORDER } from '../../common/src/components/Navigation/constants';
 import { TableTheme } from './TableTheme';
 
