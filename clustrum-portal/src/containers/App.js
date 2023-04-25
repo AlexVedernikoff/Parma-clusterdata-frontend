@@ -11,6 +11,7 @@ import { Utils, SDK, Header } from '@kamatech-data-ui/clustrum';
 
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
+
 import { exportWidget } from '../services/dashboard/export/export-widget';
 
 // import '@kamatech-data-ui/common/src/styles/styles.scss';
@@ -30,32 +31,6 @@ class App extends Component {
     exportWidget({ id, name }, undefined, options);
   }
 
-  renderHeader = () => {
-    const {
-      installationType,
-      endpoints,
-      clouds,
-      user,
-      features: { logoText, toggleTheme },
-      menu,
-    } = window.DL;
-
-    user.yu = Utils.getCookie('parmauid');
-
-    return (
-      <Header
-        installationType={installationType}
-        sdk={sdk}
-        endpoints={endpoints}
-        clouds={clouds}
-        userData={user}
-        menuData={menu}
-        toggleTheme={toggleTheme}
-        logoText={logoText}
-      />
-    );
-  };
-
   renderContent = () => {
     return (
       <Switch>
@@ -72,7 +47,6 @@ class App extends Component {
     return (
       <div className={b()}>
         <Pointerfocus />
-        <div className={b('header')}>{this.renderHeader()}</div>
         <div className={b('main')}>{this.renderContent()}</div>
       </div>
     );

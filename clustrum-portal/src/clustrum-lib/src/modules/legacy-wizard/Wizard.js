@@ -50,6 +50,7 @@ import { fetchWidget, setDefaults, toggleFullscreen, requestUpdateWidget, receiv
 import { i18n } from '@kamatech-data-ui/clustrum';
 import { getNavigationPathFromKey } from '../../../../helpers/utils-dash';
 import PageHead from '../../../../components/PageHeader/PageHeader';
+import { FullscreenOutlined } from '@ant-design/icons';
 
 // import './Wizard.scss';
 
@@ -261,7 +262,7 @@ class Wizard extends Component {
                 view="default"
                 tone="default"
                 text={i18n('wizard', 'button_toggle-fullscreen')}
-                iconLeft={<Icon data={iconFullscreen} width="24" />}
+                iconLeft={<FullscreenOutlined />}
                 onClick={toggleFullscreen}
               />,
               <Button

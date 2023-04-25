@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import { Header } from '@kamatech-data-ui/common/src';
 
 import { DL } from '../../constants/common';
-import CloudFolderSelect from './CloudFolderSelect/CloudFolderSelect';
 import withPreparedMenu from './withPreparedMenu';
 import withToggleTheme from './withToggleTheme';
 import withSuperuserSwitch from './withSuperuserSwitch';
@@ -45,7 +44,7 @@ class HeaderClustrum extends React.Component {
   }
 
   render() {
-    return <Header {...this.props}>{this.renderCustomSection()}</Header>;
+    return <Header {...this.props}></Header>
   }
 }
 

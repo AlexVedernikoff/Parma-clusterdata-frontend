@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Button } from 'lego-on-react';
+import {Button} from "antd";
 
-import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import NavigationModal from 'components/Navigation/NavigationModal';
 import Utils from 'utils';
 import ActionPanelHelpers from '../../ActionPanelHelpers';
@@ -11,14 +10,9 @@ import EntryContextMenu from '../../../EntryContextMenu/EntryContextMenu';
 
 // import './EntryPanel.scss';
 
-import iconBrowse from 'icons/browse.svg';
-import iconConnected from 'icons/connected.svg';
-import iconMore from 'icons/more.svg';
-import iconShare from 'icons/share.svg';
-import iconStarActive from 'icons/star-active.svg';
-import iconStarInactive from 'icons/star-inactive.svg';
-
 import { I18n } from 'utils/i18n';
+import {Header} from "../../../../../../../../src/entities/header/ui/header";
+import {FolderOutlined, MoreOutlined, StarTwoTone} from "@ant-design/icons";
 const i18n = I18n.keyset('component.action-panel.view');
 
 const b = block('dl-entry-panel');
@@ -40,6 +34,7 @@ class EntryPanel extends React.Component {
     onShareBtn: PropTypes.func,
     onCreateAction: PropTypes.func,
     onCloseNavigation: PropTypes.func,
+    rightItems: PropTypes.array,
   };
 
   state = {
@@ -138,75 +133,34 @@ class EntryPanel extends React.Component {
       disabled = true;
     }
 
-    return (
-      <div className={b()}>
-        <div className={b('entry-title')}>
-          <span data-id={entryId} className={b('entry-title-text')}>
-            {entryName}
-          </span>
-          <span className={b('entry-title-description')}>{description}</span>
-        </div>
-        <div className={b('entry-actions')}>
-          <Button
-            disabled={disabled}
-            cls={b('action-btn')}
-            theme="flat"
-            size="n"
-            view="default"
-            tone="default"
-            title={isFavorite ? i18n('button_remove-favorite') : i18n('button_add-favorite')}
-            icon={
-              isFavorite ? (
-                <Icon data={iconStarActive} width="22" height="22" />
-              ) : (
-                <Icon data={iconStarInactive} width="22" height="22" />
-              )
-            }
-            onClick={this.toggleFavorite}
-          />
-          <Button
-            disabled={disabled}
-            cls={b('action-btn', b('more-dropdown'))}
-            size="n"
-            theme="flat"
-            type="default"
-            view="default"
-            tone="default"
-            onClick={this.toggleEntryContextMenu}
-            icon={<Icon className={b('more')} data={iconMore} width="22" height="22" />}
-            innerRef={this.setInnerRefBtnEntryContextMenu}
-          />
-          <EntryContextMenu
-            onClose={this.onCloseEntryContextMenu}
-            anchor={this.btnEntryContextMenuRef}
-            visible={this.state.visibleEntryContextMenu}
-            entry={entry}
-            sdk={sdk}
-          />
-          <Button
-            cls={b('action-btn')}
-            theme="flat"
-            size="n"
-            view="default"
-            tone="default"
-            title={i18n('button_open-navigation')}
-            onClick={this.openNavigation}
-          >
-            <Icon data={iconBrowse} width="22" height="22" />
-          </Button>
-          {onCopyLinkBtn && (
-            <Button disabled={disabled} cls={b('action-btn')} theme="flat" size="n" view="default" tone="default">
-              <Icon data={iconConnected} width="22" height="22" />
-            </Button>
-          )}
-          {onShareBtn && (
-            <Button disabled={disabled} cls={b('action-btn')} theme="flat" size="n" view="default" tone="default">
-              <Icon data={iconShare} width="22" height="22" />
-            </Button>
-          )}
-          {additionalEntryItems.length ? additionalEntryItems.map(EntryItem => EntryItem) : null}
-        </div>
-        <NavigationModal
+    const actionBtn = [
+      <Button
+          disabled={disabled}
+          title={isFavorite ? i18n('button_remove-favorite') : i18n('button_add-favorite')}
+          icon={isFavorite ? <StarTwoTone/> : <StarTwoTone twoToneColor="#FFD700"/>}
+          onClick={this.toggleFavorite}
+      >
+      </Button>,
+      <Button
+          disabled={disabled}
+          onClick={this.toggleEntryContextMenu}
+          icon={<MoreOutlined style={{ color: '#1890ff' }}/>}
+          innerRef={this.setInnerRefBtnEntryContextMenu}
+      />,
+      <EntryContextMenu
+          onClose={this.onCloseEntryContextMenu}
+          anchor={this.btnEntryContextMenuRef}
+          visible={this.state.visibleEntryContextMenu}
+          entry={entry}
+          sdk={sdk}
+      />,
+      <Button
+          title={i18n('button_open-navigation')}
+          icon={<FolderOutlined style={{ color: '#1890ff' }}/>}
+          onClick={this.openNavigation}
+      >
+      </Button>,
+      <NavigationModal
           sdk={sdk}
           startFrom={this.defaultPath}
           onCreateAction={this.onCreateAction}
@@ -214,7 +168,12 @@ class EntryPanel extends React.Component {
           onClose={this.onCloseNavigation}
           visible={isNavigationVisible}
           currentPageEntry={entry}
-        />
+      />
+    ]
+
+    return (
+      <div className={b()}>
+        <Header props={ this.props } actionsBtn={actionBtn}/>
       </div>
     );
   }

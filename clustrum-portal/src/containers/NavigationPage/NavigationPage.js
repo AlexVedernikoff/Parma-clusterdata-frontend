@@ -43,16 +43,6 @@ class NavigationPage extends React.Component {
     return (
       <div className={b()}>
         <Pointerfocus />
-        <Header
-          installationType={installationType}
-          sdk={sdk}
-          endpoints={endpoints}
-          clouds={clouds}
-          userData={userData}
-          menuData={menu}
-          logoText={logoText}
-          toggleTheme={toggleTheme}
-        />
         <div className={b('navigation')}>
           <Route
             path="/:root?/:path*"

@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
-import { Button, Dropdown, Icon as LegoIcon, Menu, Popup, Tooltip } from 'lego-on-react';
+import { Tooltip } from 'lego-on-react';
 import { ActionPanel, EntryDialogues, i18n } from '@kamatech-data-ui/clustrum';
-import { Icon } from '@kamatech-data-ui/common/src';
-import ButtonIcon from '../../components/ButtonIcon/ButtonIcon';
+
 import {
   cancelEditMode,
   openDialog,
@@ -19,15 +18,9 @@ import {
 import { canEdit, getCurrentPageTabs, getStyle, isDraft, isEditMode, getCurrentTab } from '../../store/selectors/dash';
 import { DIALOG_TYPE, MODE } from '../../modules/constants/constants';
 import { SDK } from '../../modules/sdk';
-import iconPlus from '@kamatech-data-ui/clustrum/src/icons/plus.svg';
-import iconCog from '@kamatech-data-ui/clustrum/src/icons/cog.svg';
-import iconEraser from '@kamatech-data-ui/clustrum/src/icons/eraser.svg';
-import iconExport from '@kamatech-data-ui/clustrum/src/icons/export.svg';
-import iconFilter from '@kamatech-data-ui/clustrum/src/icons/filter-blue.svg';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
 import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 import WidgetVisibilityDropdown from '../../components/WidgetVisibilityDropdown/WidgetVisibilityDropdown';
-import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { LAYOUT_ID } from '../../constants/constants';
 import { getLayoutId } from '../../utils/helpers';
 import BrowserPrint from '../BrowserPrint/BrowserPrint';
@@ -35,6 +28,8 @@ import { exportDashboard } from './model/exportDashboard';
 import { Toaster } from '../../../kamatech_modules/@kamatech-data-ui/common/src';
 import { NOTIFY_TYPES } from '../../../kamatech_modules/@kamatech-data-ui/clustrum/src/constants/common';
 import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
+import { Button } from 'antd';
+import { ClearOutlined, EditOutlined, FilterOutlined, SettingOutlined } from '@ant-design/icons';
 
 const b = block('dash-header');
 
@@ -168,17 +163,10 @@ class Header extends React.PureComponent {
     return [
       <Button
         cls={b('action-right', { 'button-settings': true })}
-        theme="flat"
-        view="default"
-        tone="default"
-        size="n"
         onClick={() => this.props.openDialog(DIALOG_TYPE.SETTINGS)}
         key="button-settings"
-      >
-        <ButtonIcon>
-          <Icon data={iconCog} width="22" height="22" />
-        </ButtonIcon>
-      </Button>,
+        icon={<SettingOutlined />}
+      />,
       <WidgetVisibilityDropdown
         key="widget-visibility"
         items={items}
@@ -187,83 +175,50 @@ class Header extends React.PureComponent {
       />,
       <Button
         cls={b('action-right', { 'expand-filter-panel': true })}
-        theme="flat"
-        view="default"
-        tone="default"
-        size="n"
         title={i18n('dash.header.view', 'button_expanded_filter_panel')}
         onClick={this.props.openExpandedFilter}
         key="button-expanded-filter-panel"
-      >
-        <ButtonIcon>
-          <Icon data={iconFilter} width="22" height="22" />
-        </ButtonIcon>
-      </Button>,
-      <Button
-        key="tabs"
-        theme="flat"
-        view="default"
-        tone="default"
-        size="n"
-        cls={b('action-right', { tabs: true })}
-        onClick={() => this.props.openDialog(DIALOG_TYPE.TABS)}
-      >
-        <ButtonIcon>
-          <Icon data={iconPlus} width="16" />
-        </ButtonIcon>
-        {i18n('dash.header.view', 'button_tabs')}
-      </Button>,
-      <Dropdown
-        key="add"
-        theme="flat"
-        view="default"
-        tone="default"
-        size="n"
-        cls={b('action-right')}
-        ref={this.addRef}
-        switcher={
-          <Button theme="flat" view="default" tone="default" size="n">
-            {i18n('dash.header.view', 'button_add')}
-            <LegoIcon size="n" glyph="carets-v" />
-          </Button>
-        }
-        popup={
-          <Popup hiding autoclosable onOutsideClick={() => {}}>
-            <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
-              <Menu.Item onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>
-                {i18n('dash.header.view', 'value_widget')}
-              </Menu.Item>
-              <Menu.Item onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>
-                {i18n('dash.header.view', 'value_control')}
-              </Menu.Item>
-              <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TEXT)}>
-                {i18n('dash.header.view', 'value_text')}
-              </Menu.Item>
-              <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TITLE)}>
-                {i18n('dash.header.view', 'value_title')}
-              </Menu.Item>
-            </Menu>
-          </Popup>
-        }
+        icon={<FilterOutlined />}
       />,
-      <Button
-        key="cancel"
-        theme="normal"
-        view="default"
-        tone="default"
-        size="n"
-        cls={b('action-right', { cancel: true })}
-        onClick={this.props.cancelEditMode}
-      >
+
+      // Проблемы с отображением dropdown ant-design падает вся страница
+      // <Dropdown
+      //   key="add"
+      //   theme="flat"
+      //   view="default"
+      //   tone="default"
+      //   size="n"
+      //   cls={b('action-right')}
+      //   ref={this.addRef}
+      //   switcher={
+      //     <Button>
+      //       {i18n('dash.header.view', 'button_add')}
+      //     </Button>
+      //   }
+      //   popup={
+      //     <Popup hiding autoclosable onOutsideClick={() => {}}>
+      //       <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
+      //         <Menu.Item onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>
+      //           {i18n('dash.header.view', 'value_widget')}
+      //         </Menu.Item>
+      //         <Menu.Item onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>
+      //           {i18n('dash.header.view', 'value_control')}
+      //         </Menu.Item>
+      //         <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TEXT)}>
+      //           {i18n('dash.header.view', 'value_text')}
+      //         </Menu.Item>
+      //         <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TITLE)}>
+      //           {i18n('dash.header.view', 'value_title')}
+      //         </Menu.Item>
+      //       </Menu>
+      //     </Popup>
+      //   }
+      // />,
+      <Button key="cancel" onClick={this.props.cancelEditMode}>
         {i18n('dash.header.view', 'button_cancel')}
       </Button>,
       <Button
         key="save"
-        theme="action"
-        view="default"
-        tone="default"
-        size="n"
-        progress={this.state.progress}
         disabled={!this.props.isDraft}
         cls={b('action-right', { save: true })}
         onClick={this.onSave}
@@ -296,77 +251,52 @@ class Header extends React.PureComponent {
         this.#hasVisibleExpandedFilters() ? (
           <Button
             cls={b('action-right', { 'expand-filter-panel': true })}
-            theme="flat"
-            view="default"
-            tone="default"
-            size="n"
             title={i18n('dash.header.view', 'button_expanded_filter_panel')}
             onClick={openExpandedFilter}
             key="button-expanded-filter-panel"
-          >
-            <ButtonIcon>
-              <Icon data={iconFilter} width="22" height="22" />
-            </ButtonIcon>
-          </Button>
+          ></Button>
         ) : null,
         <Button
           cls={b('action-right', { 'clear-filters': true })}
-          theme="flat"
-          view="default"
-          tone="default"
-          size="n"
           title={i18n('dash.header.view', 'button_clear_filters')}
           onClick={() => this.onClearFilters()}
           key="button-clear-filters"
+          icon={<ClearOutlined />}
         >
-          <ButtonIcon>
-            <Icon data={iconEraser} width="22" height="22" />
-          </ButtonIcon>
+          Сбросить все фильтры
         </Button>,
 
-        <Dropdown
-          key="export"
-          theme="flat"
-          size="n"
-          cls={b('action-right', { 'export-pdf': true })}
-          switcher={
-            <Button
-              cls={b('action-right', { 'export-pdf': true })}
-              progress={this.isExportInProgress()}
-              action={this.isExportInProgress()}
-              theme="flat"
-              view="default"
-              tone="default"
-              size="n"
-            >
-              <ButtonIcon>
-                <Icon data={iconExport} width="22" height="22" />
-              </ButtonIcon>
-            </Button>
-          }
-          popup={
-            <Popup hiding autoclosable onOutsideClick={() => {}}>
-              <Menu theme="normal" type="navigation" cls={b('export-menu')}>
-                <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</Menu.Item>
-                <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.XLSX)}>XLSX</Menu.Item>
-                <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.XLS)}>XLS</Menu.Item>
-                <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</Menu.Item>
-              </Menu>
-            </Popup>
-          }
-        />,
+        // Такая проблема с отображением dropdown ant-design
+        // <Dropdown
+        //   key="export"
+        //   theme="flat"
+        //   size="n"
+        //   cls={b('action-right', { 'export-pdf': true })}
+        //   switcher={
+        //     <Button
+        //       cls={b('action-right', { 'export-pdf': true })}
+        //       action={this.isExportInProgress()}
+        //     ></Button>
+        //   }
+        //   popup={
+        //     <Popup hiding autoclosable onOutsideClick={() => {}}>
+        //       <Menu theme="normal" type="navigation" cls={b('export-menu')}>
+        //         <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</Menu.Item>
+        //         <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.XLSX)}>XLSX</Menu.Item>
+        //         <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.XLS)}>XLS</Menu.Item>
+        //         <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</Menu.Item>
+        //       </Menu>
+        //     </Popup>
+        //   }
+        // />,
 
         <>
           {!window.DL.hideEdit && (
             <Button
-              cls={b('action-right', { edit: true })}
-              theme="flat"
-              view="default"
-              tone="default"
-              size="n"
               title={i18n('dash.header.view', 'button_edit')}
               onClick={() => setMode(MODE.EDIT)}
               key="button-edit"
+              icon={<EditOutlined />}
             >
               {i18n('dash.header.view', 'button_edit')}
             </Button>
@@ -378,15 +308,7 @@ class Header extends React.PureComponent {
     const DialogUnlock = EntryDialogues.dialogs.unlock;
 
     return [
-      <Button
-        cls={b('action-right', { edit: true })}
-        theme="flat"
-        view="default"
-        tone="default"
-        size="n"
-        onClick={() => this.setState({ showRightsDialog: true })}
-        key="button-edit"
-      >
+      <Button onClick={() => this.setState({ showRightsDialog: true })} key="button-edit" icon={<EditOutlined />}>
         {i18n('dash.header.view', 'button_request-rights')}
       </Button>,
       <DialogUnlock

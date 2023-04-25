@@ -35,16 +35,6 @@ class ConnectionsRouter extends PureComponent {
     return (
       <div className={b()}>
         <Pointerfocus />
-        <Header
-          installationType={installationType}
-          sdk={sdk}
-          endpoints={endpoints}
-          clouds={clouds}
-          userData={userData}
-          menuData={menu}
-          logoText={logoText}
-          toggleTheme={toggleTheme}
-        />
         <Router>
           <Switch>
             <Route

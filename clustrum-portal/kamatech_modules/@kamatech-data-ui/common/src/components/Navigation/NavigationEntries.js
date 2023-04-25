@@ -18,9 +18,10 @@ import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import iconFavoriteEmpty from '../../assets/icons/favorite-empty.svg';
 import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
-import { KamatechTableView, KamatechTextInput } from '@kamatech-ui';
+import { KamatechTableView, KamatechTextInput, KamatechCreateDropdown } from '@kamatech-ui';
 import { ScopeType } from '@kamatech-ui/enums';
 import iconXsign from '../../../../clustrum/src/icons/x-sign.svg';
+import {Header} from "../../../../../../src/entities/header/ui/header";
 
 const b = cn('yc-navigation');
 const itemsOrderBy = [
@@ -338,7 +339,7 @@ class NavigationEntries extends React.Component {
     );
   }
   renderEntriesHeader() {
-    const { mode } = this.props;
+    const { mode, onCreateMenuClick, size, createMenuItems } = this.props;
     const { place } = this.state;
     const { filters } = this.props.getPlaceParameters(place);
     const isMinimalMode = mode === MODE_MINIMAL;
@@ -347,55 +348,29 @@ class NavigationEntries extends React.Component {
       return null;
     }
 
+    const actionsControl = [
+        <KamatechTextInput
+            ref={this.refSearchInput}
+            view="default"
+            tone="default"
+            theme="normal"
+            size="s"
+            hasClear={true}
+            placeholder={this.props.searchPlaceholder}
+            text={this.state.searchValue}
+            onChange={this.onChangeFilter}
+            iconClearData={iconXsign}
+        />,
+        <KamatechCreateDropdown
+            items={createMenuItems}
+            size={size}
+            onMenuClick={onCreateMenuClick}
+        ></KamatechCreateDropdown>
+    ]
+
     return (
       <div className={b('entries-header')}>
-        {!isMinimalMode && (
-          <div className={b('search')}>
-            <KamatechTextInput
-              ref={this.refSearchInput}
-              view="default"
-              tone="default"
-              theme="normal"
-              size="s"
-              hasClear={true}
-              placeholder={this.props.searchPlaceholder}
-              text={this.state.searchValue}
-              onChange={this.onChangeFilter}
-              iconClearData={iconXsign}
-            />
-          </div>
-        )}
-        {filters && (
-          <div className={b('filters')}>
-            <div className={b('filters-item')}>
-              <YCSelect
-                items={itemsOrderBy}
-                value={this.state.orderBy}
-                onChange={this.onChangeOrderBy}
-                showSearch={false}
-                stretched={false}
-              />
-            </div>
-            {this.props.userLogin && (
-              <div className={b('filters-item')}>
-                <RadioButton
-                  theme="normal"
-                  size="s"
-                  view="default"
-                  tone="default"
-                  value={this.state.ownership}
-                  onChange={this.onChangeOwnership}
-                  freeWidth={true}
-                >
-                  <RadioButton.Radio value={OWNERSHIP.ALL}>{i18n('radiobutton_ownership-all')}</RadioButton.Radio>
-                  <RadioButton.Radio value={OWNERSHIP.ONLY_MINE}>
-                    {i18n('radiobutton_ownership-only-mine')}
-                  </RadioButton.Radio>
-                </RadioButton>
-              </div>
-            )}
-          </div>
-        )}
+        <Header props={this.props} controlBtn={actionsControl}/>
         <div className={b('custom')}>{this.props.children}</div>
       </div>
     );

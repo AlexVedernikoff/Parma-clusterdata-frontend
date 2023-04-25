@@ -16,7 +16,6 @@ function App() {
   return (
     <div className="app">
       <Pointerfocus />
-      <Header />
       <Switch>
         <Route path="/:root(dashboards)" exact={true} component={Index} />
         <Route path="/:root(datasets|widgets|favorites|navigation|connections)/:path*" component={Index} />

@@ -6,7 +6,8 @@ import iconCloseEye from '@kamatech-data-ui/clustrum/src/icons/close-eye.svg';
 import { Button, Menu, Dropdown, Popup } from 'lego-on-react';
 import { i18n } from '@kamatech-data-ui/clustrum';
 import { Icon } from '@kamatech-data-ui/common/src';
-import ButtonIcon from '../ButtonIcon/ButtonIcon';
+
+import { EyeOutlined } from '@ant-design/icons';
 
 const b = block('widget-visibility-dropdown');
 
@@ -75,11 +76,8 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
           tone="default"
           size="n"
           title={i18n('dash.header.view', 'widgets_visibility_dropdown')}
-        >
-          <ButtonIcon>
-            <Icon data={iconOpenEye} width="18" height="18" />
-          </ButtonIcon>
-        </Button>
+          icon={<EyeOutlined />}
+        />
       }
       popup={
         <Popup hiding autoclosable onOutsideClick={() => {}}>
