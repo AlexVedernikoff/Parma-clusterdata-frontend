@@ -40,16 +40,6 @@ class ActionPanel extends React.Component {
               <span>{moment(entry.updatedAt).format(TIMESTAMP_FORMAT)}</span>
             </div>
           )}
-          {/* <Button - пока не реализована такая возможность
-                        theme="pseudo"
-                        size="s"
-                        view="default"
-                        tone="default"
-                        cls={b('btn-apply-deeper')}
-                        disabled={disabled}
-                    >
-                        Применить рекурсивно
-                    </Button> */}
           <Button
             theme="action"
             size="s"

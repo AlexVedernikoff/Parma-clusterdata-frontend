@@ -79,7 +79,25 @@ import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
 import { KamatechRangePicker } from '@kamatech-ui';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
-// import './SectionVisualization.scss';
+const VISUALIZATION_LABELS = {
+  'label_visualization-area': 'Диаграмма с областями',
+  'label_visualization-area-100p': '100% диаграмма с областями',
+  'label_visualization-column': 'Столбчатая диаграмма',
+  'label_visualization-column-100p': '100% cтолбчатая диаграмма',
+  'label_visualization-flat-table': 'Таблица',
+  'label_visualization-line': 'Линейная диаграмма',
+  'label_visualization-pie': 'Круговая диаграмма',
+  'label_visualization-pivot-table': 'Сводная таблица',
+  map: 'Карта',
+  heatmap: 'Фоновая карта',
+  map_cluster_focus_point: 'Карта очагов по кластеризации',
+  label_visualization_card: 'Карточка объекта',
+  'label_visualization-scatter': 'Точечная  диаграмма',
+  'label_visualization-treemap': 'Древовидная диаграмма',
+  label_visualization_indicator: 'Индикатор',
+  label_visualization_multiline: 'График',
+  label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
+};
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -1258,28 +1276,6 @@ class SectionVisualization extends Component {
     );
   }
 
-  renderVisualizationType = item => {
-    const { visualizationType, setVisualizationType } = this.props;
-
-    const { value, title } = item;
-
-    const isActive = visualizationType === item;
-
-    return (
-      <div
-        key={`visualization-item-type-${value}`}
-        className={`visualization-item-type${isActive ? ' active' : ''}`}
-        onClick={() => {
-          setVisualizationType({
-            visualizationType: item,
-          });
-        }}
-      >
-        {title}
-      </div>
-    );
-  };
-
   renderVisualizationSelection() {
     const {
       setVisualization,
@@ -1314,31 +1310,6 @@ class SectionVisualization extends Component {
             {VISUALIZATIONS.filter(item => {
               return visualizationTypeValue === 'all' || visualizationTypeValue === item.type;
             }).map(item => {
-              const labels = {
-                'label_visualization-area': 'Диаграмма с областями',
-                'label_visualization-area-100p': '100% диаграмма с областями',
-                'label_visualization-column': 'Столбчатая диаграмма',
-                'label_visualization-column-100p': '100% cтолбчатая диаграмма',
-                'label_visualization-flat-table': 'Таблица',
-                'label_visualization-line': 'Линейная диаграмма',
-                'label_visualization-pie': 'Круговая диаграмма',
-                'label_visualization-pivot-table': 'Сводная таблица',
-                map: 'Карта',
-                heatmap: 'Фоновая карта',
-                map_cluster_focus_point: 'Карта очагов по кластеризации',
-                label_visualization_card: 'Карточка объекта',
-                map_cluster: 'Карта кластеров',
-                map_cluster_point: 'Карта кластеризации по координатам',
-                focusmap: 'Карта очагов',
-                'label_visualization-scatter': 'Точечная  диаграмма',
-                'label_visualization-treemap': 'Древовидная диаграмма',
-                'label_visualization-types-all': 'Все',
-                'label_visualization-types-column': 'Столбчатые',
-                'label_visualization-types-line': 'Графики',
-                'label_visualization-types-pie': 'Круговые',
-                'label_visualization-types-table': 'Таблицы',
-              };
-
               return (
                 <div
                   key={`visualization-item-${item.id}`}
@@ -1375,7 +1346,7 @@ class SectionVisualization extends Component {
                   }}
                 >
                   {item.icon}
-                  {labels[item.name] ? labels[item.name] : item.name}
+                  {VISUALIZATION_LABELS[item.name] ? VISUALIZATION_LABELS[item.name] : item.name}
                 </div>
               );
             })}
@@ -1393,19 +1364,9 @@ class SectionVisualization extends Component {
 
   render() {
     const { visualization, sdk, dataset, updates } = this.props;
-
-    const visualizationTypeLabels = {
-      'label_visualization-scatter': 'Точечная  диаграмма',
-      'label_visualization-treemap': 'Древовидная диаграмма',
-      'label_visualization-types-all': 'Все',
-      'label_visualization-types-column': 'Столбчатые',
-      'label_visualization-types-line': 'Графики',
-      'label_visualization-types-pie': 'Круговые',
-      'label_visualization-types-table': 'Таблицы',
-    };
-
-    const buttonText = visualization ? visualizationTypeLabels[visualization.name] : 'Выберите тип чарта';
+    const buttonText = visualization ? VISUALIZATION_LABELS[visualization.name] : 'Выберите тип чарта';
     const iconChooseVisualization = <Icon data={iconVisualization} width="24" />;
+
     return (
       <div className="container visualization-container">
         {this.state && this.state.dialogType === 'column' ? (

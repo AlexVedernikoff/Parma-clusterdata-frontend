@@ -131,7 +131,7 @@ export default class DownloadScreenshotModal extends React.PureComponent {
                       checked={this.state[parameter.name]}
                       onChange={() => this.setState({ [parameter.name]: !this.state[parameter.name] })}
                     >
-                      {parameter.key}
+                      {parameter.label}
                     </CheckBox>
                   </div>
                 ))}

@@ -19,14 +19,6 @@ class PreviewTable extends React.Component {
     numeric: true,
   });
 
-  get textPreviewLoader() {
-    const { preview: { readyPreview } = {} } = this.props;
-
-    if (readyPreview.toLowerCase() === 'pending' || readyPreview.toLowerCase() === 'loading') {
-      return 'Загрузка данных для предпросмотра';
-    }
-  }
-
   getTableData() {
     const { preview: { data: { regular: { Type = [], Data = [] } = {} } = {} } = {} } = this.props;
 
@@ -121,7 +113,7 @@ class PreviewTable extends React.Component {
       return (
         <div className={b()}>
           <div className={b('loader')}>
-            <ContainerLoader size="m" text={this.textPreviewLoader} />
+            <ContainerLoader size="m" text="Загрузка данных для предпросмотра" />
           </div>
         </div>
       );

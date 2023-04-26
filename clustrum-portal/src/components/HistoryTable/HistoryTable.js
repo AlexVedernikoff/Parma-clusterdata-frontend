@@ -17,14 +17,6 @@ class HistoryTable extends React.Component {
     numeric: true,
   });
 
-  get textPreviewLoader() {
-    const { history: { readyPreview } = {} } = this.props;
-
-    if (readyPreview.toLowerCase() === 'pending' || readyPreview.toLowerCase() === 'loading') {
-      return 'Загрузка данных для предпросмотра';
-    }
-  }
-
   excludedColumns = ['datasetId', 'revisionId'];
 
   getTableData() {
@@ -127,7 +119,7 @@ class HistoryTable extends React.Component {
       return (
         <div className={b()}>
           <div className={b('loader')}>
-            <ContainerLoader size="m" text={this.textPreviewLoader} />
+            <ContainerLoader size="m" text="Загрузка данных для предпросмотра" />
           </div>
         </div>
       );
