@@ -51,7 +51,7 @@ export const getStaticSelectItems = values => {
     };
   });
 };
-export const getAppMetricGroupNameI18n = key => _getSelectItemTitle()[key];
+export const getAppMetricGroupName = key => _getSelectItemTitle()[key];
 
 // TODO: to think about how to get list of available connectors for creation (yt)
 export const getConnectorsMap = () => {

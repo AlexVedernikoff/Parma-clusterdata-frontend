@@ -4,7 +4,7 @@ import cn from 'bem-cn-lite';
 import YCSelect from '../YCSelect/YCSelect';
 import Loader from '../Loader/Loader';
 import { Button, RadioButton } from 'lego-on-react';
-import { NOTIFICATIONS, ERROR_TEXT } from './i18n/constants';
+import { NOTIFICATIONS, ERROR_TEXT } from './locale/constants';
 import { ERROR, MODE_FULL, MODE_MINIMAL, NAVIGATION_ROOT, ORDER, OWNERSHIP } from './constants';
 import EntryContextMenu from './EntryContextMenu/EntryContextMenu';
 import { normalizeDestination } from './util';

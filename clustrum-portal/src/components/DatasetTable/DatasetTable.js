@@ -380,20 +380,20 @@ class DatasetTable extends React.Component {
     const { row: { cast: castCurrent } = {} } = rowCurrent;
     const { row: { cast: castNext } = {} } = rowNext;
 
-    const castCurrentI18n = getFieldTypeLabel(castCurrent);
-    const castNextI18n = getFieldTypeLabel(castNext);
+    const castCurrentLocale = getFieldTypeLabel(castCurrent);
+    const castNextLocale = getFieldTypeLabel(castNext);
 
-    return castCurrentI18n.localeCompare(castNextI18n, undefined, { numeric: true });
+    return castCurrentLocale.localeCompare(castNextLocale, undefined, { numeric: true });
   };
 
   sortAggregationColumn = (rowCurrent, rowNext) => {
     const { row: { aggregation: aggregationCurrent } = {} } = rowCurrent;
     const { row: { aggregation: aggregationNext } = {} } = rowNext;
 
-    const aggregationCurrentI18n = getAggregationLabel(aggregationCurrent);
-    const aggregationNextI18n = getAggregationLabel(aggregationNext);
+    const aggregationCurrentLocale = getAggregationLabel(aggregationCurrent);
+    const aggregationNextLocale = getAggregationLabel(aggregationNext);
 
-    return aggregationCurrentI18n.localeCompare(aggregationNextI18n, undefined, { numeric: true });
+    return aggregationCurrentLocale.localeCompare(aggregationNextLocale, undefined, { numeric: true });
   };
 
   sortDescriptionColumn = (rowCurrent, rowNext) => {
