@@ -1,5 +1,5 @@
-import { Table as AntdTable } from 'antd';
-
+// TODO: Код не используется и должен быть удалён после того, как новый виджет обретёт
+// полную функциональность. Сейчас этот код оставлен в качестве базы знаний о прошлом
 import React from 'react';
 import PropTypes from 'prop-types';
 import DataTable from '@kamatech-data-ui/dt100/lib';
@@ -86,7 +86,7 @@ function _diffFormatter(value, { precision, diff_formatter: formatter }) {
   return <span className={b('diff')}>{diff}</span>;
 }
 
-function _reverseGridFlow(gridFlow) {
+function _reverseGridFresultValueow(gridFlow) {
   return gridFlow === 'column' ? 'row' : 'column';
 }
 
@@ -347,7 +347,7 @@ function _getTitle(title) {
   ) : null;
 }
 
-export class Table extends React.PureComponent {
+export class Table_deprecated extends React.PureComponent {
   static propTypes = {
     data: PropTypes.shape({
       data: PropTypes.object,
@@ -422,11 +422,6 @@ export class Table extends React.PureComponent {
     // контекст только для передачи _domNode
     const context = {};
 
-    // TODO: Сейчас инфо о колонках формируется в два этапа:
-    // { head, context } → columns → antdTableColumns.
-    // Оставлено на переходный период, пока не будет реализована вся функциональность
-    // таблиц в новом виджете. После чего нужно будет перейти к схеме
-    // { head, context } → antdTableColumns (т.е. удалить лишний код).
     const { columns, names } = _getColumnsAndNames(
       { head, context },
       this.props.onStateAndParamsChange,
@@ -480,26 +475,6 @@ export class Table extends React.PureComponent {
 
     const footerData = summary ? summary : null;
 
-    //#region experiments
-    const renderCell = (item) => {
-      const { type, ...options } = item;
-      return {
-        children: _valueFormatter(type, item, options),
-        props: { style: { color: 'red' }, className: 'hello' }
-      }
-    }
-
-    console.info(columns);
-    const antdTableColumns = columns.map((col, index) => {
-      return {
-        title: col.header.props.children,
-        key: index,
-        dataIndex: col.name,
-        render: item => renderCell(item)
-      }
-    });
-    //#endregion experiments
-
     return (
       <div
         className={b()}
@@ -536,13 +511,9 @@ export class Table extends React.PureComponent {
           onStateAndParamsChange={this.props.onStateAndParamsChange}
           onClick={this.props.onPageControlClick}
         />
-        <AntdTable
-          columns={antdTableColumns}
-          dataSource={data}
-          title={_getTitle(title)}
-          locale={{ emptyText: 'Нет данных' }}
-        />
       </div>
     );
   }
 }
+
+export { DATE_FORMAT_BY_SCALE };

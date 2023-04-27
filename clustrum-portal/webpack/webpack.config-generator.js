@@ -37,7 +37,7 @@ exports.generateConfig = ({ biHost, portalHost, exportHost }, mode, devServer, d
         },
       },
     },
-    stats: 'normal',
+    stats: 'verbose',
     devServer,
     devtool,
     resolve: {
