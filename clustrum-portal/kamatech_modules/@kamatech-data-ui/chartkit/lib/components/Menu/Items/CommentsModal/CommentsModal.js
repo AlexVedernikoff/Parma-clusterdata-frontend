@@ -4,8 +4,6 @@ import block from 'bem-cn-lite';
 import moment from 'moment';
 import cloneDeep from 'lodash/cloneDeep';
 
-import i18nFactory from '../../../../modules/i18n/i18n';
-
 import ChartsModal from '../ChartsModal/ChartsModal';
 import List from './List/List';
 import Form from './Form/Form';
@@ -14,7 +12,6 @@ import LoadingParanja from './Paranja/Loading/Loading';
 
 // import './CommentsModal.scss';
 
-const i18n = i18nFactory('CommentsModal');
 const b = block('comments-modal');
 
 // TODO: пробрасывать в graphs цвета линий и использовать их в списке комментариев напротив комментария (?)
@@ -82,8 +79,8 @@ export default class CommentsModal extends React.PureComponent {
       this.setState({
         showConfirmParanja: true,
         confirmParanjaConfig: {
-          text: i18n('ask-unsaved-changes'),
-          confirmText: i18n('yes-return'),
+          text: 'Комментарий был изменен. Вы хотите вернуться и сохранить изменения?',
+          confirmText: 'Да, вернуться',
           onConfirm: () => {},
           onCancel: action,
           onOutsideClick: 'onConfirm',

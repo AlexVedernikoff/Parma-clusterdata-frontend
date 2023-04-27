@@ -10,7 +10,6 @@ import {
   toggleWidgetVisibility,
 } from '../../store/actions/dash';
 import { Button } from 'lego-on-react';
-import { i18n } from '@kamatech-data-ui/clustrum';
 import DashKit from '../../components/DashKit/DashKit';
 import { getCurrentTab, getHashState } from '../../store/selectors/dash';
 import SideSlidingPanel from '../../components/SideSlidingPanel/SideSlidingPanel';
@@ -97,7 +96,7 @@ function ExpandedFilter({
       size="n"
       onClick={clearExpandedFilter}
     >
-      {i18n('dash.expanded-filter.view', 'button_clear')}
+      Очистить
     </Button>
   );
 

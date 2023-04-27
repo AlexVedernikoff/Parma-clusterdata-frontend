@@ -11,7 +11,6 @@ import { getCurrentPageTabs } from '../../store/selectors/dash';
 import { setPageTab, toggleTableOfContent } from '../../store/actions/dash';
 import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close.svg';
 import iconArrowSidebar from '@kamatech-data-ui/clustrum/src/icons/arrow-sidebar.svg';
-import { i18n } from '@kamatech-data-ui/clustrum';
 import { appendSearchParams } from '../../helpers/QueryParams';
 
 const b = block('table-of-content');
@@ -75,7 +74,7 @@ class TableOfContent extends React.PureComponent {
           theme="raised"
           pin="circle-circle"
           size="m"
-          title={i18n('dash.table-of-content.view', 'context_table-of-content')}
+          title="Оглавление"
           cls={b('toggle', { opened })}
           onClick={() => toggleTableOfContent(!opened)}
         >
@@ -85,7 +84,7 @@ class TableOfContent extends React.PureComponent {
           {/*<div className={b('hidebar')}>*/}
           <div className={b('sidebar', { opened })}>
             <div className={b('header')}>
-              <span className={b('header-title')}>{i18n('dash.table-of-content.view', 'label_table-of-content')}</span>
+              <span className={b('header-title')}>Оглавление</span>
               <Icon
                 className={b('header-close')}
                 data={iconPreviewClose}

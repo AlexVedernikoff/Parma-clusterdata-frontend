@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import i18nFactory from '../../../../../modules/i18n/i18n';
 import settings from '../../../../../modules/settings/settings';
 import { Link } from 'lego-on-react';
 
 // import '../ChartSourceModal.scss';
 
-const i18n = i18nFactory('ChartSourceModal');
 const b = block('chart-source-modal');
 const generateKey = value => `${value}${Date.now()}`;
 
@@ -49,7 +47,7 @@ export default function StatSourceView({ index, source }) {
       if (params.language) {
         _dimensions = (
           <div className={b('cell', { dimension: true })}>
-            <span className={b('grey')}>{`${i18n('language')}: `}</span>
+            <span className={b('grey')}>Язык:</span>
             {params.language}
           </div>
         );
@@ -77,11 +75,21 @@ export default function StatSourceView({ index, source }) {
         let dimensions = reportInfo.dimensions || [];
 
         if (reportInfo.region) {
-          dimensions = [{ title: i18n('region'), valueTitle: reportInfo.region.title }].concat(dimensions);
+          dimensions = [{ title: 'Регион', valueTitle: reportInfo.region.title }].concat(dimensions);
         }
 
         if (reportInfo.scale) {
-          dimensions = [{ title: i18n('detalization'), valueTitle: i18n(reportInfo.scale.title) }].concat(dimensions);
+          const scaleLabels = {
+            'go-to-traf': 'Посмотреть в Трафе',
+            daily: 'по дням',
+            minutely: 'по минутам',
+            hourly: 'по часам',
+            weekly: 'по неделям',
+            monthly: 'по месяцам',
+            yearly: 'по годам',
+          };
+
+          dimensions = [{ title: 'Детализация', valueTitle: scaleLabels[reportInfo.scale.title] }].concat(dimensions);
         }
 
         if (dimensions && dimensions.length > 0) {
@@ -99,7 +107,7 @@ export default function StatSourceView({ index, source }) {
       if (trafReport) {
         _trafReport = (
           <div className={b('cell', { traf: true })}>
-            <div>{i18n('go-to-traf')}:</div>
+            <div>Посмотреть в Трафе:</div>
             <Link
               theme="normal"
               mix={{ block: b('link', { source: true }) }}

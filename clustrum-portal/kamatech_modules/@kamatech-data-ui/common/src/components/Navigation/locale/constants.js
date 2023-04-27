@@ -1,4 +1,3 @@
-// i18n
 export const NAVIGATION_ROOT_NAME = 'Все файлы';
 
 export const NOTIFICATIONS = {

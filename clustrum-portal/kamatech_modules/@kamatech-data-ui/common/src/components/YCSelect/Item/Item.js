@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
 import Icon from '../../Icon/Icon';
-import trans from '../i18n';
 
 import tickIcon from '../../../assets/icons/tick.svg';
 
@@ -95,7 +94,7 @@ export default class Item extends React.PureComponent {
         size="xs"
         view="default"
         tone="default"
-        text={selectedCurrentItemValue === value ? trans('item_except') : trans('item_only')}
+        text={selectedCurrentItemValue === value ? 'Кроме' : 'Только'}
         onClick={this._onOnlyButtonClick}
       />
     );

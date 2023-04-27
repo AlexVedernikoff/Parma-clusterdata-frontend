@@ -1,11 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { Button, Popup } from 'lego-on-react';
-import { I18n, NavigationMinimal } from '@kamatech-data-ui/clustrum';
+import { NavigationMinimal } from '@kamatech-data-ui/clustrum';
 
 import { PLACE, QUICK_ITEMS } from '@kamatech-data-ui/clustrum/src/components/Navigation/constants';
 import PropTypes from 'prop-types';
 
-const i18n = I18n.keyset('dataset.dataset-creation.create');
 const POPUP_DIRECTIONS = Popup.defaultProps.directions;
 
 function SelectConnection(props) {
@@ -27,7 +26,7 @@ function SelectConnection(props) {
         size="s"
         view="default"
         tone="default"
-        text={connectionId ? i18n('button_change-connection') : i18n('button_select-connection')}
+        text={connectionId ? 'Изменить подключение' : 'Выбрать подключение'}
         onClick={() => setNavVisibility(!isNavVisible)}
       />
       <NavigationMinimal

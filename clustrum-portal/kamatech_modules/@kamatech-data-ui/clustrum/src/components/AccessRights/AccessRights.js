@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 import AccessRightsBodyContent from './Body/Body';
-import { i18n } from './constants';
 import { withHiddenUnmount } from '../../hoc/withHiddenUnmount';
 
 // import './AccessRights.scss';
@@ -22,7 +21,7 @@ class AccessRights extends React.PureComponent {
     return (
       <Dialog visible={this.props.visible} onClose={this.props.onClose}>
         <div className={b()}>
-          <Dialog.Header caption={i18n('section_main-title')} />
+          <Dialog.Header caption="Права доступа" />
           <Dialog.Body className={b('body')}>
             <AccessRightsBodyContent {...this.props} />
           </Dialog.Body>

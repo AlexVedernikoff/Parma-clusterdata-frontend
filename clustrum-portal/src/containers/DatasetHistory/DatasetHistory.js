@@ -16,7 +16,6 @@ import {
   toggleVisibilityHistory,
 } from '../../store/reducers/dataset';
 import { DATASET_TABS } from '../../constants';
-import { i18n } from '../../../kamatech_modules/@kamatech-data-ui/clustrum';
 import { ResizerType } from '../../constants/ResizerType';
 
 const b = block('dataset-history');
@@ -59,9 +58,9 @@ class DatasetHistory extends React.Component {
             togglePreview={toggleHistory}
             toggleVisibilityPreview={toggleVisibilityHistory}
             changeAmountPreviewRows={changeAmountHistoryRows}
-            headerTitle={i18n('dataset.dataset-editor.modify', 'section_history')}
-            fieldDisplayRowsTitle={i18n('dataset.dataset-editor.modify', 'field_history-display-rows')}
-            maxAmountRowsTitle={i18n('dataset.dataset-editor.modify', 'label_max-amount-history-rows')}
+            headerTitle="Версионность"
+            fieldDisplayRowsTitle="Количество ревизий:"
+            maxAmountRowsTitle="не более 100"
             datasetUpdated={datasetUpdated}
           />
           <HistoryTable history={datasetHistory} />

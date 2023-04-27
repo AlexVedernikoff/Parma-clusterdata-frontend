@@ -7,7 +7,6 @@ import Icon from '../Icon/Icon';
 import Search from './Search/Search';
 import Items from './Items/Items';
 import { LEGO_POPUP_MIX_CLASS } from '../constants';
-import trans from './i18n';
 import { SelectTypes } from './types/SelectTypes';
 import arrowIcon from '../../assets/icons/chevron.svg';
 
@@ -756,7 +755,7 @@ export default class YCSelect extends React.PureComponent {
           size="n"
           view="default"
           tone="default"
-          text={trans('apply_button_text')}
+          text="Применить"
           onClick={this._onApplyClick}
           disabled={isDisabled}
         />

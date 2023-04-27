@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { TextInput } from '@kamatech-data-ui/common/src';
 import AceEditor from '../../../../AceEditor/AceEditor';
-import { I18n } from 'utils/i18n';
 
-const i18n = I18n.keyset('component.field-editor.view');
 const b = block('field-settings-spel');
 
 export const Spel = ({ spel, source, modifyField, aceModeUrl, modePath }) => {
@@ -13,7 +11,7 @@ export const Spel = ({ spel, source, modifyField, aceModeUrl, modePath }) => {
     <React.Fragment>
       <div className={b('container')}>
         <div className={b('label')}>
-          <span>{i18n('field_materialization-field')}</span>
+          <span>Поле материализации</span>
         </div>
         <TextInput
           autoFocus={true}
@@ -27,7 +25,7 @@ export const Spel = ({ spel, source, modifyField, aceModeUrl, modePath }) => {
         />
       </div>
       <div className={b('container')}>
-        <div className={b('title')}>{i18n('spel_expression')}</div>
+        <div className={b('title')}>Формула EL</div>
         <div className={b('editor')}>
           <AceEditor
             onChange={spel => modifyField({ spel })}

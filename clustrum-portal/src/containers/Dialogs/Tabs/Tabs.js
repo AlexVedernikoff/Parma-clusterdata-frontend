@@ -18,8 +18,6 @@ import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close
 import iconPencil from '@kamatech-data-ui/clustrum/src/icons/pencil.svg';
 import iconPlus from '@kamatech-data-ui/clustrum/src/icons/plus.svg';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 // import './Tabs.scss';
 
 const b = block('dialog-tabs');
@@ -82,7 +80,7 @@ class Tabs extends React.PureComponent {
     this.setState({
       tabs: update(tabs, {
         [editIndex]: {
-          $merge: { title: editTitle || i18n('dash.tabs-dialog.edit', 'value_default', { index: editIndex + 1 }) },
+          $merge: { title: editTitle || `Вкладка ${editIndex + 1}` },
         },
       }),
       editIndex: null,
@@ -109,7 +107,7 @@ class Tabs extends React.PureComponent {
     const { tabs, editIndex, editTitle } = this.state;
     return tabs ? (
       <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
-        <Dialog.Header caption={i18n('dash.tabs-dialog.edit', 'label_tabs')} />
+        <Dialog.Header caption="Вкладки" />
         <Dialog.Body className={b()}>
           <DragSortable type={TAB_TYPE} moveItem={this.moveItem}>
             {tabs.map(({ id, title, tempId }, index) =>
@@ -165,7 +163,7 @@ class Tabs extends React.PureComponent {
                 tabs: update(tabs, {
                   $push: [
                     {
-                      title: i18n('dash.tabs-dialog.edit', 'value_default', { index: tabs.length + 1 }),
+                      title: `Вкладка ${tabs.length + 1}`,
                       // чтобы react dnd работал без ошибок, key должны быть постоянными,
                       // для этого вводим tempId, который будет удален при сохранении
                       tempId: this.getTempId(),
@@ -180,13 +178,13 @@ class Tabs extends React.PureComponent {
             }
           >
             <Icon className={b('icon')} data={iconPlus} width="18" height="18" />
-            {i18n('dash.tabs-dialog.edit', 'button_add-tab')}
+            Добавить
           </div>
         </Dialog.Body>
         <Dialog.Footer
           onClickButtonCancel={closeDialog}
-          textButtonApply={i18n('dash.tabs-dialog.edit', 'button_save')}
-          textButtonCancel={i18n('dash.tabs-dialog.edit', 'button_cancel')}
+          textButtonApply="Сохранить"
+          textButtonCancel="Отменить"
           onClickButtonApply={this.onSave}
         />
       </Dialog>

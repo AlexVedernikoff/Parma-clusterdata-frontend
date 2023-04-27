@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
-import { I18n, ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
+import { ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
 import { Toaster } from '@kamatech-data-ui/common/src';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
 import ConnectionSelection from '../ConnectionSelection/ConnectionSelection';
@@ -12,10 +12,9 @@ import Utils from '../../helpers/utils';
 import { getSearchParam } from '../../helpers/QueryParams';
 
 const b = block('dataset-creation-page');
-const i18n = I18n.keyset('dataset.dataset-creation.create');
 
 const getErrorTitle = () => ({
-  createDataset: i18n('toast_create-dataset-error'),
+  createDataset: 'Ошибка: не удалось создать датасет',
 });
 
 class DatasetCreationPage extends React.Component {
@@ -254,20 +253,20 @@ class DatasetCreationPage extends React.Component {
           case 'NO_CONNECTION':
             return {
               type: 'error',
-              title: i18n('label_error-400-no-connection-title'),
+              title: 'Ошибка: отсутствует подключение',
             };
           default:
             return {
               type: 'error',
-              title: i18n('label_error-400-title'),
-              description: i18n('label_error-400-description'),
+              title: 'Ошибка: некорректный запрос к подключению',
+              description: '',
             };
         }
       case 403:
       case Types.NO_ACCESS:
         return {
           type: 'not-found',
-          title: i18n('label_error-403-title'),
+          title: 'У вас нет доступа к подключению',
           action: {
             content: null,
           },
@@ -276,7 +275,7 @@ class DatasetCreationPage extends React.Component {
       case Types.NOT_FOUND:
         return {
           type: 'not-found',
-          title: i18n('label_error-404-title'),
+          title: 'Ошибка: подключение не найдено',
           action: {
             content: null,
           },
@@ -286,8 +285,8 @@ class DatasetCreationPage extends React.Component {
       default:
         return {
           type: 'error',
-          title: i18n('label_error-500-title'),
-          description: i18n('label_error-500-description'),
+          title: 'Ошибка: не удалось загрузить подключение',
+          description: '',
           action: {
             content: null,
           },
@@ -303,7 +302,7 @@ class DatasetCreationPage extends React.Component {
       allowAutoHiding: false,
       actions: [
         {
-          label: i18n('toast_error-action-label'),
+          label: 'Подробнее',
           onClick: this.errorDialogRef.current.open,
         },
       ],
@@ -324,9 +323,15 @@ class DatasetCreationPage extends React.Component {
       user: { login },
     } = window.DL;
 
+    const sectionType = {
+      'select-db-and-table': 'Выберите базу данных и таблицу:',
+      'creation-dataset': 'Создание набора данных',
+      'change-source': 'Изменение подключения',
+    };
+
     return {
       fake: true,
-      key: window.DL.user.login ? `/Users/${login}/${i18n(`section_${section}`)}` : `/${i18n(`section_${section}`)}`,
+      key: window.DL.user.login ? `/Users/${login}/${sectionType[section]}` : `/${sectionType[section]}`,
       entryId: null,
     };
   };
@@ -375,7 +380,7 @@ class DatasetCreationPage extends React.Component {
                 size="n"
                 view="default"
                 tone="default"
-                text={i18n('button_change-source')}
+                text="Сохранить"
                 onClick={this.replaceSource}
                 progress={isActionProgress}
               />
@@ -388,7 +393,7 @@ class DatasetCreationPage extends React.Component {
                 size="n"
                 view="default"
                 tone="default"
-                text={i18n('button_create-dataset')}
+                text="Создать датасет"
                 onClick={this.createDataset}
                 progress={isActionProgress}
               />
@@ -407,7 +412,7 @@ class DatasetCreationPage extends React.Component {
         />
         <ErrorDialog
           ref={this.errorDialogRef}
-          title={getErrorTitle()[type] || i18n('toast_default-error')}
+          title={getErrorTitle()[type] || 'Ошибка'}
           requestId={requestId}
           message={message}
         />

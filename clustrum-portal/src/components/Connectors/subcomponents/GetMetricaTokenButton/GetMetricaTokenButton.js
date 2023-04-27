@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
-import { I18n } from '@kamatech-data-ui/clustrum';
 
 const b = block('dl-connector');
-const i18n = I18n.keyset('connections.form');
 const TOKEN_CODE_PATTERN = /code=([\d]{7})/;
 
 class AppMetricaConnector extends React.Component {
@@ -70,7 +68,7 @@ class AppMetricaConnector extends React.Component {
         size="s"
         view="default"
         tone="default"
-        text={i18n('field_get-token')}
+        text="Получить токен"
         onClick={this.onGetTokenBtnClick}
       />
     );

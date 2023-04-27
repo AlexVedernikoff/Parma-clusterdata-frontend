@@ -18,9 +18,6 @@ import iconShare from 'icons/share.svg';
 import iconStarActive from 'icons/star-active.svg';
 import iconStarInactive from 'icons/star-inactive.svg';
 
-import { I18n } from 'utils/i18n';
-const i18n = I18n.keyset('component.action-panel.view');
-
 const b = block('dl-entry-panel');
 
 class EntryPanel extends React.Component {
@@ -154,7 +151,7 @@ class EntryPanel extends React.Component {
             size="n"
             view="default"
             tone="default"
-            title={isFavorite ? i18n('button_remove-favorite') : i18n('button_add-favorite')}
+            title={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
             icon={
               isFavorite ? (
                 <Icon data={iconStarActive} width="22" height="22" />
@@ -189,7 +186,7 @@ class EntryPanel extends React.Component {
             size="n"
             view="default"
             tone="default"
-            title={i18n('button_open-navigation')}
+            title="Открыть навигацию"
             onClick={this.openNavigation}
           >
             <Icon data={iconBrowse} width="22" height="22" />

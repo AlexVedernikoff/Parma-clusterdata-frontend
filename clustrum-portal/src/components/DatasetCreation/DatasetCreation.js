@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Icon, Loader, Toaster, YCSelect, TextInput } from '@kamatech-data-ui/common/src';
-import { i18n, PathSelect } from '@kamatech-data-ui/clustrum';
+import { PathSelect } from '@kamatech-data-ui/clustrum';
 
 import getErrorMessageHelper from './getErrorMessageHelper';
 import UserName from '../UserName/UserName';
@@ -311,15 +311,13 @@ class DatasetCreation extends React.Component {
         const path = url.searchParams.get('path');
 
         if (!path) {
-          const ytIdErrorText = i18n('dataset.dataset-creation.create', 'field_yt-table-path-error');
+          const ytIdErrorText = 'Указан неправильный путь или URL к таблице';
 
           this.setYtPathInputError(ytIdErrorText);
         }
 
         if (!ytIdRaw.includes(`/${cluster}/`)) {
-          const ytIdErrorText = i18n('dataset.dataset-creation.create', 'field_yt-table-path-error-cluster', {
-            cluster,
-          });
+          const ytIdErrorText = `В подключении используется ${cluster} кластер`;
 
           this.setYtPathInputError(ytIdErrorText);
         }
@@ -385,16 +383,14 @@ class DatasetCreation extends React.Component {
               <div className="row">
                 <PathSelect
                   inputRef={this._setDatabaseNameInpInnerRef}
-                  inputError={
-                    pathSelectInputError ? i18n('dataset.dataset-creation.create', 'label_error-empty-field') : null
-                  }
+                  inputError={pathSelectInputError ? 'Поле обязательно для заполнения' : null}
                   sdk={sdk}
                   defaultPath={dirPath}
                   withInput={true}
                   onChoosePath={dirPath => this.changeValue({ dirPath })}
                   inputValue={datasetTitle}
                   onChangeInput={datasetTitle => this.changeValue({ datasetTitle })}
-                  placeholder={i18n('dataset.dataset-creation.create', 'field_dataset-title')}
+                  placeholder="Имя датасета"
                 />
               </div>
             )}
@@ -404,7 +400,7 @@ class DatasetCreation extends React.Component {
           }) && (
             <div className={b('row')}>
               <div className={b('caption')}>
-                <span>{i18n('connections.form', 'field_counter-source')}</span>
+                <span>Источник счетчика</span>
               </div>
               <YCSelect
                 cls={b('field-counter-source')}
@@ -421,7 +417,7 @@ class DatasetCreation extends React.Component {
           }) && (
             <div className={b('row')}>
               <div className={b('caption')}>
-                <span>{i18n('connections.form', 'field_metrica-namespace')}</span>
+                <span>Группа метрик</span>
               </div>
               <YCSelect
                 cls={b('field-counter-source')}
@@ -444,9 +440,7 @@ class DatasetCreation extends React.Component {
             isInternal,
           }) && (
             <div className="row">
-              <span className={b('caption')}>
-                {i18n('dataset.dataset-creation.create', 'section_select-db-and-table')}
-              </span>
+              <span className={b('caption')}>Выберите базу данных и таблицу:</span>
             </div>
           )}
           {this.isDisplaySection({
@@ -456,7 +450,7 @@ class DatasetCreation extends React.Component {
             <React.Fragment>
               <div className="row">
                 <div className={b('caption')}>
-                  <span>{i18n('dataset.dataset-creation.create', 'field_db-name')}</span>
+                  <span>База данных</span>
                 </div>
                 <div className={b('field')}>
                   <YCSelect
@@ -482,7 +476,7 @@ class DatasetCreation extends React.Component {
               </div>
               <div className="row">
                 <div className={b('caption')}>
-                  <span>{i18n('dataset.dataset-creation.create', 'field_table-name')}</span>
+                  <span>Таблица</span>
                 </div>
                 <div className={b('field')}>
                   <YCSelect
@@ -516,7 +510,7 @@ class DatasetCreation extends React.Component {
             }) && (
               <div className={b('row')}>
                 <div className={b('caption')}>
-                  <span>{i18n('dataset.dataset-creation-dialog.create', 'section_or-another-variant')}</span>
+                  <span>или введите YQL Public Link:</span>
                 </div>
                 <TextInput
                   cls={b('field-yql-id')}
@@ -537,7 +531,7 @@ class DatasetCreation extends React.Component {
           }) && (
             <div className={b('row')}>
               <div className={b('caption')}>
-                <span>{i18n('dataset.dataset-creation.create', 'field_yt-table-path')}</span>
+                <span>Путь к таблице в YT</span>
               </div>
               <TextInput
                 cls={b('field-yt-id')}

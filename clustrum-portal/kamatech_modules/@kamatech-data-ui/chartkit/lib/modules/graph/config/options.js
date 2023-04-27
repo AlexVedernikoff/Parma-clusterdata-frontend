@@ -219,7 +219,6 @@ export default {
     bubble: {
       tooltip: {
         headerFormat: getTooltipHeaderFormat('{series.name}', true),
-        // TODO: i18n('Размер')
         pointFormat: getTooltipPointFormat(['({point.x}, {point.y}), Размер: {point.z}']),
       },
     },

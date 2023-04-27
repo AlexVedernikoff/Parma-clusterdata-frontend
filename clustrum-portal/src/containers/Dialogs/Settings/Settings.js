@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 import { Dialog, YCSelect } from '@kamatech-data-ui/common/src';
-import { i18n } from '@kamatech-data-ui/clustrum';
 import Wrapper from '../Control/Wrapper/Wrapper';
 import { getSettings, isDialogVisible } from '../../../store/selectors/dash';
 import { closeDialog, setSettings } from '../../../store/actions/dash';
@@ -34,9 +33,9 @@ function Settings({ settings, visible, setSettings, closeDialog }) {
 
   return settings ? (
     <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
-      <Dialog.Header caption={i18n('dash.settings-dialog.edit', 'label_settings')} />
+      <Dialog.Header caption="Настройки" />
       <Dialog.Body className={b()}>
-        <Wrapper title={i18n('dash.settings-dialog.edit', 'theme_select')}>
+        <Wrapper title="Выбор темы">
           <YCSelect
             showSearch={true}
             type={'single'}
@@ -54,8 +53,8 @@ function Settings({ settings, visible, setSettings, closeDialog }) {
       </Dialog.Body>
       <Dialog.Footer
         onClickButtonCancel={closeDialog}
-        textButtonApply={i18n('dash.settings-dialog.edit', 'button_save')}
-        textButtonCancel={i18n('dash.settings-dialog.edit', 'button_cancel')}
+        textButtonApply="Сохранить"
+        textButtonCancel="Отменить"
         onClickButtonApply={() => {
           setSettings({ ...settings, ...selectedStyle });
           closeDialog();

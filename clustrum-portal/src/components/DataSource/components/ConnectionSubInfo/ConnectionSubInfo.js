@@ -2,7 +2,7 @@ import React from 'react';
 import block from 'bem-cn-lite';
 
 import Utils from '../../../../helpers/utils';
-import { getAppMetricGroupNameI18n } from '../../../../constants';
+import { getAppMetricGroupName } from '../../../../constants';
 
 // import './ConnectionSubInfo.scss';
 
@@ -24,7 +24,7 @@ function ConnectionSubInfo(props) {
       connectionSubInfo = contentLength && Utils.bytesToSize(contentLength);
       break;
     case 'appmetrica_api':
-      connectionSubInfo = getAppMetricGroupNameI18n(tableDbName);
+      connectionSubInfo = getAppMetricGroupName(tableDbName);
       break;
     default:
       connectionSubInfo = connectionTableName || tableDbName;

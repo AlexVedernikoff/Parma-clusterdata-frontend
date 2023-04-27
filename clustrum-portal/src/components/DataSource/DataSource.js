@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Dialog, Loader } from '@kamatech-data-ui/common/src';
 import { RadioBox } from 'lego-on-react';
-import { ErrorDialog, i18n } from '@kamatech-data-ui/clustrum';
+import { ErrorDialog } from '@kamatech-data-ui/clustrum';
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
@@ -37,7 +37,7 @@ function SelectionMaterializationType(props) {
   return (
     <div className={b('section')}>
       <div className={b('caption', b('margin', { bottom: 5 }))}>
-        <span>{i18n('dataset.materialization.modify', 'section_materialization')}</span>
+        <span>Материализация</span>
       </div>
       <RadioBox
         disabled={disableChangeMaterialization}
@@ -50,14 +50,10 @@ function SelectionMaterializationType(props) {
         onChange={changeMaterializationType}
       >
         <RadioBox.Radio value={DATASET_MODES.DIRECT} disabled={disabledDirectMode}>
-          {i18n('dataset.materialization.modify', 'value_direct-access')}
+          Прямой доступ
         </RadioBox.Radio>
-        <RadioBox.Radio value={DATASET_MODES.MATERIALIZED}>
-          {i18n('dataset.materialization.modify', 'value_single-full-load')}
-        </RadioBox.Radio>
-        <RadioBox.Radio value={DATASET_MODES.MATERIALIZED_BY_PERIOD}>
-          {i18n('dataset.materialization.modify', 'value_periodical-full-load')}
-        </RadioBox.Radio>
+        <RadioBox.Radio value={DATASET_MODES.MATERIALIZED}>Единовременная материализация</RadioBox.Radio>
+        <RadioBox.Radio value={DATASET_MODES.MATERIALIZED_BY_PERIOD}>Периодическая материализация</RadioBox.Radio>
       </RadioBox>
       {selectedDsMode === DATASET_MODES.MATERIALIZED_BY_PERIOD && (
         <MaterializationScheduler changeScheduleSettings={changeScheduleSettings} scheduleSettings={scheduleSettings} />
@@ -93,7 +89,7 @@ function StatusPanel(props) {
   return (
     <div className={b('section', b('margin', { bottom: 22 }))}>
       <div className={b('caption', b('margin', { bottom: 5 }))}>
-        <span>{i18n('dataset.materialization.modify', 'label_status')}</span>
+        <span>Статус</span>
       </div>
       <div className={b('last-status', b('text-inactive'))}>
         <Status isDirectDsMode={isDirectDsMode} status={status} />
@@ -149,9 +145,9 @@ function RightColumn(props) {
         <div className={b('section', b('margin', { bottom: 22 }))}>
           <DataSourceButton
             disabled={disableMaterializeDatasetBtn}
-            label={i18n('dataset.materialization.modify', 'label_next_load')}
+            label="Следующая загрузка"
             cls={b('run-btn')}
-            text={i18n('dataset.materialization.modify', 'button_load-now')}
+            text="Загрузить сейчас"
             isLoading={isMaterializationRun}
             onClick={materializeDataset}
           />
@@ -161,7 +157,7 @@ function RightColumn(props) {
         <div className={b('section')}>
           <DataSourceButton
             cls={b('delete-btn')}
-            text={i18n('dataset.materialization.modify', 'field_remove-materialization')}
+            text="Удалить материализацию"
             isLoading={isMaterializationDeleting}
             onClick={deleteMaterialization}
           />
@@ -275,7 +271,7 @@ class DataSource extends React.Component {
         allowAutoHiding: false,
         actions: [
           {
-            label: i18n('dataset.notifications.view', 'toast_error-action-label'),
+            label: 'Подробнее',
             onClick: this.errorDialogRef.current.open,
           },
         ],
@@ -333,21 +329,21 @@ class DataSource extends React.Component {
 
     switch (errorType) {
       case 'fetchMaterializationStatus':
-        return i18n('dataset.notifications.view', 'toast_fetch-materialization-status-failure');
+        return 'Ошибка: не удалось получить статус материализации';
       case 'saveData':
-        return i18n('dataset.notifications.view', 'toast_save-data-failure');
+        return 'Ошибка: не удалось сохранить';
       case 'materializeDataset':
-        return i18n('dataset.notifications.view', 'toast_materialize-dataset-failure');
+        return 'Ошибка: не удалось произвести материализацию';
       case 'deleteMaterialization':
-        return i18n('dataset.notifications.view', 'toast_delete-materialization-dataset-failure');
+        return 'Ошибка: не удалось удалить материализацию';
       case 'update-dataset-schema':
-        return i18n('dataset.notifications.view', 'toast_update-dataset-schema-failure');
+        return 'Ошибка: не удалось обновить схему';
       case REPLACE_SOURCE_MODE_ID:
-        return i18n('dataset.notifications.view', 'toast_replace-source-failure');
+        return 'Ошибка: не удалось заменить источник';
       case 'clickConnectionMoreMenuItem':
-        return i18n('dataset.notifications.view', 'toast_click-connection-more-menu-item-failure');
+        return 'Ошибка: не удалось выполнить запрос';
       default:
-        return i18n('dataset.notifications.view', 'toast_default-error');
+        return 'Ошибка';
     }
   }
 
@@ -767,9 +763,9 @@ class DataSource extends React.Component {
     if (showComponentError) {
       return (
         <ErrorView
-          errorMessage={i18n('dataset.materialization.modify', 'label_data-source-fetch-data-failed')}
+          errorMessage="Ошибка: не удалось загрузить данные"
           actionBtnProps={{
-            text: i18n('dataset.materialization.modify', 'button_repeat-action'),
+            text: 'Повторить',
             onClick: this.fetchDataSourceData,
           }}
         />
@@ -836,11 +832,7 @@ class DataSource extends React.Component {
     return (
       <Dialog visible={visible} onClose={onClose}>
         <div className={b()}>
-          <Dialog.Header
-            caption={i18n('dataset.materialization.modify', 'section_data')}
-            hr={false}
-            onClose={onClose}
-          />
+          <Dialog.Header caption="Материализация данных" hr={false} onClose={onClose} />
           <div className={b('content')}>{this.renderContent()}</div>
           <ErrorDialog
             ref={this.errorDialogRef}
@@ -852,8 +844,8 @@ class DataSource extends React.Component {
             preset="default"
             onClickButtonCancel={onClose}
             onClickButtonApply={this.clickSaveBtn}
-            textButtonApply={i18n('dataset.materialization.modify', 'button_save')}
-            textButtonCancel={i18n('dataset.materialization.modify', 'button_close')}
+            textButtonApply="Сохранить"
+            textButtonCancel="Закрыть"
             progress={progress}
             hr={true}
             propsButtonApply={{

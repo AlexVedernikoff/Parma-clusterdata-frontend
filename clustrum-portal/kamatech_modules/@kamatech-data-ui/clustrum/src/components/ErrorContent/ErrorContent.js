@@ -15,9 +15,6 @@ import errorImg from 'assets/images/clouds/500.svg';
 import promoImg from 'assets/images/clouds/promo.svg';
 import identityImg from 'assets/images/clouds/identity.svg';
 
-import { I18n } from 'utils/i18n';
-const i18n = I18n.keyset('component.error-content.view');
-
 const b = block('error-content');
 const IMAGE_SIZE = 230;
 export const Types = {
@@ -160,7 +157,7 @@ class ErrorContent extends PureComponent {
           size="n"
           view="default"
           tone="default"
-          text={i18n('button_copy')}
+          text="Копировать"
           onClick={this.copyReqId}
         />
       </div>
@@ -176,7 +173,7 @@ class ErrorContent extends PureComponent {
           size="s"
           view="default"
           tone="default"
-          text={i18n('button_console')}
+          text="Перейти в консоль"
           onClick={() => window.location.assign(window.DL.endpoints.console)}
         />
       );
@@ -241,7 +238,7 @@ class ErrorContent extends PureComponent {
             size="n"
             onClick={() => this.setState({ showAccessRightsDialog: true })}
           >
-            {i18n('button_access-rights')}
+            Запросить права
           </Button>
           <DialogUnlock
             sdk={sdk}

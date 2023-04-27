@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { RadioButton } from 'lego-on-react';
-import { I18n, PathSelect } from '@kamatech-data-ui/clustrum';
+import { PathSelect } from '@kamatech-data-ui/clustrum';
 import Title from '../../subcomponents/Title/Title';
 import Caption from '../../subcomponents/Caption/Caption';
 import InputField from '../../subcomponents/InputField/InputField';
@@ -14,7 +14,6 @@ import { getSearchParam } from '../../../../helpers/QueryParams';
 import PageHead from '../../../PageHeader/PageHeader';
 
 const b = block('dl-connector');
-const i18n = I18n.keyset('connections.form');
 
 const SECTIONS = {
   SELECTION_DB: 'SELECTION_DB',
@@ -155,8 +154,8 @@ class GeneralConnector extends React.Component {
             onChange={e => this.changeValue({ dbConnectMethod: e.target.value })}
             freeWidth={true}
           >
-            <RadioButton.Radio value={'service_name'}>{i18n('value_db-connect-method-service-name')}</RadioButton.Radio>
-            <RadioButton.Radio value={'sid'}>{i18n('value_db-connect-method-sid')}</RadioButton.Radio>
+            <RadioButton.Radio value={'service_name'}>Имя сервиса</RadioButton.Radio>
+            <RadioButton.Radio value={'sid'}>SID</RadioButton.Radio>
           </RadioButton>
         </div>
       );
@@ -164,7 +163,7 @@ class GeneralConnector extends React.Component {
 
     return (
       <div className={b('row')}>
-        <Caption text={i18n('label_db-name')} />
+        <Caption text="Имя базы данных" />
         <div className={b('row-group')}>
           <InputField
             valueType={FIELD_TYPES.DB_NAME}
@@ -185,10 +184,10 @@ class GeneralConnector extends React.Component {
 
     const isNewConnection = !id;
 
-    let labelPort = i18n('field_port');
+    let labelPort = 'Порт';
 
     if (dbType === 'clickhouse') {
-      labelPort = i18n('field_click-house-port');
+      labelPort = 'Порт HTTP-интерфейса';
     }
 
     return (
@@ -207,12 +206,12 @@ class GeneralConnector extends React.Component {
                 onChoosePath={dirPath => this.changeValue({ dirPath })}
                 inputValue={name}
                 onChangeInput={name => this.changeValue({ name })}
-                placeholder={i18n('field_connection-title')}
+                placeholder="Название подключения"
               />
             </div>
           )}
           <div className={b('row')}>
-            <Caption text={i18n('field_host-name')} />
+            <Caption text="Имя хоста" />
             <InputField
               valueType={FIELD_TYPES.HOST}
               value={host}
@@ -236,7 +235,7 @@ class GeneralConnector extends React.Component {
           {this.renderDbNameField()}
 
           <div className={b('row')}>
-            <Caption text={i18n('field_username')} />
+            <Caption text="Имя пользователя" />
             <InputField
               valueType={FIELD_TYPES.USERNAME}
               value={username}
@@ -246,7 +245,7 @@ class GeneralConnector extends React.Component {
             />
           </div>
           <div className={b('row')}>
-            <Caption text={i18n('field_password')} />
+            <Caption text="Пароль" />
             <InputField
               valueType={FIELD_TYPES.PASSWORD}
               inputType={'password'}
@@ -258,7 +257,7 @@ class GeneralConnector extends React.Component {
           </div>
 
           <div className={b('row')}>
-            <Caption text={i18n('field_max_pool_size')} />
+            <Caption text="Максимальный размер пула соединений" />
             <InputField
               valueType={FIELD_TYPES.MAX_POOL_SIZE}
               value={maxPoolSize}
@@ -272,7 +271,7 @@ class GeneralConnector extends React.Component {
 
           <div className={b('row')}>
             <VerifyButton
-              text={i18n('button_verify')}
+              text="Проверить подключение"
               verifyConnection={verifyConnection}
               isVerifySuccess={isVerifySuccess}
             />

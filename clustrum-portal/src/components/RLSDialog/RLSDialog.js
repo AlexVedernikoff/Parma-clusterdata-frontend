@@ -5,11 +5,8 @@ import { TextArea } from 'lego-on-react';
 import { Dialog } from '@kamatech-data-ui/common/src';
 
 // import './RLSDialog.scss';
-import { I18n } from '@kamatech-data-ui/clustrum-i18n';
 
 const b = block('rls-dialog');
-
-const i18n = I18n.keyset('dataset.rls.modify');
 
 class RLSDialog extends React.Component {
   static propTypes = {
@@ -80,7 +77,7 @@ class RLSDialog extends React.Component {
 
     return (
       <Dialog visible={visible} onClose={onClose}>
-        <Dialog.Header caption={i18n('label_row-level-security')} hr={false} onClose={onClose} />
+        <Dialog.Header caption="Настройка прав доступа для поля" hr={false} onClose={onClose} />
         <Dialog.Body className={b()}>
           <div className={b('field-name')}>
             <span>{title}</span>
@@ -91,7 +88,7 @@ class RLSDialog extends React.Component {
             size="s"
             text={rlsField}
             onChange={this.changeRlsSettings}
-            placeholder={i18n('field_placeholder-row-level-security')}
+            placeholder="Формат записи: 'Значение поля': логин1, логин2, etc."
             error={''}
             hasClear
             focused
@@ -101,8 +98,8 @@ class RLSDialog extends React.Component {
           preset="default"
           onClickButtonCancel={onClose}
           onClickButtonApply={this.saveRls}
-          textButtonCancel={i18n('button_cancel')}
-          textButtonApply={i18n('button_save')}
+          textButtonCancel="Отменить"
+          textButtonApply="Сохранить"
           progress={false}
           hr={true}
           propsButtonApply={{

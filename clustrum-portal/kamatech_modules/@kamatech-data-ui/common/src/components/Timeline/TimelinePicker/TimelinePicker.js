@@ -8,7 +8,6 @@ import iconCalendar from '../../../assets/icons/calendar.svg';
 import iconRefresh from '../../../assets/icons/time-refresh.svg';
 import noop from 'lodash/noop';
 import { humanizeInterval, formatInterval, formatTimeCanonical, getTimestampFromDate } from '../util';
-import i18n from '../i18n';
 import TimelineDatepicker from './TimelineDatepicker';
 
 // import './TimelinePicker.scss';
@@ -253,7 +252,7 @@ class TimelinePicker extends React.Component {
               <TimeHotButton
                 checked={isShortcutCustom}
                 onClick={this.onCustomClick}
-                title={isShortcutCustom ? humanizeInterval(from, to) : i18n('label_custom')}
+                title={isShortcutCustom ? humanizeInterval(from, to) : 'Другое'}
               />
             )}
           </div>
@@ -277,11 +276,11 @@ class TimelinePicker extends React.Component {
                 onToChange: this.onToChange,
               })}
             </div>
-            <div className={b('shortcuts-title')}>{i18n('label_shortcut-list')}:</div>
+            <div className={b('shortcuts-title')}>Показать график за:</div>
             {this.renderShortcuts()}
           </div>
         </Popup>
-        <div className={b('refresh')} title={i18n('title_autorefresh')}>
+        <div className={b('refresh')} title="Автообновление">
           {this.renderRefresh()}
         </div>
       </div>

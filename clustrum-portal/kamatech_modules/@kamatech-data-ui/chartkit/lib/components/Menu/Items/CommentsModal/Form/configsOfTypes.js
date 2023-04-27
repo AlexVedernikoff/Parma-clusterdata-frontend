@@ -1,12 +1,9 @@
 import React from 'react';
 
-import i18nFactory from '../../../../../modules/i18n/i18n';
 import SvgLine from './SvgLine';
 
 import { TYPES } from './commentsTypes';
 import ButtonIcon from '../../ButtonIcon/ButtonIcon';
-
-const i18n = i18nFactory('CommentsModal');
 
 const COLORS = [
   '#f44336',
@@ -27,7 +24,7 @@ const COLORS = [
 const COLOR = {
   type: 'picker',
   name: 'color',
-  title: i18n('control-color'),
+  title: 'Цвет',
   text: color => {
     return color ? (
       <div style={{ width: '100%', height: '100%', backgroundColor: color }} />
@@ -61,12 +58,12 @@ const EMPTY_COLOR_STYLE = {
 const COLOR_WITH_DEFAULT = {
   type: 'picker',
   name: 'color',
-  title: i18n('control-color'),
+  title: 'Цвет',
   text: color => {
     return color ? (
       <div style={{ width: '100%', height: '100%', backgroundColor: color }} />
     ) : (
-      <div style={{ width: '100%', height: '100%' }}>{i18n('control-color-default')}</div>
+      <div style={{ width: '100%', height: '100%' }}>Цвет линии</div>
     );
   },
   items: [undefined].concat(COLORS).map(color => {
@@ -95,7 +92,7 @@ const PRESETS = [
 const TOOLTIP = {
   type: 'picker',
   name: ['fillColor', 'textColor'],
-  title: i18n('control-tooltip'),
+  title: 'Тултип',
   dependency: 'visible',
   text: ({ fillColor, textColor }) => (
     <div style={{ height: '90%', border: '1px solid #eee', display: 'flex' }}>
@@ -113,7 +110,7 @@ const TOOLTIP = {
             d="M 8 0 L 120 0 C 128 0 128 0 128 8 L 128 20 C 128 28 128 28 120 28 L 8 28 C 0 28 0 28 0 20 L 0 8 C 0 0 0 0 8 0"
           />
           <text x="8" y="18" fontSize="12" fill={textColor}>
-            <tspan>{i18n('control-tooltip-text')}</tspan>
+            <tspan>Текст комментария</tspan>
           </text>
           <path fill={fillColor} d="M 90 36 L 85 28 95 28 Z" />
         </svg>
@@ -125,15 +122,15 @@ const TOOLTIP = {
 const VISIBILITY = {
   type: 'radio',
   name: 'visible',
-  title: i18n('control-visibility'),
+  title: 'Видимый',
   items: [
     {
       value: 1,
-      text: i18n('control-visibility-yes'),
+      text: 'Да',
     },
     {
       value: 0,
-      text: i18n('control-visibility-no'),
+      text: 'Нет',
     },
   ],
 };
@@ -141,19 +138,19 @@ const VISIBILITY = {
 const Z_INDEX = {
   type: 'select',
   name: 'zIndex',
-  title: i18n('control-z-index'),
+  title: 'Приоритет',
   items: [
     {
       value: 0,
-      text: i18n('control-z-index-low'),
+      text: 'Обычный',
     },
     {
       value: 10,
-      text: i18n('control-z-index-medium'),
+      text: 'Средний',
     },
     {
       value: 20,
-      text: i18n('control-z-index-high'),
+      text: 'Высокий',
     },
   ],
 };
@@ -161,19 +158,19 @@ const Z_INDEX = {
 const SHAPE = {
   type: 'select',
   name: 'shape',
-  title: i18n('control-shape'),
+  title: 'Форма',
   items: [
     {
       value: 'flag',
-      text: i18n('control-shape-flag'),
+      text: 'Флаг',
     },
     {
       value: 'circlepin',
-      text: i18n('control-shape-circle'),
+      text: 'Круг',
     },
     {
       value: 'squarepin',
-      text: i18n('control-shape-square'),
+      text: 'Квадрат',
     },
   ],
 };
@@ -181,19 +178,19 @@ const SHAPE = {
 const Y_SHIFT = {
   type: 'select',
   name: 'y',
-  title: i18n('control-y-shift'),
+  title: 'Высота',
   items: [
     {
       value: -30,
-      text: i18n('control-y-shift-low'),
+      text: 'Обычная',
     },
     {
       value: -65,
-      text: i18n('control-y-shift-medium'),
+      text: 'Средняя',
     },
     {
       value: -100,
-      text: i18n('control-y-shift-high'),
+      text: 'Большая',
     },
   ],
 };
@@ -201,7 +198,7 @@ const Y_SHIFT = {
 const GRAPH_ID = {
   type: 'select',
   name: 'graphId',
-  title: i18n('control-graph-id'),
+  title: 'Линия',
   props: 'graphs',
 };
 
@@ -255,7 +252,7 @@ const DASH_STYLES = [
 const DASH_STYLE = {
   type: 'select',
   name: 'dashStyle',
-  title: i18n('control-dash-style'),
+  title: 'Тип линии',
   items: DASH_STYLES.map(({ value, strokeDashArray }) => {
     return {
       value,
@@ -286,7 +283,7 @@ const DASH_WIDTHS = [
 const DASH_WIDTH = {
   type: 'select',
   name: 'width',
-  title: i18n('control-dash-width'),
+  title: 'Ширина линии',
   items: DASH_WIDTHS.map(({ value, strokeWidth }) => {
     return {
       value,
@@ -303,22 +300,22 @@ const DASH_WIDTH = {
 export default [
   {
     value: TYPES.BAND_X,
-    text: i18n('comment-band-x'),
+    text: 'Область',
     controls: [COLOR, VISIBILITY, Z_INDEX],
   },
   {
     value: TYPES.DOT_XY,
-    text: i18n('comment-dot-x-y'),
+    text: 'Точка',
     controls: [GRAPH_ID, VISIBILITY, COLOR_WITH_DEFAULT, TOOLTIP],
   },
   {
     value: TYPES.FLAG_X,
-    text: i18n('comment-flag-x'),
+    text: 'Флаг',
     controls: [COLOR, SHAPE, Y_SHIFT],
   },
   {
     value: TYPES.LINE_X,
-    text: i18n('comment-line-x'),
+    text: 'Линия',
     controls: [COLOR, DASH_STYLE, DASH_WIDTH],
   },
 ];

@@ -4,11 +4,7 @@ import block from 'bem-cn-lite';
 import { TextInput } from 'lego-on-react';
 import { Loader } from '@kamatech-data-ui/common/src';
 
-import { I18n } from 'utils/i18n';
-
 // import './FunctionManual.scss';
-
-const i18n = I18n.keyset('component.field-editor.view');
 
 const b = block('function-manual');
 
@@ -227,7 +223,7 @@ class FunctionManual extends React.Component {
                 size="s"
                 view="default"
                 tone="default"
-                placeholder={i18n('value_function')}
+                placeholder="Функция"
                 text={searchFunctionText}
                 onChange={this.onChangeSearchFunction}
                 hasClear

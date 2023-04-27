@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import CommentDialogBase from '../../CommentDialogBase/CommentDialogBase';
-import { i18n } from '../../../constants';
 import Utils from '../../../../../utils';
 
 // import './DialogAcceptAllRequests.scss';
@@ -25,7 +24,7 @@ class DialogAcceptAllRequests extends React.Component {
   };
 
   renderContent = () => {
-    return <div className={b()}>{i18n('label_accept-all-requests')}</div>;
+    return <div className={b()}>Будут выданы права на все запросы</div>;
   };
 
   render() {
@@ -33,9 +32,9 @@ class DialogAcceptAllRequests extends React.Component {
       <CommentDialogBase
         {...this.props}
         preset="default"
-        caption={i18n('section_accept-all-title')}
-        textButtonApply={i18n('button_accept-all-requests')}
-        placeholder={i18n('label_placeholder-comment')}
+        caption="Разрешить всем"
+        textButtonApply="Подтвердить все запросы"
+        placeholder="Комментарий (не обязательно)"
         apiHandler={this.apiHandler}
         render={this.renderContent}
       />

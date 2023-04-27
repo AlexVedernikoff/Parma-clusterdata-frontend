@@ -1,7 +1,6 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 import { RadioBox } from '../../../../../kamatech_modules/lego-on-react';
-import { i18n } from '../../../../../kamatech_modules/@kamatech-data-ui/clustrum';
 import MaterializationCustomSettings from './MaterializationCustomSettings';
 
 const DATASET_MATERIALIZED_MODES = {
@@ -24,7 +23,7 @@ function MaterializationSettings(props) {
   return (
     <div className={datasourceBlock('section')}>
       <div className={datasourceBlock('caption', datasourceBlock('margin', { bottom: 5 }))}>
-        <span>{i18n('dataset.materialization.modify', 'section_materialization_settings')}</span>
+        <span>Настройки материализации</span>
       </div>
       <div className={customSettingsBlock()}>
         <RadioBox
@@ -37,12 +36,8 @@ function MaterializationSettings(props) {
           value={materializationCustomSettings.modeType}
           onChange={handleChange}
         >
-          <RadioBox.Radio value={DATASET_MATERIALIZED_MODES.DEFAULT}>
-            {i18n('dataset.materialization.modify', 'value_custom_settings_default')}
-          </RadioBox.Radio>
-          <RadioBox.Radio value={DATASET_MATERIALIZED_MODES.CUSTOM}>
-            {i18n('dataset.materialization.modify', 'value_custom_settings_custom')}
-          </RadioBox.Radio>
+          <RadioBox.Radio value={DATASET_MATERIALIZED_MODES.DEFAULT}>По умолчанию</RadioBox.Radio>
+          <RadioBox.Radio value={DATASET_MATERIALIZED_MODES.CUSTOM}>Пользовательские</RadioBox.Radio>
         </RadioBox>
 
         {materializationCustomSettings.modeType === DATASET_MATERIALIZED_MODES.CUSTOM && (

@@ -5,8 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 import moment from 'moment';
 import configureStore from 'store/configureStore';
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
-import { SDK, I18n, Utils } from '@kamatech-data-ui/clustrum';
-I18n.registerKeysets(window.DL_I18N);
+import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
 import ConnectionsRouter from '../components/ConnectionsRouter/ConnectionsRouter';
 
