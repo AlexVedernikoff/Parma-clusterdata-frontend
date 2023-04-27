@@ -1,25 +1,14 @@
-import { Table as AntdTable } from 'antd';
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import DataTable from '@kamatech-data-ui/dt100/lib';
-import block from 'bem-cn-lite';
-import ErrorDispatcher, { ERROR_TYPE } from '../../../modules/error-dispatcher/error-dispatcher';
-import { KamatechNavigationPageControl } from '../../../../../../kamatech-ui/components';
-import DateFormat from '../../../modules/date/date-format';
-import { FILTER_CONDITION_TYPE } from '../../../../../../../src/constants/FilterConditionType';
-import { NullAlias } from './NullAlias';
 
-const DATE_FORMAT_BY_SCALE = {
-  d: 'DD.MM.YYYY',
-  w: 'DD.MM.YYYY',
-  m: 'MMMM YYYY',
-  h: 'DD.MM.YYYY HH:mm',
-  i: 'DD.MM.YYYY HH:mm',
-  s: 'DD.MM.YYYY HH:mm:ss',
-  q: 'YYYY',
-  y: 'YYYY',
-};
+import { Table as AntdTable } from 'antd';
+import block from 'bem-cn-lite';
+
+import DataTable from '@kamatech-data-ui/dt100/lib';
+import ErrorDispatcher, { ERROR_TYPE } from '@kamatech-data-ui/chartkit/lib/modules/error-dispatcher/error-dispatcher';
+import DateFormat from '@kamatech-data-ui/chartkit/lib/modules/date/date-format';
+import { FILTER_CONDITION_TYPE } from '../../../../../../constants/FilterConditionType';
+import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
 const b = block('chartkit-table');
 
@@ -199,11 +188,6 @@ function _generateName({ id = 'id', name = 'name', shift, level, index }) {
   return `${level}_${shift}_${index}_id=${id}_name=${name}`;
 }
 
-function _getIdFromGeneratedName(generatedName) {
-  const matched = generatedName.match(/id=(.*)_name=/);
-  return matched ? matched[1] : generatedName;
-}
-
 const findGroupField = row => {
   for (let f in row) {
     if (row[f].isGroupField) {
@@ -320,8 +304,8 @@ function _getColumnsAndNames({ head, context, level = 0, shift = 0 }, clickCallb
             Array.isArray(row[columnName].value)
               ? row[columnName].value[0]
               : row[columnName].valueWithoutFormat
-                ? row[columnName].valueWithoutFormat
-                : row[columnName].value,
+              ? row[columnName].valueWithoutFormat
+              : row[columnName].value,
           onClick: ({ row }, { name: columnName }) => {
             handleCellClick(context, row, field, columnName, prevSelectedCell, clickCallback);
           },
@@ -417,8 +401,6 @@ export class Table extends React.PureComponent {
     }
 
     const selectedCell = this._getSelectedCell();
-    const selectedRow =
-      selectedCell.paramId && selectedCell.value !== null ? { [selectedCell.paramId]: selectedCell.value } : null;
     // контекст только для передачи _domNode
     const context = {};
 
@@ -434,72 +416,40 @@ export class Table extends React.PureComponent {
       selectedCell,
     );
 
-    let initialSortOrder;
-    if (sort) {
-      const nameIndex = names.findIndex(generatedName => _getIdFromGeneratedName(generatedName) === sort);
-      if (nameIndex !== -1) {
-        initialSortOrder = {
-          columnId: names[nameIndex],
-          order: order === 'asc' ? DataTable.ASCENDING : DataTable.DESCENDING,
-        };
-      }
-    }
-
     const data = rows.map(row =>
       row.values
         ? row.values.reduce((result, value, index) => {
-          value.isGroupField = index === groupFieldPosition;
-          value.resultShemaId = head[index].resultSchemaId;
-          result[names[index]] = { value };
-          return result;
-        }, {})
+            value.isGroupField = index === groupFieldPosition;
+            value.resultShemaId = head[index].resultSchemaId;
+            result[names[index]] = { value };
+            return result;
+          }, {})
         : row.cells.reduce((result, value, index) => {
-          value.isGroupField = index === groupFieldPosition;
-          value.resultShemaId = head[index].resultSchemaId;
-          result[names[index]] = value;
-          return result;
-        }, {}),
+            value.isGroupField = index === groupFieldPosition;
+            value.resultShemaId = head[index].resultSchemaId;
+            result[names[index]] = value;
+            return result;
+          }, {}),
     );
 
-    const summary = total
-      ? total.map(row =>
-        row.cells.reduce((result, value, index) => {
-          value.isGroupField = index === groupFieldPosition;
-          value.resultShemaId = head[index].resultSchemaId;
-          result[names[index]] = value;
-          return result;
-        }, {}),
-      )
-      : null;
-
-    const name = columns && columns[0] && columns[0].name;
-    if (name && summary && summary[0][name]) {
-      summary[0][name].value = 'Общий итог';
-      summary[0][name].type = 'STRING';
-    }
-
-    const footerData = summary ? summary : null;
-
-    //#region experiments
-    const renderCell = (item) => {
+    const renderCell = item => {
       const { type, ...options } = item;
+      const cellContent = _valueFormatter(type, item, options);
       return {
-        children: _valueFormatter(type, item, options),
-        props: { style: { color: 'red' }, className: 'hello' }
-      }
-    }
+        children: cellContent,
+        props: { className: cellContent.props.className },
+      };
+    };
 
-    console.info(columns);
     const antdTableColumns = columns.map((col, index) => {
       return {
         title: col.header.props.children,
         key: index,
         dataIndex: col.name,
         render: item => renderCell(item),
-        sorter: col.sortAccessor
-      }
+        sorter: col.sortAccessor,
+      };
     });
-    //#endregion experiments
 
     return (
       <div
@@ -508,35 +458,6 @@ export class Table extends React.PureComponent {
           context._domNode = node;
         }}
       >
-        {_getTitle(title)}
-        <DataTable
-          columns={columns}
-          data={data}
-          footerData={footerData}
-          emptyDataMessage="Нет данных" // TODO: добавить перевод
-          settings={{
-            displayIndices: false,
-            highlightRows: true,
-            headerMod: 'multiline',
-            // пляшет ширина колонок, если не фиксированная, поэтому включаем только если очень надо
-            dynamicRender: data.length > 1000,
-            ...settings,
-          }}
-          theme="chartkit"
-          initialSortOrder={initialSortOrder}
-          selectedRow={selectedRow}
-          orderBy={orderBy}
-          onStateAndParamsChange={this.props.onStateAndParamsChange}
-          onOrderByClickInWizard={this.props.onOrderByClickInWizard}
-        />
-        <KamatechNavigationPageControl
-          page={this.props.paginateInfo.page}
-          pageSize={this.props.paginateInfo.pageSize}
-          rowsCount={this.props.data.data.rowsCount}
-          dataLength={data.length}
-          onStateAndParamsChange={this.props.onStateAndParamsChange}
-          onClick={this.props.onPageControlClick}
-        />
         <AntdTable
           columns={antdTableColumns}
           dataSource={data}
