@@ -15,6 +15,8 @@ import './../css/dash.css';
 import './../css/dash-new.css';
 import './../css/card.css';
 
+import { logVersion } from '../utils/version-logger';
+
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');
 
@@ -22,6 +24,8 @@ if (IS_INTERNAL) {
   // т.к. скрипты используют moment в форматтерах
   window.moment = moment;
 }
+
+logVersion();
 
 ReactDOM.render(
   <Provider store={store}>

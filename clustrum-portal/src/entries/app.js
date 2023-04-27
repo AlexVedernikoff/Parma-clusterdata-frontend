@@ -21,6 +21,8 @@ import './../css/app.css';
 import './../css/app-table-settings-total.css';
 import './../css/card.css';
 
+import { logVersion } from '../utils/version-logger';
+
 const middlewares = [thunkMiddleware];
 
 if (process.env.NODE_ENV !== 'production') {
@@ -34,6 +36,8 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(...middl
 moment.locale(process.env.BEM_LANG || 'ru');
 
 Utils.setBodyFeatures();
+
+logVersion();
 
 function render() {
   ReactDOM.render(
