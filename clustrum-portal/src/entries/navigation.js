@@ -9,15 +9,11 @@ import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
 import NavigationPage from '../containers/NavigationPage/NavigationPage';
 
-/*
-import '@kamatech-data-ui/common/src/styles/styles.scss';
-import '@kamatech-data-ui/clustrum/src/styles/variables.scss';
-import '../styles/variables.scss';
-*/
-
 import './../css/vendors.css';
 import './../css/commons.css';
 import './../css/navigation.css';
+
+import { logVersion } from '../utils/version-logger';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -27,6 +23,8 @@ const sdk = new SDK({
 const store = configureStore();
 
 Utils.setBodyFeatures();
+
+logVersion();
 
 function render() {
   ReactDOM.render(
