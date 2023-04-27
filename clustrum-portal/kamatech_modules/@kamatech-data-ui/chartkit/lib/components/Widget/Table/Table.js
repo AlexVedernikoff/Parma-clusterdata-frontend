@@ -495,7 +495,8 @@ export class Table extends React.PureComponent {
         title: col.header.props.children,
         key: index,
         dataIndex: col.name,
-        render: item => renderCell(item)
+        render: item => renderCell(item),
+        sorter: col.sortAccessor
       }
     });
     //#endregion experiments
