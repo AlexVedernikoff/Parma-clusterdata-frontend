@@ -435,10 +435,7 @@ export class Table extends React.PureComponent {
     const renderCell = item => {
       const { type, ...options } = item;
       const cellContent = _valueFormatter(type, item, options);
-      return {
-        children: cellContent,
-        props: { className: cellContent.props.className },
-      };
+      return cellContent;
     };
 
     const antdTableColumns = columns.map((col, index) => {
