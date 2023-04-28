@@ -6,17 +6,13 @@ import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import { Loader } from '@kamatech-data-ui/common/src';
 import ChartKitControl from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
-import {
-  ControlSelect,
-  ControlInput,
-  ControlDatepicker,
-  ControlRangeDatepicker,
-} from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Items/Items';
+import { ControlSelect, ControlInput } from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Items/Items';
 import { prerenderMiddleware } from './prerenderMiddleware';
 import { LOAD_STATUS, CONTROL_SOURCE_TYPE, DATE_FORMAT_DAY } from '../../../../constants/constants';
 import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import { SDK } from '../../../../modules/sdk';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
+import { DatepickerFilterControl, RangeDatepickerFilterControl } from '@clustrum-lib';
 
 const TYPE = {
   SELECT: 'select',
@@ -272,9 +268,9 @@ class Control extends React.PureComponent {
             case TYPE.INPUT:
               return <ControlInput {...props} />;
             case TYPE.DATEPICKER:
-              return <ControlDatepicker {...props} />;
+              return <DatepickerFilterControl {...props} />;
             case TYPE.RANGE_DATEPICKER:
-              return <ControlRangeDatepicker {...props} />;
+              return <RangeDatepickerFilterControl {...props} />;
           }
 
           return null;
