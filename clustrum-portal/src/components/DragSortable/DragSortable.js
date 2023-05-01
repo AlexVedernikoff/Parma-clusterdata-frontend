@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DragDropContext, useDrag, useDrop } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import { DndContext, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import block from 'bem-cn-lite';
 
 // import './DragSortable.scss';
@@ -64,7 +64,7 @@ SortableItem.propTypes = {
   moveItem: PropTypes.func,
 };
 
-function SortableContainer({ children, type, moveItem }) {
+export function SortableContainer({ children, type, moveItem }) {
   return (
     <div className={b()}>
       {React.Children.map(children, (child, index) => {
@@ -84,5 +84,3 @@ SortableContainer.propTypes = {
   type: PropTypes.string.isRequired,
   moveItem: PropTypes.func,
 };
-
-export default DragDropContext(HTML5Backend)(SortableContainer);

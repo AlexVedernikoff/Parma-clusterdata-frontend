@@ -16,7 +16,7 @@ import iconSortAsc from 'icons/sort-asc.svg';
 
 import { CONFLICT_TOOLTIPS, ITEM_TYPES, MEASURE_TYPE, VISUALIZATIONS } from '../../../../../constants';
 
-import DNDContainer from '../components/DND/DNDContainer';
+import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
 import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';
@@ -204,7 +204,7 @@ class SectionVisualization extends Component {
           <div className="placeholder-icon">{placeholder.icon}</div>
           <span>{placeholderTitleLabels[placeholder.title]}</span>
         </div>
-        <DNDContainer
+        <DndContainer
           id={`placeholder-container-${placeholder.id}`}
           capacity={placeholder.capacity}
           allowedTypes={placeholder.allowedTypes}
@@ -394,7 +394,7 @@ class SectionVisualization extends Component {
               </div>
               <span>Фильтры</span>
             </div>
-            <DNDContainer
+            <DndContainer
               id="filter-container"
               noSwap={true}
               items={[...filters]}
@@ -577,7 +577,7 @@ class SectionVisualization extends Component {
               </div>
               <span>Цвета</span>
             </div>
-            <DNDContainer
+            <DndContainer
               id="colors-container"
               items={colors}
               capacity={visualization.colorsCapacity || 1}
@@ -623,7 +623,7 @@ class SectionVisualization extends Component {
               </div>
               <span>Сортировка</span>
             </div>
-            <DNDContainer
+            <DndContainer
               id="sort-container"
               items={sort}
               capacity={10}

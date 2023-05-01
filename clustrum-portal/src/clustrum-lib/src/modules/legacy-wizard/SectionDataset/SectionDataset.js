@@ -34,6 +34,7 @@ import {
 import { DATASET_ERRORS, ITEM_TYPES } from '../../../../../constants';
 
 import DNDContainer from '../components/DND/DNDContainer';
+import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
 import SearchInput from '../components/SearchInput/SearchInput';
 
 import { Loader } from '@kamatech-data-ui/common/src';
@@ -503,7 +504,7 @@ class SectionDataset extends Component {
                 (filteredDimensions && filteredDimensions.filter(d => d.datasetName === value).length > 0)
               ) {
                 return (
-                  <DNDContainer
+                  <DndContainer
                     id="dimensions-container"
                     noRemove={true}
                     title={value}
@@ -533,7 +534,7 @@ class SectionDataset extends Component {
                 (filteredMeasures && filteredMeasures.filter(d => d.datasetName === value).length > 0)
               ) {
                 return (
-                  <DNDContainer
+                  <DndContainer
                     id="measures-container"
                     noRemove={true}
                     title={value}
