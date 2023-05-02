@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { TextInput } from 'lego-on-react';
 
-import i18n from '../i18n';
-
 // import './SearchSection.scss';
 
 const b = block('yc-navigation-search');
@@ -17,7 +15,7 @@ class SearchSection extends React.Component {
   };
 
   static defaultProps = {
-    placeholder: i18n('placeholder_search'),
+    placeholder: 'Поиск',
   };
 
   refInput = React.createRef();

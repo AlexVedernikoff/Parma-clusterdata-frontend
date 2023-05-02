@@ -7,7 +7,6 @@ import NavigationEntries from './NavigationEntries';
 import NavigationBreadcrumbs from './NavigationBreadcrumbs/NavigationBreadcrumbs';
 import SearchSection from './SearchSection/SearchSection';
 import { MODE_MINIMAL, NAVIGATION_ROOT } from './constants';
-import i18n from './i18n';
 
 // import './NavigationMinimal.scss';
 
@@ -152,7 +151,7 @@ class NavigationMinimal extends React.Component {
             onClick={this.onClose}
             cls={b('button-cancel')}
           >
-            {i18n('button_cancel')}
+            Отмена
           </Button>
         </div>
         <div className={b('button-place')}>
@@ -165,7 +164,7 @@ class NavigationMinimal extends React.Component {
             onClick={this.onChooseFolder}
             cls={b('button-done')}
           >
-            {i18n('button_done')}
+            Готово
           </Button>
         </div>
       </div>

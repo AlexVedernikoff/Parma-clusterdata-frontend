@@ -73,14 +73,31 @@ import {
 
 import { getIconForCast } from '../../../../../utils/helpers';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
 import Select from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import TextInput from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
 import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
 import { KamatechRangePicker } from '@kamatech-ui';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
-// import './SectionVisualization.scss';
+const VISUALIZATION_LABELS = {
+  'label_visualization-area': 'Диаграмма с областями',
+  'label_visualization-area-100p': '100% диаграмма с областями',
+  'label_visualization-column': 'Столбчатая диаграмма',
+  'label_visualization-column-100p': '100% cтолбчатая диаграмма',
+  'label_visualization-flat-table': 'Таблица',
+  'label_visualization-line': 'Линейная диаграмма',
+  'label_visualization-pie': 'Круговая диаграмма',
+  'label_visualization-pivot-table': 'Сводная таблица',
+  map: 'Карта',
+  heatmap: 'Фоновая карта',
+  map_cluster_focus_point: 'Карта очагов по кластеризации',
+  label_visualization_card: 'Карточка объекта',
+  'label_visualization-scatter': 'Точечная  диаграмма',
+  'label_visualization-treemap': 'Древовидная диаграмма',
+  label_visualization_indicator: 'Индикатор',
+  label_visualization_multiline: 'График',
+  label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
+};
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -132,11 +149,60 @@ class SectionVisualization extends Component {
 
     const { items } = placeholder;
 
+    const placeholderTitleLabels = {
+      section_colors: 'Цвета',
+      section_columns: 'Столбцы',
+      section_dimensions: 'Измерения',
+      section_filters: 'Фильтры',
+      section_measures: 'Показатели',
+      section_measure: 'Показатель',
+      additional_measure: 'Дополнительные показатели',
+      signatures: 'Подписи',
+      additional_data: 'Сопроводительные данные',
+      map_color: 'Цвет',
+      focus_count: 'Количественные показатели',
+      array_join: 'Связываение по полю-массив',
+      array_last_item_join: 'Связываение по последнему полю массива',
+      map_size: 'Размер',
+      tooltip_measure: 'Подписи',
+      drill_down_measure: 'Поле DrillDown',
+      drill_down_filter: 'Фильтр для детализации',
+      section_measures_map_cluster: 'Измерение',
+      administrative_divisions: 'Административные деления',
+      section_measures_heatmap_district: 'Указатель районов',
+      section_measures_heatmap_county: 'Указатель округов',
+      section_measures_heatmap: 'Показатель значения',
+      section_geopolygon: 'Геополигон',
+      section_latitudes: 'Широта',
+      section_longitudes: 'Долгота',
+      focus_distance: 'Расстояние расчета фокуса',
+      focus_point_from: 'Указатели начальных точек',
+      focus_point_to: 'Указатели конечных точек',
+      section_points: 'Точки',
+      section_rows: 'Строки',
+      section_size: 'Размер',
+      section_sort: 'Сортировка',
+      section_coord: 'Система координат',
+      section_title_layer: 'Адрес топосновы',
+      section_cluster_precision: 'Точность кластера',
+      nullAlias: 'Подпись для пустых данных',
+      summary: 'Строка итоговых значений',
+      summaryControl: 'Показывать строку итоговых значений',
+      uniqueRowsControl: 'Показывать только уникальные строки',
+      section_x: 'X',
+      section_y: 'Y',
+      label_visualization_indicator: 'Индикатор',
+      label_visualization_multiline: 'График',
+      label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
+      section_plan: 'План',
+      section_fact: 'Факт',
+    };
+
     return (
       <div key={`placeholder-${placeholder.id}`} className={'subcontainer'}>
         <div className="subheader">
           <div className="placeholder-icon">{placeholder.icon}</div>
-          <span>{i18n('wizard', placeholder.title)}</span>
+          <span>{placeholderTitleLabels[placeholder.title]}</span>
         </div>
         <DNDContainer
           id={`placeholder-container-${placeholder.id}`}
@@ -326,7 +392,7 @@ class SectionVisualization extends Component {
               <div className="placeholder-icon">
                 <Icon data={iconFilter} width="24" />
               </div>
-              <span>{i18n('wizard', 'section_filters')}</span>
+              <span>Фильтры</span>
             </div>
             <DNDContainer
               id="filter-container"
@@ -509,7 +575,7 @@ class SectionVisualization extends Component {
               <div className="placeholder-icon">
                 <Icon data={iconColor} width="24" />
               </div>
-              <span>{i18n('wizard', 'section_colors')}</span>
+              <span>Цвета</span>
             </div>
             <DNDContainer
               id="colors-container"
@@ -555,7 +621,7 @@ class SectionVisualization extends Component {
               <div className="placeholder-icon">
                 <Icon data={iconSort} width="24" />
               </div>
-              <span>{i18n('wizard', 'section_sort')}</span>
+              <span>Сортировка</span>
             </div>
             <DNDContainer
               id="sort-container"
@@ -625,7 +691,7 @@ class SectionVisualization extends Component {
         {visualization.allowCoordType && (
           <div className="subcontainer">
             <div className="subheader">
-              <span>{i18n('wizard', 'section_coord')}</span>
+              <span>Система координат</span>
             </div>
             <div className="subitem">
               <Select
@@ -667,7 +733,7 @@ class SectionVisualization extends Component {
                 {coordsItems.map((coordType, i) => {
                   return (
                     <Select.Item key={`coordType-${i}`} val={coordType}>
-                      {i18n('wizard', coordType)}
+                      {coordType}
                     </Select.Item>
                   );
                 })}
@@ -678,7 +744,7 @@ class SectionVisualization extends Component {
         {visualization.allowTitleLayerSource && (
           <div className="subcontainer">
             <div className="subheader">
-              <span>{i18n('wizard', 'section_title_layer')}</span>
+              <span>Адрес топосновы</span>
             </div>
             <div className="subitem">
               <TextInput
@@ -721,7 +787,7 @@ class SectionVisualization extends Component {
         {visualization.allowClusterPrecision && (
           <div className="subcontainer">
             <div className="subheader">
-              <span>{i18n('wizard', 'section_cluster_precision')}</span>
+              <span>Точность кластера</span>
             </div>
             <div className="subitem">
               <TextInput
@@ -764,7 +830,7 @@ class SectionVisualization extends Component {
         {visualization.allowNullAlias && (
           <div className="subcontainer">
             <div className="subheader">
-              <span>{i18n('wizard', 'nullAlias')}</span>
+              <span>Подпись для пустых данных</span>
             </div>
             <div className="subitem">
               <Select
@@ -803,9 +869,17 @@ class SectionVisualization extends Component {
                 }}
               >
                 {nullAliasItems.map((nullAlias, i) => {
+                  const nullAliasLabels = {
+                    null: 'Без подписи',
+                    empty: 'Пустая строка " "',
+                    dash: '"—"',
+                    'no-data': '"Нет данных"',
+                    undefined: '"Не указано"',
+                    zero: 'Значение "0"',
+                  };
                   return (
                     <Select.Item key={`null-alias-${i}`} val={nullAlias}>
-                      {i18n('wizard.null-alias', nullAlias)}
+                      {nullAliasLabels[nullAlias]}
                     </Select.Item>
                   );
                 })}
@@ -816,7 +890,7 @@ class SectionVisualization extends Component {
         {visualization.allowUniqueRows && (
           <div className="subcontainer">
             <div className="subheader">
-              <span>{i18n('wizard', 'section_rows')}</span>
+              <span>Строки</span>
             </div>
             <div className="subitem">
               <CheckBox
@@ -825,7 +899,7 @@ class SectionVisualization extends Component {
                 view="default"
                 tone="default"
                 checked={needUniqueRows}
-                text={i18n('wizard', 'uniqueRowsControl')}
+                text="Показывать только уникальные строки"
                 onChange={() => {
                   setNeedUniqueRows({ needUniqueRows: !needUniqueRows });
 
@@ -856,7 +930,7 @@ class SectionVisualization extends Component {
         {visualization.allowTotal && (
           <div className="subcontainer">
             <div className="subheader">
-              <span>{i18n('wizard', 'summary')}</span>
+              <span>Строка итоговых значений</span>
             </div>
             <div className="subitem">
               <CheckBox
@@ -865,7 +939,7 @@ class SectionVisualization extends Component {
                 view="default"
                 tone="default"
                 checked={needTotal}
-                text={i18n('wizard', 'summaryControl')}
+                text="Показывать строку итоговых значений"
                 onChange={() => {
                   setNeedTotal({ needTotal: !needTotal });
 
@@ -896,7 +970,7 @@ class SectionVisualization extends Component {
         {visualization.allowDiagramMagnitude && (
           <div className="subcontainer">
             <div className="subheader">
-              <span>{i18n('wizard', 'diagram_magnitude')}</span>
+              <span>Единицы измерения диаграммы</span>
             </div>
             <div className="subitem">
               <Select
@@ -946,7 +1020,7 @@ class SectionVisualization extends Component {
         {visualization.allowMapLayerOpacity && (
           <div className="subcontainer">
             <div className="subheader">
-              <span>{i18n('wizard', 'map_opacity')}</span>
+              <span>Прозрачность карты</span>
             </div>
             <div className="subitem">
               <KamatechRangePicker
@@ -982,7 +1056,7 @@ class SectionVisualization extends Component {
         {
           <div className="subcontainer">
             <div className="subheader">
-              <span>{i18n('wizard', 'export_limit')}</span>
+              <span>Лимит экспортируемых записей</span>
             </div>
             <div className="subitem">
               <TextInput
@@ -1188,7 +1262,7 @@ class SectionVisualization extends Component {
                 size="xs"
                 tail={false}
               >
-                {i18n('wizard', CONFLICT_TOOLTIPS[item.conflict])}
+                {CONFLICT_TOOLTIPS[item.conflict]}
               </Tooltip>
             ) : null}
             {this.props.id === 'sort-container' ? (
@@ -1201,28 +1275,6 @@ class SectionVisualization extends Component {
       </div>
     );
   }
-
-  renderVisualizationType = item => {
-    const { visualizationType, setVisualizationType } = this.props;
-
-    const { value, title } = item;
-
-    const isActive = visualizationType === item;
-
-    return (
-      <div
-        key={`visualization-item-type-${value}`}
-        className={`visualization-item-type${isActive ? ' active' : ''}`}
-        onClick={() => {
-          setVisualizationType({
-            visualizationType: item,
-          });
-        }}
-      >
-        {i18n('wizard', title)}
-      </div>
-    );
-  };
 
   renderVisualizationSelection() {
     const {
@@ -1251,7 +1303,7 @@ class SectionVisualization extends Component {
     return (
       <div>
         <div className="dropdown-header">
-          <h1>{i18n('wizard', 'label_choose-visualization-type')}</h1>
+          <h1>Тип чарта</h1>
         </div>
         <div className="visualizations-content">
           <div className="items-grid">
@@ -1294,7 +1346,7 @@ class SectionVisualization extends Component {
                   }}
                 >
                   {item.icon}
-                  {i18n('wizard', item.name)}
+                  {VISUALIZATION_LABELS[item.name] ? VISUALIZATION_LABELS[item.name] : item.name}
                 </div>
               );
             })}
@@ -1312,11 +1364,9 @@ class SectionVisualization extends Component {
 
   render() {
     const { visualization, sdk, dataset, updates } = this.props;
-
-    const buttonText = visualization
-      ? i18n('wizard', visualization.name)
-      : i18n('wizard', 'button_choose-visualization');
+    const buttonText = visualization ? VISUALIZATION_LABELS[visualization.name] : 'Выберите тип чарта';
     const iconChooseVisualization = <Icon data={iconVisualization} width="24" />;
+
     return (
       <div className="container visualization-container">
         {this.state && this.state.dialogType === 'column' ? (

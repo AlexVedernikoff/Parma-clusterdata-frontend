@@ -20,7 +20,6 @@ import { ENTRY_TYPE } from '../../../constants/constants';
 import iconPlus from '@kamatech-data-ui/clustrum/src/icons/plus.svg';
 import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close.svg';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
 import CheckBox from '../Control/Switchers/CheckBox';
 
 // import './Widget.scss';
@@ -91,7 +90,7 @@ class Widget extends React.PureComponent {
         data: {},
         description: '',
         get title() {
-          return i18n('dash.widget-dialog.edit', 'value_title-default', { index: 1 });
+          return 'Заголовок 1';
         },
       },
     ],
@@ -129,7 +128,7 @@ class Widget extends React.PureComponent {
     if (tabIndex === -1) {
       this.props.setItemData({
         data: data.map(({ title, ...rest }, index) => ({
-          title: title.trim() || i18n('dash.widget-dialog.edit', 'value_title-default', { index: index + 1 }),
+          title: title.trim() || `Заголовок ${index + 1}`,
           ...rest,
         })),
       });
@@ -245,10 +244,10 @@ class Widget extends React.PureComponent {
 
     return (
       <Dialog visible={this.state.showParamsDialog} onClose={this.closeParamsDialog} autoclosable={false}>
-        <Dialog.Header caption={i18n('dash.widget-dialog.edit', 'label_new-param')} />
+        <Dialog.Header caption="Новый параметр" />
         <Dialog.Body className={b('dialog-params')}>
           <div className={b('dialog-params-row')}>
-            {i18n('dash.widget-dialog.edit', 'field_param-name')}
+            Имя
             <TextInput
               theme="normal"
               view="default"
@@ -259,7 +258,7 @@ class Widget extends React.PureComponent {
             />
           </div>
           <div className={b('dialog-params-row')}>
-            {i18n('dash.widget-dialog.edit', 'field_param-value')}
+            Значение
             <TextInput
               theme="normal"
               view="default"
@@ -272,8 +271,8 @@ class Widget extends React.PureComponent {
         </Dialog.Body>
         <Dialog.Footer
           onClickButtonCancel={this.closeParamsDialog}
-          textButtonApply={i18n('dash.widget-dialog.edit', 'button_add')}
-          textButtonCancel={i18n('dash.widget-dialog.edit', 'button_cancel')}
+          textButtonApply="Добавить"
+          textButtonCancel="Отменить"
           onClickButtonApply={this.addParam}
         />
       </Dialog>
@@ -290,7 +289,7 @@ class Widget extends React.PureComponent {
     if (IS_INTERNAL) {
       return (
         <React.Fragment>
-          <Line caption={i18n('dash.widget-dialog.edit', 'field_params')}>
+          <Line caption="Параметры">
             <Button
               theme="flat"
               view="default"
@@ -301,7 +300,7 @@ class Widget extends React.PureComponent {
               <ButtonIcon>
                 <Icon data={iconPlus} width="16" />
               </ButtonIcon>
-              {i18n('dash.widget-dialog.edit', 'button_add-param')}
+              Добавить параметр
             </Button>
           </Line>
           {this.renderParamsDialog()}
@@ -310,7 +309,7 @@ class Widget extends React.PureComponent {
               ? Object.entries(params).map(([key, value]) => (
                   <Param key={key + value} name={key} value={value} onRemove={this.removeParam} />
                 ))
-              : i18n('dash.widget-dialog.edit', 'label_empty-list')}
+              : 'Список пуст'}
           </div>
         </React.Fragment>
       );
@@ -332,7 +331,7 @@ class Widget extends React.PureComponent {
     return (
       <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
         <div className={b()}>
-          <Dialog.Header caption={i18n('dash.widget-dialog.edit', 'label_widget')} />
+          <Dialog.Header caption="Диаграмма" />
           <Dialog.Body>
             <div className={b('main')}>
               <div className={b('sidebar')}>
@@ -340,13 +339,13 @@ class Widget extends React.PureComponent {
               </div>
 
               <div className={b('content')}>
-                <Line caption={i18n('dash.widget-dialog.edit', 'field_title')}>
+                <Line caption="Заголовок">
                   <TextInput
                     theme="normal"
                     view="default"
                     tone="default"
                     size="s"
-                    placeholder={i18n('dash.widget-dialog.edit', 'context_fill-title')}
+                    placeholder="Введите заголовок"
                     text={title}
                     onChange={value =>
                       this.setState({
@@ -357,7 +356,7 @@ class Widget extends React.PureComponent {
                   />
                 </Line>
 
-                <Line caption={i18n('dash.widget-dialog.edit', 'field_widget')} className={b('line-widget')}>
+                <Line caption="Диаграмма" className={b('line-widget')}>
                   <NavigationInput
                     size="s"
                     entryId={uuid}
@@ -375,18 +374,18 @@ class Widget extends React.PureComponent {
                     anchor={this.navigationInputRef.current}
                     onOutsideClick={() => setTimeout(() => this.setState({ error: false }), 0)}
                   >
-                    {i18n('dash.widget-dialog.edit', 'toast_required-field')}
+                    Поле должно быть заполнено
                   </Tooltip>
                 </Line>
 
-                <Line caption={i18n('dash.widget-dialog.edit', 'field_description')} />
+                <Line caption="Описание" />
                 <TextArea
                   theme="normal"
                   view="default"
                   tone="default"
                   size="s"
                   text={description}
-                  placeholder={i18n('dash.widget-dialog.edit', 'context_fill-description')}
+                  placeholder="Введите описание"
                   onChange={value =>
                     this.setState({
                       data: update(data, {
@@ -398,7 +397,7 @@ class Widget extends React.PureComponent {
                 />
 
                 <CheckBox
-                  text={i18n('dash.widget-dialog.edit', 'is_display_only_with_filter')}
+                  text="Отображать информацию только при примененном фильтре"
                   checked={this.state.data[tabIndex].isDisplayOnlyWithFilter}
                   onChange={() => {
                     const { data, tabIndex } = this.state;
@@ -419,12 +418,8 @@ class Widget extends React.PureComponent {
           <Dialog.Footer
             onClickButtonCancel={closeDialog}
             onClickButtonApply={this.onApply}
-            textButtonApply={
-              this.isEdit
-                ? i18n('dash.widget-dialog.edit', 'button_save')
-                : i18n('dash.widget-dialog.edit', 'button_add')
-            }
-            textButtonCancel={i18n('dash.widget-dialog.edit', 'button_cancel')}
+            textButtonApply={this.isEdit ? 'Сохранить' : 'Добавить'}
+            textButtonCancel="Отменить"
           />
         </div>
       </Dialog>

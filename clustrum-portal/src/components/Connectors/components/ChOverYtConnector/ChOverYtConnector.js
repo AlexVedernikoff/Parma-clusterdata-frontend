@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Link } from 'lego-on-react';
-import { I18n, PathSelect } from '@kamatech-data-ui/clustrum';
+import { PathSelect } from '@kamatech-data-ui/clustrum';
 import Title from '../../subcomponents/Title/Title';
 import Caption from '../../subcomponents/Caption/Caption';
 import InputField from '../../subcomponents/InputField/InputField';
@@ -15,7 +15,6 @@ import Utils from '../../../../helpers/utils';
 import { getSearchParam } from '../../../../helpers/QueryParams';
 
 const b = block('dl-connector');
-const i18n = I18n.keyset('connections.form');
 
 const DEFAULT_DB_TYPE = 'ch_over_yt';
 const DEFAULT_CLUSTER = 'hahn';
@@ -92,12 +91,12 @@ class ChOverYtConnector extends React.Component {
                 onChoosePath={dirPath => this.changeValue({ dirPath })}
                 inputValue={name}
                 onChangeInput={name => this.changeValue({ name })}
-                placeholder={i18n('field_connection-title')}
+                placeholder="Название подключения"
               />
             </div>
           )}
           <div className={b('row')}>
-            <Caption text={i18n('field_token-yt')} />
+            <Caption text="Токен YT" />
             <div className={b('row-group')}>
               <InputField
                 valueType={FIELD_TYPES.TOKEN}
@@ -107,11 +106,11 @@ class ChOverYtConnector extends React.Component {
                 widthSize={'m'}
                 onChange={this.changeValue}
               />
-              <HelpButton title={i18n('context_where-can-it-be-taken-token-yt')} url={'https://oauth.yt.yandex.net'} />
+              <HelpButton title="Получение OAuth-токена для YT" url={'https://oauth.yt.yandex.net'} />
             </div>
           </div>
           <div className={b('row')}>
-            <Caption text={i18n('field_cluster')} />
+            <Caption text="Кластер" />
             <SelectField
               valueType={FIELD_TYPES.CLUSTER}
               items={getStaticSelectItems(['hahn', 'arnold'])}
@@ -121,7 +120,7 @@ class ChOverYtConnector extends React.Component {
             />
           </div>
           <div className={b('row')}>
-            <Caption text={i18n('field_clika')} />
+            <Caption text="Клика" />
             <div>
               <InputField
                 valueType={FIELD_TYPES.ALIAS}
@@ -130,17 +129,17 @@ class ChOverYtConnector extends React.Component {
                 onChange={this.changeValue}
               />
               <div className={b('alias-info')}>
-                <span>{i18n('label_alias-info')}</span>
+                <span>Указывается название запущенной клики, подробнее в</span>
                 &nbsp;
                 <Link theme="ghost" target="_blank" url="">
-                  {i18n('label_documentation')}
+                  документации
                 </Link>
               </div>
             </div>
           </div>
           <div className={b('row')}>
             <VerifyButton
-              text={i18n('button_verify')}
+              text="Проверить подключение"
               verifyConnection={verifyConnection}
               isVerifySuccess={isVerifySuccess}
             />

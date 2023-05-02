@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import User from '../../../User/User';
 import CommentDialogBase from '../../CommentDialogBase/CommentDialogBase';
-import { i18n } from '../../../constants';
 import Utils from '../../../../../utils';
 import PermissionSelect from '../../../PermissionSelect/PermissionSelect';
 
@@ -42,7 +41,7 @@ class DialogAcceptRequest extends React.Component {
     return (
       <div className={b()}>
         <div className={b('user')}>
-          <div className={b('text')}>{i18n('label_for')}</div>
+          <div className={b('text')}>Для</div>
           <User participant={participant} />
         </div>
         <div className={b('permission-select')}>
@@ -65,9 +64,9 @@ class DialogAcceptRequest extends React.Component {
       <CommentDialogBase
         {...this.props}
         preset="default"
-        caption={this.props.editable ? i18n('section_accept-grant-title') : i18n('section_change-grant-title')}
-        textButtonApply={i18n('button_accept-request')}
-        placeholder={i18n('label_placeholder-comment')}
+        caption={this.props.editable ? 'Выдать права' : 'Сменить права'}
+        textButtonApply="Подтвердить запрос"
+        placeholder="Комментарий (не обязательно)"
         apiHandler={this.apiHandler}
         render={this.renderContent}
       />

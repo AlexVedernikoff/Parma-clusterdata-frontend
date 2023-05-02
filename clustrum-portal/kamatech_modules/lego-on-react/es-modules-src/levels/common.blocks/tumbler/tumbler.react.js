@@ -1,7 +1,7 @@
 function _extends() {
   _extends =
     Object.assign ||
-    function (target) {
+    function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key in source) {
@@ -21,12 +21,12 @@ function _objectSpread(target) {
     var ownKeys = Object.keys(source);
     if (typeof Object.getOwnPropertySymbols === 'function') {
       ownKeys = ownKeys.concat(
-        Object.getOwnPropertySymbols(source).filter(function (sym) {
+        Object.getOwnPropertySymbols(source).filter(function(sym) {
           return Object.getOwnPropertyDescriptor(source, sym).enumerable;
         }),
       );
     }
-    ownKeys.forEach(function (key) {
+    ownKeys.forEach(function(key) {
       _defineProperty(target, key, source[key]);
     });
   }
@@ -135,14 +135,14 @@ export default decl(
 
       return [
         leftLabel &&
-        React.createElement(TumblerOption, {
-          key: 'leftLabel',
-          side: 'left',
-          checked: checked,
-          onChange: onChange,
-          id: 'left' + id,
-          text: leftLabel.props.text || leftLabel.props.children,
-        }),
+          React.createElement(TumblerOption, {
+            key: 'leftLabel',
+            side: 'left',
+            checked: checked,
+            onChange: onChange,
+            id: 'left' + id,
+            text: leftLabel.props.text || leftLabel.props.children,
+          }),
         React.createElement(
           TumblerBox,
           _extends(
@@ -184,14 +184,14 @@ export default decl(
           ),
         ),
         rightLabel &&
-        React.createElement(TumblerOption, {
-          key: 'rightLabel',
-          side: 'right',
-          checked: checked,
-          onChange: onChange,
-          id: 'right' + id,
-          text: rightLabel.props.text || rightLabel.props.children,
-        }),
+          React.createElement(TumblerOption, {
+            key: 'rightLabel',
+            side: 'right',
+            checked: checked,
+            onChange: onChange,
+            id: 'right' + id,
+            text: rightLabel.props.text || rightLabel.props.children,
+          }),
       ];
     },
     onChange: function onChange(e) {
@@ -255,11 +255,11 @@ export default decl(
         var side = labels.props.side;
         return side === 'left' || !side
           ? {
-            leftLabel: labels,
-          }
+              leftLabel: labels,
+            }
           : {
-            rightLabel: labels,
-          };
+              rightLabel: labels,
+            };
       }
 
       return {};

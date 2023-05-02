@@ -5,7 +5,6 @@ import CheckBox from '../Switchers/CheckBox';
 import Acceptable from './Acceptable/Acceptable';
 import Wrapper from '../Wrapper/Wrapper';
 import { SDK } from '../../../../modules/sdk';
-import { i18n } from '@kamatech-data-ui/clustrum';
 import { CONTROL_SOURCE_TYPE } from '../../../../constants/constants';
 
 class Select extends React.PureComponent {
@@ -126,11 +125,11 @@ class Select extends React.PureComponent {
           <Acceptable acceptableValues={acceptableValues} multiselectable={multiselectable} onApply={onChange} />
         )}
         <CheckBox
-          text={i18n('dash.control-dialog.edit', 'field_multiselectable')}
+          text="Множественный выбор"
           checked={multiselectable}
           onChange={() => onChange({ multiselectable: !multiselectable, defaultValue: undefined })}
         />
-        <Wrapper title={i18n('dash.control-dialog.edit', 'field_default-value')}>
+        <Wrapper title="Значение по умолчанию">
           <YCSelect
             showSearch={true}
             type={multiselectable ? 'multiple' : 'single'}
@@ -138,7 +137,7 @@ class Select extends React.PureComponent {
             value={availableSelectedDefaultValues}
             onChange={defaultValue => onChange({ defaultValue })}
             disabled={!availableValuesList.length}
-            placeholder={i18n('dash.control-dialog.edit', 'value_undefined')}
+            placeholder="Не определено"
             items={availableValuesList.map(value => ({
               value,
               title: value,
@@ -146,7 +145,7 @@ class Select extends React.PureComponent {
             }))}
           />
         </Wrapper>
-        <Wrapper title={i18n('dash.control-dialog.edit', 'field_available-values')}>
+        <Wrapper title="Доступные значения">
           <YCSelect
             showSearch={true}
             type={'multiple'}
@@ -158,7 +157,7 @@ class Select extends React.PureComponent {
               )
             }
             disabled={!acceptableValues.length}
-            placeholder={i18n('dash.control-dialog.edit', 'value_undefined')}
+            placeholder="Не определено"
             items={acceptableValues.map(value => ({
               value,
               title: value,

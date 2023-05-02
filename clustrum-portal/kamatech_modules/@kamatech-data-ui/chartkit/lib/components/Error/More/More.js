@@ -7,13 +7,8 @@ import { Button, Icon, Link, Modal } from 'lego-on-react';
 
 import CopyToClipboard from '@kamatech-data-ui/react-components/src/components/CopyToClipboard';
 
-import { i18nV2 as i18nFactory } from '../../../modules/i18n/i18n';
-
-import * as keyset from '../i18n';
-
 // import '../Error.scss';
 
-const i18n = i18nFactory(keyset);
 const b = block('chartkit-error');
 
 class More extends React.PureComponent {
@@ -35,7 +30,7 @@ ${JSON.stringify(this.props.text, null, 4)}`;
       <Modal autoclosable visible={true} onOutsideClick={this.onClose}>
         <div className={b('modal')}>
           <div className={b('modal-header')}>
-            {i18n('error-data-fetching')}
+            Ошибка: не удалось загрузить данные
             <Link theme="ghost" onClick={this.onClose}>
               <Icon glyph="type-close" size="head" />
             </Link>
@@ -45,12 +40,12 @@ ${JSON.stringify(this.props.text, null, 4)}`;
             <CopyToClipboard text={text} resetTimeout={5000} onCopy={this.onCopy}>
               {() => (
                 <Button theme="pseudo" tone="default" view="default" size="m">
-                  {i18n('copy')}
+                  Скопировать
                 </Button>
               )}
             </CopyToClipboard>
             <Button theme="pseudo" tone="default" view="default" size="m" onClick={this.onClose}>
-              {i18n('close')}
+              Закрыть
             </Button>
           </div>
         </div>
@@ -63,7 +58,7 @@ ${JSON.stringify(this.props.text, null, 4)}`;
     return (
       <React.Fragment>
         <Button theme="pseudo" tone="default" view="default" size="m" cls={b('button')} onClick={this.onClick}>
-          {i18n('more')}
+          Подробнее
         </Button>
         <div ref={this.anchorRef} />
       </React.Fragment>

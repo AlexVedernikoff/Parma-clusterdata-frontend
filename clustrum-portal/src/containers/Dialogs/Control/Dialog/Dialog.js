@@ -4,8 +4,6 @@ import block from 'bem-cn-lite';
 
 import { Dialog as CommonDialog } from '@kamatech-data-ui/common/src';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 // import './Dialog.scss';
 
 const b = block('sub-dialog-control');
@@ -23,8 +21,8 @@ function Dialog(props) {
         <CommonDialog.Footer
           onClickButtonCancel={onClose}
           onClickButtonApply={onApply}
-          textButtonApply={i18n('dash.control-dialog.edit', 'button_apply')}
-          textButtonCancel={i18n('dash.control-dialog.edit', 'button_cancel')}
+          textButtonApply="Применить"
+          textButtonCancel="Отменить"
         />
       </div>
     </CommonDialog>

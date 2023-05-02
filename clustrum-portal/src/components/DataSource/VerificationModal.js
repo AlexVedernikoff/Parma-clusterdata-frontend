@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Dialog, Loader } from '@kamatech-data-ui/common/src';
-import { ErrorDialog, i18n } from '@kamatech-data-ui/clustrum';
+import { ErrorDialog } from '@kamatech-data-ui/clustrum';
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
@@ -18,7 +18,7 @@ function StatusPanel(props) {
   return (
     <div className={b('section', b('margin', { bottom: 22 }))}>
       <div className={b('caption', b('margin', { bottom: 5 }))}>
-        <span>{i18n('dataset.materialization.modify', 'label_status')}</span>
+        <span>Статус</span>
       </div>
       <div className={b('last-status', b('text-inactive'))}>
         <Status isDirectDsMode={isDirectDsMode} status={status} />
@@ -48,9 +48,9 @@ function StatusColumn(props) {
         <div className={b('section', b('margin', { bottom: 22 }))}>
           <DataSourceButton
             disabled={disableVerificationDatasetBtn}
-            label={i18n('dataset.materialization.modify', 'label_next_run')}
+            label="Следующий запуск"
             cls={b('run-btn')}
-            text={i18n('dataset.materialization.modify', 'button_run-now')}
+            text="Запустить сейчас"
             isLoading={isVerificationRun}
             onClick={verifyDataset}
           />
@@ -60,7 +60,7 @@ function StatusColumn(props) {
         <DataSourceButton
           disabled={disableDeleteVerification}
           cls={b('delete-btn')}
-          text={i18n('dataset.materialization.modify', 'field_clear-verification')}
+          text="Очистить результаты"
           isLoading={isVerificationClearing}
           onClick={deleteVerification}
         />
@@ -134,7 +134,7 @@ class VerificationModal extends React.Component {
         allowAutoHiding: false,
         actions: [
           {
-            label: i18n('dataset.notifications.view', 'toast_error-action-label'),
+            label: 'Подробнее',
             onClick: this.errorDialogRef.current.open,
           },
         ],
@@ -189,21 +189,21 @@ class VerificationModal extends React.Component {
 
     switch (errorType) {
       case 'fetchVerificationStatus':
-        return i18n('dataset.notifications.view', 'toast_fetch-verification-status-failure');
+        return 'Ошибка: не удалось получить статус верификации';
       case 'saveData':
-        return i18n('dataset.notifications.view', 'toast_save-data-failure');
+        return 'Ошибка: не удалось сохранить';
       case 'deleteVerification':
-        return i18n('dataset.notifications.view', 'toast_clear-verification-dataset-failure');
+        return 'Ошибка: не удалось очистить результаты верификации';
       case 'verifyDataset':
-        return i18n('dataset.notifications.view', 'toast_verify-dataset-failure');
+        return 'Ошибка: не удалось произвести верификацию';
       case 'update-dataset-schema':
-        return i18n('dataset.notifications.view', 'toast_update-dataset-schema-failure');
+        return 'Ошибка: не удалось обновить схему';
       case REPLACE_SOURCE_MODE_ID:
-        return i18n('dataset.notifications.view', 'toast_replace-source-failure');
+        return 'Ошибка: не удалось заменить источник';
       case 'clickConnectionMoreMenuItem':
-        return i18n('dataset.notifications.view', 'toast_click-connection-more-menu-item-failure');
+        return 'Ошибка: не удалось выполнить запрос';
       default:
-        return i18n('dataset.notifications.view', 'toast_default-error');
+        return 'Ошибка';
     }
   }
 
@@ -413,9 +413,9 @@ class VerificationModal extends React.Component {
     if (showComponentError) {
       return (
         <ErrorView
-          errorMessage={i18n('dataset.materialization.modify', 'label_data-source-fetch-data-failed')}
+          errorMessage="Ошибка: не удалось загрузить данные"
           actionBtnProps={{
-            text: i18n('dataset.materialization.modify', 'button_repeat-action'),
+            text: 'Повторить',
             onClick: this.fetchDataSourceData,
           }}
         />
@@ -449,11 +449,7 @@ class VerificationModal extends React.Component {
     return (
       <Dialog visible={visible} onClose={onClose}>
         <div className={b()}>
-          <Dialog.Header
-            caption={i18n('dataset.materialization.modify', 'section_verification')}
-            hr={false}
-            onClose={onClose}
-          />
+          <Dialog.Header caption="Верификация и сопоставление данных" hr={false} onClose={onClose} />
           <div className={b('content')}>{this.renderContent()}</div>
           <ErrorDialog
             ref={this.errorDialogRef}
@@ -465,8 +461,8 @@ class VerificationModal extends React.Component {
             preset="default"
             onClickButtonCancel={onClose}
             onClickButtonApply={this.clickSaveBtn}
-            textButtonApply={i18n('dataset.materialization.modify', 'button_save')}
-            textButtonCancel={i18n('dataset.materialization.modify', 'button_close')}
+            textButtonApply="Сохранить"
+            textButtonCancel="Закрыть"
             progress={progress}
             hr={true}
             propsButtonApply={{

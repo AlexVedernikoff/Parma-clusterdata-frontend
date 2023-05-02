@@ -41,7 +41,7 @@ export function normalizeDestination(destination = '') {
   return destination.replace(/^\/+|\/+$/g, '') + '/';
 }
 
-import { NAVIGATION_ROOT_NAME } from './i18n/constants';
+import { NAVIGATION_ROOT_NAME } from './locale/constants';
 
 export function getPathDisplayName({ path }) {
   const name = getNameByIndex({ path, index: -1 });

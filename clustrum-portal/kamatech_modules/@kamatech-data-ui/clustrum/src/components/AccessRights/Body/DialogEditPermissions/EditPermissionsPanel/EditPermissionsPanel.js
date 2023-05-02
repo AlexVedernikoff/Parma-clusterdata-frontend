@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { i18n } from '../../../constants';
 import User from '../../../User/User';
 import PermissionSelect from '../../../PermissionSelect/PermissionSelect';
 import { TextArea } from '@kamatech-data-ui/common/src';
@@ -56,7 +55,7 @@ class EditPermissionsPanel extends React.Component {
       if (this._isUnmounted) {
         return;
       }
-      this.setState({ progress: false, error: i18n('label_error-general') });
+      this.setState({ progress: false, error: 'Что-то пошло не так. Пожалуйста, повторите запрос позже.' });
     }
   };
 
@@ -91,7 +90,7 @@ class EditPermissionsPanel extends React.Component {
               disabled={progress}
               onClick={this.onClickBtnDeny}
             >
-              {i18n('section_revoke-rights-title')}
+              Отозвать права
             </Button>
           </div>
           {permission !== participant.permission && (
@@ -102,7 +101,7 @@ class EditPermissionsPanel extends React.Component {
                 size="s"
                 text={this.state.text}
                 onChange={this.onChangeTextArea}
-                placeholder={i18n('label_placeholder-reason-change-grant')}
+                placeholder="Причина изменения прав (не обязательно)"
                 error={this.state.error}
                 hasClear
                 focused
@@ -116,7 +115,7 @@ class EditPermissionsPanel extends React.Component {
                   disabled={progress}
                   onClick={this.onClickBtnCancel}
                 >
-                  {i18n('button_cancel')}
+                  Отменить
                 </Button>
                 <Button
                   theme="action"
@@ -127,7 +126,7 @@ class EditPermissionsPanel extends React.Component {
                   progress={progress}
                   onClick={this.onClickBtnSave}
                 >
-                  {i18n('button_save')}
+                  Сохранить
                 </Button>
               </div>
             </div>

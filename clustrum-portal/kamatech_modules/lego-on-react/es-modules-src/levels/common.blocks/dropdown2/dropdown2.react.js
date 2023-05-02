@@ -1,4 +1,4 @@
-var _createClass = (function () {
+var _createClass = (function() {
   function defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
@@ -8,7 +8,7 @@ var _createClass = (function () {
       Object.defineProperty(target, descriptor.key, descriptor);
     }
   }
-  return function (Constructor, protoProps, staticProps) {
+  return function(Constructor, protoProps, staticProps) {
     if (protoProps) defineProperties(Constructor.prototype, protoProps);
     if (staticProps) defineProperties(Constructor, staticProps);
     return Constructor;
@@ -19,7 +19,7 @@ var _class, _temp, _class2, _temp2;
 
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -33,14 +33,14 @@ var _extends =
 
 var _typeof =
   typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol'
-    ? function (obj) {
-      return typeof obj;
-    }
-    : function (obj) {
-      return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype
-        ? 'symbol'
-        : typeof obj;
-    };
+    ? function(obj) {
+        return typeof obj;
+      }
+    : function(obj) {
+        return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype
+          ? 'symbol'
+          : typeof obj;
+      };
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -111,7 +111,7 @@ export default decl(
         url = void 0,
         mix = void 0;
 
-      Children.forEach(children, function (item) {
+      Children.forEach(children, function(item) {
         if (isSwitcher(item)) {
           switcher = item.props.children;
           url = item.props.url;
@@ -170,7 +170,7 @@ export default decl(
 
       return content;
     },
-    _renderSwitcher: function _renderSwitcher() { },
+    _renderSwitcher: function _renderSwitcher() {},
     _renderPopup: function _renderPopup(_ref2) {
       var view = _ref2.view,
         tone = _ref2.tone,
@@ -216,7 +216,7 @@ export default decl(
   },
   {
     Switcher:
-      ((_temp = _class = (function (_Component) {
+      ((_temp = _class = (function(_Component) {
         _inherits(Switcher, _Component);
 
         function Switcher() {
@@ -241,10 +241,10 @@ export default decl(
 
         return Switcher;
       })(Component)),
-        (_class.__name = 'Switcher'),
-        _temp),
+      (_class.__name = 'Switcher'),
+      _temp),
     Popup:
-      ((_temp2 = _class2 = (function (_Component2) {
+      ((_temp2 = _class2 = (function(_Component2) {
         _inherits(Popup, _Component2);
 
         function Popup() {
@@ -269,8 +269,8 @@ export default decl(
 
         return Popup;
       })(Component)),
-        (_class2.__name = 'Popup'),
-        _temp2),
+      (_class2.__name = 'Popup'),
+      _temp2),
     propTypes: {
       onChange: PropTypes.func,
       view: PropTypes.string,

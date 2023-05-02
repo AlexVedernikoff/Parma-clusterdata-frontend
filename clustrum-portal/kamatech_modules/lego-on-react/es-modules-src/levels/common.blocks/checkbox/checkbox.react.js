@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -152,15 +152,15 @@ export default decl(
           React.createElement(CheckBoxTick, { view: view, size: size }),
         ),
         label &&
-        React.createElement(
-          CheckBoxLabel,
-          {
-            key: 'label',
-            id: labeledBy,
-            htmlFor: id,
-          },
-          label,
-        ),
+          React.createElement(
+            CheckBoxLabel,
+            {
+              key: 'label',
+              id: labeledBy,
+              htmlFor: id,
+            },
+            label,
+          ),
       ];
     },
     onChange: function onChange(e) {
@@ -200,7 +200,7 @@ export default decl(
     },
     defaultProps: {
       view: 'classic',
-      onChange: function onChange() { },
+      onChange: function onChange() {},
     },
   },
 );

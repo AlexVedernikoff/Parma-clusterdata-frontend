@@ -38,7 +38,6 @@ class SidebarItem extends React.Component {
   }
 }
 
-// i18n
 class Sidebar extends React.Component {
   static propTypes = {
     path: PropTypes.string,

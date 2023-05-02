@@ -1,9 +1,6 @@
 import Highcharts from 'highcharts';
 
 import colors from './colors';
-import i18nFactory from '../i18n/i18n';
-
-const i18n = i18nFactory('highcharts');
 
 function formatQ(timestamp) {
   const date = new Date(timestamp);
@@ -84,36 +81,23 @@ function init() {
     lang: {
       decimalPoint: ',',
       thousandsSep: ' ',
-      resetZoom: i18n('reset-zoom'),
+      resetZoom: 'Сбросить увеличение',
       months: [
-        i18n('January'),
-        i18n('February'),
-        i18n('March'),
-        i18n('April'),
-        i18n('May'),
-        i18n('June'),
-        i18n('July'),
-        i18n('August'),
-        i18n('September'),
-        i18n('October'),
-        i18n('November'),
-        i18n('December'),
+        'Январь',
+        'Февраль',
+        'Март',
+        'Апрель',
+        'Май',
+        'Июнь',
+        'Июль',
+        'Август',
+        'Сентябрь',
+        'Октябрь',
+        'Ноябрь',
+        'Декабрь',
       ],
-      shortMonths: [
-        i18n('Jan'),
-        i18n('Feb'),
-        i18n('Mar'),
-        i18n('Apr'),
-        i18n('May'),
-        i18n('Jun'),
-        i18n('Jul'),
-        i18n('Aug'),
-        i18n('Sep'),
-        i18n('Oct'),
-        i18n('Nov'),
-        i18n('Dec'),
-      ],
-      weekdays: [i18n('Sun'), i18n('Mon'), i18n('Tue'), i18n('Wed'), i18n('Thu'), i18n('Fri'), i18n('Sat')],
+      shortMonths: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+      weekdays: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
     },
   });
   /* eslint-enable max-len */

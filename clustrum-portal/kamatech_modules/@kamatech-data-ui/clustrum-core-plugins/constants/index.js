@@ -1,52 +1,46 @@
 'use strict';
-const { I18n, keysets } = require('@kamatech-data-ui/clustrum-i18n');
 
-const getError = (lang = 'ru') => {
-  I18n.registerKeysets(keysets[lang]);
-  const i18n = I18n.keyset('clustrum.landing.error');
-
-  return {
-    onLicenseNotAccepted: {
-      errorType: 'license-not-accepted',
-      title: i18n('label_title-license-not-accepted'),
-    },
-    onAuthFailed: {
-      errorType: 'auth-failed',
-      title: i18n('label_title-auth-failed'),
-      description: i18n('label_description-auth-failed'),
-    },
-    onFail: {
-      errorType: 'error',
-      title: i18n('label_title-fail'),
-      description: i18n('label_description-fail'),
-    },
-    onAuthDenied: {
-      errorType: 'auth-denied',
-      title: i18n('label_title-auth-denied'),
-      description: i18n('label_description-auth-denied'),
-    },
-    onInaccessibleEntryFolder: {
-      errorType: 'inaccessible-entry-folder',
-      title: i18n('label_title-inaccessible-entry-folder'),
-    },
-    onMissingEntry: {
-      errorType: 'not-found',
-      title: i18n('label_title-missing-entry'),
-    },
-    onMissingCurrentCloudFolder: {
-      errorType: 'not-found-current-cloud-folder',
-      title: i18n('label_title-missing-current-cloud-folder'),
-    },
-    onForbiddenEntry: {
-      errorType: 'no-entry-access',
-      title: i18n('label_title-forbidden-entry'),
-    },
-    onCloudFolderAccessDenied: {
-      errorType: 'cloud-folder-access-denied',
-      title: i18n('label_title-cloud-folder-access-denied'),
-    },
-  };
-};
+const getError = () => ({
+  onLicenseNotAccepted: {
+    errorType: 'license-not-accepted',
+    title: '',
+  },
+  onAuthFailed: {
+    errorType: 'auth-failed',
+    title: 'Что-то пошло не так',
+    description: 'Пожалуйста, обратитесь в тех. поддержку',
+  },
+  onFail: {
+    errorType: 'error',
+    title: 'Что-то пошло не так',
+    description: 'Пожалуйста, обратитесь в тех. поддержку',
+  },
+  onAuthDenied: {
+    errorType: 'auth-denied',
+    title: '',
+    description: 'Пожалуйста, обратитесь в тех. поддержку',
+  },
+  onInaccessibleEntryFolder: {
+    errorType: 'inaccessible-entry-folder',
+    title: 'У вас нет доступа к ClusterData в этом каталоге',
+  },
+  onMissingEntry: {
+    errorType: 'not-found',
+    title: 'Не найдено',
+  },
+  onMissingCurrentCloudFolder: {
+    errorType: 'not-found-current-cloud-folder',
+    title: 'Выберите каталог для работы с ClusterData',
+  },
+  onForbiddenEntry: {
+    errorType: 'no-entry-access',
+    title: 'У вас нет прав доступа к этому объекту',
+  },
+  onCloudFolderAccessDenied: {
+    errorType: 'cloud-folder-access-denied',
+    title: 'У вас нет доступа к объектам ClusterData в этом каталоге',
+  },
+});
 
 const DEFAULT_TIMEOUT = 20000;
 const TIMEOUT_10_SEC = 10000;

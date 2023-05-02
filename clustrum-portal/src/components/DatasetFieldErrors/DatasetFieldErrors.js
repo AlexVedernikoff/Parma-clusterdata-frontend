@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 // import './DatasetFieldErrors.scss';
 
@@ -23,7 +22,7 @@ class DatasetFieldErrors extends React.Component {
           return (
             <div key={`error-${index}`} className={b('errors')}>
               <span className={b('title')}>
-                {i18n('dataset.dataset-editor.modify', 'label_field')}&nbsp;
+                Поле&nbsp;
                 {title}
               </span>
               <div className={b('messages')}>

@@ -8,8 +8,6 @@ import iconStar from '@kamatech-data-ui/clustrum/src/icons/star.svg';
 import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close.svg';
 import iconPlus from '@kamatech-data-ui/clustrum/src/icons/plus.svg';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 // import './TabMenu.scss';
 
 const b = block('tab-menu');
@@ -31,7 +29,7 @@ export default class TabMenu extends React.PureComponent {
   };
 
   tabText(index = this.props.items.length) {
-    return i18n('dash.widget-dialog.edit', 'value_title-default', { index: index + 1 });
+    return `Заголовок ${index + 1}`;
   }
 
   add() {
@@ -121,7 +119,7 @@ export default class TabMenu extends React.PureComponent {
         ))}
         <div className={b('add-tab')} onClick={this.onAction({ action: 'add' })}>
           <Icon className={b('add-tab-icon')} data={iconPlus} width="16px" />
-          <span>{i18n('dash.widget-dialog.edit', 'button_add', { index: 1 })}</span>
+          <span>Добавить</span>
         </div>
       </div>
     );

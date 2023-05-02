@@ -7,8 +7,6 @@ import Default from './Default/Default';
 
 import { CONTROL_SOURCE_TYPE } from '../../../../constants/constants';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 function Date(props) {
   const { sourceType, acceptableValues, defaultValue, isRange, onChange } = props;
   return (
@@ -17,7 +15,7 @@ function Date(props) {
         <Acceptable acceptableValues={acceptableValues} onApply={onChange} />
       )}
       <CheckBox
-        text={i18n('dash.control-dialog.edit', 'field_date-range')}
+        text="Диапазон"
         checked={isRange}
         onChange={() => onChange({ isRange: !isRange, defaultValue: undefined })}
       />

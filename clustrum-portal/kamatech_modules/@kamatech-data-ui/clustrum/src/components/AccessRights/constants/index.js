@@ -1,6 +1,3 @@
-import { I18n } from 'utils/i18n';
-export const i18n = I18n.keyset('component.access-rights.view');
-
 export const STATUS = {
   LOADING: 'loading',
   SUCCESS: 'success',

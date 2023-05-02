@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -71,16 +71,16 @@ export default decl(
         console.assert(
           typeof this.props.scope === 'function',
           'Передача ссылки на элемент в scope является устаревшим подходом ' +
-          'и в следующей мажорной версии перестанет работать. ' +
-          'В scope необходимо передать функцию, которая должна возвращать ссылку на элемент.',
+            'и в следующей мажорной версии перестанет работать. ' +
+            'В scope необходимо передать функцию, которая должна возвращать ссылку на элемент.',
         );
 
       /*%%%ISLDEBUG%%%*/ +0 &&
         console.assert(
           typeof this.props.onOutsideClick !== 'undefined',
           'onOutsideClick является устаревшим свойством ' +
-          'и в следующей мажорной версии перестанет работать. ' +
-          'Необходимо использовать свойство onClose.',
+            'и в следующей мажорной версии перестанет работать. ' +
+            'Необходимо использовать свойство onClose.',
         );
 
       this.state = {
@@ -121,7 +121,7 @@ export default decl(
         // это необходимо, для того, чтобы проставить ссылки на DOM узлы
         this.forceUpdate();
         // Необходимо для React.hydrate при начальном visible = true
-        requestAnimationFrame(function () {
+        requestAnimationFrame(function() {
           return _this.forceUpdate();
         });
 
@@ -150,7 +150,7 @@ export default decl(
         // При первой отрисовке контейнера большой высоты,
         // координаты в методе _calcBestDrawingParams рассчитываются неправильно,
         // поэтому необходимо сделать обновление в следующем тике для перерасчета
-        requestAnimationFrame(function () {
+        requestAnimationFrame(function() {
           if (_this2._isMounted) {
             _this2.forceUpdate();
           }
@@ -224,12 +224,12 @@ export default decl(
             attrs: _extends({ style: _extends({}, this._style.popup) }, this.attrs(this.props)),
           },
           hasTail &&
-          React.createElement(PopupTail, {
-            style: _extends({}, this._style.tail),
-            ref: function ref(instance) {
-              return (_this3.domElementTail = findDOMNode(instance));
-            },
-          }),
+            React.createElement(PopupTail, {
+              style: _extends({}, this._style.tail),
+              ref: function ref(instance) {
+                return (_this3.domElementTail = findDOMNode(instance));
+              },
+            }),
           this.content(this.props),
         ),
         scope,
@@ -321,7 +321,7 @@ export default decl(
      * @returns {boolean}
      */
     isElementInsideChildPopups: function isElementInsideChildPopups(element) {
-      return this._childPopups.some(function (popup) {
+      return this._childPopups.some(function(popup) {
         return popup.containerRef.current.contains(element) || popup.isElementInsideChildPopups(element);
       });
     },
@@ -336,7 +336,7 @@ export default decl(
       var target = this._calcTargetDimensions(props);
       var viewport = this._calcViewportDimensions();
       var offsets = this._calcOffsets();
-      var directions = this.props.directions.map(function (direction) {
+      var directions = this.props.directions.map(function(direction) {
         var res = { direction: direction, width: 0, height: 0, left: 0, top: 0 };
 
         if (_this4._checkMainDirection(direction, 'bottom')) {
