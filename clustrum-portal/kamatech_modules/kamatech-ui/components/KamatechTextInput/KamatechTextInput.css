@@ -23,20 +23,28 @@
   color: var(--yc-lego-color-text-primary);
 }
 
-.yc-root .kamatech-textinput_view_classic.kamatech-textinput_disabled_yes.kamatech-textinput_theme_normal .kamatech-textinput__control {
+.yc-root
+  .kamatech-textinput_view_classic.kamatech-textinput_disabled_yes.kamatech-textinput_theme_normal
+  .kamatech-textinput__control {
   color: var(--yc-lego-color-dark-disabled);
   -webkit-text-fill-color: var(--yc-lego-color-dark-disabled);
 }
 
-.yc-root .kamatech-textinput_view_classic.kamatech-textinput_theme_normal .kamatech-textinput__control::-webkit-input-placeholder {
+.yc-root
+  .kamatech-textinput_view_classic.kamatech-textinput_theme_normal
+  .kamatech-textinput__control::-webkit-input-placeholder {
   color: var(--yc-lego-color-placeholder);
 }
 
-.yc-root .kamatech-textinput_view_classic.kamatech-textinput_theme_normal .kamatech-textinput__control::-moz-placeholder {
+.yc-root
+  .kamatech-textinput_view_classic.kamatech-textinput_theme_normal
+  .kamatech-textinput__control::-moz-placeholder {
   color: var(--yc-lego-color-placeholder);
 }
 
-.yc-root .kamatech-textinput_view_classic.kamatech-textinput_theme_normal .kamatech-textinput__control:-ms-input-placeholder {
+.yc-root
+  .kamatech-textinput_view_classic.kamatech-textinput_theme_normal
+  .kamatech-textinput__control:-ms-input-placeholder {
   color: var(--yc-lego-color-placeholder);
 }
 
@@ -45,11 +53,15 @@
   background-color: var(--yc-lego-color-base);
 }
 
-.yc-root .kamatech-textinput_view_classic.kamatech-textinput_theme_normal.kamatech-textinput_hovered_yes .kamatech-textinput__box {
+.yc-root
+  .kamatech-textinput_view_classic.kamatech-textinput_theme_normal.kamatech-textinput_hovered_yes
+  .kamatech-textinput__box {
   border-color: var(--yc-lego-color-dark-light-hover);
 }
 
-.yc-root .kamatech-textinput_view_classic.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes .kamatech-textinput__box {
+.yc-root
+  .kamatech-textinput_view_classic.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes
+  .kamatech-textinput__box {
   background-color: var(--yc-lego-color-medium-light-disabled);
 }
 
@@ -62,77 +74,113 @@
   background-color: var(--yc-lego-color-base);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal .kamatech-textinput__control {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal
+  .kamatech-textinput__control {
   color: var(--yc-lego-color-text-primary);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal .kamatech-textinput__icon {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal
+  .kamatech-textinput__icon {
   color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal .kamatech-textinput__clear.kamatech-textinput__clear_hovered_yes {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal
+  .kamatech-textinput__clear.kamatech-textinput__clear_hovered_yes {
   color: var(--yc-lego-color-text-primary);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal .kamatech-textinput__box {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal
+  .kamatech-textinput__box {
   border-color: var(--yc-lego-color-border-medium-solid);
   background-color: var(--yc-lego-color-base);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_hovered_yes .kamatech-textinput__box {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_hovered_yes
+  .kamatech-textinput__box {
   border-color: var(--yc-lego-color-dark-light-hover-solid);
   background-color: var(--yc-lego-color-base);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_focused_yes .kamatech-textinput__box {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_focused_yes
+  .kamatech-textinput__box {
   border-color: var(--yc-lego-color-utilityfocus-solid);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal .kamatech-textinput__control::-webkit-input-placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal
+  .kamatech-textinput__control::-webkit-input-placeholder {
   color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal .kamatech-textinput__control::-ms-input-placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal
+  .kamatech-textinput__control::-ms-input-placeholder {
   color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal .kamatech-textinput__control::placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal
+  .kamatech-textinput__control::placeholder {
   color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal .kamatech-textinput__control::-moz-placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal
+  .kamatech-textinput__control::-moz-placeholder {
   color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal .kamatech-textinput__control:-ms-input-placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal
+  .kamatech-textinput__control:-ms-input-placeholder {
   color: var(--yc-lego-color-input-control);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_disabled_yes.kamatech-textinput_theme_normal .kamatech-textinput__control {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_disabled_yes.kamatech-textinput_theme_normal
+  .kamatech-textinput__control {
   color: var(--yc-lego-color-dark-disabled);
 }
 
-.yc-root .kamatech-textinput.kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes .kamatech-textinput__box {
+.yc-root
+  .kamatech-textinput.kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes
+  .kamatech-textinput__box {
   background-color: var(--yc-lego-color-medium-disabled-solid);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes .kamatech-textinput__control::-webkit-input-placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes
+  .kamatech-textinput__control::-webkit-input-placeholder {
   color: var(--yc-lego-color-input-disabled);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes .kamatech-textinput__control:-ms-input-placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes
+  .kamatech-textinput__control:-ms-input-placeholder {
   color: var(--yc-lego-color-input-disabled);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes .kamatech-textinput__control::-ms-input-placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes
+  .kamatech-textinput__control::-ms-input-placeholder {
   color: var(--yc-lego-color-input-disabled);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes .kamatech-textinput__control::placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes
+  .kamatech-textinput__control::placeholder {
   color: var(--yc-lego-color-input-disabled);
 }
 
-.yc-root .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes .kamatech-textinput__control::-moz-placeholder {
+.yc-root
+  .kamatech-textinput_view_default.kamatech-textinput_tone_default.kamatech-textinput_theme_normal.kamatech-textinput_disabled_yes
+  .kamatech-textinput__control::-moz-placeholder {
   color: var(--yc-lego-color-input-disabled);
 }
 

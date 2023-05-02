@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -107,7 +107,7 @@ export default decl(
         icons = [icon, iconLeft, iconRight].filter(Boolean),
         needSetSide = text || icons.length > 1; // Side не устанавливается, если иконка единственный элемент
 
-      Children.forEach(children, function (child, i) {
+      Children.forEach(children, function(child, i) {
         if (Icon.isIcon(child)) {
           var onlyIcon = Children.count(children) === 1;
           var side = onlyIcon ? '' : i === 0 ? 'left' : 'right';
@@ -162,7 +162,7 @@ export default decl(
     _hasIconFromContent: function _hasIconFromContent(_ref5) {
       var children = _ref5.children;
 
-      return Children.toArray(children).some(function (child) {
+      return Children.toArray(children).some(function(child) {
         return Icon.isIcon(child);
       });
     },
@@ -193,7 +193,7 @@ export default decl(
       rel: PropTypes.string,
     },
     defaultProps: {
-      onClick: function onClick() { },
+      onClick: function onClick() {},
 
       tabIndex: '0',
     },

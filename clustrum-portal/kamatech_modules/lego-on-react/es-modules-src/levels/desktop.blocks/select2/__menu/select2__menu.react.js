@@ -22,7 +22,7 @@ export default decl(
         return;
       }
 
-      var checked = menu.items.filter(function (item) {
+      var checked = menu.items.filter(function(item) {
         return item.props.checked;
       })[0];
       var hovered = menu._hoveredItem;

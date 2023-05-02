@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -71,7 +71,7 @@ export default decl(
     defaultProps: {
       type: 'link',
       isNavigation: true,
-      onClick: function onClick() { },
+      onClick: function onClick() {},
       url: null,
       text: null,
     },

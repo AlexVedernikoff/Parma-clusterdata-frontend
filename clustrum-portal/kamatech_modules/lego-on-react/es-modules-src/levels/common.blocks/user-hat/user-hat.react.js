@@ -121,7 +121,7 @@ export default decl(
       var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       return Object.keys(params)
-        .reduce(function (result, param) {
+        .reduce(function(result, param) {
           param = param + '=' + params[param];
           return result.concat(param);
         }, [])
