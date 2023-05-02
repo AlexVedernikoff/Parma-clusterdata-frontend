@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -87,7 +87,7 @@ export default decl(
         needIconGlyph = _ref2.needIconGlyph;
 
       var content = [];
-      (icon ? [icon] : []).concat(children).forEach(function (child, i) {
+      (icon ? [icon] : []).concat(children).forEach(function(child, i) {
         if (Icon.isIcon(child) && i === 0) {
           content.push(
             React.createElement(MenuIcon, _extends({ size: size, key: 'icon' }, { mix: child.props.mix }), child),
