@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorDispatcher, { ERROR_TYPE } from '../../../modules/error-dispatcher/error-dispatcher';
 import './style.css';
-import { _valueFormatter } from '../Table/Table_deprecated';
+import { valueFormatter } from '@clustrum-lib/shared/ui/widgets';
 
 const FIRST_ELEMENT_INDEX = 0;
 
@@ -46,7 +46,7 @@ class Indicator extends React.PureComponent {
     return (
       <div className="widget-indicator__metric">
         <div className="widget-indicator__title">{indicatorData.head}</div>
-        <div className="widget-indicator__value">{_valueFormatter(indicatorData.type, indicatorData.cell)}</div>
+        <div className="widget-indicator__value">{valueFormatter(indicatorData.type, indicatorData.cell)}</div>
       </div>
     );
   }

@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import { Table } from '@clustrum-lib/shared/ui/widgets/table-widget/Table';
-import { valueFormatter } from '@clustrum-lib/shared/ui/widgets/table-widget/valueFormatter';
+import { Table, valueFormatter } from '@clustrum-lib/shared/ui/widgets';
 
 const b = block('chartkit-table');
 
@@ -68,8 +67,8 @@ function _getColumnsAndNames({ head, context, level = 0, shift = 0 }, clickCallb
             Array.isArray(row[columnName].value)
               ? row[columnName].value[0]
               : row[columnName].valueWithoutFormat
-              ? row[columnName].valueWithoutFormat
-              : row[columnName].value,
+                ? row[columnName].valueWithoutFormat
+                : row[columnName].value,
           onClick: ({ row }, { name: columnName }) => {
             handleCellClick(context, row, field, columnName, prevSelectedCell, clickCallback);
           },
@@ -194,17 +193,17 @@ export class TableAdapter extends React.PureComponent {
     const data = rows.map(row =>
       row.values
         ? row.values.reduce((result, value, index) => {
-            value.isGroupField = index === groupFieldPosition;
-            value.resultShemaId = head[index].resultSchemaId;
-            result[names[index]] = { value };
-            return result;
-          }, {})
+          value.isGroupField = index === groupFieldPosition;
+          value.resultShemaId = head[index].resultSchemaId;
+          result[names[index]] = { value };
+          return result;
+        }, {})
         : row.cells.reduce((result, value, index) => {
-            value.isGroupField = index === groupFieldPosition;
-            value.resultShemaId = head[index].resultSchemaId;
-            result[names[index]] = value;
-            return result;
-          }, {}),
+          value.isGroupField = index === groupFieldPosition;
+          value.resultShemaId = head[index].resultSchemaId;
+          result[names[index]] = value;
+          return result;
+        }, {}),
     );
 
     return (
