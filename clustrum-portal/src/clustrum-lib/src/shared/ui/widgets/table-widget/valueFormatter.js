@@ -1,10 +1,7 @@
 import React from 'react';
-import block from 'bem-cn-lite';
 
 import DateFormat from '@kamatech-data-ui/chartkit/lib/modules/date/date-format';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
-
-const b = block('chartkit-table');
 
 function _camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;
@@ -61,12 +58,12 @@ function numberFormatter(
 function _diffFormatter(value, { precision, diff_formatter: formatter }) {
   const diff = numberFormatter(value, { precision, formatter });
   if (value > 0) {
-    return <span className={b('diff', { pos: true })}>&#9650;{diff}</span>;
+    return <span className="chartkit-table__diff chartkit-table__diff_pos">&#9650;{diff}</span>;
   }
   if (value < 0) {
-    return <span className={b('diff', { neg: true })}>&#9660;{diff}</span>;
+    return <span className="chartkit-table__diff chartkit-table__diff_neg">&#9660;{diff}</span>;
   }
-  return <span className={b('diff')}>{diff}</span>;
+  return <span className="chartkit-table__diff">{diff}</span>;
 }
 
 function _reverseGridFlow(gridFlow) {
@@ -76,7 +73,7 @@ function _reverseGridFlow(gridFlow) {
 function _renderGrid(grid, options = {}) {
   const { gridFlow } = options;
   return (
-    <div className={b('grid-wrapper', { flow: gridFlow })} key={gridFlow}>
+    <div className="grid-wrapper_flow_gridFlow" key={gridFlow}>
       {grid.map(gridItem =>
         Array.isArray(gridItem)
           ? _renderGrid(gridItem, { ...options, gridFlow: _reverseGridFlow(gridFlow) })
@@ -110,7 +107,7 @@ function _resultValue(value, type, grid, options, href, newWindow, hasArray) {
     case 'string':
     case 'text':
       resultValue = href ? (
-        <a className={b('link')} href={href} target={newWindow ? '_blank' : '_self'}>
+        <a className="chartkit-table__link" href={href} target={newWindow ? '_blank' : '_self'}>
           {resultValue}
         </a>
       ) : (
@@ -168,7 +165,7 @@ export function valueFormatter(type, cell = {}, options = {}) {
 
   return (
     <div
-      className={b('content', { [type]: true }) + ` ${extraClasses.join(' ')} `}
+      className={`chartkit-table__content chartkit-table__content_${type} ${extraClasses.join(' ')}`}
       style={_camelCaseCss(contentCss)}
       key={value}
     >
