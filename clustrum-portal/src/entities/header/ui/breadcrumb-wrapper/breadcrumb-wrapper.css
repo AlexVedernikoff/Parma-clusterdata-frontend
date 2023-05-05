@@ -3,26 +3,22 @@
   flex-direction: column;
 }
 
-.header__breadcrumb__patch {
+.header__breadcrumb-patch {
   font-size: 13px;
   margin: 0 0 8px 0;
 }
 
-.header__breadcrumb__title {
+.header__breadcrumb-title {
   display: flex;
   align-items: center;
 }
 
-.header__breadcrumb__title__name {
+.header__breadcrumb-title-name {
   font-size: 30px;
   margin: 0 8px 0 0;
 }
 
-.header__breadcrumb__title__name p {
-  margin: 0;
-}
-
-.header__breadcrumb__title__actions button {
+.header__breadcrumb-title-actions button {
   margin: 4px;
   border: none;
   box-shadow: none;

@@ -4,3 +4,12 @@
   padding: 24px;
   width: 100%;
 }
+
+.header__action-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.header__action-buttons button {
+  margin-left: 8px;
+}

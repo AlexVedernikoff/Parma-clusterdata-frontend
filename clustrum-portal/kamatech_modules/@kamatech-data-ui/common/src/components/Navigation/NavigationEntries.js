@@ -348,7 +348,7 @@ class NavigationEntries extends React.Component {
       return null;
     }
 
-    const actionsControl = [
+    const rightControl = [
         <KamatechTextInput
             ref={this.refSearchInput}
             view="default"
@@ -370,7 +370,7 @@ class NavigationEntries extends React.Component {
 
     return (
       <div className={b('entries-header')}>
-        <Header props={this.props} controlBtn={actionsControl}/>
+        <Header rightButtons={rightControl} {...this.props}/>
         <div className={b('custom')}>{this.props.children}</div>
       </div>
     );

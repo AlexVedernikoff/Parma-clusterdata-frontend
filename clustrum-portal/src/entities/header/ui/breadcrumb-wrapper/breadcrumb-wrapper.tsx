@@ -1,40 +1,25 @@
 import React from 'react';
 import './breadcrumb-wrapper.css';
-import { IHeaderProps } from '../../types/IHeaderProps';
+import { Breadcrumb } from 'antd';
+import { FormatPath, NavigationItems } from '../../model/navigation';
+import { HeaderProps } from '../../types/headerProps';
 
-export function BreadcrumbWrapper({ props, actionsBtn }: IHeaderProps): JSX.Element {
-  function getNameByKey(key: string): string {
-    const matchedValues = key.match(/\/([^/]*)$/);
-    return matchedValues ? matchedValues[1] : key;
-  }
+export function BreadcrumbWrapper({ actionsBtn, ...props }: HeaderProps): JSX.Element {
+  const { entry, place, path } = props;
 
-  // Надо выводить в разных скопах разные названия, но они в компанентах ниже, а так же крошки...
-
-  if (props.entry) {
-    return (
-      <div className={'header__breadcrumb'}>
-        <p className={'header__breadcrumb__patch'}>{props.entry.key}</p>
-        <div className={'header__breadcrumb__title'}>
-          <div className={'header__breadcrumb__title__name'}>{getNameByKey(props.entry.key)}</div>
-          <div className={'header__breadcrumb__title__actions'}>
-            {actionsBtn?.map((actionsBtn: object) => {
-              return actionsBtn;
-            })}
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const breadcrumbItems = entry ? NavigationItems(entry.scope, entry.key) : NavigationItems(place, path);
 
   return (
     <div className={'header__breadcrumb'}>
-      <p className={'header__breadcrumb__patch'}>
-        {props.place}/{props.path}
-      </p>
-      <div className={'header__breadcrumb__title'}>
-        <div className={'header__breadcrumb__title__name'}>
-          <p>{props.path}</p>
-        </div>
+      <div className={'header__breadcrumb-patch'}>
+        <Breadcrumb items={breadcrumbItems} />
+      </div>
+      <div className={'header__breadcrumb-title'}>
+        <div className={'header__breadcrumb-title-name'}>{FormatPath(entry?.key ?? (path === '' ? place : path))}</div>
+
+        {actionsBtn && (
+          <div className={'header__breadcrumb-title-actions'}>{actionsBtn.map((actionBtn: object) => actionBtn)}</div>
+        )}
       </div>
     </div>
   );

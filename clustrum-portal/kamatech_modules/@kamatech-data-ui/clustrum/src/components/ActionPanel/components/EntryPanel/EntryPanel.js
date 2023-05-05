@@ -173,7 +173,7 @@ class EntryPanel extends React.Component {
 
     return (
       <div className={b()}>
-        <Header props={ this.props } actionsBtn={actionBtn}/>
+        <Header {...this.props} actionsBtn={actionBtn}/>
       </div>
     );
   }
