@@ -6,6 +6,6 @@ export interface HeaderProps {
   place: string;
   path: string;
   rightItems?: JSX.Element[];
-  rightButtons?: JSX.Element[];
-  actionsBtn?: JSX.Element[];
+  rightSideContent?: JSX.Element[];
+  leftSideContent?: JSX.Element[];
 }

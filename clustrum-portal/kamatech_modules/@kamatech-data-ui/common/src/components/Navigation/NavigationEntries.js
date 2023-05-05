@@ -20,7 +20,7 @@ import iconFolderInline from '../../assets/icons/folder-inline.svg';
 import { KamatechTableView, KamatechTextInput, KamatechCreateDropdown } from '@kamatech-ui';
 import { ScopeType } from '@kamatech-ui/enums';
 import iconXsign from '../../../../clustrum/src/icons/x-sign.svg';
-import { Header } from '../../../../../../src/entities/header/ui/header';
+import { Header } from '../../../../../../src/entities/header';
 
 const b = cn('yc-navigation');
 const itemsOrderBy = [
@@ -369,7 +369,7 @@ class NavigationEntries extends React.Component {
 
     return (
       <div className={b('entries-header')}>
-        <Header rightButtons={rightControl} {...this.props} />
+        <Header rightSideContent={rightControl} {...this.props} />
         <div className={b('custom')}>{this.props.children}</div>
       </div>
     );
