@@ -1,17 +1,14 @@
-import React, { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
-import block from 'bem-cn-lite';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { getCurrentPageTabs } from '../../store/selectors/dash';
 import { setPageTab } from '../../store/actions/dash';
-import TabsDropdown from './TabsDropdown/TabsDropdown';
-import TabLink from './TabLink/TabLink';
-
-const b = block('dash-tabs');
+import { Tabs as AntdTabs } from 'antd';
 
 function tabsReducer(state, action) {
+  console.debug('tabsReduser');
   const { visibleTabs, hiddenTabs } = state;
   switch (action.type) {
     case 'increaseTabs':
@@ -37,88 +34,15 @@ function tabsReducer(state, action) {
 }
 
 function Tabs(props) {
-  if (window.DL.hideTabs) {
-    return null;
-  }
-
-  const targetRef = useRef();
-
-  const [tabMargin, setTabMargin] = useState(0);
-  const popupBtnWidth = 30;
-  const delta = 5;
-
   const [state, dispatch] = useReducer(tabsReducer, {
     visibleTabs: props.tabs,
     hiddenTabs: [],
     oldTabsWrapWidth: null,
   });
 
-  const getVisibleTabElems = () => [...targetRef.current.querySelectorAll('.dash-tab-link')];
+  const tabs = state?.visibleTabs?.map(({ id, title }) => ({ key: id, label: title }));
 
-  const hideShowTabsElements = () => {
-    if (!targetRef.current) {
-      return;
-    }
-    const { visibleTabs, hiddenTabs, oldTabsWrapWidth } = state;
-    const tabsWrapWidth = targetRef.current.offsetWidth;
-    const visibleTabElems = getVisibleTabElems();
-    const getVisibleTabsWidth = () =>
-      visibleTabElems.reduce((acc, cur) => acc + cur.offsetWidth + tabMargin, 0) + popupBtnWidth + delta;
-    const getVisibleTabsWidthWithFirstHidden = () =>
-      [...visibleTabs, hiddenTabs[0]].reduce((acc, cur) => {
-        return acc + cur.htmlWidth + tabMargin;
-      }, 0) +
-      popupBtnWidth +
-      delta;
-    const isMultiLine = getVisibleTabsWidth() > tabsWrapWidth;
-
-    if (isMultiLine) {
-      while ((oldTabsWrapWidth ? tabsWrapWidth < oldTabsWrapWidth : true) && tabsWrapWidth < getVisibleTabsWidth()) {
-        dispatch({ type: 'decreaseTabs' });
-        visibleTabElems.pop();
-      }
-    }
-
-    if (hiddenTabs.length && tabsWrapWidth > oldTabsWrapWidth && tabsWrapWidth > getVisibleTabsWidthWithFirstHidden()) {
-      dispatch({ type: 'increaseTabs' });
-    }
-
-    dispatch({ type: 'setOldTabsWrapWidth', payload: tabsWrapWidth });
-  };
-
-  const getMarginSum = () => {
-    const tabStyles = window.getComputedStyle(targetRef.current.querySelector('.dash-tab-link'));
-    const getNumb = string => Number(string.match(/\d/g).join(''));
-    let marginLeft = getNumb(tabStyles.marginLeft);
-    let marginRight = getNumb(tabStyles.marginRight);
-    return marginLeft + marginRight;
-  };
-
-  useLayoutEffect(() => {
-    setTabMargin(getMarginSum());
-    const tabElems = getVisibleTabElems();
-    props.tabs.forEach((tab, index) => (tab.htmlWidth = tabElems[index].offsetWidth));
-  }, []);
-
-  useLayoutEffect(() => {
-    hideShowTabsElements();
-  }, [tabMargin, state.visibleTabs, state.hiddenTabs, state.oldTabsWrapWidth]);
-
-  useEffect(() => {
-    window.addEventListener('resize', hideShowTabsElements);
-    return () => {
-      window.removeEventListener('resize', hideShowTabsElements);
-    };
-  }, [tabMargin, state.visibleTabs, state.hiddenTabs, state.oldTabsWrapWidth]);
-
-  return (
-    <div className={b()} ref={targetRef}>
-      {state.visibleTabs.map(({ title, id }) => (
-        <TabLink {...props} key={id} title={title} id={id} />
-      ))}
-      {state.hiddenTabs.length > 0 && <TabsDropdown {...props} menuItems={state.hiddenTabs} />}
-    </div>
-  );
+  return <AntdTabs items={tabs} onChange={props.setPageTab} />;
 }
 
 Tabs.propTypes = {
