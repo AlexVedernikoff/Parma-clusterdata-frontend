@@ -10,8 +10,6 @@ import Dialog from '../../Dialog/Dialog';
 
 import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close.svg';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 // import './Acceptable.scss';
 
 const b = block('select-acceptable');
@@ -46,7 +44,7 @@ class Acceptable extends React.PureComponent {
             theme="normal"
             view="default"
             tone="default"
-            placeholder={i18n('dash.control-dialog.edit', 'context_add-value')}
+            placeholder="Добавить значение"
             onChange={newValue => this.setState({ newValue })}
             text={newValue}
             controlAttrs={{
@@ -55,12 +53,12 @@ class Acceptable extends React.PureComponent {
             }}
           />
           <LegoButton theme="normal" view="default" tone="default" size="s" onClick={this.addItem}>
-            {i18n('dash.control-dialog.edit', 'button_add')}
+            Добавить
           </LegoButton>
         </div>
         <div className={b('items', { empty: isEmpty })}>
           {isEmpty
-            ? i18n('dash.control-dialog.edit', 'label_empty-list')
+            ? 'Список пуст'
             : acceptableValues.map((item, index) => (
                 <div className={b('item')} key={item}>
                   <span title={item}>{item}</span>
@@ -87,7 +85,7 @@ class Acceptable extends React.PureComponent {
     return (
       <Dialog
         visible={showDialog}
-        caption={i18n('dash.control-dialog.edit', 'label_acceptable-values')}
+        caption="Возможные значения"
         onApply={() => {
           onApply({ acceptableValues });
           this.setState({
@@ -113,12 +111,8 @@ class Acceptable extends React.PureComponent {
     return (
       <React.Fragment>
         <Button
-          title={i18n('dash.control-dialog.edit', 'field_acceptable-values')}
-          text={
-            acceptableValues.length
-              ? i18n('dash.control-dialog.edit', 'value_select-values', { count: acceptableValues.length })
-              : i18n('dash.control-dialog.edit', 'value_not-chosen')
-          }
+          title="Возможные значения"
+          text={acceptableValues.length ? `Значений: ${acceptableValues.length}` : 'Не выбрано'}
           onClick={() => this.setState({ showDialog: !this.state.showDialog })}
         />
         {this.renderDialog()}

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
-import i18n from '../i18n';
 
 import { KamatechDropdown, KamatechCreateDropdownItem, KamatechMenu, KamatechButton } from '@kamatech-ui';
 
@@ -35,7 +34,7 @@ class CreateDropdown extends React.Component {
   renderSwitcher() {
     return (
       <KamatechButton view="default" tone="default" theme="action" size={this.props.size}>
-        {i18n('button_create')}
+        Создать
       </KamatechButton>
     );
   }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import block from 'bem-cn-lite';
 import { Button, TextInput } from 'lego-on-react';
 import { Icon } from '@kamatech-data-ui/common/src';
-import { i18n, ActionPanel } from '@kamatech-data-ui/clustrum';
+import { ActionPanel } from '@kamatech-data-ui/clustrum';
 import Utils from './../../helpers/utils';
 import { getConnectorsMap, getFakeEntry } from '../../constants';
 
@@ -46,7 +46,7 @@ class Connectors extends React.Component {
             view="default"
             tone="default"
             text={searchConnectorName}
-            placeholder={i18n('connections.form', 'button_connection-name')}
+            placeholder="Имя коннектора"
             onChange={this.changeSearchConnectorName}
             hasClear
             focused

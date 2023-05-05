@@ -77,7 +77,7 @@ class AceEditor extends React.Component {
           commands={[
             {
               name: 'startAutocomplete',
-              exec: function (editor) {
+              exec: function(editor) {
                 if (editor && editor.completer) {
                   editor.completer.autoInsert = false;
                   editor.completer.autoSelect = true;

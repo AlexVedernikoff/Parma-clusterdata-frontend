@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
 import { Button, CheckBox, RadioBox, TextInput, Link } from 'lego-on-react';
-import i18nFactory from '../../../../modules/i18n/i18n';
 
 import ChartsModal from '../ChartsModal/ChartsModal';
 import DownloadScreenshotJing from '../DownloadScreenshotJing/DownloadScreenshotJing';
@@ -14,7 +13,6 @@ import { SIZES, PARAMETERS, LOCAL_STORAGE_KEY } from '../DownloadScreenshot/cons
 // TODO: ссылка на вики Charts
 const API_WIKI = '';
 
-const i18n = i18nFactory('DownloadScreenshotModal');
 const b = block('download-screenshot-modal');
 
 // TODO: нет попапа на ошибку "Сохранить в Jing"
@@ -53,7 +51,16 @@ export default class DownloadScreenshotModal extends React.PureComponent {
     this._onClickClose(proxy);
   };
 
-  _sizeTitle = size => `${i18n(size.key)} (${size.width}x${size.height})`;
+  _sizeTitle = size => {
+    const sizeKeyLabels = {
+      'size-as-is': 'Как есть',
+      'size-standard': 'Стандартный',
+      'size-widescreen': 'Широкоформатный',
+      'size-another': 'Другой',
+    };
+
+    return `${sizeKeyLabels[size.key]} (${size.width}x${size.height})`;
+  };
 
   _textInput = name => (
     <TextInput
@@ -81,7 +88,7 @@ export default class DownloadScreenshotModal extends React.PureComponent {
     return (
       <ChartsModal element={this.props.element}>
         <ChartsModal.Section>
-          <ChartsModal.Header>{i18n('header-save-image')}</ChartsModal.Header>
+          <ChartsModal.Header>Сохранить картинку</ChartsModal.Header>
           <ChartsModal.Body>
             <div className={b()}>
               <div className={b('row', { column: true })}>
@@ -102,7 +109,7 @@ export default class DownloadScreenshotModal extends React.PureComponent {
                       </RadioBox.Radio>
                     ))}
                     <RadioBox.Radio value={SIZES.length} key={'size-another'}>
-                      {i18n('size-another')}
+                      Другой
                     </RadioBox.Radio>
                   </RadioBox>
                   <div className={b('cell')}>
@@ -113,7 +120,7 @@ export default class DownloadScreenshotModal extends React.PureComponent {
                 </div>
               </div>
               <div className={b('row', { column: true })}>
-                <div className={b('cell', { header: true })}>{i18n('parameters')}</div>
+                <div className={b('cell', { header: true })}>Параметры</div>
                 {PARAMETERS.map(parameter => (
                   <div className={b('cell')} key={parameter.key}>
                     <CheckBox
@@ -124,28 +131,22 @@ export default class DownloadScreenshotModal extends React.PureComponent {
                       checked={this.state[parameter.name]}
                       onChange={() => this.setState({ [parameter.name]: !this.state[parameter.name] })}
                     >
-                      {i18n(parameter.key)}
+                      {parameter.label}
                     </CheckBox>
                   </div>
                 ))}
               </div>
               <div className={b('row', { hint: true })}>
-                {i18n('hint-screenshot', {
-                  link: (
-                    <Link key="wiki-link" theme="normal" url={API_WIKI} target="_blank">
-                      API
-                    </Link>
-                  ),
-                })}
+                Этот диалог можно пропустить, кликнув по «Сохранить картинку» в меню графика с зажатым cmd/ctrl
+                <Link key="wiki-link" theme="normal" url={API_WIKI} target="_blank">
+                  API
+                </Link>
               </div>
             </div>
           </ChartsModal.Body>
           <div className={b('footer')}>
             <div className={b('button', { jing: true })}>
-              <DownloadScreenshotJing
-                text={i18n('button-to-jing')}
-                screenshotUrl={this.props.getScreenshotUrl(this.state)}
-              />
+              <DownloadScreenshotJing text="Сохранить в Jing" screenshotUrl={this.props.getScreenshotUrl(this.state)} />
             </div>
             <Button
               theme="action"
@@ -155,7 +156,7 @@ export default class DownloadScreenshotModal extends React.PureComponent {
               mix={{ block: b('button') }}
               onClick={this._download}
             >
-              {i18n('button-download')}
+              Скачать
             </Button>
             <Button
               theme="pseudo"
@@ -165,7 +166,7 @@ export default class DownloadScreenshotModal extends React.PureComponent {
               mix={{ block: b('button') }}
               onClick={this._onClickClose}
             >
-              {i18n('button-cancel')}
+              Отмена
             </Button>
           </div>
         </ChartsModal.Section>

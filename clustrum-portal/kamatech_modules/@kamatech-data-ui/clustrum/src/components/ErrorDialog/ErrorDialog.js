@@ -4,13 +4,11 @@ import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 import CopyToClipboard from '@kamatech-data-ui/react-components/src/components/CopyToClipboard';
-import { I18n } from 'utils/i18n';
 import isEqual from 'lodash/isEqual';
 
 // import './ErrorDialog.scss';
 
 const b = block('error-dialog');
-const i18n = I18n.keyset('component.error-dialog.view');
 
 class ErrorDialog extends PureComponent {
   static propTypes = {
@@ -56,11 +54,11 @@ class ErrorDialog extends PureComponent {
 
     return (
       <div className={b('request-id')}>
-        <span className={b('request-id-caption')}>{i18n('label_request-id')}</span>
+        <span className={b('request-id-caption')}>Request-ID:</span>
         <span className={b('request-id-value')}>{requestId}</span>
         <div className={b('request-id-copy-btn')}>
           <CopyToClipboard text={requestId} resetTimeout={5000} onCopy={this.onCopy}>
-            {() => <Button theme="light" tone="default" view="default" size="s" text={i18n('button_copy')} />}
+            {() => <Button theme="light" tone="default" view="default" size="s" text="Скопировать" />}
           </CopyToClipboard>
         </div>
       </div>
@@ -90,7 +88,7 @@ class ErrorDialog extends PureComponent {
           </Dialog.Body>
           <Dialog.Footer
             onClickButtonCancel={this.onClose}
-            textButtonCancel={i18n('button_close')}
+            textButtonCancel="Закрыть"
             textButtonApply={''}
             progress={false}
           />

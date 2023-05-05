@@ -4,11 +4,10 @@ import cn from 'bem-cn-lite';
 import YCSelect from '../YCSelect/YCSelect';
 import Loader from '../Loader/Loader';
 import { Button, RadioButton } from 'lego-on-react';
-import { NOTIFICATIONS, ERROR_TEXT } from './i18n/constants';
+import { NOTIFICATIONS, ERROR_TEXT } from './locale/constants';
 import { ERROR, MODE_FULL, MODE_MINIMAL, NAVIGATION_ROOT, ORDER, OWNERSHIP } from './constants';
 import EntryContextMenu from './EntryContextMenu/EntryContextMenu';
 import { normalizeDestination } from './util';
-import i18n from './i18n';
 import iconFolder from '../../../../clustrum/src/icons/files-folder';
 import iconDataset from '../../../../clustrum/src/icons/files-dataset.svg';
 import iconDashboard from '../../../../clustrum/src/icons/files-dashboard.svg';
@@ -21,19 +20,19 @@ import iconFolderInline from '../../assets/icons/folder-inline.svg';
 import { KamatechTableView, KamatechTextInput, KamatechCreateDropdown } from '@kamatech-ui';
 import { ScopeType } from '@kamatech-ui/enums';
 import iconXsign from '../../../../clustrum/src/icons/x-sign.svg';
-import {Header} from "../../../../../../src/entities/header/ui/header";
+import { Header } from '../../../../../../src/entities/header/ui/header';
 
 const b = cn('yc-navigation');
 const itemsOrderBy = [
   {
     key: ORDER.DESC,
     value: ORDER.DESC,
-    title: i18n('filter_order-descending'),
+    title: 'Сперва новые',
   },
   {
     key: ORDER.ASC,
     value: ORDER.ASC,
-    title: i18n('filter_order-ascending'),
+    title: 'Сперва старые',
   },
 ];
 
@@ -70,7 +69,7 @@ class NavigationEntries extends React.Component {
   static defaultProps = {
     mode: MODE_FULL,
     place: NAVIGATION_ROOT,
-    searchPlaceholder: i18n('placeholder_filter-by-name'),
+    searchPlaceholder: 'Фильтр по имени',
   };
   static getDerivedStateFromProps(nextProps, prevState) {
     const { sdk, scope, path, place } = nextProps;
@@ -349,28 +348,28 @@ class NavigationEntries extends React.Component {
     }
 
     const rightControl = [
-        <KamatechTextInput
-            ref={this.refSearchInput}
-            view="default"
-            tone="default"
-            theme="normal"
-            size="s"
-            hasClear={true}
-            placeholder={this.props.searchPlaceholder}
-            text={this.state.searchValue}
-            onChange={this.onChangeFilter}
-            iconClearData={iconXsign}
-        />,
-        <KamatechCreateDropdown
-            items={createMenuItems}
-            size={size}
-            onMenuClick={onCreateMenuClick}
-        ></KamatechCreateDropdown>
-    ]
+      <KamatechTextInput
+        ref={this.refSearchInput}
+        view="default"
+        tone="default"
+        theme="normal"
+        size="s"
+        hasClear={true}
+        placeholder={this.props.searchPlaceholder}
+        text={this.state.searchValue}
+        onChange={this.onChangeFilter}
+        iconClearData={iconXsign}
+      />,
+      <KamatechCreateDropdown
+        items={createMenuItems}
+        size={size}
+        onMenuClick={onCreateMenuClick}
+      ></KamatechCreateDropdown>,
+    ];
 
     return (
       <div className={b('entries-header')}>
-        <Header rightButtons={rightControl} {...this.props}/>
+        <Header rightButtons={rightControl} {...this.props} />
         <div className={b('custom')}>{this.props.children}</div>
       </div>
     );
@@ -402,8 +401,7 @@ class NavigationEntries extends React.Component {
     const filteredEntriesEmpty = filteredEntries.length === 0;
     const entriesEmpty = entries.length === 0;
     const showEmpty = filteredEntriesEmpty || entriesEmpty;
-    // i18n
-    const emptyText = entriesEmpty ? i18n('label_empty-folder') : i18n('label_not-found');
+    const emptyText = entriesEmpty ? 'Пустая папка' : 'Ничего не найдено';
 
     if (showEmpty) {
       return <div className={b('empty-entries')}>{emptyText}</div>;

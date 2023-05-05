@@ -1,5 +1,3 @@
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 import { REQUEST_WIDGET, RECEIVE_WIDGET, RESET_WIDGET } from '../actions';
 
 import sha1 from 'js-sha1';
@@ -72,9 +70,7 @@ export const selectWidget = state => {
   return (
     state.widget.widget || {
       fake: true,
-      key: window.DL.user.login
-        ? `/Users/${DL.user.login}/${i18n('wizard', 'label_new-widget')}`
-        : `/${i18n('wizard', 'label_new-widget')}`,
+      key: window.DL.user.login ? `/Users/${DL.user.login}/Новая диаграмма` : `/Новая диаграмма`,
       entryId: null,
     }
   );

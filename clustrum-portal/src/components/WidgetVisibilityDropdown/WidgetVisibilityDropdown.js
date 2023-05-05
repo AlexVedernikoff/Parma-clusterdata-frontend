@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import iconOpenEye from '@kamatech-data-ui/clustrum/src/icons/open-eye.svg';
 import iconCloseEye from '@kamatech-data-ui/clustrum/src/icons/close-eye.svg';
 import { Button, Menu, Dropdown, Popup } from 'lego-on-react';
-import { i18n } from '@kamatech-data-ui/clustrum';
 import { Icon } from '@kamatech-data-ui/common/src';
 
 import { EyeOutlined } from '@ant-design/icons';
@@ -75,7 +74,7 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
           view="default"
           tone="default"
           size="n"
-          title={i18n('dash.header.view', 'widgets_visibility_dropdown')}
+          title="Показать или скрыть виджеты"
           icon={<EyeOutlined />}
         />
       }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import User from '../../User/User';
 import CommentDialogBase from '../CommentDialogBase/CommentDialogBase';
-import { i18n } from '../../constants';
 import Utils from '../../../../utils';
 
 // import './DialogRevokeRights.scss';
@@ -26,7 +25,7 @@ class DialogRevokeRights extends React.Component {
 
     return (
       <div className={b()}>
-        <div className={b('text')}>{i18n('label_revoke-rights')}</div>
+        <div className={b('text')}>Права будут отозваны у</div>
         <User participant={participant} />
       </div>
     );
@@ -37,9 +36,9 @@ class DialogRevokeRights extends React.Component {
       <CommentDialogBase
         {...this.props}
         preset="danger"
-        caption={i18n('section_revoke-rights-title')}
-        textButtonApply={i18n('button_revoke-rights')}
-        placeholder={i18n('label_placeholder-deny-request')}
+        caption="Отозвать права"
+        textButtonApply="Отозвать права"
+        placeholder="Причина отзыва прав (не обязательно)"
         apiHandler={this.apiHandler}
         render={this.renderContent}
       />

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DialogCreateEntry from '@kamatech-data-ui/common/src/components/EntryDialogues/DialogCreateEntry/DialogCreateEntry';
 import noop from 'lodash/noop';
-import { I18n } from '../../../utils/i18n';
-
-const i18n = I18n.keyset('component.dialog-save-editor-chart.view');
 
 class DialogSaveEditorChart extends Component {
   static propTypes = {
@@ -33,11 +30,11 @@ class DialogSaveEditorChart extends Component {
   };
   render() {
     const defaultDialogProps = {
-      title: i18n('section_title'),
-      defaultName: i18n('label_name-default'),
-      errorText: i18n('label_error'),
-      textButtonApply: i18n('button_apply'),
-      textButtonCancel: i18n('button_cancel'),
+      title: 'Сохранить чарт',
+      defaultName: 'Новая диаграмма',
+      errorText: 'Не удалось сохранить чарт',
+      textButtonApply: 'Сохранить',
+      textButtonCancel: 'Отменить',
       withError: true,
       onNotify: noop,
     };

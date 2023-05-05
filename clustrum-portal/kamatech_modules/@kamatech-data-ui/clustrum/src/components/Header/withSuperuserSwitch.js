@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 import { ENABLE, DISABLE, COOKIE_TOGGLE_SWITCH_MODE_NAME } from '../../constants/common';
 import Utils from '../../utils';
-import { I18n } from '../../utils/i18n';
 
-const i18n = I18n.keyset('clustrum.header.view');
 const NEXT_SWITCH_MODE_MAP = {
   [ENABLE]: DISABLE,
   [DISABLE]: ENABLE,
@@ -18,8 +16,8 @@ function getCurrentSuperuserSwitchMode({ cookieSuperuserSwitchModeName }) {
 function getToggleThemeMenuItem() {
   const cookieSuperuserSwitchModeName = COOKIE_TOGGLE_SWITCH_MODE_NAME;
 
-  const labelEnableSuperuserMode = i18n('switch_superuser-mode-enable');
-  const labelDisableSuperuserMode = i18n('switch_superuser-mode-disable');
+  const labelEnableSuperuserMode = 'Включить Superuser режим';
+  const labelDisableSuperuserMode = 'Отключить Superuser режим';
 
   const LABEL_TOGGLE_BUTTON = {
     [ENABLE]: labelDisableSuperuserMode,

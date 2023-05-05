@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button, TextInput } from 'lego-on-react';
-import trans from '../i18n';
 
 // import './Search.scss';
 
@@ -63,7 +62,7 @@ export default class Search extends React.PureComponent {
             view="default"
             tone="default"
             text={value}
-            placeholder={trans('search_placeholder')}
+            placeholder="Поиск"
             onChange={onInputChange}
             hasClear
           />
@@ -75,7 +74,7 @@ export default class Search extends React.PureComponent {
             size="s"
             view="default"
             tone="default"
-            text={isCleaning ? trans('search_clear') : trans('search_select_all')}
+            text={isCleaning ? 'Очистить' : 'Выбрать все'}
             onClick={selectAllItems}
           />
         )}

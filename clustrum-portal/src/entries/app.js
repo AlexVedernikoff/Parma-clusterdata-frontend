@@ -8,7 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { I18n, Utils } from '@kamatech-data-ui/clustrum';
+import { Utils } from '@kamatech-data-ui/clustrum';
 import moment from 'moment';
 
 import reducers from '../reducers';
@@ -21,7 +21,7 @@ import './../css/app.css';
 import './../css/app-table-settings-total.css';
 import './../css/card.css';
 
-I18n.registerKeysets(window.DL_I18N);
+import { logVersion } from '../utils/version-logger';
 
 const middlewares = [thunkMiddleware];
 
@@ -36,6 +36,8 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(...middl
 moment.locale(process.env.BEM_LANG || 'ru');
 
 Utils.setBodyFeatures();
+
+logVersion();
 
 function render() {
   ReactDOM.render(

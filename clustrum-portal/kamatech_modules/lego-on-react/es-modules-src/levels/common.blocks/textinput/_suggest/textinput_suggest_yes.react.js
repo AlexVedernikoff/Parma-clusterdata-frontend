@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -90,7 +90,7 @@ export default declMod(
 
       var content = this.__base.apply(this, arguments);
 
-      content = Children.map(content, function (item) {
+      content = Children.map(content, function(item) {
         if (TextInputBox.isBox(item)) {
           return React.cloneElement(item, {
             ref: function ref(c) {
@@ -167,7 +167,7 @@ export default declMod(
         dataprovider = _props.dataprovider,
         suggestUrl = _props.suggestUrl;
 
-      dataprovider(suggestUrl, val, function (items, metainfo) {
+      dataprovider(suggestUrl, val, function(items, metainfo) {
         var suggestVisible = _this2.state.focused && Boolean(items.length);
         if (_this2.state.suggestVisible !== suggestVisible) {
           _this2._suggestShow();
@@ -201,7 +201,7 @@ export default declMod(
       this._suggestHide();
       if (!byKeyboard) {
         this.preventShow = true;
-        setTimeout(function () {
+        setTimeout(function() {
           _this3.focus();
           _this3.preventShow = false;
         }, 1);
@@ -274,7 +274,7 @@ export default declMod(
     _buildPopupContent: function _buildPopupContent(items, metainfo) {
       var _this4 = this;
 
-      return items.map(function (item, i) {
+      return items.map(function(item, i) {
         var type = 'text';
         var text = item;
         if (Array.isArray(item)) {

@@ -1,6 +1,5 @@
 import React from 'react';
 import block from 'bem-cn-lite';
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 import Utils from '../../../../helpers/utils';
 
@@ -23,7 +22,7 @@ function VolumeBar(props) {
         <div className={b('progress-line-occupied')} style={{ width: `${occupiedPercent}%` }} />
       </div>
       <div className={b('sub-info')}>
-        <span>{i18n('dataset.materialization.modify', 'label_occupied')}</span>
+        <span>занято</span>
       </div>
     </div>
   );

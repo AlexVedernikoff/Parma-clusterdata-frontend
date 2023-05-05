@@ -2,7 +2,7 @@ import React from 'react';
 import Utils from '../../helpers/utils';
 import _debounce from 'lodash/debounce';
 import _isEqual from 'lodash/isEqual';
-import { DatasetSDK, i18n } from '@kamatech-data-ui/clustrum';
+import { DatasetSDK } from '@kamatech-data-ui/clustrum';
 
 import DatasetFieldErrors from '../../components/DatasetFieldErrors/DatasetFieldErrors';
 
@@ -35,40 +35,40 @@ import { CalcModes } from '../../../kamatech_modules/@kamatech-data-ui/clustrum'
 function getMessageText() {
   return {
     CREATE_DATASET_MSGS: {
-      NOTIFICATION_SUCCESS: i18n('dataset.notifications.view', 'toast_create-dataset-msgs-success'),
-      NOTIFICATION_FAILURE: i18n('dataset.notifications.view', 'toast_create-dataset-msgs-failure'),
+      NOTIFICATION_SUCCESS: 'Набор данных создан',
+      NOTIFICATION_FAILURE: 'Ошибка: не удалось создать датасет',
     },
     FIELD_DUPLICATED_MSGS: {
-      NOTIFICATION_SUCCESS: i18n('dataset.notifications.view', 'toast_field-duplicated-msgs-success'),
-      NOTIFICATION_FAILURE: i18n('dataset.notifications.view', 'toast_field-duplicated-msgs-failure'),
+      NOTIFICATION_SUCCESS: 'Поле продублировано',
+      NOTIFICATION_FAILURE: '',
     },
     FIELD_REMOVE_MSGS: {
-      NOTIFICATION_SUCCESS: i18n('dataset.notifications.view', 'toast_field-remove-msgs-success'),
-      NOTIFICATION_FAILURE: i18n('dataset.notifications.view', 'toast_field-remove-msgs-failure'),
+      NOTIFICATION_SUCCESS: 'Поле удалено',
+      NOTIFICATION_FAILURE: '',
     },
     DATASET_SAVE_MSGS: {
-      NOTIFICATION_SUCCESS: i18n('dataset.notifications.view', 'toast_dataset-save-msgs-success'),
-      NOTIFICATION_FAILURE: i18n('dataset.notifications.view', 'toast_dataset-save-msgs-failure'),
+      NOTIFICATION_SUCCESS: 'Набор данных сохранен',
+      NOTIFICATION_FAILURE: 'Ошибка: не удалось сохранить датасет',
     },
     DATASET_SYNC_MSGS: {
-      NOTIFICATION_SUCCESS: i18n('dataset.notifications.view', 'toast_sync-dataset-msgs-success'),
-      NOTIFICATION_FAILURE: i18n('dataset.notifications.view', 'toast_sync-dataset-msgs-failure'),
+      NOTIFICATION_SUCCESS: 'Набор данных синхронизирован',
+      NOTIFICATION_FAILURE: 'Ошибка: не удалось синхронизировать датасет',
     },
     DATASET_FETCH_PREVIEW_MSGS: {
-      NOTIFICATION_SUCCESS: i18n('dataset.notifications.view', 'toast_dataset-fetch-preview-msgs-success'),
-      NOTIFICATION_FAILURE: i18n('dataset.notifications.view', 'toast_dataset-fetch-preview-msgs-failure'),
+      NOTIFICATION_SUCCESS: '',
+      NOTIFICATION_FAILURE: 'Ошибка: не удалось загрузить данные для предпросмотра',
     },
     DATASET_VALIDATION_MSGS: {
-      NOTIFICATION_SUCCESS: i18n('dataset.notifications.view', 'toast_dataset-validation-msgs-success'),
-      NOTIFICATION_FAILURE: i18n('dataset.notifications.view', 'toast_dataset-validation-msgs-failure'),
+      NOTIFICATION_SUCCESS: '',
+      NOTIFICATION_FAILURE: 'Ошибка: датасет не прошел валидацию',
     },
     FETCH_TYPES_MSGS: {
-      NOTIFICATION_SUCCESS: i18n('dataset.notifications.view', 'toast_fetch-types-msgs-success'),
-      NOTIFICATION_FAILURE: i18n('dataset.notifications.view', 'toast_fetch-types-msgs-failure'),
+      NOTIFICATION_SUCCESS: '',
+      NOTIFICATION_FAILURE: 'Ошибка: не удалось загрузить типы данных',
     },
     DATASET_FETCH_HISTORY_MSGS: {
-      NOTIFICATION_SUCCESS: i18n('dataset.notifications.view', 'toast_dataset-fetch-history-msgs-success'),
-      NOTIFICATION_FAILURE: i18n('dataset.notifications.view', 'toast_dataset-fetch-history-msgs-failure'),
+      NOTIFICATION_SUCCESS: '',
+      NOTIFICATION_FAILURE: 'Ошибка: не удалось загрузить данные о версионности',
     },
   };
 }
@@ -465,7 +465,7 @@ const dispatchFetchPreviewDataset = async (
 
       if (datasetErrorDialogRef) {
         actions.push({
-          label: i18n('dataset.notifications.view', 'toast_error-action-label'),
+          label: 'Подробнее',
           onClick: datasetErrorDialogRef.current && datasetErrorDialogRef.current.open,
         });
       }
@@ -547,7 +547,7 @@ const dispatchFetchHistoryDataset = async (
 
       if (datasetErrorDialogRef) {
         actions.push({
-          label: i18n('dataset.notifications.view', 'toast_error-action-label'),
+          label: 'Подробнее',
           onClick: datasetErrorDialogRef.current && datasetErrorDialogRef.current.open,
         });
       }
@@ -771,7 +771,7 @@ export function syncDataSet({ datasetErrorDialogRef }) {
 
       if (datasetErrorDialogRef) {
         actions.push({
-          label: i18n('dataset.notifications.view', 'toast_error-action-label'),
+          label: 'Подробнее',
           onClick: datasetErrorDialogRef.current.open,
         });
       }
@@ -825,7 +825,7 @@ export function saveDataset({ datasetErrorDialogRef }) {
 
       if (datasetErrorDialogRef) {
         actions.push({
-          label: i18n('dataset.notifications.view', 'toast_error-action-label'),
+          label: 'Подробнее',
           onClick: datasetErrorDialogRef.current.open,
         });
       }

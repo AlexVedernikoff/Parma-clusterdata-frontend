@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
 import { TextInput } from 'lego-on-react';
-import i18nFactory from '../../../../modules/i18n/i18n';
 
 import ClipboardButton from '../ClipboardButton/ClipboardButton';
 import ButtonSpin from '../ButtonSpin/ButtonSpin';
@@ -17,7 +16,6 @@ const STATUSES = {
   FAIL: 'fail',
 };
 
-const i18n = i18nFactory('ButtonSpinInput');
 const b = block('button-spin-input');
 
 export default class ButtonSpinInput extends React.PureComponent {
@@ -77,7 +75,7 @@ export default class ButtonSpinInput extends React.PureComponent {
       >
         {' '}
         {/* TODO: внутри модального окна не срабатывает / ISL-4096 */}
-        {i18n('error')}
+        Ошибка
       </PopupMessage>
     </div>
   );

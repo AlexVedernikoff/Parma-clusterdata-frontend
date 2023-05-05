@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import block from 'bem-cn-lite';
-import { i18n } from '@kamatech-data-ui/clustrum';
 import { ProgressBar } from '../ProgressBar/ProgressBar';
 import { Stage } from '../../Stage';
 
@@ -18,26 +17,20 @@ export const Status = ({
 
   function _statusLabel() {
     if (isDirectDsMode) {
-      return i18n('dataset.materialization.modify', 'label_not-loaded-yet');
+      return 'Данные в этом датасете еще не загружались. Для загрузки нажмите <b>Сохранить</b> или <b>Загрузить сейчас</b>';
     }
 
     if (isProcessing) {
-      return i18n('dataset.materialization.modify', 'label_loading');
+      return 'Загрузка данных';
     }
 
     if (updated) {
       if (stage === Stage.DONE) {
-        return i18n('dataset.materialization.modify', 'label_last-update', {
-          date: lastDate,
-          time: lastTime,
-        });
+        return `Обновлено ${lastDate} в ${lastTime}`;
       }
 
       if (stage === Stage.FAILED) {
-        return i18n('dataset.materialization.modify', 'label_loading-failed', {
-          date: lastDate,
-          time: lastTime,
-        });
+        return `${lastDate} в ${lastTime}`;
       }
     }
   }

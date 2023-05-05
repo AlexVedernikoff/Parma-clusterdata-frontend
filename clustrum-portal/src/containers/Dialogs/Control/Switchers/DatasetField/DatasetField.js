@@ -6,7 +6,6 @@ import { YCSelect } from '@kamatech-data-ui/common/src';
 import { DataTypeIconSelector } from '@kamatech-data-ui/clustrum';
 import withWrap from '../../withWrap/withWrap';
 import { SDK } from '../../../../../modules/sdk';
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 const b = block('control-switcher-dataset-field');
 
@@ -59,7 +58,7 @@ class DatasetField extends React.PureComponent {
         showSearch={true}
         showItemIcon={true}
         disabled={!items}
-        placeholder={i18n('dash.control-dialog.edit', 'context_choose')}
+        placeholder="Выбрать"
         value={fieldId}
         onChange={fieldId => onChange({ fieldId, fieldName: items.find(({ guid }) => guid === fieldId).title })}
         items={(items || []).map(({ title, guid, data_type }) => ({

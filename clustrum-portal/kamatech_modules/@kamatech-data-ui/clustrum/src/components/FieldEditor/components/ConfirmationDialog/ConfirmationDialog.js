@@ -5,9 +5,6 @@ import { Button } from 'lego-on-react';
 import { Dialog } from '@kamatech-data-ui/common/src';
 //import './ConfirmationDialog.scss';
 
-import { I18n } from 'utils/i18n';
-const i18n = I18n.keyset('component.field-editor.view');
-
 const b = block('confirmation-dialog');
 
 class ConfirmationDialog extends React.Component {
@@ -24,26 +21,18 @@ class ConfirmationDialog extends React.Component {
       <Dialog visible={isVisible} onClose={cancel} hasButtonClose={false}>
         <div className={b('confirm-popup')}>
           <div className={b('confirm-question')}>
-            <span>{i18n('label_confirm-question-on-error')}</span>
-            <span>{i18n('label_data-will-be-lost')}</span>
+            <span>Вы уверены что хотите выйти?</span>
+            <span>Данные будут утеряны</span>
           </div>
           <div className={b('confirm-btns')}>
-            <Button
-              cls={b('no-btn')}
-              size="m"
-              theme="flat"
-              view="default"
-              tone="default"
-              text={i18n('button_no')}
-              onClick={cancel}
-            />
+            <Button cls={b('no-btn')} size="m" theme="flat" view="default" tone="default" text="Нет" onClick={cancel} />
             <Button
               cls={b('yes-btn')}
               size="m"
               theme="action"
               view="default"
               tone="default"
-              text={i18n('button_yes')}
+              text="Да"
               onClick={confirm}
             />
           </div>

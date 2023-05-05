@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import DataTable from '@kamatech-data-ui/dt100/lib';
 import ContainerLoader from './../ContainerLoader/ContainerLoader';
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 const b = block('preview-table');
 
@@ -17,18 +16,6 @@ class HistoryTable extends React.Component {
   _collator = new Intl.Collator(undefined, {
     numeric: true,
   });
-
-  get textPreviewLoader() {
-    const { history: { readyPreview } = {} } = this.props;
-
-    switch (readyPreview.toLowerCase()) {
-      case 'pending':
-        return i18n('dataset.dataset-editor.modify', 'label_materialization-preview');
-      case 'loading':
-      default:
-        return i18n('dataset.dataset-editor.modify', 'label_loading-dataset-preview');
-    }
-  }
 
   excludedColumns = ['datasetId', 'revisionId'];
 
@@ -44,12 +31,19 @@ class HistoryTable extends React.Component {
           row,
         ),
       );
+      const columnHeader = {
+        resultSchemaId: 'Идентификатор поля',
+        resultSchemaTitle: 'Наименование поля',
+        revisionTime: 'Дата и время изменения',
+        verificationRulesPrevious: 'Предыдущее значение правил',
+        verificationRulesCurrent: 'Текущее значение правил',
+      };
       const columns = Object.keys(data[0])
         .filter(column => !this.excludedColumns.includes(column))
         .reduce((columnsTable, column) => {
           columnsTable.push({
             name: column,
-            header: i18n('dataset.dataset-history', column),
+            header: columnHeader[column],
           });
 
           return columnsTable;
@@ -113,7 +107,7 @@ class HistoryTable extends React.Component {
   }
 
   getErrorMessage = () => {
-    return i18n('dataset.dataset-editor.modify', 'label_request-dataset-history-error');
+    return 'Ошибка: не удалось загрузить данные о версионности';
   };
 
   render() {
@@ -125,7 +119,7 @@ class HistoryTable extends React.Component {
       return (
         <div className={b()}>
           <div className={b('loader')}>
-            <ContainerLoader size="m" text={this.textPreviewLoader} />
+            <ContainerLoader size="m" text="Загрузка данных для предпросмотра" />
           </div>
         </div>
       );
@@ -150,7 +144,7 @@ class HistoryTable extends React.Component {
         <DataTable
           columns={columns}
           data={rows}
-          emptyDataMessage={i18n('dataset.dataset-editor.modify', 'label_no-data')}
+          emptyDataMessage="Нет данных"
           settings={{
             stickyHead: DataTable.FIXED,
             stickyTop: 0,

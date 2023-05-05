@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import Suggest from 'components/Suggest/Suggest';
 import { KeyCodes } from 'constants/common';
 import User from '../User/User';
-import { i18n } from '../constants';
 
 // import './AddingParticipant.scss';
 
@@ -44,7 +43,7 @@ export default class AddingParticipant extends React.Component {
 
     this.cancelablePromise = null;
     this.inputProps = {
-      placeholder: i18n('label_add-participant-placeholder'),
+      placeholder: 'Добавить участника',
       cls: b('input'),
     };
     this.suggestRef = React.createRef();
@@ -151,7 +150,7 @@ export default class AddingParticipant extends React.Component {
           onAction={this.onAction}
           onItemClick={this.onAction}
           inputProps={this.inputProps}
-          emptyItem={<div className={b('empty-item')}>{i18n('label_user-not-found')}</div>}
+          emptyItem={<div className={b('empty-item')}>Пользователь не найден</div>}
           isLoading={isLoading}
           disabled={disabled}
           className={b('suggest')}

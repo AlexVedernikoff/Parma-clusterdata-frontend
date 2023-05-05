@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 import { Tooltip } from 'lego-on-react';
-import { ActionPanel, EntryDialogues, i18n } from '@kamatech-data-ui/clustrum';
+import { ActionPanel, EntryDialogues } from '@kamatech-data-ui/clustrum';
 
 import {
   cancelEditMode,
@@ -71,7 +71,7 @@ class Header extends React.PureComponent {
     switch (this.props.dash.exportStatus) {
       case ExportStatusEnum.PENDING: {
         this.toaster.createToast({
-          title: i18n('dash.export', 'start_export'),
+          title: 'Экспорт выполняется, ожидайте загрузку файла',
           name: 'DASHBOARD',
           type: NOTIFY_TYPES.INFO,
           allowAutoHiding: true,
@@ -80,7 +80,7 @@ class Header extends React.PureComponent {
       }
       case ExportStatusEnum.SUCCESS: {
         this.toaster.createToast({
-          title: i18n('dash.export', 'end_export'),
+          title: 'Экспорт выполнен',
           name: 'DASHBOARD',
           type: NOTIFY_TYPES.SUCCESS,
           allowAutoHiding: true,
@@ -90,7 +90,7 @@ class Header extends React.PureComponent {
       }
       case ExportStatusEnum.ERROR: {
         this.toaster.createToast({
-          title: i18n('dash.export', 'export_error'),
+          title: 'Ошибка выполнения экспорта',
           name: 'DASHBOARD',
           type: NOTIFY_TYPES.ERROR,
           allowAutoHiding: true,
@@ -175,7 +175,7 @@ class Header extends React.PureComponent {
       />,
       <Button
         cls={b('action-right', { 'expand-filter-panel': true })}
-        title={i18n('dash.header.view', 'button_expanded_filter_panel')}
+        title="Открыть панель расширенных фильтров"
         onClick={this.props.openExpandedFilter}
         key="button-expanded-filter-panel"
         icon={<FilterOutlined />}
@@ -197,25 +197,17 @@ class Header extends React.PureComponent {
       //   }
       //   popup={
       //     <Popup hiding autoclosable onOutsideClick={() => {}}>
-      //       <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
-      //         <Menu.Item onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>
-      //           {i18n('dash.header.view', 'value_widget')}
-      //         </Menu.Item>
-      //         <Menu.Item onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>
-      //           {i18n('dash.header.view', 'value_control')}
-      //         </Menu.Item>
-      //         <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TEXT)}>
-      //           {i18n('dash.header.view', 'value_text')}
-      //         </Menu.Item>
-      //         <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TITLE)}>
-      //           {i18n('dash.header.view', 'value_title')}
-      //         </Menu.Item>
-      //       </Menu>
-      //     </Popup>
+      //             <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
+      //               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Диаграмма</Menu.Item>
+      //               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>Фильтр</Menu.Item>
+      //               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</Menu.Item>
+      //               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</Menu.Item>
+      //             </Menu>
+      //           </Popup>
       //   }
       // />,
       <Button key="cancel" onClick={this.props.cancelEditMode}>
-        {i18n('dash.header.view', 'button_cancel')}
+        Отменить
       </Button>,
       <Button
         key="save"
@@ -224,7 +216,7 @@ class Header extends React.PureComponent {
         onClick={this.onSave}
         ref={this.saveRef}
       >
-        {i18n('dash.header.view', 'button_save')}
+        Сохранить
       </Button>,
       <Tooltip
         key="tooltip"
@@ -238,7 +230,7 @@ class Header extends React.PureComponent {
         onOutsideClick={() => this.setState({ error: false })}
         to="bottom-right"
       >
-        {i18n('dash.header.view', 'toast_error')}
+        Произошла ошибка
       </Tooltip>,
     ];
   }
@@ -251,14 +243,14 @@ class Header extends React.PureComponent {
         this.#hasVisibleExpandedFilters() ? (
           <Button
             cls={b('action-right', { 'expand-filter-panel': true })}
-            title={i18n('dash.header.view', 'button_expanded_filter_panel')}
+            title="Открыть панель расширенных фильтров"
             onClick={openExpandedFilter}
             key="button-expanded-filter-panel"
           ></Button>
         ) : null,
         <Button
           cls={b('action-right', { 'clear-filters': true })}
-          title={i18n('dash.header.view', 'button_clear_filters')}
+          title="Сбросить фильтры"
           onClick={() => this.onClearFilters()}
           key="button-clear-filters"
           icon={<ClearOutlined />}
@@ -292,13 +284,8 @@ class Header extends React.PureComponent {
 
         <>
           {!window.DL.hideEdit && (
-            <Button
-              title={i18n('dash.header.view', 'button_edit')}
-              onClick={() => setMode(MODE.EDIT)}
-              key="button-edit"
-              icon={<EditOutlined />}
-            >
-              {i18n('dash.header.view', 'button_edit')}
+            <Button title="Редактировать" onClick={() => setMode(MODE.EDIT)} key="button-edit" icon={<EditOutlined />}>
+              Редактировать
             </Button>
           )}
         </>,
@@ -309,7 +296,7 @@ class Header extends React.PureComponent {
 
     return [
       <Button onClick={() => this.setState({ showRightsDialog: true })} key="button-edit" icon={<EditOutlined />}>
-        {i18n('dash.header.view', 'button_request-rights')}
+        Запросить права
       </Button>,
       <DialogUnlock
         sdk={SDK}

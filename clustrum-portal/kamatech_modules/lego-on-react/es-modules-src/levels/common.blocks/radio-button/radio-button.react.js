@@ -39,7 +39,7 @@ export default decl(
 
       var num = Children.count(children);
 
-      return Children.map(children, function (item, key) {
+      return Children.map(children, function(item, key) {
         var side = num === 1 ? 'both' : '';
 
         if (num > 1) {

@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 import { TextArea } from 'lego-on-react';
 import noop from 'lodash/noop';
-import { i18n } from '../../constants';
 import { withHiddenUnmount } from '../../../../hoc/withHiddenUnmount';
 
 // import './CommentDialogBase.scss';
@@ -75,10 +74,10 @@ class CommentDialogBase extends React.Component {
             onClickButtonCancel={this.onClose}
             onClickButtonApply={this.onClickButtonApply}
             textButtonApply={this.props.textButtonApply}
-            textButtonCancel={i18n('button_repeal')}
+            textButtonCancel="Отмена"
             propsButtonCancel={{ disabled: this.state.progress }}
             progress={this.state.progress}
-            errorText={this.props.errorText || i18n('label_error-general')}
+            errorText={this.props.errorText || 'Что-то пошло не так. Пожалуйста, повторите запрос позже.'}
             showError={this.state.showError}
           />
         </div>

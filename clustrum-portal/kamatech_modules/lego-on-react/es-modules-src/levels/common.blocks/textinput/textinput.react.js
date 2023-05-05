@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -154,8 +154,8 @@ export default decl(
     defaultProps: {
       view: 'classic',
       type: 'text',
-      onChange: function onChange() { },
-      innerRef: function innerRef() { },
+      onChange: function onChange() {},
+      innerRef: function innerRef() {},
     },
   },
 );

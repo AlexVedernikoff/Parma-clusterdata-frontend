@@ -1,19 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import {Button} from "antd";
+import { Button } from 'antd';
 
 import NavigationModal from 'components/Navigation/NavigationModal';
 import Utils from 'utils';
 import ActionPanelHelpers from '../../ActionPanelHelpers';
 import EntryContextMenu from '../../../EntryContextMenu/EntryContextMenu';
-
-// import './EntryPanel.scss';
-
-import { I18n } from 'utils/i18n';
-import {Header} from "../../../../../../../../src/entities/header/ui/header";
-import {FolderOutlined, MoreOutlined, StarTwoTone} from "@ant-design/icons";
-const i18n = I18n.keyset('component.action-panel.view');
+import { Header } from '../../../../../../../../src/entities/header/ui/header';
+import { FolderOutlined, MoreOutlined, StarTwoTone } from '@ant-design/icons';
 
 const b = block('dl-entry-panel');
 
@@ -135,45 +130,43 @@ class EntryPanel extends React.Component {
 
     const actionBtn = [
       <Button
-          disabled={disabled}
-          title={isFavorite ? i18n('button_remove-favorite') : i18n('button_add-favorite')}
-          icon={isFavorite ? <StarTwoTone/> : <StarTwoTone twoToneColor="#FFD700"/>}
-          onClick={this.toggleFavorite}
-      >
-      </Button>,
+        disabled={disabled}
+        title={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
+        icon={isFavorite ? <StarTwoTone /> : <StarTwoTone twoToneColor="#FFD700" />}
+        onClick={this.toggleFavorite}
+      ></Button>,
       <Button
-          disabled={disabled}
-          onClick={this.toggleEntryContextMenu}
-          icon={<MoreOutlined style={{ color: '#1890ff' }}/>}
-          innerRef={this.setInnerRefBtnEntryContextMenu}
+        disabled={disabled}
+        onClick={this.toggleEntryContextMenu}
+        icon={<MoreOutlined style={{ color: '#1890ff' }} />}
+        innerRef={this.setInnerRefBtnEntryContextMenu}
       />,
       <EntryContextMenu
-          onClose={this.onCloseEntryContextMenu}
-          anchor={this.btnEntryContextMenuRef}
-          visible={this.state.visibleEntryContextMenu}
-          entry={entry}
-          sdk={sdk}
+        onClose={this.onCloseEntryContextMenu}
+        anchor={this.btnEntryContextMenuRef}
+        visible={this.state.visibleEntryContextMenu}
+        entry={entry}
+        sdk={sdk}
       />,
       <Button
-          title={i18n('button_open-navigation')}
-          icon={<FolderOutlined style={{ color: '#1890ff' }}/>}
-          onClick={this.openNavigation}
-      >
-      </Button>,
+        title="Открыть навигацию"
+        icon={<FolderOutlined style={{ color: '#1890ff' }} />}
+        onClick={this.openNavigation}
+      ></Button>,
       <NavigationModal
-          sdk={sdk}
-          startFrom={this.defaultPath}
-          onCreateAction={this.onCreateAction}
-          highlightEntry={entry}
-          onClose={this.onCloseNavigation}
-          visible={isNavigationVisible}
-          currentPageEntry={entry}
-      />
-    ]
+        sdk={sdk}
+        startFrom={this.defaultPath}
+        onCreateAction={this.onCreateAction}
+        highlightEntry={entry}
+        onClose={this.onCloseNavigation}
+        visible={isNavigationVisible}
+        currentPageEntry={entry}
+      />,
+    ];
 
     return (
       <div className={b()}>
-        <Header {...this.props} actionsBtn={actionBtn}/>
+        <Header {...this.props} actionsBtn={actionBtn} />
       </div>
     );
   }
