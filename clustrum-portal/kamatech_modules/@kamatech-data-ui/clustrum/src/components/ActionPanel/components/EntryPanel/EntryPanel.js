@@ -7,7 +7,7 @@ import NavigationModal from 'components/Navigation/NavigationModal';
 import Utils from 'utils';
 import ActionPanelHelpers from '../../ActionPanelHelpers';
 import EntryContextMenu from '../../../EntryContextMenu/EntryContextMenu';
-import { Header } from '../../../../../../../../src/entities/header/ui/header';
+import { Header } from '../../../../../../../../src/entities/header';
 import { FolderOutlined, MoreOutlined, StarTwoTone } from '@ant-design/icons';
 
 const b = block('dl-entry-panel');
