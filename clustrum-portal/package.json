@@ -27,7 +27,7 @@
     "src/**/*.{css,js,jsx,ts,tsx,md,json}": "npm run prettier:pre-commit"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.0.0",
+    "@ant-design/icons": "5.0.0",
     "@babel/plugin-syntax-dynamic-import": "7.7.4",
     "@babel/runtime": "7.7.7",
     "@bem/sdk.naming.presets": "0.2.3",
