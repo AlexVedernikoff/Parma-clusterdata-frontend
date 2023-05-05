@@ -8,7 +8,6 @@ import { setPageTab } from '../../store/actions/dash';
 import { Tabs as AntdTabs } from 'antd';
 
 function tabsReducer(state, action) {
-  console.debug('tabsReduser');
   const { visibleTabs, hiddenTabs } = state;
   switch (action.type) {
     case 'increaseTabs':

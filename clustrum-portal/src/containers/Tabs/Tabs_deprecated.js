@@ -40,7 +40,6 @@ function tabsReducer(state, action) {
 }
 
 function Tabs(props) {
-  console.debug({ props });
   if (window.DL.hideTabs) {
     return null;
   }
