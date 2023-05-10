@@ -1,4 +1,5 @@
 import React from 'react';
+import './title-info-element.css';
 
 interface PluginTitleProps {
   data: {
@@ -8,9 +9,13 @@ interface PluginTitleProps {
   };
 }
 
-export const PluginTitle: React.FC<PluginTitleProps> = ({ data }) => {
+export function PluginTitle({ data }: PluginTitleProps): JSX.Element {
   const { text = '', size = '', showInTOC = false } = data;
   const id = showInTOC && text ? encodeURIComponent(text) : undefined;
 
-  return <div id={id}>{text}</div>;
-};
+  return (
+    <div id={id} className="title-info-element">
+      <div className={'title-info-element__title'}>{text}</div>
+    </div>
+  );
+}
