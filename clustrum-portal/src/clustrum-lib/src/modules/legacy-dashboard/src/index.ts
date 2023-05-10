@@ -1,2 +1,2 @@
 export { DashKit } from './components';
-export { pluginText, pluginTitle, pluginWidget } from './plugins';
+export { pluginTitle, pluginWidget } from './plugins';

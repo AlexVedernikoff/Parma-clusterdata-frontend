@@ -232,7 +232,6 @@ class Header extends React.PureComponent {
             <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Диаграмма</Menu.Item>
               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>Фильтр</Menu.Item>
-              <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</Menu.Item>
               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</Menu.Item>
             </Menu>
           </Popup>
@@ -281,7 +280,7 @@ class Header extends React.PureComponent {
   }
 
   renderViewItems() {
-    const { entry, tab, canEdit, openExpandedFilter, setMode } = this.props;
+    const { entry, canEdit, openExpandedFilter, setMode } = this.props;
 
     if (canEdit) {
       return [
