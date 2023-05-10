@@ -16,8 +16,6 @@ import iconLegacyWizard from '../../../icons/legacy-wizard.svg';
 import iconScript from '../../../icons/script.svg';
 import iconFilesDataset from '../../../icons/files-dataset.svg';
 
-import { I18n } from '../../../utils/i18n';
-const i18n = I18n.keyset('component.navigation.view');
 const b = block('dl-navigation-base');
 
 export const getPlaceParameters = memoize(place => {
@@ -25,7 +23,7 @@ export const getPlaceParameters = memoize(place => {
     {
       place: PLACE.ORIGIN_ROOT,
       icon: iconFolder,
-      text: i18n('switch_root'),
+      text: 'Все объекты',
       pagination: false,
       displayParentFolder: false,
       sort: true,
@@ -34,7 +32,7 @@ export const getPlaceParameters = memoize(place => {
     {
       place: PLACE.FAVORITES,
       icon: iconFavorites,
-      text: i18n('switch_favorites'),
+      text: 'Избранное',
       pagination: false,
       displayParentFolder: true,
       sort: true,
@@ -44,7 +42,7 @@ export const getPlaceParameters = memoize(place => {
     {
       place: PLACE.CONNECTIONS,
       icon: iconConnection,
-      text: i18n('switch_connections'),
+      text: 'Подключения',
       pagination: true,
       displayParentFolder: true,
       sort: false,
@@ -54,7 +52,7 @@ export const getPlaceParameters = memoize(place => {
     {
       place: PLACE.DATASETS,
       icon: iconDataset,
-      text: i18n('switch_datasets'),
+      text: 'Наборы данных',
       pagination: true,
       displayParentFolder: true,
       sort: false,
@@ -64,7 +62,7 @@ export const getPlaceParameters = memoize(place => {
     {
       place: PLACE.WIDGETS,
       icon: iconWidget,
-      text: i18n('switch_widgets'),
+      text: 'Диаграммы',
       pagination: true,
       displayParentFolder: true,
       sort: false,
@@ -74,7 +72,7 @@ export const getPlaceParameters = memoize(place => {
     {
       place: PLACE.DASHBOARDS,
       icon: iconDashboard,
-      text: i18n('switch_dashboards'),
+      text: 'Аналитические панели',
       pagination: true,
       displayParentFolder: true,
       sort: false,
@@ -89,7 +87,7 @@ export const getPlaceParameters = memoize(place => {
 export const getQuickItems = memoize(() => [
   {
     icon: iconFolder,
-    text: i18n('switch_personal-folder'),
+    text: 'Личная папка',
     scope: 'folder',
     key: QUICK_ITEMS.USER_FOLDER,
   },
@@ -99,7 +97,7 @@ export const getCreateMenuItemsInternal = memoize(() => [
   {
     value: 'folder',
     icon: iconScopeFolder,
-    text: i18n('value_create-folder'),
+    text: 'Папку',
   },
   {
     value: 'script',
@@ -137,26 +135,26 @@ export const getCreateMenuItemsExternal = memoize(() => [
   {
     value: 'folder',
     icon: iconScopeFolder,
-    text: i18n('value_create-folder'),
+    text: 'Папку',
   },
   {
     value: 'connection',
     icon: iconConnection,
-    text: i18n('value_create-connection'),
+    text: 'Соединение',
   },
   {
     value: 'dataset',
     icon: iconFilesDataset,
-    text: i18n('value_create-dataset'),
+    text: 'Набор данных',
   },
   {
     value: 'widget',
     icon: iconFilesWidget,
-    text: i18n('value_create-widget'),
+    text: 'Диаграмму',
   },
   {
     value: 'dashboard',
     icon: iconFilesDashboard,
-    text: i18n('value_create-dashboard'),
+    text: 'Аналитическую панель',
   },
 ]);

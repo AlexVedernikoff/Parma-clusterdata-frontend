@@ -23,7 +23,7 @@ import "./../__ticker/user-account__ticker.css";
 */
 
 export default declMod(
-  function (_ref) {
+  function(_ref) {
     var hasTicker = _ref.hasTicker,
       tickerCount = _ref.tickerCount;
 

@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 
 import { Button, TextInput } from 'lego-on-react';
 import { Icon } from '@kamatech-data-ui/common/src';
-import { i18n } from '@kamatech-data-ui/clustrum-i18n';
 
 import ButtonIcon from '../../../../../components/ButtonIcon/ButtonIcon';
 import WrappedButton from '../../Switchers/Button';
@@ -59,14 +58,9 @@ function Defaults({ defaults, onChange }) {
 
   return (
     <React.Fragment>
-      <WrappedButton
-        title={i18n('dash.control-dialog.edit', 'label_params')}
-        text={i18n('dash.control-dialog.edit', 'button_setup')}
-        disabled={false}
-        onClick={() => setShowDialog(!showDialog)}
-      />
+      <WrappedButton title="Параметры" text="Настроить" disabled={false} onClick={() => setShowDialog(!showDialog)} />
       <SubDialog
-        caption={i18n('dash.control-dialog.edit', 'label_params')}
+        caption="Параметры"
         visible={showDialog}
         onApply={() => {
           const newDefaults = makeObject(entries);
@@ -92,10 +86,7 @@ function Defaults({ defaults, onChange }) {
                   )}
                 </div>
                 {keyIndex === entries.length - 1 && (
-                  <AddButton
-                    text={i18n('dash.control-dialog.edit', 'button_add-key')}
-                    onClick={() => setEntries([...entries, EMPTY_ENTRY])}
-                  />
+                  <AddButton text="Добавить ключ" onClick={() => setEntries([...entries, EMPTY_ENTRY])} />
                 )}
               </div>
               <div className={b('column')}>
@@ -129,7 +120,7 @@ function Defaults({ defaults, onChange }) {
                   </div>
                 ))}
                 <AddButton
-                  text={i18n('dash.control-dialog.edit', 'button_add-value')}
+                  text="Добавить значение"
                   onClick={() =>
                     setEntries(entries.map((pair, index) => (index === keyIndex ? [pair[0], [...pair[1], '']] : pair)))
                   }

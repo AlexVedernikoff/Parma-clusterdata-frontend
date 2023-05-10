@@ -7,25 +7,23 @@ import withWrap from '../withWrap/withWrap';
 
 import { ELEMENT_TYPE } from '../constants';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 const ITEMS = [
   {
     value: ELEMENT_TYPE.SELECT,
     get title() {
-      return i18n('dash.control-dialog.edit', 'value_element-select');
+      return 'Список';
     },
   },
   {
     value: ELEMENT_TYPE.DATE,
     get title() {
-      return i18n('dash.control-dialog.edit', 'value_element-date');
+      return 'Календарь';
     },
   },
   {
     value: ELEMENT_TYPE.INPUT,
     get title() {
-      return i18n('dash.control-dialog.edit', 'value_element-input');
+      return 'Поле ввода';
     },
   },
 ];

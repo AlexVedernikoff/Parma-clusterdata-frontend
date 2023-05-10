@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -77,7 +77,7 @@ export default decl({
     );
 
     var icon = void 0;
-    items.some(function (item) {
+    items.some(function(item) {
       if (val.indexOf(item.props.val) !== -1 && item.props.icon) {
         icon = React.cloneElement(item.props.icon, { key: 'icon' });
         return true;

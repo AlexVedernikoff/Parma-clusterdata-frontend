@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
-import { i18n } from '../../constants';
 import EditPermissionsPanel from './EditPermissionsPanel/EditPermissionsPanel';
 import GrantDetails from './GrantDetails/GrantDetails';
 
@@ -20,9 +19,7 @@ class DialogEditPermissions extends React.Component {
     return (
       <Dialog visible={this.props.visible} onClose={this.props.onClose}>
         <div className={b()}>
-          <Dialog.Header
-            caption={editable ? i18n('section_given-access-title') : i18n('section_requesting-access-title')}
-          />
+          <Dialog.Header caption={editable ? 'Выданные права' : 'Запрашиваемые права'} />
           <Dialog.Body className={b('body')}>
             <EditPermissionsPanel
               sdk={this.props.sdk}

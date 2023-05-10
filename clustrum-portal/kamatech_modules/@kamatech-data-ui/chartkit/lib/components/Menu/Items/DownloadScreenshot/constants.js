@@ -18,6 +18,7 @@ const PARAMETERS = [
     key: 'parameter-no-controls',
     name: '_no_controls',
     val: true,
+    label: 'Не показывать элементы управления',
   },
 ];
 

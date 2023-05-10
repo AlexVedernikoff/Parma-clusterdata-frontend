@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -23,7 +23,7 @@ var TextAreaClear = _textarea__clear.applyDecls();
 //import "./../__clear/_visible/textarea__clear_visible_yes.css";
 
 export default declMod(
-  function (props) {
+  function(props) {
     return props.hasClear && !(props.controlAttrs && props.controlAttrs.readOnly);
   },
   {

@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import moment from 'moment';
 
 import { Spin, Icon } from 'lego-on-react';
-import i18nFactory from '../../../../../../modules/i18n/i18n';
 
 import { removeComment } from '../../../../../../modules/comments/comments';
 
@@ -12,7 +11,6 @@ import { removeComment } from '../../../../../../modules/comments/comments';
 
 const DATE_FORMAT = 'DD.MM.YYYY';
 
-const i18n = i18nFactory('CommentsModal');
 const b = block('comment');
 
 // TODO: показывать тултип из List, проставляя anchor, по наведению на alert-иконку
@@ -54,8 +52,8 @@ export default class Comment extends React.PureComponent {
     event.stopPropagation(); // TODO: это точно нужно?
     this.setState({ isRemoving: true, isError: false });
     this.props.showConfirmParanja({
-      text: i18n('ask-remove-comment'),
-      confirmText: i18n('yes-remove'),
+      text: 'Вы действительно хотите удалить этот комментарий?',
+      confirmText: 'Да, удалить',
       onConfirm: () => this._remove(),
       onCancel: () => this.setState({ isRemoving: false }),
       onOutsideClick: 'onCancel',

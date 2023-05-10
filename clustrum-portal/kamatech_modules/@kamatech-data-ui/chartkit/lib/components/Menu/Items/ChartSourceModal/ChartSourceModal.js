@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import axiosInstance from '../../../../modules/axios/axios';
 
 import { Button, Spin } from 'lego-on-react';
-import i18nFactory from '../../../../modules/i18n/i18n';
 import settings from '../../../../modules/settings/settings';
 import URI from '../../../../modules/uri/uri';
 
@@ -16,7 +15,6 @@ import AppMetrikaSourceView from './ChartSourceViews/AppMetrikaSourceView';
 
 // import './ChartSourceModal.scss';
 
-const i18n = i18nFactory('ChartSourceModal');
 const b = block('chart-source-modal');
 const API = '/_v3/reportmenus/nav/reports_by_list/?add_fields_info_extras=1';
 
@@ -214,11 +212,13 @@ export default class ChartSourceModal extends React.PureComponent {
   _spin = () => (
     <div className={b('row', { spin: true })}>
       <Spin progress size="l" mix={{ block: b('spin') }} />
-      {i18n('loading')}
+      Загрузка
     </div>
   );
 
-  _fail = () => <div className={b('row', { fail: true })}>{i18n('error')}</div>;
+  _fail = () => (
+    <div className={b('row', { fail: true })}>Произошла ошибка при загрузке источника. Попробуйте снова</div>
+  );
 
   _viewSwitcher(index, source) {
     const { type } = source;
@@ -255,13 +255,13 @@ export default class ChartSourceModal extends React.PureComponent {
     return (
       <ChartsModal element={this.props.element}>
         <ChartsModal.Section>
-          <ChartsModal.Header>{i18n('chart-sources')}</ChartsModal.Header>
+          <ChartsModal.Header>Источники данных</ChartsModal.Header>
           <ChartsModal.Body>
             <div className={b()}>{content}</div>
           </ChartsModal.Body>
           <ChartsModal.Footer>
             <Button theme="normal" size="m" onClick={proxy => ChartsModal.onClickClose(proxy, this.props.element)}>
-              {i18n('close')}
+              Закрыть
             </Button>
           </ChartsModal.Footer>
         </ChartsModal.Section>

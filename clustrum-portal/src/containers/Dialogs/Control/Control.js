@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 import { CheckBox as LegoCheckBox, TextInput as LegoTextInput } from 'lego-on-react';
 import { Dialog } from '@kamatech-data-ui/common/src';
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 import Dataset from './Switchers/Dataset';
 import DatasetField from './Switchers/DatasetField/DatasetField';
@@ -194,7 +193,7 @@ class Control extends React.PureComponent {
           <SourceType
             type={type}
             selectedType={sourceType}
-            title={i18n('dash.control-dialog.edit', 'value_source-external')}
+            title="Внешний селектор"
             onChange={sourceType => this.setState({ sourceType })}
           />
           {sourceType === type && (
@@ -228,13 +227,9 @@ class Control extends React.PureComponent {
       <React.Fragment>
         {sourceType === CONTROL_SOURCE_TYPE.DATASET && (
           <React.Fragment>
-            <Dataset
-              title={i18n('dash.control-dialog.edit', 'field_dataset')}
-              datasetId={id}
-              onClick={id => this.setState({ dataset: { id } })}
-            />
+            <Dataset title="Набор данных" datasetId={id} onClick={id => this.setState({ dataset: { id } })} />
             <DatasetField
-              title={i18n('dash.control-dialog.edit', 'field_field')}
+              title="Поле"
               datasetId={id}
               fieldId={datasetFieldId}
               onChange={({ fieldId, fieldName }) => {
@@ -247,15 +242,11 @@ class Control extends React.PureComponent {
           </React.Fragment>
         )}
         {sourceType !== CONTROL_SOURCE_TYPE.EXTERNAL && (
-          <ElementType
-            title={i18n('dash.control-dialog.edit', 'field_element-type')}
-            elementType={elementType}
-            onChange={this.changeElementType}
-          />
+          <ElementType title="Тип элемента" elementType={elementType} onChange={this.changeElementType} />
         )}
         {sourceType !== CONTROL_SOURCE_TYPE.DATASET && (
           <TextInput
-            title={i18n('dash.control-dialog.edit', 'field_field-name')}
+            title="Имя поля"
             text={controlFieldName}
             onChange={fieldName => this.setState({ control: { ...control, fieldName } })}
           />
@@ -329,7 +320,7 @@ class Control extends React.PureComponent {
     return visible ? (
       <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
         <div className={b()}>
-          <Dialog.Header caption={i18n('dash.control-dialog.edit', 'label_control')} />
+          <Dialog.Header caption="Фильтр" />
           <Dialog.Body>
             <div className={b('title')}>
               <LegoTextInput
@@ -338,7 +329,7 @@ class Control extends React.PureComponent {
                 tone="default"
                 size="s"
                 text={title}
-                placeholder={i18n('dash.control-dialog.edit', 'context_title')}
+                placeholder="Заголовок"
                 onChange={title => this.setState({ title, isManualTitle: true })}
               />
               <LegoCheckBox
@@ -350,16 +341,16 @@ class Control extends React.PureComponent {
                 checked={showTitle}
                 onChange={() => this.setState({ showTitle: !showTitle })}
               >
-                {i18n('dash.control-dialog.edit', 'field_show-title')}
+                Показывать
               </LegoCheckBox>
             </div>
             {this.renderSourceType({
               type: CONTROL_SOURCE_TYPE.DATASET,
-              title: i18n('dash.control-dialog.edit', 'value_source-dataset'),
+              title: 'На основе датасета',
             })}
             {this.renderSourceType({
               type: CONTROL_SOURCE_TYPE.MANUAL,
-              title: i18n('dash.control-dialog.edit', 'value_source-manual'),
+              title: 'Ручной ввод',
             })}
             {this.renderSourceTypeExternal()}
             <LegoCheckBox
@@ -376,13 +367,9 @@ class Control extends React.PureComponent {
           <Dialog.Footer
             onClickButtonCancel={closeDialog}
             onClickButtonApply={this.onApply}
-            textButtonApply={
-              this.isEdit
-                ? i18n('dash.control-dialog.edit', 'button_save')
-                : i18n('dash.control-dialog.edit', 'button_add')
-            }
-            textButtonCancel={i18n('dash.control-dialog.edit', 'button_cancel')}
-            errorText={i18n('dash.control-dialog.edit', 'toast_required-fields')}
+            textButtonApply={this.isEdit ? 'Сохранить' : 'Добавить'}
+            textButtonCancel="Отменить"
+            errorText="Следующие поля должны быть заполнены: Заголовок, Поле/Имя поля"
             showError={error}
             onOutsideTooltipClick={() => this.setState({ error: false })}
           />

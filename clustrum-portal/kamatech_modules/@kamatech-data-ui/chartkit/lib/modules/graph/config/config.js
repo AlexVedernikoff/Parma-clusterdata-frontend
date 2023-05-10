@@ -5,13 +5,11 @@ import mergeWith from 'lodash/mergeWith';
 
 import ExtensionsManager, { EXTENSION_KEY } from '../../extensions-manager/extensions-manager';
 import defaultOptions from './options';
-import i18nFactory from '../../i18n/i18n';
 import { getCommentsOnLine, drawComments, hideComments, drawOnlyRendererComments } from '../../comments/drawing';
 import ChartKit from '../../../components/ChartKit/ChartKit';
 import formatTooltip from '../tooltip/tooltip';
 import { MEASURE_TYPE } from '../../../../../../../src/constants';
 
-const i18n = i18nFactory('chartkit');
 const b = block('chartkit-tooltip');
 
 const COUNT_ROWS_FOR_FORCE_HIDE = 4;
@@ -47,7 +45,7 @@ function buildLegend(options) {
     alignColumns: false,
     labelFormatter: function() {
       if (isManageSerie(this)) {
-        return `<span style="color: gray;">${i18n('legend-series-hide', 'Chart')}</span>`;
+        return `<span style="color: gray;">Скрыть все линии</span>`;
       } else {
         return this.name;
       }
@@ -188,7 +186,7 @@ function hasChartManageSerie(chart) {
 
 function manageLegend(chart) {
   if (chart && hasChartManageSerie(chart)) {
-    const text = hasChartVisibleSeries(chart) ? i18n('legend-series-hide') : i18n('legend-series-show');
+    const text = hasChartVisibleSeries(chart) ? 'Скрыть все линии' : 'Показать все линии';
 
     const firstLegendItem = chart.container.querySelector('.highcharts-legend-item');
     if (firstLegendItem) {

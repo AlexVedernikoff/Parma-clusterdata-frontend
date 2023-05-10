@@ -12,7 +12,7 @@ import { load as loadDash, setErrorMode } from '../../store/actions/dash';
 import { isDraft, getEntryTitle, canEdit, isEditMode, getWidgetEditorUUID } from '../../store/selectors/dash';
 import { setWidgetEditorUUID, setWidgetForReloadUUID } from '../../store/actions/dash';
 
-import { i18n, SDK } from '@kamatech-data-ui/clustrum';
+import { SDK } from '@kamatech-data-ui/clustrum';
 import { Wizard } from '@clustrum-lib';
 import SideSlidingPanel from '../../components/SideSlidingPanel/SideSlidingPanel';
 import ExpandedFilter from '../ExpandedFilter/ExpandedFilter';
@@ -57,7 +57,7 @@ class Dash extends React.PureComponent {
   }
 
   unloadConfirmation = event => {
-    const message = i18n('dash.main.view', 'toast_unsaved');
+    const message = 'На странице есть несохраненные изменения. Вы уверены?';
     if (this.props.isEditMode && this.props.isDraft && this.props.canEdit) {
       (event || window.event).returnValue = message;
       return message;
@@ -106,7 +106,7 @@ class Dash extends React.PureComponent {
         <Body />
         <Dialogs />
         <SideSlidingPanel
-          title={i18n('dash.main.view', 'widget_editor_title')}
+          title="Режим редактирования элемента"
           isOpen={!!widgetEditorUUID}
           onCloseAction={this.closeWidgetEditor}
           styleMods={{ width: WIDGET_EDITOR_WIDTH_MOD }}

@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
 import { Button } from 'lego-on-react';
-import i18nFactory from '../../../../modules/i18n/i18n';
 
 import ChartsModal from '../ChartsModal/ChartsModal';
 import ChartsModalMenu from '../ChartsModalMenu/ChartsModalMenu';
 import createBody from './createBody';
 
 // import './CodeLinkModal.scss';
-
-const i18n = i18nFactory('CodeLinkModal');
 
 const SERVICES = {
   CHARTS: 'charts',
@@ -49,23 +46,23 @@ const GRAPH_MAP_CONFIG_TYPES = [
 const MENU_ITEMS = [
   {
     val: SERVICES.CHARTS,
-    title: i18n('service-charts'),
+    title: 'Ссылка',
     icon: 'favicon.png',
   },
   {
     val: SERVICES.STATISTICS,
-    title: i18n('service-stat'),
+    title: 'Статистика',
     icon: 'favicon.ico',
   },
   {
     val: SERVICES.STARTREK,
-    title: i18n('service-st'),
+    title: 'Стартрек',
     icon: 'favicon.ico',
     configTypes: GRAPH_MAP_CONFIG_TYPES,
   },
   {
     val: SERVICES.WIKI,
-    title: i18n('service-wiki'),
+    title: 'Вики',
     icon: 'favicon-16.png',
     configTypes: GRAPH_MAP_CONFIG_TYPES.concat([
       CONFIG_TYPES.TABLE,
@@ -75,13 +72,13 @@ const MENU_ITEMS = [
   },
   {
     val: SERVICES.AT,
-    title: i18n('service-at'),
+    title: 'Этушка',
     icon: 'atushka_normal.png',
     configTypes: GRAPH_MAP_CONFIG_TYPES,
   },
   {
     val: SERVICES.GOALS,
-    title: i18n('service-goals'),
+    title: 'Цели',
     icon: 'favicon.png',
     configTypes: GRAPH_MAP_CONFIG_TYPES,
   },
@@ -90,40 +87,40 @@ const MENU_ITEMS = [
 const CHECKBOXES = {
   NO_HEADER: {
     key: '_no_header',
-    text: i18n('no-header'),
+    text: 'Без шапки',
     checked: false,
     queryParam: true,
   },
   NO_COMMENTS: {
     key: '_graph_no_comments',
-    text: i18n('no-comments'),
+    text: 'Без комментариев',
     checked: false,
     queryParam: true,
   },
   NO_MARK: {
     key: 'nomark',
-    text: i18n('no-mark'),
+    text: 'Без рамки',
     checked: true,
     queryParam: false,
   },
 };
 
 const Charts = createBody({
-  header: i18n('charts-header'),
-  text: i18n('charts-text'),
+  header: 'Получить ссылку',
+  text: 'Ссылка, которой можно поделиться.',
   shortLinkItem: true,
   checkboxes: [CHECKBOXES.NO_HEADER, CHECKBOXES.NO_COMMENTS],
 });
 
 const Statistics = createBody({
-  header: i18n('stat-header'),
-  text: i18n('stat-text'),
+  header: 'Получить ссылку для дашборда Статистики',
+  text: '',
   checkboxes: [CHECKBOXES.NO_COMMENTS],
 });
 
 const Startrek = createBody({
-  header: i18n('st-header'),
-  text: i18n('st-text'),
+  header: 'Получить код для вставки в Startrek',
+  text: '',
   checkboxes: [CHECKBOXES.NO_COMMENTS],
   radiobox: [
     {
@@ -145,8 +142,8 @@ const Startrek = createBody({
 });
 
 const Wiki = createBody({
-  header: i18n('wiki-header'),
-  text: i18n('wiki-text'),
+  header: 'Получить код для вставки на вики-страницы',
+  text: '',
   checkboxes: [CHECKBOXES.NO_COMMENTS, CHECKBOXES.NO_MARK],
   radiobox: [
     {
@@ -170,8 +167,8 @@ const Wiki = createBody({
 });
 
 const At = createBody({
-  header: i18n('at-header'),
-  text: i18n('at-text'),
+  header: 'Получить код для вставки в Этушке',
+  text: '',
   radiobox: [
     {
       width: '100%',
@@ -192,8 +189,8 @@ const At = createBody({
 });
 
 const Goals = createBody({
-  header: i18n('goals-header'),
-  text: i18n('goals-text'),
+  header: 'Получить ссылку для Целей',
+  text: '',
 });
 
 const b = block('code-link-modal');
@@ -239,7 +236,7 @@ export default class CodeLinkModal extends React.PureComponent {
               size="m"
               onClick={proxy => ChartsModal.onClickClose(proxy, this.props.element)}
             >
-              {i18n('close')}
+              Закрыть
             </Button>
           </ChartsModal.Footer>
         </ChartsModal.Section>

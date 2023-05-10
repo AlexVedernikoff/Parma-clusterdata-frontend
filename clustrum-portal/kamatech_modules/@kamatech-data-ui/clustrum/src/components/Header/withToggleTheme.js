@@ -9,9 +9,7 @@ import {
   COOKIE_TOGGLE_THEME_NAME,
 } from '../../constants/common';
 import Utils from '../../utils';
-import { I18n } from '../../utils/i18n';
 
-const i18n = I18n.keyset('clustrum.header.view');
 const NEXT_THEME_MAP = {
   [LIGHT_THEME]: DARK_THEME,
   [DARK_THEME]: LIGHT_THEME,
@@ -31,8 +29,8 @@ function getCurrentTheme({ cookieThemeName }) {
 function getToggleThemeMenuItem() {
   const cookieThemeName = COOKIE_TOGGLE_THEME_NAME;
 
-  const labelEnableDarkTheme = i18n('switch_enable-dark-theme');
-  const labelEnableLightTheme = i18n('switch_enable-light-theme');
+  const labelEnableDarkTheme = 'Включить темную тему';
+  const labelEnableLightTheme = 'Включить светлую тему';
 
   const LABEL_TOGGLE_BUTTON = {
     [LIGHT_THEME]: labelEnableDarkTheme,

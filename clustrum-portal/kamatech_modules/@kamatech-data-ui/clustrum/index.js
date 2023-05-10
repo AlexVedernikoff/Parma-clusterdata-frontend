@@ -20,5 +20,4 @@ export { default as DataTypeIconSelector } from './src/components/DataTypeIconSe
 export { default as DatasetSDK } from './src/libs/datasetSdk';
 export { default as SettingPermissions } from './src/components/SettingPermissions/SettingPermissions';
 export { default as ServiceMenu } from './src/components/ServiceMenu/ServiceMenu';
-export { I18n, i18n } from './src/utils/i18n';
 export { CalcModes } from './src/constants/calc-modes';

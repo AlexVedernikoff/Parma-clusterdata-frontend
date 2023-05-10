@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Loader } from '@kamatech-data-ui/common/src';
-import { STATUS, i18n, TIMESTAMP_FORMAT } from '../../../constants';
+import { STATUS, TIMESTAMP_FORMAT } from '../../../constants';
 import { Button } from 'lego-on-react';
 import isEmpty from 'lodash/isEmpty';
 import User from '../../../User/User';
@@ -52,18 +52,18 @@ class GrantDetails extends React.PureComponent {
     const permission = Utils.getTextByPermission(grant.grantType) || '';
     switch (grantState) {
       case 'pending':
-        text = i18n('label_subject-requesting', { permission });
+        text = `запрашивает права ${permission}`;
         break;
       case 'deleted':
-        text = i18n('label_subject-revoke', { permission });
+        text = `отзывает права ${permission}`;
         break;
       case 'active': {
         if (isEmpty(modified)) {
-          text = i18n('label_subject-accept', { permission });
+          text = `выдает права ${permission}`;
         } else {
           const [fromGrantType] = modified.grantType;
           const fromPermission = Utils.getTextByPermission(fromGrantType) || '';
-          text = i18n('label_subject-change', { from: fromPermission, to: permission });
+          text = `сменил права ${fromPermission} на ${permission}`;
           grantState += '-modified';
         }
         break;
@@ -77,22 +77,22 @@ class GrantDetails extends React.PureComponent {
     return (
       <div className={b()}>
         {isEmpty(history)
-          ? i18n('label_grant-details-empty')
+          ? 'Отсутствует история изменения прав доступа.'
           : history.map((grantInfo, index) => {
-            const { timestamp, comment } = grantInfo;
-            return (
-              <div key={index} className={b('row')}>
-                <div className={b('grant-section')}>
-                  <div className={b('timestamp')}>{moment(timestamp).format(TIMESTAMP_FORMAT)}</div>
-                  <div className={b('user')}>
-                    <User participant={grantInfo} role="author" />
+              const { timestamp, comment } = grantInfo;
+              return (
+                <div key={index} className={b('row')}>
+                  <div className={b('grant-section')}>
+                    <div className={b('timestamp')}>{moment(timestamp).format(TIMESTAMP_FORMAT)}</div>
+                    <div className={b('user')}>
+                      <User participant={grantInfo} role="author" />
+                    </div>
+                    {this.renderGrantText(grantInfo)}
                   </div>
-                  {this.renderGrantText(grantInfo)}
+                  {Boolean(comment) && <div className={b('comment')}>{comment}</div>}
                 </div>
-                {Boolean(comment) && <div className={b('comment')}>{comment}</div>}
-              </div>
-            );
-          })}
+              );
+            })}
       </div>
     );
   }
@@ -101,10 +101,10 @@ class GrantDetails extends React.PureComponent {
     return (
       <div className={b()}>
         <div className={b('error')}>
-          <span className={b('error-text')}>{i18n('label_error-get-grant-details')}</span>
+          <span className={b('error-text')}>Не удалось загрузить историю изменения прав. Повторите запрос позже.</span>
           <br />
           <Button theme="action" size="m" view="default" tone="default" onClick={this.refresh}>
-            {i18n('button_repeat')}
+            Повторить
           </Button>
         </div>
       </div>

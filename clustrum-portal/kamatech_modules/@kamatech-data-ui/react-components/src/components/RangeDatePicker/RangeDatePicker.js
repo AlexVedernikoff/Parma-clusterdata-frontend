@@ -5,20 +5,6 @@ import { Button, Icon, Popup } from 'lego-on-react';
 
 // import './RangeDatePicker.scss';
 
-/* eslint-disable no-self-compare */
-const i18n = (function() {
-  const core = require('bem-i18n');
-
-  if (process.env.BEM_LANG === 'ru' || 'ru' === 'ru') {
-    return core().decl(require('./RangeDatePicker.i18n/ru'))('RangeDatePicker');
-  }
-
-  if (process.env.BEM_LANG === 'en' || 'ru' === 'en') {
-    return core().decl(require('./RangeDatePicker.i18n/en'))('RangeDatePicker');
-  }
-
-  return function() {};
-})();
 /* eslint-enable no-self-compare */
 
 const b = block('du-range-datepicker');
@@ -361,7 +347,7 @@ export default function DatePickerFactory(moment, DatePicker) {
                 this.rollbackAndClose();
               }}
             >
-              {i18n('button_cancel')}
+              Отмена
             </Button>
             <Button
               theme="action"
@@ -370,7 +356,7 @@ export default function DatePickerFactory(moment, DatePicker) {
                 this.reportChangeAndClose();
               }}
             >
-              {i18n('button_apply')}
+              Применить
             </Button>
           </div>
         </div>
@@ -384,13 +370,14 @@ export default function DatePickerFactory(moment, DatePicker) {
 
       return (
         <div className={b('last-periods')}>
-          <div className={b('last-periods-title')}>{i18n('interval')}:</div>
+          <div className={b('last-periods-title')}>Интервал:</div>
           <div className={b('last-periods-elements')}>
             {this.props.quickIntervals.map((interval, i) => {
               const intervalFrom = this.localMoment().subtract(...interval.interval);
               const validInterval =
                 !this.props.minDate ||
-                intervalFrom.isSame(this.props.minDate) || intervalFrom.isAfter(this.props.minDate);
+                intervalFrom.isSame(this.props.minDate) ||
+                intervalFrom.isAfter(this.props.minDate);
               if (validInterval) {
                 return (
                   <div

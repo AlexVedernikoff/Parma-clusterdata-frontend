@@ -9,9 +9,7 @@ import { NOTIFY_TYPES } from '../../../constants/common';
 
 const b = block('dl-dialog-save-widget');
 import Utils from '../../../utils';
-import { I18n } from 'utils/i18n';
 import Charts from '../../../../../chartkit/lib/modules/charts/charts';
-const i18n = I18n.keyset('component.dialog-save-widget.view');
 
 class DialogSaveWidget extends Component {
   static propTypes = {
@@ -45,8 +43,8 @@ class DialogSaveWidget extends Component {
 
   get defaultDialogProps() {
     return {
-      title: i18n('section_title'),
-      errorText: i18n('label_error'),
+      title: 'Сохранить чарт',
+      errorText: 'Не удалось сохранить чарт',
       withError: true,
       onNotify: noop,
     };
@@ -67,7 +65,7 @@ class DialogSaveWidget extends Component {
     const { widgetData } = this.state;
     const path = Utils.normalizeDestination(this.state.path);
 
-    widgetName = widgetName === '' ? i18n('label_widget-name-default') : widgetName;
+    widgetName = widgetName === '' ? 'Новая диаграмма' : widgetName;
 
     const key = path === '/' ? widgetName : path + widgetName;
 
@@ -125,8 +123,8 @@ class DialogSaveWidget extends Component {
         showError={showError}
         errorText={errorText}
         listenKeyEnter={visible}
-        textButtonApply={i18n('button_save')}
-        textButtonCancel={i18n('button_cancel')}
+        textButtonApply="Сохранить"
+        textButtonCancel="Отменить"
       >
         <div className={b('content')}>
           <PathSelect
@@ -138,7 +136,7 @@ class DialogSaveWidget extends Component {
             inputRef={this.setTextInputRef}
             inputValue={widgetName}
             onChangeInput={this.onChange}
-            placeholder={i18n('label_widget-name-default')}
+            placeholder="Новая диаграмма"
           />
         </div>
       </TemplateDialog>

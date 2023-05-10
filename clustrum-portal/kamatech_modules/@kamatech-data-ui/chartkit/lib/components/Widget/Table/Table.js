@@ -318,8 +318,8 @@ function _getColumnsAndNames({ head, context, level = 0, shift = 0 }, clickCallb
             Array.isArray(row[columnName].value)
               ? row[columnName].value[0]
               : row[columnName].valueWithoutFormat
-                ? row[columnName].valueWithoutFormat
-                : row[columnName].value,
+              ? row[columnName].valueWithoutFormat
+              : row[columnName].value,
           onClick: ({ row }, { name: columnName }) => {
             handleCellClick(context, row, field, columnName, prevSelectedCell, clickCallback);
           },
@@ -441,28 +441,28 @@ class Table extends React.PureComponent {
     const data = rows.map(row =>
       row.values
         ? row.values.reduce((result, value, index) => {
-          value.isGroupField = index === groupFieldPosition;
-          value.resultShemaId = head[index].resultSchemaId;
-          result[names[index]] = { value };
-          return result;
-        }, {})
+            value.isGroupField = index === groupFieldPosition;
+            value.resultShemaId = head[index].resultSchemaId;
+            result[names[index]] = { value };
+            return result;
+          }, {})
         : row.cells.reduce((result, value, index) => {
-          value.isGroupField = index === groupFieldPosition;
-          value.resultShemaId = head[index].resultSchemaId;
-          result[names[index]] = value;
-          return result;
-        }, {}),
+            value.isGroupField = index === groupFieldPosition;
+            value.resultShemaId = head[index].resultSchemaId;
+            result[names[index]] = value;
+            return result;
+          }, {}),
     );
 
     const summary = total
       ? total.map(row =>
-        row.cells.reduce((result, value, index) => {
-          value.isGroupField = index === groupFieldPosition;
-          value.resultShemaId = head[index].resultSchemaId;
-          result[names[index]] = value;
-          return result;
-        }, {}),
-      )
+          row.cells.reduce((result, value, index) => {
+            value.isGroupField = index === groupFieldPosition;
+            value.resultShemaId = head[index].resultSchemaId;
+            result[names[index]] = value;
+            return result;
+          }, {}),
+        )
       : null;
 
     const name = columns && columns[0] && columns[0].name;

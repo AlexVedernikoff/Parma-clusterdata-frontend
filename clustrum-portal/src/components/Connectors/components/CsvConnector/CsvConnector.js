@@ -5,7 +5,7 @@ import moment from 'moment';
 import Dropzone from 'react-dropzone';
 import { Button, RadioButton } from 'lego-on-react';
 import { Icon, YCSelect } from '@kamatech-data-ui/common/src';
-import { I18n, PathSelect } from '@kamatech-data-ui/clustrum';
+import { PathSelect } from '@kamatech-data-ui/clustrum';
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import DataTable from '@kamatech-data-ui/dt100/lib';
 import ContainerLoader from '../../../../components/ContainerLoader/ContainerLoader';
@@ -18,7 +18,6 @@ import { getErrorMessage } from '../../utils';
 import { getSearchParam } from '../../../../helpers/QueryParams';
 
 const b = block('csv-connector2');
-const i18n = I18n.keyset('connections.form');
 
 export const VIEW_STEPS = {
   CSV_LOADING: 'csv-loading',
@@ -41,15 +40,15 @@ function FileDescription(props) {
 
   return (
     <div className={b('selected-file')}>
-      <span>{`${i18n('label_selected-file')}:`}</span>
+      <span>Выбранный файл:</span>
       &nbsp;
       <span className={b('name')}>{`"${name}",`}</span>
       &nbsp;
-      <span>{`${i18n('label_size')}:`}</span>
+      <span>размер:</span>
       &nbsp;
       <span className={b('size')}>{`${size}`}</span>
       &nbsp;
-      <span>{i18n('label_byte')}</span>
+      <span>байт</span>
     </div>
   );
 }
@@ -69,7 +68,7 @@ function CsvDropZone(props) {
       <input {...getInputProps()} />
       {isDragActive && (
         <div className={b('dragzone')}>
-          <span>{i18n('section_drop-csv-here')}</span>
+          <span>Отпустите файл и начнется загрузка</span>
         </div>
       )}
       {!isDragActive && (
@@ -81,18 +80,24 @@ function CsvDropZone(props) {
                 size="s"
                 view="default"
                 tone="default"
-                text={i18n('button_select-csv-file')}
+                text="Выбрать CSV-файл"
                 onClick={() => open()}
               />
-              <span className={b('drop-here-hint')}>{i18n('section_or-drop-here')}</span>
+              <span className={b('drop-here-hint')}>
+                Вы можете загрузить файл размером до 100 Мб, перетащив его на экран
+              </span>
             </div>
             <FileDescription acceptedFile={acceptedFile} />
           </div>
         </React.Fragment>
       )}
-      {!isDragActive && isOverMaxSize && <div className={b('text-error')}>{i18n('label_max-size-is-over')}</div>}
+      {!isDragActive && isOverMaxSize && (
+        <div className={b('text-error')}>
+          Увы, этот файл превышает допустимый лимит размера в CSV-файла в 100 Мб. Попробуйте загрузить другой файл
+        </div>
+      )}
       {!isDragActive && isNotAllowedType && (
-        <div className={b('text-error')}>{i18n('label_csv-type-not-supported')}</div>
+        <div className={b('text-error')}>Данный тип данных не поддерживается для загрузки</div>
       )}
     </div>
   );
@@ -105,7 +110,7 @@ function CsvDropZoneWrapper(props) {
     return (
       <div className={b('csv-setting')}>
         <div className={b('loader')}>
-          <ContainerLoader text={i18n('label_loading-csv-file')} size="m" />
+          <ContainerLoader text="Загрузка файла" size="m" />
         </div>
       </div>
     );
@@ -149,7 +154,7 @@ function CsvPreview(props) {
   if (isPreviewLoading) {
     return (
       <div className={b('preview-loader')}>
-        <ContainerLoader text={i18n('label_loading-csv-preview')} size="m" />
+        <ContainerLoader text="Загрузка данных для предпросмотра" size="m" />
       </div>
     );
   }
@@ -166,7 +171,7 @@ function CsvPreview(props) {
         highlightRows: true,
         stripedRows: true,
         displayIndices: false,
-        emptyDataMessage: i18n('label_no-csv-preview'),
+        emptyDataMessage: 'Данные для предпросмотра отсутствуют',
       }}
       rowClassName={() => b('table-row')}
       startIndex={startIndex}
@@ -200,7 +205,7 @@ function CsvSettings(props) {
     return (
       <div className={b('csv-setting')}>
         <div className={b('loader')}>
-          <ContainerLoader text={i18n('label_loading-csv-connection')} size="m" />
+          <ContainerLoader text="Загрузка" size="m" />
         </div>
       </div>
     );
@@ -233,13 +238,13 @@ function CsvSettings(props) {
               onChoosePath={dirPath => changeValue({ dirPath })}
               inputValue={name}
               onChangeInput={name => changeValue({ name })}
-              placeholder={i18n('field_connection-title')}
+              placeholder="Название подключения"
             />
           </div>
         )}
         <div className={b('field')}>
           <div className={b('caption')}>
-            <span>{i18n('field_encoding')}</span>
+            <span>Кодировка</span>
           </div>
           <YCSelect
             cls={b('csv-select')}
@@ -252,7 +257,7 @@ function CsvSettings(props) {
         </div>
         <div className={b('field')}>
           <div className={b('caption')}>
-            <span>{i18n('field_delimiter')}</span>
+            <span>Разделитель</span>
           </div>
           <YCSelect
             cls={b('csv-select')}
@@ -265,7 +270,7 @@ function CsvSettings(props) {
         </div>
         <div className={b('field')}>
           <div className={b('caption')}>
-            <span>{i18n('field_csv-header')}</span>
+            <span>Заголовок таблицы</span>
           </div>
           <RadioButton
             cls={b('csv-header-rb')}
@@ -281,8 +286,8 @@ function CsvSettings(props) {
               })
             }
           >
-            <RadioButton.Radio value={1}>{i18n('value_there-is')}</RadioButton.Radio>
-            <RadioButton.Radio value={2}>{i18n('value_no')}</RadioButton.Radio>
+            <RadioButton.Radio value={1}>Есть</RadioButton.Radio>
+            <RadioButton.Radio value={2}>Нет</RadioButton.Radio>
           </RadioButton>
         </div>
       </div>
@@ -445,7 +450,7 @@ class CsvConnector extends React.Component {
       } catch (error) {
         this.toaster.createToast({
           name: CSV_TOAST_NAME,
-          title: i18n('label_connection-request-failed'),
+          title: 'Ошибка: не удалось загрузить подлючение',
           type: 'error',
           timeout: TOAST_TIMEOUT_DEFAULT,
         });
@@ -523,7 +528,7 @@ class CsvConnector extends React.Component {
       } catch (error) {
         this.toaster.createToast({
           name: CSV_TOAST_NAME,
-          title: i18n('label_csv-preview-request-failed'),
+          title: 'Ошибка: не удалось получить превью',
           type: 'error',
           timeout: TOAST_TIMEOUT_DEFAULT,
         });

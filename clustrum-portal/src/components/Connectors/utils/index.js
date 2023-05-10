@@ -1,9 +1,5 @@
-import { I18n } from '@kamatech-data-ui/clustrum';
-
-const i18n = I18n.keyset('connections.form');
-
 const getErrorMessage = (emptyFields, fieldType) => {
-  return emptyFields.includes(fieldType) ? i18n('label_error-empty-field') : '';
+  return emptyFields.includes(fieldType) ? 'Поле обязательно для заполнения' : '';
 };
 
 const getCounterSelectItems = (counters = []) => {

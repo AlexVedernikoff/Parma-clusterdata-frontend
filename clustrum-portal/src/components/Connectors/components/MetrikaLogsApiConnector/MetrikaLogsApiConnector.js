@@ -4,7 +4,7 @@ import block from 'bem-cn-lite';
 import _debounce from 'lodash/debounce';
 import { RadioButton, CheckBox } from 'lego-on-react';
 import { Datepicker } from '@kamatech-data-ui/common/src';
-import { I18n, PathSelect } from '@kamatech-data-ui/clustrum';
+import { PathSelect } from '@kamatech-data-ui/clustrum';
 import Title from '../../subcomponents/Title/Title';
 import Caption from '../../subcomponents/Caption/Caption';
 import InputField from '../../subcomponents/InputField/InputField';
@@ -23,7 +23,6 @@ import Utils from '../../../../helpers/utils';
 import { getSearchParam } from '../../../../helpers/QueryParams';
 
 const b = block('dl-connector');
-const i18n = I18n.keyset('connections.form');
 
 const DEFAULT_PORT = '8443';
 const DEFAULT_DB_TYPE = 'metrika_api';
@@ -234,12 +233,12 @@ class MetricaConnector extends React.Component {
                 onChoosePath={dirPath => this.changeValue({ dirPath })}
                 inputValue={name}
                 onChangeInput={name => this.changeValue({ name })}
-                placeholder={i18n('field_connection-title')}
+                placeholder="Название подключения"
               />
             </div>
           )}
           <div className={b('row')}>
-            <Caption text={i18n('field_token-metrika')} />
+            <Caption text="OAuth-токен" />
             <div className={b('row-group')}>
               <InputField
                 valueType={FIELD_TYPES.TOKEN}
@@ -253,7 +252,7 @@ class MetricaConnector extends React.Component {
             </div>
           </div>
           <div className={b('row')}>
-            <Caption text={i18n('field_counter-id')} />
+            <Caption text="Счетчик" />
             <div className={b('row-group')}>
               {counterInputMethod === COUNTER_INPUT_METHODS.LIST ? (
                 <SelectField
@@ -272,7 +271,7 @@ class MetricaConnector extends React.Component {
                   value={counter}
                   error={getErrorMessage(emptyFields, FIELD_TYPES.COUNTER)}
                   widthSize={'m'}
-                  placeholder={i18n('label_placeholder-metrica-id')}
+                  placeholder="ID счетчика"
                   onChange={this.changeValue}
                 />
               )}
@@ -288,12 +287,8 @@ class MetricaConnector extends React.Component {
                     onChange={e => this.changeValue({ counterInputMethod: e.target.value })}
                     freeWidth={true}
                   >
-                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.LIST}>
-                      {i18n('value_metrica-counter-input-method-list')}
-                    </RadioButton.Radio>
-                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.MANUALLY}>
-                      {i18n('value_metrica-counter-input-method-manually')}
-                    </RadioButton.Radio>
+                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.LIST}>Из списка</RadioButton.Radio>
+                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.MANUALLY}>Вручную</RadioButton.Radio>
                   </RadioButton>
                 </div>
               )}
@@ -301,7 +296,7 @@ class MetricaConnector extends React.Component {
           </div>
           {isNewConnection && (
             <div className={b('row')}>
-              <Caption text={i18n('field_metrica-db-type')} />
+              <Caption text="Подключение" />
               <RadioButton
                 theme="normal"
                 size="s"
@@ -311,12 +306,8 @@ class MetricaConnector extends React.Component {
                 onChange={this.onDbTypeRadioButtonChange}
                 freeWidth={true}
               >
-                <RadioButton.Radio value={'metrika_api'}>
-                  {i18n('value_metrica-connect-method-direct')}
-                </RadioButton.Radio>
-                <RadioButton.Radio value={'metrika_logs_api'}>
-                  {i18n('value_metrica-connect-method-api')}
-                </RadioButton.Radio>
+                <RadioButton.Radio value={'metrika_api'}>Прямой досту</RadioButton.Radio>
+                <RadioButton.Radio value={'metrika_logs_api'}>Через Logs API</RadioButton.Radio>
               </RadioButton>
             </div>
           )}
@@ -329,15 +320,15 @@ class MetricaConnector extends React.Component {
                 tone="default"
                 checked={isAutoCreateDashboard}
                 onChange={this.toggleDashboardAutoCreation}
-                text={i18n('field_auto-create-dashboard')}
+                text="Автоматически создать дашборд, чарты и датасет над подключением"
               />
             </div>
           )}
           {dbType === 'metrika_logs_api' && (
             <React.Fragment>
-              <Caption text={i18n('label_section-unloading-settings')} section />
+              <Caption text="Параметры выгрузки" section />
               <div className={b('row')}>
-                <Caption text={i18n('field_counter-source')} />
+                <Caption text="Источник счетчика" />
                 <SelectField
                   valueType={FIELD_TYPES.COUNTER_SOURCE}
                   items={getStaticSelectItems(['visits', 'hits'])}
@@ -348,7 +339,7 @@ class MetricaConnector extends React.Component {
                 />
               </div>
               <div className={b('row')}>
-                <Caption text={i18n('field_datepicker')} />
+                <Caption text="Загружать с" />
                 <div>
                   <Datepicker
                     scale="day"
@@ -358,11 +349,15 @@ class MetricaConnector extends React.Component {
                     maxDate={MAX_DATE_STRING}
                     date={materializationStartDate}
                   />
-                  <Caption text={i18n('label_datepicker-hint')} fixedWidth={false} comment />
+                  <Caption
+                    text="Дата начальной загрузки задается один раз при создании подключения"
+                    fixedWidth={false}
+                    comment
+                  />
                 </div>
               </div>
               <div className={b('row')}>
-                <Caption text={i18n('field_metrica-materialization-regularity')} />
+                <Caption text="Регулярность" />
                 <RadioButton
                   theme="normal"
                   size="s"
@@ -381,17 +376,13 @@ class MetricaConnector extends React.Component {
                   }}
                   freeWidth={true}
                 >
-                  <RadioButton.Radio value={'oneTime'}>
-                    {i18n('value_metrica-materialization-regularity-one-time')}
-                  </RadioButton.Radio>
-                  <RadioButton.Radio value={'regular'}>
-                    {i18n('value_metrica-materialization-regularity-regular')}
-                  </RadioButton.Radio>
+                  <RadioButton.Radio value={'oneTime'}>Единовременная</RadioButton.Radio>
+                  <RadioButton.Radio value={'regular'}>Регулярная</RadioButton.Radio>
                 </RadioButton>
               </div>
-              <Caption text={i18n('label_section-destination-db-credentials')} section />
+              <Caption text="Целевая база данных" section />
               <div className={b('row')}>
-                <Caption text={i18n('field_host-name')} />
+                <Caption text="Имя хоста" />
                 <InputField
                   valueType={FIELD_TYPES.HOST}
                   value={host}
@@ -400,7 +391,7 @@ class MetricaConnector extends React.Component {
                 />
               </div>
               <div className={b('row')}>
-                <Caption text={i18n('field_port')} />
+                <Caption text="Порт" />
                 <InputField
                   valueType={FIELD_TYPES.PORT}
                   inputType={'number'}
@@ -412,7 +403,7 @@ class MetricaConnector extends React.Component {
                 />
               </div>
               <div className={b('row')}>
-                <Caption text={i18n('label_db-name')} />
+                <Caption text="Имя базы данных" />
                 <InputField
                   valueType={FIELD_TYPES.DB_NAME}
                   value={dbName}
@@ -421,7 +412,7 @@ class MetricaConnector extends React.Component {
                 />
               </div>
               <div className={b('row')}>
-                <Caption text={i18n('field_username')} />
+                <Caption text="Имя пользователя" />
                 <InputField
                   valueType={FIELD_TYPES.USERNAME}
                   value={username}
@@ -431,7 +422,7 @@ class MetricaConnector extends React.Component {
                 />
               </div>
               <div className={b('row')}>
-                <Caption text={i18n('field_password')} />
+                <Caption text="Пароль" />
                 <InputField
                   valueType={FIELD_TYPES.PASSWORD}
                   inputType={'password'}
@@ -443,7 +434,7 @@ class MetricaConnector extends React.Component {
               </div>
               <div className={b('row')}>
                 <VerifyButton
-                  text={i18n('button_verify')}
+                  text="Проверить подключение"
                   verifyConnection={verifyConnection}
                   isVerifySuccess={isVerifySuccess}
                 />

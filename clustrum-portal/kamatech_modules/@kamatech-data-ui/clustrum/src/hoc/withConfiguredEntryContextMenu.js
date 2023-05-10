@@ -9,9 +9,6 @@ import iconCopy from '@kamatech-data-ui/common/src/assets/icons/copy-file.svg';
 import iconCopyLink from '@kamatech-data-ui/common/src/assets/icons/link.svg';
 import iconAccessGroup from 'icons/access-group.svg';
 
-import { I18n } from 'utils/i18n';
-const i18n = I18n.keyset('component.entry-context-menu.view');
-
 export const ENTRY_CONTEXT_MENU_ACTION = {
   RENAME: 'rename',
   DESCRIBE: 'describe',
@@ -30,13 +27,13 @@ const LIMITED_CONTEXT_MENU = [
 
 export const getEntryContextMenuItems = ({ entry = {} } = {}) => {
   const TEXT = {
-    RENAME: i18n('value_rename'),
-    DESCRIBE: i18n('value_describe'),
-    DELETE: i18n('value_delete'),
-    MOVE: i18n('value_move'),
-    COPY: i18n('value_copy'),
-    ACCESS: i18n('value_access'),
-    COPY_LINK: i18n('value_copy-link'),
+    RENAME: 'Переименовать',
+    DESCRIBE: 'Описание',
+    DELETE: 'Удалить',
+    MOVE: 'Переместить',
+    COPY: 'Копировать',
+    ACCESS: 'Права доступа',
+    COPY_LINK: 'Копировать идентификатор',
   };
 
   const entryContextMenuItems = [

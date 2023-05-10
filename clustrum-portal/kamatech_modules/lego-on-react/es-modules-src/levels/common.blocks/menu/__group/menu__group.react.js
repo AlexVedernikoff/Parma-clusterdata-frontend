@@ -37,7 +37,7 @@ export default decl(
         );
       }
 
-      return [].concat(content, children).map(function (child, i) {
+      return [].concat(content, children).map(function(child, i) {
         return React.cloneElement(child, { key: 'in-group-' + i }); // eslint-disable-line react/no-array-index-key
       });
     },
