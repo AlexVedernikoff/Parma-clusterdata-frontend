@@ -27,6 +27,8 @@ class Graph extends React.PureComponent {
         data: { data, libraryConfig, config, comments },
       } = nextProps;
 
+      console.log('COM', comments);
+
       const { config: options, callback } = getConfig(
         Object.assign({ highcharts: libraryConfig }, config),
         data,
