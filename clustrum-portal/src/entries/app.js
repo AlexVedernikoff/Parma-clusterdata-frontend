@@ -11,6 +11,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import moment from 'moment';
 
+import { ConfigProvider } from 'antd';
+import ruRU from 'antd/locale/ru_RU';
+
 import reducers from '../reducers';
 
 import App from '../containers/App';
@@ -44,7 +47,9 @@ function render() {
     <AppContainer>
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <ConfigProvider locale={ruRU}>
+            <App />
+          </ConfigProvider>
         </BrowserRouter>
       </Provider>
     </AppContainer>,
