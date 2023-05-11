@@ -7,6 +7,7 @@ import { Header, Utils } from '@kamatech-data-ui/clustrum';
 import Connectors from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
 import { getConnectorsMap } from '../../constants';
+import { PageContainer } from '../../clustrum-lib/src/shared/ui/page-container/page-container';
 
 // import './ConnectionsRouter.scss';
 
@@ -35,30 +36,32 @@ class ConnectionsRouter extends PureComponent {
     return (
       <div className={b()}>
         <Pointerfocus />
-        <Header
-          installationType={installationType}
-          sdk={sdk}
-          endpoints={endpoints}
-          clouds={clouds}
-          userData={userData}
-          menuData={menu}
-          logoText={logoText}
-          toggleTheme={toggleTheme}
-        />
         <Router>
           <Switch>
             <Route
               path={'/connections/new'}
               render={() => (
                 <Switch>
-                  <Route exact path={'/connections/new'} render={props => <Connectors {...props} sdk={sdk} />} />
+                  <Route
+                    exact
+                    path={'/connections/new'}
+                    render={props => (
+                      <PageContainer>
+                        <Connectors {...props} sdk={sdk} />
+                      </PageContainer>
+                    )}
+                  />
                   <Route
                     path={'/connections/new/:connectorType'}
                     render={props => {
                       const { params: { connectorType } = {} } = props.match;
 
                       if (Object.keys(getConnectorsMap()).includes(connectorType)) {
-                        return <ConnectionPage {...props} sdk={sdk} />;
+                        return (
+                          <PageContainer>
+                            <ConnectionPage {...props} sdk={sdk} />
+                          </PageContainer>
+                        );
                       }
 
                       return <Redirect to={'/connections/new'} />;
@@ -70,7 +73,11 @@ class ConnectionsRouter extends PureComponent {
             <Route
               path={'/connections/:connectionId'}
               render={props => {
-                return <ConnectionPage {...props} sdk={sdk} />;
+                return (
+                  <PageContainer>
+                    <ConnectionPage {...props} sdk={sdk} />
+                  </PageContainer>
+                );
               }}
             />
           </Switch>

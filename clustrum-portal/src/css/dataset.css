@@ -1575,7 +1575,6 @@
 .dataset-router {
   height: 100%;
   display: flex;
-  flex-direction: column;
 }
 
 .dataset-router > header {

@@ -396,7 +396,6 @@
 .connections-router {
   height: 100%;
   display: flex;
-  flex-direction: column;
 }
 
 .connections-router > header {

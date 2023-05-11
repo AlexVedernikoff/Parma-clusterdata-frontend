@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
 import NavigationEntries from './NavigationEntries';
 
-import { KamatechCreateDropdown, KamatechSidebar, KamatechNavigationBreadcrumbs } from '@kamatech-ui';
+import { KamatechCreateDropdown, KamatechNavigationBreadcrumbs } from '@kamatech-ui';
 
 import './NavigationInline.css';
 
@@ -64,16 +64,6 @@ class NavigationInline extends React.Component {
     const { linkWrapper, quickItems, onSidebarItemClick, ...props } = this.props;
     return (
       <div className={b({ inline: true })}>
-        <div className={b('sidebar')}>
-          <KamatechSidebar
-            path={this.props.path}
-            currentPlace={this.props.place}
-            quickItems={quickItems}
-            linkWrapper={linkWrapper}
-            onItemClick={onSidebarItemClick}
-            getPlaceParameters={this.props.getPlaceParameters}
-          ></KamatechSidebar>
-        </div>
         <div className={b('content')}>
           {this.renderHeader()}
           <NavigationEntries

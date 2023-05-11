@@ -8,6 +8,7 @@ import { Utils, Navigation, Header } from '@kamatech-data-ui/clustrum';
 import { DL } from '@kamatech-data-ui/clustrum/src/constants/common';
 
 import { Pointerfocus } from 'lego-on-react';
+import { PageContainer } from '../../clustrum-lib/src/shared/ui/page-container/page-container';
 
 // import './NavigationPage.scss';
 
@@ -43,21 +44,13 @@ class NavigationPage extends React.Component {
     return (
       <div className={b()}>
         <Pointerfocus />
-        <Header
-          installationType={installationType}
-          sdk={sdk}
-          endpoints={endpoints}
-          clouds={clouds}
-          userData={userData}
-          menuData={menu}
-          logoText={logoText}
-          toggleTheme={toggleTheme}
-        />
         <div className={b('navigation')}>
           <Route
             path="/:root?/:path*"
             render={({ match, location, history }) => (
-              <Navigation sdk={sdk} match={match} location={location} history={history} startFrom={startFrom} />
+              <PageContainer>
+                <Navigation sdk={sdk} match={match} location={location} history={history} startFrom={startFrom} />
+              </PageContainer>
             )}
           />
         </div>
