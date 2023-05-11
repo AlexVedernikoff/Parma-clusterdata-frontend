@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Table as AntdTable } from 'antd';
+import { Table } from 'antd';
 
-export class Table extends React.PureComponent {
+export class TableWidget extends React.PureComponent {
   render() {
     return (
-      <AntdTable
+      <Table
         columns={this.props.columns}
         dataSource={this.props.dataSource}
         title={this.props.title}

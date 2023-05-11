@@ -1,2 +1,2 @@
-export { Table } from './Table';
-export { valueFormatter } from './valueFormatter';
+export { TableWidget } from './table-widget';
+export { valueFormatter } from './value-formatter';

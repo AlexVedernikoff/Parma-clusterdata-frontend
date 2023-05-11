@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import { Table, valueFormatter } from '@clustrum-lib/shared/ui/widgets';
+import { TableWidget, valueFormatter } from '@clustrum-lib/shared/ui/widgets';
 
 const b = block('chartkit-table');
 
@@ -213,7 +213,7 @@ export class TableAdapter extends React.PureComponent {
           context._domNode = node;
         }}
       >
-        <Table columns={antdTableColumns} dataSource={data} title={_getTitle(title)} {...this.props} />
+        <TableWidget columns={antdTableColumns} dataSource={data} title={_getTitle(title)} {...this.props} />
       </div>
     );
   }
