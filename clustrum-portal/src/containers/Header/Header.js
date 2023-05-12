@@ -171,19 +171,19 @@ class Header extends React.PureComponent {
 
     const addItems = [
       {
-        label: <Button onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Диаграмма</Button>,
+        label: <a onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Диаграмма</a>,
         key: '1',
       },
       {
-        label: <Button onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>Фильтр</Button>,
+        label: <a onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>Фильтр</a>,
         key: '2',
       },
       {
-        label: <Button onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</Button>,
+        label: <a onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</a>,
         key: '3',
       },
       {
-        label: <Button onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</Button>,
+        label: <a onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</a>,
         key: '4',
       },
     ];
@@ -210,7 +210,7 @@ class Header extends React.PureComponent {
         icon={<FilterOutlined />}
       />,
 
-      <Dropdown menu={addItems} trigger={['click']}>
+      <Dropdown menu={{ items: addItems }} trigger={['click']}>
         <Button>
           <Space>
             Добавить
@@ -249,23 +249,23 @@ class Header extends React.PureComponent {
   }
 
   renderViewItems() {
-    const { entry, tab, canEdit, openExpandedFilter, setMode } = this.props;
+    const { entry, canEdit, openExpandedFilter, setMode } = this.props;
 
     const exportItems = [
       {
-        label: <Button onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</Button>,
+        label: <a onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</a>,
         key: '1',
       },
       {
-        label: <Button onClick={() => this.#exportClickHandler(ExportFormat.XLSX)}>XLSX</Button>,
+        label: <a onClick={() => this.#exportClickHandler(ExportFormat.XLSX)}>XLSX</a>,
         key: '2',
       },
       {
-        label: <Button onClick={() => this.#exportClickHandler(ExportFormat.XLS)}>XLS</Button>,
+        label: <a onClick={() => this.#exportClickHandler(ExportFormat.XLS)}>XLS</a>,
         key: '3',
       },
       {
-        label: <Button onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</Button>,
+        label: <a onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</a>,
         key: '4',
       },
     ];
@@ -290,34 +290,9 @@ class Header extends React.PureComponent {
           Сбросить все фильтры
         </Button>,
 
-        <Dropdown menu={exportItems} trigger={['click']}>
+        <Dropdown menu={{ items: exportItems }} trigger={['click']}>
           <Button icon={<DownloadOutlined />}>Экспорт</Button>
         </Dropdown>,
-
-        // Такая проблема с отображением dropdown ant-design
-        // <Dropdown
-        //   key="export"
-        //   theme="flat"
-        //   size="n"
-        //   cls={b('action-right', { 'export-pdf': true })}
-        //   switcher={
-        //     <Button
-        //       cls={b('action-right', { 'export-pdf': true })}
-        //       action={this.isExportInProgress()}
-        //     ></Button>
-        //   }
-        //   popup={
-        //     <Popup hiding autoclosable onOutsideClick={() => {}}>
-        //       <Menu theme="normal" type="navigation" cls={b('export-menu')}>
-        //         <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</Menu.Item>
-        //         <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.XLSX)}>XLSX</Menu.Item>
-        //         <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.XLS)}>XLS</Menu.Item>
-        //         <Menu.Item onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</Menu.Item>
-        //       </Menu>
-        //     </Popup>
-        //   }
-        // />,
-
         <>
           {!window.DL.hideEdit && (
             <Button title="Редактировать" onClick={() => setMode(MODE.EDIT)} key="button-edit" icon={<EditOutlined />}>

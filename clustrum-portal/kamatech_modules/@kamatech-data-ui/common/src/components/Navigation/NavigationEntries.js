@@ -337,10 +337,10 @@ class NavigationEntries extends React.Component {
     const handleChange = event => {
       this.onChangeFilter(event.target.value);
     };
-
-    const createItemMenu = createMenuItems.map(({ item, index }) => {
+    console.log(onCreateMenuClick);
+    const createItemMenu = createMenuItems.map(({ text, value, index }) => {
       return {
-        label: <Button onClick={() => onCreateMenuClick}>{item}</Button>,
+        label: <a onClick={() => onCreateMenuClick(value)}>{text}</a>,
         key: index,
       };
     });
@@ -353,7 +353,7 @@ class NavigationEntries extends React.Component {
         ref={this.refSearchInput}
         value={this.state.searchValue}
       />,
-      <Dropdown menu={createItemMenu} trigger={['click']}>
+      <Dropdown menu={{ items: createItemMenu }} trigger={['click']}>
         <Button type="primary">
           <Space>
             Создать

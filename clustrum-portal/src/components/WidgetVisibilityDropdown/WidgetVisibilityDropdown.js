@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import block from 'bem-cn-lite';
-import { Menu, Popup } from 'lego-on-react';
 
-import { DownOutlined, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Space } from 'antd';
-
-const b = block('widget-visibility-dropdown');
 
 function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   const getWidgetList = () => {
@@ -61,16 +57,17 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   const visibilityItem = widgetList.map(({ id, title, isHidden }) => {
     return {
       label: (
-        <Button onClick={() => toggleWidgetVisibility(id)} icon={isHidden ? <EyeInvisibleOutlined /> : <EyeOutlined />}>
+        <a onClick={() => toggleWidgetVisibility(id)}>
+          {isHidden ? <EyeInvisibleOutlined /> : <EyeOutlined />}
           {title}
-        </Button>
+        </a>
       ),
       key: id,
     };
   });
 
   return (
-    <Dropdown menu={visibilityItem} trigger={['click']}>
+    <Dropdown menu={{ items: visibilityItem }} trigger={['click']}>
       <Button icon={<EyeOutlined />} />
     </Dropdown>
   );
