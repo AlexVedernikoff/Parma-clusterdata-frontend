@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Space } from 'antd';
+import { Button, Dropdown } from 'antd';
 
 function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   const getWidgetList = () => {
