@@ -7,7 +7,6 @@ import pick from 'lodash/pick';
 import { Loader } from '@kamatech-data-ui/common/src';
 import ChartKitControl from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 import {
-  ControlSelect,
   ControlInput,
   ControlDatepicker,
   ControlRangeDatepicker,
@@ -17,6 +16,7 @@ import { LOAD_STATUS, CONTROL_SOURCE_TYPE, DATE_FORMAT_DAY } from '../../../../c
 import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import { SDK } from '../../../../modules/sdk';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
+import { SelectFilterControl } from '../../../../clustrum-lib/src/shared/ui/filter-controls/select-filter-control';
 
 const TYPE = {
   SELECT: 'select',
@@ -268,7 +268,7 @@ class Control extends React.PureComponent {
 
           switch (type) {
             case TYPE.SELECT:
-              return <ControlSelect {...props} />;
+              return <SelectFilterControl {...props} />;
             case TYPE.INPUT:
               return <ControlInput {...props} />;
             case TYPE.DATEPICKER:

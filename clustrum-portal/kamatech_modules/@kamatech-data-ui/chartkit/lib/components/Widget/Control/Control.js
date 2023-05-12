@@ -7,7 +7,6 @@ import isEqual from 'lodash/isEqual';
 
 import Loader from '../../Loader/Loader';
 import {
-  ControlSelect,
   ControlInput,
   ControlDatepicker,
   ControlRangeDatepicker,
@@ -18,6 +17,7 @@ import {
 import axiosInstance from '../../../modules/axios/axios';
 import settings from '../../../modules/settings/settings';
 import { wrapToArray, unwrapFromArray } from '../../../helpers/helpers';
+import { SelectFilterControl } from '../../../../../../../src/clustrum-lib/src/shared/ui/filter-controls/select-filter-control';
 
 // import './Control.scss';
 
@@ -155,9 +155,11 @@ class Control extends React.PureComponent {
       onChange: value => this.onChange(control, value),
     };
 
+    console.log(control);
+
     switch (control.type) {
       case TYPE.SELECT:
-        return <ControlSelect {...props} />;
+        return <SelectFilterControl {...props} />;
       case TYPE.INPUT:
         return <ControlInput {...props} />;
       case TYPE.DATEPICKER:
