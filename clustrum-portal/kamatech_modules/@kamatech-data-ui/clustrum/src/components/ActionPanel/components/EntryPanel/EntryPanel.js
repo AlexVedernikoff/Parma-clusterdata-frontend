@@ -8,7 +8,7 @@ import Utils from 'utils';
 import ActionPanelHelpers from '../../ActionPanelHelpers';
 import EntryContextMenu from '../../../EntryContextMenu/EntryContextMenu';
 import { Header } from '../../../../../../../../src/entities/header';
-import { FolderOutlined, MoreOutlined, StarTwoTone } from '@ant-design/icons';
+import { BlockOutlined, FolderOutlined, MoreOutlined, SafetyOutlined, StarTwoTone } from '@ant-design/icons';
 
 const b = block('dl-entry-panel');
 
@@ -128,7 +128,7 @@ class EntryPanel extends React.Component {
       disabled = true;
     }
 
-    const actionBtn = [
+    const standardBtn = [
       <Button
         disabled={disabled}
         title={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
@@ -139,7 +139,7 @@ class EntryPanel extends React.Component {
         disabled={disabled}
         onClick={this.toggleEntryContextMenu}
         icon={<MoreOutlined style={{ color: '#1890ff' }} />}
-        innerRef={this.setInnerRefBtnEntryContextMenu}
+        ref={this.setInnerRefBtnEntryContextMenu}
       />,
       <EntryContextMenu
         onClose={this.onCloseEntryContextMenu}
@@ -152,7 +152,7 @@ class EntryPanel extends React.Component {
         title="Открыть навигацию"
         icon={<FolderOutlined style={{ color: '#1890ff' }} />}
         onClick={this.openNavigation}
-      ></Button>,
+      />,
       <NavigationModal
         sdk={sdk}
         startFrom={this.defaultPath}
@@ -164,9 +164,15 @@ class EntryPanel extends React.Component {
       />,
     ];
 
+    const copyLinkBtn = [onCopyLinkBtn && <Button disabled={disabled} icon={<BlockOutlined />} />];
+
+    const shareBtn = [onShareBtn && <Button disabled={disabled} icon={<SafetyOutlined />} />];
+
+    const actionBtn = [...standardBtn, copyLinkBtn, shareBtn];
+
     return (
       <div className={b()}>
-        <Header {...this.props} actionsBtn={actionBtn} />
+        <Header {...this.props} leftSideContent={actionBtn} rightSideContent={this.props.rightItems} />
       </div>
     );
   }

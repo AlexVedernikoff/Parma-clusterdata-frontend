@@ -28,8 +28,17 @@ import { exportDashboard } from './model/exportDashboard';
 import { Toaster } from '../../../kamatech_modules/@kamatech-data-ui/common/src';
 import { NOTIFY_TYPES } from '../../../kamatech_modules/@kamatech-data-ui/clustrum/src/constants/common';
 import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
-import { Button } from 'antd';
-import { ClearOutlined, EditOutlined, FilterOutlined, SettingOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Space } from 'antd';
+import {
+  BgColorsOutlined,
+  ClearOutlined,
+  DownloadOutlined,
+  DownOutlined,
+  EditOutlined,
+  FilterOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
+import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 
 const b = block('dash-header');
 
@@ -160,7 +169,27 @@ class Header extends React.PureComponent {
 
     const jointLayout = this.getJointLayout();
 
+    const addItems = [
+      {
+        label: <Button onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Диаграмма</Button>,
+        key: '1',
+      },
+      {
+        label: <Button onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>Фильтр</Button>,
+        key: '2',
+      },
+      {
+        label: <Button onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</Button>,
+        key: '3',
+      },
+      {
+        label: <Button onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</Button>,
+        key: '4',
+      },
+    ];
+
     return [
+      <Button icon={<BgColorsOutlined />} />,
       <Button
         cls={b('action-right', { 'button-settings': true })}
         onClick={() => this.props.openDialog(DIALOG_TYPE.SETTINGS)}
@@ -181,35 +210,19 @@ class Header extends React.PureComponent {
         icon={<FilterOutlined />}
       />,
 
-      // Проблемы с отображением dropdown ant-design падает вся страница
-      // <Dropdown
-      //   key="add"
-      //   theme="flat"
-      //   view="default"
-      //   tone="default"
-      //   size="n"
-      //   cls={b('action-right')}
-      //   ref={this.addRef}
-      //   switcher={
-      //     <Button>
-      //       {i18n('dash.header.view', 'button_add')}
-      //     </Button>
-      //   }
-      //   popup={
-      //     <Popup hiding autoclosable onOutsideClick={() => {}}>
-      //             <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
-      //               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Диаграмма</Menu.Item>
-      //               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>Фильтр</Menu.Item>
-      //               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</Menu.Item>
-      //               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</Menu.Item>
-      //             </Menu>
-      //           </Popup>
-      //   }
-      // />,
+      <Dropdown menu={addItems} trigger={['click']}>
+        <Button>
+          <Space>
+            Добавить
+            <DownOutlined />
+          </Space>
+        </Button>
+      </Dropdown>,
       <Button key="cancel" onClick={this.props.cancelEditMode}>
         Отменить
       </Button>,
       <Button
+        type="primary"
         key="save"
         disabled={!this.props.isDraft}
         cls={b('action-right', { save: true })}
@@ -238,6 +251,25 @@ class Header extends React.PureComponent {
   renderViewItems() {
     const { entry, tab, canEdit, openExpandedFilter, setMode } = this.props;
 
+    const exportItems = [
+      {
+        label: <Button onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</Button>,
+        key: '1',
+      },
+      {
+        label: <Button onClick={() => this.#exportClickHandler(ExportFormat.XLSX)}>XLSX</Button>,
+        key: '2',
+      },
+      {
+        label: <Button onClick={() => this.#exportClickHandler(ExportFormat.XLS)}>XLS</Button>,
+        key: '3',
+      },
+      {
+        label: <Button onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</Button>,
+        key: '4',
+      },
+    ];
+
     if (canEdit) {
       return [
         this.#hasVisibleExpandedFilters() ? (
@@ -257,6 +289,10 @@ class Header extends React.PureComponent {
         >
           Сбросить все фильтры
         </Button>,
+
+        <Dropdown menu={exportItems} trigger={['click']}>
+          <Button icon={<DownloadOutlined />}>Экспорт</Button>
+        </Dropdown>,
 
         // Такая проблема с отображением dropdown ant-design
         // <Dropdown

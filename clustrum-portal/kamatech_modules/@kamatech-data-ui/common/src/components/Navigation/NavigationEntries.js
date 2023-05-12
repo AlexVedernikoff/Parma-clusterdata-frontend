@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
-import YCSelect from '../YCSelect/YCSelect';
 import Loader from '../Loader/Loader';
-import { Button, RadioButton } from 'lego-on-react';
 import { NOTIFICATIONS, ERROR_TEXT } from './locale/constants';
 import { ERROR, MODE_FULL, MODE_MINIMAL, NAVIGATION_ROOT, ORDER, OWNERSHIP } from './constants';
 import EntryContextMenu from './EntryContextMenu/EntryContextMenu';
@@ -17,10 +15,12 @@ import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import iconFavoriteEmpty from '../../assets/icons/favorite-empty.svg';
 import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
-import { KamatechTableView, KamatechTextInput, KamatechCreateDropdown } from '@kamatech-ui';
+import { KamatechTableView, KamatechTextInput } from '@kamatech-ui';
 import { ScopeType } from '@kamatech-ui/enums';
 import iconXsign from '../../../../clustrum/src/icons/x-sign.svg';
 import { Header } from '../../../../../../src/entities/header';
+import { Button, Dropdown, Input, Space } from 'antd';
+import { DownOutlined, SearchOutlined } from '@ant-design/icons';
 
 const b = cn('yc-navigation');
 const itemsOrderBy = [
@@ -347,24 +347,41 @@ class NavigationEntries extends React.Component {
       return null;
     }
 
+    const createItemMenu = createMenuItems.map(({ item, index }) => {
+      return {
+        label: <Button onClick={() => onCreateMenuClick}>{item}</Button>,
+        key: index,
+      };
+    });
+
     const rightControl = [
-      <KamatechTextInput
-        ref={this.refSearchInput}
-        view="default"
-        tone="default"
-        theme="normal"
-        size="s"
-        hasClear={true}
-        placeholder={this.props.searchPlaceholder}
-        text={this.state.searchValue}
+      // <KamatechTextInput
+      //   ref={this.refSearchInput}
+      //   view="default"
+      //   tone="default"
+      //   theme="normal"
+      //   size="s"
+      //   hasClear={true}
+      //   placeholder={this.props.searchPlaceholder}
+      //   text={this.state.searchValue}
+      //   onChange={this.onChangeFilter}
+      //   iconClearData={iconXsign}
+      // />,
+      <Input
+        placeholder="Найти"
+        prefix={<SearchOutlined />}
         onChange={this.onChangeFilter}
-        iconClearData={iconXsign}
+        defaultValue={this.state.searchValue}
+        ref={this.refSearchInput}
       />,
-      <KamatechCreateDropdown
-        items={createMenuItems}
-        size={size}
-        onMenuClick={onCreateMenuClick}
-      ></KamatechCreateDropdown>,
+      <Dropdown menu={createItemMenu} trigger={['click']}>
+        <Button type="primary">
+          <Space>
+            Создать
+            <DownOutlined />
+          </Space>
+        </Button>
+      </Dropdown>,
     ];
 
     return (

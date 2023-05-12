@@ -13,3 +13,30 @@
 .header__action-buttons button {
   margin-left: 8px;
 }
+
+.header__breadcrumb {
+  display: flex;
+  flex-direction: column;
+}
+
+.header__breadcrumb-patch {
+  font-size: 13px;
+  margin: 0 0 8px 0;
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+}
+
+.header__title-name {
+  font-size: 30px;
+  margin: 0 8px 0 0;
+}
+
+.header__title-actions button {
+  margin: 4px;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}

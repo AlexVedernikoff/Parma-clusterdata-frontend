@@ -5,7 +5,6 @@ export interface HeaderProps {
   };
   place: string;
   path: string;
-  rightItems?: JSX.Element[];
-  rightSideContent?: JSX.Element[];
+  rightSideContent: JSX.Element[];
   leftSideContent?: JSX.Element[];
 }
