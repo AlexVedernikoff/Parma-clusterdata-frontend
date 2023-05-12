@@ -15,26 +15,13 @@ import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import iconFavoriteEmpty from '../../assets/icons/favorite-empty.svg';
 import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
-import { KamatechTableView, KamatechTextInput } from '@kamatech-ui';
+import { KamatechTableView } from '@kamatech-ui';
 import { ScopeType } from '@kamatech-ui/enums';
-import iconXsign from '../../../../clustrum/src/icons/x-sign.svg';
 import { Header } from '../../../../../../src/entities/header';
 import { Button, Dropdown, Input, Space } from 'antd';
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
 
 const b = cn('yc-navigation');
-const itemsOrderBy = [
-  {
-    key: ORDER.DESC,
-    value: ORDER.DESC,
-    title: 'Сперва новые',
-  },
-  {
-    key: ORDER.ASC,
-    value: ORDER.ASC,
-    title: 'Сперва старые',
-  },
-];
 
 class NavigationEntries extends React.Component {
   static propTypes = {
@@ -338,7 +325,7 @@ class NavigationEntries extends React.Component {
     );
   }
   renderEntriesHeader() {
-    const { mode, onCreateMenuClick, size, createMenuItems } = this.props;
+    const { mode, onCreateMenuClick, createMenuItems } = this.props;
     const { place } = this.state;
     const { filters } = this.props.getPlaceParameters(place);
     const isMinimalMode = mode === MODE_MINIMAL;
@@ -346,6 +333,10 @@ class NavigationEntries extends React.Component {
     if (!filters && isMinimalMode) {
       return null;
     }
+
+    const handleChange = event => {
+      this.onChangeFilter(event.target.value);
+    };
 
     const createItemMenu = createMenuItems.map(({ item, index }) => {
       return {
@@ -355,24 +346,12 @@ class NavigationEntries extends React.Component {
     });
 
     const rightControl = [
-      // <KamatechTextInput
-      //   ref={this.refSearchInput}
-      //   view="default"
-      //   tone="default"
-      //   theme="normal"
-      //   size="s"
-      //   hasClear={true}
-      //   placeholder={this.props.searchPlaceholder}
-      //   text={this.state.searchValue}
-      //   onChange={this.onChangeFilter}
-      //   iconClearData={iconXsign}
-      // />,
       <Input
         placeholder="Найти"
         prefix={<SearchOutlined />}
-        onChange={this.onChangeFilter}
-        defaultValue={this.state.searchValue}
+        onChange={handleChange}
         ref={this.refSearchInput}
+        value={this.state.searchValue}
       />,
       <Dropdown menu={createItemMenu} trigger={['click']}>
         <Button type="primary">
@@ -424,7 +403,7 @@ class NavigationEntries extends React.Component {
       return <div className={b('empty-entries')}>{emptyText}</div>;
     }
 
-    const { displayParentFolder, sort } = this.props.getPlaceParameters(place);
+    const { displayParentFolder } = this.props.getPlaceParameters(place);
 
     return (
       <React.Fragment>
