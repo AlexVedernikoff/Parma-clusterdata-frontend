@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Table } from 'antd';
 
+import './table-widget.css';
+
 interface TableWidgetProps {
   // TODO: типизировать таблицу (T - тип строки таблицы, record)
   // columns: ColumnType<T>[];
@@ -10,7 +12,14 @@ interface TableWidgetProps {
   title: string;
 }
 
-export const TableWidget = (props: TableWidgetProps) => {
+export const TableWidget = (props: TableWidgetProps): JSX.Element => {
   const { columns, dataSource, title } = props;
-  return <Table columns={columns} dataSource={dataSource} title={() => title} />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={dataSource}
+      title={(): string => title}
+      size="small"
+    />
+  );
 };
