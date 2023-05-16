@@ -19,7 +19,80 @@ function _generateName({ id = 'id', name = 'name', shift, level, index }) {
   return `${level}_${shift}_${index}_id=${id}_name=${name}`;
 }
 
-function _getColumnsAndNames({ head, context, level = 0, shift = 0 }, clickCallback, field, prevSelectedCell) {
+const findGroupField = row => {
+  for (let f in row) {
+    if (row[f].isGroupField) {
+      return row[f];
+    }
+  }
+
+  return null;
+};
+
+const getCellValue = cell => {
+  if (cell.valueWithoutFormat === null) {
+    return FILTER_CONDITION_TYPE.IS_NULL;
+  }
+
+  return cell.valueWithoutFormat ? cell.valueWithoutFormat : cell.value;
+};
+
+const handleCellClick = (context, row, field, columnName, prevSelectedCell, callback) => {
+  if (callback) {
+    const groupField = findGroupField(row);
+    let paramId = field;
+    let cell = groupField;
+
+    // если у нас группированная таблица, то даже если мы кликаем по количеству - фильтруем по показателю
+    // если простая таблица - фильтруем по колонке и значению ячейки таблицы
+    if (!groupField || !field) {
+      paramId = row[columnName].resultShemaId;
+      cell = row[columnName];
+    }
+
+    if (cell) {
+      const { paramId: prevParamId, value: prevCellValue } = prevSelectedCell;
+      const cellValue = getCellValue(cell);
+      let callbackParams = {
+        params: { [paramId]: cellValue },
+        paramsForRemoving: [],
+      };
+
+      if (prevParamId) {
+        if (prevCellValue === cellValue) {
+          delete callbackParams.params;
+          callbackParams.paramsForRemoving = [prevParamId];
+        } else {
+          callbackParams.paramsForRemoving = prevParamId !== paramId ? [prevParamId] : [];
+        }
+      }
+
+      callback(callbackParams);
+    }
+  }
+
+  const { param } = row[columnName];
+
+  if (param) {
+    // через new CustomEvent() не срабатывает
+    // на другой стороне слушает jQuery (Backbone?) и видимо ожидает какое-то кастомное событие
+    const event = document.createEvent('CustomEvent');
+
+    event.initCustomEvent('table-update', true, true, {
+      type: 'update-params',
+      values: { name: id, value: param },
+    });
+
+    context._domNode.dispatchEvent(event);
+  }
+};
+
+function _getColumnsAndNames(
+  { head, context, level = 0, shift = 0 },
+  clickCallback,
+  field,
+  prevSelectedCell,
+) {
   return head.reduce(
     (result, column, index) => {
       if (column.sub) {
@@ -34,7 +107,13 @@ function _getColumnsAndNames({ head, context, level = 0, shift = 0 }, clickCallb
           field,
           prevSelectedCell,
         );
-        const columnName = _generateName({ id: column.id, name: column.name, level, shift, index });
+        const columnName = _generateName({
+          id: column.id,
+          name: column.name,
+          level,
+          shift,
+          index,
+        });
         result.columns.push({
           name: columnName,
           header: <span className={b('head-cell')}>{column.name}</span>,
@@ -67,13 +146,21 @@ function _getColumnsAndNames({ head, context, level = 0, shift = 0 }, clickCallb
             Array.isArray(row[columnName].value)
               ? row[columnName].value[0]
               : row[columnName].valueWithoutFormat
-                ? row[columnName].valueWithoutFormat
-                : row[columnName].value,
+              ? row[columnName].valueWithoutFormat
+              : row[columnName].value,
           onClick: ({ row }, { name: columnName }) => {
-            handleCellClick(context, row, field, columnName, prevSelectedCell, clickCallback);
+            handleCellClick(
+              context,
+              row,
+              field,
+              columnName,
+              prevSelectedCell,
+              clickCallback,
+            );
           },
           sortable: type !== 'grid',
           resultSchemaId,
+          handlerData: { context, field, columnName, prevSelectedCell, clickCallback },
         };
 
         result.columns.push(columnData);
@@ -150,7 +237,10 @@ export class TableAdapter extends React.PureComponent {
 
   render() {
     const {
-      data: { data: { head, rows = [], total = [] } = {}, config: { title, sort, order, settings } = {} } = {},
+      data: {
+        data: { head, rows = [], total = [] } = {},
+        config: { title, sort, order, settings } = {},
+      } = {},
       orderBy,
     } = this.props;
 
@@ -160,7 +250,9 @@ export class TableAdapter extends React.PureComponent {
 
     let groupFieldPosition = -1;
     if (this.props.data.data.groupField) {
-      groupFieldPosition = head.findIndex(h => h.resultSchemaId === this.props.data.data.groupField);
+      groupFieldPosition = head.findIndex(
+        h => h.resultSchemaId === this.props.data.data.groupField,
+      );
     }
 
     const selectedCell = this._getSelectedCell();
@@ -187,23 +279,44 @@ export class TableAdapter extends React.PureComponent {
         dataIndex: col.name,
         render: item => renderCell(item),
         sorter: col.sortAccessor,
+        onCell: row => {
+          return {
+            onClick: event => {
+              const {
+                context,
+                field,
+                columnName,
+                prevSelectedCell,
+                clickCallback,
+              } = col.handlerData;
+              handleCellClick(
+                context,
+                row,
+                field,
+                columnName,
+                prevSelectedCell,
+                clickCallback,
+              );
+            },
+          };
+        },
       };
     });
 
     const data = rows.map(row =>
       row.values
         ? row.values.reduce((result, value, index) => {
-          value.isGroupField = index === groupFieldPosition;
-          value.resultShemaId = head[index].resultSchemaId;
-          result[names[index]] = { value };
-          return result;
-        }, {})
+            value.isGroupField = index === groupFieldPosition;
+            value.resultShemaId = head[index].resultSchemaId;
+            result[names[index]] = { value };
+            return result;
+          }, {})
         : row.cells.reduce((result, value, index) => {
-          value.isGroupField = index === groupFieldPosition;
-          value.resultShemaId = head[index].resultSchemaId;
-          result[names[index]] = value;
-          return result;
-        }, {}),
+            value.isGroupField = index === groupFieldPosition;
+            value.resultShemaId = head[index].resultSchemaId;
+            result[names[index]] = value;
+            return result;
+          }, {}),
     );
 
     return (
@@ -213,7 +326,12 @@ export class TableAdapter extends React.PureComponent {
           context._domNode = node;
         }}
       >
-        <TableWidget columns={antdTableColumns} dataSource={data} title={_getTitle(title)} {...this.props} />
+        <TableWidget
+          columns={antdTableColumns}
+          dataSource={data}
+          title={_getTitle(title)}
+          {...this.props}
+        />
       </div>
     );
   }
