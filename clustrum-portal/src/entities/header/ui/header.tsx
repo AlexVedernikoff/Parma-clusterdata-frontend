@@ -4,7 +4,7 @@ import { Breadcrumb } from 'antd';
 
 import './header.css';
 
-interface HeaderProps {
+export interface HeaderProps {
   entry?: {
     scope: string;
     key: string;
