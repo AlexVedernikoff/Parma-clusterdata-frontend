@@ -7,8 +7,6 @@ import cloneDeep from 'lodash/cloneDeep';
 import { RadioBox, TextInput } from 'lego-on-react';
 import { Datepicker, YCSelect } from '@kamatech-data-ui/common/src';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 import Dialog from '../../Dialog/Dialog';
 import Button from '../../Switchers/Button';
 
@@ -82,33 +80,33 @@ const singleItems = [
   {
     val: FILTER_TYPES.NoDefined,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_undefined');
+      return 'Не определено';
     },
   },
   {
     val: FILTER_TYPES.AcceptableFrom,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_date-accepted-start');
+      return 'Начало допустимого интервала';
     },
     sourceType: CONTROL_SOURCE_TYPE.MANUAL,
   },
   {
     val: FILTER_TYPES.AcceptableTo,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_date-accepted-end');
+      return 'Конец допустимого интервала';
     },
     sourceType: CONTROL_SOURCE_TYPE.MANUAL,
   },
   {
     val: FILTER_TYPES.Date,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_date-manual');
+      return 'Выбор определенного значения из календаря';
     },
   },
   {
     val: FILTER_TYPES.Relative,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_date-relative');
+      return 'Выбор значения относительно текущего дня';
     },
   },
 ];
@@ -117,32 +115,32 @@ const rangeItems = [
   {
     val: FILTER_TYPES.NoDefined,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_undefined');
+      return 'Не определено';
     },
   },
   {
     val: FILTER_TYPES.AcceptableFullInterval,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_date-accepted-all');
+      return 'Весь допустимый интервал';
     },
     sourceType: CONTROL_SOURCE_TYPE.MANUAL,
   },
   {
     val: FILTER_TYPES.Date,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_date-manual');
+      return 'Выбор определенного значения из календаря';
     },
   },
   {
     val: FILTER_TYPES.Relative,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_date-relative');
+      return 'Выбор значения относительно текущего дня';
     },
   },
   {
     val: FILTER_TYPES.DefaultRanges,
     get text() {
-      return i18n('dash.control-dialog.edit', 'value_date-default-ranges');
+      return 'Выбор значения по умолчанию';
     },
   },
 ];
@@ -182,9 +180,9 @@ class Default extends React.PureComponent {
   getText() {
     const { defaultValue, isRange } = this.props;
     const { type, value: { from, to } = {} } = defaultValue;
-    const noLimits = i18n('dash.control-dialog.edit', 'value_date-no-limits');
-    const noChoose = i18n('dash.control-dialog.edit', 'value_not-chosen');
-    const noDefined = i18n('dash.control-dialog.edit', 'value_undefined');
+    const noLimits = 'Не ограничено';
+    const noChoose = 'Не выбрано';
+    const noDefined = 'Не определено';
     switch (type) {
       case FILTER_TYPES.AcceptableFrom:
         return this.findItemTextByVal(singleItems, FILTER_TYPES.AcceptableFrom);
@@ -205,9 +203,9 @@ class Default extends React.PureComponent {
         if (isRange) {
           const fromText = from ? from : noChoose;
           const toText = to ? to : noChoose;
-          return i18n('dash.control-dialog.edit', 'value_date-days-ago-from-to', { from, to });
+          return `Начало, дней назад: ${from}. Конец, дней назад: ${to}`;
         } else {
-          return i18n('dash.control-dialog.edit', 'value_date-days-ago', { value: from });
+          return `Дней назад: ${from}`;
         }
       default:
         return noDefined;
@@ -313,7 +311,7 @@ class Default extends React.PureComponent {
                   allowEmptyValue={true}
                   hasClear={false}
                   showApply={false}
-                  emptyValueText={i18n('dash.control-dialog.edit', 'value_not-chosen')}
+                  emptyValueText="Не выбрано"
                   callback={({ from, to }) =>
                     this.setState({
                       defaultValue: {
@@ -334,7 +332,7 @@ class Default extends React.PureComponent {
                   theme="normal"
                   view="default"
                   tone="default"
-                  placeholder={i18n('dash.control-dialog.edit', 'context_date-from-days-ago')}
+                  placeholder="Начало, дней назад"
                   onChange={this.onChangeInput('from')}
                   text={fromInput}
                 />
@@ -342,7 +340,7 @@ class Default extends React.PureComponent {
                   theme="normal"
                   view="default"
                   tone="default"
-                  placeholder={i18n('dash.control-dialog.edit', 'context_date-to-days-ago')}
+                  placeholder="Конец, дней назад"
                   onChange={this.onChangeInput('to')}
                   text={toInput}
                 />
@@ -364,11 +362,19 @@ class Default extends React.PureComponent {
                     })
                   }
                   disabled={false}
-                  items={DEFAULT_RANGES.map(value => ({
-                    value,
-                    title: i18n('dash.control-dialog.edit', value),
-                    key: value,
-                  }))}
+                  items={DEFAULT_RANGES.map(value => {
+                    const currentValue = {
+                      value_current_month: 'Текущий месяц',
+                      value_current_quarter: 'Текущий квартал',
+                      value_current_year: 'Текущий год',
+                    };
+
+                    return {
+                      value,
+                      title: currentValue[value],
+                      key: value,
+                    };
+                  })}
                 />
               </div>
             )}
@@ -415,7 +421,7 @@ class Default extends React.PureComponent {
                   allowEmptyValue={true}
                   hasClear={false}
                   showApply={false}
-                  emptyValueText={i18n('dash.control-dialog.edit', 'value_not-chosen')}
+                  emptyValueText="Не выбрано"
                   callback={({ from }) => {
                     const { defaultValue } = this.state;
                     this.setState({
@@ -437,7 +443,7 @@ class Default extends React.PureComponent {
                   theme="normal"
                   view="default"
                   tone="default"
-                  placeholder={i18n('dash.control-dialog.edit', 'context_date-days-ago')}
+                  placeholder="Дней назад"
                   onChange={this.onChangeInput('from')}
                   text={dateValue || ''}
                 />
@@ -452,12 +458,7 @@ class Default extends React.PureComponent {
   renderDialog() {
     const { showDialog } = this.state;
     return (
-      <Dialog
-        visible={showDialog}
-        caption={i18n('dash.control-dialog.edit', 'label_default-value')}
-        onApply={this.onEnter}
-        onClose={this.closeDialog}
-      >
+      <Dialog visible={showDialog} caption="Значение по умолчанию" onApply={this.onEnter} onClose={this.closeDialog}>
         {this.props.isRange ? this.renderRange() : this.renderSingle()}
       </Dialog>
     );
@@ -467,7 +468,7 @@ class Default extends React.PureComponent {
     return (
       <React.Fragment>
         <Button
-          title={i18n('dash.control-dialog.edit', 'field_default-value')}
+          title="Значение по умолчанию"
           text={this.getText()}
           onClick={() => this.setState({ showDialog: !this.state.showDialog })}
         />

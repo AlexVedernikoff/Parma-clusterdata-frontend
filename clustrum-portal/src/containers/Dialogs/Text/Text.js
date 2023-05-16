@@ -10,8 +10,6 @@ import { DIALOG_TYPE } from '../../../modules/constants/constants';
 import { isDialogVisible, getOpenedItemData } from '../../../store/selectors/dash';
 import { closeDialog, setItemData } from '../../../store/actions/dash';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 // import './Text.scss';
 
 const b = block('dialog-text');
@@ -56,16 +54,16 @@ class Text extends React.PureComponent {
     const { id, visible, closeDialog } = this.props;
     return (
       <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
-        <Dialog.Header caption={i18n('dash.text-dialog.edit', 'label_text')} />
+        <Dialog.Header caption="Текст" />
         <Dialog.Body className={b()}>
-          <FieldWrapper error={this.state.error ? i18n('dash.text-dialog.edit', 'toast_required-field') : null}>
+          <FieldWrapper error={this.state.error ? 'Поле должно быть заполнено' : null}>
             <TextArea
               theme="normal"
               view="default"
               tone="default"
               size="m"
               text={this.state.text}
-              placeholder={i18n('dash.text-dialog.edit', 'context_fill-text')}
+              placeholder="Введите текст"
               rows={8}
               cls={b('textarea')}
               onChange={text => this.setState({ text })}
@@ -75,10 +73,8 @@ class Text extends React.PureComponent {
         <Dialog.Footer
           onClickButtonCancel={closeDialog}
           onClickButtonApply={this.onApply}
-          textButtonApply={
-            id ? i18n('dash.text-dialog.edit', 'button_save') : i18n('dash.text-dialog.edit', 'button_add')
-          }
-          textButtonCancel={i18n('dash.text-dialog.edit', 'button_cancel')}
+          textButtonApply={id ? 'Сохранить' : 'Добавить'}
+          textButtonCancel="Отменить"
         />
       </Dialog>
     );

@@ -6,8 +6,6 @@ import { RadioButton, Select } from 'lego-on-react';
 import Modal from '../Modal/Modal';
 import Icon, { extend } from '../../../Icon/Icon';
 import { getStorageState } from '../../../../modules/export/export';
-import { i18nV2 as i18nFactory } from '../../../../modules/i18n/i18n';
-import * as keyset from './i18n';
 import { ExportFormat } from '../../../../modules/export/ExportFormat';
 import { Encoding } from '../../../../modules/export/Encoding';
 
@@ -15,7 +13,6 @@ extend({
   download: <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />,
 });
 
-const i18n = i18nFactory(keyset);
 const b = block('chartkit-export-modal');
 
 function Block({ title, children }) {
@@ -99,26 +96,26 @@ class Export extends React.PureComponent {
     const commonProps = { theme: 'normal', view: 'default', tone: 'default', size: 'n', type: 'radio', width: 'max' };
 
     return (
-      <Block title={i18n('settings')}>
-        <Row title={i18n('valuesDelimiter')}>
+      <Block title="Настройки">
+        <Row title="Разделитель значений">
           <Select {...commonProps} val={this.state.delValues} onChange={([delValues]) => this.setState({ delValues })}>
-            <Select.Item val=";">{`${i18n('semicolon')} ;`}</Select.Item>
-            <Select.Item val=",">{`${i18n('comma')} ,`}</Select.Item>
-            <Select.Item val="tab">{i18n('tab')}</Select.Item>
-            <Select.Item val="space">{i18n('space')}</Select.Item>
+            <Select.Item val=";">точка с запятой ;</Select.Item>
+            <Select.Item val=",">запятая ,</Select.Item>
+            <Select.Item val="tab">таб</Select.Item>
+            <Select.Item val="space">пробел</Select.Item>
           </Select>
         </Row>
-        <Row title={i18n('decimalDelimiter')}>
+        <Row title="Разделитель дробной части">
           <Select
             {...commonProps}
             val={this.state.delNumbers}
             onChange={([delNumbers]) => this.setState({ delNumbers })}
           >
-            <Select.Item val=".">{`${i18n('dot')} .`}</Select.Item>
-            <Select.Item val=",">{`${i18n('comma')} ,`}</Select.Item>
+            <Select.Item val=".">точка .</Select.Item>
+            <Select.Item val=",">запятая ,</Select.Item>
           </Select>
         </Row>
-        <Row title={i18n('encoding')}>
+        <Row title="Кодировка">
           <Select {...commonProps} val={this.state.encoding} onChange={([encoding]) => this.setState({ encoding })}>
             <Select.Item val={Encoding.UTF8}>utf8</Select.Item>
             <Select.Item val={Encoding.CP1251}>cp1251</Select.Item>
@@ -131,9 +128,9 @@ class Export extends React.PureComponent {
   render() {
     return (
       <Modal element={this.props.element}>
-        <Modal.Header caption={i18n('title')} />
+        <Modal.Header caption="Экспорт данных" />
         <Modal.Body className={b()}>
-          <Block title={i18n('format')}>
+          <Block title="Формат">
             <RadioButton
               theme="normal"
               view="default"
@@ -148,16 +145,16 @@ class Export extends React.PureComponent {
             </RadioButton>
           </Block>
           {this.renderSettings()}
-          <div className={b('hint')}>{i18n('hint')}</div>
+          <div className={b('hint')}>Этот диалог можно пропустить, кликнув по элементу меню с зажатым CMD/CTRL</div>
         </Modal.Body>
-        <Modal.Footer onApply={this.onApply} applyText={i18n('download')} />
+        <Modal.Footer onApply={this.onApply} applyText="Скачать" />
       </Modal>
     );
   }
 }
 
 export default {
-  title: { toString: () => i18n('title') },
+  title: 'Экспорт данных',
   icon: <Icon size="20" name="download" />,
   isVisible: ({ loadedData: { data } = {} }) => Boolean(data),
   action: ({ event, anchorNode, runPayload, options, exportWidget }) => {

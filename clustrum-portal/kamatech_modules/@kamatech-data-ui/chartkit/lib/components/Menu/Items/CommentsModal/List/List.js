@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import cloneDeep from 'lodash/cloneDeep';
 
-import i18nFactory from '../../../../../modules/i18n/i18n';
 import { CheckBox } from 'lego-on-react';
 
 import Comment from './Comment/Comment';
@@ -15,7 +14,6 @@ extend({
 
 // import './List.scss';
 
-const i18n = i18nFactory('CommentsModal');
 const b = block('comments-list');
 
 // TODO: удаление сразу нескольких комментариев, комментарий при этом недоступен для перехода
@@ -113,7 +111,7 @@ export default class List extends React.PureComponent {
             onClick={() => this.props.updateSelectedIndex(null)}
           >
             <Icon size="22" name="plus" className={b('icon')} />
-            {i18n('new-comment')}
+            Новый комментарий
           </div>
           {this.props.comments.map(({ id, feed, text, date, dateUntil, isStat, meta: { color } }, index) => (
             <Comment
@@ -139,7 +137,7 @@ export default class List extends React.PureComponent {
               checked={this.props.excludeParams}
               onChange={() => this.props.updateExcludeParams(!this.props.excludeParams)}
             >
-              {i18n('exclude-params')}
+              Без учета параметров
             </CheckBox>
           </div>
         }

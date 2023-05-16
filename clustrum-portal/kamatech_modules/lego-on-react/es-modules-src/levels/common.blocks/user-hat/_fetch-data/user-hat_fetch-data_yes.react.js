@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -15,7 +15,7 @@ var _extends =
 import { declMod } from '@kamatech-lego/i-bem-react';
 
 export default declMod(
-  function (_ref) {
+  function(_ref) {
     var fetchData = _ref.fetchData;
     return fetchData;
   },
@@ -62,9 +62,9 @@ export default declMod(
 
       var _props = this.props,
         _props$onSuccess = _props.onSuccess,
-        onSuccess = _props$onSuccess === undefined ? function () { } : _props$onSuccess,
+        onSuccess = _props$onSuccess === undefined ? function() {} : _props$onSuccess,
         _props$onFailure = _props.onFailure,
-        onFailure = _props$onFailure === undefined ? function () { } : _props$onFailure;
+        onFailure = _props$onFailure === undefined ? function() {} : _props$onFailure;
       var fetchUrl = this.state.fetchUrl;
 
       if (!fetchUrl) {
@@ -75,7 +75,7 @@ export default declMod(
       xhr.open('GET', fetchUrl);
       xhr.withCredentials = true;
       xhr.send();
-      xhr.onreadystatechange = function () {
+      xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4) {
           return;
         }

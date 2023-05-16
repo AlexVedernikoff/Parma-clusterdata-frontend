@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
 import { TextArea, CheckBox, RadioBox } from 'lego-on-react';
-import i18nFactory from '../../../../modules/i18n/i18n';
 
 import ClipboardButton from '../ClipboardButton/ClipboardButton';
 import URI from '../../../../modules/uri/uri';
@@ -29,7 +28,6 @@ import TinyUrlButton from '../TinyUrlButton/TinyUrlButton';
  * @returns {React.PureComponent}
  */
 
-const i18n = i18nFactory('CodeLinkModal');
 const b = block('code-link-modal');
 
 export default function createBody(config) {
@@ -65,7 +63,7 @@ export default function createBody(config) {
     // TODO: нельзя выбрать ранее выбранный radio / github.com/facebook/react/issues/9988
     _radiobox = () => (
       <div className={b('row', { common: true, radiobox: true })}>
-        <span className={b('cell', { flex: 'zero', inline: true })}>{i18n('size-width-height')}:</span>
+        <span className={b('cell', { flex: 'zero', inline: true })}>Размер (ширина/высота):</span>
         <span className={b('cell', { inline: true })}>
           <RadioBox
             theme="normal"

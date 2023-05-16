@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 
 import { Button } from 'lego-on-react';
 import { Icon } from '@kamatech-data-ui/common/src';
-import { i18n, Utils } from '@kamatech-data-ui/clustrum';
 
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import DropdownNavigation from '../../containers/DropdownNavigation/DropdownNavigation';
@@ -88,7 +87,7 @@ class NavigationInput extends React.PureComponent {
           <ButtonIcon>
             <Icon data={iconLink} width="16" />
           </ButtonIcon>
-          {i18n('dash.navigation-input.edit', 'button_use-link')}
+          Указать ссылку
         </Button>
       </div>
     );

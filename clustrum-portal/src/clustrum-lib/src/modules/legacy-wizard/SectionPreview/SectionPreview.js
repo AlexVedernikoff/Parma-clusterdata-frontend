@@ -13,16 +13,10 @@ import iconPreviewDatasetError from 'icons/preview-dataset-error.svg';
 import { EXPORT, NEW_WINDOW } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
 
 import { selectConfig, selectConfigType, selectPreviewEntryId } from '../../../../../reducers/preview';
-
 import { selectDatasetError } from '../../../../../reducers/dataset';
-
 import { selectWidget } from '../../../../../reducers/widget';
-
 import { setHighchartsWidget } from '../../../../../actions';
-
 import { createStructuredSelector } from 'reselect';
-
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 function goAwayLink({ loadedData, propsData }, { extraParams = {}, urlPostfix = '', idPrefix = '' }) {
   let url = window.DL.endpoints.wizard + urlPostfix;
@@ -70,7 +64,7 @@ class SectionPreview extends Component {
       return (
         <div className="dataset-error-container">
           <Icon width="236" data={iconPreviewDatasetError} />
-          <span>{i18n('wizard', 'label_preview-dataset-error')}</span>
+          <span>Невозможно отобразить график</span>
         </div>
       );
     }
@@ -80,7 +74,7 @@ class SectionPreview extends Component {
 
       if (DL.installationType === 'external') {
         LINK_NEW_WINDOW = {
-          title: i18n('wizard', 'label_chartkit-menu-open-in-new-tab'),
+          title: 'Открыть в новой вкладке',
           icon: <Icon width="20" data={iconFullscreen} />,
           isVisible: () => true,
           action: ({ loadedData, propsData }) =>

@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import moment from 'moment';
 
 import { Datepicker } from '@kamatech-data-ui/common/src';
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 import Button from '../../Switchers/Button';
 import Dialog from '../../Dialog/Dialog';
@@ -39,7 +38,7 @@ class Acceptable extends React.PureComponent {
     return (
       <React.Fragment>
         <div className={b('row')}>
-          <div className={b('title')}>{i18n('dash.control-dialog.edit', 'field_date-from')}</div>
+          <div className={b('title')}>Начало</div>
           <div className={b('value')}>
             <Datepicker
               locale={getLang()}
@@ -47,14 +46,14 @@ class Acceptable extends React.PureComponent {
               scale="day"
               allowEmptyValue={true}
               hasClear={false}
-              emptyValueText={i18n('dash.control-dialog.edit', 'value_date-no-limits')}
+              emptyValueText="Не ограничено"
               callback={({ from }) => this.setState({ acceptableValues: { ...acceptableValues, from } })}
               showApply={false}
             />
           </div>
         </div>
         <div className={b('row')}>
-          <div className={b('title')}>{i18n('dash.control-dialog.edit', 'field_date-to')}</div>
+          <div className={b('title')}>Конец</div>
           <div className={b('value')}>
             <Datepicker
               locale={getLang()}
@@ -62,7 +61,7 @@ class Acceptable extends React.PureComponent {
               scale="day"
               allowEmptyValue={true}
               hasClear={false}
-              emptyValueText={i18n('dash.control-dialog.edit', 'value_date-no-limits')}
+              emptyValueText="Не ограничено"
               callback={({ from: to }) => this.setState({ acceptableValues: { ...acceptableValues, to } })}
               showApply={false}
             />
@@ -78,7 +77,7 @@ class Acceptable extends React.PureComponent {
     return (
       <Dialog
         visible={showDialog}
-        caption={i18n('dash.control-dialog.edit', 'label_acceptable-values')}
+        caption="Возможные значения"
         onApply={() => {
           onApply({ acceptableValues });
           this.closeDialog();
@@ -94,7 +93,7 @@ class Acceptable extends React.PureComponent {
     const {
       acceptableValues: { from, to },
     } = this.props;
-    let text = i18n('dash.control-dialog.edit', 'value_date-no-limits');
+    let text = 'Не ограничено';
     if (from && to) {
       text = `${moment(from).format(DATE_FORMAT)} - ${moment(to).format(DATE_FORMAT)}`;
     } else if (from) {
@@ -106,7 +105,7 @@ class Acceptable extends React.PureComponent {
     return (
       <React.Fragment>
         <Button
-          title={i18n('dash.control-dialog.edit', 'field_acceptable-values')}
+          title="Возможные значения"
           text={text}
           onClick={() => this.setState({ showDialog: !this.state.showDialog })}
         />

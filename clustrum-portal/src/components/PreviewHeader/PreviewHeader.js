@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import { Icon } from '@kamatech-data-ui/common/src';
 import { TextInput, Button } from 'lego-on-react';
 import _debounce from 'lodash/debounce';
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 // import './PreviewHeader.scss';
 
@@ -135,7 +134,7 @@ class PreviewHeader extends React.Component {
             tone="default"
             text={String(this.state.amountPreviewRows)}
             onChange={this.changeAmountPreviewRows}
-            placeholder={i18n('dataset.dataset-editor.modify', 'button_enter-amount-rows')}
+            placeholder=""
           />
           <span className={b('fade-text')}>{maxAmountRowsTitle}</span>
         </div>
@@ -147,7 +146,7 @@ class PreviewHeader extends React.Component {
               size="s"
               view="default"
               tone="default"
-              title={i18n('dataset.dataset-editor.modify', 'button_preview-full')}
+              title="На весь экран"
               onClick={this.togglePreviewFull}
             >
               <Icon data={iconPreviewExpand} width="24" height="28" />
@@ -160,7 +159,7 @@ class PreviewHeader extends React.Component {
               size="s"
               view="default"
               tone="default"
-              title={i18n('dataset.dataset-editor.modify', 'button_preview-right')}
+              title="Развернуть справа"
               onClick={this.togglePreviewRigth}
             >
               <Icon data={iconPreviewSide} width="24" height="28" />
@@ -173,7 +172,7 @@ class PreviewHeader extends React.Component {
               size="s"
               view="default"
               tone="default"
-              title={i18n('dataset.dataset-editor.modify', 'button_preview-bottom')}
+              title="Развернуть сниз"
               onClick={this.togglePreviewBottom}
             >
               <Icon data={iconPreviewBottom} width="24" height="28" />
@@ -185,7 +184,7 @@ class PreviewHeader extends React.Component {
             size="s"
             view="default"
             tone="default"
-            title={i18n('dataset.dataset-editor.modify', 'button_preview-close')}
+            title="Закрыть"
             onClick={this.closePreview}
           >
             <Icon data={iconPreviewClose} width="24" height="28" />

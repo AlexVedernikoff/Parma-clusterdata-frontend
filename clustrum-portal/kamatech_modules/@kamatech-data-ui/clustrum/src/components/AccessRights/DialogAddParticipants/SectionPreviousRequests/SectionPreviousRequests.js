@@ -4,7 +4,7 @@ import block from 'bem-cn-lite';
 import Utils from '../../../../utils';
 import User from '../../User/User';
 import DialogRevokeRights from '../../Body/DialogRevokeRights/DialogRevokeRights';
-import { STATUS, i18n } from '../../constants';
+import { STATUS } from '../../constants';
 import { Button } from 'lego-on-react';
 import { Loader } from '@kamatech-data-ui/common/src';
 import isEmpty from 'lodash/isEmpty';
@@ -101,8 +101,8 @@ class SectionPreviousRequests extends React.PureComponent {
     return (
       <React.Fragment>
         <div className={b()}>
-          <div className={b('title')}>{i18n('section_previous-requests')}</div>
-          {isEmpty(participants) ? <div>{i18n('label-nope-previous-requests')}</div> : this.renderParticipants()}
+          <div className={b('title')}>Предыдущие запросы</div>
+          {isEmpty(participants) ? <div>Отсутствуют</div> : this.renderParticipants()}
         </div>
         {currentParticipantIndex !== null && (
           <DialogRevokeRights
@@ -122,7 +122,7 @@ class SectionPreviousRequests extends React.PureComponent {
     return (
       <div className={b()}>
         <div className={b('error')}>
-          <span className={b('error-text')}>{i18n('label_error-get-prev-requests')}</span>
+          <span className={b('error-text')}>Не удалось загрузить предыдущие запросы.</span>
           <br />
           <Button
             theme="action"
@@ -132,7 +132,7 @@ class SectionPreviousRequests extends React.PureComponent {
             onClick={this.refresh}
             disabled={this.props.inactive}
           >
-            {i18n('button_repeat')}
+            Повторить
           </Button>
         </div>
       </div>

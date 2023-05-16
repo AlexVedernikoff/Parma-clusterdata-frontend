@@ -15,13 +15,11 @@ import { DATASET_ARRAY_JOIN_TYPE } from '../../../../../../src/containers/Datase
 import Dataset from '../../../../../../src/containers/Dialogs/Control/Switchers/Dataset';
 import DatasetField from '../../../../../../src/containers/Dialogs/Control/Switchers/DatasetField/DatasetField';
 
-import { I18n } from 'utils/i18n';
 import YCSelect from '../../../../common/src/components/YCSelect/YCSelect';
 import AceEditor from '../AceEditor/AceEditor';
 import { CalcModes } from '../../constants/calc-modes';
 import { FieldAggregation } from '../../constants/field-aggregation';
 
-const i18n = I18n.keyset('component.field-editor.view');
 const b = block('field-settings-editor');
 
 const SettingsSectionTypes = {
@@ -373,11 +371,28 @@ class FieldEditor extends React.Component {
     });
   };
 
+  getSelectorTitle(name) {
+    switch (name) {
+      case 'inner_join':
+        return 'Пересечение';
+      case 'left_join':
+        return 'Левое';
+      case 'right_join':
+        return 'Правое';
+      case 'array_join':
+        return 'По всем элементам массива';
+      case 'array_last_item_join':
+        return 'По последнему элементу массива';
+      default:
+        return 'Объединение';
+    }
+  }
+
   listForSelector(data) {
     return data.map(({ name }, index) => ({
       value: name,
       key: `join-${index}`,
-      title: i18n(name),
+      title: this.getSelectorTitle(name),
     }));
   }
 
@@ -402,7 +417,7 @@ class FieldEditor extends React.Component {
           {sourceType === CONTROL_SOURCE_TYPE.DATASET && (
             <React.Fragment>
               <Dataset
-                title={i18n('dataset')}
+                title="Набор данных"
                 datasetId={linkedDataset}
                 onClick={linkedDataset =>
                   this.setState(prevState => ({
@@ -431,7 +446,7 @@ class FieldEditor extends React.Component {
               />
               <div className={b('content-row')}>
                 <div className={b('label')}>
-                  <span>{i18n('join_type')}</span>
+                  <span>Тип соединения</span>
                 </div>
                 <YCSelect
                   controlWidth={200}
@@ -444,7 +459,7 @@ class FieldEditor extends React.Component {
               {this._renderArrayJoinType(field)}
               <div className={b('clear-linked')}>
                 <Button theme="pseudo" tone="default" view="default" size="m" onClick={() => this.clearLinkedDataset()}>
-                  {i18n('button_clear')}
+                  Очистить
                 </Button>
               </div>
             </React.Fragment>
@@ -466,7 +481,7 @@ class FieldEditor extends React.Component {
     return (
       <div className={b('content-row')}>
         <div className={b('label')}>
-          <span>{i18n('array_join_type')}</span>
+          <span>Тип условия соединения для массивов</span>
         </div>
         <YCSelect
           controlWidth={200}
@@ -486,7 +501,7 @@ class FieldEditor extends React.Component {
     return (
       <React.Fragment>
         <div className={b('verification-container')}>
-          <div className={b('verification-title')}>{i18n('verification_rules')}</div>
+          <div className={b('verification-title')}>Список правил</div>
           <div className={b('verification-editor')}>
             <AceEditor
               onChange={verification_rules => this.modifyField({ verification_rules })}
@@ -518,11 +533,9 @@ class FieldEditor extends React.Component {
                 this.setState({ settingsSection: e.target.value });
               }}
             >
-              <RadioButton.Radio value={SettingsSectionTypes.Connection}>
-                {i18n('connection_section_title')}
-              </RadioButton.Radio>
+              <RadioButton.Radio value={SettingsSectionTypes.Connection}>Связывание</RadioButton.Radio>
               <RadioButton.Radio value={SettingsSectionTypes.Verification}>
-                {i18n('verification_section_title')}
+                Верификация и сопоставление
               </RadioButton.Radio>
             </RadioButton>
           </div>
@@ -549,7 +562,7 @@ class FieldEditor extends React.Component {
 
     return (
       <Dialog visible={visible} onClose={this.closeFieldEditor}>
-        <Dialog.Header caption={i18n('section_title')} onClose={this.closeFieldEditor} />
+        <Dialog.Header caption="Настройка поля" onClose={this.closeFieldEditor} />
         <Dialog.Body>
           <FieldSettingsEditor
             {...this.props}
@@ -566,8 +579,8 @@ class FieldEditor extends React.Component {
           progress={this.state.progress}
           onClickButtonCancel={this.closeFieldEditor}
           onClickButtonApply={isNewField ? this.createField : this.saveField}
-          textButtonApply={isNewField ? i18n('button_create') : i18n('button_save')}
-          textButtonCancel={i18n('button_cancel')}
+          textButtonApply={isNewField ? 'Создать' : 'Сохранить'}
+          textButtonCancel="Отменить"
           propsButtonCancel={{
             ref: this._btnCancelRef,
           }}
@@ -583,7 +596,7 @@ class FieldEditor extends React.Component {
               size="n"
               view="default"
               tone="default"
-              text={i18n('button_manual')}
+              text="Справочник"
               onClick={this.toggleFormulaManual}
             />
           )}

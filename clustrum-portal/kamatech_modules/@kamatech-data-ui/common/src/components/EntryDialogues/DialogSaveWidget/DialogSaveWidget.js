@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import DialogCreateEntry from '../DialogCreateEntry/DialogCreateEntry';
 import noop from 'lodash/noop';
 
-// i18n
 const TEXT = {
   TITLE: 'Сохранить виджет',
   WIDGET_NAME: 'Новый виджет',

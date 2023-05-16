@@ -1,7 +1,7 @@
 function _extends() {
   _extends =
     Object.assign ||
-    function (target) {
+    function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key in source) {
@@ -21,12 +21,12 @@ function _objectSpread(target) {
     var ownKeys = Object.keys(source);
     if (typeof Object.getOwnPropertySymbols === 'function') {
       ownKeys = ownKeys.concat(
-        Object.getOwnPropertySymbols(source).filter(function (sym) {
+        Object.getOwnPropertySymbols(source).filter(function(sym) {
           return Object.getOwnPropertyDescriptor(source, sym).enumerable;
         }),
       );
     }
-    ownKeys.forEach(function (key) {
+    ownKeys.forEach(function(key) {
       _defineProperty(target, key, source[key]);
     });
   }
@@ -53,69 +53,6 @@ var Button = _button.applyDecls();
 // import "./../../../desktop.blocks/button2/button2.css";
 // import "./../../button2/_theme/button2_theme_normal.css";
 // import "./../../../desktop.blocks/button2/_theme/button2_theme_normal.css";
-
-var i18n = (function () {
-  var core = require('bem-i18n');
-
-  if (
-    process.env.BEM_LANG
-      ? process.env.BEM_LANG === 'ru'
-      : process.env.REACT_APP_BEM_LANG
-        ? process.env.REACT_APP_BEM_LANG === 'ru'
-        : 'en' === 'ru'
-  ) {
-    return core().decl(require('../tumbler.i18n/ru'))('tumbler');
-  }
-
-  // if (process.env.BEM_LANG ? process.env.BEM_LANG === 'en' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'en' : 'en' === 'en') {
-  //   return core().decl(require('./../tumbler.i18n/en'))('tumbler');
-  // }
-  //
-  // if (process.env.BEM_LANG ? process.env.BEM_LANG === 'be' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'be' : 'en' === 'be') {
-  //   return core().decl(require('./../tumbler.i18n/be'))('tumbler');
-  // }
-  //
-  // if (process.env.BEM_LANG ? process.env.BEM_LANG === 'id' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'id' : 'en' === 'id') {
-  //   return core().decl(require('./../tumbler.i18n/id'))('tumbler');
-  // }
-  //
-  // if (process.env.BEM_LANG ? process.env.BEM_LANG === 'kk' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'kk' : 'en' === 'kk') {
-  //   return core().decl(require('./../tumbler.i18n/kk'))('tumbler');
-  // }
-  //
-  // if (process.env.BEM_LANG ? process.env.BEM_LANG === 'tr' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'tr' : 'en' === 'tr') {
-  //   return core().decl(require('./../tumbler.i18n/tr'))('tumbler');
-  // }
-  //
-  // if (process.env.BEM_LANG ? process.env.BEM_LANG === 'tt' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'tt' : 'en' === 'tt') {
-  //   return core().decl(require('./../tumbler.i18n/tt'))('tumbler');
-  // }
-  //
-  // if (process.env.BEM_LANG ? process.env.BEM_LANG === 'uk' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'uk' : 'en' === 'uk') {
-  //   return core().decl(require('./../tumbler.i18n/uk'))('tumbler');
-  // }
-  //
-  // if (process.env.BEM_LANG ? process.env.BEM_LANG === 'uz' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'uz' : 'en' === 'uz') {
-  //   return core().decl(require('./../tumbler.i18n/uz'))('tumbler');
-  // }
-
-  if (process.env.NODE_ENV === 'development') {
-    process.env.BEM_LANG &&
-      console.error(
-        'No match of process.env.BEM_LANG { ' +
-        process.env.BEM_LANG +
-        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
-      );
-    process.env.REACT_APP_BEM_LANG &&
-      console.error(
-        'No match of process.env.REACT_APP_BEM_LANG { ' +
-        process.env.REACT_APP_BEM_LANG +
-        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
-      );
-  }
-
-  return function () { };
-})();
 
 import _tumbler__sticker from '../__sticker/tumbler__sticker.react.js';
 
@@ -155,7 +92,7 @@ export default decl(
               position: 'left',
             },
           ),
-          i18n('on'),
+          'Вкл',
         ),
         React.createElement(
           TumblerSticker,
@@ -167,7 +104,7 @@ export default decl(
               position: 'right',
             },
           ),
-          i18n('off'),
+          'Откл',
         ),
         React.createElement(
           Button,

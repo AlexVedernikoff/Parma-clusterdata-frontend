@@ -7,15 +7,11 @@ import CopyToClipboard from '@kamatech-data-ui/react-components/src/components/C
 import Icon, { extend } from '../../../Icon/Icon';
 import PopupMessage from '../PopupMessage/PopupMessage';
 
-import i18nFactory from '../../../../modules/i18n/i18n';
-
 extend({
   copy: (
     <path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" />
   ),
 });
-
-const i18n = i18nFactory('ClipboardButton');
 
 export default class ClipboardButton extends React.PureComponent {
   static propTypes = {
@@ -31,8 +27,8 @@ export default class ClipboardButton extends React.PureComponent {
 
   onCopy = (text, isSuccess) =>
     isSuccess
-      ? this.setState({ showPopup: true, theme: 'normal', message: i18n('copied') })
-      : this.setState({ showPopup: true, theme: 'error', message: i18n('error') });
+      ? this.setState({ showPopup: true, theme: 'normal', message: 'Скопировано' })
+      : this.setState({ showPopup: true, theme: 'error', message: 'Ошибка' });
 
   onOutsideClick = () => this.setState({ showPopup: false });
 

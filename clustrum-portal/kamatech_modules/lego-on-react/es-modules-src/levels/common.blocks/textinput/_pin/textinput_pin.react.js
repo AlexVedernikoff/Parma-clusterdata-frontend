@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -18,7 +18,7 @@ import '../../../desktop.blocks/textinput/textinput.react.js';
 // import "./../_has-pin/textinput_has-pin_yes.css";
 
 export default declMod(
-  function (props) {
+  function(props) {
     return props.pin;
   },
   {

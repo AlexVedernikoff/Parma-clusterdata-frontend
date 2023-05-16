@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button, RadioButton, TextInput } from 'lego-on-react';
-import { i18n } from '@kamatech-data-ui/clustrum-i18n';
 
 // import './DatasetPanel.scss';
 import Utils from '../../helpers/utils';
@@ -45,12 +44,8 @@ class DatasetPanel extends React.Component {
             value={tab}
             onChange={e => switchTab(e.target.value)}
           >
-            <RadioButton.Radio value={TAB_DATASET}>
-              {i18n('dataset.dataset-editor.modify', 'value_dataset')}
-            </RadioButton.Radio>
-            <RadioButton.Radio value={TAB_DATA}>
-              {i18n('dataset.dataset-editor.modify', 'value_data')}
-            </RadioButton.Radio>
+            <RadioButton.Radio value={TAB_DATASET}>Набор данных</RadioButton.Radio>
+            <RadioButton.Radio value={TAB_DATA}>Данные</RadioButton.Radio>
           </RadioButton>
         )}
         {tab === TAB_DATASET && (
@@ -61,7 +56,7 @@ class DatasetPanel extends React.Component {
               size="n"
               view="default"
               tone="default"
-              text={i18n('dataset.dataset-editor.modify', 'button_sync')}
+              text="Синхронизировать"
               onClick={syncDataSet}
             />
             <Button
@@ -71,7 +66,7 @@ class DatasetPanel extends React.Component {
               size="n"
               view="default"
               tone="default"
-              text={i18n('dataset.dataset-editor.modify', 'button_preview')}
+              text="Предпросмотр"
               onClick={toggleVisibilityPreview}
             />
             <Button
@@ -80,7 +75,7 @@ class DatasetPanel extends React.Component {
               size="n"
               view="default"
               tone="default"
-              text={i18n('dataset.dataset-editor.modify', 'button_history')}
+              text="Версионность"
               onClick={toggleVisibilityHistory}
             />
             <Button
@@ -90,7 +85,7 @@ class DatasetPanel extends React.Component {
               view="default"
               tone="default"
               iconLeft={<Icon className={b('add-field-btn-ic')} data={iconPlus} width="18" />}
-              text={i18n('dataset.dataset-editor.modify', 'button_add-field')}
+              text="Добавить поле"
               onClick={openFieldEditor}
             />
             <TextInput
@@ -101,7 +96,7 @@ class DatasetPanel extends React.Component {
               tone="default"
               text={searchKeyword}
               onChange={changeSearchKeyword}
-              placeholder={i18n('dataset.dataset-editor.modify', 'field_find-field')}
+              placeholder="Имя поля"
               hasClear
             />
           </React.Fragment>

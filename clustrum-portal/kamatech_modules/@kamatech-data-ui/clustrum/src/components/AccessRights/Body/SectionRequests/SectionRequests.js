@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import User from '../../User/User';
 import { Button, Tooltip } from 'lego-on-react';
-import { i18n, PERMISSION_ACTION } from '../../constants';
+import { PERMISSION_ACTION } from '../../constants';
 import { DL } from '../../../../constants/common';
 import Utils from '../../../../utils';
 import PermissionSelect from '../../PermissionSelect/PermissionSelect';
@@ -168,11 +168,11 @@ class SectionRequests extends React.PureComponent {
               <div className={b('user')}>
                 <User participant={participant} role="requester" />
                 <div className={b('requested-for')}>
-                  <span className={b('requested-for-text')}>{i18n('label_requested-for')}</span>
+                  <span className={b('requested-for-text')}>запрашивает для</span>
                 </div>
                 {isRequestedForSelf ? (
                   <div className={b('requested-for-self')}>
-                    <span>{i18n('label_self')}</span>
+                    <span>себя</span>
                   </div>
                 ) : (
                   <User participant={participant} />
@@ -256,7 +256,7 @@ class SectionRequests extends React.PureComponent {
             >
               <div className={b('btn-icon-text-content')}>
                 <Icon className={b('icon-deny-all')} data={iconDecline} width="24" height="24" />
-                {i18n('button_deny-all')}
+                Отказать всем
               </div>
             </Button>
             <Button
@@ -269,7 +269,7 @@ class SectionRequests extends React.PureComponent {
             >
               <div className={b('btn-icon-text-content')}>
                 <Icon className={b('icon-accept-all')} data={iconTick} width="18" height="18" />
-                {i18n('button_accept-all')}
+                Разрешить всем
               </div>
             </Button>
           </div>

@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -38,8 +38,8 @@ import "./../../icon/_glyph/icon_glyph_x-sign.css";
 export default decl(Control, {
   block: 'textinput',
   elem: 'clear',
-  iconType: function iconType() { },
-  iconGlyph: function iconGlyph() { },
+  iconType: function iconType() {},
+  iconGlyph: function iconGlyph() {},
   mods: function mods(_ref) {
     var theme = _ref.theme,
       visible = _ref.visible;

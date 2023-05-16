@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button, Menu, Popup } from 'lego-on-react';
 import { Icon } from '@kamatech-data-ui/common/src';
-import { i18n } from '@kamatech-data-ui/clustrum';
 
 // import './FieldActionsPopup.scss';
 
@@ -52,7 +51,7 @@ function FieldActionsPopup(props) {
                 });
               }}
             >
-              {i18n('dataset.dataset-editor.modify', 'button_duplicate')}
+              Продублировать
             </Menu.Item>
             <Menu.Item
               type="option"
@@ -66,7 +65,7 @@ function FieldActionsPopup(props) {
                 });
               }}
             >
-              {i18n('dataset.dataset-editor.modify', 'button_edit')}
+              Редактировать
             </Menu.Item>
             <Menu.Item
               type="option"
@@ -80,7 +79,7 @@ function FieldActionsPopup(props) {
                 });
               }}
             >
-              {i18n('dataset.dataset-editor.modify', 'button_remove')}
+              Удалить
             </Menu.Item>
             <Menu.Item
               type="option"
@@ -94,7 +93,7 @@ function FieldActionsPopup(props) {
                 });
               }}
             >
-              {i18n('dataset.dataset-editor.modify', 'button_row-level-security')}
+              Права доступа
             </Menu.Item>
           </Menu>
         </Popup>

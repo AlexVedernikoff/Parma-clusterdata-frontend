@@ -8,8 +8,6 @@ import PathSelect from '../../PathSelect/PathSelect';
 import noop from 'lodash/noop';
 import { NOTIFY_TYPES } from '../../../constants/common';
 import Utils from '../../../utils';
-import { I18n } from '../../../utils/i18n';
-const i18n = I18n.keyset('component.dialog-create-dashboard.view');
 
 const CURRENT_SCHEME_VERSION = 5;
 
@@ -46,8 +44,8 @@ class DialogCreateDashboard extends React.PureComponent {
 
   get defaultDialogProps() {
     return {
-      title: i18n('section_title'),
-      errorText: i18n('label_error'),
+      title: 'Создать дашборд',
+      errorText: 'Не удалось сохранить чарт',
       withError: true,
       onNotify: noop,
     };
@@ -94,7 +92,7 @@ class DialogCreateDashboard extends React.PureComponent {
           tabs: [
             {
               id: hashids.encode(2),
-              title: i18n('label_tab-name-on-create'),
+              title: 'Вкладка 1',
               items: [],
               layout: [],
               ignores: [],
@@ -144,8 +142,8 @@ class DialogCreateDashboard extends React.PureComponent {
         showError={showError}
         errorText={errorText}
         listenKeyEnter={visible}
-        textButtonApply={i18n('button_create')}
-        textButtonCancel={i18n('button_cancel')}
+        textButtonApply="Создать"
+        textButtonCancel="Отменить"
       >
         <div className={b('content')}>
           <PathSelect
@@ -157,7 +155,7 @@ class DialogCreateDashboard extends React.PureComponent {
             inputRef={this.setTextInputRef}
             inputValue={name}
             onChangeInput={this.onChange}
-            placeholder={i18n('label_input-placeholder')}
+            placeholder="Название"
           />
         </div>
       </TemplateDialog>

@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -53,7 +53,7 @@ import "./../../menu/_tone/menu_tone_grey.css";*/ export default decl(
         var menuWidth = menuDomElem.getBoundingClientRect().width;
         var bestHeight = 0;
 
-        drawingParams.forEach(function (params) {
+        drawingParams.forEach(function(params) {
           params.width >= menuWidth && params.height > bestHeight && (bestHeight = params.height);
         });
 

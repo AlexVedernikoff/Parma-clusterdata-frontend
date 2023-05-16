@@ -62,7 +62,7 @@ import { createStructuredSelector } from 'reselect';
 
 import isEqual from 'lodash/isEqual';
 
-import { i18n, CalcModes } from '@kamatech-data-ui/clustrum';
+import { CalcModes } from '@kamatech-data-ui/clustrum';
 
 // import './SectionDataset.scss';
 
@@ -415,7 +415,7 @@ class SectionDataset extends Component {
                         this.onClickRemoveDatasetItem(item);
                       }}
                     >
-                      {i18n('wizard', 'button_remove')}
+                      Удалить
                     </Menu.Item>
                     <Menu.Item
                       type="option"
@@ -424,7 +424,7 @@ class SectionDataset extends Component {
                         this.onClickEditDatasetItem(item);
                       }}
                     >
-                      {i18n('wizard', 'button_edit')}
+                      Редактировать
                     </Menu.Item>
                   </Menu>
                 ) : (
@@ -436,7 +436,7 @@ class SectionDataset extends Component {
                         this.onClickDuplicateDatasetItem(item);
                       }}
                     >
-                      {i18n('wizard', 'button_duplicate')}
+                      Дублировать
                     </Menu.Item>
                   </Menu>
                 )}
@@ -475,7 +475,7 @@ class SectionDataset extends Component {
               hasClear={true}
               borderDisabled={true}
               text={searchPhrase}
-              placeholder={i18n('wizard', 'field_search')}
+              placeholder="Поиск"
               size="s"
               onChange={this.onChangeSearchInputField('searchPhrase')}
             />
@@ -493,7 +493,7 @@ class SectionDataset extends Component {
         </div>
         <div className="subcontainer dimensions-subcontainer">
           <div className="subheader dimensions-subheader">
-            <span>{i18n('wizard', 'section_dimensions')}</span>
+            <span>Измерения</span>
           </div>
           {datasetNames.map(value => {
             {
@@ -523,7 +523,7 @@ class SectionDataset extends Component {
         </div>
         <div className="subcontainer measures-subcontainer">
           <div className="subheader measures-subheader">
-            <span>{i18n('wizard', 'section_measures')}</span>
+            <span>Показатели</span>
           </div>
           {datasetNames.map(value => {
             {
@@ -556,7 +556,7 @@ class SectionDataset extends Component {
   };
 
   renderBlank() {
-    return <div className="dataset-blank">{i18n('wizard', 'label_dataset-blank')}</div>;
+    return <div className="dataset-blank">Для начала работы выберите датасет</div>;
   }
 
   renderSectionsOrBlank = () => {
@@ -576,11 +576,11 @@ class SectionDataset extends Component {
 
       return (
         <div className="error">
-          {i18n('wizard', datasetErrorText)}
+          {datasetErrorText}
           {datasetErrorText === DATASET_ERRORS[403] ? (
             <div>
               <Button
-                text={i18n('wizard', 'button_access-rights')}
+                text="Запросить права"
                 onClick={this.onButtonDatasetRequestRightsClick}
                 theme="action"
                 tone="default"
@@ -593,7 +593,7 @@ class SectionDataset extends Component {
           ) : (
             <div>
               <Button
-                text={i18n('wizard', 'button_retry')}
+                text="Повторить"
                 cls="btn-retry"
                 onClick={this.onButtonDatasetTryAgainClick}
                 theme="action"
@@ -628,7 +628,7 @@ class SectionDataset extends Component {
               size="m"
               onClick={toggleNavigation}
             >
-              {dataset.realName || i18n('wizard', 'button_choose-dataset')}
+              {dataset.realName || 'Выберите датасет'}
             </Button>
             {dataset.realName ? (
               <Dropdown
@@ -646,7 +646,7 @@ class SectionDataset extends Component {
                   <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
                     <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
                       <Menu.Item type="option" val="access" onClick={this.onOpenDatasetClick}>
-                        {i18n('wizard', 'button_to-dataset')}
+                        Перейти к датасету
                       </Menu.Item>
                     </Menu>
                   </Popup>

@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -174,7 +174,7 @@ export default decl(
 
       var content = [];
       var textElems = [];
-      Children.forEach(children, function (child, i) {
+      Children.forEach(children, function(child, i) {
         if (Children.count(children) === 1 && Icon.isIcon(child)) {
           content.unshift(React.createElement(ButtonIcon, { key: 'only-icon', size: size, children: child }));
         } else if (Icon.isIcon(child) && i === 0) {

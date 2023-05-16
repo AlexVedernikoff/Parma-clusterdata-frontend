@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -104,71 +104,6 @@ var UserMenuFooter = _user2__menuFooter.applyDecls();
 
 //import "./../a11y-hidden/a11y-hidden.css";
 //import "./__enter/user2__enter.css";
-
-var i18n = (function () {
-  var core = require('bem-i18n');
-
-  if (
-    process.env.BEM_LANG
-      ? process.env.BEM_LANG === 'ru'
-      : process.env.REACT_APP_BEM_LANG
-        ? process.env.REACT_APP_BEM_LANG === 'ru'
-        : 'en' === 'ru'
-  ) {
-    return core().decl(require('./user2.i18n/ru'))('user2');
-  }
-
-  /*
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'en' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'en' : 'en' === 'en') {
-        return core().decl(require('./user2.i18n/en'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'be' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'be' : 'en' === 'be') {
-        return core().decl(require('./user2.i18n/be'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'id' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'id' : 'en' === 'id') {
-        return core().decl(require('./user2.i18n/id'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'kk' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'kk' : 'en' === 'kk') {
-        return core().decl(require('./user2.i18n/kk'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'tr' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'tr' : 'en' === 'tr') {
-        return core().decl(require('./user2.i18n/tr'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'tt' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'tt' : 'en' === 'tt') {
-        return core().decl(require('./user2.i18n/tt'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'uk' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'uk' : 'en' === 'uk') {
-        return core().decl(require('./user2.i18n/uk'))('user2');
-    }
-
-    if (process.env.BEM_LANG ? process.env.BEM_LANG === 'uz' : process.env.REACT_APP_BEM_LANG ? process.env.REACT_APP_BEM_LANG === 'uz' : 'en' === 'uz') {
-        return core().decl(require('./user2.i18n/uz'))('user2');
-    }
-     */
-
-  if (process.env.NODE_ENV === 'development') {
-    process.env.BEM_LANG &&
-      console.error(
-        'No match of process.env.BEM_LANG { ' +
-        process.env.BEM_LANG +
-        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
-      );
-    process.env.REACT_APP_BEM_LANG &&
-      console.error(
-        'No match of process.env.REACT_APP_BEM_LANG { ' +
-        process.env.REACT_APP_BEM_LANG +
-        ' } in provided langs: { ru, en, be, id, kk, tr, tt, uk, uz }',
-      );
-  }
-
-  return function () { };
-})();
 
 import '../user-hat/user-hat.react.js';
 import _userHat_fetchData_yes from '../user-hat/_fetch-data/user-hat_fetch-data_yes.react.js';
@@ -305,7 +240,7 @@ export default decl(
 
       var retpathEncoded = encodeURIComponent(this._getRetpath());
       if (!uid) {
-        var title = i18n('enter');
+        var title = 'Войти';
         var enterUrl = passportHost + '/auth?retpath=' + retpathEncoded;
 
         if (passportLinkParams !== '') {
@@ -353,7 +288,7 @@ export default decl(
       var plusItem = { action: 'plus' };
 
       actionsMenu = actionsMenu
-        .filter(function (item) {
+        .filter(function(item) {
           if (item.action === 'plus') {
             plusItem = _extends({}, plusItem, item);
             return false;
@@ -393,7 +328,7 @@ export default decl(
             mix: [{ block: block, elem: 'a11y-exit' }, { block: 'a11y-hidden' }],
             url: exitUrl,
           },
-          i18n('exit'),
+          'Выйти',
         ),
         React.createElement(
           Popup,
@@ -423,19 +358,19 @@ export default decl(
               mix: { block: block, elem: 'menu' },
             },
             hat &&
-            yaplus === false &&
-            React.createElement(
-              UserHat,
-              _extends(
-                {
-                  onCloseButtonClick: this.onHatCloseClick,
-                  onSuccess: this.onSuccess,
-                  ready: this.state.hatReady,
-                  hidden: !this.state.hatVisible,
-                },
-                hat,
+              yaplus === false &&
+              React.createElement(
+                UserHat,
+                _extends(
+                  {
+                    onCloseButtonClick: this.onHatCloseClick,
+                    onSuccess: this.onSuccess,
+                    ready: this.state.hatReady,
+                    hidden: !this.state.hatVisible,
+                  },
+                  hat,
+                ),
               ),
-            ),
             React.createElement(
               Bem,
               { block: 'user2', elem: 'menu-header' },
@@ -571,7 +506,7 @@ export default decl(
       var _this = this;
 
       return items
-        .map(function (item, index) {
+        .map(function(item, index) {
           if (item.action === 'plus' && options.plus === undefined) {
             return '';
           }

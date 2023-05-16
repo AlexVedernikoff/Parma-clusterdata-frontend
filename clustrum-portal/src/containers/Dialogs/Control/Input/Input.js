@@ -5,14 +5,12 @@ import TextInput from '../Switchers/TextInput';
 
 import { CONTROL_SOURCE_TYPE } from '../../../../constants/constants';
 
-import { i18n } from '@kamatech-data-ui/clustrum';
-
 function Input(props) {
   return (
     <React.Fragment>
       {props.sourceType === CONTROL_SOURCE_TYPE.MANUAL && <div />}
       <TextInput
-        title={i18n('dash.control-dialog.edit', 'field_default-value')}
+        title="Значение по умолчанию"
         text={props.defaultValue}
         onChange={defaultValue => props.onChange({ defaultValue })}
       />

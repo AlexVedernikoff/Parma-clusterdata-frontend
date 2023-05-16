@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -51,15 +51,15 @@ export default decl(
         name = _ref3.name,
         children = _ref3.children;
 
-      return Children.map(children, function (item, key) {
+      return Children.map(children, function(item, key) {
         return typeof item.type === 'function'
           ? cloneElement(item, {
-            name: name,
-            key: key,
-            mainValue: mainValue,
-            mainDisabled: mainDisabled,
-            onChange: mainDisabled ? undefined : _this.onChange,
-          })
+              name: name,
+              key: key,
+              mainValue: mainValue,
+              mainDisabled: mainDisabled,
+              onChange: mainDisabled ? undefined : _this.onChange,
+            })
           : item;
       });
     },

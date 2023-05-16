@@ -14,7 +14,6 @@ import TypedPopup from '../TypedPopup/TypedPopup';
 import Icon from '../../../../Icon/Icon';
 
 import settings from '../../../../../modules/settings/settings';
-import i18nFactory from '../../../../../modules/i18n/i18n';
 import CONFIGS_OF_TYPES from './configsOfTypes';
 import { TYPES as TYPES_OF_COMMENTS } from './commentsTypes';
 import { DEFAULT_COLOR, createComment, updateComment } from '../../../../../modules/comments/comments';
@@ -23,29 +22,28 @@ import { DEFAULT_COLOR, createComment, updateComment } from '../../../../../modu
 
 const INFO_DATE_FORMAT = 'DD.MM.YYYY HH:mm:ss';
 
-const i18n = i18nFactory('CommentsModal');
 const b = block('comment-form');
 
 // TODO: может соединять через запятую (если запятые не могут присутствовать в параметрах) (?)
 function paramsToText(params) {
   return params
     ? Object.keys(params)
-      .map(key => params[key].map(value => `${key}=${value}`).join('\n'))
-      .join('\n')
+        .map(key => params[key].map(value => `${key}=${value}`).join('\n'))
+        .join('\n')
     : '';
 }
 
 function textToParams(text) {
   return text
     ? text.match(/(.*)=(.*)/g).reduce((result, match) => {
-      const [key, value] = match.split('=');
-      if (Array.isArray(result[key])) {
-        result[key].push(value);
-      } else {
-        result[key] = [value];
-      }
-      return result;
-    }, {})
+        const [key, value] = match.split('=');
+        if (Array.isArray(result[key])) {
+          result[key].push(value);
+        } else {
+          result[key] = [value];
+        }
+        return result;
+      }, {})
     : null;
 }
 
@@ -189,14 +187,14 @@ export default class Form extends React.PureComponent {
       <div className={b('row', { info: true })}>
         <div className={b('cell')}>
           {this.props.isStat
-            ? `${i18n('comment-created')}: <${this.state.creatorLogin}>`
-            : `${i18n('comment-created')}: ${moment(this.state.createdDate).format(INFO_DATE_FORMAT)} <${this.state.creatorLogin
-            }>`}
+            ? `Создан: <${this.state.creatorLogin}>`
+            : `Создан: ${moment(this.state.createdDate).format(INFO_DATE_FORMAT)} <${this.state.creatorLogin}>`}
         </div>
         {this.state.modifiedDate && (
           <div className={b('cell')}>
-            {`${i18n('comment-modified')}: ${moment(this.state.modifiedDate).format(INFO_DATE_FORMAT)} <${this.state.modifierLogin
-              }>`}
+            {`Отредактирован: ${moment(this.state.modifiedDate).format(INFO_DATE_FORMAT)} <${
+              this.state.modifierLogin
+            }>`}
           </div>
         )}
       </div>
@@ -209,7 +207,7 @@ export default class Form extends React.PureComponent {
     const availableTypes = this.props.isStat ? CONFIGS_OF_TYPES.slice(0, 2) : CONFIGS_OF_TYPES;
     return (
       <div className={b('row')}>
-        <div className={b('cell', { header: true })}>{i18n('comment-type')}</div>
+        <div className={b('cell', { header: true })}>Тип</div>
         <div className={b('cell')}>
           <RadioButton
             theme="normal"
@@ -232,7 +230,7 @@ export default class Form extends React.PureComponent {
   _renderText() {
     return (
       <div className={b('row')}>
-        <div className={b('cell', { header: true })}>{i18n('comment-text')}</div>
+        <div className={b('cell', { header: true })}>Текст</div>
         <div className={b('cell')}>
           <TextArea
             theme="normal"
@@ -275,7 +273,7 @@ export default class Form extends React.PureComponent {
     return (
       <div className={b('control', { date: true })}>
         <div className={b('cell', { header: true })}>
-          {this.state.type === TYPES_OF_COMMENTS.BAND_X ? i18n('comment-interval') : i18n('comment-date')}
+          {this.state.type === TYPES_OF_COMMENTS.BAND_X ? 'Интервал' : 'Дата'}
         </div>
         <div className={b('cell')}>
           {!this.props.isStat && this.state.type === TYPES_OF_COMMENTS.BAND_X ? (
@@ -317,9 +315,9 @@ export default class Form extends React.PureComponent {
           case 'picker':
             const pickerValue = Array.isArray(name)
               ? name.reduce((result, item) => {
-                result[item] = this.state[item];
-                return result;
-              }, {})
+                  result[item] = this.state[item];
+                  return result;
+                }, {})
               : this.state[name];
             component = (
               <DropdownPicker
@@ -329,9 +327,9 @@ export default class Form extends React.PureComponent {
                 onChange={value => {
                   const state = Array.isArray(name)
                     ? name.reduce((result, item) => {
-                      result[item] = value[item];
-                      return result;
-                    }, {})
+                        result[item] = value[item];
+                        return result;
+                      }, {})
                     : { [name]: value };
                   this.setState(state);
                 }}
@@ -388,7 +386,7 @@ export default class Form extends React.PureComponent {
   _renderFeed() {
     return this.props.feeds.length > 1 && !this.props.isStat ? (
       <div className={b('row')}>
-        <div className={b('cell', { header: true })}>{i18n('comment-feed')}</div>
+        <div className={b('cell', { header: true })}>Канал</div>
         <div className={b('cell')}>
           <Select
             theme="normal"
@@ -419,7 +417,7 @@ export default class Form extends React.PureComponent {
       <div className={b('row')}>
         <div className={b('cell')}>
           {this.props.isStat && <span className={b('deprecated')}>DEPRECATED</span>}
-          {`${i18n('comment-feed')}: ${this.state.feed}`}
+          {`Канал: ${this.state.feed}`}
           <Icon
             size="20"
             name="pencil"
@@ -439,7 +437,7 @@ export default class Form extends React.PureComponent {
     }
     return this.state.isParamsEditing ? (
       <div className={b('row')}>
-        <div className={b('cell', { header: true })}>{i18n('comment-params')}</div>
+        <div className={b('cell', { header: true })}>Параметры</div>
         <div className={b('cell')}>
           <TextArea
             theme="normal"
@@ -458,7 +456,7 @@ export default class Form extends React.PureComponent {
     ) : (
       <div className={b('row')}>
         <div className={b('cell')}>
-          {`${i18n('comment-params')}: ${this.state.paramsText.replace(/\n/g, ', ')}`}
+          {`Параметры: ${this.state.paramsText.replace(/\n/g, ', ')}`}
           <Icon
             size="16"
             name="pencil"
@@ -477,7 +475,7 @@ export default class Form extends React.PureComponent {
         validation: {
           field: 'text',
           type: 'error',
-          text: i18n('required-field'),
+          text: 'Поле должно быть заполнено',
           directions: ['right-center', 'top-center'],
         },
       });
@@ -492,7 +490,7 @@ export default class Form extends React.PureComponent {
         validation: {
           field: 'paramsText',
           type: 'error',
-          text: i18n('wrong-params-format'),
+          text: 'Описание параметров должно быть в формате:\nscale=d\nregion=TOT\nregion=RU',
           directions: ['right-center', 'top-center'],
         },
       });
@@ -546,10 +544,10 @@ export default class Form extends React.PureComponent {
 
       this.props.onAction(result, this._isEdit);
 
-      Object.assign(validation, { type: 'success', text: i18n('success') });
+      Object.assign(validation, { type: 'success', text: 'Выполнено' });
     } catch (error) {
       console.error(error);
-      Object.assign(validation, { type: 'error', text: i18n('error') });
+      Object.assign(validation, { type: 'error', text: 'Ошибка' });
     }
 
     this.setState({ isProgress: false, validation });
@@ -585,7 +583,7 @@ export default class Form extends React.PureComponent {
   render() {
     return (
       <div className={b()}>
-        <div className={b('header')}>{this._isEdit ? i18n('edit-comment') : i18n('add-comment')}</div>
+        <div className={b('header')}>{this._isEdit ? 'Редактировать комментарий' : 'Добавить комментарий'}</div>
         <div className={b('body')}>
           {this._renderInfo()}
           {this._renderTypes()}
@@ -608,10 +606,10 @@ export default class Form extends React.PureComponent {
               this._refs.action = component;
             }}
           >
-            {this._isEdit ? i18n('save-comment') : i18n('create-comment')}
+            {this._isEdit ? 'Сохранить' : 'Добавить'}
           </Button>
           <Button theme="normal" size="m" mix={{ block: b('button') }} onClick={this.props.onClose}>
-            {i18n('close')}
+            Закрыть
           </Button>
         </div>
         <TypedPopup
