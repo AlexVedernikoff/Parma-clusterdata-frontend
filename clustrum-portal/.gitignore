@@ -116,6 +116,7 @@ Desktop.ini
 /deploy/
 /dist/
 /.idea/
+/src/clustrum-lib/dist
 
 ######################
 # Logs
