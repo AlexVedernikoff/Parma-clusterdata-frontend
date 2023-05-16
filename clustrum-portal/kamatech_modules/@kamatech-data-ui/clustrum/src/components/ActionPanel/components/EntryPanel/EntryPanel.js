@@ -7,7 +7,7 @@ import NavigationModal from 'components/Navigation/NavigationModal';
 import Utils from 'utils';
 import ActionPanelHelpers from '../../ActionPanelHelpers';
 import EntryContextMenu from '../../../EntryContextMenu/EntryContextMenu';
-import { Header } from '../../../../../../../../src/entities/header';
+import { Header } from '../../../../../../../../src/entities/header/ui/header';
 import { BlockOutlined, FolderOutlined, MoreOutlined, SafetyOutlined, StarTwoTone } from '@ant-design/icons';
 
 const b = block('dl-entry-panel');
@@ -132,7 +132,7 @@ class EntryPanel extends React.Component {
       <Button
         disabled={disabled}
         title={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
-        icon={isFavorite ? <StarTwoTone /> : <StarTwoTone twoToneColor="#FFD700" />}
+        icon={isFavorite ? <StarTwoTone twoToneColor="#FFD700" /> : <StarTwoTone />}
         onClick={this.toggleFavorite}
       ></Button>,
       <Button
@@ -172,7 +172,13 @@ class EntryPanel extends React.Component {
 
     return (
       <div className={b()}>
-        <Header {...this.props} leftSideContent={actionBtn} rightSideContent={this.props.rightItems} />
+        <Header
+          leftSideContent={actionBtn}
+          rightSideContent={this.props.rightItems}
+          entry={entry}
+          path={entry.key}
+          place={entry.scope}
+        />
       </div>
     );
   }

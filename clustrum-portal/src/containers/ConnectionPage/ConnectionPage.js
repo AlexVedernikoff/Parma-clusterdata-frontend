@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import _intersection from 'lodash/intersection';
-import { Button } from 'lego-on-react';
 import { ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
 import { Loader, Toaster, YCSelect } from '@kamatech-data-ui/common/src';
@@ -18,6 +17,7 @@ import { createConnection, modifyConnection, verifyConnection, uploadCsv, saveCs
 import { getEmptyFields } from './validator';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 import { normalizeDestination } from '@kamatech-data-ui/clustrum-core-plugins/utils';
+import { Button } from 'antd';
 
 // import './ConnectionPage.scss';
 
@@ -61,16 +61,14 @@ class ConnectionPage extends React.Component {
       <Button
         key={'create-dataset-btn'}
         cls={b('create-dataset-btn')}
-        theme="pseudo"
-        size="n"
-        view="default"
-        tone="default"
         text="Создать датасет"
         onClick={() => {
           let currentPathParam = currentPath ? `&currentPath=${encodeURIComponent(currentPath)}` : '';
           window.open(`/datasets/new?id=${connectionId}${currentPathParam}`, '_self');
         }}
-      />
+      >
+        Создать датасет
+      </Button>
     );
   }
 
@@ -519,23 +517,17 @@ class ConnectionPage extends React.Component {
     const actionButton = actionButtonVisible && (
       <Button
         key={'action-btn'}
+        type="primary"
         cls={b('action-btn')}
-        theme="action"
-        size="n"
-        view="default"
-        tone="default"
-        pin={permissionsSelectVisible ? 'clear-round' : null}
-        text={
-          connectionId && !permissionsSelectVisible
-            ? !isStateChanged && isChangesSaved && !isActionProgress
-              ? 'Сохранено'
-              : 'Сохранить'
-            : 'Создать'
-        }
         onClick={this._getActionHandler()}
-        progress={isActionProgress}
         disabled={!permissionsSelectVisible && !isStateChanged && isChangesSaved}
-      />
+      >
+        {connectionId && !permissionsSelectVisible
+          ? !isStateChanged && isChangesSaved && !isActionProgress
+            ? 'Сохранено'
+            : 'Сохранить'
+          : 'Создать подключение'}
+      </Button>
     );
 
     const currentDirPath = connectionState.key && normalizeDestination(getNavigationPathFromKey(connectionState.key));

@@ -117,28 +117,14 @@ class NavigationModal extends React.Component {
             />
           </div>
           <div className={b('content')}>
-            <div className={b('header')}>
-              <NavigationBreadcrumbs
-                size="s"
-                path={path}
-                place={place}
-                linkWrapper={crumbLinkWrapper}
-                onClick={this.onCrumbClick}
-                getPlaceParameters={this.props.getPlaceParameters}
-              />
-            </div>
             <NavigationEntries
               ref={this.refEntries}
               {...props}
-              path={path}
-              place={place}
               linkWrapper={linkWrapper}
-              onEntryClick={this.onEntryClick}
-              onEntryParentClick={this.onEntryParentClick}
               getPlaceParameters={this.props.getPlaceParameters}
-            >
-              <CreateDropdown size="s" items={createMenuItems} onMenuClick={onCreateMenuClick} />
-            </NavigationEntries>
+              createMenuItems={createMenuItems}
+              onMenuClick={onCreateMenuClick}
+            />
           </div>
         </div>
       </Dialog>

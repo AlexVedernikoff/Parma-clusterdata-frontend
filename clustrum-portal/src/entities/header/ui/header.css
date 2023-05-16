@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.header__action-buttons button {
+.header__action-buttons button:not(.ant-btn-compact-last-item) {
   margin-left: 8px;
 }
 
@@ -27,10 +27,12 @@
 .header__title {
   display: flex;
   align-items: center;
+  padding: 0;
 }
 
 .header__title-name {
   font-size: 30px;
+  line-height: 30px;
   margin: 0 8px 0 0;
 }
 

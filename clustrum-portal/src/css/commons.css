@@ -749,7 +749,6 @@
 
 .yc-navigation__entries-header {
   flex: 0 0 auto;
-  padding: 0 20px 12px;
   display: flex;
 }
 
@@ -928,7 +927,7 @@
 }
 
 .yc-navigation_inline .yc-navigation__entries {
-  padding-top: 16px;
+  padding-top: 0;
 }
 
 .yc-navigation_inline .yc-navigation__search {

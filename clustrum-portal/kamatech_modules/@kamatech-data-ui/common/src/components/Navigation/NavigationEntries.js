@@ -17,7 +17,7 @@ import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
 import { KamatechTableView } from '@kamatech-ui';
 import { ScopeType } from '@kamatech-ui/enums';
-import { Header } from '../../../../../../src/entities/header';
+import { Header } from '../../../../../../src/entities/header/ui/header';
 import { Button, Dropdown, Input, Space } from 'antd';
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
 
@@ -337,8 +337,7 @@ class NavigationEntries extends React.Component {
     const handleChange = event => {
       this.onChangeFilter(event.target.value);
     };
-    console.log(onCreateMenuClick);
-    const createItemMenu = createMenuItems.map(({ text, value, index }) => {
+    const createItemMenu = createMenuItems?.map(({ text, value, index }) => {
       return {
         label: <a onClick={() => onCreateMenuClick(value)}>{text}</a>,
         key: index,
@@ -365,7 +364,7 @@ class NavigationEntries extends React.Component {
 
     return (
       <div className={b('entries-header')}>
-        <Header rightSideContent={rightControl} {...this.props} />
+        <Header rightSideContent={rightControl} path={this.props.path} place={this.props.place} />
         <div className={b('custom')}>{this.props.children}</div>
       </div>
     );

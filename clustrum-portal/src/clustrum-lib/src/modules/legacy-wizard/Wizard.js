@@ -14,7 +14,7 @@ import iconFullscreen from 'icons/fullscreen.svg';
 import iconDisclose from 'icons/disclose.svg';
 import iconLock from 'icons/lock.svg';
 
-import { Button, Dropdown, Popup, Menu } from 'lego-on-react';
+import { Popup, Menu } from 'lego-on-react';
 
 import { ErrorContent, EntryDialogues, ActionPanel } from '@kamatech-data-ui/clustrum';
 
@@ -50,6 +50,7 @@ import { fetchWidget, setDefaults, toggleFullscreen, requestUpdateWidget, receiv
 import { getNavigationPathFromKey } from '../../../../helpers/utils-dash';
 import PageHead from '../../../../components/PageHeader/PageHeader';
 import { FullscreenOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Space } from 'antd';
 
 // import './Wizard.scss';
 
@@ -238,6 +239,21 @@ class Wizard extends Component {
 
     const entryLocked = widget && widget.editable === false;
 
+    const saveItems = [
+      {
+        label: (
+          <a
+            onClick={() => {
+              this.openSaveAsWidgetDialog();
+            }}
+          >
+            Сохранить как
+          </a>
+        ),
+        key: '1',
+      },
+    ];
+
     return (
       <div className={`${b()}${fullscreen}`}>
         <PageHead title={widget.name} />
@@ -266,56 +282,23 @@ class Wizard extends Component {
               <Button
                 key="fullscreen"
                 cls={b('fullscreen-btn')}
-                theme="flat"
-                size="n"
-                view="default"
-                tone="default"
-                text="На весь экран"
-                iconLeft={<FullscreenOutlined />}
+                title="На весь экран"
+                icon={<FullscreenOutlined />}
                 onClick={toggleFullscreen}
-              />,
-              <Button
-                disabled={saveDisabled}
-                cls={b('save-btn')}
-                key="save-dataset"
-                theme="action"
-                size="n"
-                view="default"
-                tone="default"
-                text="Сохранить"
-                iconLeft={entryLocked ? <Icon data={iconLock} width="24" /> : null}
-                onClick={this.openSaveWidgetDialog}
-              ></Button>,
+              >
+                На весь экран
+              </Button>,
               <div className={`pseudosave-btn${entryLocked ? ' active' : ''}`} onClick={this.openNoRightsDialog}></div>,
-              <Dropdown
-                disabled={saveMoreDisabled}
-                cls="save-more-dropdown"
-                view="default"
-                tone="default"
-                theme="flat"
-                size="n"
-                switcher={
-                  <Button cls="save-more-btn" theme="action" size="n" width="max" view="default" tone="default">
-                    <Icon data={iconDisclose} width="20" />
-                  </Button>
-                }
-                popup={
-                  <Popup autoclosable onOutsideClick={() => {}}>
-                    <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
-                      <Menu.Item
-                        type="option"
-                        val="access"
-                        onClick={() => {
-                          this.openSaveAsWidgetDialog();
-                        }}
-                      >
-                        Сохранить как
-                      </Menu.Item>
-                    </Menu>
-                  </Popup>
-                }
-                hasTail
-              />,
+              <Space>
+                <Dropdown.Button
+                  type="primary"
+                  menu={{ items: saveItems }}
+                  onClick={this.openSaveWidgetDialog}
+                  trigger={['click']}
+                >
+                  Сохранить
+                </Dropdown.Button>
+              </Space>,
             ]}
           />
         )}
