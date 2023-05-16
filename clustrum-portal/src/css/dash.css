@@ -1714,6 +1714,9 @@ td.rdtYear:hover {
   align-items: center;
   justify-content: center;
   height: 100%;
+  padding: 20px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
 }
 
 .dashkit-plugin-control_external {
