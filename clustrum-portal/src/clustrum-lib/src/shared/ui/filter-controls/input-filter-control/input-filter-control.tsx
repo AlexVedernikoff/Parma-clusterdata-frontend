@@ -5,17 +5,17 @@ import classnames from 'classnames';
 import './input-filter-control.css';
 
 export interface InputFilterControlProps {
+  className?: string;
   label?: string;
-  placeholder: string;
-  defaultValue: string;
-  onChange(str: string): void;
-  className: string;
+  placeholder?: string;
+  defaultValue?: string;
+  onChange?(str: string): void;
 }
 
 export function InputFilterControl({
   label,
   placeholder,
-  defaultValue,
+  defaultValue = '',
   onChange,
   className,
 }: InputFilterControlProps): JSX.Element {
@@ -27,18 +27,18 @@ export function InputFilterControl({
   }, [defaultValue]);
 
   useEffect(() => {
-    onChange(value);
+    onChange?.(value);
   }, [debouncedValue]);
 
   return (
     <div className={classnames('input-filter-control__wrapper', className)}>
       <label className="input-filter-control__label">
-        {label}:
+        {label ? <span className="input-filter-control__label-text">{`${label}:`}</span> : ''}
         <Input
           placeholder={placeholder}
           value={value}
           onChange={({ currentTarget }): void => setValue(currentTarget.value)}
-          onPressEnter={(): void => onChange(value)}
+          onPressEnter={(): void => onChange?.(value)}
           className="input-filter-control__input"
         />
       </label>
