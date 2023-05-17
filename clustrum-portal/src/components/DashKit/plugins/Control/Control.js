@@ -8,7 +8,6 @@ import { Loader } from '@kamatech-data-ui/common/src';
 import ChartKitControl from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 import {
   ControlSelect,
-  ControlInput,
   ControlDatepicker,
   ControlRangeDatepicker,
 } from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Items/Items';
@@ -16,6 +15,7 @@ import { prerenderMiddleware } from './prerenderMiddleware';
 import { LOAD_STATUS, CONTROL_SOURCE_TYPE, DATE_FORMAT_DAY } from '../../../../constants/constants';
 import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import { SDK } from '../../../../modules/sdk';
+import { InputFilterControl } from '@clustrum-lib';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
 
 const TYPE = {
@@ -270,7 +270,7 @@ class Control extends React.PureComponent {
             case TYPE.SELECT:
               return <ControlSelect {...props} />;
             case TYPE.INPUT:
-              return <ControlInput {...props} />;
+              return <InputFilterControl {...props} />;
             case TYPE.DATEPICKER:
               return <ControlDatepicker {...props} />;
             case TYPE.RANGE_DATEPICKER:

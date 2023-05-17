@@ -195,10 +195,6 @@
   visibility: visible;
 }
 
-.dashkit-grid-item__item {
-  box-shadow: var(--item-shadow);
-}
-
 .data-table__row {
   background: #fff;
 }
