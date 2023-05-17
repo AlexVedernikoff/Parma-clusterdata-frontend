@@ -4,7 +4,7 @@ import ErrorDispatcher, {
   ERROR_TYPE,
 } from '../../../modules/error-dispatcher/error-dispatcher';
 import './style.css';
-import { valueFormatter } from '../Table/Table_deprecated';
+import { _valueFormatter } from '../Table/Table_deprecated';
 
 const FIRST_ELEMENT_INDEX = 0;
 
