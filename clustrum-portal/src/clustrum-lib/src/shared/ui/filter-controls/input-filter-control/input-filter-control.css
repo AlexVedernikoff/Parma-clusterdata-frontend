@@ -13,6 +13,6 @@
   line-height: 22px;
 }
 
-.input-filter-control__label-text {
-  margin-right: 8px;
+.input-filter-control__input {
+  margin-left: 8px;
 }

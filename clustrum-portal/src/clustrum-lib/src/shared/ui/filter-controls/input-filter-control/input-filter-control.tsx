@@ -5,8 +5,8 @@ import classnames from 'classnames';
 import './input-filter-control.css';
 
 export interface InputFilterControlProps {
+  label: string;
   className?: string;
-  label?: string;
   placeholder?: string;
   defaultValue?: string;
   onChange?(str: string): void;
@@ -33,7 +33,7 @@ export function InputFilterControl({
   return (
     <div className={classnames('input-filter-control__wrapper', className)}>
       <label className="input-filter-control__label">
-        {label ? <span className="input-filter-control__label-text">{`${label}:`}</span> : ''}
+        {`${label}:`}
         <Input
           placeholder={placeholder}
           value={value}
