@@ -9,7 +9,7 @@ export interface InputFilterControlProps {
   className?: string;
   placeholder?: string;
   defaultValue?: string;
-  onChange?(str: string): void;
+  onChange(str: string): void;
 }
 
 export function InputFilterControl({
@@ -27,7 +27,7 @@ export function InputFilterControl({
   }, [defaultValue]);
 
   useEffect(() => {
-    onChange?.(value);
+    onChange(value);
   }, [debouncedValue]);
 
   return (
@@ -38,7 +38,7 @@ export function InputFilterControl({
           placeholder={placeholder}
           value={value}
           onChange={({ currentTarget }): void => setValue(currentTarget.value)}
-          onPressEnter={(): void => onChange?.(value)}
+          onPressEnter={(): void => onChange(value)}
           className="input-filter-control__input"
         />
       </label>
