@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -73,14 +73,14 @@ export default declMod(
 
       this._anchorParents = this._getAnchorParents(anchor);
 
-      this._anchorParents.forEach(function (parent) {
+      this._anchorParents.forEach(function(parent) {
         parent.addEventListener('scroll', _this._onAnchorParentsScroll);
       });
     },
     _unbindFromAnchorParents: function _unbindFromAnchorParents() {
       var _this2 = this;
 
-      this._anchorParents.forEach(function (parent) {
+      this._anchorParents.forEach(function(parent) {
         parent.removeEventListener('scroll', _this2._onAnchorParentsScroll);
       });
     },

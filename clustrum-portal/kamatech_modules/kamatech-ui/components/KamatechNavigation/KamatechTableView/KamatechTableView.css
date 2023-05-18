@@ -1,7 +1,7 @@
-.kamatech-table-view__createdBy>span,
+.kamatech-table-view__createdBy > span,
 .kamatech-table-view__name a,
 .kamatech-table-view__name span,
-.kamatech-table-view__updatedAt>span {
+.kamatech-table-view__updatedAt > span {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -114,12 +114,16 @@
   color: #ffb54d;
 }
 
-.kamatech-table-view__row:hover .kamatech-table-view__btn-change-favorite:not(.kamatech-table-view__btn-change-favorite_isFavorite) .kamatech-table-view__icon-star-stroke {
+.kamatech-table-view__row:hover
+  .kamatech-table-view__btn-change-favorite:not(.kamatech-table-view__btn-change-favorite_isFavorite)
+  .kamatech-table-view__icon-star-stroke {
   display: block;
 }
 
 .kamatech-table-view__icon-star-stroke,
-.kamatech-table-view__row:hover .kamatech-table-view__btn-change-favorite:not(.kamatech-table-view__btn-change-favorite_isFavorite) .kamatech-table-view__icon-star-fill {
+.kamatech-table-view__row:hover
+  .kamatech-table-view__btn-change-favorite:not(.kamatech-table-view__btn-change-favorite_isFavorite)
+  .kamatech-table-view__icon-star-fill {
   display: none;
 }
 

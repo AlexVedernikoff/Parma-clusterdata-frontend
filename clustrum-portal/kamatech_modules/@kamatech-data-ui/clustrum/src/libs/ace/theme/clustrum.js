@@ -1,5 +1,5 @@
 /* eslint-disable */
-ace.define('ace/theme/clustrum', ['require', 'exports', 'module', 'ace/lib/dom'], function (acequire, exports) {
+ace.define('ace/theme/clustrum', ['require', 'exports', 'module', 'ace/lib/dom'], function(acequire, exports) {
   exports.isDark = false;
   exports.cssClass = 'ace-clustrum';
   exports.cssText = ``;
