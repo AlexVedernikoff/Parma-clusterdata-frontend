@@ -30,7 +30,6 @@ import { NOTIFY_TYPES } from '../../../kamatech_modules/@kamatech-data-ui/clustr
 import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
 import { Button, Dropdown, Space } from 'antd';
 import {
-  BgColorsOutlined,
   ClearOutlined,
   DownloadOutlined,
   DownOutlined,
@@ -189,7 +188,7 @@ class Header extends React.PureComponent {
     ];
 
     return [
-      <Button icon={<BgColorsOutlined />} />,
+      // <Button icon={<BgColorsOutlined />} />, В макетах есть, а функций для неё пока нет
       <Button
         cls={b('action-right', { 'button-settings': true })}
         onClick={() => this.props.openDialog(DIALOG_TYPE.SETTINGS)}

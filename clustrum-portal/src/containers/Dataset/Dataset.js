@@ -6,7 +6,6 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
 import { Spin } from 'lego-on-react';
 import { ErrorContent, EntryDialogues, ActionPanel, ErrorDialog } from '@kamatech-data-ui/clustrum';
-import { Icon } from '@kamatech-data-ui/common/src';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
 
 import DatasetPanel from '../../components/DatasetPanel/DatasetPanel';
@@ -41,13 +40,10 @@ import {
   datasetNameSelector,
 } from '../../store/reducers/dataset';
 
-// import './Dataset.scss';
-import iconData from '@kamatech-data-ui/clustrum/src/icons/data.svg';
 import PageHead from '../../components/PageHeader/PageHeader';
 import VerificationModal from '../../components/DataSource/VerificationModal';
-import iconVerificationRules from '@kamatech-data-ui/clustrum/src/icons/verification-rules-blue.svg';
 import { Button } from 'antd';
-import { BarChartOutlined } from '@ant-design/icons';
+import { BarChartOutlined, BlockOutlined, SafetyOutlined } from '@ant-design/icons';
 
 const b = block('dataset');
 
@@ -384,28 +380,18 @@ class Dataset extends React.Component {
           additionalEntryItems={[
             <Button
               cls={b('materialization-btn')}
+              style={{ color: '#1890ff' }}
               key="materialization"
-              theme="flat"
-              size="n"
-              view="default"
-              tone="default"
-              title="Материализация данных"
               onClick={this.openDataSource}
-            >
-              <Icon data={iconData} width={22} height={22} />
-            </Button>,
+              icon={<BlockOutlined />}
+            />,
             <Button
               cls={b('verification-btn')}
+              style={{ color: '#1890ff' }}
               key="verification"
-              theme="flat"
-              size="n"
-              view="default"
-              tone="default"
-              title="Верификация данных"
               onClick={this.openVerificationModal}
-            >
-              <Icon data={iconVerificationRules} width={22} height={22} />
-            </Button>,
+              icon={<SafetyOutlined />}
+            />,
           ]}
           rightItems={[
             <Button

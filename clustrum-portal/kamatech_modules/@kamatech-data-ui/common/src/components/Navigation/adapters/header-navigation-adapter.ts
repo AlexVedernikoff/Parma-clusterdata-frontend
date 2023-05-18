@@ -1,8 +1,6 @@
-interface Item {
-  title: string;
-}
+import { BreadcrumbItem } from '../../../../../../../src/entities/header/types/breadcrumbItem';
 
-const translateText = (text: string): string => {
+const translateText = (text: string | undefined): string => {
   switch (text) {
     case 'root':
       return 'Все объекты';
@@ -21,11 +19,11 @@ const translateText = (text: string): string => {
     case 'dash':
       return 'Аналитические панели';
     default:
-      return text;
+      return <string>text;
   }
 };
 
-export function NavigationItems(place: string, path: string): Item[] {
+export function navigationItems(place: string, path: string): BreadcrumbItem[] {
   return [
     {
       title: translateText(place),
@@ -39,7 +37,7 @@ export function NavigationItems(place: string, path: string): Item[] {
   ];
 }
 
-export function FormatPath(path: string): string {
+export function formatPath(path: string): string {
   const pathItems: string[] = translateText(path)
     .split('/')
     .filter(item => item !== '');

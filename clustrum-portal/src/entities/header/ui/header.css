@@ -1,44 +1,50 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 24px;
-  width: 100%;
-}
-
-.header__action-buttons {
-  display: flex;
-  align-items: center;
-}
-
-.header__action-buttons button:not(.ant-btn-compact-last-item) {
-  margin-left: 8px;
-}
-
-.header__breadcrumb {
+.header-wrapper {
   display: flex;
   flex-direction: column;
+  padding: 24px;
+  width: 100%;
+  background-color: #f5f5f5;
 }
 
-.header__breadcrumb-patch {
-  font-size: 13px;
+.header-wrapper__breadcrumb {
+  display: flex;
   margin: 0 0 8px 0;
 }
 
-.header__title {
+.header-wrapper__breadcrumb-patch {
+  font-size: 13px;
+}
+
+.header-wrapper__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-wrapper__left-side {
   display: flex;
   align-items: center;
   padding: 0;
 }
 
-.header__title-name {
+.header-wrapper__left-side-title {
   font-size: 30px;
   line-height: 30px;
   margin: 0 8px 0 0;
 }
 
-.header__title-actions button {
+.header-wrapper__left-side-content button {
   margin: 4px;
   border: none;
   box-shadow: none;
   background-color: transparent;
+}
+
+.header-wrapper__right-side-content {
+  display: flex;
+  align-items: center;
+}
+
+.header-wrapper__right-side-content button:not(.ant-btn-compact-last-item) {
+  margin-left: 8px;
 }

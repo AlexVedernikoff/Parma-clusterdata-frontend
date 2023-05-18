@@ -8,14 +8,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
-
-import iconFullscreen from 'icons/fullscreen.svg';
-import iconDisclose from 'icons/disclose.svg';
-import iconLock from 'icons/lock.svg';
-
-import { Popup, Menu } from 'lego-on-react';
-
 import { ErrorContent, EntryDialogues, ActionPanel } from '@kamatech-data-ui/clustrum';
 
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';

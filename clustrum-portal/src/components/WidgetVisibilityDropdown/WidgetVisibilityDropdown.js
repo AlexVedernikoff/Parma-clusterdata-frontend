@@ -54,7 +54,7 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
     setWidgetList(getWidgetList());
   }, [items, layout]);
 
-  const visibilityItem = widgetList.map(({ id, title, isHidden }) => {
+  const visibilityItems = widgetList.map(({ id, title, isHidden }) => {
     return {
       label: (
         <a onClick={() => toggleWidgetVisibility(id)}>
@@ -67,7 +67,7 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   });
 
   return (
-    <Dropdown menu={{ items: visibilityItem }} trigger={['click']}>
+    <Dropdown menu={{ items: visibilityItems }} trigger={['click']}>
       <Button icon={<EyeOutlined />} />
     </Dropdown>
   );

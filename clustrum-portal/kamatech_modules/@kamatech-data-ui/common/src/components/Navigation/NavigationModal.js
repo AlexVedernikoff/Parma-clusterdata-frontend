@@ -120,10 +120,15 @@ class NavigationModal extends React.Component {
             <NavigationEntries
               ref={this.refEntries}
               {...props}
+              path={path ? path : ''}
+              modalView={true}
+              place={place}
               linkWrapper={linkWrapper}
-              getPlaceParameters={this.props.getPlaceParameters}
               createMenuItems={createMenuItems}
-              onMenuClick={onCreateMenuClick}
+              onCreateMenuClick={onCreateMenuClick}
+              onEntryClick={this.onEntryClick}
+              onEntryParentClick={this.onEntryParentClick}
+              getPlaceParameters={this.props.getPlaceParameters}
             />
           </div>
         </div>

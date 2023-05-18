@@ -1,47 +1,31 @@
 import React from 'react';
-import { NavigationItems, FormatPath } from '../model/navigation';
 import { Breadcrumb } from 'antd';
 
 import './header.css';
+import { BreadcrumbItem } from '../types/breadcrumbItem';
 
 export interface HeaderProps {
-  entry?: {
-    scope: string;
-    key: string;
-  };
-  place: string;
-  path: string;
-  rightSideContent: JSX.Element[];
-  leftSideContent?: JSX.Element[];
+  path: BreadcrumbItem[];
+  title?: string;
+  rightSideContent?: JSX.Element;
+  leftSideContent?: JSX.Element;
 }
 
-export function Header({ leftSideContent, rightSideContent, entry, place, path }: HeaderProps): JSX.Element {
-  const breadcrumbItems = NavigationItems(place, path);
-
-  function renderRightButtons(): JSX.Element[] {
-    return rightSideContent.map((item: JSX.Element) => item);
-  }
-
+export function Header({ leftSideContent, rightSideContent, path, title }: HeaderProps): JSX.Element {
   return (
-    <header className="header">
-      <div>
-        <div className="header__breadcrumb">
-          <div className="header__breadcrumb-patch">
-            <Breadcrumb items={breadcrumbItems} />
-          </div>
-        </div>
-        <div>
-          <div className="header__title">
-            <div className="header__title-name">{FormatPath(entry?.key ?? (path === '' ? place : path))}</div>
-
-            {leftSideContent && (
-              <div className="header__title-actions">{leftSideContent.map((actionBtn: object) => actionBtn)}</div>
-            )}
-          </div>
+    <header className="header-wrapper">
+      <div className="header-wrapper__breadcrumb">
+        <div className="header-wrapper__breadcrumb-patch">
+          <Breadcrumb items={path} />
         </div>
       </div>
-
-      <div className="header__action-buttons">{renderRightButtons()}</div>
+      <div className="header-wrapper__content">
+        <div className="header-wrapper__left-side">
+          {title && <div className="header-wrapper__left-side-title">{title}</div>}
+          {leftSideContent && <div className="header-wrapper__left-side-content">{leftSideContent}</div>}
+        </div>
+        <div className="header-wrapper__right-side-content">{rightSideContent}</div>
+      </div>
     </header>
   );
 }

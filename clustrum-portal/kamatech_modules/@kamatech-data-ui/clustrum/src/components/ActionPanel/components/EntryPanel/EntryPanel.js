@@ -8,7 +8,11 @@ import Utils from 'utils';
 import ActionPanelHelpers from '../../ActionPanelHelpers';
 import EntryContextMenu from '../../../EntryContextMenu/EntryContextMenu';
 import { Header } from '../../../../../../../../src/entities/header/ui/header';
-import { BlockOutlined, FolderOutlined, MoreOutlined, SafetyOutlined, StarTwoTone } from '@ant-design/icons';
+import { FolderOutlined, MoreOutlined, StarTwoTone } from '@ant-design/icons';
+import {
+  formatPath,
+  navigationItems,
+} from '../../../../../../common/src/components/Navigation/adapters/header-navigation-adapter';
 
 const b = block('dl-entry-panel');
 
@@ -118,8 +122,8 @@ class EntryPanel extends React.Component {
   toggleEntryContextMenu = () => this.setState({ visibleEntryContextMenu: !this.state.visibleEntryContextMenu });
 
   render() {
-    const { sdk, onCopyLinkBtn, onShareBtn, additionalEntryItems } = this.props;
-    const { entry: { entryId, key, description, isFavorite } = {}, entry, isNavigationVisible } = this.state;
+    const { sdk, additionalEntryItems } = this.props;
+    const { entry: { key, isFavorite } = {}, entry, isNavigationVisible } = this.state;
 
     const entryName = ActionPanelHelpers.getNameByKey({ key });
 
@@ -163,21 +167,15 @@ class EntryPanel extends React.Component {
         currentPageEntry={entry}
       />,
     ];
-
-    const copyLinkBtn = [onCopyLinkBtn && <Button disabled={disabled} icon={<BlockOutlined />} />];
-
-    const shareBtn = [onShareBtn && <Button disabled={disabled} icon={<SafetyOutlined />} />];
-
-    const actionBtn = [...standardBtn, copyLinkBtn, shareBtn];
+    const actionBtn = [...standardBtn, additionalEntryItems];
 
     return (
       <div className={b()}>
         <Header
           leftSideContent={actionBtn}
           rightSideContent={this.props.rightItems}
-          entry={entry}
-          path={entry.key}
-          place={entry.scope}
+          path={navigationItems(entry.scope, entry.key)}
+          title={formatPath(entry.key === '' ? entry.scope : entry.key)}
         />
       </div>
     );

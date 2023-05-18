@@ -20,6 +20,7 @@ import { ScopeType } from '@kamatech-ui/enums';
 import { Header } from '../../../../../../src/entities/header/ui/header';
 import { Button, Dropdown, Input, Space } from 'antd';
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
+import { formatPath, navigationItems } from './adapters/header-navigation-adapter';
 
 const b = cn('yc-navigation');
 
@@ -52,11 +53,13 @@ class NavigationEntries extends React.Component {
 
     userLogin: PropTypes.string,
     getPlaceParameters: PropTypes.func.isRequired,
+    modalView: PropTypes.bool,
   };
   static defaultProps = {
     mode: MODE_FULL,
     place: NAVIGATION_ROOT,
     searchPlaceholder: 'Фильтр по имени',
+    modalView: false,
   };
   static getDerivedStateFromProps(nextProps, prevState) {
     const { sdk, scope, path, place } = nextProps;
@@ -325,8 +328,8 @@ class NavigationEntries extends React.Component {
     );
   }
   renderEntriesHeader() {
-    const { mode, onCreateMenuClick, createMenuItems } = this.props;
-    const { place } = this.state;
+    const { mode, onCreateMenuClick, createMenuItems, modalView } = this.props;
+    const { place, path } = this.state;
     const { filters } = this.props.getPlaceParameters(place);
     const isMinimalMode = mode === MODE_MINIMAL;
 
@@ -344,7 +347,7 @@ class NavigationEntries extends React.Component {
       };
     });
 
-    const rightControl = [
+    const inputSearch = [
       <Input
         placeholder="Найти"
         prefix={<SearchOutlined />}
@@ -352,6 +355,9 @@ class NavigationEntries extends React.Component {
         ref={this.refSearchInput}
         value={this.state.searchValue}
       />,
+    ];
+
+    const createButton = [
       <Dropdown menu={{ items: createItemMenu }} trigger={['click']}>
         <Button type="primary">
           <Space>
@@ -361,10 +367,19 @@ class NavigationEntries extends React.Component {
         </Button>
       </Dropdown>,
     ];
+    console.log(modalView);
 
     return (
       <div className={b('entries-header')}>
-        <Header rightSideContent={rightControl} path={this.props.path} place={this.props.place} />
+        {modalView ? (
+          <Header leftSideContent={inputSearch} rightSideContent={createButton} path={navigationItems(place, path)} />
+        ) : (
+          <Header
+            rightSideContent={[inputSearch, createButton]}
+            path={navigationItems(place, path)}
+            title={formatPath(path === '' ? place : path)}
+          />
+        )}
         <div className={b('custom')}>{this.props.children}</div>
       </div>
     );
