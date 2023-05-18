@@ -16,7 +16,7 @@ import { LOAD_STATUS, CONTROL_SOURCE_TYPE, DATE_FORMAT_DAY } from '../../../../c
 import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import { SDK } from '../../../../modules/sdk';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
-import { SelectFilterControl } from '../../../../clustrum-lib/src/shared/ui/filter-controls/select-filter-control';
+import { SelectFilterControl } from '@clustrum-lib';
 
 const TYPE = {
   SELECT: 'select',

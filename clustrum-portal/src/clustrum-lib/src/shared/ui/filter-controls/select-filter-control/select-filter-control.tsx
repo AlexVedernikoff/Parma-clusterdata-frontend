@@ -1,41 +1,58 @@
-import React from 'react';
-import { Select, Space, Form } from 'antd';
+import React, { useEffect, useState } from 'react';
+import cn from 'classnames';
+import { Select } from 'antd';
+import { Content } from './types/content';
+import './select-filter-control.css';
 
-interface IContent {
-  title: string;
-  value: string;
+export interface SelectFilterControlProps {
+  label: string;
+  content: Content[];
+  value?: string | string[];
+  multiselect?: boolean;
+  searchable?: boolean;
+  className?: string;
+  onChange: (value: string | string[]) => void;
 }
 
-interface IselectFilterControlProps {
-  label?: string;
-  multiselect: boolean;
-  searchable: boolean;
-  content: IContent[];
-  value: string;
-  onChange?: (value: string) => void;
-  className: string;
-}
+export function SelectFilterControl({
+  multiselect = false,
+  searchable = true,
+  value = [],
+  content,
+  onChange,
+  label,
+  className,
+}: SelectFilterControlProps): JSX.Element {
+  const [currentValue, setCurrentValue] = useState<string | string[]>(value);
 
-export const SelectFilterControl: React.FC<IselectFilterControlProps> = props => {
-  const { multiselect, searchable = true, value, content, onChange, label } = props;
+  useEffect(() => {
+    onChange(currentValue);
+  }, [currentValue]);
 
   return (
-    <Space wrap>
-      <Form.Item label={label}>
+    <div className="select-filter-control">
+      <label className="select-filter-control__label">
+        {`${label}:`}
         <Select
+          className={cn('select-filter-control__select', className)}
           mode={multiselect ? 'multiple' : undefined}
-          defaultValue={value}
-          onChange={onChange}
+          maxTagCount="responsive"
+          allowClear={multiselect}
           showSearch={searchable}
+          value={currentValue}
           options={content.map(({ title, value }) => ({
             value,
             title,
             key: value,
           }))}
+          onChange={setCurrentValue}
+          onSelect={(newValue: string): void => {
+            if (!multiselect && newValue === currentValue) {
+              setCurrentValue([]);
+            }
+          }}
         />
-      </Form.Item>
-    </Space>
+      </label>
+    </div>
   );
-};
-
-SelectFilterControl.displayName = 'SelectFilterControl';
+}
