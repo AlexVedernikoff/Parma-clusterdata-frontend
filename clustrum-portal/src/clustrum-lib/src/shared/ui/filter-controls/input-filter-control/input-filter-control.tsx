@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from 'antd';
 import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
-import classnames from 'classnames';
+import cn from 'classnames';
 import './input-filter-control.css';
 
 export interface InputFilterControlProps {
@@ -27,11 +27,11 @@ export function InputFilterControl({
   }, [defaultValue]);
 
   useEffect(() => {
-    onChange(value);
+    onChange(debouncedValue);
   }, [debouncedValue]);
 
   return (
-    <div className={classnames('input-filter-control__wrapper', className)}>
+    <div className={cn('input-filter-control', className)}>
       <label className="input-filter-control__label">
         {`${label}:`}
         <Input
