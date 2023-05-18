@@ -49,16 +49,25 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   };
 
   const [widgetList, setWidgetList] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setWidgetList(getWidgetList());
   }, [items, layout]);
 
+  const handleOpenChange = flag => {
+    setOpen(flag);
+  };
+
   const visibilityItems = widgetList.map(({ id, title, isHidden }) => {
     return {
       label: (
         <a onClick={() => toggleWidgetVisibility(id)}>
-          {isHidden ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+          {isHidden ? (
+            <EyeInvisibleOutlined style={{ paddingRight: 9 }} />
+          ) : (
+            <EyeOutlined style={{ paddingRight: 9 }} />
+          )}
           {title}
         </a>
       ),
@@ -67,7 +76,7 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   });
 
   return (
-    <Dropdown menu={{ items: visibilityItems }} trigger={['click']}>
+    <Dropdown menu={{ items: visibilityItems }} onOpenChange={handleOpenChange} trigger={['click']} open={open}>
       <Button icon={<EyeOutlined />} />
     </Dropdown>
   );
