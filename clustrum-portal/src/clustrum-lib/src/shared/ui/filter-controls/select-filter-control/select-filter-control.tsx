@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { Select } from 'antd';
 import { Content } from './types/content';
+import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
 import './select-filter-control.css';
 
 export interface SelectFilterControlProps {
@@ -24,10 +25,11 @@ export function SelectFilterControl({
   className,
 }: SelectFilterControlProps): JSX.Element {
   const [currentValue, setCurrentValue] = useState<string | string[]>(value);
+  const debouncedValue = useDebounce(currentValue, 500);
 
   useEffect(() => {
-    onChange(currentValue);
-  }, [currentValue]);
+    onChange(debouncedValue);
+  }, [debouncedValue]);
 
   return (
     <div className="select-filter-control">
