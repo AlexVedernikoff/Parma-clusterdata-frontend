@@ -3,7 +3,8 @@ import ReactDomServer from 'react-dom/server';
 
 // LEGACY
 import DateFormat from '../../../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/date/date-format';
-import { NullAlias } from '../../../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
+
+const NullAlias = 'null';
 
 type CssStyles = {
   [key: string]: string | number;
@@ -16,14 +17,27 @@ interface Formatter {
   precision: number;
 }
 
-type GridFlowType = 'row' | 'column';
+type GridFlow = 'row' | 'column';
 
 interface Options {
   precision?: number;
   formatter?: Formatter;
-  gridFlow?: GridFlowType;
+  gridFlow?: GridFlow;
   contentCss?: CssStyles;
 }
+
+type Cell = {
+  type: string;
+  value: any;
+  link: {
+    href: string;
+    newWindow: boolean;
+  };
+  grid: Cell[];
+  valueWithAlias: typeof NullAlias | null;
+  hasArray: boolean;
+  resultShemaId: string;
+};
 
 function camelCaseCss(style: CssStyles = {}): CssStyles {
   return Object.keys(style).reduce((result, key) => {
@@ -77,8 +91,7 @@ function numberFormatter(value: number, options: Options): string {
 }
 
 function diffFormatter(value: number, options: Options): JSX.Element {
-  const { precision, formatter } = options;
-  const diff = numberFormatter(value, { precision, formatter });
+  const diff = numberFormatter(value, options);
   if (value > 0) {
     return (
       <span className="chartkit-table__diff chartkit-table__diff_pos">&#9650;{diff}</span>
@@ -92,14 +105,11 @@ function diffFormatter(value: number, options: Options): JSX.Element {
   return <span className="chartkit-table__diff">{diff}</span>;
 }
 
-function reverseGridFlow(gridFlow: GridFlowType): GridFlowType {
+function reverseGridFlow(gridFlow: GridFlow): GridFlow {
   return gridFlow === 'column' ? 'row' : 'column';
 }
 
-function _renderGrid(
-  grid: any[],
-  options: { gridFlow?: GridFlowType } = {},
-): JSX.Element {
+function renderGrid(grid: Cell[], options: Options = {}): JSX.Element {
   const { gridFlow } = options;
   if (!gridFlow) {
     throw new TypeError('gridFlow не задан.');
@@ -109,60 +119,52 @@ function _renderGrid(
     <div className="grid-wrapper_flow_gridFlow" key={gridFlow}>
       {grid.map(gridItem =>
         Array.isArray(gridItem)
-          ? _renderGrid(gridItem, { ...options, gridFlow: reverseGridFlow(gridFlow) })
-          : valueFormatter(gridItem.type, gridItem, gridItem),
+          ? renderGrid(gridItem, { ...options, gridFlow: reverseGridFlow(gridFlow) })
+          : valueFormatter(gridItem.type, gridItem, options),
       )}
     </div>
   );
 }
 
-function _resultValue(
-  value: any,
-  type: string,
-  grid: any[],
-  options: Options,
-  href: string,
-  newWindow: boolean,
-  hasArray = false,
-): JSX.Element | string {
-  let resultValue = value;
-
-  if (hasArray) {
-    if (value === null) {
+function getResultValue(cell: Cell, options: Options): JSX.Element | string {
+  if (cell.hasArray) {
+    if (cell.value === null) {
       return '';
     }
 
-    if (!Array.isArray(value)) {
-      return value;
+    if (!Array.isArray(cell.value)) {
+      return cell.value;
     }
 
-    return value
+    return cell.value
       .filter(val => val !== null)
-      .map(val => _resultValue(val, type, grid, options, href, newWindow))
+      .map(val => getResultValue({ ...cell, value: val }, options))
       .join('<br/>');
   }
 
-  switch (type.toLowerCase()) {
+  let resultValue = cell.value;
+
+  switch (cell.type.toLowerCase()) {
     case 'grid':
-      return _renderGrid(grid, options);
+      return renderGrid(cell.grid, options);
     case 'string':
     case 'text':
-      resultValue = href ? (
+      resultValue = cell.link?.href ? (
         <a
           className="chartkit-table__link"
-          href={href}
-          target={newWindow ? '_blank' : '_self'}
+          href={cell.link.href}
+          target={cell.link.newWindow ? '_blank' : '_self'}
           rel="noreferrer"
         >
           {resultValue}
         </a>
       ) : (
-        numberFormatter(resultValue, options)
+        resultValue
       );
       break;
     case 'datetime':
     case 'date': {
-      const dateFormat = new DateFormat(resultValue, type);
+      const dateFormat = new DateFormat(resultValue, cell.type);
       if (dateFormat.isNotValidDate()) {
         break;
       }
@@ -197,27 +199,24 @@ function _resultValue(
 
 export function valueFormatter(
   type: string,
-  cell: any = {},
+  cell: Cell = {} as Cell,
   options: Options = {},
 ): JSX.Element {
-  const {
-    value,
-    link: { href = '', newWindow = true } = {},
-    grid,
-    valueWithAlias,
-    hasArray,
-  } = cell;
-  const { contentCss } = options;
+  // TODO: тип ячейки приходит в двух экземплярах: отдельно и в данных самой
+  // ячейки. Надо бы разобраться в клиентском коде и убрать дублирование
+  if (type !== cell.type) {
+    throw new Error('Переданы несогласованные типы ячейки!');
+  }
 
-  const resultValue = _resultValue(value, type, grid, options, href, newWindow, hasArray);
+  const resultValue = getResultValue(cell, options);
 
   const resultSchemaIdClass = cell ? cell.resultShemaId || '' : '';
   const isNullValue =
-    [NullAlias.NULL, null].includes(valueWithAlias) &&
-    [NullAlias.NULL, null].includes(value);
+    [NullAlias, null].includes(cell.valueWithAlias) &&
+    [NullAlias, null].includes(cell.value);
   const isNullClass = isNullValue ? 'is_null' : '';
 
-  let nullableValue = isNullValue ? NullAlias.NULL : resultValue;
+  let nullableValue = isNullValue ? NullAlias : resultValue;
   // Т.к. `dangerouslySetInnerHTML` (см. ниже) понимает только `string`, то
   // преобразуем JSX.Element → string:
   if (typeof nullableValue !== 'string') {
@@ -231,8 +230,8 @@ export function valueFormatter(
       className={`chartkit-table__content chartkit-table__content_${type} ${extraClasses.join(
         ' ',
       )}`}
-      style={camelCaseCss(contentCss)}
-      key={value}
+      style={camelCaseCss(options.contentCss)}
+      key={cell.value}
     >
       {/* todo Внимание хардкор. Нужно вводить новый тип "ссылка". В принципе в case 'text' есть задатки */}
       <div dangerouslySetInnerHTML={{ __html: nullableValue }} />
