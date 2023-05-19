@@ -19,8 +19,6 @@ import axiosInstance from '../../../modules/axios/axios';
 import settings from '../../../modules/settings/settings';
 import { wrapToArray, unwrapFromArray } from '../../../helpers/helpers';
 
-// import './Control.scss';
-
 const STATUS = {
   LOADING: 'loading',
   DONE: 'done',
