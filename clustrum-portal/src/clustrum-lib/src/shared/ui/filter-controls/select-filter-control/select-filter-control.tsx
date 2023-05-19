@@ -28,15 +28,19 @@ export function SelectFilterControl({
   const debouncedValue = useDebounce(currentValue, 500);
 
   useEffect(() => {
+    setCurrentValue(value);
+  }, [value]);
+
+  useEffect(() => {
     onChange(debouncedValue);
   }, [debouncedValue]);
 
   return (
-    <div className="select-filter-control">
+    <div className={cn('select-filter-control', className)}>
       <label className="select-filter-control__label">
         {`${label}:`}
         <Select
-          className={cn('select-filter-control__select', className)}
+          className="select-filter-control__select"
           mode={multiselect ? 'multiple' : undefined}
           maxTagCount="responsive"
           allowClear={multiselect}
