@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import block from 'bem-cn-lite';
 
 import { TableWidget, createCell } from '@clustrum-lib/shared/ui/widgets';
-
-const b = block('chartkit-table');
 
 function _camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;
   return Object.keys(style || {}).reduce((result, key) => {
-    const camelCasedKey = key.replace(/-(\w|$)/g, (dashChar, char) => char.toUpperCase());
+    const camelCasedKey = key.replace(/-(\w|$)/g, (_, char) => char.toUpperCase());
     result[camelCasedKey] = style[key];
     return result;
   }, {});
@@ -116,7 +113,7 @@ function _getColumnsAndNames(
         });
         result.columns.push({
           name: columnName,
-          header: <span className={b('head-cell')}>{column.name}</span>,
+          header: <span className="chartkit-table__head-cell">{column.name}</span>,
           customStyle: ({ row, header, name }) => {
             if (header) {
               return _camelCaseCss(column.css);
@@ -133,8 +130,8 @@ function _getColumnsAndNames(
 
         const columnData = {
           name: columnName,
-          header: <span className={b('head-cell')}>{name}</span>,
-          className: b('cell', { type }),
+          header: <span className="chartkit-table__head-cell">{name}</span>,
+          className: `chartkit-table__cell_type_${type}`,
           render: ({ value }) => createCell(type, value, options),
           customStyle: ({ row, header, name }) => {
             if (header) {
@@ -175,7 +172,7 @@ function _getColumnsAndNames(
 
 function _getTitle(title) {
   return title ? (
-    <div className={b('title')} style={_camelCaseCss(title.style)}>
+    <div className="chartkit-table__title" style={_camelCaseCss(title.style)}>
       {title.text || title}
     </div>
   ) : null;
@@ -321,7 +318,7 @@ export class TableAdapter extends React.PureComponent {
 
     return (
       <div
-        className={b()}
+        className="chartkit-table"
         ref={node => {
           context._domNode = node;
         }}
