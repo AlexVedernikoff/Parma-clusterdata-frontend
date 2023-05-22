@@ -120,7 +120,7 @@ function renderGrid(grid: Cell[], options: Options = {}): JSX.Element {
       {grid.map(gridItem =>
         Array.isArray(gridItem)
           ? renderGrid(gridItem, { ...options, gridFlow: reverseGridFlow(gridFlow) })
-          : valueFormatter(gridItem.type, gridItem, options),
+          : createCell(gridItem.type, gridItem, options),
       )}
     </div>
   );
@@ -197,7 +197,7 @@ function getResultValue(cell: Cell, options: Options): JSX.Element | string {
   return resultValue;
 }
 
-export function valueFormatter(
+export function createCell(
   type: string,
   cell: Cell = {} as Cell,
   options: Options = {},

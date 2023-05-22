@@ -1,2 +1,2 @@
 export { TableWidget } from './table-widget';
-export { valueFormatter } from './value-formatter';
+export { createCell } from './create-cell';

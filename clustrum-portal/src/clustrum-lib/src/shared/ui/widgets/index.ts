@@ -1,1 +1,1 @@
-export { TableWidget, valueFormatter } from './table-widget';
+export { TableWidget, createCell } from './table-widget';

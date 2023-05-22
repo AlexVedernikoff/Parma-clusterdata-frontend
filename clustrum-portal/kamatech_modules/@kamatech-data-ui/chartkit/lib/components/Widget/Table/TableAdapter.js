@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import { TableWidget, valueFormatter } from '@clustrum-lib/shared/ui/widgets';
+import { TableWidget, createCell } from '@clustrum-lib/shared/ui/widgets';
 
 const b = block('chartkit-table');
 
@@ -135,7 +135,7 @@ function _getColumnsAndNames(
           name: columnName,
           header: <span className={b('head-cell')}>{name}</span>,
           className: b('cell', { type }),
-          render: ({ value }) => valueFormatter(type, value, options),
+          render: ({ value }) => createCell(type, value, options),
           customStyle: ({ row, header, name }) => {
             if (header) {
               return _camelCaseCss(columnCss);
@@ -268,7 +268,7 @@ export class TableAdapter extends React.PureComponent {
 
     const renderCell = item => {
       const { type, ...options } = item;
-      const cellContent = valueFormatter(type, item, options);
+      const cellContent = createCell(type, item, options);
       return cellContent;
     };
 
