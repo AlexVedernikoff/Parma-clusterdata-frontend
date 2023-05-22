@@ -11,5 +11,11 @@ export {
   SelectFilterControl,
   SelectFilterControlProps,
 } from './shared/ui/filter-controls/select-filter-control/select-filter-control';
-export { DatepickerFilterControl } from './shared/ui/filter-controls/datepicker-filter-control/datepicker-filter-control';
-export { RangeDatepickerFilterControl } from './shared/ui/filter-controls/range-datepicker-filter-control/range-datepicker-filter-control';
+export {
+  DatepickerFilterControl,
+  DatepickerProps,
+} from './shared/ui/filter-controls/datepicker-filter-control/datepicker-filter-control';
+export {
+  RangeDatepickerFilterControl,
+  RangeDatepickerProps,
+} from './shared/ui/filter-controls/range-datepicker-filter-control/range-datepicker-filter-control';

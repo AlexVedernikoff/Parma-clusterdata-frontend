@@ -1,40 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 import { DatePicker } from 'antd';
-import dayjs, { Dayjs } from 'dayjs';
-import { antdLocales, locales, LangType } from '../locale/locale';
+import ruRU from 'antd/locale/ru_RU';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+import { PickerValue } from './types/picker-value';
+import { Range } from './types/range';
 import './range-datepicker-filter-control.css';
 const { RangePicker } = DatePicker;
 
-type TRangeDatepickerValue = {
-  from?: string;
-  to?: string;
-};
-
-interface IRangeDatepickerProps {
+export interface RangeDatepickerProps {
   className?: string;
   dateFormat?: string;
-  label?: string;
-  locale?: LangType;
+  label: string;
   maxDate?: string;
   minDate?: string;
-  value?: TRangeDatepickerValue;
-  onChange(value: TRangeDatepickerValue): void;
+  value?: PickerValue;
+  onChange(value: PickerValue): void;
 }
 
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 
-export const RangeDatepickerFilterControl = ({
+export function RangeDatepickerFilterControl({
   className,
   label,
   maxDate,
   minDate,
   value,
   dateFormat = DEFAULT_DATE_FORMAT,
-  locale = 'ru',
   onChange,
-}: IRangeDatepickerProps): JSX.Element => {
-  const [dateRange, setDateRange] = useState<[Dayjs, Dayjs] | null>(null);
+}: RangeDatepickerProps): JSX.Element {
+  const [dateRange, setDateRange] = useState<Range>(null);
   const [isValid, setIsValid] = useState<boolean>(true);
 
   useEffect(() => {
@@ -47,36 +43,38 @@ export const RangeDatepickerFilterControl = ({
     }
   }, [isValid, value]);
 
+  const handleChange = useCallback((values: Range): void => {
+    if (values?.[0] && values?.[1]) {
+      setIsValid(true);
+      onChange({
+        from: values[0].format(DEFAULT_DATE_FORMAT),
+        to: values[1].format(DEFAULT_DATE_FORMAT),
+      });
+    } else {
+      setIsValid(false);
+    }
+  }, []);
+
   return (
-    <div className={classNames('range-datepicker-control__wrapper', className)}>
-      {label && <span className="range-datepicker-control__label">{label}:</span>}
-      <div className="range-datepicker-control">
-        <RangePicker
-          className={classNames(!isValid && 'range-datepicker-control__invalid')}
-          disabledDate={(current): boolean =>
-            (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
-            (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
-          }
-          format={dateFormat}
-          locale={antdLocales[locale].DatePicker}
-          picker="date"
-          value={dateRange}
-          onChange={(dates): void => {
-            if (dates?.[0] && dates?.[1]) {
-              setIsValid(true);
-              onChange({
-                from: dates[0].format(DEFAULT_DATE_FORMAT),
-                to: dates[1].format(DEFAULT_DATE_FORMAT),
-              });
-            } else {
-              setIsValid(false);
+    <div className={classNames('range-datepicker-control', className)}>
+      <label className="range-datepicker-control__label">
+        {`${label}:`}
+        <div className="range-datepicker-control__picker">
+          <RangePicker
+            className={classNames(!isValid && 'range-datepicker-control__picker--invalid')}
+            disabledDate={(current): boolean =>
+              (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
+              (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
             }
-          }}
-        />
-        {!isValid && (
-          <div className="range-datepicker-control__validation-msg">{locales[locale].invalidDatesRangeError}</div>
-        )}
-      </div>
+            format={dateFormat}
+            locale={ruRU.DatePicker}
+            picker="date"
+            value={dateRange}
+            onChange={handleChange}
+          />
+          {!isValid && <div className="range-datepicker-control__validation-msg">Укажите обе даты диапазона</div>}
+        </div>
+      </label>
     </div>
   );
-};
+}

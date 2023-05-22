@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import classNames from 'classnames';
 import { DatePicker } from 'antd';
+import ruRU from 'antd/locale/ru_RU';
 import dayjs, { Dayjs } from 'dayjs';
-import { antdLocales, locales, LangType } from '../locale/locale';
+import 'dayjs/locale/ru';
 import './datepicker-filter-control.css';
 
-interface IDatepickerProps {
+export interface DatepickerProps {
   className?: string;
   dateFormat?: string;
-  label?: string;
-  locale?: LangType;
+  label: string;
   maxDate?: string;
   minDate?: string;
   value?: string;
@@ -18,16 +18,15 @@ interface IDatepickerProps {
 
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 
-export const DatepickerFilterControl = ({
+export function DatepickerFilterControl({
   className,
   label,
   maxDate,
   minDate,
   value,
   dateFormat = DEFAULT_DATE_FORMAT,
-  locale = 'ru',
   onChange,
-}: IDatepickerProps): JSX.Element => {
+}: DatepickerProps): JSX.Element {
   const [date, setDate] = useState<Dayjs | null>(null);
   const [isValid, setIsValid] = useState<boolean>(true);
 
@@ -40,31 +39,35 @@ export const DatepickerFilterControl = ({
     }
   }, [isValid, value]);
 
+  const handleChange = useCallback((dateValue: Dayjs | null): void => {
+    if (dateValue) {
+      setIsValid(true);
+      onChange(dateValue.format(DEFAULT_DATE_FORMAT));
+    } else {
+      setIsValid(false);
+    }
+  }, []);
+
   return (
-    <div className={classNames('datepicker-control__wrapper', className)}>
-      {label && <span className="datepicker-control__label">{label}:</span>}
-      <div className="datepicker-control">
-        <DatePicker
-          className={classNames(!isValid && 'datepicker-control__invalid')}
-          disabledDate={(current): boolean =>
-            (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
-            (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
-          }
-          format={dateFormat}
-          locale={antdLocales[locale].DatePicker}
-          picker="date"
-          value={date}
-          onChange={(dateValue): void => {
-            if (dateValue) {
-              setIsValid(true);
-              onChange(dateValue.format(DEFAULT_DATE_FORMAT));
-            } else {
-              setIsValid(false);
+    <div className={classNames('datepicker-control', className)}>
+      <label className="datepicker-control__label">
+        {`${label}:`}
+        <div className="datepicker-control__picker">
+          <DatePicker
+            className={classNames(!isValid && 'datepicker-control__picker--invalid')}
+            disabledDate={(current): boolean =>
+              (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
+              (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
             }
-          }}
-        />
-        {!isValid && <div className="datepicker-control__validation-msg">{locales[locale].noDateError}</div>}
-      </div>
+            format={dateFormat}
+            locale={ruRU.DatePicker}
+            picker="date"
+            value={date}
+            onChange={handleChange}
+          />
+          {!isValid && <div className="datepicker-control__validation-msg">Укажите дату</div>}
+        </div>
+      </label>
     </div>
   );
-};
+}

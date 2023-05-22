@@ -1,17 +1,23 @@
-.range-datepicker-control__wrapper {
+.range-datepicker-control {
+  width: 100%;
+  height: 100%;
   display: flex;
-  align-items: center;
 }
 
 .range-datepicker-control__label {
-  margin-right: 8px;
+  display: flex;
+  align-items: center;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
 }
 
-.range-datepicker-control__invalid,
-.range-datepicker-control__invalid:hover {
+.range-datepicker-control__picker {
+  margin-left: 8px;
+}
+
+.range-datepicker-control__picker--invalid,
+.range-datepicker-control__picker--invalid:hover {
   border-color: #ff0400;
 }
 
