@@ -7,7 +7,8 @@ import { findDOMNode } from 'react-dom';
 
 export function DndContainer(props: any) {
   const [items, setItems] = useState(props.items || []);
-  const [dropPlaceState, setDropPlaceState] = useState(-1);
+  const [dropPlaceState, setDropPlaceState] = useState(0);
+  let ref = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setItems(props.items);
@@ -18,21 +19,22 @@ export function DndContainer(props: any) {
     collect: monitor => ({
       isOver: monitor.isOver(),
     }),
-    drop: (item, monitor) => dropItem(item, monitor, props),
-    hover: (item, monitor) => hoverItem(item, monitor, props),
+    drop: (item, monitor) => dropItem(items, monitor, props, dropPlaceState),
+    hover: (item, monitor) => hoverItem(item, monitor, props, ref),
   }));
 
-  function hoverItem(component: any, monitor: any, props: any) {
+  function hoverItem(item: any, monitor: any, props: any, ref: any) {
+    console.log('hover start');
     const dragIndex = monitor.getItem().index;
-    const hoverIndex = props.index;
-
+    const hoverIndex = item.index;
     const sourceListId = monitor.getItem().listId;
 
     // сохраним индекс положения куда мы захуверились
     monitor.getItem().hoverIndex = hoverIndex;
 
-    const domNode = findDOMNode(component) as Element;
-    const hoverBoundingRect = domNode?.getBoundingClientRect();
+    const domNode = findDOMNode(ref.current) as Element;
+    //if(ref.current == null) return;
+    const hoverBoundingRect = ref.current.getBoundingClientRect();
 
     const clientOffset = monitor.getClientOffset();
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
@@ -46,16 +48,17 @@ export function DndContainer(props: any) {
     const replaceZoneTop = replaceZoneSize / 2;
 
     if (hoverClientY < replaceZoneTop) {
-      if (!(props.listId === sourceListId && (dragIndex === hoverIndex || dragIndex === hoverIndex - 1))) {
+      if (!(item.listId === sourceListId && (dragIndex === hoverIndex || dragIndex === hoverIndex - 1))) {
         setDropPlace(hoverIndex);
       }
     } else if (replaceZoneBottom < hoverClientY) {
-      if (!(props.listId === sourceListId && (dragIndex === hoverIndex + 1 || dragIndex === hoverIndex))) {
+      if (!(item.listId === sourceListId && (dragIndex === hoverIndex + 1 || dragIndex === hoverIndex))) {
         setDropPlace(hoverIndex + 1);
       }
     } else {
       setDropPlace(null);
     }
+    console.log('hover end');
   }
 
   //Вроде не используется
@@ -224,89 +227,84 @@ export function DndContainer(props: any) {
   }
 
   return (
-    <div ref={drop} className={`dnd-container${canDrop ? ' can-drop' : ''}${isOver ? ' is-over' : ''}`}>
-      {
-        <div
-          className="drop-place"
-          style={{
-            display: dropPlaceExists ? 'block' : 'none',
-            top: dropPlaceExists
-              ? dropPlaceState === 0
-                ? -4
-                : dropPlaceState * 32 + 4 * (dropPlaceState - 1) + 1
-              : 'auto',
-          }}
-        ></div>
-      }
-      {title}
+    <div ref={ref}>
+      <div ref={drop} className={`dnd-container${canDrop ? ' can-drop' : ''}${isOver ? ' is-over' : ''}`}>
+        {
+          <div
+            className="drop-place"
+            style={{
+              display: dropPlaceExists ? 'block' : 'none',
+              top: dropPlaceExists
+                ? dropPlaceState === 0
+                  ? -4
+                  : dropPlaceState * 32 + 4 * (dropPlaceState - 1) + 1
+                : 'auto',
+            }}
+          ></div>
+        }
+        {title}
 
-      {items.map((item: any, index: any) => {
-        return (
-          <DndItem
-            key={`${item.id}-${index}`}
-            className={props.itemsClassName || ''}
-            item={item}
-            draggingItem={draggingItem}
-            index={index}
-            listId={props.id}
-            listAllowedTypes={props.allowedTypes}
-            listCheckAllowed={
-              props.checkAllowed
-                ? (item: any) => {
-                    return props.checkAllowed(item);
-                  }
-                : null
-            }
-            listNoRemove={props.noRemove}
-            remove={remove}
-            replace={replace}
-            move={move}
-            insert={insert}
-            wrapTo={props.wrapTo}
-            disabled={disabled}
-          />
-        );
-      })}
+        {items.map((item: any, index: any) => {
+          return (
+            <DndItem
+              key={`${item.id}-${index}`}
+              className={props.itemsClassName || ''}
+              item={item}
+              draggingItem={draggingItem}
+              index={index}
+              listId={props.id}
+              listAllowedTypes={props.allowedTypes}
+              listCheckAllowed={
+                props.checkAllowed
+                  ? (item: any) => {
+                      return props.checkAllowed(item);
+                    }
+                  : null
+              }
+              listNoRemove={props.noRemove}
+              remove={remove}
+              replace={replace}
+              move={move}
+              insert={insert}
+              wrapTo={props.wrapTo}
+              disabled={disabled}
+              setDropPlace={setDropPlace}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
 
-function dropItem(component: any, monitor: any, props: any) {
+function dropItem(items: any, monitor: any, props: any, dropPlaceState: any) {
   const { id } = props;
+  console.log('drop start');
 
   const sourceObj = monitor.getItem();
   const itemType = sourceObj.item.type;
 
   if (id !== sourceObj.listId) {
     // отменяем, если не вмещается (но если не разрешена замена)
-    if (
-      component.props.capacity &&
-      component.props.capacity <= component.state.items.length &&
-      !component.doingReplace
-    ) {
-      return {
-        revert: true,
-      };
+    if (props.capacity && props.capacity <= items.length) {
+      return { revert: true };
     }
 
     // отменяем, если не подходит по типу
-    if (component.props.allowedTypes) {
-      if (!component.props.allowedTypes.has(itemType)) {
-        return {
-          revert: true,
-        };
+    if (props.allowedTypes) {
+      if (!props.allowedTypes.has(itemType)) {
+        return { revert: true };
       }
-    } else if (component.props.checkAllowed) {
-      if (!component.props.checkAllowed(sourceObj.item)) {
-        return {
-          revert: true,
-        };
+    } else if (props.checkAllowed) {
+      if (!props.checkAllowed(sourceObj.item)) {
+        return { revert: true };
       }
     }
   }
-
+  console.log('drop end');
   return {
     listId: id,
-    targetComponent: component,
+    dropPlace: dropPlaceState,
+    items: items,
   };
 }

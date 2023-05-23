@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DndContext, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useDrag, useDrop } from 'react-dnd';
 import block from 'bem-cn-lite';
 
 // import './DragSortable.scss';
@@ -40,6 +39,7 @@ function SortableItem({ id, index, type, children, moveItem }) {
   });
 
   const [{ isDragging }, drag] = useDrag({
+    type: type,
     item: { type, id, index },
     collect: monitor => ({
       isDragging: monitor.isDragging(),
@@ -47,10 +47,8 @@ function SortableItem({ id, index, type, children, moveItem }) {
   });
   const opacity = isDragging ? 0 : 1;
 
-  drag(drop(ref));
-
   return (
-    <div ref={ref} style={{ opacity }} className={b('item')}>
+    <div ref={drag(drop(ref))} style={{ opacity }} className={b('item')}>
       {children}
     </div>
   );
