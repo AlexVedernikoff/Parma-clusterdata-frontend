@@ -7,10 +7,6 @@ import Dialog from '../Dialog/Dialog';
 import cn from 'bem-cn-lite';
 import noop from 'lodash/noop';
 
-// import './NavigationModal.scss';
-import NavigationBreadcrumbs from './NavigationBreadcrumbs/NavigationBreadcrumbs';
-import CreateDropdown from './CreateDropdown/CreateDropdown';
-
 const b = cn('yc-navigation');
 
 class NavigationModal extends React.Component {
@@ -117,28 +113,19 @@ class NavigationModal extends React.Component {
             />
           </div>
           <div className={b('content')}>
-            <div className={b('header')}>
-              <NavigationBreadcrumbs
-                size="s"
-                path={path}
-                place={place}
-                linkWrapper={crumbLinkWrapper}
-                onClick={this.onCrumbClick}
-                getPlaceParameters={this.props.getPlaceParameters}
-              />
-            </div>
             <NavigationEntries
               ref={this.refEntries}
               {...props}
-              path={path}
+              path={path ? path : ''}
+              modalView={true}
               place={place}
               linkWrapper={linkWrapper}
+              createMenuItems={createMenuItems}
+              onCreateMenuClick={onCreateMenuClick}
               onEntryClick={this.onEntryClick}
               onEntryParentClick={this.onEntryParentClick}
               getPlaceParameters={this.props.getPlaceParameters}
-            >
-              <CreateDropdown size="s" items={createMenuItems} onMenuClick={onCreateMenuClick} />
-            </NavigationEntries>
+            />
           </div>
         </div>
       </Dialog>
