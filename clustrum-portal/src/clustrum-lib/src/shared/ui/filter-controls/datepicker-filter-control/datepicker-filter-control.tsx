@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import classNames from 'classnames';
+import cn from 'classnames';
 import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import dayjs, { Dayjs } from 'dayjs';
@@ -49,12 +49,12 @@ export function DatepickerFilterControl({
   }, []);
 
   return (
-    <div className={classNames('datepicker-control', className)}>
+    <div className={cn('datepicker-control', className)}>
       <label className="datepicker-control__label">
         {`${label}:`}
         <div className="datepicker-control__picker">
           <DatePicker
-            className={classNames(!isValid && 'datepicker-control__picker--invalid')}
+            className={cn(!isValid && 'datepicker-control__picker--invalid')}
             disabledDate={(current): boolean =>
               (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
               (Boolean(maxDate) && current.isAfter(maxDate, 'date'))

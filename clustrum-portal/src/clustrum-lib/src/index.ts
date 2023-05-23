@@ -19,3 +19,4 @@ export {
   RangeDatepickerFilterControl,
   RangeDatepickerProps,
 } from './shared/ui/filter-controls/range-datepicker-filter-control/range-datepicker-filter-control';
+export { PickerValue } from './shared/ui/filter-controls/range-datepicker-filter-control/types/picker-value';

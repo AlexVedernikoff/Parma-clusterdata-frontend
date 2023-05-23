@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import classNames from 'classnames';
+import cn from 'classnames';
 import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import dayjs from 'dayjs';
@@ -56,12 +56,12 @@ export function RangeDatepickerFilterControl({
   }, []);
 
   return (
-    <div className={classNames('range-datepicker-control', className)}>
+    <div className={cn('range-datepicker-control', className)}>
       <label className="range-datepicker-control__label">
         {`${label}:`}
         <div className="range-datepicker-control__picker">
           <RangePicker
-            className={classNames(!isValid && 'range-datepicker-control__picker--invalid')}
+            className={cn(!isValid && 'range-datepicker-control__picker--invalid')}
             disabledDate={(current): boolean =>
               (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
               (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
