@@ -7,16 +7,12 @@ import { withRouter, Switch, Route } from 'react-router-dom';
 import { Wizard } from '@clustrum-lib';
 import { Pointerfocus } from 'lego-on-react';
 
-import { Utils, SDK, Header } from '@kamatech-data-ui/clustrum';
+import { SDK } from '@kamatech-data-ui/clustrum';
 
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
 
 import { exportWidget } from '../services/dashboard/export/export-widget';
-
-// import '@kamatech-data-ui/common/src/styles/styles.scss';
-
-// import './App.scss';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,

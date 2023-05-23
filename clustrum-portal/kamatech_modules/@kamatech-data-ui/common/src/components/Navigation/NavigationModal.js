@@ -7,10 +7,6 @@ import Dialog from '../Dialog/Dialog';
 import cn from 'bem-cn-lite';
 import noop from 'lodash/noop';
 
-// import './NavigationModal.scss';
-import NavigationBreadcrumbs from './NavigationBreadcrumbs/NavigationBreadcrumbs';
-import CreateDropdown from './CreateDropdown/CreateDropdown';
-
 const b = cn('yc-navigation');
 
 class NavigationModal extends React.Component {

@@ -5,14 +5,13 @@ import { Button } from 'antd';
 
 import NavigationModal from 'components/Navigation/NavigationModal';
 import Utils from 'utils';
-import ActionPanelHelpers from '../../ActionPanelHelpers';
 import EntryContextMenu from '../../../EntryContextMenu/EntryContextMenu';
 import { Header } from '../../../../../../../../src/entities/header/ui/header';
 import { FolderOutlined, MoreOutlined, StarTwoTone } from '@ant-design/icons';
 import {
   formatPath,
   navigationItems,
-} from '../../../../../../common/src/components/Navigation/adapters/header-navigation-adapter';
+} from '../../../../../../common/src/components/Navigation/utils/header-navigation-utils';
 
 const b = block('dl-entry-panel');
 
@@ -123,27 +122,29 @@ class EntryPanel extends React.Component {
 
   render() {
     const { sdk, additionalEntryItems } = this.props;
-    const { entry: { key, isFavorite } = {}, entry, isNavigationVisible } = this.state;
-
-    const entryName = ActionPanelHelpers.getNameByKey({ key });
+    const { entry: { isFavorite } = {}, entry, isNavigationVisible } = this.state;
 
     let disabled = false;
     if (entry.fake) {
       disabled = true;
     }
 
-    const standardBtn = [
+    const standardBtns = [
       <Button
+        className="ant-d-header-small-btn"
         disabled={disabled}
         title={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
         icon={isFavorite ? <StarTwoTone twoToneColor="#FFD700" /> : <StarTwoTone />}
         onClick={this.toggleFavorite}
+        key="favorite-btn"
       ></Button>,
       <Button
+        className="ant-d-header-small-btn"
         disabled={disabled}
         onClick={this.toggleEntryContextMenu}
         icon={<MoreOutlined style={{ color: '#1890ff' }} />}
         ref={this.setInnerRefBtnEntryContextMenu}
+        key="context-menu-btn"
       />,
       <EntryContextMenu
         onClose={this.onCloseEntryContextMenu}
@@ -151,11 +152,14 @@ class EntryPanel extends React.Component {
         visible={this.state.visibleEntryContextMenu}
         entry={entry}
         sdk={sdk}
+        key="context-menu"
       />,
       <Button
+        className="ant-d-header-small-btn"
         title="Открыть навигацию"
         icon={<FolderOutlined style={{ color: '#1890ff' }} />}
         onClick={this.openNavigation}
+        key="navigation-modal-btn"
       />,
       <NavigationModal
         sdk={sdk}
@@ -165,14 +169,15 @@ class EntryPanel extends React.Component {
         onClose={this.onCloseNavigation}
         visible={isNavigationVisible}
         currentPageEntry={entry}
+        key="navigation-modal"
       />,
     ];
-    const actionBtn = [...standardBtn, additionalEntryItems];
+    const actionBtns = [...standardBtns, additionalEntryItems];
 
     return (
       <div className={b()}>
         <Header
-          leftSideContent={actionBtn}
+          leftSideContent={actionBtns}
           rightSideContent={this.props.rightItems}
           path={navigationItems(entry.scope, entry.key)}
           title={formatPath(entry.key === '' ? entry.scope : entry.key)}

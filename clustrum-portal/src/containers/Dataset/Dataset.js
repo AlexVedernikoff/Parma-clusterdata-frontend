@@ -379,38 +379,38 @@ class Dataset extends React.Component {
           }}
           additionalEntryItems={[
             <Button
-              cls={b('materialization-btn')}
-              style={{ color: '#1890ff' }}
+              className="ant-d-header-small-btn"
               key="materialization"
               onClick={this.openDataSource}
-              icon={<BlockOutlined />}
+              icon={<BlockOutlined style={{ color: '#1890ff' }} />}
+              key="materialization-btn"
             />,
             <Button
-              cls={b('verification-btn')}
-              style={{ color: '#1890ff' }}
+              className="ant-d-header-small-btn"
               key="verification"
               onClick={this.openVerificationModal}
-              icon={<SafetyOutlined />}
+              icon={<SafetyOutlined style={{ color: '#1890ff' }} />}
+              key="verification-btn"
             />,
           ]}
           rightItems={[
             <Button
               key="create-widget"
-              cls={b('create-widget-btn')}
               onClick={this.openCreationWidgetPage}
               icon={<BarChartOutlined />}
+              key="create-widget-btn"
             >
               Создать чарт
             </Button>,
             <Button
               disabled={savingDatasetDisabled}
               type="primary"
-              cls={b('save-dataset-btn')}
               onClick={() =>
                 saveDataset({
                   datasetErrorDialogRef: this.datasetErrorDialogRef,
                 })
               }
+              key="save-dataset-btn"
             >
               Сохранить
               {isProcessingDataset && (

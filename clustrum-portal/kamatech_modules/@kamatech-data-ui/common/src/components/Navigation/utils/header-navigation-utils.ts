@@ -1,4 +1,4 @@
-import { BreadcrumbItem } from '../../../../../../../src/entities/header/types/breadcrumbItem';
+import { BreadcrumbItem } from '../../../../../../../src/entities/header/types/breadcrumb-item';
 
 const translateText = (text: string | undefined): string => {
   switch (text) {
@@ -19,7 +19,7 @@ const translateText = (text: string | undefined): string => {
     case 'dash':
       return 'Аналитические панели';
     default:
-      return <string>text;
+      return text as string;
   }
 };
 

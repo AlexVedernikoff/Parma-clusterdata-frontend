@@ -1,6 +1,7 @@
 .header-wrapper {
   display: flex;
   flex-direction: column;
+  gap: 8px;
   padding: 24px;
   width: 100%;
   background-color: #f5f5f5;
@@ -8,7 +9,7 @@
 
 .header-wrapper__breadcrumb {
   display: flex;
-  margin: 0 0 8px 0;
+  margin: 0;
 }
 
 .header-wrapper__breadcrumb-patch {
@@ -24,27 +25,18 @@
 .header-wrapper__left-side {
   display: flex;
   align-items: center;
+  gap: 8px;
   padding: 0;
 }
 
 .header-wrapper__left-side-title {
   font-size: 30px;
   line-height: 30px;
-  margin: 0 8px 0 0;
-}
-
-.header-wrapper__left-side-content button {
-  margin: 4px;
-  border: none;
-  box-shadow: none;
-  background-color: transparent;
+  margin: 0;
 }
 
 .header-wrapper__right-side-content {
   display: flex;
   align-items: center;
-}
-
-.header-wrapper__right-side-content button:not(.ant-btn-compact-last-item) {
-  margin-left: 8px;
+  gap: 8px;
 }

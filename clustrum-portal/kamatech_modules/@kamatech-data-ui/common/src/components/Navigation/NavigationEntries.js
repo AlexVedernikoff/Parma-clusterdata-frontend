@@ -20,7 +20,7 @@ import { ScopeType } from '@kamatech-ui/enums';
 import { Header } from '../../../../../../src/entities/header/ui/header';
 import { Button, Dropdown, Input, Space } from 'antd';
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
-import { formatPath, navigationItems } from './adapters/header-navigation-adapter';
+import { formatPath, navigationItems } from './utils/header-navigation-utils';
 
 const b = cn('yc-navigation');
 
@@ -347,17 +347,18 @@ class NavigationEntries extends React.Component {
       };
     });
 
-    const inputSearch = [
+    const inputSearch = (
       <Input
+        className="ant-d-input-search"
         placeholder="Найти"
         prefix={<SearchOutlined />}
         onChange={handleChange}
         ref={this.refSearchInput}
         value={this.state.searchValue}
-      />,
-    ];
+      />
+    );
 
-    const createButton = [
+    const createButton = (
       <Dropdown menu={{ items: createItemMenu }} trigger={['click']}>
         <Button type="primary">
           <Space>
@@ -365,9 +366,8 @@ class NavigationEntries extends React.Component {
             <DownOutlined />
           </Space>
         </Button>
-      </Dropdown>,
-    ];
-    console.log(modalView);
+      </Dropdown>
+    );
 
     return (
       <div className={b('entries-header')}>
@@ -375,7 +375,12 @@ class NavigationEntries extends React.Component {
           <Header leftSideContent={inputSearch} rightSideContent={createButton} path={navigationItems(place, path)} />
         ) : (
           <Header
-            rightSideContent={[inputSearch, createButton]}
+            rightSideContent={
+              <>
+                {inputSearch}
+                {createButton}
+              </>
+            }
             path={navigationItems(place, path)}
             title={formatPath(path === '' ? place : path)}
           />

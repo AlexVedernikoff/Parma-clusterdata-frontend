@@ -188,9 +188,7 @@ class Header extends React.PureComponent {
     ];
 
     return [
-      // <Button icon={<BgColorsOutlined />} />, В макетах есть, а функций для неё пока нет
       <Button
-        cls={b('action-right', { 'button-settings': true })}
         onClick={() => this.props.openDialog(DIALOG_TYPE.SETTINGS)}
         key="button-settings"
         icon={<SettingOutlined />}
@@ -202,7 +200,6 @@ class Header extends React.PureComponent {
         toggleWidgetVisibility={this.toggleWidgetVisibility}
       />,
       <Button
-        cls={b('action-right', { 'expand-filter-panel': true })}
         title="Открыть панель расширенных фильтров"
         onClick={this.props.openExpandedFilter}
         key="button-expanded-filter-panel"
@@ -220,14 +217,7 @@ class Header extends React.PureComponent {
       <Button key="cancel" onClick={this.props.cancelEditMode}>
         Отменить
       </Button>,
-      <Button
-        type="primary"
-        key="save"
-        disabled={!this.props.isDraft}
-        cls={b('action-right', { save: true })}
-        onClick={this.onSave}
-        ref={this.saveRef}
-      >
+      <Button type="primary" key="save" disabled={!this.props.isDraft} onClick={this.onSave} ref={this.saveRef}>
         Сохранить
       </Button>,
       <Tooltip
@@ -273,14 +263,12 @@ class Header extends React.PureComponent {
       return [
         this.#hasVisibleExpandedFilters() ? (
           <Button
-            cls={b('action-right', { 'expand-filter-panel': true })}
             title="Открыть панель расширенных фильтров"
             onClick={openExpandedFilter}
             key="button-expanded-filter-panel"
           ></Button>
         ) : null,
         <Button
-          cls={b('action-right', { 'clear-filters': true })}
           title="Сбросить фильтры"
           onClick={() => this.onClearFilters()}
           key="button-clear-filters"
@@ -290,7 +278,7 @@ class Header extends React.PureComponent {
         </Button>,
 
         <Dropdown menu={{ items: exportItems }} trigger={['click']}>
-          <Button icon={<DownloadOutlined />}>Экспорт</Button>
+          <Button icon={<DownloadOutlined />}>Экспортировать</Button>
         </Dropdown>,
         <>
           {!window.DL.hideEdit && (

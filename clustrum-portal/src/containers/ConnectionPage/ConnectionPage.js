@@ -19,8 +19,6 @@ import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 import { normalizeDestination } from '@kamatech-data-ui/clustrum-core-plugins/utils';
 import { Button } from 'antd';
 
-// import './ConnectionPage.scss';
-
 const b = block('connection-page');
 
 const DEFAULT_PERMISSIONS_MODE = 'owner_only';
@@ -60,7 +58,6 @@ class ConnectionPage extends React.Component {
     return (
       <Button
         key={'create-dataset-btn'}
-        cls={b('create-dataset-btn')}
         text="Создать датасет"
         onClick={() => {
           let currentPathParam = currentPath ? `&currentPath=${encodeURIComponent(currentPath)}` : '';
@@ -518,7 +515,6 @@ class ConnectionPage extends React.Component {
       <Button
         key={'action-btn'}
         type="primary"
-        cls={b('action-btn')}
         onClick={this._getActionHandler()}
         disabled={!permissionsSelectVisible && !isStateChanged && isChangesSaved}
       >

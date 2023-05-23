@@ -194,24 +194,11 @@ class Wizard extends Component {
   }
 
   renderApp() {
-    const {
-      sdk,
-      widget,
-      config,
-      configType,
-      isFullscreen,
-      preview,
-      isWidgetLoading,
-      toggleFullscreen,
-      previewHash,
-      widgetHash,
-      onExport,
-    } = this.props;
+    const { sdk, widget, isFullscreen, preview, isWidgetLoading, toggleFullscreen, onExport } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
     const hidden = isFullscreen ? ' hidden' : '';
     const { entryDialoguesRef } = this;
-    const widgetChanged = previewHash !== widgetHash;
 
     if (isWidgetLoading) {
       return (
@@ -220,14 +207,6 @@ class Wizard extends Component {
         </div>
       );
     }
-
-    let link = '';
-    if (widget && widget.entryId) {
-      link = `${DL.endpoints.wizard}/${widget.entryId}`;
-    }
-
-    const saveDisabled = !config || !configType || !widgetChanged;
-    const saveMoreDisabled = !config || !configType;
 
     const entryLocked = widget && widget.editable === false;
 
@@ -273,8 +252,8 @@ class Wizard extends Component {
             rightItems={[
               <Button
                 key="fullscreen"
-                cls={b('fullscreen-btn')}
                 title="На весь экран"
+                type="text"
                 icon={<FullscreenOutlined />}
                 onClick={toggleFullscreen}
               >

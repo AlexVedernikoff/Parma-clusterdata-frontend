@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumb } from 'antd';
 
 import './header.css';
-import { BreadcrumbItem } from '../types/breadcrumbItem';
+import { BreadcrumbItem } from '../types/breadcrumb-item';
 
 export interface HeaderProps {
   path: BreadcrumbItem[];

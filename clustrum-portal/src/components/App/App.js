@@ -4,13 +4,10 @@ import { Switch, Route } from 'react-router-dom';
 
 import { Pointerfocus } from 'lego-on-react';
 
-import Header from '../Header/Header';
 import Index from '../Index/Index';
 import Dash from '../../containers/Dash/Dash';
 
 import { PREFIX } from '../../modules/constants/constants';
-
-// import './App.scss';
 
 function App() {
   return (

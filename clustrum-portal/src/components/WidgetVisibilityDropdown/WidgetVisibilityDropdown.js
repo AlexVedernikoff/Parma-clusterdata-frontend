@@ -55,18 +55,14 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
     setWidgetList(getWidgetList());
   }, [items, layout]);
 
-  const handleOpenChange = flag => {
-    setOpen(flag);
-  };
-
   const visibilityItems = widgetList.map(({ id, title, isHidden }) => {
     return {
       label: (
         <a onClick={() => toggleWidgetVisibility(id)}>
           {isHidden ? (
-            <EyeInvisibleOutlined style={{ paddingRight: 9 }} />
+            <EyeInvisibleOutlined className="ant-d-header-eye-icon" />
           ) : (
-            <EyeOutlined style={{ paddingRight: 9 }} />
+            <EyeOutlined className="ant-d-header-eye-icon" />
           )}
           {title}
         </a>
@@ -76,7 +72,7 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   });
 
   return (
-    <Dropdown menu={{ items: visibilityItems }} onOpenChange={handleOpenChange} trigger={['click']} open={open}>
+    <Dropdown menu={{ items: visibilityItems }} onOpenChange={flag => setOpen(flag)} trigger={['click']} open={open}>
       <Button icon={<EyeOutlined />} />
     </Dropdown>
   );

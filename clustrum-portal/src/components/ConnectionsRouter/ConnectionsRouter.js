@@ -3,12 +3,10 @@ import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-d
 import block from 'bem-cn-lite';
 import PropTypes from 'prop-types';
 import { Pointerfocus } from 'lego-on-react';
-import { Header, Utils } from '@kamatech-data-ui/clustrum';
+import { Utils } from '@kamatech-data-ui/clustrum';
 import Connectors from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
 import { getConnectorsMap } from '../../constants';
-
-// import './ConnectionsRouter.scss';
 
 const b = block('connections-router');
 
