@@ -15,7 +15,7 @@ export function DndItem(props: any) {
         listNoRemove: props.listNoRemove,
         item: props.item,
       },
-      end: (dragItem, monitor) => endDrag(props, dragItem, monitor),
+      //end: (dragItem, monitor) => endDrag(props, dragItem, monitor),
     }),
     [],
   );

@@ -1174,10 +1174,10 @@ class SectionVisualization extends Component {
           if (inReplaceZone) {
             let drawReplace;
 
-            if (this.props.allowedTypes) {
-              drawReplace = this.props.allowedTypes.has(draggingItem.item.type);
-            } else if (this.props.checkAllowed) {
-              drawReplace = this.props.checkAllowed(draggingItem.item);
+            if (this.props?.allowedTypes) {
+              drawReplace = this.props?.allowedTypes.has(draggingItem.item.type);
+            } else if (this.props?.checkAllowed) {
+              drawReplace = this.props?.checkAllowed(draggingItem.item);
             } else {
               drawReplace = false;
             }
@@ -1211,19 +1211,19 @@ class SectionVisualization extends Component {
             this.doingReplace = true;
           }
         }}
-        onMouseOver={() => {
-          itemComponent.setState({
-            tooltipVisible: true,
-          });
-        }}
-        onMouseOut={() => {
-          itemComponent.setState({
-            tooltipVisible: false,
-          });
-        }}
+        // onMouseOver={() => {
+        //   itemComponent.setState({
+        //     tooltipVisible: true,
+        //   });
+        // }}
+        // onMouseOut={() => {
+        //   itemComponent.setState({
+        //     tooltipVisible: false,
+        //   });
+        // }}
         onClick={e => {
-          if (this.props.onItemClick) {
-            this.props.onItemClick(e, item);
+          if (this.props?.onItemClick) {
+            this.props?.onItemClick(e, item);
           }
         }}
       >
@@ -1254,7 +1254,7 @@ class SectionVisualization extends Component {
             {item.conflict ? (
               <Tooltip
                 anchor={itemComponent}
-                visible={itemComponent.state.tooltipVisible}
+                //visible={itemComponent.state.tooltipVisible}
                 theme="error"
                 view="classic"
                 tone="default"
@@ -1265,7 +1265,7 @@ class SectionVisualization extends Component {
                 {CONFLICT_TOOLTIPS[item.conflict]}
               </Tooltip>
             ) : null}
-            {this.props.id === 'sort-container' ? (
+            {this.props?.id === 'sort-container' ? (
               <div className="item-right-icon sort-icon">
                 <Icon data={item.direction === 'ASC' ? iconSortAsc : iconSortDesc} width="16" />
               </div>

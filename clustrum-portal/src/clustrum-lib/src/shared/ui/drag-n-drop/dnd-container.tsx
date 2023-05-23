@@ -10,16 +10,82 @@ export function DndContainer(props: any) {
   const [dropPlaceState, setDropPlaceState] = useState(0);
   let ref = React.useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setItems(props.items);
-  }, [props.items]);
-
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'ITEM',
     collect: monitor => ({
       isOver: monitor.isOver(),
     }),
-    drop: (item, monitor) => dropItem(items, monitor, props, dropPlaceState),
+    drop: (item: any, monitor: any) => {
+      const { id } = props;
+      console.log('drop start');
+      const sourceObj = monitor.getItem();
+      const itemType = sourceObj.item.type;
+
+      if (id !== sourceObj.listId) {
+        // отменяем, если не вмещается (но если не разрешена замена)
+        if (props.capacity && props.capacity <= items.length) {
+          return { revert: true };
+        }
+
+        // отменяем, если не подходит по типу
+        if (props.allowedTypes) {
+          if (!props.allowedTypes.has(itemType)) {
+            return { revert: true };
+          }
+        } else if (props.checkAllowed) {
+          if (!props.checkAllowed(sourceObj.item)) {
+            return { revert: true };
+          }
+        }
+      }
+
+      setDropPlace(null);
+
+      // if (targetComponent.doingReplace) {
+      //   // сбросим флаг замены
+      //   targetComponent.doingReplace = false;
+
+      //   // если дропаем в другой контейнер
+      //   if (dropResult.listId !== item.listId) {
+      //     let replacedItem = targetComponent.state.items[item.hoverIndex];
+      //     const revert = () => {
+      //       targetComponent.replace(item.hoverIndex, replacedItem);
+      //       props.replace(item.index, item.item);
+      //     };
+
+      //     props.replace(item.index, replacedItem, revert);
+      //     targetComponent.replace(item.hoverIndex, item.item, revert);
+      //   } else {
+      //     // свап
+      //     targetComponent.swap(item.hoverIndex, item.index);
+      //   }
+      // }
+      // else {
+      let targetIndex =
+        typeof dropPlaceState === 'number'
+          ? dropPlaceState
+          : typeof item.hoverIndex === 'number'
+          ? item.hoverIndex
+          : items.length;
+
+      if (!(props.listId === item.listId && (targetIndex === item.index + 1 || targetIndex === item.index))) {
+        // удаляем в исходном контейнере
+        remove(item.index);
+
+        // добавляем в целевой контейнер
+        insert(item.item, targetIndex, () => {
+          insert(item.item, item.index);
+        });
+      }
+      //}
+
+      console.log('drop end');
+      return {
+        listId: id,
+        dropPlace: dropPlaceState,
+        items: items,
+      };
+    },
     hover: (item, monitor) => hoverItem(item, monitor, props, ref),
   }));
 
@@ -34,7 +100,7 @@ export function DndContainer(props: any) {
 
     const domNode = findDOMNode(ref.current) as Element;
     //if(ref.current == null) return;
-    const hoverBoundingRect = ref.current.getBoundingClientRect();
+    const hoverBoundingRect = domNode.getBoundingClientRect();
 
     const clientOffset = monitor.getClientOffset();
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
@@ -106,7 +172,7 @@ export function DndContainer(props: any) {
     }
   }
 
-  function insert(item: any, index: any, onUndoInsert: any) {
+  function insert(item: any, index: any, onUndoInsert?: any) {
     // по умолчанию пушим всегда
     let insert = true;
 
@@ -275,36 +341,4 @@ export function DndContainer(props: any) {
       </div>
     </div>
   );
-}
-
-function dropItem(items: any, monitor: any, props: any, dropPlaceState: any) {
-  const { id } = props;
-  console.log('drop start');
-
-  const sourceObj = monitor.getItem();
-  const itemType = sourceObj.item.type;
-
-  if (id !== sourceObj.listId) {
-    // отменяем, если не вмещается (но если не разрешена замена)
-    if (props.capacity && props.capacity <= items.length) {
-      return { revert: true };
-    }
-
-    // отменяем, если не подходит по типу
-    if (props.allowedTypes) {
-      if (!props.allowedTypes.has(itemType)) {
-        return { revert: true };
-      }
-    } else if (props.checkAllowed) {
-      if (!props.checkAllowed(sourceObj.item)) {
-        return { revert: true };
-      }
-    }
-  }
-  console.log('drop end');
-  return {
-    listId: id,
-    dropPlace: dropPlaceState,
-    items: items,
-  };
 }
