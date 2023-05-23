@@ -4782,6 +4782,7 @@
 
 .modal_theme_normal.modal_visible_yes {
   display: block;
+  z-index: 1049 !important;
 }
 
 .modal_theme_normal .modal__content {

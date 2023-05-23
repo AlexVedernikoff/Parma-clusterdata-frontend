@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
-import YCSelect from '../YCSelect/YCSelect';
 import Loader from '../Loader/Loader';
-import { Button, RadioButton } from 'lego-on-react';
 import { NOTIFICATIONS, ERROR_TEXT } from './locale/constants';
 import { ERROR, MODE_FULL, MODE_MINIMAL, NAVIGATION_ROOT, ORDER, OWNERSHIP } from './constants';
 import EntryContextMenu from './EntryContextMenu/EntryContextMenu';
@@ -17,23 +15,14 @@ import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import iconFavoriteEmpty from '../../assets/icons/favorite-empty.svg';
 import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
-import { KamatechTableView, KamatechTextInput } from '@kamatech-ui';
+import { KamatechTableView } from '@kamatech-ui';
 import { ScopeType } from '@kamatech-ui/enums';
-import iconXsign from '../../../../clustrum/src/icons/x-sign.svg';
+import { Header } from '../../../../../../src/entities/header/ui/header';
+import { Button, Dropdown, Input, Space } from 'antd';
+import { DownOutlined, SearchOutlined } from '@ant-design/icons';
+import { formatPath, navigationItems } from './utils/header-navigation-utils';
 
 const b = cn('yc-navigation');
-const itemsOrderBy = [
-  {
-    key: ORDER.DESC,
-    value: ORDER.DESC,
-    title: 'Сперва новые',
-  },
-  {
-    key: ORDER.ASC,
-    value: ORDER.ASC,
-    title: 'Сперва старые',
-  },
-];
 
 class NavigationEntries extends React.Component {
   static propTypes = {
@@ -64,11 +53,13 @@ class NavigationEntries extends React.Component {
 
     userLogin: PropTypes.string,
     getPlaceParameters: PropTypes.func.isRequired,
+    modalView: PropTypes.bool,
   };
   static defaultProps = {
     mode: MODE_FULL,
     place: NAVIGATION_ROOT,
     searchPlaceholder: 'Фильтр по имени',
+    modalView: false,
   };
   static getDerivedStateFromProps(nextProps, prevState) {
     const { sdk, scope, path, place } = nextProps;
@@ -337,8 +328,8 @@ class NavigationEntries extends React.Component {
     );
   }
   renderEntriesHeader() {
-    const { mode } = this.props;
-    const { place } = this.state;
+    const { mode, onCreateMenuClick, createMenuItems, modalView } = this.props;
+    const { place, path } = this.state;
     const { filters } = this.props.getPlaceParameters(place);
     const isMinimalMode = mode === MODE_MINIMAL;
 
@@ -346,52 +337,53 @@ class NavigationEntries extends React.Component {
       return null;
     }
 
+    const handleChange = event => {
+      this.onChangeFilter(event.target.value);
+    };
+    const createItemMenu = createMenuItems?.map(({ text, value, index }) => {
+      return {
+        label: <a onClick={() => onCreateMenuClick(value)}>{text}</a>,
+        key: index,
+      };
+    });
+
+    const inputSearch = (
+      <Input
+        className="ant-d-input-search"
+        placeholder="Найти"
+        prefix={<SearchOutlined />}
+        onChange={handleChange}
+        ref={this.refSearchInput}
+        value={this.state.searchValue}
+      />
+    );
+
+    const createButton = (
+      <Dropdown menu={{ items: createItemMenu }} trigger={['click']}>
+        <Button type="primary">
+          <Space>
+            Создать
+            <DownOutlined />
+          </Space>
+        </Button>
+      </Dropdown>
+    );
+
     return (
       <div className={b('entries-header')}>
-        {!isMinimalMode && (
-          <div className={b('search')}>
-            <KamatechTextInput
-              ref={this.refSearchInput}
-              view="default"
-              tone="default"
-              theme="normal"
-              size="s"
-              hasClear={true}
-              placeholder={this.props.searchPlaceholder}
-              text={this.state.searchValue}
-              onChange={this.onChangeFilter}
-              iconClearData={iconXsign}
-            />
-          </div>
-        )}
-        {filters && (
-          <div className={b('filters')}>
-            <div className={b('filters-item')}>
-              <YCSelect
-                items={itemsOrderBy}
-                value={this.state.orderBy}
-                onChange={this.onChangeOrderBy}
-                showSearch={false}
-                stretched={false}
-              />
-            </div>
-            {this.props.userLogin && (
-              <div className={b('filters-item')}>
-                <RadioButton
-                  theme="normal"
-                  size="s"
-                  view="default"
-                  tone="default"
-                  value={this.state.ownership}
-                  onChange={this.onChangeOwnership}
-                  freeWidth={true}
-                >
-                  <RadioButton.Radio value={OWNERSHIP.ALL}>Все</RadioButton.Radio>
-                  <RadioButton.Radio value={OWNERSHIP.ONLY_MINE}>Только мои</RadioButton.Radio>
-                </RadioButton>
-              </div>
-            )}
-          </div>
+        {modalView ? (
+          <Header leftSideContent={inputSearch} rightSideContent={createButton} path={navigationItems(place, path)} />
+        ) : (
+          <Header
+            rightSideContent={
+              <>
+                {inputSearch}
+                {createButton}
+              </>
+            }
+            path={navigationItems(place, path)}
+            title={formatPath(path === '' ? place : path)}
+          />
         )}
         <div className={b('custom')}>{this.props.children}</div>
       </div>
@@ -430,7 +422,7 @@ class NavigationEntries extends React.Component {
       return <div className={b('empty-entries')}>{emptyText}</div>;
     }
 
-    const { displayParentFolder, sort } = this.props.getPlaceParameters(place);
+    const { displayParentFolder } = this.props.getPlaceParameters(place);
 
     return (
       <React.Fragment>

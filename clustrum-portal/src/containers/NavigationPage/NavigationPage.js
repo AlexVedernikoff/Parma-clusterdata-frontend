@@ -4,12 +4,10 @@ import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Utils, Navigation, Header } from '@kamatech-data-ui/clustrum';
+import { Utils, Navigation } from '@kamatech-data-ui/clustrum';
 import { DL } from '@kamatech-data-ui/clustrum/src/constants/common';
 
 import { Pointerfocus } from 'lego-on-react';
-
-// import './NavigationPage.scss';
 
 const b = block('navigation-page');
 
@@ -43,16 +41,6 @@ class NavigationPage extends React.Component {
     return (
       <div className={b()}>
         <Pointerfocus />
-        <Header
-          installationType={installationType}
-          sdk={sdk}
-          endpoints={endpoints}
-          clouds={clouds}
-          userData={userData}
-          menuData={menu}
-          logoText={logoText}
-          toggleTheme={toggleTheme}
-        />
         <div className={b('navigation')}>
           <Route
             path="/:root?/:path*"

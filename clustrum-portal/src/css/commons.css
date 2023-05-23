@@ -749,7 +749,6 @@
 
 .yc-navigation__entries-header {
   flex: 0 0 auto;
-  padding: 0 20px 12px;
   display: flex;
 }
 
@@ -928,7 +927,7 @@
 }
 
 .yc-navigation_inline .yc-navigation__entries {
-  padding-top: 16px;
+  padding-top: 0;
 }
 
 .yc-navigation_inline .yc-navigation__search {
@@ -1375,6 +1374,7 @@
   0% {
     transform: translateX(0);
   }
+
   to {
     opacity: 0;
     transform: translateX(10px);
@@ -1385,6 +1385,7 @@
   0% {
     transform: translateX(0);
   }
+
   to {
     opacity: 0;
     transform: translateX(10px);
@@ -1396,6 +1397,7 @@
     opacity: 0;
     transform: translateX(10px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -1407,6 +1409,7 @@
     opacity: 0;
     transform: translateX(10px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -2420,6 +2423,7 @@
     height: 100%;
     background: transparent;
   }
+
   to {
     width: 100%;
     height: 100%;
@@ -2433,6 +2437,7 @@
     height: 100%;
     background: transparent;
   }
+
   to {
     width: 100%;
     height: 100%;
@@ -2446,11 +2451,13 @@
     height: 100%;
     background: var(--color-veil);
   }
+
   99% {
     background: transparent;
     width: 100%;
     height: 100%;
   }
+
   to {
     width: 0;
     height: 0;
@@ -2463,11 +2470,13 @@
     height: 100%;
     background: var(--color-veil);
   }
+
   99% {
     background: transparent;
     width: 100%;
     height: 100%;
   }
+
   to {
     width: 0;
     height: 0;
@@ -3873,11 +3882,9 @@
 }
 
 .action-panel {
-  height: 56px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  padding: 0 20px;
   border-bottom: 1px solid var(--color-divider);
   z-index: 220;
   background: var(--color-base);
@@ -4005,6 +4012,7 @@
     transform: translateX(-15px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -4017,6 +4025,7 @@
     transform: translateX(-15px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -4030,6 +4039,7 @@
     opacity: 1;
     visibility: visible;
   }
+
   to {
     transform: translateX(-15px);
     opacity: 0;
@@ -4043,6 +4053,7 @@
     opacity: 1;
     visibility: visible;
   }
+
   to {
     transform: translateX(-15px);
     opacity: 0;
@@ -5314,16 +5325,20 @@ html {
     border: 1px solid var(--yc-lego-color-border-medium);
     background-color: var(--yc-lego-color-base);
   }
+
   .yc-root .radiobox_view_classic.radiobox_theme_normal .radiobox__radio_pressed_yes .radiobox__box:before {
     background-color: var(--yc-lego-color-medium-light-hover-solid);
   }
+
   .yc-root .radiobox_view_classic.radiobox_theme_normal .radiobox__radio_checked_yes .radiobox__box:after {
     background-color: var(--yc-lego-color-text-primary);
   }
+
   .yc-root .radiobox_view_classic.radiobox_theme_normal .radiobox__radio_disabled_yes .radiobox__box:before {
     border-color: var(--yc-lego-color-medium-light-disabled);
     background-color: var(--yc-lego-color-medium-light-disabled);
   }
+
   .yc-root
     .radiobox_view_classic.radiobox_theme_normal
     .radiobox__radio_disabled_yes.radiobox__radio_checked_yes
@@ -5348,16 +5363,20 @@ html {
   .yc-root .radiobox_view_classic.radiobox_theme_pseudo .radiobox__box:before {
     border: 1px solid var(--yc-lego-color-border-medium);
   }
+
   .yc-root .radiobox_view_classic.radiobox_theme_pseudo .radiobox__radio_pressed_yes .radiobox__box:before {
     background-color: var(--yc-lego-color-medium-light-hover);
   }
+
   .yc-root .radiobox_view_classic.radiobox_theme_pseudo .radiobox__radio_checked_yes .radiobox__box:after {
     background-color: var(--yc-lego-color-text-primary);
   }
+
   .yc-root .radiobox_view_classic.radiobox_theme_pseudo .radiobox__radio_disabled_yes .radiobox__box:before {
     border-color: var(--yc-lego-color-medium-light-disabled);
     background-color: var(--yc-lego-color-medium-light-disabled);
   }
+
   .yc-root
     .radiobox_view_classic.radiobox_theme_pseudo
     .radiobox__radio_disabled_yes.radiobox__radio_checked_yes
@@ -5377,27 +5396,32 @@ html {
   .yc-root .radiobox_view_default.radiobox_tone_default.radiobox_theme_normal .radiobox__box:after {
     background: var(--yc-lego-color-base);
   }
+
   .yc-root .radiobox_view_default.radiobox_tone_default.radiobox_theme_normal .radiobox__box {
     background-color: var(--yc-lego-color-border-medium-solid);
   }
+
   .yc-root
     .radiobox_view_default.radiobox_tone_default.radiobox_theme_normal
     .radiobox__radio_checked_yes
     .radiobox__box {
     background-color: var(--yc-lego-color-dark-checked-solid);
   }
+
   .yc-root
     .radiobox_view_default.radiobox_tone_default.radiobox_theme_normal
     .radiobox__radio_hovered_yes
     .radiobox__box {
     background-color: var(--yc-lego-color-dark-light-hover-solid);
   }
+
   .yc-root
     .radiobox_view_default.radiobox_tone_default.radiobox_theme_normal
     .radiobox__radio_hovered_yes.radiobox__radio_checked_yes
     .radiobox__box {
     background-color: var(--yc-lego-color-dark-hover-solid);
   }
+
   .yc-root .utilityfocus .radiobox_view_default.radiobox_tone_default .radiobox__radio_focused_yes .radiobox__box {
     box-shadow: 0 0 0 2px var(--yc-lego-color-utilityfocus-solid);
   }
@@ -5408,24 +5432,30 @@ html {
   .yc-root .radiobox_view_default.radiobox_tone_default.radiobox_theme_normal .radiobox__label {
     color: var(--yc-lego-color-text-primary);
   }
+
   .yc-root .radiobox_view_default.radiobox_theme_normal .radiobox__box {
     background-color: var(--yc-lego-color-border-medium-solid);
   }
+
   .yc-root .radiobox_view_default.radiobox_theme_normal .radiobox__radio_checked_yes .radiobox__box {
     background-color: var(--yc-lego-color-dark-checked-solid);
   }
+
   .yc-root .radiobox_view_default.radiobox_theme_normal .radiobox__radio_hovered_yes .radiobox__box {
     background-color: var(--yc-lego-color-dark-light-hover-solid);
   }
+
   .yc-root
     .radiobox_view_default.radiobox_theme_normal
     .radiobox__radio_hovered_yes.radiobox__radio_checked_yes
     .radiobox__box {
     background-color: var(--yc-lego-color-dark-hover-solid);
   }
+
   .yc-root .radiobox_view_default.radiobox_theme_normal .radiobox__box:after {
     background: var(--yc-lego-color-base);
   }
+
   .yc-root .utilityfocus .radiobox_view_default .radiobox__radio_focused_yes .radiobox__box {
     box-shadow: 0 0 0 2px var(--yc-lego-color-utilityfocus-solid);
   }
@@ -5447,20 +5477,25 @@ html {
   .yc-root .radio-button_view_classic.radio-button_theme_normal .radio-button__radio:before {
     border-color: var(--yc-lego-color-border-medium) var(--yc-lego-color-grayscale-10);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_normal .radio-button__radio_side_both:before,
   .yc-root .radio-button_view_classic.radio-button_theme_normal .radio-button__radio_side_left:before {
     border-left-color: var(--yc-lego-color-border-medium);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_normal .radio-button__radio_side_both:before,
   .yc-root .radio-button_view_classic.radio-button_theme_normal .radio-button__radio_side_right:before {
     border-right-color: var(--yc-lego-color-border-medium);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_normal .radio-button__radio_disabled_yes:before {
     border-color: var(--yc-lego-color-medium-light-disabled);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_normal .radio-button__radio:after {
     background-color: var(--yc-lego-color-base);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_normal .radio-button__radio_disabled_yes:after {
     background-color: var(--yc-lego-color-medium-light-disabled);
   }
@@ -5472,6 +5507,7 @@ html {
     .radio-button__radio_pressed_yes.radio-button__radio_hovered_yes:after {
     background-color: var(--yc-lego-color-medium-light-hover-solid);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_normal .radio-button__radio_hovered_yes:before {
     border-color: var(--yc-lego-color-dark-light-hover);
   }
@@ -5489,13 +5525,16 @@ html {
   .yc-root .radio-button_view_classic.radio-button_theme_pseudo .radio-button__radio:before {
     border-color: var(--yc-lego-color-border-medium) var(--yc-lego-color-grayscale-10);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_pseudo .radio-button__radio_side_left:before,
   .yc-root .radio-button_view_classic.radio-button_theme_pseudo .radio-button__radio_side_right:before {
     border-right-color: var(--yc-lego-color-border-medium);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_pseudo .radio-button__radio_disabled_yes:before {
     border-color: var(--yc-lego-color-medium-light-disabled);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_pseudo .radio-button__radio_disabled_yes:after {
     background-color: var(--yc-lego-color-medium-light-disabled);
   }
@@ -5507,6 +5546,7 @@ html {
     .radio-button__radio_pressed_yes.radio-button__radio_hovered_yes:after {
     background-color: var(--yc-lego-color-medium-light-hover);
   }
+
   .yc-root .radio-button_view_classic.radio-button_theme_pseudo .radio-button__radio_hovered_yes:before {
     border-color: var(--yc-lego-color-dark-light-hover);
   }
@@ -6415,4 +6455,19 @@ html {
 
 .icon_svg.button2__icon {
   color: var(--color-azure-solid);
+}
+
+.ant-d-input-search {
+  width: 360px;
+}
+
+.ant-d-header-small-btn {
+  margin: 4px;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.ant-d-header-eye-icon {
+  margin-right: 9px;
 }
