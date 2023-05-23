@@ -44,7 +44,7 @@ class HeaderClustrum extends React.Component {
   }
 
   render() {
-    return <Header {...this.props}></Header>
+    return <Header {...this.props}></Header>;
   }
 }
 
