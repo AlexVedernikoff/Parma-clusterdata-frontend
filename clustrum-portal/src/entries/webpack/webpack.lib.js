@@ -1,16 +1,23 @@
 const path = require('path');
+const { PORTAL_ASSETS_PATH } = require('../../../src/context-path.js');
 
 module.exports = {
-  mode: 'development',
-  entry: './src/clustrum-lib/src/index.ts',
+  mode: 'production',
+  entry: './src/entries/libBuilder.js',
   output: {
-    path: path.resolve('./src/clustrum-lib/dist/'),
+    path: path.resolve('./src/entries/dist/'),
     filename: 'bundle.js',
     library: {
       type: 'umd',
       name: 'clustrum',
     },
-    globalObject: `(typeof self !== 'undefined' ? self : this)`,
+    globalObject: 'this',
+    publicPath: PORTAL_ASSETS_PATH,
+  },
+  externals: {
+    react: 'react',
+    'react-redux': 'react-redux',
+    redux: 'redux',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],

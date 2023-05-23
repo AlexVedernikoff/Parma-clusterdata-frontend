@@ -11,7 +11,7 @@
     "build:local": "webpack --watch --config webpack/webpack.local.js",
     "build:local-front": "webpack --watch --config webpack/webpack.local-front.js",
     "build:dev": "webpack --config webpack/webpack.dev.js",
-    "build:lib": "webpack --config src/clustrum-lib/webpack/webpack.lib.js",
+    "build:lib": "webpack --config src/entries/webpack/webpack.lib.js",
     "run": "cd dist && node index.js",
     "test": "jest",
     "test:watch": "jest --watch",
