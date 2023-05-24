@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { TableWidget, createCell } from '@clustrum-lib/shared/ui/widgets';
 
-function _camelCaseCss(_style) {
+function camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;
   return Object.keys(style || {}).reduce((result, key) => {
     const camelCasedKey = key.replace(/-(\w|$)/g, (_, char) => char.toUpperCase());
@@ -12,7 +12,7 @@ function _camelCaseCss(_style) {
   }, {});
 }
 
-function _generateName({ name = 'name', index }) {
+function generateName({ name = 'name', index }) {
   return `0_0_${index}_id=id_name=${name}`;
 }
 
@@ -84,12 +84,12 @@ const handleCellClick = (context, row, field, columnName, prevSelectedCell, call
   }
 };
 
-function _getColumnsAndNames({ head, context }, clickCallback, field, prevSelectedCell) {
+function getColumnsAndNames({ head, context }, clickCallback, field, prevSelectedCell) {
   return head.reduce(
     (result, column, index) => {
       console.debug({ column });
       const { name, type, resultSchemaId, ...options } = column;
-      const columnName = _generateName({ name, index });
+      const columnName = generateName({ name, index });
 
       const columnData = {
         name: columnName,
@@ -102,7 +102,11 @@ function _getColumnsAndNames({ head, context }, clickCallback, field, prevSelect
             ? row[columnName].valueWithoutFormat
             : row[columnName].value,
         resultSchemaId,
-        handlerData: { context, field, columnName, prevSelectedCell, clickCallback },
+        context,
+        field,
+        columnName,
+        prevSelectedCell,
+        clickCallback,
       };
 
       result.columns.push(columnData);
@@ -114,9 +118,9 @@ function _getColumnsAndNames({ head, context }, clickCallback, field, prevSelect
   );
 }
 
-function _getTitle(title) {
+function getTitle(title) {
   return title ? (
-    <div className="chartkit-table__title" style={_camelCaseCss(title.style)}>
+    <div className="chartkit-table__title" style={camelCaseCss(title.style)}>
       {title.text || title}
     </div>
   ) : null;
@@ -157,7 +161,7 @@ export class TableAdapter extends React.PureComponent {
     this.props.onError({ error });
   }
 
-  _getSelectedCell() {
+  getSelectedCell() {
     const { ownWidgetParams } = this.props;
     const selectedCell = {
       paramId: '',
@@ -178,11 +182,7 @@ export class TableAdapter extends React.PureComponent {
 
   render() {
     const {
-      data: {
-        data: { head, rows = [], total = [] } = {},
-        config: { title, sort, order, settings } = {},
-      } = {},
-      orderBy,
+      data: { data: { head, rows = [] } = {}, config: { title } = {} } = {},
     } = this.props;
 
     if (!head || !rows) {
@@ -196,11 +196,11 @@ export class TableAdapter extends React.PureComponent {
       );
     }
 
-    const selectedCell = this._getSelectedCell();
+    const selectedCell = this.getSelectedCell();
     // контекст только для передачи _domNode
     const context = {};
 
-    const { columns, names } = _getColumnsAndNames(
+    const { columns, names } = getColumnsAndNames(
       { head, context },
       this.props.onStateAndParamsChange,
       this.props.data.data.groupField,
@@ -222,21 +222,14 @@ export class TableAdapter extends React.PureComponent {
         sorter: col.sortAccessor,
         onCell: row => {
           return {
-            onClick: event => {
-              const {
-                context,
-                field,
-                columnName,
-                prevSelectedCell,
-                clickCallback,
-              } = col.handlerData;
+            onClick: () => {
               handleCellClick(
-                context,
+                col.context,
                 row,
-                field,
-                columnName,
-                prevSelectedCell,
-                clickCallback,
+                col.field,
+                col.columnName,
+                col.prevSelectedCell,
+                col.clickCallback,
               );
             },
           };
@@ -270,7 +263,7 @@ export class TableAdapter extends React.PureComponent {
         <TableWidget
           columns={antdTableColumns}
           dataSource={data}
-          title={_getTitle(title)}
+          title={getTitle(title)}
           {...this.props}
         />
       </div>
