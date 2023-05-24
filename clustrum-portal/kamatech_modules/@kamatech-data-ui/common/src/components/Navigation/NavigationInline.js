@@ -75,7 +75,6 @@ class NavigationInline extends React.Component {
           ></KamatechSidebar>
         </div>
         <div className={b('content')}>
-          {this.renderHeader()}
           <NavigationEntries
             ref={this.refEntries}
             {...props}
