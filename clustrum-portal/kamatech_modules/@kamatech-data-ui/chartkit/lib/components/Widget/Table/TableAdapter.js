@@ -12,8 +12,8 @@ function _camelCaseCss(_style) {
   }, {});
 }
 
-function _generateName({ id = 'id', name = 'name', shift, level, index }) {
-  return `${level}_${shift}_${index}_id=${id}_name=${name}`;
+function _generateName({ name = 'name', index }) {
+  return `0_0_${index}_id=id_name=${name}`;
 }
 
 const findGroupField = row => {
@@ -84,85 +84,29 @@ const handleCellClick = (context, row, field, columnName, prevSelectedCell, call
   }
 };
 
-function _getColumnsAndNames(
-  { head, context, level = 0, shift = 0 },
-  clickCallback,
-  field,
-  prevSelectedCell,
-) {
+function _getColumnsAndNames({ head, context }, clickCallback, field, prevSelectedCell) {
   return head.reduce(
     (result, column, index) => {
-      if (column.sub) {
-        const { columns, names } = _getColumnsAndNames(
-          {
-            head: column.sub,
-            context,
-            level: level + 1,
-            shift: index,
-          },
-          clickCallback,
-          field,
-          prevSelectedCell,
-        );
-        const columnName = _generateName({
-          id: column.id,
-          name: column.name,
-          level,
-          shift,
-          index,
-        });
-        result.columns.push({
-          name: columnName,
-          header: column.name,
-          customStyle: ({ row, header, name }) => {
-            if (header) {
-              return _camelCaseCss(column.css);
-            }
-            return _camelCaseCss((row[name] && row[name].css) || undefined);
-          },
-          align: DataTable.CENTER,
-          sub: columns,
-        });
-        result.names = result.names.concat(names);
-      } else {
-        const { id, name, type, css: columnCss, resultSchemaId, ...options } = column;
-        const columnName = _generateName({ id, name, level, shift, index });
+      console.debug({ column });
+      const { name, type, resultSchemaId, ...options } = column;
+      const columnName = _generateName({ name, index });
 
-        const columnData = {
-          name: columnName,
-          header: name,
-          className: `chartkit-table__cell_type_${type}`,
-          render: ({ value }) => createCell(type, value, options),
-          customStyle: ({ row, header, name }) => {
-            if (header) {
-              return _camelCaseCss(columnCss);
-            }
-            return _camelCaseCss((row[name] && row[name].css) || undefined);
-          },
-          sortAccessor: row =>
-            Array.isArray(row[columnName].value)
-              ? row[columnName].value[0]
-              : row[columnName].valueWithoutFormat
-              ? row[columnName].valueWithoutFormat
-              : row[columnName].value,
-          onClick: ({ row }, { name: columnName }) => {
-            handleCellClick(
-              context,
-              row,
-              field,
-              columnName,
-              prevSelectedCell,
-              clickCallback,
-            );
-          },
-          sortable: type !== 'grid',
-          resultSchemaId,
-          handlerData: { context, field, columnName, prevSelectedCell, clickCallback },
-        };
+      const columnData = {
+        name: columnName,
+        header: name,
+        render: ({ value }) => createCell(type, value, options),
+        sortAccessor: row =>
+          Array.isArray(row[columnName].value)
+            ? row[columnName].value[0]
+            : row[columnName].valueWithoutFormat
+            ? row[columnName].valueWithoutFormat
+            : row[columnName].value,
+        resultSchemaId,
+        handlerData: { context, field, columnName, prevSelectedCell, clickCallback },
+      };
 
-        result.columns.push(columnData);
-        result.names.push(columnName);
-      }
+      result.columns.push(columnData);
+      result.names.push(columnName);
 
       return result;
     },
