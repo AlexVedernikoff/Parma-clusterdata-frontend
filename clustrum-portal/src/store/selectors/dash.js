@@ -81,11 +81,6 @@ export const getCurrentTabConnectableItems = state => {
   }
 };
 
-export const getStyle = state =>
-  state.dash.data && state.dash.data.settings && state.dash.data.settings.style !== 'null'
-    ? state.dash.data.settings.style
-    : null;
-
 export const getWidgetEditorUUID = state => state.dash.widgetEditorUUID;
 
 export const getWidgetForReloadUUID = state => state.dash.widgetForReloadUUID;

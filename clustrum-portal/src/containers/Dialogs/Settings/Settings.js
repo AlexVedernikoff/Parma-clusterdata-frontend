@@ -1,62 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
-import { Dialog, YCSelect } from '@kamatech-data-ui/common/src';
-import Wrapper from '../Control/Wrapper/Wrapper';
+import { Dialog } from '@kamatech-data-ui/common/src';
 import { getSettings, isDialogVisible } from '../../../store/selectors/dash';
 import { closeDialog, setSettings } from '../../../store/actions/dash';
 import { DIALOG_TYPE } from '../../../modules/constants/constants';
-import { getStyles } from '../../../services/dashboard/get-styles';
 
 const b = block('dialog-settings');
 
 function Settings({ settings, visible, setSettings, closeDialog }) {
-  const [selectedStyle, selectStyle] = React.useState({
-    styleId: settings.styleId,
-    style: settings.style,
-  });
-  const [styles, setStyles] = React.useState([]);
-  const stylesMap = new Map(styles.map(({ id, value }) => [id, value]));
-
-  useEffect(() => {
-    getStyles().then(styles => setStyles(styles));
-  }, []);
-
-  const handleStyleChange = styleId => {
-    const style = stylesMap.get(styleId);
-
-    if (style) {
-      selectStyle({ styleId, style });
-    }
-  };
-
   return settings ? (
     <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
       <Dialog.Header caption="Настройки" />
-      <Dialog.Body className={b()}>
-        <Wrapper title="Выбор темы">
-          <YCSelect
-            showSearch={true}
-            type={'single'}
-            allowEmptyValue={false}
-            value={selectedStyle.styleId}
-            onChange={handleStyleChange}
-            disabled={!styles.length}
-            items={styles.map(({ id, name }) => ({
-              value: id,
-              title: name,
-              key: id,
-            }))}
-          />
-        </Wrapper>
-      </Dialog.Body>
+      <Dialog.Body className={b()} />
       <Dialog.Footer
         onClickButtonCancel={closeDialog}
         textButtonApply="Сохранить"
         textButtonCancel="Отменить"
         onClickButtonApply={() => {
-          setSettings({ ...settings, ...selectedStyle });
+          setSettings({ ...settings });
           closeDialog();
         }}
       />
@@ -65,10 +28,7 @@ function Settings({ settings, visible, setSettings, closeDialog }) {
 }
 
 Settings.propTypes = {
-  settings: PropTypes.shape({
-    styleId: PropTypes.string.isRequired,
-    style: PropTypes.string.isRequired,
-  }).isRequired,
+  settings: PropTypes.object.isRequired,
   visible: PropTypes.bool.isRequired,
   setSettings: PropTypes.func.isRequired,
   closeDialog: PropTypes.func.isRequired,
