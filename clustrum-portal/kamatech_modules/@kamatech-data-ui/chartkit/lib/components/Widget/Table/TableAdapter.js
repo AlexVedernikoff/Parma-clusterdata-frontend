@@ -113,7 +113,7 @@ function _getColumnsAndNames(
         });
         result.columns.push({
           name: columnName,
-          header: <span className="chartkit-table__head-cell">{column.name}</span>,
+          header: column.name,
           customStyle: ({ row, header, name }) => {
             if (header) {
               return _camelCaseCss(column.css);
@@ -130,7 +130,7 @@ function _getColumnsAndNames(
 
         const columnData = {
           name: columnName,
-          header: <span className="chartkit-table__head-cell">{name}</span>,
+          header: name,
           className: `chartkit-table__cell_type_${type}`,
           render: ({ value }) => createCell(type, value, options),
           customStyle: ({ row, header, name }) => {
@@ -271,7 +271,7 @@ export class TableAdapter extends React.PureComponent {
 
     const antdTableColumns = columns.map((col, index) => {
       return {
-        title: col.header.props.children,
+        title: col.header,
         key: index,
         dataIndex: col.name,
         render: item => renderCell(item),
