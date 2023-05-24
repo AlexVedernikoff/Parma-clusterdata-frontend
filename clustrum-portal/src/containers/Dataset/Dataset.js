@@ -4,9 +4,8 @@ import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
-import { Button, Spin } from 'lego-on-react';
+import { Spin } from 'lego-on-react';
 import { ErrorContent, EntryDialogues, ActionPanel, ErrorDialog } from '@kamatech-data-ui/clustrum';
-import { Icon } from '@kamatech-data-ui/common/src';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
 
 import DatasetPanel from '../../components/DatasetPanel/DatasetPanel';
@@ -41,11 +40,10 @@ import {
   datasetNameSelector,
 } from '../../store/reducers/dataset';
 
-// import './Dataset.scss';
-import iconData from '@kamatech-data-ui/clustrum/src/icons/data.svg';
 import PageHead from '../../components/PageHeader/PageHeader';
 import VerificationModal from '../../components/DataSource/VerificationModal';
-import iconVerificationRules from '@kamatech-data-ui/clustrum/src/icons/verification-rules-blue.svg';
+import { Button } from 'antd';
+import { BarChartOutlined, BlockOutlined, SafetyOutlined } from '@ant-design/icons';
 
 const b = block('dataset');
 
@@ -381,57 +379,40 @@ class Dataset extends React.Component {
           }}
           additionalEntryItems={[
             <Button
-              cls={b('materialization-btn')}
+              className="ant-d-header-small-btn"
               key="materialization"
-              theme="flat"
-              size="n"
-              view="default"
-              tone="default"
-              title="Материализация данных"
               onClick={this.openDataSource}
-            >
-              <Icon data={iconData} width={22} height={22} />
-            </Button>,
+              icon={<BlockOutlined style={{ color: '#1890ff' }} />}
+              key="materialization-btn"
+            />,
             <Button
-              cls={b('verification-btn')}
+              className="ant-d-header-small-btn"
               key="verification"
-              theme="flat"
-              size="n"
-              view="default"
-              tone="default"
-              title="Верификация данных"
               onClick={this.openVerificationModal}
-            >
-              <Icon data={iconVerificationRules} width={22} height={22} />
-            </Button>,
+              icon={<SafetyOutlined style={{ color: '#1890ff' }} />}
+              key="verification-btn"
+            />,
           ]}
           rightItems={[
             <Button
               key="create-widget"
-              cls={b('create-widget-btn')}
-              theme="flat"
-              size="n"
-              view="default"
-              tone="default"
-              text="Создать чарт"
               onClick={this.openCreationWidgetPage}
-            />,
+              icon={<BarChartOutlined />}
+              key="create-widget-btn"
+            >
+              Создать чарт
+            </Button>,
             <Button
               disabled={savingDatasetDisabled}
-              progress={isProcessingSavingDataset}
-              cls={b('save-dataset-btn')}
-              key="save-dataset"
-              theme="action"
-              size="n"
-              view="default"
-              tone="default"
-              text={isProcessingDataset ? null : 'Сохранить'}
+              type="primary"
               onClick={() =>
                 saveDataset({
                   datasetErrorDialogRef: this.datasetErrorDialogRef,
                 })
               }
+              key="save-dataset-btn"
             >
+              Сохранить
               {isProcessingDataset && (
                 <React.Fragment>
                   <Spin size="xs" progress />

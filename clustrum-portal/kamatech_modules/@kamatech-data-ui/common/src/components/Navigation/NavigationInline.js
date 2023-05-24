@@ -65,7 +65,6 @@ class NavigationInline extends React.Component {
     return (
       <div className={b({ inline: true })}>
         <div className={b('content')}>
-          {this.renderHeader()}
           <NavigationEntries
             ref={this.refEntries}
             {...props}

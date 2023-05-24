@@ -2,15 +2,13 @@ import React, { PureComponent } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import block from 'bem-cn-lite';
 import PropTypes from 'prop-types';
-import { Header, Utils } from '@kamatech-data-ui/clustrum';
+import { Utils } from '@kamatech-data-ui/clustrum';
 import { Pointerfocus } from 'lego-on-react';
 
 import DatasetPage from '../../containers/DatasetPage/DatasetPage';
 import DatasetCreationPage from '../../containers/DatasetCreationPage/DatasetCreationPage';
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 import { PageContainer } from '../../clustrum-lib/src/shared/ui/page-container/page-container';
-
-// import './DatasetRouter.scss';
 
 const b = block('dataset-router');
 
