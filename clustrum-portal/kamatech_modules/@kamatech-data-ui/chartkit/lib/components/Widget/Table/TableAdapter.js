@@ -12,10 +12,6 @@ function camelCaseCss(_style) {
   }, {});
 }
 
-function generateName({ name = 'name', index }) {
-  return `0_0_${index}_id=id_name=${name}`;
-}
-
 const findGroupField = row => {
   for (let f in row) {
     if (row[f].isGroupField) {
@@ -88,20 +84,13 @@ function getColumnsAndNames({ head, context }, clickCallback, field, prevSelecte
   return head.reduce(
     (result, column, index) => {
       console.debug({ column });
-      const { name, type, resultSchemaId, ...options } = column;
-      const columnName = generateName({ name, index });
+      const { name, type, ...options } = column;
+      const columnName = `${index}_name=${name}`;
 
       const columnData = {
-        name: columnName,
+        dataIndex: columnName,
         header: name,
         render: ({ value }) => createCell(type, value, options),
-        sortAccessor: row =>
-          Array.isArray(row[columnName].value)
-            ? row[columnName].value[0]
-            : row[columnName].valueWithoutFormat
-            ? row[columnName].valueWithoutFormat
-            : row[columnName].value,
-        resultSchemaId,
         context,
         field,
         columnName,
@@ -217,9 +206,13 @@ export class TableAdapter extends React.PureComponent {
       return {
         title: col.header,
         key: index,
-        dataIndex: col.name,
+        dataIndex: col.dataIndex,
         render: item => renderCell(item),
-        sorter: col.sortAccessor,
+        sorter: (row1, row2) => {
+          const left = row1[col.dataIndex].value;
+          const right = row2[col.dataIndex].value;
+          return left > right ? 1 : left < right ? -1 : 0;
+        },
         onCell: row => {
           return {
             onClick: () => {
