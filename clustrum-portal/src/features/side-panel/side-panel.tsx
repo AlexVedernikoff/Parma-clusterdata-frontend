@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { useCallback, useState, ReactElement } from 'react';
 import cn from 'classnames';
 import { useHistory } from 'react-router-dom';
 import { MenuItemType } from 'antd/es/menu/hooks/useItems';
@@ -9,16 +9,12 @@ import { menuItemsConfig } from './configs/menu-items-config';
 import { useActiveMenuItemKey } from './lib/hooks/use-active-menu-item-key';
 import './side-panel.css';
 
-export const SidePanel: FC = () => {
+export function SidePanel(): ReactElement {
   const [collapsed, setCollapsed] = useState(false);
   const history = useHistory();
   const selectedKey = useActiveMenuItemKey();
 
-  const toggleCollapsed = (): void => {
-    setCollapsed(!collapsed);
-  };
-
-  const onSidePanelItemClick = useCallback(
+  const handleSidePanelItemClick = useCallback(
     (item: MenuItemType) => {
       history.push(item.key.toString());
     },
@@ -27,28 +23,33 @@ export const SidePanel: FC = () => {
 
   return (
     <div className="side-panel">
-      <div className={cn('side-panel-header', { 'side-panel-header_collapsed': collapsed })}>
-        <PieChartFilled className="side-panel-header__icon" />
-        <span className={cn('side-panel-header__title', { 'side-panel-header__title_collapsed': collapsed })}>
+      <div className={cn('side-panel__header', { 'side-panel__header--collapsed': collapsed })}>
+        <PieChartFilled className="side-panel__header-icon" />
+        <span className={cn('side-panel__header-title', { 'side-panel__header-title--collapsed': collapsed })}>
           Анализ данных
         </span>
       </div>
-      <div className="side-panel-content">
+      <nav className="side-panel__content">
         <Menu
           mode="inline"
           inlineCollapsed={collapsed}
           items={menuItemsConfig}
           selectedKeys={selectedKey}
-          onClick={onSidePanelItemClick}
+          onClick={handleSidePanelItemClick}
         />
-      </div>
-      <div className="side-panel-footer" onClick={toggleCollapsed}>
+      </nav>
+      <button
+        className="side-panel__footer"
+        onClick={(): void => {
+          setCollapsed(!collapsed);
+        }}
+      >
         {collapsed ? (
-          <RightOutlined className="side-panel-footer__icon" />
+          <RightOutlined className="side-panel__footer-icon" />
         ) : (
-          <LeftOutlined className="side-panel-footer__icon" />
+          <LeftOutlined className="side-panel__footer-icon" />
         )}
-      </div>
+      </button>
     </div>
   );
-};
+}

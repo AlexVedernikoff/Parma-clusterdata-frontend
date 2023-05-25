@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons';
 import React from 'react';
 import { MenuProps } from 'antd';
-import { ROUTES } from '../../../shared/lib/routes';
+import { ROUTES } from '../../../clustrum-lib/src/shared/lib/routes';
 
 export const menuItemsConfig: NonNullable<MenuProps['items']> = [
   {
