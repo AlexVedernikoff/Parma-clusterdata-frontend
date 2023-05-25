@@ -1,9 +1,11 @@
 import { LAYOUT_ID } from '../constants/constants';
+import React from 'react';
 
 export function getUniqueId(prefix = 'id') {
   return `${prefix}-${Date.now()}`;
 }
 
+import { FontSizeOutlined } from '@ant-design/icons';
 import iconCastBoolean from 'icons/cast-boolean.svg';
 import iconCastDate from 'icons/cast-date.svg';
 import iconCastGeo from 'icons/cast-geo.svg';
@@ -31,7 +33,7 @@ export function getIconForCast(cast) {
 
     case 'string':
     default:
-      return iconCastString;
+      return <FontSizeOutlined width="16" />;
   }
 }
 

@@ -8,6 +8,7 @@ import { findDOMNode } from 'react-dom';
 export function DndContainer(props: any) {
   const [items, setItems] = useState(props.items || []);
   const [dropPlaceState, setDropPlaceState] = useState(0);
+  const [tooltipVisible, setTooltipVisibleState] = useState(false);
   let ref = React.useRef<HTMLDivElement>(null);
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -88,6 +89,14 @@ export function DndContainer(props: any) {
     },
     hover: (item, monitor) => hoverItem(item, monitor, props, ref),
   }));
+
+  function setTooltipVisible(visibility: boolean) {
+    setTooltipVisibleState(visibility);
+  }
+
+  function getTooltipVisible() {
+    return tooltipVisible;
+  }
 
   function hoverItem(item: any, monitor: any, props: any, ref: any) {
     console.log('hover start');
@@ -335,6 +344,8 @@ export function DndContainer(props: any) {
               wrapTo={props.wrapTo}
               disabled={disabled}
               setDropPlace={setDropPlace}
+              setTooltipVisible={setTooltipVisible}
+              getTooltipVisible={getTooltipVisible}
             />
           );
         })}

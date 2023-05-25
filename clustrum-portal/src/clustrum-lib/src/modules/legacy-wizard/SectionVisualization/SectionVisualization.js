@@ -14,6 +14,16 @@ import iconSort from 'icons/sort.svg';
 import iconSortDesc from 'icons/sort-desc.svg';
 import iconSortAsc from 'icons/sort-asc.svg';
 
+import {
+  BgColorsOutlined,
+  CloseOutlined,
+  HolderOutlined,
+  FilterOutlined,
+  SortAscendingOutlined,
+  SortDescendingOutlined,
+  DatabaseOutlined,
+} from '@ant-design/icons';
+
 import { CONFLICT_TOOLTIPS, ITEM_TYPES, MEASURE_TYPE, VISUALIZATIONS } from '../../../../../constants';
 
 import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
@@ -390,7 +400,7 @@ class SectionVisualization extends Component {
           <div className="subcontainer">
             <div className="subheader">
               <div className="placeholder-icon">
-                <Icon data={iconFilter} width="24" />
+                <FilterOutlined width="16" height="16" />
               </div>
               <span>Фильтры</span>
             </div>
@@ -573,7 +583,7 @@ class SectionVisualization extends Component {
           <div className="subcontainer">
             <div className="subheader">
               <div className="placeholder-icon">
-                <Icon data={iconColor} width="24" />
+                <BgColorsOutlined width="16" height="16" />
               </div>
               <span>Цвета</span>
             </div>
@@ -619,7 +629,7 @@ class SectionVisualization extends Component {
           <div className="subcontainer">
             <div className="subheader">
               <div className="placeholder-icon">
-                <Icon data={iconSort} width="24" />
+                <SortAscendingOutlined width="16" height="16" />
               </div>
               <span>Сортировка</span>
             </div>
@@ -1146,6 +1156,7 @@ class SectionVisualization extends Component {
     const dragHoveredClassName = `drag-hovered ${swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'}`;
 
     const castIconData = getIconForCast(item.cast);
+    console.log(props.getTooltipVisible());
 
     return (
       <div
@@ -1211,25 +1222,20 @@ class SectionVisualization extends Component {
             this.doingReplace = true;
           }
         }}
-        // onMouseOver={() => {
-        //   itemComponent.setState({
-        //     tooltipVisible: true,
-        //   });
-        // }}
-        // onMouseOut={() => {
-        //   itemComponent.setState({
-        //     tooltipVisible: false,
-        //   });
-        // }}
+        onMouseOver={() => {
+          props.setTooltipVisible(true);
+        }}
+        onMouseOut={() => {
+          props.setTooltipVisible(false);
+        }}
         onClick={e => {
           if (this.props?.onItemClick) {
             this.props?.onItemClick(e, item);
           }
         }}
       >
-        <div className="item-icon">
-          <Icon data={castIconData} width="16" />
-        </div>
+        <HolderOutlined className="item-holder" />
+        <div className="item-icon">{castIconData}</div>
         <div className="item-title" title={item.datasetName + '.' + item.title}>
           {item.title}
         </div>
@@ -1246,7 +1252,7 @@ class SectionVisualization extends Component {
                 return false;
               }}
             >
-              <Icon data={iconCross} width="16" />
+              <CloseOutlined width="16" />
             </div>
             <div className="item-right-icon error-icon">
               <Icon data={iconError} width="16" />
@@ -1254,7 +1260,7 @@ class SectionVisualization extends Component {
             {item.conflict ? (
               <Tooltip
                 anchor={itemComponent}
-                //visible={itemComponent.state.tooltipVisible}
+                visible={props.getTooltipVisible()}
                 theme="error"
                 view="classic"
                 tone="default"
@@ -1267,7 +1273,11 @@ class SectionVisualization extends Component {
             ) : null}
             {this.props?.id === 'sort-container' ? (
               <div className="item-right-icon sort-icon">
-                <Icon data={item.direction === 'ASC' ? iconSortAsc : iconSortDesc} width="16" />
+                {item.direction === 'ASC' ? (
+                  <SortAscendingOutlined width="16" height="16" />
+                ) : (
+                  <SortDescendingOutlined width="16" height="16" />
+                )}
               </div>
             ) : null}
           </div>

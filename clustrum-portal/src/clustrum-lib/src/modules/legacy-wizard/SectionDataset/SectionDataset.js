@@ -13,6 +13,7 @@ import FieldEditor from '@kamatech-data-ui/clustrum/src/components/FieldEditor/F
 
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
+import { FontSizeOutlined, EllipsisOutlined, HolderOutlined } from '@ant-design/icons';
 import iconCastBoolean from 'icons/cast-boolean.svg';
 import iconCastDate from 'icons/cast-date.svg';
 import iconCastGeo from 'icons/cast-geo.svg';
@@ -374,14 +375,13 @@ class SectionDataset extends Component {
 
       case 'string':
       default:
-        castIconData = iconCastString;
+        castIconData = <FontSizeOutlined width="16" />;
     }
 
     return (
       <div className={resultClassName} title={item.title}>
-        <div className="item-icon">
-          <Icon data={castIconData} width="16" />
-        </div>
+        <HolderOutlined className="item-holder" />
+        <div className="item-icon">{castIconData}</div>
         <div className="item-title" title={item.title}>
           {item.title}
         </div>
@@ -402,7 +402,7 @@ class SectionDataset extends Component {
             size="n"
             switcher={
               <Button size="xs" theme="flat" type="default" view="default" width="max">
-                <Icon data={iconMore} width="20" height="20" />
+                <EllipsisOutlined width="24" height="24" />
               </Button>
             }
             popup={
@@ -640,7 +640,7 @@ class SectionDataset extends Component {
                 size="n"
                 switcher={
                   <Button size="s" theme="flat" type="default" view="default" width="max">
-                    <Icon data={iconMore} width="22" height="22" />
+                    <EllipsisOutlined width="24" height="24" />
                   </Button>
                 }
                 popup={
