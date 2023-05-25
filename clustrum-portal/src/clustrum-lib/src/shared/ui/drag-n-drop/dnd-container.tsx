@@ -4,9 +4,12 @@ import { getUniqueId } from '../../../../../utils/helpers';
 import { useDrop } from 'react-dnd';
 import { DndItem } from './dnd-item';
 import { findDOMNode } from 'react-dom';
+import { DndItemInterface } from './types/dnd-item';
+import { DndContainerProps } from './types/dnd-container-props';
 
-export function DndContainer(props: any) {
-  const [items, setItems] = useState(props.items || []);
+export function DndContainer(props: DndContainerProps) {
+  console.log(props);
+  const [items, setItems] = useState<DndItemInterface[]>(props.items || []);
   const [dropPlaceState, setDropPlaceState] = useState(0);
   const [tooltipVisible, setTooltipVisibleState] = useState(false);
   let ref = React.useRef<HTMLDivElement>(null);
@@ -74,9 +77,7 @@ export function DndContainer(props: any) {
         remove(item.index);
 
         // добавляем в целевой контейнер
-        insert(item.item, targetIndex, () => {
-          insert(item.item, item.index);
-        });
+        push(item.item);
       }
       //}
 
@@ -155,7 +156,7 @@ export function DndContainer(props: any) {
   }
 
   //Вроде не используется
-  function push(item: any) {
+  function push(item: DndItemInterface) {
     // по умолчанию пушим всегда
     let push = true;
 
@@ -169,11 +170,7 @@ export function DndContainer(props: any) {
 
       pushedItem.id = getUniqueId('inserted');
 
-      setItems(
-        update(items, {
-          $push: [pushedItem],
-        }),
-      );
+      setItems(prev => [...prev, pushedItem]);
 
       if (props.onUpdate) {
         props.onUpdate(items, pushedItem);
@@ -255,42 +252,42 @@ export function DndContainer(props: any) {
     setDropPlaceState(dropPlace);
   }
 
-  const { item: draggingItem, disabled } = props;
+  const { disabled } = props;
 
   let dropPlaceExists = false;
   let canDrop = false;
 
-  if (draggingItem && draggingItem.item) {
-    dropPlaceExists = typeof dropPlaceState === 'number';
-    if (props.noDropPlace) {
-      dropPlaceExists = false;
-    }
+  // if (draggingItem && draggingItem.item) {
+  //   dropPlaceExists = typeof dropPlaceState === 'number';
+  //   if (props.noDropPlace) {
+  //     dropPlaceExists = false;
+  //   }
 
-    if (isOver) {
-      if (!dropPlaceExists && items.length === 0) {
-        dropPlaceExists = true;
-        setDropPlace(0);
-      }
-    } else {
-      dropPlaceExists = false;
-    }
+  //   if (isOver) {
+  //     if (!dropPlaceExists && items.length === 0) {
+  //       dropPlaceExists = true;
+  //       setDropPlace(0);
+  //     }
+  //   } else {
+  //     dropPlaceExists = false;
+  //   }
 
-    if (props.allowedTypes) {
-      canDrop = props.allowedTypes.has(draggingItem.item.type);
-    } else if (props.checkAllowed) {
-      canDrop = props.checkAllowed(draggingItem.item);
-    } else {
-      canDrop = true;
-    }
+  //   if (props.allowedTypes) {
+  //     canDrop = props.allowedTypes.has(draggingItem.item.type);
+  //   } else if (props.checkAllowed) {
+  //     canDrop = props.checkAllowed(draggingItem.item);
+  //   } else {
+  //     canDrop = true;
+  //   }
 
-    if (props.capacity && props.capacity <= items.length) {
-      dropPlaceExists = false;
-    }
+  //   if (props.capacity && props.capacity <= items.length) {
+  //     dropPlaceExists = false;
+  //   }
 
-    if (!canDrop) {
-      dropPlaceExists = false;
-    }
-  }
+  //   if (!canDrop) {
+  //     dropPlaceExists = false;
+  //   }
+  // }
 
   let title;
   if (props.title) {
@@ -325,17 +322,17 @@ export function DndContainer(props: any) {
               key={`${item.id}-${index}`}
               className={props.itemsClassName || ''}
               item={item}
-              draggingItem={draggingItem}
+              // draggingItem={draggingItem}
               index={index}
               listId={props.id}
               listAllowedTypes={props.allowedTypes}
-              listCheckAllowed={
-                props.checkAllowed
-                  ? (item: any) => {
-                      return props.checkAllowed(item);
-                    }
-                  : null
-              }
+              // listCheckAllowed={
+              //   props.checkAllowed
+              //     ? (item: any) => {
+              //         return props.checkAllowed(item);
+              //       }
+              //     : null
+              // }
               listNoRemove={props.noRemove}
               remove={remove}
               replace={replace}
