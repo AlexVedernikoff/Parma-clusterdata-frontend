@@ -1235,7 +1235,10 @@ class SectionVisualization extends Component {
         }}
       >
         <HolderOutlined className="item-holder" />
-        <div className="item-icon">{castIconData}</div>
+
+        {/* Костыль, как и в SectionDataset */}
+        {!!castIconData ? <div className="item-icon">{castIconData}</div> : <Icon data={castIconData} width="16" />}
+
         <div className="item-title" title={item.datasetName + '.' + item.title}>
           {item.title}
         </div>
