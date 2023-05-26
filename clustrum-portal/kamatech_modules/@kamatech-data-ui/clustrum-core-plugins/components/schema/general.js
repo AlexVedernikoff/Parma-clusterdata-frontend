@@ -495,7 +495,6 @@ const GENERAL_API_SCHEMA = {
     },
     timeout: TIMEOUT_120_SEC,
   }),
-  getStyles: 'dashboards/styles',
   createDashState: 'createDashState',
   getDashState: 'getDashState',
 };

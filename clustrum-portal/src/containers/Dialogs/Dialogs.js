@@ -6,7 +6,6 @@ import Title from './Title/Title';
 import Text from './Text/Text';
 import Widget from './Widget/Widget';
 import Control from './Control/Control';
-import Settings from './Settings/Settings';
 
 import { DIALOG_TYPE } from '../../modules/constants/constants';
 
@@ -25,8 +24,6 @@ function Dialogs({ openedDialog }) {
       return <Widget />;
     case DIALOG_TYPE.CONTROL:
       return <Control />;
-    case DIALOG_TYPE.SETTINGS:
-      return <Settings />;
   }
   return null;
 }
