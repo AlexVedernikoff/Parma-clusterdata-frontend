@@ -1,6 +1,8 @@
 export { default as Wizard } from './modules/legacy-wizard/Wizard';
 export { DashKit, pluginText, pluginTitle, pluginWidget } from './modules/legacy-dashboard/src';
 
+export { TitleInfoElement } from './shared/ui/info-elements/title-info-element/title-info-element';
+
 export { useDebounce } from './shared/lib/hooks/use-debounce/use-debounce';
 
 export {

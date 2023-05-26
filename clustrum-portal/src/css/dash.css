@@ -225,6 +225,7 @@
 
 .dashkit-item__loader,
 .dashkit-item__renderer {
+  display: flex;
   position: absolute;
   top: 0;
   bottom: 0;

@@ -1,16 +1,17 @@
 import React from 'react';
 import './title-info-element.css';
 
-interface PluginTitleProps {
+export interface TitleInfoElementProps {
   data: {
-    size?: string;
     text?: string;
     showInTOC?: boolean;
   };
 }
 
-export function PluginTitle({ data }: PluginTitleProps): JSX.Element {
-  const { text = '', size = '', showInTOC = false } = data;
+function TitleInfoElement(
+  { data: { text = '', showInTOC = false } }: TitleInfoElementProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element {
   const id = showInTOC && text ? encodeURIComponent(text) : undefined;
 
   return (
@@ -19,3 +20,7 @@ export function PluginTitle({ data }: PluginTitleProps): JSX.Element {
     </div>
   );
 }
+
+const PluginTitleWithRef = React.forwardRef<HTMLDivElement, TitleInfoElementProps>(TitleInfoElement);
+
+export { PluginTitleWithRef as TitleInfoElement };
