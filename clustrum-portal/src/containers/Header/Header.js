@@ -178,12 +178,8 @@ class Header extends React.PureComponent {
         key: '2',
       },
       {
-        label: <a onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</a>,
-        key: '3',
-      },
-      {
         label: <a onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</a>,
-        key: '4',
+        key: '3',
       },
     ];
 
