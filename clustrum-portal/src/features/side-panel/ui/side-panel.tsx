@@ -5,20 +5,28 @@ import { MenuItemType } from 'antd/es/menu/hooks/useItems';
 import { LeftOutlined, PieChartFilled, RightOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 
-import { menuItemsConfig } from './configs/menu-items-config';
-import { useActiveMenuItemKey } from './lib/hooks/use-active-menu-item-key';
+import { useActiveMenuItemKey } from '../lib/hooks/use-active-menu-item-key';
 import './side-panel.css';
+import { MENU_ITEMS } from '../lib/constants/menu-items';
 
-export function SidePanel(): ReactElement {
+interface SidePanelProps {
+  withoutReactRouter?: boolean;
+}
+
+export function SidePanel({ withoutReactRouter }: SidePanelProps): ReactElement {
   const [collapsed, setCollapsed] = useState(false);
   const history = useHistory();
   const selectedKey = useActiveMenuItemKey();
 
   const handleSidePanelItemClick = useCallback(
     (item: MenuItemType) => {
-      history.push(item.key.toString());
+      if (withoutReactRouter) {
+        window.location.pathname = item.key.toString();
+      } else {
+        history.push(item.key.toString());
+      }
     },
-    [history],
+    [history, withoutReactRouter],
   );
 
   return (
@@ -33,7 +41,7 @@ export function SidePanel(): ReactElement {
         <Menu
           mode="inline"
           inlineCollapsed={collapsed}
-          items={menuItemsConfig}
+          items={MENU_ITEMS}
           selectedKeys={selectedKey}
           onClick={handleSidePanelItemClick}
         />

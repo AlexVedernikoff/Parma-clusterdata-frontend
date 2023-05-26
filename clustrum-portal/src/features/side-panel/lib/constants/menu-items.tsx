@@ -8,9 +8,9 @@ import {
 } from '@ant-design/icons';
 import React from 'react';
 import { MenuProps } from 'antd';
-import { ROUTES } from '../../../clustrum-lib/src/shared/lib/routes';
+import { ROUTES } from '../../../../shared/lib/constants/routes';
 
-export const menuItemsConfig: NonNullable<MenuProps['items']> = [
+export const MENU_ITEMS: NonNullable<MenuProps['items']> = [
   {
     key: ROUTES.navigation,
     icon: <FolderOutlined />,

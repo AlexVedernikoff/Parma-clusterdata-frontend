@@ -8,7 +8,7 @@ import { Utils, Navigation } from '@kamatech-data-ui/clustrum';
 import { DL } from '@kamatech-data-ui/clustrum/src/constants/common';
 
 import { Pointerfocus } from 'lego-on-react';
-import { PageContainer } from '../../clustrum-lib/src/shared/ui/page-container/page-container';
+import { PageContainer } from '../../widgets/page-container/ui/page-container';
 
 const b = block('navigation-page');
 

@@ -1,6 +1,6 @@
-import { ROUTES } from '../../../../clustrum-lib/src/shared/lib/routes';
+import { ROUTES } from '../../../../shared/lib/constants/routes';
 
-export const matchRoutes = {
+export const MATCH_ROUTES = {
   [ROUTES.connections]: [ROUTES.connections, ROUTES.connectionsInFolder],
   [ROUTES.dashboards]: [ROUTES.dashboards, ROUTES.dashboardsInFolder],
   [ROUTES.datasets]: [ROUTES.datasets, ROUTES.datasetsInFolder],

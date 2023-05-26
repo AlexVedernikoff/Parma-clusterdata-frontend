@@ -4140,6 +4140,7 @@ td.rdtYear:hover {
   display: flex;
   flex-direction: row;
   height: 100%;
+  overflow: hidden;
 }
 
 .wizard .columns .column {
