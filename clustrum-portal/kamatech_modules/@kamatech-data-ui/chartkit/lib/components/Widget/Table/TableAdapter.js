@@ -83,7 +83,6 @@ const handleCellClick = (context, row, field, columnName, prevSelectedCell, call
 function getColumnsAndNames({ head, context }, clickCallback, field, prevSelectedCell) {
   return head.reduce(
     (result, column, index) => {
-      console.debug({ column });
       const { name, type, ...options } = column;
       const columnName = `${index}_name=${name}`;
 
