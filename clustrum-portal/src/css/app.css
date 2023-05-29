@@ -839,13 +839,13 @@
 }
 
 .datasets-container .dimensions-subcontainer .dimension-item.local-item:before {
-  background: var(--color-apple-solid);
+  background: var(--color-contrast-4-solid);
 }
 
 .datasets-container .dimensions-subcontainer .dimension-item.is-dragging:not(.ignore-drag),
 .datasets-container .dimensions-subcontainer .dimension-item:active:hover:not(.ignore-drag),
 .datasets-container .dimensions-subcontainer .dimension-item:focus:not(.ignore-drag) {
-  background-color: var(--color-light-green-solid);
+  background-color: var(--color-contrast-4-solid);
 }
 
 .datasets-container .measures-subcontainer .measure-item .item-icon svg {
@@ -1359,16 +1359,16 @@
 
 .visualization-container .subcontainer .dimension-item,
 .visualization-container .subcontainer .dimension-item .item-right-icon.sort-icon {
-  background-color: var(--color-light-green-solid);
+  background-color: var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item.local-item {
-  border-left: 5px solid var(--color-apple-solid);
+  border-left: 5px solid var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item:hover,
 .visualization-container .subcontainer .dimension-item:hover .item-right-icon.sort-icon {
-  background-color: var(--color-frosted-mint-solid);
+  background-color: var(--color-contrast-4);
 }
 
 .visualization-container .subcontainer .dimension-item.drag-hovered {
@@ -1393,8 +1393,8 @@
 }
 
 .visualization-container .subcontainer .dimension-item.drag-hovered.drag-hovered-swap {
-  background-color: var(--color-light-green-solid);
-  border: 1px solid var(--color-frosted-mint-solid);
+  background-color: var(--color-contrast-4-solid);
+  border: 1px solid var(--color-contrast-4);
 }
 
 .visualization-container .subcontainer .dimension-item.drag-hovered.drag-hovered-swap .item-right-icon.swap-icon {
@@ -1402,20 +1402,20 @@
 }
 
 .visualization-container .subcontainer .dimension-item.drag-hovered.drag-hovered-swap.local-item {
-  border-left: 5px solid var(--color-frosted-mint-solid);
+  border-left: 5px solid var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item.is-dragging,
 .visualization-container .subcontainer .dimension-item:active,
 .visualization-container .subcontainer .dimension-item:focus {
-  background-color: var(--color-light-green-solid);
-  border: 1px solid var(--color-light-green-solid);
+  background-color: var(--color-contrast-4-solid);
+  border: 1px solid var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item.is-dragging.local-item,
 .visualization-container .subcontainer .dimension-item:active.local-item,
 .visualization-container .subcontainer .dimension-item:focus.local-item {
-  border-left: 5px solid var(--color-apple-solid);
+  border-left: 5px solid var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item.is-dragging.conflict,
