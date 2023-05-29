@@ -21,13 +21,9 @@ import {
   NumberOutlined,
 } from '@ant-design/icons';
 import iconCastBoolean from 'icons/cast-boolean.svg';
-import iconCastDate from 'icons/cast-date.svg';
 import iconCastGeo from 'icons/cast-geo.svg';
-import iconCastNumber from 'icons/cast-number.svg';
-import iconCastString from 'icons/cast-string.svg';
 import iconDataset from 'icons/dataset.svg';
 import iconPlus from 'icons/plus.svg';
-import iconMore from 'icons/more.svg';
 
 import {
   fetchDataset,
@@ -40,7 +36,6 @@ import {
 
 import { DATASET_ERRORS, ITEM_TYPES } from '../../../../../constants';
 
-import DNDContainer from '../components/DND/DNDContainer';
 import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
 import SearchInput from '../components/SearchInput/SearchInput';
 

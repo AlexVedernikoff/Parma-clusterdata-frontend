@@ -1,4 +1,4 @@
-import { DndItemInterface } from './dnd-item';
+import { DndItem } from './dnd-item';
 import { DndItemProps } from './dnd-item-props';
 
 export interface DndContainerProps {
@@ -6,15 +6,13 @@ export interface DndContainerProps {
   capacity?: number;
   disabled?: boolean;
   id: string;
-  items: DndItemInterface[];
+  items: DndItem[];
   itemsClassName?: string;
   noRemove?: boolean;
   title?: string;
-  noSwap?: boolean;
-  listId?: string; //Никто не отправляет
-  noDropPlace?: boolean; //Никто не отправляет
-  onItemClick(e: Event, item: DndItemInterface): void;
-  onUpdate(items: DndItemInterface[], insertItem?: DndItemInterface, action?: string, onUndoAction?: () => void): void;
+  listId?: string;
+  onItemClick(e: Event, item: DndItem): void;
+  onUpdate(items: DndItem[], insertItem?: DndItem, action?: string, onUndoAction?: () => void): void;
   wrapTo(props: DndItemProps, component: JSX.Element): Element;
-  checkAllowed?(item: DndItemInterface): boolean;
+  checkAllowed?(item: DndItem): boolean;
 }

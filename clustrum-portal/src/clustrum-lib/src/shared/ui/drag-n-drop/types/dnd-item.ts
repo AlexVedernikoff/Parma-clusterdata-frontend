@@ -1,4 +1,4 @@
-export interface DndItemInterface {
+export interface DndItem {
   aggregation: string;
   aggregation_locked: string;
   arrayJoinType: string;

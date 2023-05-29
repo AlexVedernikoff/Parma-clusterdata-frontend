@@ -5,14 +5,8 @@ import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import { CheckBox, Tooltip } from 'lego-on-react';
 
 import iconVisualization from 'icons/visualization.svg';
-import iconFilter from 'icons/filter.svg';
-import iconColor from 'icons/color.svg';
 import iconSwap from 'icons/swap.svg';
-import iconCross from 'icons/cross.svg';
 import iconError from 'icons/error.svg';
-import iconSort from 'icons/sort.svg';
-import iconSortDesc from 'icons/sort-desc.svg';
-import iconSortAsc from 'icons/sort-asc.svg';
 
 import {
   BgColorsOutlined,
@@ -21,7 +15,6 @@ import {
   FilterOutlined,
   SortAscendingOutlined,
   SortDescendingOutlined,
-  DatabaseOutlined,
 } from '@ant-design/icons';
 
 import { CONFLICT_TOOLTIPS, ITEM_TYPES, MEASURE_TYPE, VISUALIZATIONS } from '../../../../../constants';
@@ -1156,7 +1149,6 @@ class SectionVisualization extends Component {
     const dragHoveredClassName = `drag-hovered ${swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'}`;
 
     const castIconData = getIconForCast(item.cast);
-    console.log(props.getTooltipVisible());
 
     return (
       <div
@@ -1263,7 +1255,7 @@ class SectionVisualization extends Component {
             {item.conflict ? (
               <Tooltip
                 anchor={itemComponent}
-                visible={props.getTooltipVisible()}
+                visible={props.tooltipVisible}
                 theme="error"
                 view="classic"
                 tone="default"
