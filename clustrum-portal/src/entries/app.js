@@ -20,6 +20,8 @@ import './../css/commons.css';
 import './../css/app.css';
 import './../css/app-table-settings-total.css';
 import './../css/card.css';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
 import { logVersion } from '../utils/version-logger';
 
@@ -43,9 +45,11 @@ function render() {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <DndProvider backend={HTML5Backend}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </DndProvider>
       </Provider>
     </AppContainer>,
     document.getElementById('root'),
