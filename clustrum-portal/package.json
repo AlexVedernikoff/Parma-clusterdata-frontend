@@ -15,8 +15,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "prepare": "cd .. && husky install",
-    "prettier": "prettier src/**/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
-    "prettier:fix": "prettier --write src/**/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
+    "prettier:src": "prettier --write src/**/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
+    "prettier:kamatech_modules": "prettier --write kamatech_modules/**/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
     "prettier:pre-commit": "prettier --write --config .prettierrc",
     "eslint": "eslint src/**/*.{ts,tsx,json}",
     "eslint:fix": "eslint src/**/*.{ts,tsx,json} --fix",
@@ -24,9 +24,10 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json}": "npm run eslint:pre-commit",
-    "src/**/*.{css,js,jsx,ts,tsx,md,json}": "npm run prettier:pre-commit"
+    "(src|kamatech_modules)/**/*.{css,js,jsx,ts,tsx,md,json}": "npm run prettier:pre-commit"
   },
   "dependencies": {
+    "@ant-design/icons": "5.0.0",
     "@babel/plugin-syntax-dynamic-import": "7.7.4",
     "@babel/runtime": "7.7.7",
     "@bem/sdk.naming.presets": "0.2.3",
@@ -41,6 +42,7 @@
     "copy-to-clipboard": "3.2.0",
     "css-element-queries": "1.2.3",
     "d": "1.0.1",
+    "dayjs": "1.11.7",
     "effector": "22.3.0",
     "effector-react": "22.1.4",
     "ejs": "3.1.6",

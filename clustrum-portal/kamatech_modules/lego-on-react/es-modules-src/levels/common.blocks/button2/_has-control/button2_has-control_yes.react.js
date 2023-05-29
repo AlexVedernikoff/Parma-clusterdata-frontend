@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -33,7 +33,7 @@ var Control = _button2__control.applyDecls();
 // import "./../__control/button2__control.css";
 
 export default declMod(
-  function (_ref) {
+  function(_ref) {
     var hasControl = _ref.hasControl;
     return hasControl;
   },

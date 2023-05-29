@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function (target) {
+  function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -164,7 +164,7 @@ export default decl(
     _provideClick: function _provideClick(value, itemOnClick) {
       var _this = this;
 
-      return function (event) {
+      return function(event) {
         _this.onClick(event, value);
         itemOnClick && itemOnClick(event, value);
       };
