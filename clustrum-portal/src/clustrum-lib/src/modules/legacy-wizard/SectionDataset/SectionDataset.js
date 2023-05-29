@@ -13,14 +13,17 @@ import FieldEditor from '@kamatech-data-ui/clustrum/src/components/FieldEditor/F
 
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
+import {
+  FontSizeOutlined,
+  EllipsisOutlined,
+  HolderOutlined,
+  CalendarOutlined,
+  NumberOutlined,
+} from '@ant-design/icons';
 import iconCastBoolean from 'icons/cast-boolean.svg';
-import iconCastDate from 'icons/cast-date.svg';
 import iconCastGeo from 'icons/cast-geo.svg';
-import iconCastNumber from 'icons/cast-number.svg';
-import iconCastString from 'icons/cast-string.svg';
 import iconDataset from 'icons/dataset.svg';
 import iconPlus from 'icons/plus.svg';
-import iconMore from 'icons/more.svg';
 
 import {
   fetchDataset,
@@ -33,7 +36,7 @@ import {
 
 import { DATASET_ERRORS, ITEM_TYPES } from '../../../../../constants';
 
-import DNDContainer from '../components/DND/DNDContainer';
+import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
 import SearchInput from '../components/SearchInput/SearchInput';
 
 import { Loader } from '@kamatech-data-ui/common/src';
@@ -355,12 +358,12 @@ class SectionDataset extends Component {
       case 'float':
       case 'double':
       case 'long':
-        castIconData = iconCastNumber;
+        castIconData = <NumberOutlined width="16" />;
         break;
 
       case 'datetime':
       case 'date':
-        castIconData = iconCastDate;
+        castIconData = <CalendarOutlined width="16" />;
         break;
 
       case 'geo':
@@ -373,14 +376,20 @@ class SectionDataset extends Component {
 
       case 'string':
       default:
-        castIconData = iconCastString;
+        castIconData = <FontSizeOutlined width="16" />;
     }
 
     return (
       <div className={resultClassName} title={item.title}>
-        <div className="item-icon">
-          <Icon data={castIconData} width="16" />
-        </div>
+        <HolderOutlined className="item-holder" />
+
+        {/* Не нашел подходящих иконок, поэтому пришлось оставить так */}
+        {!!castIconData.type ? (
+          <div className="item-icon">{castIconData}</div>
+        ) : (
+          <Icon className="item-icon" data={castIconData} width="16" />
+        )}
+
         <div className="item-title" title={item.title}>
           {item.title}
         </div>
@@ -401,7 +410,7 @@ class SectionDataset extends Component {
             size="n"
             switcher={
               <Button size="xs" theme="flat" type="default" view="default" width="max">
-                <Icon data={iconMore} width="20" height="20" />
+                <EllipsisOutlined width="24" height="24" />
               </Button>
             }
             popup={
@@ -503,7 +512,7 @@ class SectionDataset extends Component {
                 (filteredDimensions && filteredDimensions.filter(d => d.datasetName === value).length > 0)
               ) {
                 return (
-                  <DNDContainer
+                  <DndContainer
                     id="dimensions-container"
                     noRemove={true}
                     title={value}
@@ -533,7 +542,7 @@ class SectionDataset extends Component {
                 (filteredMeasures && filteredMeasures.filter(d => d.datasetName === value).length > 0)
               ) {
                 return (
-                  <DNDContainer
+                  <DndContainer
                     id="measures-container"
                     noRemove={true}
                     title={value}
@@ -639,7 +648,7 @@ class SectionDataset extends Component {
                 size="n"
                 switcher={
                   <Button size="s" theme="flat" type="default" view="default" width="max">
-                    <Icon data={iconMore} width="22" height="22" />
+                    <EllipsisOutlined width="24" height="24" />
                   </Button>
                 }
                 popup={

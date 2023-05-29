@@ -716,6 +716,7 @@
   display: inline-block;
   vertical-align: middle;
   margin-bottom: 1px;
+  font-size: 14px;
 }
 
 .datasets-container .subcontainer .item .yc-icon {
@@ -727,13 +728,19 @@
   width: 28px;
   height: 28px;
   padding: 6px;
-  margin-left: -6px;
   margin-right: 8px;
-  vertical-align: sub;
 }
 
 .datasets-container .subcontainer .item .item-icon:hover {
   background-color: var(--color-hover-area);
+}
+
+.datasets-container .subcontainer .item .item-holder {
+  visibility: hidden;
+}
+
+.datasets-container .subcontainer .item:hover .item-holder {
+  visibility: visible;
 }
 
 .datasets-container .subcontainer .item .item-right-icon {
@@ -831,18 +838,14 @@
   border-top: none;
 }
 
-.datasets-container .dimensions-subcontainer .dimension-item .item-icon svg {
-  color: var(--color-apple-solid);
-}
-
 .datasets-container .dimensions-subcontainer .dimension-item.local-item:before {
-  background: var(--color-apple-solid);
+  background: var(--color-contrast-4-solid);
 }
 
 .datasets-container .dimensions-subcontainer .dimension-item.is-dragging:not(.ignore-drag),
 .datasets-container .dimensions-subcontainer .dimension-item:active:hover:not(.ignore-drag),
 .datasets-container .dimensions-subcontainer .dimension-item:focus:not(.ignore-drag) {
-  background-color: var(--color-light-green-solid);
+  background-color: var(--color-contrast-4-solid);
 }
 
 .datasets-container .measures-subcontainer .measure-item .item-icon svg {
@@ -1324,13 +1327,18 @@
 
 .visualization-container .subcontainer .subheader .placeholder-icon {
   display: inline-block;
-  vertical-align: middle;
   margin-right: 8px;
-  opacity: 0.5;
+}
+
+.visualization-container .subcontainer .subheader span {
+  vertical-align: middle;
+  font-size: 14px;
 }
 
 .visualization-container .subcontainer .subheader .placeholder-icon svg {
   color: var(--color-text-primary);
+  width: 16px;
+  height: 16px;
 }
 
 .visualization-container .subcontainer .dnd-container {
@@ -1351,16 +1359,16 @@
 
 .visualization-container .subcontainer .dimension-item,
 .visualization-container .subcontainer .dimension-item .item-right-icon.sort-icon {
-  background-color: var(--color-light-green-solid);
+  background-color: var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item.local-item {
-  border-left: 5px solid var(--color-apple-solid);
+  border-left: 5px solid var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item:hover,
 .visualization-container .subcontainer .dimension-item:hover .item-right-icon.sort-icon {
-  background-color: var(--color-frosted-mint-solid);
+  background-color: var(--color-contrast-4);
 }
 
 .visualization-container .subcontainer .dimension-item.drag-hovered {
@@ -1385,8 +1393,8 @@
 }
 
 .visualization-container .subcontainer .dimension-item.drag-hovered.drag-hovered-swap {
-  background-color: var(--color-light-green-solid);
-  border: 1px solid var(--color-frosted-mint-solid);
+  background-color: var(--color-contrast-4-solid);
+  border: 1px solid var(--color-contrast-4);
 }
 
 .visualization-container .subcontainer .dimension-item.drag-hovered.drag-hovered-swap .item-right-icon.swap-icon {
@@ -1394,24 +1402,20 @@
 }
 
 .visualization-container .subcontainer .dimension-item.drag-hovered.drag-hovered-swap.local-item {
-  border-left: 5px solid var(--color-frosted-mint-solid);
-}
-
-.visualization-container .subcontainer .dimension-item .item-icon {
-  color: var(--color-apple-solid);
+  border-left: 5px solid var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item.is-dragging,
 .visualization-container .subcontainer .dimension-item:active,
 .visualization-container .subcontainer .dimension-item:focus {
-  background-color: var(--color-light-green-solid);
-  border: 1px solid var(--color-light-green-solid);
+  background-color: var(--color-contrast-4-solid);
+  border: 1px solid var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item.is-dragging.local-item,
 .visualization-container .subcontainer .dimension-item:active.local-item,
 .visualization-container .subcontainer .dimension-item:focus.local-item {
-  border-left: 5px solid var(--color-apple-solid);
+  border-left: 5px solid var(--color-contrast-4-solid);
 }
 
 .visualization-container .subcontainer .dimension-item.is-dragging.conflict,
@@ -1531,13 +1535,23 @@
 }
 
 .visualization-container .subcontainer .item .item-title {
-  width: 70%;
+  width: 60%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   display: inline-block;
   vertical-align: middle;
   margin-bottom: 1px;
+  font-size: 14px;
+}
+
+.visualization-container .subcontainer .item .item-holder {
+  visibility: hidden;
+  margin-right: 6px;
+}
+
+.visualization-container .subcontainer .item:hover .item-holder {
+  visibility: visible;
 }
 
 .visualization-container .subcontainer .item.pseudo-item {
@@ -1580,10 +1594,6 @@
   float: right;
 }
 
-.visualization-container .subcontainer .item .item-icon svg {
-  vertical-align: sub;
-}
-
 .visualization-container .subcontainer .item .item-right-icon {
   display: inline-block;
   float: right;
@@ -1611,8 +1621,8 @@
 .visualization-container .subcontainer .item .item-right-icon.cross-icon svg,
 .visualization-container .subcontainer .item .item-right-icon.error-icon svg,
 .visualization-container .subcontainer .item .item-right-icon.swap-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
 }
 
 .visualization-container .subcontainer .item:hover .item-right-icon.sort-icon {
