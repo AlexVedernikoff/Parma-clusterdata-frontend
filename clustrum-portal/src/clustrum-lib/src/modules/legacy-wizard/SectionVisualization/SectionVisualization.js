@@ -5,18 +5,21 @@ import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import { CheckBox, Tooltip } from 'lego-on-react';
 
 import iconVisualization from 'icons/visualization.svg';
-import iconFilter from 'icons/filter.svg';
-import iconColor from 'icons/color.svg';
 import iconSwap from 'icons/swap.svg';
-import iconCross from 'icons/cross.svg';
 import iconError from 'icons/error.svg';
-import iconSort from 'icons/sort.svg';
-import iconSortDesc from 'icons/sort-desc.svg';
-import iconSortAsc from 'icons/sort-asc.svg';
+
+import {
+  BgColorsOutlined,
+  CloseOutlined,
+  HolderOutlined,
+  FilterOutlined,
+  SortAscendingOutlined,
+  SortDescendingOutlined,
+} from '@ant-design/icons';
 
 import { CONFLICT_TOOLTIPS, ITEM_TYPES, MEASURE_TYPE, VISUALIZATIONS } from '../../../../../constants';
 
-import DNDContainer from '../components/DND/DNDContainer';
+import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
 import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';
@@ -204,7 +207,7 @@ class SectionVisualization extends Component {
           <div className="placeholder-icon">{placeholder.icon}</div>
           <span>{placeholderTitleLabels[placeholder.title]}</span>
         </div>
-        <DNDContainer
+        <DndContainer
           id={`placeholder-container-${placeholder.id}`}
           capacity={placeholder.capacity}
           allowedTypes={placeholder.allowedTypes}
@@ -390,11 +393,11 @@ class SectionVisualization extends Component {
           <div className="subcontainer">
             <div className="subheader">
               <div className="placeholder-icon">
-                <Icon data={iconFilter} width="24" />
+                <FilterOutlined width="16" height="16" />
               </div>
               <span>Фильтры</span>
             </div>
-            <DNDContainer
+            <DndContainer
               id="filter-container"
               noSwap={true}
               items={[...filters]}
@@ -573,11 +576,11 @@ class SectionVisualization extends Component {
           <div className="subcontainer">
             <div className="subheader">
               <div className="placeholder-icon">
-                <Icon data={iconColor} width="24" />
+                <BgColorsOutlined width="16" height="16" />
               </div>
               <span>Цвета</span>
             </div>
-            <DNDContainer
+            <DndContainer
               id="colors-container"
               items={colors}
               capacity={visualization.colorsCapacity || 1}
@@ -619,11 +622,11 @@ class SectionVisualization extends Component {
           <div className="subcontainer">
             <div className="subheader">
               <div className="placeholder-icon">
-                <Icon data={iconSort} width="24" />
+                <SortAscendingOutlined width="16" height="16" />
               </div>
               <span>Сортировка</span>
             </div>
-            <DNDContainer
+            <DndContainer
               id="sort-container"
               items={sort}
               capacity={10}
@@ -1174,10 +1177,10 @@ class SectionVisualization extends Component {
           if (inReplaceZone) {
             let drawReplace;
 
-            if (this.props.allowedTypes) {
-              drawReplace = this.props.allowedTypes.has(draggingItem.item.type);
-            } else if (this.props.checkAllowed) {
-              drawReplace = this.props.checkAllowed(draggingItem.item);
+            if (this.props?.allowedTypes) {
+              drawReplace = this.props?.allowedTypes.has(draggingItem.item.type);
+            } else if (this.props?.checkAllowed) {
+              drawReplace = this.props?.checkAllowed(draggingItem.item);
             } else {
               drawReplace = false;
             }
@@ -1212,24 +1215,22 @@ class SectionVisualization extends Component {
           }
         }}
         onMouseOver={() => {
-          itemComponent.setState({
-            tooltipVisible: true,
-          });
+          props.setTooltipVisible(true);
         }}
         onMouseOut={() => {
-          itemComponent.setState({
-            tooltipVisible: false,
-          });
+          props.setTooltipVisible(false);
         }}
         onClick={e => {
-          if (this.props.onItemClick) {
-            this.props.onItemClick(e, item);
+          if (this.props?.onItemClick) {
+            this.props?.onItemClick(e, item);
           }
         }}
       >
-        <div className="item-icon">
-          <Icon data={castIconData} width="16" />
-        </div>
+        <HolderOutlined className="item-holder" />
+
+        {/* Костыль, как и в SectionDataset */}
+        {!!castIconData ? <div className="item-icon">{castIconData}</div> : <Icon data={castIconData} width="16" />}
+
         <div className="item-title" title={item.datasetName + '.' + item.title}>
           {item.title}
         </div>
@@ -1246,7 +1247,7 @@ class SectionVisualization extends Component {
                 return false;
               }}
             >
-              <Icon data={iconCross} width="16" />
+              <CloseOutlined width="16" />
             </div>
             <div className="item-right-icon error-icon">
               <Icon data={iconError} width="16" />
@@ -1254,7 +1255,7 @@ class SectionVisualization extends Component {
             {item.conflict ? (
               <Tooltip
                 anchor={itemComponent}
-                visible={itemComponent.state.tooltipVisible}
+                visible={props.tooltipVisible}
                 theme="error"
                 view="classic"
                 tone="default"
@@ -1265,9 +1266,13 @@ class SectionVisualization extends Component {
                 {CONFLICT_TOOLTIPS[item.conflict]}
               </Tooltip>
             ) : null}
-            {this.props.id === 'sort-container' ? (
+            {this.props?.id === 'sort-container' ? (
               <div className="item-right-icon sort-icon">
-                <Icon data={item.direction === 'ASC' ? iconSortAsc : iconSortDesc} width="16" />
+                {item.direction === 'ASC' ? (
+                  <SortAscendingOutlined width="16" height="16" />
+                ) : (
+                  <SortDescendingOutlined width="16" height="16" />
+                )}
               </div>
             ) : null}
           </div>

@@ -17,7 +17,6 @@ export const DIALOG_TYPE = Object.assign(
   {
     TABS: 'tabs',
     CONNECTIONS: 'connections',
-    SETTINGS: 'settings',
   },
   ITEM_TYPE,
 );
