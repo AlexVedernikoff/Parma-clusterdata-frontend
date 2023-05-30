@@ -1889,7 +1889,7 @@
 
 .chartkit-tooltip__header {
   letter-spacing: 1px;
-  color: rgb(30, 136, 229);
+  color: var(--antd-color-primary);
   white-space: nowrap;
   font-size: 12px;
 }
@@ -1937,7 +1937,7 @@
 
 ._tooltip-date {
   letter-spacing: 1px;
-  color: rgb(30, 136, 229);
+  color: var(--antd-color-primary);
   padding-right: 10px;
   white-space: nowrap;
   padding-bottom: 8px;
@@ -2161,8 +2161,8 @@
 }
 
 .chartkit_theme_default {
-  --ck-loader-active-color: rgb(30, 136, 229);
-  --ck-loader-off-color: rgb(75, 160, 235);
+  --ck-loader-active-color: var(--antd-color-primary);
+  --ck-loader-off-color: var(--antd-color-primary-hover);
   --ck-control-backgound: #f7f7f7;
   --highcharts-grid-line-xaxis: #ededed;
   --highcharts-grid-line-yaxis: #ededed;
@@ -2456,7 +2456,7 @@
   --data-table-color-base: #fff;
   --data-table-color-stripe: rgba(0, 0, 0, 0.03);
   --data-table-border-color: #ddd;
-  --data-table-color-hover-area: rgb(75, 160, 235);
+  --data-table-color-hover-area: var(--antd-color-primary-hover);
   --data-table-color-footer-area: var(--data-table-color-base);
 }
 
@@ -2574,7 +2574,7 @@
 
 .chart-tooltip__header {
   letter-spacing: 1px;
-  color: rgb(30, 136, 229);
+  color: var(--antd-color-primary);
   padding-right: 10px;
   white-space: nowrap;
   padding-bottom: 8px;
@@ -3204,7 +3204,7 @@
 
 .chart-source-modal__cell_traf {
   border-left: 5px solid orange;
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
   padding: 10px;
 }
 
@@ -3256,7 +3256,7 @@
 }
 
 .comment_selected {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .comment__header {
@@ -3302,7 +3302,7 @@
 }
 
 .comments-list__new-comment_selected {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .comments-list__controls {
@@ -3456,7 +3456,7 @@ td.rdtDay.rdtNew {
   content: '';
   display: inline-block;
   border-left: 8px solid transparent;
-  border-bottom: 8px solid rgb(30, 136, 229);
+  border-bottom: 8px solid var(--antd-color-primary);
   border-top-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   bottom: 5px;
@@ -3465,7 +3465,7 @@ td.rdtDay.rdtNew {
 
 .rdtPicker td.rdtActive,
 .rdtPicker td.rdtActive:hover {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
   color: #000;
 }
 
@@ -3703,7 +3703,7 @@ td.rdtYear:hover {
   cursor: auto;
   color: #000;
   border: none;
-  background: rgb(75, 160, 235);
+  background: var(--antd-color-primary-hover);
   padding: 3px;
   box-sizing: border-box;
   margin: -3px 0 -3px -3px;
@@ -3752,7 +3752,7 @@ td.rdtYear:hover {
 }
 
 .dropdown-picker__item_selected {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .dropdown-picker__item svg {

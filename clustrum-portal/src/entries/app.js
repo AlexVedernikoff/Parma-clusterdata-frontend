@@ -10,6 +10,8 @@ import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import moment from 'moment';
+import { ConfigProvider } from 'antd';
+import { ANT_TOKEN } from '../constants/constants';
 
 import reducers from '../reducers';
 
@@ -44,13 +46,15 @@ logVersion();
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <Provider store={store}>
-        <DndProvider backend={HTML5Backend}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </DndProvider>
-      </Provider>
+      <ConfigProvider theme={{ ...ANT_TOKEN }}>
+        <Provider store={store}>
+          <DndProvider backend={HTML5Backend}>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </DndProvider>
+        </Provider>
+      </ConfigProvider>
     </AppContainer>,
     document.getElementById('root'),
   );

@@ -84,9 +84,9 @@
 }
 
 .kamatech-button_view_default.kamatech-button_tone_default.kamatech-button_theme_action:before {
-  background-color: rgb(30, 136, 229);
+  background-color: var(--antd-color-primary);
 }
 
 .kamatech-button_view_default.kamatech-button_tone_default.kamatech-button_theme_action:hover:before {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
