@@ -230,7 +230,7 @@ class Header extends React.PureComponent {
         popup={
           <Popup hiding autoclosable onOutsideClick={() => {}}>
             <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
-              <Menu.Item onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Диаграмма</Menu.Item>
+              <Menu.Item onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Элемент аналитической панели</Menu.Item>
               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.CONTROL)}>Фильтр</Menu.Item>
               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</Menu.Item>
               <Menu.Item onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</Menu.Item>

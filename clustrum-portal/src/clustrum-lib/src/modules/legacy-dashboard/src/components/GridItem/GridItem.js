@@ -101,7 +101,7 @@ class GridItem extends React.PureComponent {
             view="default"
             tone="default"
             size="s"
-            title={isHidden ? 'Показать виджет' : 'Скрыть виджет'}
+            title={isHidden ? 'Показать элемент' : 'Скрыть элемент'}
             pin="round-brick"
             cls={b('button', { 'visibility-icon': true, 'visibility-hidden-icon': isHidden })}
             onClick={() => onToggleWidgetVisibility(id)}

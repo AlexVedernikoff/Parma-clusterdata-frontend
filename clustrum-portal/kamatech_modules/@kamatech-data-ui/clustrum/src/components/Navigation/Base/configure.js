@@ -15,6 +15,7 @@ import iconFilesWidget from '../../../icons/files-widget.svg';
 import iconLegacyWizard from '../../../icons/legacy-wizard.svg';
 import iconScript from '../../../icons/script.svg';
 import iconFilesDataset from '../../../icons/files-dataset.svg';
+import React from "react";
 
 const b = block('dl-navigation-base');
 
@@ -62,7 +63,7 @@ export const getPlaceParameters = memoize(place => {
     {
       place: PLACE.WIDGETS,
       icon: iconWidget,
-      text: 'Диаграммы',
+      text: 'Элементы аналитической панели',
       pagination: true,
       displayParentFolder: true,
       sort: false,
@@ -96,37 +97,30 @@ export const getQuickItems = memoize(() => [
 export const getCreateMenuItemsInternal = memoize(() => [
   {
     value: 'folder',
-    icon: iconScopeFolder,
     text: 'Папку',
   },
   {
     value: 'script',
-    icon: iconScript,
     text: 'Editor',
   },
   {
     value: 'widget',
-    icon: iconFilesWidget,
     text: 'Wizard',
   },
   {
     value: 'legacyWizard',
-    icon: iconLegacyWizard,
     text: 'Wizard (old)',
   },
   {
     value: 'dashboard',
-    icon: iconFilesDashboard,
     text: 'Dashboard',
   },
   {
     value: 'connection',
-    icon: iconConnection,
     text: 'Connection',
   },
   {
     value: 'dataset',
-    icon: iconFilesDataset,
     text: 'Dataset',
   },
 ]);
@@ -140,7 +134,7 @@ export const getCreateMenuItemsExternal = memoize(() => [
   {
     value: 'connection',
     icon: iconConnection,
-    text: 'Соединение',
+    text: 'Подключение',
   },
   {
     value: 'dataset',
@@ -150,7 +144,7 @@ export const getCreateMenuItemsExternal = memoize(() => [
   {
     value: 'widget',
     icon: iconFilesWidget,
-    text: 'Диаграмму',
+    text: 'Элемент аналитической панели',
   },
   {
     value: 'dashboard',

@@ -413,7 +413,7 @@ class Dataset extends React.Component {
               size="n"
               view="default"
               tone="default"
-              text="Создать чарт"
+              text="Создать элемент аналитической панели"
               onClick={this.openCreationWidgetPage}
             />,
             <Button

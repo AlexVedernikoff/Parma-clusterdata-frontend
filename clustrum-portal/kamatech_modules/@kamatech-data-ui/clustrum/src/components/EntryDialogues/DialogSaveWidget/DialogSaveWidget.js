@@ -64,6 +64,7 @@ class DialogSaveWidget extends Component {
     let { widgetName } = this.state;
     const { widgetData } = this.state;
     const path = Utils.normalizeDestination(this.state.path);
+    console.log(widgetName)
 
     widgetName = widgetName === '' ? 'Новая диаграмма' : widgetName;
 

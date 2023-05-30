@@ -390,7 +390,7 @@ class DatasetCreation extends React.Component {
                   onChoosePath={dirPath => this.changeValue({ dirPath })}
                   inputValue={datasetTitle}
                   onChangeInput={datasetTitle => this.changeValue({ datasetTitle })}
-                  placeholder="Имя датасета"
+                  placeholder="Имя набора данных"
                 />
               </div>
             )}
