@@ -15,7 +15,6 @@ import iconFilesWidget from '../../../icons/files-widget.svg';
 import iconLegacyWizard from '../../../icons/legacy-wizard.svg';
 import iconScript from '../../../icons/script.svg';
 import iconFilesDataset from '../../../icons/files-dataset.svg';
-import React from "react";
 
 const b = block('dl-navigation-base');
 
@@ -97,30 +96,37 @@ export const getQuickItems = memoize(() => [
 export const getCreateMenuItemsInternal = memoize(() => [
   {
     value: 'folder',
+    icon: iconScopeFolder,
     text: 'Папку',
   },
   {
     value: 'script',
+    icon: iconScript,
     text: 'Editor',
   },
   {
     value: 'widget',
+    icon: iconFilesWidget,
     text: 'Wizard',
   },
   {
     value: 'legacyWizard',
+    icon: iconLegacyWizard,
     text: 'Wizard (old)',
   },
   {
     value: 'dashboard',
+    icon: iconFilesDashboard,
     text: 'Dashboard',
   },
   {
     value: 'connection',
+    icon: iconConnection,
     text: 'Connection',
   },
   {
     value: 'dataset',
+    icon: iconFilesDataset,
     text: 'Dataset',
   },
 ]);
