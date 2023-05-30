@@ -331,7 +331,7 @@ class Widget extends React.PureComponent {
     return (
       <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
         <div className={b()}>
-          <Dialog.Header caption="Диаграмма" />
+          <Dialog.Header caption="Элемент аналитической панели" />
           <Dialog.Body>
             <div className={b('main')}>
               <div className={b('sidebar')}>

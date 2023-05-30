@@ -556,7 +556,7 @@ class SectionDataset extends Component {
   };
 
   renderBlank() {
-    return <div className="dataset-blank">Для начала работы выберите датасет</div>;
+    return <div className="dataset-blank">Для начала работы выберите набор данных</div>;
   }
 
   renderSectionsOrBlank = () => {
@@ -628,7 +628,7 @@ class SectionDataset extends Component {
               size="m"
               onClick={toggleNavigation}
             >
-              {dataset.realName || 'Выберите датасет'}
+              {dataset.realName || 'Выберите набор данных'}
             </Button>
             {dataset.realName ? (
               <Dropdown

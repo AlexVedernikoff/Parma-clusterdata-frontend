@@ -393,7 +393,7 @@ class DatasetCreationPage extends React.Component {
                 size="n"
                 view="default"
                 tone="default"
-                text="Создать датасет"
+                text="Создать набор данных"
                 onClick={this.createDataset}
                 progress={isActionProgress}
               />
