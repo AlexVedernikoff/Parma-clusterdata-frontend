@@ -2,144 +2,144 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-Thin.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-Thin.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-Thin.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-Thin.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 100;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-ThinItalic.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-ThinItalic.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-ThinItalic.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-ThinItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 200;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-ExtraLight.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-ExtraLight.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-ExtraLight.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-ExtraLight.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 200;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-ExtraLightItalic.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-ExtraLightItalic.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-ExtraLightItalic.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-ExtraLightItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 300;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-Light.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-Light.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-Light.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-Light.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 300;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-LightItalic.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-LightItalic.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-LightItalic.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-LightItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-Regular.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-Regular.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-Regular.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-Regular.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 400;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-Italic.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-Italic.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-Italic.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-Italic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-Medium.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-Medium.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-Medium.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-Medium.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 500;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-MediumItalic.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-MediumItalic.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-MediumItalic.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-MediumItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-SemiBold.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-SemiBold.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-SemiBold.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-SemiBold.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 600;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-SemiBoldItalic.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-SemiBoldItalic.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-SemiBoldItalic.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-SemiBoldItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-Bold.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-Bold.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-Bold.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-Bold.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 700;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-BoldItalic.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-BoldItalic.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-BoldItalic.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-BoldItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 800;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-ExtraBold.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-ExtraBold.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-ExtraBold.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-ExtraBold.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 800;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-ExtraBoldItalic.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-ExtraBoldItalic.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-ExtraBoldItalic.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-ExtraBoldItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-Black.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-Black.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-Black.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-Black.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 900;
-  src: url('/cd/portal/assets/fonts/Inter/Inter-BlackItalic.woff2?v=3.19') format('woff2'),
-    url('/cd/portal/assets/fonts/Inter/Inter-BlackItalic.woff?v=3.19') format('woff');
+  src: url('../../../fonts/Inter/Inter-BlackItalic.woff2?v=3.19') format('woff2'),
+    url('../../../fonts/Inter/Inter-BlackItalic.woff?v=3.19') format('woff');
 }
 
 :root {
@@ -176,7 +176,7 @@
   --neutral-900: #252625;
   --blue-50: #f2f9ff;
   --blue-200: #bfe2ff;
-  --blue-500: #008cff;
+  --antd-color-primary: #008cff;
   --blue-600: #007ee6;
   --blue-800: #005499;
   --lime-100: #edf6ea;
@@ -223,7 +223,7 @@
   --sort-icon: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 18H9V16H3V18ZM3 6V8H21V6H3ZM3 13H15V11H3V13Z" fill="%23252625"/></svg>');
   --arrow-icon: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6Z" fill="%23252625"/></svg>');
   --white-arrow-icon: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6Z" fill="%23FFF"/></svg>');
-  --blue-500-arrow-icon: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6Z" fill="%23008CFF"/></svg>');
+  --antd-color-primary-arrow-icon: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6Z" fill="%23008CFF"/></svg>');
   --checkbox-icon: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.8333 4.16667V15.8333H4.16667V4.16667H15.8333ZM15.8333 2.5H4.16667C3.25 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.25 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V4.16667C17.5 3.25 16.75 2.5 15.8333 2.5Z" fill="%23252625"/></svg>');
   --checkbox-selected-icon: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.8333 2.5H4.16667C3.25 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.25 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V4.16667C17.5 3.25 16.75 2.5 15.8333 2.5ZM15.8333 15.8333H4.16667V4.16667H15.8333V15.8333ZM14.9917 7.5L13.8167 6.31667L8.325 11.8083L6.175 9.66667L4.99167 10.8417L8.325 14.1667L14.9917 7.5Z" fill="%23008CFF"/></svg>');
   --arrow-drop-icon: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.83325 8.33334L9.99992 12.5L14.1666 8.33334H5.83325Z" fill="%23252625"/></svg>');
@@ -261,7 +261,7 @@
 .chartkit-control-item__control_is-datepicker .textinput:hover,
 .chartkit-control-item__control_is-datepicker .textinput_focused_yes {
   background: transparent;
-  border-color: var(--blue-600);
+  border-color: var(--antd-color-primary);
 }
 
 .chartkit-control-item__control_is-datepicker .textinput__box {
@@ -337,7 +337,7 @@
   width: 10px;
   height: 10px;
   position: initial;
-  border-color: var(--blue-500);
+  border-color: var(--antd-color-primary);
   border-style: solid;
   transform: rotate(225deg);
 }
@@ -383,7 +383,7 @@
 
 .yc-datepicker-body__month-day.marked {
   color: var(--white);
-  background-color: var(--blue-500);
+  background-color: var(--antd-color-primary);
 }
 
 .yc-datepicker-body__month-day.highlight:not(.marked) {
@@ -441,7 +441,7 @@
 .chartkit-control-item__control_is-select .yc-select-control:hover,
 .chartkit-control-item__control_is-select .yc-select-control_focused {
   background: transparent;
-  border-color: var(--blue-500);
+  border-color: var(--antd-color-primary);
 }
 
 .chartkit-control-item__control_is-select .yc-select-control__badge {
@@ -458,7 +458,7 @@
 
 .chartkit-control-item__control_is-select .yc-select-control__badge:hover,
 .chartkit-control-item__control_is-select .yc-select-control__badge_clicked {
-  background-color: var(--blue-500);
+  background-color: var(--antd-color-primary);
   color: var(--white);
 }
 
@@ -686,13 +686,13 @@
   --highcharts-font-family: var(--theme-font-family);
   --highcharts-font-feature-settings: var(--theme-font-feature-settings);
   --highcharts-legend-font-size: '14px';
-  padding: 0 1.75rem;
+  padding: 0;
   min-width: 1240px !important;
   --yc-font-family: Inter;
 }
 
 .dash-body__content {
-  padding: 0 0 3.125rem;
+  padding: 0 1.75rem 3.125rem;
   overflow: visible;
 }
 
@@ -749,8 +749,8 @@
 }
 
 .chartkit-menu__button .control:hover {
-  border-color: var(--blue-500);
-  background-color: var(--blue-500);
+  border-color: var(--antd-color-primary);
+  background-color: var(--antd-color-primary);
 }
 
 .chartkit-menu__button .control .icon {
@@ -850,14 +850,14 @@
   border: 1px solid var(--blue-200);
   border-radius: 0.25rem;
   box-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
-  color: var(--blue-500);
+  color: var(--antd-color-primary);
 }
 
 .chartkit__widget_map .ol-zoom-in:hover,
 .chartkit__widget_map .ol-zoom-out:hover {
   color: var(--white);
-  border-color: var(--blue-500);
-  background-color: var(--blue-500);
+  border-color: var(--antd-color-primary);
+  background-color: var(--antd-color-primary);
 }
 
 .chartkit-error_NO_DATA {
@@ -930,9 +930,9 @@
   margin-left: auto;
   margin-right: 1.75rem;
   background-color: var(--white);
-  border: 1px solid var(--blue-500);
+  border: 1px solid var(--antd-color-primary);
   border-radius: 0.25rem;
-  color: var(--blue-500) !important;
+  color: var(--antd-color-primary) !important;
   font-family: var(--theme-font-family) !important;
   font-weight: 500;
   font-size: 0.875rem;
@@ -977,7 +977,7 @@
 .dash-header__action-panel_is-view .dash-header__action-right:hover,
 .dash-header__action-panel_is-edit .dash-header__action-right_expand-filter-panel:hover,
 .dash-header__action-panel_is-edit .dash-header__action-right_button-settings:hover {
-  border-color: var(--blue-500);
+  border-color: var(--antd-color-primary);
 }
 
 .dropdown2.dash-header__action-right_export-pdf {
@@ -991,7 +991,7 @@
 }
 
 .dash-header__action-panel_is-view .dash-header__action-right_clear-filters:hover {
-  background-color: var(--blue-500);
+  background-color: var(--antd-color-primary);
   background-image: var(--clear-filters-hovered-icon);
 }
 
@@ -1002,7 +1002,7 @@
 }
 
 .dash-header__action-panel_is-view .dash-header__action-right_export-pdf:hover {
-  background-color: var(--blue-500);
+  background-color: var(--antd-color-primary);
   background-image: var(--export-hovered-icon);
 }
 
@@ -1013,7 +1013,7 @@
 }
 
 .dash-header__action-panel_is-view .dash-header__action-right_edit:hover {
-  background-color: var(--blue-500);
+  background-color: var(--antd-color-primary);
   background-image: var(--edit-hovered-icon);
 }
 
@@ -1026,7 +1026,7 @@
 
 .dash-header__action-panel_is-view .dash-header__action-right_expand-filter-panel:hover,
 .dash-header__action-panel_is-edit .dash-header__action-right_expand-filter-panel:hover {
-  background-color: var(--blue-500);
+  background-color: var(--antd-color-primary);
   background-image: var(--filters-hovered-icon);
 }
 
@@ -1037,7 +1037,7 @@
 }
 
 .dash-header__action-panel_is-edit .dash-header__action-right_button-settings:hover {
-  background-color: var(--blue-500);
+  background-color: var(--antd-color-primary);
   background-image: var(--settings-hovered-icon);
 }
 
@@ -1072,7 +1072,7 @@
 
 .widget-visibility-dropdown__btn:hover,
 .widget-visibility-dropdown__item-icon:hover {
-  background-color: var(--blue-500);
+  background-color: var(--antd-color-primary);
   background-image: var(--visibility-hovered-icon);
 }
 
@@ -1090,7 +1090,7 @@
 }
 
 .dash-tab-link_selected {
-  border-bottom: 2px solid var(--blue-500);
+  border-bottom: 2px solid var(--antd-color-primary);
 }
 
 .dash-tabs-dropdown {
@@ -1121,7 +1121,7 @@
 
 .yc-select-control:hover {
   background-color: transparent;
-  border-color: var(--blue-500);
+  border-color: var(--antd-color-primary);
 }
 
 .yc-select-control__tokens {
@@ -1459,14 +1459,14 @@
 }
 
 .pagination__go-to-input:focus + .pagination__go-to-btn {
-  background-color: var(--blue-500);
+  background-color: var(--antd-color-primary);
   background-image: var(--white-arrow-icon);
 }
 
 .pagination__go-to-btn,
 .pagination__page-back,
 .pagination__page-forward {
-  background-image: var(--blue-500-arrow-icon);
+  background-image: var(--antd-color-primary-arrow-icon);
 }
 
 .pagination__page-back,
@@ -1558,12 +1558,12 @@
 }
 
 .dash-header__action-right_cancel {
-  color: var(--blue-600) !important;
+  color: var(--antd-color-primary) !important;
 }
 
 .dash-header__action-right_cancel:before {
   background: var(--white) !important;
-  border: 1px solid var(--blue-600);
+  border: 1px solid var(--antd-color-primary);
 }
 
 .dashkit-grid-item .chartkit-menu__button {

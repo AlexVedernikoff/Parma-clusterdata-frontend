@@ -58,6 +58,7 @@
   top: 2px;
   flex: 0 0 auto;
   width: 22px;
+  color: var(--antd-text-color-selection);
 }
 
 .kamatech-table-view__info {
