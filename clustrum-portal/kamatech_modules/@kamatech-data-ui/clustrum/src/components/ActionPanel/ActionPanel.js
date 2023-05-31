@@ -62,8 +62,7 @@ class ActionPanel extends React.Component {
       if (entry) {
         return (
           <div className={className}>
-            <EntryPanel sdk={sdk} entry={entry} additionalEntryItems={additionalEntryItems} />
-            {rightItems.length && rightItems.map(RightItems => RightItems)}
+            <EntryPanel sdk={sdk} entry={entry} additionalEntryItems={additionalEntryItems} rightItems={rightItems} />
           </div>
         );
       } else {

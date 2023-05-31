@@ -10,6 +10,8 @@ import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import moment from 'moment';
+import { ConfigProvider } from 'antd';
+import { ANT_TOKEN } from '../constants/constants';
 
 import reducers from '../reducers';
 
@@ -20,6 +22,8 @@ import './../css/commons.css';
 import './../css/app.css';
 import './../css/app-table-settings-total.css';
 import './../css/card.css';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
 import { logVersion } from '../utils/version-logger';
 
@@ -42,11 +46,15 @@ logVersion();
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
+      <ConfigProvider theme={{ ...ANT_TOKEN }}>
+        <Provider store={store}>
+          <DndProvider backend={HTML5Backend}>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </DndProvider>
+        </Provider>
+      </ConfigProvider>
     </AppContainer>,
     document.getElementById('root'),
   );

@@ -4,7 +4,7 @@ import NavigationBase from './Base/NavigationBase';
 import { PLACE, PLACE_VALUES } from './constants';
 import Utils from '../../utils';
 import { DL } from '../../constants/common';
-import { mapPlaceBackward, isRoot, mapPlace } from './util';
+import { isRoot, mapPlace } from './util';
 
 // use only with react-router
 class ServiceNavigation extends React.PureComponent {
@@ -57,16 +57,6 @@ class ServiceNavigation extends React.PureComponent {
       this.setPath(this.props.match.params.path, this.props.match.params.root);
     }
   }
-
-  onSidebarItemClick = item => {
-    if (item.place) {
-      const root = mapPlaceBackward(item.place);
-      this.setState({ path: '', root });
-      this.props.history.push(`${this.props.navigationUrl}/${root}`);
-    } else {
-      this.onCrumbClick({ path: item.key });
-    }
-  };
 
   onEntryParentClick = entry => {
     this.onCrumbClick({ path: entry.key });
@@ -147,7 +137,6 @@ class ServiceNavigation extends React.PureComponent {
         onCrumbClick={this.onCrumbClick}
         onEntryClick={this.onEntryClick}
         onEntryParentClick={this.onEntryParentClick}
-        onSidebarItemClick={this.onSidebarItemClick}
       />
     ) : null;
   }

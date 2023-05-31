@@ -1,0 +1,9 @@
+.page-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.page-container__content {
+  flex-grow: 1;
+}

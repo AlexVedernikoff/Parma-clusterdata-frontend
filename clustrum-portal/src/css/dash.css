@@ -225,6 +225,7 @@
 
 .dashkit-item__loader,
 .dashkit-item__renderer {
+  display: flex;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -311,7 +312,7 @@
 }
 
 .react-grid-item.react-grid-placeholder {
-  background: rgb(30, 136, 229);
+  background: var(--antd-color-primary);
   opacity: 0.2;
   transition-duration: 0.1s;
   z-index: 2;
@@ -600,7 +601,7 @@
 }
 
 .du-breadcrumbs .button2_theme_action.button2_pressed_yes .button2__arrow_pos_start > div {
-  box-shadow: inset 0 0 0 1px rgb(30, 136, 229);
+  box-shadow: inset 0 0 0 1px var(--antd-color-primary);
 }
 
 .du-breadcrumbs .button2_theme_action .button2__arrow_pos_end > div {
@@ -613,7 +614,7 @@
 }
 
 .du-breadcrumbs .button2_theme_action.button2_pressed_yes .button2__arrow_pos_end > div {
-  background-color: rgb(30, 136, 229);
+  background-color: var(--antd-color-primary);
 }
 
 .utilityfocus.utilityfocus .du-breadcrumbs .button2_theme_action.button2_focused_yes .button2__arrow_pos_end > div {
@@ -944,7 +945,7 @@ td.rdtDay.rdtNew {
   content: '';
   display: inline-block;
   border-left: 8px solid transparent;
-  border-bottom: 8px solid rgb(30, 136, 229);
+  border-bottom: 8px solid var(--antd-color-primary);
   border-top-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   bottom: 5px;
@@ -953,7 +954,7 @@ td.rdtDay.rdtNew {
 
 .rdtPicker td.rdtActive,
 .rdtPicker td.rdtActive:hover {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
   color: #000;
 }
 
@@ -1189,7 +1190,7 @@ td.rdtYear:hover {
   cursor: auto;
   color: #000;
   border: none;
-  background: rgb(75, 160, 235);
+  background: var(--antd-color-primary-hover);
   padding: 3px;
   box-sizing: border-box;
   margin: -3px 0 -3px -3px;
@@ -1371,7 +1372,7 @@ td.rdtYear:hover {
 }
 
 .du-header-menu__item:hover {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .du-header-menu__item:last-child {
@@ -1714,9 +1715,9 @@ td.rdtYear:hover {
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 0 10px;
-  background-color: var(--yc-color-float-area);
-  border-radius: 3px;
+  padding: 20px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
 }
 
 .dashkit-plugin-control_external {
@@ -1742,7 +1743,7 @@ td.rdtYear:hover {
 
 .chartkit-tooltip__header {
   letter-spacing: 1px;
-  color: rgb(30, 136, 229);
+  color: var(--antd-color-primary);
   white-space: nowrap;
   font-size: 12px;
 }
@@ -1790,7 +1791,7 @@ td.rdtYear:hover {
 
 ._tooltip-date {
   letter-spacing: 1px;
-  color: rgb(30, 136, 229);
+  color: var(--antd-color-primary);
   padding-right: 10px;
   white-space: nowrap;
   padding-bottom: 8px;
@@ -2096,8 +2097,8 @@ td.rdtYear:hover {
 }
 
 .chartkit_theme_default {
-  --ck-loader-active-color: rgb(30, 136, 229);
-  --ck-loader-off-color: rgb(75, 160, 235);
+  --ck-loader-active-color: var(--antd-color-primary);
+  --ck-loader-off-color: var(--antd-color-primary-hover);
   --ck-control-backgound: #f7f7f7;
   --highcharts-series-border: #fff;
   --highcharts-grid-line-xaxis: #ededed;
@@ -2387,7 +2388,7 @@ td.rdtYear:hover {
   --data-table-color-base: #fff;
   --data-table-color-stripe: rgba(0, 0, 0, 0.03);
   --data-table-border-color: #ddd;
-  --data-table-color-hover-area: rgb(75, 160, 235);
+  --data-table-color-hover-area: var(--antd-color-primary-hover);
   --data-table-color-footer-area: var(--data-table-color-base);
 }
 
@@ -2508,7 +2509,7 @@ td.rdtYear:hover {
 
 .chart-tooltip__header {
   letter-spacing: 1px;
-  color: rgb(30, 136, 229);
+  color: var(--antd-color-primary);
   padding-right: 10px;
   white-space: nowrap;
   padding-bottom: 8px;
@@ -3092,7 +3093,7 @@ td.rdtYear:hover {
 
 .chart-source-modal__cell_traf {
   border-left: 5px solid orange;
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
   padding: 10px;
 }
 
@@ -3144,7 +3145,7 @@ td.rdtYear:hover {
 }
 
 .comment_selected {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .comment__header {
@@ -3190,7 +3191,7 @@ td.rdtYear:hover {
 }
 
 .comments-list__new-comment_selected {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .comments-list__controls {
@@ -3231,7 +3232,7 @@ td.rdtYear:hover {
 }
 
 .dropdown-picker__item_selected {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .dropdown-picker__item svg {
@@ -4673,8 +4674,6 @@ td.data-table__td.chartkit-table__cell.chartkit-table__cell_type_FLOAT {
 .dashkit-grid-item.react-grid-item {
   width: 1033px;
   height: 400px;
-  border-radius: 4px;
-  border: var(--react-grid-item__border);
   background-color: white;
 }
 

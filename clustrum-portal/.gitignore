@@ -116,6 +116,7 @@ Desktop.ini
 /deploy/
 /dist/
 /.idea/
+/src/entries/dist
 
 ######################
 # Logs
