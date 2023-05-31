@@ -921,9 +921,10 @@
 }
 
 .yc-navigation_inline {
-  flex: 1 1 100%;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .yc-navigation_inline .yc-navigation__entries {
