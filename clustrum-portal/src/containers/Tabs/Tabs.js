@@ -7,40 +7,8 @@ import { getCurrentPageTabs } from '../../store/selectors/dash';
 import { setPageTab } from '../../store/actions/dash';
 import { Tabs as AntdTabs } from 'antd';
 
-function tabsReducer(state, action) {
-  const { visibleTabs, hiddenTabs } = state;
-  switch (action.type) {
-    case 'increaseTabs':
-      return {
-        ...state,
-        visibleTabs: [...visibleTabs, hiddenTabs[0]],
-        hiddenTabs: [...hiddenTabs].slice(1),
-      };
-    case 'decreaseTabs':
-      return {
-        ...state,
-        visibleTabs: visibleTabs.slice(0, -1),
-        hiddenTabs: [visibleTabs[visibleTabs.length - 1], ...hiddenTabs],
-      };
-    case 'setOldTabsWrapWidth':
-      return {
-        ...state,
-        oldTabsWrapWidth: action.payload,
-      };
-    default:
-      throw new Error('tabs state reducer error: do not have action');
-  }
-}
-
 function Tabs(props) {
-  const [state] = useReducer(tabsReducer, {
-    visibleTabs: props.tabs,
-    hiddenTabs: [],
-    oldTabsWrapWidth: null,
-  });
-
-  const tabs = state?.visibleTabs?.map(({ id, title }) => ({ key: id, label: title }));
-
+  const tabs = props.tabs.map(({ id, title }) => ({ key: id, label: title }));
   return <AntdTabs items={tabs} onChange={props.setPageTab} />;
 }
 
