@@ -33,7 +33,7 @@ function tabsReducer(state, action) {
 }
 
 function Tabs(props) {
-  const [state, dispatch] = useReducer(tabsReducer, {
+  const [state] = useReducer(tabsReducer, {
     visibleTabs: props.tabs,
     hiddenTabs: [],
     oldTabsWrapWidth: null,
