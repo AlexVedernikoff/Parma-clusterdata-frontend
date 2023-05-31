@@ -1292,11 +1292,11 @@
 }
 
 .dl-navigation-base__sidebar-icon-favorites {
-  color: var(--color-icon);
+  color: var(--antd-color-primary);
 }
 
 .dl-navigation-base__sidebar-icon-datasets {
-  color: var(--color-text-positive);
+  color: var(--antd-color-primary);
 }
 
 .dl-navigation-base__sidebar-icon-widgets {
@@ -1304,11 +1304,11 @@
 }
 
 .dl-navigation-base__sidebar-icon-dashboards {
-  color: var(--color-saffron-solid, #fdd835);
+  color: var(--antd-color-primary);
 }
 
 .dl-navigation-base__sidebar-icon-connections {
-  color: var(--color-text-utility);
+  color: var(--antd-color-primary);
 }
 
 .yc-toast {
@@ -2318,7 +2318,7 @@
 }
 
 .yc-header__logo-wrapper {
-  color: rgb(30, 136, 229);
+  color: var(--antd-color-primary);
   position: relative;
   display: flex;
   align-items: center;
@@ -2550,6 +2550,7 @@
   justify-content: center;
   width: 20px;
   margin-right: 12px;
+  color: var(--antd-color-primary);
 }
 
 .yc-service-menu__item-icon:empty {
@@ -3906,7 +3907,7 @@
 }
 
 .dl-dropdown-menu__item:hover {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .dl-dropdown-menu__item:last-child {
@@ -4185,7 +4186,7 @@
 }
 
 .dl-header__icon-datasets {
-  color: var(--color-text-positive);
+  color: var(--color-icon);
 }
 
 .dl-header__icon-widgets {
@@ -4193,11 +4194,11 @@
 }
 
 .dl-header__icon-dashboards {
-  color: var(--color-saffron-solid, #fdd835);
+  color: var(--color-icon);
 }
 
 .dl-header__icon-connections {
-  color: var(--color-text-utility);
+  color: var(--color-icon);
 }
 
 .error-content {
@@ -4635,7 +4636,7 @@ html {
   --data-table-color-base: #fff;
   --data-table-color-stripe: rgba(0, 0, 0, 0.03);
   --data-table-border-color: #ddd;
-  --data-table-color-hover-area: rgb(75, 160, 235);
+  --data-table-color-hover-area: var(--antd-color-primary-hover);
   --data-table-color-footer-area: var(--data-table-color-base);
 }
 
@@ -4705,7 +4706,7 @@ html {
   --color-celestial: rgba(2, 123, 243, 0.08);
   --color-frosted-mint: rgba(59, 201, 53, 0.14);
   --color-light-green: rgba(59, 201, 53, 0.1);
-  --color-azure-solid: #027bf3;
+  --color-azure-solid: var(--antd-color-primary);
   --color-celestial-thunder-solid: #dcedfd;
   --color-celestial-solid: #ebf4fe;
   --color-rain-cloud-solid: #6b8399;
@@ -4743,7 +4744,7 @@ html {
   --color-selection-accent: var(--color-azure-solid);
   --color-decoration: var(--color-contrast-15);
   --color-special-area: var(--color-azure-solid);
-  --color-icon: var(--color-rain-cloud-solid);
+  --color-icon: var(--antd-color-primary);
   background: var(--color-base);
   color: var(--color-text-primary);
 }
@@ -4769,7 +4770,7 @@ html {
   --color-contrast-4-solid: #35343b;
   --color-contrast-2-solid: #313037;
   --color-contrast-0-solid: #2d2c33;
-  --color-azure: rgba(2, 123, 243, 0.8);
+  --color-azure: var(--antd-color-primary);
   --color-celestial-thunder: rgba(2, 123, 243, 0.12);
   --color-celestial: rgba(2, 123, 243, 0.08);
   --color-rain-cloud: rgba(107, 131, 153, 0.8);
@@ -4779,7 +4780,7 @@ html {
   --color-plum: rgba(154, 50, 166, 0.8);
   --color-scarlet: rgba(255, 4, 0, 0.65);
   --color-saffron: rgba(255, 219, 77, 0.75);
-  --color-azure-solid: #0b6bcd;
+  --color-azure-solid: var(--antd-color-primary);
   --color-celestial-thunder-solid: #28354a;
   --color-celestial-solid: #2a3242;
   --color-rain-cloud-solid: #5f7285;
@@ -6283,7 +6284,7 @@ html {
 .yc-root .button2_theme_flat {
   position: relative;
   z-index: 0;
-  color: var(--color-text-primary);
+  color: var(--antd-color-primary);
   border: none;
   outline: none;
 }
@@ -6466,8 +6467,21 @@ html {
   border: none;
   box-shadow: none;
   background-color: transparent;
+  color: var(--antd-color-primary);
+}
+
+.ant-d-header-small-btn svg {
+  fill: var(--antd-color-primary);
 }
 
 .ant-d-header-eye-icon {
   margin-right: 9px;
+}
+/* Цвета antdesign (красная тема) */
+:root {
+  --antd-color-primary: #bb2649;
+  --antd-color-info: #fad54d;
+  --antd-color-primary-hover: #c74861;
+  --antd-color-selection: #faebec;
+  --antd-text-color-selection: #bb2649;
 }

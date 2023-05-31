@@ -177,12 +177,8 @@ class Header extends React.PureComponent {
         key: '2',
       },
       {
-        label: <a onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</a>,
-        key: '3',
-      },
-      {
         label: <a onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</a>,
-        key: '4',
+        key: '3',
       },
     ];
 
@@ -233,7 +229,6 @@ class Header extends React.PureComponent {
 
   renderViewItems() {
     const { entry, canEdit, openExpandedFilter, setMode } = this.props;
-
     const exportItems = [
       {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</a>,

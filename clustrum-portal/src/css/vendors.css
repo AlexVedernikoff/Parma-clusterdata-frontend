@@ -1700,7 +1700,7 @@
 }
 
 .button2_view_classic.button2.button2_theme_action.button2_pressed_yes:before {
-  background-color: rgb(30, 136, 229);
+  background-color: var(--antd-color-primary);
 }
 
 .button2_view_classic.button2_theme_action.button2_disabled_yes:before {
@@ -1768,7 +1768,7 @@
 @-webkit-keyframes button2-action-focus {
   0%,
   to {
-    background-color: rgb(30, 136, 229);
+    background-color: var(--antd-color-primary);
   }
   40%,
   60% {
@@ -1779,7 +1779,7 @@
 @keyframes button2-action-focus {
   0%,
   to {
-    background-color: rgb(30, 136, 229);
+    background-color: var(--antd-color-primary);
   }
   40%,
   60% {
@@ -1840,7 +1840,7 @@
 }
 
 .button2_theme_link {
-  color: #04b;
+  color: #bb2649;
   background: transparent;
 }
 
@@ -1874,7 +1874,7 @@
 
 .button2_view_classic.button2_theme_normal.button2_checked_yes:before {
   border-color: rgba(153, 122, 0, 0.5);
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .button2_view_classic.button2_theme_normal.button2_checked_yes.button2_pressed_yes:before {
@@ -1936,7 +1936,7 @@
 
 .button2_view_classic.button2_theme_pseudo.button2_checked_yes:before {
   border-color: rgba(153, 122, 0, 0.5);
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .button2_view_classic.button2_theme_pseudo.button2_checked_yes.button2_pressed_yes:before {
@@ -2048,8 +2048,8 @@
 }
 
 .button2.button2_theme_websearch.button2_pressed_yes .button2__text {
-  border-color: rgb(30, 136, 229);
-  background-color: rgb(30, 136, 229);
+  border-color: var(--antd-color-primary);
+  background-color: var(--antd-color-primary);
 }
 
 .i-ua_platform_opera .button2_theme_websearch {
@@ -2245,7 +2245,7 @@
 }
 
 .button2_view_default.button2_tone_default.button2_theme_link {
-  color: #04b;
+  color: #bb2649;
 }
 
 .button2_view_default.button2_tone_default.button2_theme_link:before {
@@ -2276,7 +2276,7 @@
 
 .button2_view_default.button2_tone_default.button2_action_yes:before,
 .button2_view_default.button2_tone_default.button2_theme_action:before {
-  background-color: rgb(30, 136, 229);
+  background-color: var(--antd-color-primary);
 }
 
 .button2_view_default.button2_tone_default.button2_action_yes.button2_hovered_yes,
@@ -2286,7 +2286,7 @@
 
 .button2_view_default.button2_tone_default.button2_action_yes.button2_hovered_yes:before,
 .button2_view_default.button2_tone_default.button2_theme_action.button2_hovered_yes:before {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .button2.button2_view_default.button2_tone_default.button2_action_yes.button2_progress_yes:before,
@@ -2388,7 +2388,7 @@
 }
 
 .button2_view_default.button2_tone_grey.button2_theme_link {
-  color: #04b;
+  color: #bb2649;
 }
 
 .button2_view_default.button2_tone_grey.button2_theme_link:before {
@@ -2533,7 +2533,7 @@
 }
 
 .button2_view_default.button2_tone_market.button2_theme_link {
-  color: #04b;
+  color: #bb2649;
 }
 
 .button2_view_default.button2_tone_market.button2_theme_link:before {
@@ -2564,7 +2564,7 @@
 
 .button2_view_default.button2_tone_market.button2_action_yes:before,
 .button2_view_default.button2_tone_market.button2_theme_action:before {
-  background-color: rgb(30, 136, 229);
+  background-color: var(--antd-color-primary);
 }
 
 .button2_view_default.button2_tone_market.button2_action_yes.button2_hovered_yes,
@@ -2574,7 +2574,7 @@
 
 .button2_view_default.button2_tone_market.button2_action_yes.button2_hovered_yes:before,
 .button2_view_default.button2_tone_market.button2_theme_action.button2_hovered_yes:before {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .button2.button2_view_default.button2_tone_market.button2_action_yes.button2_progress_yes:before,
@@ -2603,7 +2603,7 @@
 }
 
 .button2.button2_view_default.button2_tone_market.button2_checked_yes:before {
-  background-color: rgb(30, 136, 229);
+  background-color: var(--antd-color-primary);
 }
 
 .button2_view_default.button2_tone_market.button2_checked_yes.button2_hovered_yes {
@@ -2611,7 +2611,7 @@
 }
 
 .button2.button2_view_default.button2_tone_market.button2_checked_yes.button2_hovered_yes:before {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .button2_view_default.button2_tone_market.button2_theme_pseudo.button2_checked_yes:before {
@@ -2807,7 +2807,7 @@
 }
 
 .button2_view_default.button2_theme_link {
-  color: #04b;
+  color: #bb2649;
 }
 
 .button2_view_default.button2_theme_link:before {
@@ -2933,7 +2933,7 @@
 }
 
 .utilityfocus .link_theme_black.link_focused_yes {
-  outline: 2px solid rgb(30, 136, 229);
+  outline: 2px solid var(--antd-color-primary);
 }
 
 .link_theme_black.link_hovered_yes {
@@ -2957,7 +2957,7 @@
 }
 
 .utilityfocus .link_theme_ghost.link_focused_yes {
-  outline: 2px solid rgb(30, 136, 229);
+  outline: 2px solid var(--antd-color-primary);
 }
 
 .link_theme_ghost.link_hovered_yes {
@@ -2969,7 +2969,7 @@
 }
 
 .link_theme_normal {
-  color: #04b;
+  color: #bb2649;
 }
 
 .link_theme_normal.link_disabled_yes {
@@ -2981,7 +2981,7 @@
 }
 
 .utilityfocus.utilityfocus .link_theme_normal.link_focused_yes {
-  outline: 2px solid rgb(30, 136, 229);
+  outline: 2px solid var(--antd-color-primary);
 }
 
 .link_theme_normal.link_hovered_yes {
@@ -3005,7 +3005,7 @@
 }
 
 .utilityfocus .link_theme_outer.link_focused_yes {
-  outline: 2px solid rgb(30, 136, 229);
+  outline: 2px solid var(--antd-color-primary);
 }
 
 .link_theme_outer.link_hovered_yes {
@@ -3017,7 +3017,7 @@
 }
 
 .link_theme_pseudo {
-  color: #04b;
+  color: #bb2649;
 }
 
 .link_theme_pseudo.link_disabled_yes {
@@ -3033,7 +3033,7 @@
 }
 
 .utilityfocus .link_theme_pseudo.link_focused_yes {
-  outline: 2px solid rgb(30, 136, 229);
+  outline: 2px solid var(--antd-color-primary);
 }
 
 .link_theme_pseudo.link_hovered_yes {
@@ -3046,7 +3046,7 @@
 
 .link_theme_strong {
   font-weight: 700;
-  color: #04b;
+  color: #bb2649;
 }
 
 .link_theme_strong.link_disabled_yes {
@@ -3058,7 +3058,7 @@
 }
 
 .utilityfocus .link_theme_strong.link_focused_yes {
-  outline: 2px solid rgb(30, 136, 229);
+  outline: 2px solid var(--antd-color-primary);
 }
 
 .link_theme_strong.link_hovered_yes {
@@ -3435,7 +3435,7 @@
 }
 
 .menu_theme_normal .menu__item.menu__item_hovered_yes {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .menu_theme_normal .menu__item.menu__item_disabled_yes,
@@ -3528,7 +3528,7 @@
 
 .menu_view_default.menu_tone_market.menu_theme_normal .menu__item.menu__item_hovered_yes {
   color: #000;
-  background-color: rgb(30, 136, 229);
+  background-color: var(--antd-color-primary);
 }
 
 .menu_view_default.menu_tone_market.menu_theme_normal .menu__item.menu__item_disabled_yes,
@@ -4396,7 +4396,7 @@
 
 .tooltip_view_classic.tooltip_theme_promo .button2_view_classic.button2_theme_action:before {
   border-radius: 4px 0;
-  background: rgb(30, 136, 229);
+  background: var(--antd-color-primary);
 }
 
 .tooltip_view_classic.tooltip_theme_promo .button2_view_classic.button2_theme_action.button2_hovered_yes:before {
@@ -6057,7 +6057,7 @@ a.user-account_hovered_yes {
 
 .checkbox_view_classic.checkbox_theme_normal.checkbox_checked_yes .checkbox__box:before {
   border-color: rgba(153, 122, 0, 0.5);
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .checkbox_view_classic.checkbox_theme_normal.checkbox_checked_yes.checkbox_hovered_yes .checkbox__box:before {
@@ -6071,7 +6071,7 @@ a.user-account_hovered_yes {
 .utilityfocus
   .checkbox_view_classic.checkbox_theme_normal.checkbox_checked_yes.checkbox_focused_yes
   .checkbox__box:before {
-  border-color: rgb(30, 136, 229);
+  border-color: var(--antd-color-primary);
 }
 
 .checkbox_view_classic.checkbox_theme_normal.checkbox_disabled_yes .checkbox__box:before {
@@ -6113,7 +6113,7 @@ a.user-account_hovered_yes {
 
 .checkbox_view_classic.checkbox_theme_pseudo.checkbox_checked_yes .checkbox__box:before {
   border-color: rgba(153, 122, 0, 0.5);
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .checkbox_view_classic.checkbox_theme_pseudo.checkbox_checked_yes.checkbox_hovered_yes .checkbox__box:before {
@@ -6127,7 +6127,7 @@ a.user-account_hovered_yes {
 .utilityfocus
   .checkbox_view_classic.checkbox_theme_pseudo.checkbox_checked_yes.checkbox_focused_yes
   .checkbox__box:before {
-  border-color: rgb(30, 136, 229);
+  border-color: var(--antd-color-primary);
 }
 
 .checkbox_view_classic.checkbox_theme_pseudo.checkbox_disabled_yes .checkbox__box:before {
@@ -6284,7 +6284,7 @@ a.user-account_hovered_yes {
 }
 
 .checkbox_view_default.checkbox_tone_market.checkbox_theme_normal.checkbox_checked_yes .checkbox__box:before {
-  background-color: rgb(30, 136, 229);
+  background-color: var(--antd-color-primary);
 }
 
 .checkbox_view_default.checkbox_tone_market.checkbox_theme_normal.checkbox_hovered_yes .checkbox__box:before {
@@ -6293,7 +6293,7 @@ a.user-account_hovered_yes {
 
 .checkbox_view_default.checkbox_tone_market.checkbox_theme_normal.checkbox_hovered_yes.checkbox_checked_yes
   .checkbox__box:before {
-  background-color: rgb(75, 160, 235);
+  background-color: var(--antd-color-primary-hover);
 }
 
 .checkbox_view_default.checkbox_tone_red.checkbox_theme_normal {
@@ -6528,7 +6528,7 @@ a.user-account_hovered_yes {
   }
   .radiobox_view_classic.radiobox_theme_normal .radiobox__radio_checked_yes .radiobox__box:before {
     border-color: rgba(153, 122, 0, 0.5);
-    background-color: rgb(75, 160, 235);
+    background-color: var(--antd-color-primary-hover);
   }
   .radiobox_view_classic.radiobox_theme_normal .radiobox__radio_checked_yes .radiobox__box:after {
     position: absolute;
@@ -6610,7 +6610,7 @@ a.user-account_hovered_yes {
   }
   .radiobox_view_classic.radiobox_theme_pseudo .radiobox__radio_checked_yes .radiobox__box:before {
     border-color: rgba(153, 122, 0, 0.5);
-    background-color: rgb(75, 160, 235);
+    background-color: var(--antd-color-primary-hover);
   }
   .radiobox_view_classic.radiobox_theme_pseudo .radiobox__radio_checked_yes .radiobox__box:after {
     position: absolute;
@@ -6763,7 +6763,7 @@ a.user-account_hovered_yes {
     background-color: #d9d9d9;
   }
   .radiobox_view_default.radiobox_tone_market.radiobox_theme_normal .radiobox__radio_checked_yes .radiobox__box {
-    background-color: rgb(30, 136, 229);
+    background-color: var(--antd-color-primary);
   }
   .radiobox_view_default.radiobox_tone_market.radiobox_theme_normal .radiobox__radio_hovered_yes .radiobox__box {
     background-color: #cecece;
@@ -6771,7 +6771,7 @@ a.user-account_hovered_yes {
   .radiobox_view_default.radiobox_tone_market.radiobox_theme_normal
     .radiobox__radio_hovered_yes.radiobox__radio_checked_yes
     .radiobox__box {
-    background-color: rgb(75, 160, 235);
+    background-color: var(--antd-color-primary-hover);
   }
   .utilityfocus .radiobox_view_default.radiobox_tone_market .radiobox__radio_focused_yes .radiobox__box {
     box-shadow: 0 0 0 2px #b3b3b3;
@@ -6954,8 +6954,8 @@ a.user-account_hovered_yes {
 }
 
 .spin2_view_default.spin2_tone_default.spin2_progress_yes {
-  border-top-color: rgb(30, 136, 229);
-  border-left-color: rgb(30, 136, 229);
+  border-top-color: var(--antd-color-primary);
+  border-left-color: var(--antd-color-primary);
 }
 
 .spin2_view_default.spin2_tone_grey.spin2_progress_yes {
@@ -6964,8 +6964,8 @@ a.user-account_hovered_yes {
 }
 
 .spin2_view_default.spin2_tone_market.spin2_progress_yes {
-  border-top-color: rgb(30, 136, 229);
-  border-left-color: rgb(30, 136, 229);
+  border-top-color: var(--antd-color-primary);
+  border-left-color: var(--antd-color-primary);
 }
 
 .spin2_view_default.spin2_tone_red.spin2_progress_yes {
