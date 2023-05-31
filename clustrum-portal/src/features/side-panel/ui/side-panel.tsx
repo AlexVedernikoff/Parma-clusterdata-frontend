@@ -34,7 +34,7 @@ export function SidePanel({ withoutReactRouter }: SidePanelProps): ReactElement 
       <div className={cn('side-panel__header', { 'side-panel__header--collapsed': collapsed })}>
         <PieChartFilled className="side-panel__header-icon" />
         <span className={cn('side-panel__header-title', { 'side-panel__header-title--collapsed': collapsed })}>
-          Анализ данных
+          Кластрум
         </span>
       </div>
       <nav className="side-panel__content">
