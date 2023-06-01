@@ -1,5 +1,10 @@
 export { default as Wizard } from './modules/legacy-wizard/Wizard';
-export { DashKit, pluginText, pluginTitle, pluginWidget } from './modules/legacy-dashboard/src';
+export {
+  DashKit,
+  pluginText,
+  pluginTitle,
+  pluginWidget,
+} from './modules/legacy-dashboard/src';
 
 export { useDebounce } from './shared/lib/hooks/use-debounce/use-debounce';
 
@@ -20,3 +25,4 @@ export {
   RangeDatepickerProps,
 } from './shared/ui/filter-controls/range-datepicker-filter-control/range-datepicker-filter-control';
 export { PickerValue } from './shared/ui/filter-controls/range-datepicker-filter-control/types/picker-value';
+export { TableWidget, valueFormatter } from './shared/ui/widgets';
