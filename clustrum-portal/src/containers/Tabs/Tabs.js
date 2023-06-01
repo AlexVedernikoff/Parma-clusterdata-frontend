@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -7,9 +7,9 @@ import { getCurrentPageTabs } from '../../store/selectors/dash';
 import { setPageTab } from '../../store/actions/dash';
 import { Tabs as AntdTabs } from 'antd';
 
-function Tabs(props) {
-  const tabs = props.tabs.map(({ id, title }) => ({ key: id, label: title }));
-  return <AntdTabs items={tabs} onChange={props.setPageTab} />;
+function Tabs({ tabs, setPageTab }) {
+  const antdTabs = tabs.map(({ id, title }) => ({ key: id, label: title }));
+  return <AntdTabs items={antdTabs} onChange={setPageTab} />;
 }
 
 Tabs.propTypes = {
