@@ -1,1 +1,1 @@
-export { TableWidget, valueFormatter } from './table-widget';
+export { TableWidget, TableWidgetProps, valueFormatter } from './table-widget';
