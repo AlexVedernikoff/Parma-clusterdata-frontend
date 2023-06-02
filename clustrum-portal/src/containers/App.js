@@ -13,6 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
 
 import { exportWidget } from '../services/dashboard/export/export-widget';
+import { PageContainer } from '../widgets/page-container/ui/page-container';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -27,24 +28,27 @@ class App extends Component {
     exportWidget({ id, name }, undefined, options);
   }
 
-  renderContent = () => {
-    return (
-      <Switch>
-        <Route
-          path={'/wizard/preview/:id'}
-          component={props => <Wizard {...props} onExport={this._handleExport} preview={true} sdk={sdk} />}
-        />
-        <Route path={'/wizard'} component={props => <Wizard {...props} onExport={this._handleExport} sdk={sdk} />} />
-      </Switch>
-    );
-  };
-
   render() {
     return (
-      <div className={b()}>
+      <>
         <Pointerfocus />
-        <div className={b('main')}>{this.renderContent()}</div>
-      </div>
+        <Switch>
+          <Route
+            path={'/wizard/preview/:id'}
+            component={props => (
+              <Wizard {...props} onExport={this._handleExport} preview={true} sdk={sdk} />
+            )}
+          />
+          <Route
+            path={'/wizard'}
+            component={props => (
+              <PageContainer withoutReactRouter>
+                <Wizard {...props} onExport={this._handleExport} sdk={sdk} />
+              </PageContainer>
+            )}
+          />
+        </Switch>
+      </>
     );
   }
 }

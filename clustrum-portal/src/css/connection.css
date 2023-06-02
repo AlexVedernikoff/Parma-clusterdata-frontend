@@ -282,15 +282,21 @@
   margin-right: 20px;
 }
 
-.csv-connector2__csv-setting .csv-connector2__setting-panel .csv-connector2__field:first-child {
+.csv-connector2__csv-setting
+  .csv-connector2__setting-panel
+  .csv-connector2__field:first-child {
   width: 422px;
 }
 
-.csv-connector2__csv-setting .csv-connector2__setting-panel .csv-connector2__field:not(:first-child) {
+.csv-connector2__csv-setting
+  .csv-connector2__setting-panel
+  .csv-connector2__field:not(:first-child) {
   flex: 1;
 }
 
-.csv-connector2__csv-setting .csv-connector2__setting-panel .csv-connector2__csv-header-rb {
+.csv-connector2__csv-setting
+  .csv-connector2__setting-panel
+  .csv-connector2__csv-header-rb {
   margin-left: 10px;
 }
 
@@ -396,7 +402,6 @@
 .connections-router {
   height: 100%;
   display: flex;
-  flex-direction: column;
 }
 
 .connections-router > header {

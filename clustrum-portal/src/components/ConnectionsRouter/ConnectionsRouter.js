@@ -7,6 +7,7 @@ import { Utils } from '@kamatech-data-ui/clustrum';
 import Connectors from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
 import { getConnectorsMap } from '../../constants';
+import { PageContainer } from '../../widgets/page-container/ui/page-container';
 
 const b = block('connections-router');
 
@@ -31,7 +32,7 @@ class ConnectionsRouter extends PureComponent {
     };
 
     return (
-      <div className={b()}>
+      <>
         <Pointerfocus />
         <Router>
           <Switch>
@@ -39,14 +40,26 @@ class ConnectionsRouter extends PureComponent {
               path={'/connections/new'}
               render={() => (
                 <Switch>
-                  <Route exact path={'/connections/new'} render={props => <Connectors {...props} sdk={sdk} />} />
+                  <Route
+                    exact
+                    path={'/connections/new'}
+                    render={props => (
+                      <PageContainer withoutReactRouter>
+                        <Connectors {...props} sdk={sdk} />
+                      </PageContainer>
+                    )}
+                  />
                   <Route
                     path={'/connections/new/:connectorType'}
                     render={props => {
                       const { params: { connectorType } = {} } = props.match;
 
                       if (Object.keys(getConnectorsMap()).includes(connectorType)) {
-                        return <ConnectionPage {...props} sdk={sdk} />;
+                        return (
+                          <PageContainer withoutReactRouter>
+                            <ConnectionPage {...props} sdk={sdk} />
+                          </PageContainer>
+                        );
                       }
 
                       return <Redirect to={'/connections/new'} />;
@@ -58,12 +71,16 @@ class ConnectionsRouter extends PureComponent {
             <Route
               path={'/connections/:connectionId'}
               render={props => {
-                return <ConnectionPage {...props} sdk={sdk} />;
+                return (
+                  <PageContainer withoutReactRouter>
+                    <ConnectionPage {...props} sdk={sdk} />
+                  </PageContainer>
+                );
               }}
             />
           </Switch>
         </Router>
-      </div>
+      </>
     );
   }
 }
