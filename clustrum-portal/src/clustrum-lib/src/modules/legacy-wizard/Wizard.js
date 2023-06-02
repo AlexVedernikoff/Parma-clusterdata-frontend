@@ -8,14 +8,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
-
-import iconFullscreen from 'icons/fullscreen.svg';
-import iconDisclose from 'icons/disclose.svg';
-import iconLock from 'icons/lock.svg';
-
-import { Button, Dropdown, Popup, Menu } from 'lego-on-react';
-
 import { ErrorContent, EntryDialogues, ActionPanel } from '@kamatech-data-ui/clustrum';
 
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
@@ -34,9 +26,18 @@ import { selectDataset } from '../../../../reducers/dataset';
 
 import { selectVisualization } from '../../../../reducers/visualization';
 
-import { selectSettings, selectIsFullscreen, selectIsDefaultsSet } from '../../../../reducers/settings';
+import {
+  selectSettings,
+  selectIsFullscreen,
+  selectIsDefaultsSet,
+} from '../../../../reducers/settings';
 
-import { selectIsWidgetLoading, selectWidgetError, selectWidget, selectWidgetHash } from '../../../../reducers/widget';
+import {
+  selectIsWidgetLoading,
+  selectWidgetError,
+  selectWidget,
+  selectWidgetHash,
+} from '../../../../reducers/widget';
 
 import {
   selectConfig,
@@ -45,10 +46,18 @@ import {
   selectPreviewHash,
 } from '../../../../reducers/preview';
 
-import { fetchWidget, setDefaults, toggleFullscreen, requestUpdateWidget, receiveWidget } from '../../../../actions';
+import {
+  fetchWidget,
+  setDefaults,
+  toggleFullscreen,
+  requestUpdateWidget,
+  receiveWidget,
+} from '../../../../actions';
 
 import { getNavigationPathFromKey } from '../../../../helpers/utils-dash';
 import PageHead from '../../../../components/PageHeader/PageHeader';
+import { FullscreenOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Space } from 'antd';
 
 // import './Wizard.scss';
 
@@ -123,7 +132,14 @@ class Wizard extends Component {
   };
 
   openSaveWidgetDialog = async () => {
-    const { widget, sdk, config, requestUpdateWidget, onSavingStart, onSavingEnd } = this.props;
+    const {
+      widget,
+      sdk,
+      config,
+      requestUpdateWidget,
+      onSavingStart,
+      onSavingEnd,
+    } = this.props;
 
     // Обновляем существующий или сохраняем новый?
     if (widget && !widget.fake) {
@@ -203,21 +219,16 @@ class Wizard extends Component {
     const {
       sdk,
       widget,
-      config,
-      configType,
       isFullscreen,
       preview,
       isWidgetLoading,
       toggleFullscreen,
-      previewHash,
-      widgetHash,
       onExport,
     } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
     const hidden = isFullscreen ? ' hidden' : '';
     const { entryDialoguesRef } = this;
-    const widgetChanged = previewHash !== widgetHash;
 
     if (isWidgetLoading) {
       return (
@@ -227,15 +238,22 @@ class Wizard extends Component {
       );
     }
 
-    let link = '';
-    if (widget && widget.entryId) {
-      link = `${DL.endpoints.wizard}/${widget.entryId}`;
-    }
-
-    const saveDisabled = !config || !configType || !widgetChanged;
-    const saveMoreDisabled = !config || !configType;
-
     const entryLocked = widget && widget.editable === false;
+
+    const saveItems = [
+      {
+        label: (
+          <a
+            onClick={() => {
+              this.openSaveAsWidgetDialog();
+            }}
+          >
+            Сохранить как
+          </a>
+        ),
+        key: '1',
+      },
+    ];
 
     return (
       <div className={`${b()}${fullscreen}`}>
@@ -264,57 +282,27 @@ class Wizard extends Component {
             rightItems={[
               <Button
                 key="fullscreen"
-                cls={b('fullscreen-btn')}
-                theme="flat"
-                size="n"
-                view="default"
-                tone="default"
-                text="На весь экран"
-                iconLeft={<Icon data={iconFullscreen} width="24" />}
+                title="На весь экран"
+                type="text"
+                icon={<FullscreenOutlined />}
                 onClick={toggleFullscreen}
-              />,
-              <Button
-                disabled={saveDisabled}
-                cls={b('save-btn')}
-                key="save-dataset"
-                theme="action"
-                size="n"
-                view="default"
-                tone="default"
-                text="Сохранить"
-                iconLeft={entryLocked ? <Icon data={iconLock} width="24" /> : null}
-                onClick={this.openSaveWidgetDialog}
-              ></Button>,
-              <div className={`pseudosave-btn${entryLocked ? ' active' : ''}`} onClick={this.openNoRightsDialog}></div>,
-              <Dropdown
-                disabled={saveMoreDisabled}
-                cls="save-more-dropdown"
-                view="default"
-                tone="default"
-                theme="flat"
-                size="n"
-                switcher={
-                  <Button cls="save-more-btn" theme="action" size="n" width="max" view="default" tone="default">
-                    <Icon data={iconDisclose} width="20" />
-                  </Button>
-                }
-                popup={
-                  <Popup autoclosable onOutsideClick={() => {}}>
-                    <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
-                      <Menu.Item
-                        type="option"
-                        val="access"
-                        onClick={() => {
-                          this.openSaveAsWidgetDialog();
-                        }}
-                      >
-                        Сохранить как
-                      </Menu.Item>
-                    </Menu>
-                  </Popup>
-                }
-                hasTail
-              />,
+              >
+                На весь экран
+              </Button>,
+              <div
+                className={`pseudosave-btn${entryLocked ? ' active' : ''}`}
+                onClick={this.openNoRightsDialog}
+              ></div>,
+              <Space>
+                <Dropdown.Button
+                  type="primary"
+                  menu={{ items: saveItems }}
+                  onClick={this.openSaveWidgetDialog}
+                  trigger={['click']}
+                >
+                  Сохранить
+                </Dropdown.Button>
+              </Space>,
             ]}
           />
         )}
@@ -334,7 +322,11 @@ class Wizard extends Component {
             </div>
           )}
           <div className="column preview-column">
-            <SectionPreview entryDialoguesRef={entryDialoguesRef} sdk={sdk} onExport={onExport} />
+            <SectionPreview
+              entryDialoguesRef={entryDialoguesRef}
+              sdk={sdk}
+              onExport={onExport}
+            />
           </div>
         </div>
       </div>

@@ -3,12 +3,11 @@ import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-d
 import block from 'bem-cn-lite';
 import PropTypes from 'prop-types';
 import { Pointerfocus } from 'lego-on-react';
-import { Header, Utils } from '@kamatech-data-ui/clustrum';
+import { Utils } from '@kamatech-data-ui/clustrum';
 import Connectors from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
 import { getConnectorsMap } from '../../constants';
-
-// import './ConnectionsRouter.scss';
+import { PageContainer } from '../../widgets/page-container/ui/page-container';
 
 const b = block('connections-router');
 
@@ -33,32 +32,34 @@ class ConnectionsRouter extends PureComponent {
     };
 
     return (
-      <div className={b()}>
+      <>
         <Pointerfocus />
-        <Header
-          installationType={installationType}
-          sdk={sdk}
-          endpoints={endpoints}
-          clouds={clouds}
-          userData={userData}
-          menuData={menu}
-          logoText={logoText}
-          toggleTheme={toggleTheme}
-        />
         <Router>
           <Switch>
             <Route
               path={'/connections/new'}
               render={() => (
                 <Switch>
-                  <Route exact path={'/connections/new'} render={props => <Connectors {...props} sdk={sdk} />} />
+                  <Route
+                    exact
+                    path={'/connections/new'}
+                    render={props => (
+                      <PageContainer withoutReactRouter>
+                        <Connectors {...props} sdk={sdk} />
+                      </PageContainer>
+                    )}
+                  />
                   <Route
                     path={'/connections/new/:connectorType'}
                     render={props => {
                       const { params: { connectorType } = {} } = props.match;
 
                       if (Object.keys(getConnectorsMap()).includes(connectorType)) {
-                        return <ConnectionPage {...props} sdk={sdk} />;
+                        return (
+                          <PageContainer withoutReactRouter>
+                            <ConnectionPage {...props} sdk={sdk} />
+                          </PageContainer>
+                        );
                       }
 
                       return <Redirect to={'/connections/new'} />;
@@ -70,12 +71,16 @@ class ConnectionsRouter extends PureComponent {
             <Route
               path={'/connections/:connectionId'}
               render={props => {
-                return <ConnectionPage {...props} sdk={sdk} />;
+                return (
+                  <PageContainer withoutReactRouter>
+                    <ConnectionPage {...props} sdk={sdk} />
+                  </PageContainer>
+                );
               }}
             />
           </Switch>
         </Router>
-      </div>
+      </>
     );
   }
 }

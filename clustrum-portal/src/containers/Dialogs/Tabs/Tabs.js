@@ -12,7 +12,7 @@ import { Dialog, Icon } from '@kamatech-data-ui/common/src';
 import { getCurrentPageTabs, isDialogVisible } from '../../../store/selectors/dash';
 import { closeDialog, setTabs } from '../../../store/actions/dash';
 import { DIALOG_TYPE } from '../../../modules/constants/constants';
-import DragSortable from '../../../components/DragSortable/DragSortable';
+import { SortableContainer } from '../../../components/DragSortable/DragSortable';
 
 import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close.svg';
 import iconPencil from '@kamatech-data-ui/clustrum/src/icons/pencil.svg';
@@ -90,7 +90,9 @@ class Tabs extends React.PureComponent {
 
   onRemove(id, index) {
     const { tabs } = this.state;
-    const tabIndex = tabs.findIndex((tab, i) => (id && tab.id === id) || (index && i === index));
+    const tabIndex = tabs.findIndex(
+      (tab, i) => (id && tab.id === id) || (index && i === index),
+    );
     this.setState({ tabs: update(tabs, { $splice: [[tabIndex, 1]] }) });
   }
 
@@ -109,7 +111,7 @@ class Tabs extends React.PureComponent {
       <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
         <Dialog.Header caption="Вкладки" />
         <Dialog.Body className={b()}>
-          <DragSortable type={TAB_TYPE} moveItem={this.moveItem}>
+          <SortableContainer type={TAB_TYPE} moveItem={this.moveItem}>
             {tabs.map(({ id, title, tempId }, index) =>
               editIndex === index ? (
                 <div className={b('row', { input: true })} key={id || tempId}>
@@ -131,7 +133,9 @@ class Tabs extends React.PureComponent {
                 <div
                   className={b('row')}
                   key={id || tempId}
-                  onDoubleClick={() => this.setState({ editIndex: index, editTitle: title })}
+                  onDoubleClick={() =>
+                    this.setState({ editIndex: index, editTitle: title })
+                  }
                 >
                   <div className={b('title')}>{title}</div>
                   <div className={b('controls')}>
@@ -140,7 +144,9 @@ class Tabs extends React.PureComponent {
                       data={iconPencil}
                       width="18"
                       height="18"
-                      onClick={() => this.setState({ editIndex: index, editTitle: title })}
+                      onClick={() =>
+                        this.setState({ editIndex: index, editTitle: title })
+                      }
                     />
                     {tabs.length > 1 && (
                       <Icon
@@ -155,7 +161,7 @@ class Tabs extends React.PureComponent {
                 </div>
               ),
             )}
-          </DragSortable>
+          </SortableContainer>
           <div
             className={b('row', { add: true })}
             onClick={() =>

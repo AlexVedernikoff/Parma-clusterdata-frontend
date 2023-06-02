@@ -14,6 +14,8 @@ import './../css/commons.css';
 import './../css/connection.css';
 
 import { logVersion } from '../utils/version-logger';
+import { ConfigProvider } from 'antd';
+import { ANT_TOKEN } from '../constants/constants';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -35,9 +37,11 @@ logVersion();
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <Provider store={store}>
-        <ConnectionsRouter sdk={sdk} />
-      </Provider>
+      <ConfigProvider theme={{ ...ANT_TOKEN }}>
+        <Provider store={store}>
+          <ConnectionsRouter sdk={sdk} />
+        </Provider>
+      </ConfigProvider>
     </AppContainer>,
     document.getElementById('root'),
   );

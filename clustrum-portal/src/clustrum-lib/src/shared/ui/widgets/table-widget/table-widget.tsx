@@ -4,12 +4,12 @@ import { Table } from 'antd';
 
 import './table-widget.css';
 
-interface TableWidgetProps {
+export interface TableWidgetProps {
   // TODO: типизировать таблицу (T - тип строки таблицы, record)
   // columns: ColumnType<T>[];
   columns: any;
   dataSource: object[];
-  title: string;
+  title: string | null;
 }
 
 export const TableWidget = (props: TableWidgetProps): JSX.Element => {
@@ -18,7 +18,7 @@ export const TableWidget = (props: TableWidgetProps): JSX.Element => {
     <Table
       columns={columns}
       dataSource={dataSource}
-      title={(): string => title}
+      title={(): string | null => title}
       size="small"
     />
   );

@@ -3,7 +3,13 @@
 const Utils = require('../../utils');
 const qs = require('qs');
 const axios = require('axios');
-const { PLACE, MAP_PLACE_TO_SCOPE, TIMEOUT_10_SEC, TIMEOUT_60_SEC, TIMEOUT_120_SEC } = require('../../constants');
+const {
+  PLACE,
+  MAP_PLACE_TO_SCOPE,
+  TIMEOUT_10_SEC,
+  TIMEOUT_60_SEC,
+  TIMEOUT_120_SEC,
+} = require('../../constants');
 
 const defaultTransformResponse = axios.defaults.transformResponse[0];
 
@@ -462,7 +468,9 @@ const GENERAL_API_SCHEMA = {
         const { name: functionReferencesBreadcrumbName } = referencesBreadcrumb;
         let allEditorFunctionsDoc = [];
 
-        const functionsToc = itemsToc.find(({ name }) => name === functionReferencesBreadcrumbName);
+        const functionsToc = itemsToc.find(
+          ({ name }) => name === functionReferencesBreadcrumbName,
+        );
 
         if (functionsToc) {
           const { items: functionsTocItems = [] } = functionsToc;
@@ -495,7 +503,6 @@ const GENERAL_API_SCHEMA = {
     },
     timeout: TIMEOUT_120_SEC,
   }),
-  getStyles: 'dashboards/styles',
   createDashState: 'createDashState',
   getDashState: 'getDashState',
 };

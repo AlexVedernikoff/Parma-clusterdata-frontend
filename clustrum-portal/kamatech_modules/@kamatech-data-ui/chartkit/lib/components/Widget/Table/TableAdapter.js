@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import { TableWidget, createCell } from '@clustrum-lib/shared/ui/widgets';
+import { TableWidget, createCell } from '@clustrum-lib';
 
 const b = block('chartkit-table');
 

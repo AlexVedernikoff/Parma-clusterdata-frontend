@@ -1,0 +1,15 @@
+export const ROUTES = {
+  root: '/',
+  navigation: '/navigation',
+  navigationId: '/navigation/:id',
+  favorites: '/favorites',
+  favoritesId: '/favorites/:id',
+  connections: '/connections',
+  connectionsInFolder: '/connections_in_folder/:id',
+  datasets: '/datasets',
+  datasetsInFolder: '/datasets_in_folder/:id',
+  widgets: '/widgets',
+  widgetsInFolder: '/widgets_in_folder/:id',
+  dashboards: '/dashboards',
+  dashboardsInFolder: '/dashboards_in_folder/:id',
+};

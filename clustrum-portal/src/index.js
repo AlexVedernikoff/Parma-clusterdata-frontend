@@ -8,7 +8,7 @@ const router = express.Router();
 const apiProxy = httpProxy.createProxyServer();
 
 const PORT = process.env.PORT || 8090;
-const BI_SERVICE_HOST = dotenv.parsed.BI_SERVICE_HOST;
+const BI_SERVICE_HOST = process.env.BI_SERVICE_HOST || dotenv.parsed.BI_SERVICE_HOST;
 
 const DIST_DIR = './';
 const ROOT_OPTIONS = { root: DIST_DIR };

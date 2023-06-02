@@ -2,7 +2,7 @@
   --item-shadow: 5px 15px 10px rgba(5, 66, 40, 0.1);
   --item-border: solid 2px #c7d7e9;
 
-  --item-title-background: rgba(53, 130, 202, 0.1);
+  --item-title-background: var(--antd-color-selection);
   --item-title-height: 50px;
   --item-title-font-size: 14px;
 
@@ -57,7 +57,7 @@
 
 .action-panel {
   background: #f9fdff;
-  margin: 0 20px;
+
   padding: 0;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .yc-root .button2_theme_flat {
-  color: #51596b;
+  color: var(--antd-color-primary);
 }
 
 .dash-tabs {
@@ -195,10 +195,6 @@
   visibility: visible;
 }
 
-.dashkit-grid-item__item {
-  box-shadow: var(--item-shadow);
-}
-
 .data-table__row {
   background: #fff;
 }
@@ -271,7 +267,7 @@
 }
 
 .button2__icon_side_right {
-  color: #027bf3;
+  color: var(--antd-color-primary);
 }
 
 .dashkit-plugin-widget .chartkit-menu__button {

@@ -1,1 +1,1 @@
-export { TableWidget, createCell } from './table-widget';
+export { TableWidget, TableWidgetProps, createCell } from './table-widget';
