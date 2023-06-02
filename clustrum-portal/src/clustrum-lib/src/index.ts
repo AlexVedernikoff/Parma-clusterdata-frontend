@@ -25,4 +25,4 @@ export {
   RangeDatepickerProps,
 } from './shared/ui/filter-controls/range-datepicker-filter-control/range-datepicker-filter-control';
 export { PickerValue } from './shared/ui/filter-controls/range-datepicker-filter-control/types/picker-value';
-export { TableWidget, TableWidgetProps, valueFormatter } from './shared/ui/widgets';
+export { TableWidget, TableWidgetProps, createCell } from './shared/ui/widgets';
