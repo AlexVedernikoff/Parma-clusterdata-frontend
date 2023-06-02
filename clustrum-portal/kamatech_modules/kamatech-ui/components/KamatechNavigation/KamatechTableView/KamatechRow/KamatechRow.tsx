@@ -23,11 +23,11 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
     this.onEntryParentClick = this.onEntryParentClick.bind(this);
   }
 
-  onClick = (event: React.SyntheticEvent) => {
+  onClick = (event: React.SyntheticEvent): void => {
     this.props.onEntryClick(this.props.entry, event);
   };
 
-  onChangeFavorite = (event: React.SyntheticEvent) => {
+  onChangeFavorite = (event: React.SyntheticEvent): void => {
     event.preventDefault();
     event.stopPropagation();
     this.props.onChangeFavorite(this.props.entry);
@@ -39,13 +39,13 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
     this.buttonRef = elem;
   };
 
-  onEntryContextClick = (event: React.SyntheticEvent) => {
+  onEntryContextClick = (event: React.SyntheticEvent): void => {
     event.preventDefault();
     event.stopPropagation();
     this.props.onEntryContextClick({ entry: this.props.entry, buttonRef: this.buttonRef });
   };
 
-  onEntryParentClick = (event: React.SyntheticEvent) => {
+  onEntryParentClick = (event: React.SyntheticEvent): void => {
     event.stopPropagation();
     event.preventDefault();
     const model = new KamatechRowModel(this.props);
