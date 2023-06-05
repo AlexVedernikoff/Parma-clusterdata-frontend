@@ -3,6 +3,7 @@ export const WIDGET_TYPE = {
   TABLE: 'table',
   MAP: 'map',
   CARD: 'card',
+  // TODO: HEAT_MAP в коде больше нигде не встречается
   HEAT_MAP: 'heatmap',
   TEXT: 'text',
   METRIC: 'metric',

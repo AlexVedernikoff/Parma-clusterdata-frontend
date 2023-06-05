@@ -4,12 +4,6 @@ import ChartKit from '@kamatech-data-ui/chartkit/lib';
 
 import extendHighcharts from '@kamatech-data-ui/chartkit/lib/extensions/highcharts-extended';
 import boostHighcharts from '@kamatech-data-ui/chartkit/lib/extensions/highcharts-boost';
-import renderTable from '@kamatech-data-ui/chartkit/lib/extensions/table';
-import renderMap from '@kamatech-data-ui/chartkit/lib/extensions/map';
-import renderYandexMap from '@kamatech-data-ui/chartkit/lib/extensions/yandex-map';
-import renderMetric from '@kamatech-data-ui/chartkit/lib/extensions/metric';
-import renderText from '@kamatech-data-ui/chartkit/lib/extensions/text';
-import renderControl from '@kamatech-data-ui/chartkit/lib/extensions/control';
 import useHolidays from '@kamatech-data-ui/chartkit/lib/extensions/holidays';
 
 import {
@@ -31,12 +25,6 @@ extendHighcharts(ChartKit);
 if (window.DL.features.highchartsBoost) {
   boostHighcharts(ChartKit);
 }
-renderTable(ChartKit);
-renderMap(ChartKit);
-renderYandexMap(ChartKit);
-renderMetric(ChartKit);
-renderText(ChartKit);
-renderControl(ChartKit);
 useHolidays(ChartKit);
 
 ChartKit.setSettings({
