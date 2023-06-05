@@ -11,17 +11,15 @@ import { getConnectorsMap, getFakeEntry } from '../../constants';
 
 const b = block('connectors');
 
-export function Connectors({ sdk, location: { search } }) {
+function Connectors({ sdk, location: { search } }) {
   const [searchConnectorName, setSearchConnectorName] = useState();
 
-  const changeSearchConnectorName = searchConnectorName => {
-    setSearchConnectorName(searchConnectorName);
-  };
-
   const connectionsList = useMemo(() => {
-    const filteredList = Object.entries(getConnectorsMap()).filter([, title]);
+    const filteredList = Object.entries(getConnectorsMap());
     return searchConnectorName
-      ? title.toLowerCase().includes(searchConnectorName.toLowerCase().replace(/\s+/g, ''))
+      ? filteredList.filter(([, title]) =>
+          title.toLowerCase().includes(searchConnectorName.toLowerCase().replace(/\s+/g, '')),
+        )
       : filteredList;
   }, [searchConnectorName]);
 
@@ -38,7 +36,7 @@ export function Connectors({ sdk, location: { search } }) {
           tone="default"
           text={searchConnectorName}
           placeholder="Имя коннектора"
-          onChange={e => changeSearchConnectorName(e.target.value)}
+          onChange={e => setSearchConnectorName(e.target.value)}
           hasClear
           focused
         />
@@ -65,3 +63,5 @@ export function Connectors({ sdk, location: { search } }) {
     </div>
   );
 }
+
+export default Connectors;
