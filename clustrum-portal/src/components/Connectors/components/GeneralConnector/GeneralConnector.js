@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { RadioButton } from 'lego-on-react';
 import { PathSelect } from '@kamatech-data-ui/clustrum';
-import Title from '../../subcomponents/Title/Title';
 import Caption from '../../subcomponents/Caption/Caption';
 import InputField from '../../subcomponents/InputField/InputField';
 import VerifyButton from '../../subcomponents/VerifyButton/VerifyButton';
@@ -180,7 +179,7 @@ class GeneralConnector extends React.Component {
 
   render() {
     const { sdk, verifyConnection, isVerifySuccess, emptyFields } = this.props;
-    const { id, name, dirPath, host, port, dbType, username, maxPoolSize, key } = this.state;
+    const { id, name, dirPath, host, port, dbType, username, maxPoolSize } = this.state;
 
     const isNewConnection = !id;
 
@@ -193,7 +192,6 @@ class GeneralConnector extends React.Component {
     return (
       <div className={b()}>
         <PageHead title={name} />
-        <Title dbType={dbType} isNewConnection={isNewConnection} />
         <div className={b('fields')}>
           {isNewConnection && (
             <div className={b('row')}>
