@@ -1,6 +1,6 @@
 export const NULL_ALIAS = 'null';
 
-export type Cell = {
+export interface Cell {
   type: string;
   value: any;
   link: {
@@ -11,4 +11,4 @@ export type Cell = {
   valueWithAlias: typeof NULL_ALIAS | null;
   hasArray: boolean;
   resultShemaId: string;
-};
+}

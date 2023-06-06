@@ -1,2 +1,2 @@
 export { TableWidget, TableWidgetProps } from './table-widget';
-export { createCell } from './create-cell';
+export { createCell } from './table-widget-cell';

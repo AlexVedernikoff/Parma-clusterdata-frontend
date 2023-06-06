@@ -2,74 +2,10 @@ import React from 'react';
 import ReactDomServer from 'react-dom/server';
 
 // LEGACY
-import DateFormat from '../../../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/date/date-format';
-import { CssStyles, Options, GridFlow, Cell, NULL_ALIAS } from './types';
-
-function camelCaseCss(style: CssStyles = {}): CssStyles {
-  return Object.keys(style).reduce((result, key) => {
-    const camelCasedKey = key.replace(/-(\w|$)/g, (_, char) => char.toUpperCase());
-    result[camelCasedKey] = style[key];
-    return result;
-  }, {} as CssStyles);
-}
-
-function precisionOrDefault(value: number, precision?: number): number {
-  if (Number.isInteger(value)) {
-    return 0;
-  }
-
-  if (precision === null || precision === undefined) {
-    return 2;
-  }
-
-  return precision;
-}
-
-function numberFormatter(value: number, options: Options): string {
-  const {
-    precision: outerPrecision,
-    formatter: {
-      suffix = '',
-      prefix = '',
-      multiplier = 1,
-      precision: formatterPrecision,
-    } = {},
-  } = options;
-
-  let precision;
-
-  if (typeof outerPrecision === 'number') {
-    precision = precisionOrDefault(value, outerPrecision);
-  } else if (typeof formatterPrecision === 'number') {
-    precision = precisionOrDefault(value, formatterPrecision);
-  } else {
-    precision = precisionOrDefault(value);
-  }
-
-  const multiplied = value * multiplier;
-  const formatOptions =
-    precision === undefined
-      ? {}
-      : { minimumFractionDigits: precision, maximumFractionDigits: 16 };
-  const formatted = new Intl.NumberFormat('ru-RU', formatOptions).format(multiplied);
-
-  return `${prefix}${formatted}${suffix}`;
-}
-
-function diffFormatter(value: number, options: Options): JSX.Element {
-  const diff = numberFormatter(value, options);
-  if (value > 0) {
-    return (
-      <span className="chartkit-table__diff chartkit-table__diff_pos">&#9650;{diff}</span>
-    );
-  }
-  if (value < 0) {
-    return (
-      <span className="chartkit-table__diff chartkit-table__diff_neg">&#9660;{diff}</span>
-    );
-  }
-  return <span className="chartkit-table__diff">{diff}</span>;
-}
+import DateFormat from '../../../../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/date/date-format';
+import { Options, GridFlow, Cell, NULL_ALIAS } from '../types';
+import { camelCaseCss, numberFormatter } from '../lib';
+import { diffFormatter } from '.';
 
 function reverseGridFlow(gridFlow: GridFlow): GridFlow {
   return gridFlow === 'column' ? 'row' : 'column';
