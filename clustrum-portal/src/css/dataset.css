@@ -628,7 +628,9 @@
   align-items: center;
 }
 
-.type-select__types-dropdown-switcher .type-select__content-type-button .type-select__selected-type:first-letter {
+.type-select__types-dropdown-switcher
+  .type-select__content-type-button
+  .type-select__selected-type:first-letter {
   margin-left: 10px;
 }
 
@@ -1102,19 +1104,28 @@
   margin-left: 2px;
 }
 
-.connection-info__connection .connection-info__connection-info .connection-info__connection-info-main,
-.connection-info__connection .connection-info__connection-info .connection-info__connection-info-sub {
+.connection-info__connection
+  .connection-info__connection-info
+  .connection-info__connection-info-main,
+.connection-info__connection
+  .connection-info__connection-info
+  .connection-info__connection-info-sub {
   flex: 1;
 }
 
-.connection-info__connection .connection-info__connection-info .connection-info__more-dropdown {
+.connection-info__connection
+  .connection-info__connection-info
+  .connection-info__more-dropdown {
   position: relative;
   height: 22px;
   top: 5px;
   margin-left: 5px;
 }
 
-.connection-info__connection .connection-info__connection-info .connection-info__more-dropdown > button {
+.connection-info__connection
+  .connection-info__connection-info
+  .connection-info__more-dropdown
+  > button {
   height: 22px;
 }
 
@@ -1132,7 +1143,9 @@
   background: var(--ds-color-divider);
 }
 
-.volume-bar__progress-line-panel .volume-bar__progress-line .volume-bar__progress-line-occupied {
+.volume-bar__progress-line-panel
+  .volume-bar__progress-line
+  .volume-bar__progress-line-occupied {
   height: 100%;
   background: var(--color-saffron);
 }
@@ -1296,7 +1309,9 @@
   row-gap: 20px;
 }
 
-.data-source__columns .data-source__column-left .data-source__materialization-type-selection {
+.data-source__columns
+  .data-source__column-left
+  .data-source__materialization-type-selection {
   display: flex;
   flex-direction: column;
 }

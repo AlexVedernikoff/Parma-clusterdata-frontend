@@ -56,7 +56,9 @@ function Tabs(props) {
     oldTabsWrapWidth: null,
   });
 
-  const getVisibleTabElems = () => [...targetRef.current.querySelectorAll('.dash-tab-link')];
+  const getVisibleTabElems = () => [
+    ...targetRef.current.querySelectorAll('.dash-tab-link'),
+  ];
 
   const hideShowTabsElements = () => {
     if (!targetRef.current) {
@@ -66,7 +68,9 @@ function Tabs(props) {
     const tabsWrapWidth = targetRef.current.offsetWidth;
     const visibleTabElems = getVisibleTabElems();
     const getVisibleTabsWidth = () =>
-      visibleTabElems.reduce((acc, cur) => acc + cur.offsetWidth + tabMargin, 0) + popupBtnWidth + delta;
+      visibleTabElems.reduce((acc, cur) => acc + cur.offsetWidth + tabMargin, 0) +
+      popupBtnWidth +
+      delta;
     const getVisibleTabsWidthWithFirstHidden = () =>
       [...visibleTabs, hiddenTabs[0]].reduce((acc, cur) => {
         return acc + cur.htmlWidth + tabMargin;
@@ -76,13 +80,20 @@ function Tabs(props) {
     const isMultiLine = getVisibleTabsWidth() > tabsWrapWidth;
 
     if (isMultiLine) {
-      while ((oldTabsWrapWidth ? tabsWrapWidth < oldTabsWrapWidth : true) && tabsWrapWidth < getVisibleTabsWidth()) {
+      while (
+        (oldTabsWrapWidth ? tabsWrapWidth < oldTabsWrapWidth : true) &&
+        tabsWrapWidth < getVisibleTabsWidth()
+      ) {
         dispatch({ type: 'decreaseTabs' });
         visibleTabElems.pop();
       }
     }
 
-    if (hiddenTabs.length && tabsWrapWidth > oldTabsWrapWidth && tabsWrapWidth > getVisibleTabsWidthWithFirstHidden()) {
+    if (
+      hiddenTabs.length &&
+      tabsWrapWidth > oldTabsWrapWidth &&
+      tabsWrapWidth > getVisibleTabsWidthWithFirstHidden()
+    ) {
       dispatch({ type: 'increaseTabs' });
     }
 
@@ -90,7 +101,9 @@ function Tabs(props) {
   };
 
   const getMarginSum = () => {
-    const tabStyles = window.getComputedStyle(targetRef.current.querySelector('.dash-tab-link'));
+    const tabStyles = window.getComputedStyle(
+      targetRef.current.querySelector('.dash-tab-link'),
+    );
     const getNumb = string => Number(string.match(/\d/g).join(''));
     let marginLeft = getNumb(tabStyles.marginLeft);
     let marginRight = getNumb(tabStyles.marginRight);
@@ -119,7 +132,9 @@ function Tabs(props) {
       {state.visibleTabs.map(({ title, id }) => (
         <TabLink {...props} key={id} title={title} id={id} />
       ))}
-      {state.hiddenTabs.length > 0 && <TabsDropdown {...props} menuItems={state.hiddenTabs} />}
+      {state.hiddenTabs.length > 0 && (
+        <TabsDropdown {...props} menuItems={state.hiddenTabs} />
+      )}
     </div>
   );
 }

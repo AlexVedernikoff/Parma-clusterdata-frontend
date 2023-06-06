@@ -17,7 +17,10 @@ function App() {
       <Pointerfocus />
       <Switch>
         <Route path="/:root(dashboards)" exact={true} component={Index} />
-        <Route path="/:root(datasets|widgets|favorites|navigation|connections)/:path*" component={Index} />
+        <Route
+          path="/:root(datasets|widgets|favorites|navigation|connections)/:path*"
+          component={Index}
+        />
         <Route
           path={`${PREFIX}/:id`}
           render={() => (

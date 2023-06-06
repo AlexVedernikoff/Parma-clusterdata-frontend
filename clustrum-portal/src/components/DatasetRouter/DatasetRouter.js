@@ -52,7 +52,12 @@ class DatasetRouter extends PureComponent {
 
                 return (
                   <PageContainer withoutReactRouter>
-                    <DatasetCreationPage {...props} modeId={REPLACE_SOURCE_MODE_ID} datasetId={datasetId} sdk={sdk} />
+                    <DatasetCreationPage
+                      {...props}
+                      modeId={REPLACE_SOURCE_MODE_ID}
+                      datasetId={datasetId}
+                      sdk={sdk}
+                    />
                   </PageContainer>
                 );
               }}

@@ -76,11 +76,15 @@ class ServiceNavigation extends React.PureComponent {
 
   getFolderUrl(entry) {
     const { navigationUrl } = this.props;
-    return entry ? `${navigationUrl}/${PLACE.ROOT}/${entry.entryId}` : `${navigationUrl}/${PLACE.ROOT}`;
+    return entry
+      ? `${navigationUrl}/${PLACE.ROOT}/${entry.entryId}`
+      : `${navigationUrl}/${PLACE.ROOT}`;
   }
 
   getEntryByKey(key) {
-    return key && key !== '/' ? this.props.sdk.getEntryByKey({ key: Utils.normalizeDestination(key) }) : undefined;
+    return key && key !== '/'
+      ? this.props.sdk.getEntryByKey({ key: Utils.normalizeDestination(key) })
+      : undefined;
   }
 
   onEntryClick = entry => {

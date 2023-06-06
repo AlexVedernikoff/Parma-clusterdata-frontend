@@ -149,7 +149,8 @@ class SectionDataset extends Component {
     const { toggleNavigation } = this.props;
 
     if (
-      (this.state.navigationButtonRef && !this.state.navigationButtonRef.contains(event.target)) ||
+      (this.state.navigationButtonRef &&
+        !this.state.navigationButtonRef.contains(event.target)) ||
       (event instanceof KeyboardEvent && event.code === 'Escape')
     ) {
       toggleNavigation();
@@ -416,7 +417,13 @@ class SectionDataset extends Component {
             popup={
               <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
                 {item.local ? (
-                  <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
+                  <Menu
+                    theme="normal"
+                    view="default"
+                    tone="default"
+                    size="s"
+                    type="navigation"
+                  >
                     <Menu.Item
                       type="option"
                       val="access"
@@ -437,7 +444,13 @@ class SectionDataset extends Component {
                     </Menu.Item>
                   </Menu>
                 ) : (
-                  <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
+                  <Menu
+                    theme="normal"
+                    view="default"
+                    tone="default"
+                    size="s"
+                    type="navigation"
+                  >
                     <Menu.Item
                       type="option"
                       val="access"
@@ -509,7 +522,8 @@ class SectionDataset extends Component {
               let items = dimensions.filter(d => d.datasetName === value);
               if (
                 items.length > 0 ||
-                (filteredDimensions && filteredDimensions.filter(d => d.datasetName === value).length > 0)
+                (filteredDimensions &&
+                  filteredDimensions.filter(d => d.datasetName === value).length > 0)
               ) {
                 return (
                   <DndContainer
@@ -539,7 +553,8 @@ class SectionDataset extends Component {
               let items = measures.filter(d => d.datasetName === value);
               if (
                 items.length > 0 ||
-                (filteredMeasures && filteredMeasures.filter(d => d.datasetName === value).length > 0)
+                (filteredMeasures &&
+                  filteredMeasures.filter(d => d.datasetName === value).length > 0)
               ) {
                 return (
                   <DndContainer
@@ -578,7 +593,8 @@ class SectionDataset extends Component {
     if (datasetError) {
       let datasetErrorText;
       if (datasetError.response) {
-        datasetErrorText = DATASET_ERRORS[datasetError.response.status] || DATASET_ERRORS.UNKNOWN;
+        datasetErrorText =
+          DATASET_ERRORS[datasetError.response.status] || DATASET_ERRORS.UNKNOWN;
       } else {
         datasetErrorText = DATASET_ERRORS.UNKNOWN;
       }
@@ -620,7 +636,13 @@ class SectionDataset extends Component {
   };
 
   render() {
-    const { sdk, dataset, isNavigationVisible, toggleNavigation, defaultPath } = this.props;
+    const {
+      sdk,
+      dataset,
+      isNavigationVisible,
+      toggleNavigation,
+      defaultPath,
+    } = this.props;
 
     return (
       <div className="container datasets-container">
@@ -653,8 +675,18 @@ class SectionDataset extends Component {
                 }
                 popup={
                   <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
-                    <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
-                      <Menu.Item type="option" val="access" onClick={this.onOpenDatasetClick}>
+                    <Menu
+                      theme="normal"
+                      view="default"
+                      tone="default"
+                      size="s"
+                      type="navigation"
+                    >
+                      <Menu.Item
+                        type="option"
+                        val="access"
+                        onClick={this.onOpenDatasetClick}
+                      >
                         Перейти к датасету
                       </Menu.Item>
                     </Menu>

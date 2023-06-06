@@ -47,7 +47,13 @@ class NavigationPage extends React.Component {
             path="/:root?/:path*"
             render={({ match, location, history }) => (
               <PageContainer>
-                <Navigation sdk={sdk} match={match} location={location} history={history} startFrom={startFrom} />
+                <Navigation
+                  sdk={sdk}
+                  match={match}
+                  location={location}
+                  history={history}
+                  startFrom={startFrom}
+                />
               </PageContainer>
             )}
           />

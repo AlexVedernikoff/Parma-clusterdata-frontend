@@ -35,7 +35,9 @@ class App extends Component {
         <Switch>
           <Route
             path={'/wizard/preview/:id'}
-            component={props => <Wizard {...props} onExport={this._handleExport} preview={true} sdk={sdk} />}
+            component={props => (
+              <Wizard {...props} onExport={this._handleExport} preview={true} sdk={sdk} />
+            )}
           />
           <Route
             path={'/wizard'}

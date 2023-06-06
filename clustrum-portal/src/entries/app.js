@@ -12,6 +12,7 @@ import { Utils } from '@kamatech-data-ui/clustrum';
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
 import { ANT_TOKEN } from '../constants/constants';
+import ruRU from 'antd/locale/ru_RU';
 
 import reducers from '../reducers';
 
@@ -46,7 +47,7 @@ logVersion();
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <ConfigProvider theme={{ ...ANT_TOKEN }}>
+      <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
         <Provider store={store}>
           <DndProvider backend={HTML5Backend}>
             <BrowserRouter>

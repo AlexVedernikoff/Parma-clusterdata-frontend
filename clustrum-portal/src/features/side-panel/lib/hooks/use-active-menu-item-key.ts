@@ -8,7 +8,9 @@ export const useActiveMenuItemKey = (): string[] | undefined => {
     const menuItemPath = menuItem?.key;
     return (
       menuItemPath &&
-      MATCH_ROUTES[menuItemPath].some(route => matchPath(location.pathname, { exact: true, path: route }))
+      MATCH_ROUTES[menuItemPath].some(route =>
+        matchPath(location.pathname, { exact: true, path: route }),
+      )
     );
   });
 

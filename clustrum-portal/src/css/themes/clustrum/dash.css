@@ -473,7 +473,9 @@
 }
 
 .yc-select-item:hover,
-.yc-root .menu_view_default.menu_tone_default.menu_theme_normal .menu__item.menu__item_hovered_yes {
+.yc-root
+  .menu_view_default.menu_tone_default.menu_theme_normal
+  .menu__item.menu__item_hovered_yes {
   background-color: var(--blue-50);
 }
 
@@ -528,11 +530,15 @@
   display: none;
 }
 
-.yc-root .textinput_view_default.textinput_tone_default.textinput_theme_normal .textinput__control {
+.yc-root
+  .textinput_view_default.textinput_tone_default.textinput_theme_normal
+  .textinput__control {
   color: var(--neutral-900);
 }
 
-.yc-root .textinput_view_default.textinput_tone_default.textinput_theme_normal .textinput__control::placeholder {
+.yc-root
+  .textinput_view_default.textinput_tone_default.textinput_theme_normal
+  .textinput__control::placeholder {
   color: var(--neutral-400);
 }
 
@@ -654,7 +660,8 @@
   display: none;
 }
 
-.menu_view_default.menu_tone_default.menu_theme_normal .menu__item.widget-visibility-dropdown__item_hidden {
+.menu_view_default.menu_tone_default.menu_theme_normal
+  .menu__item.widget-visibility-dropdown__item_hidden {
   color: var(--neutral-900);
 }
 
@@ -666,8 +673,10 @@
   width: auto;
 }
 
-.yc-root .dash-header__action-right_expand-filter-panel.button2_theme_flat.button2_hovered_yes:before,
-.yc-root .dash-header__action-right_button-settings.button2_theme_flat.button2_hovered_yes:before {
+.yc-root
+  .dash-header__action-right_expand-filter-panel.button2_theme_flat.button2_hovered_yes:before,
+.yc-root
+  .dash-header__action-right_button-settings.button2_theme_flat.button2_hovered_yes:before {
   background-color: transparent;
 }
 
@@ -1297,11 +1306,20 @@
   border-right: 1px solid var(--blue-200);
 }
 
-.chartkit-table .data-table .data-table__box .data-table__head .data-table__th:last-child {
+.chartkit-table
+  .data-table
+  .data-table__box
+  .data-table__head
+  .data-table__th:last-child {
   border-right: none;
 }
 
-.chartkit-table .data-table .data-table__box .data-table__head .data-table__th .chartkit-table__head-cell {
+.chartkit-table
+  .data-table
+  .data-table__box
+  .data-table__head
+  .data-table__th
+  .chartkit-table__head-cell {
   width: 100%;
   font-weight: 500;
   font-size: 0.75rem;
@@ -1590,7 +1608,8 @@
   background-repeat: no-repeat;
 }
 
-.dashkit-grid-item__controls .button2.dashkit-grid-item__button_visibility-hidden-icon:before {
+.dashkit-grid-item__controls
+  .button2.dashkit-grid-item__button_visibility-hidden-icon:before {
   background-image: var(--visibility-hidden-icon);
 }
 

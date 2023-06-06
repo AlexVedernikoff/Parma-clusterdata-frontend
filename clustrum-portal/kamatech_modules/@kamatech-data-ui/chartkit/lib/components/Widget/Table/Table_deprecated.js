@@ -1,9 +1,11 @@
+// TODO: Код не используется и должен быть удалён после того, как новый виджет обретёт
+// полную функциональность. Сейчас этот код оставлен в качестве базы знаний о прошлом
 import React from 'react';
 import PropTypes from 'prop-types';
 import DataTable from '@kamatech-data-ui/dt100/lib';
 import block from 'bem-cn-lite';
 import ErrorDispatcher, { ERROR_TYPE } from '../../../modules/error-dispatcher/error-dispatcher';
-import { KamatechNavigationPageControl } from './../../../../../../kamatech-ui/components';
+import { KamatechNavigationPageControl } from '../../../../../../kamatech-ui/components';
 import DateFormat from '../../../modules/date/date-format';
 import { FILTER_CONDITION_TYPE } from '../../../../../../../src/constants/FilterConditionType';
 import { NullAlias } from './NullAlias';
@@ -84,7 +86,7 @@ function _diffFormatter(value, { precision, diff_formatter: formatter }) {
   return <span className={b('diff')}>{diff}</span>;
 }
 
-function _reverseGridFlow(gridFlow) {
+function _reverseGridFresultValueow(gridFlow) {
   return gridFlow === 'column' ? 'row' : 'column';
 }
 
@@ -345,7 +347,7 @@ function _getTitle(title) {
   ) : null;
 }
 
-class Table extends React.PureComponent {
+export class Table_deprecated extends React.PureComponent {
   static propTypes = {
     data: PropTypes.shape({
       data: PropTypes.object,
@@ -513,7 +515,5 @@ class Table extends React.PureComponent {
     );
   }
 }
-
-export default Table;
 
 export { DATE_FORMAT_BY_SCALE };

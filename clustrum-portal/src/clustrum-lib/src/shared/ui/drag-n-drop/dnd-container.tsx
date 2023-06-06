@@ -56,7 +56,12 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
           ? item.hoverIndex
           : items.length;
 
-      if (!(props.listId === item.listId && (targetIndex === item.index + 1 || targetIndex === item.index))) {
+      if (
+        !(
+          props.listId === item.listId &&
+          (targetIndex === item.index + 1 || targetIndex === item.index)
+        )
+      ) {
         // удаляем в исходном контейнере
         remove(item.index);
 
@@ -87,15 +92,26 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       // elementSize находится там, где нижний край этого же элемента.
       // Зона, которую мы считаем триггером для реплейса - это зона размером с половину элемента от 1/4 его высоты до 3/4 его высоты
       const replaceZoneSize = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const replaceZoneBottom = hoverBoundingRect.bottom - replaceZoneSize / 2 - hoverBoundingRect.top;
+      const replaceZoneBottom =
+        hoverBoundingRect.bottom - replaceZoneSize / 2 - hoverBoundingRect.top;
       const replaceZoneTop = replaceZoneSize / 2;
 
       if (hoverClientY < replaceZoneTop) {
-        if (!(item.listId === sourceListId && (dragIndex === hoverIndex || dragIndex === hoverIndex - 1))) {
+        if (
+          !(
+            item.listId === sourceListId &&
+            (dragIndex === hoverIndex || dragIndex === hoverIndex - 1)
+          )
+        ) {
           setDropPlace(hoverIndex);
         }
       } else if (replaceZoneBottom < hoverClientY) {
-        if (!(item.listId === sourceListId && (dragIndex === hoverIndex + 1 || dragIndex === hoverIndex))) {
+        if (
+          !(
+            item.listId === sourceListId &&
+            (dragIndex === hoverIndex + 1 || dragIndex === hoverIndex)
+          )
+        ) {
           setDropPlace(hoverIndex + 1);
         }
       } else {

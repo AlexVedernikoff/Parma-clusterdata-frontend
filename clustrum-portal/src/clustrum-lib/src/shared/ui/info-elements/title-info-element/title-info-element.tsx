@@ -21,6 +21,8 @@ function TitleInfoElement(
   );
 }
 
-const PluginTitleWithRef = React.forwardRef<HTMLDivElement, TitleInfoElementProps>(TitleInfoElement);
+const PluginTitleWithRef = React.forwardRef<HTMLDivElement, TitleInfoElementProps>(
+  TitleInfoElement,
+);
 
 export { PluginTitleWithRef as TitleInfoElement };
