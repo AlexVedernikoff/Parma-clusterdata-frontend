@@ -267,7 +267,10 @@ class Header extends React.PureComponent {
             title="Открыть панель расширенных фильтров"
             onClick={openExpandedFilter}
             key="button-expanded-filter-panel"
-          ></Button>
+            icon={<FilterOutlined />}
+          >
+            Фильтры
+          </Button>
         ) : null,
         <Button
           title="Сбросить фильтры"
