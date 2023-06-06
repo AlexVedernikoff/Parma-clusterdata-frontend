@@ -3,41 +3,7 @@ import ReactDomServer from 'react-dom/server';
 
 // LEGACY
 import DateFormat from '../../../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/date/date-format';
-
-const NullAlias = 'null';
-
-type CssStyles = {
-  [key: string]: string | number;
-};
-
-interface Formatter {
-  suffix: string;
-  prefix: string;
-  multiplier: number;
-  precision: number;
-}
-
-type GridFlow = 'row' | 'column';
-
-interface Options {
-  precision?: number;
-  formatter?: Formatter;
-  gridFlow?: GridFlow;
-  contentCss?: CssStyles;
-}
-
-type Cell = {
-  type: string;
-  value: any;
-  link: {
-    href: string;
-    newWindow: boolean;
-  };
-  grid: Cell[];
-  valueWithAlias: typeof NullAlias | null;
-  hasArray: boolean;
-  resultShemaId: string;
-};
+import { CssStyles, Options, GridFlow, Cell, NULL_ALIAS } from './types';
 
 function camelCaseCss(style: CssStyles = {}): CssStyles {
   return Object.keys(style).reduce((result, key) => {
@@ -212,11 +178,11 @@ export function createCell(
 
   const resultSchemaIdClass = cell ? cell.resultShemaId || '' : '';
   const isNullValue =
-    [NullAlias, null].includes(cell.valueWithAlias) &&
-    [NullAlias, null].includes(cell.value);
+    [NULL_ALIAS, null].includes(cell.valueWithAlias) &&
+    [NULL_ALIAS, null].includes(cell.value);
   const isNullClass = isNullValue ? 'is_null' : '';
 
-  let nullableValue = isNullValue ? NullAlias : resultValue;
+  let nullableValue = isNullValue ? NULL_ALIAS : resultValue;
   // Т.к. `dangerouslySetInnerHTML` (см. ниже) понимает только `string`, то
   // преобразуем JSX.Element → string:
   if (typeof nullableValue !== 'string') {
