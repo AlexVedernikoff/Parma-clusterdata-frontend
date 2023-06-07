@@ -26,4 +26,7 @@ export {
 } from './shared/ui/filter-controls/range-datepicker-filter-control/range-datepicker-filter-control';
 export { PickerValue } from './shared/ui/filter-controls/range-datepicker-filter-control/types/picker-value';
 export { TableWidget, TableWidgetProps, valueFormatter } from './shared/ui/widgets';
-export { ChartWidget } from './shared/ui/widgets/chart-widget/chart-widget';
+export {
+  ChartWidget,
+  ChartWidgetProps,
+} from './shared/ui/widgets/chart-widget/chart-widget';

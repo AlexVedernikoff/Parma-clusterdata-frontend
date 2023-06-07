@@ -3,8 +3,12 @@ import { EchartsOptions } from '../../types';
 
 const PADDING = 40;
 
-export const getXAxis = (echartsOptions: EchartsOptions): AngleAxisComponentOption | undefined => {
-  const wrapper = (document.querySelector('.chartkit__widget')?.getBoundingClientRect().width as number) - PADDING;
+export const getXAxis = (
+  echartsOptions: EchartsOptions,
+): AngleAxisComponentOption | undefined => {
+  const wrapper =
+    (document.querySelector('.chartkit__widget')?.getBoundingClientRect()
+      .width as number) - PADDING;
 
   const calculateWidth = wrapper / echartsOptions?.xAxis?.categories.length;
 

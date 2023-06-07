@@ -1,10 +1,17 @@
 import { LineSeriesOption, PieSeriesOption, BarSeriesOption } from 'echarts';
 import { useMemo } from 'react';
-import { ChartConfig, EchartsOptions, SeriesData, Series } from '../../types';
+import {
+  ChartConfig,
+  EchartsOptions,
+  SeriesData,
+  Series,
+  SeriesOption,
+} from '../../types';
 
-export type SeriesOption = BarSeriesOption | PieSeriesOption | LineSeriesOption;
-
-export const useSeries = (echartsOptions: EchartsOptions, config: ChartConfig): SeriesOption[] => {
+export const useSeries = (
+  echartsOptions: EchartsOptions,
+  config: ChartConfig,
+): SeriesOption[] => {
   return useMemo(
     () =>
       echartsOptions?.series?.map(({ data, color, name }: Series) => {

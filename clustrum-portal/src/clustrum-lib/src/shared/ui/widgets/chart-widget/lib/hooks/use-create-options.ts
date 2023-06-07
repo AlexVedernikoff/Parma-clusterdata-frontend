@@ -1,7 +1,7 @@
 import { EchartsOptions, ChartConfig, CreateOptionsReturnType } from '../../types';
 
-import { getXAxis } from '../helpers/use-x-axis';
-import { getYAxis } from '../helpers/use-y-axis';
+import { getXAxis } from '../helpers/get-x-axis';
+import { getYAxis } from '../helpers/get-y-axis';
 import { useSeries } from './use-series';
 import { useTooltip } from './use-tooltip';
 import { getGrid } from '../helpers/get-grid';
@@ -9,7 +9,10 @@ import { getLegend } from '../helpers/get-legend';
 import { getTitle } from '../helpers/get-title';
 import { getColor } from '../helpers/get-color';
 
-export const useCreateOptions = (echartsOptions: EchartsOptions, config: ChartConfig): CreateOptionsReturnType => {
+export const useCreateOptions = (
+  echartsOptions: EchartsOptions,
+  config: ChartConfig,
+): CreateOptionsReturnType => {
   const xAxis = getXAxis(echartsOptions);
   const yAxis = getYAxis(echartsOptions);
   const series = useSeries(echartsOptions, config);

@@ -5,8 +5,7 @@ import {
   LegendComponentOption,
   GridComponentOption,
 } from 'echarts';
-
-import { SeriesOption } from '../lib/hooks/use-series';
+import { SeriesOption } from './series-option';
 
 export interface CreateOptionsReturnType {
   className: string;

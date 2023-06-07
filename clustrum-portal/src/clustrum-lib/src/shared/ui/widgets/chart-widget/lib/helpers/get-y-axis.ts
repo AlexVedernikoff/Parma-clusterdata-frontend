@@ -2,7 +2,9 @@ import { AngleAxisComponentOption } from 'echarts';
 import { numberValueToLocaleString } from '.';
 import { EchartsOptions } from '../../types';
 
-export const getYAxis = (echartsOptions: EchartsOptions): AngleAxisComponentOption | undefined => {
+export const getYAxis = (
+  echartsOptions: EchartsOptions,
+): AngleAxisComponentOption | undefined => {
   const yAxis = {
     axisLabel: {
       color: echartsOptions?.yAxis?.labels?.style?.color,
@@ -12,8 +14,10 @@ export const getYAxis = (echartsOptions: EchartsOptions): AngleAxisComponentOpti
         }
 
         if (typeof value === 'number') {
-          if (value >= 1000000000) return numberValueToLocaleString(value / 1000000000) + ' млрд';
-          if (value >= 1000000) return numberValueToLocaleString(value / 1000000) + ' млн';
+          if (value >= 1000000000)
+            return numberValueToLocaleString(value / 1000000000) + ' млрд';
+          if (value >= 1000000)
+            return numberValueToLocaleString(value / 1000000) + ' млн';
           if (value >= 1000) return numberValueToLocaleString(value / 1000) + ' тыс.';
           return numberValueToLocaleString(value);
         }
