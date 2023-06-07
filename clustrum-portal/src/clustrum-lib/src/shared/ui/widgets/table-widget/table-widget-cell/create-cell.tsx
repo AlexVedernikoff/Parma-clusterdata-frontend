@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDomServer from 'react-dom/server';
 
-// LEGACY
-import DateFormat from '../../../../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/date/date-format';
-import { Options, GridFlow, Cell, NULL_ALIAS } from '../types';
+import { Options, GridFlow, Cell, NULL_ALIAS, DateType } from '../types';
 import { camelCaseCss, numberFormatter } from '../lib';
 import { diffFormatter } from '.';
+import { renderDate, renderDiff, renderText, toJsxElement } from './cell-renders';
 
 function reverseGridFlow(gridFlow: GridFlow): GridFlow {
   return gridFlow === 'column' ? 'row' : 'column';
@@ -28,20 +27,28 @@ function renderGrid(grid: Cell[], options: Options = {}): JSX.Element {
   );
 }
 
-function getResultValue(cell: Cell, options: Options): JSX.Element | string {
+function renderArray(cell: Cell, options: Options): JSX.Element {
+  if (cell.value === null) {
+    return <></>;
+  }
+
+  if (!Array.isArray(cell.value)) {
+    return toJsxElement(cell.value);
+  }
+
+  return (
+    <>
+      {cell.value
+        .filter(val => val !== null)
+        .map(val => getResultValue({ ...cell, value: val }, options))
+        .join('<br/>')}
+    </>
+  );
+}
+
+function getResultValue(cell: Cell, options: Options): JSX.Element {
   if (cell.hasArray) {
-    if (cell.value === null) {
-      return '';
-    }
-
-    if (!Array.isArray(cell.value)) {
-      return cell.value;
-    }
-
-    return cell.value
-      .filter(val => val !== null)
-      .map(val => getResultValue({ ...cell, value: val }, options))
-      .join('<br/>');
+    return renderArray(cell, options);
   }
 
   switch (cell.type.toLowerCase()) {
@@ -49,45 +56,23 @@ function getResultValue(cell: Cell, options: Options): JSX.Element | string {
       return renderGrid(cell.grid, options);
     case 'string':
     case 'text':
-      return cell.link?.href ? (
-        <a
-          className="chartkit-table__link"
-          href={cell.link.href}
-          target={cell.link.newWindow ? '_blank' : '_self'}
-          rel="noreferrer"
-        >
-          {cell.value}
-        </a>
-      ) : (
-        cell.value
-      );
+      return renderText(cell);
     case 'datetime':
-    case 'date': {
-      const dateFormat = new DateFormat(cell.value, cell.type);
-      if (dateFormat.isNotValidDate()) {
-        return cell.value;
-      }
-      return dateFormat.date();
-    }
+    case 'date':
+      return renderDate(cell.value as Date, cell.type as DateType);
     case 'integer':
     case 'float':
     case 'double':
     case 'long':
     case 'number':
-      return numberFormatter(cell.value, options);
+      return toJsxElement(numberFormatter(cell.value as number, options));
     case 'diff': {
-      const number = numberFormatter(cell.value[0], options);
-      const diff = diffFormatter(cell.value[1], options);
-      return (
-        <div>
-          {number} {diff}
-        </div>
-      );
+      return renderDiff(cell.value as number[], options);
     }
     case 'diff_only':
-      return diffFormatter(cell.value, options);
+      return diffFormatter(cell.value as number, options);
     default:
-      return cell.value;
+      return toJsxElement(cell.value);
   }
 }
 
@@ -106,9 +91,8 @@ export function createCell(
 
   const resultSchemaIdClass = cell ? cell.resultShemaId || '' : '';
   const isNullValue =
-    [NULL_ALIAS, null].includes(cell.valueWithAlias) &&
-    [NULL_ALIAS, null].includes(cell.value);
-  const isNullClass = isNullValue ? 'is_null' : '';
+    [NULL_ALIAS, null].includes(cell.valueWithAlias as string | null) &&
+    [NULL_ALIAS, null].includes(cell.value as string | null);
 
   let nullableValue = isNullValue ? NULL_ALIAS : resultValue;
   // Т.к. `dangerouslySetInnerHTML` (см. ниже) понимает только `string`, то
@@ -117,6 +101,7 @@ export function createCell(
     nullableValue = ReactDomServer.renderToStaticMarkup(nullableValue);
   }
 
+  const isNullClass = isNullValue ? 'is_null' : '';
   const extraClasses = [resultSchemaIdClass, isNullClass];
 
   return (
@@ -125,7 +110,7 @@ export function createCell(
         ' ',
       )}`}
       style={camelCaseCss(options.contentCss)}
-      key={cell.value}
+      key={cell.value?.toString()}
     >
       {/* todo Внимание хардкор. Нужно вводить новый тип "ссылка". В принципе в case 'text' есть задатки */}
       <div dangerouslySetInnerHTML={{ __html: nullableValue }} />
