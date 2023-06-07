@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Graph from './Graph/Graph';
 import OLMap from './OLMap/OLMap';
 import SideHtml from './SideHtml/SideHtml';
 
@@ -9,6 +8,7 @@ import ExtensionsManager from '../../modules/extensions-manager/extensions-manag
 import Card from './Card/Card';
 import Indicator from './Indicator/Indicator';
 import { WIDGET_TYPE as WIDGET_TYPE_CONST } from './WidgetType';
+import { ChartWidget } from '@clustrum-lib/shared/ui/widgets/chart-widget/chart-widget';
 
 class Unknown extends React.PureComponent {
   static propTypes = {
@@ -51,7 +51,7 @@ class Widget extends React.PureComponent {
     const { widgetType } = this.props.data;
 
     if (widgetType === WIDGET_TYPE.GRAPH) {
-      return <Graph {...this.props} />;
+      return <ChartWidget {...this.props} />;
     }
 
     if (widgetType === WIDGET_TYPE.MAP) {

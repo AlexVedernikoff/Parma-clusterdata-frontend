@@ -7,7 +7,11 @@ import pick from 'lodash/pick';
 import { Loader } from '@kamatech-data-ui/common/src';
 import ChartKitControl from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 import { prerenderMiddleware } from './prerenderMiddleware';
-import { LOAD_STATUS, CONTROL_SOURCE_TYPE, DATE_FORMAT_DAY } from '../../../../constants/constants';
+import {
+  LOAD_STATUS,
+  CONTROL_SOURCE_TYPE,
+  DATE_FORMAT_DAY,
+} from '../../../../constants/constants';
 import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import { SDK } from '../../../../modules/sdk';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
@@ -109,7 +113,9 @@ class Control extends React.PureComponent {
           ? {
               id: this.props.id,
               usedParams: loadedData.usedParams
-                ? Object.keys(pick(loadedData.usedParams, Object.keys(this.props.defaults)))
+                ? Object.keys(
+                    pick(loadedData.usedParams, Object.keys(this.props.defaults)),
+                  )
                 : null,
               datasetId: loadedData.extra.datasetId,
               datasetFields: loadedData.extra.datasetFields,
@@ -127,7 +133,11 @@ class Control extends React.PureComponent {
 
       const loadedData =
         data.sourceType === CONTROL_SOURCE_TYPE.EXTERNAL
-          ? await SDK.runDashChart({ id: data.external.entryId, params: this.actualParams, cancelToken })
+          ? await SDK.runDashChart({
+              id: data.external.entryId,
+              params: this.actualParams,
+              cancelToken,
+            })
           : await SDK.runDashControl({ shared: data, cancelToken });
 
       const { usedParams, uiScheme: scheme } = loadedData;
@@ -160,12 +170,18 @@ class Control extends React.PureComponent {
     for (let control of scheme) {
       const { param } = control;
       const { initiatorItem: item } = this.props.params[param];
-      if (!item.availableItems || !item.availableItems[param] || item.availableItems[param].length === 0) {
+      if (
+        !item.availableItems ||
+        !item.availableItems[param] ||
+        item.availableItems[param].length === 0
+      ) {
         continue;
       }
 
       const availableItems = new Set(item.availableItems[param]);
-      control.content = control.content.filter(it => availableItems.has(it.title) || availableItems.has(it.value));
+      control.content = control.content.filter(
+        it => availableItems.has(it.title) || availableItems.has(it.value),
+      );
     }
   }
 
@@ -242,7 +258,9 @@ class Control extends React.PureComponent {
             try {
               // eslint-disable-next-line no-unused-vars
               const [match, y1, m1, d1, y2, m2, d2] =
-                this.actualParams[param].match(/__interval_(\d*)-(\d*)-(\d*)_(\d*)-(\d*)-(\d*)/) || [];
+                this.actualParams[param].match(
+                  /__interval_(\d*)-(\d*)-(\d*)_(\d*)-(\d*)-(\d*)/,
+                ) || [];
 
               from = `${y1}-${m1}-${d1}`;
               to = `${y2}-${m2}-${d2}`;
@@ -251,7 +269,9 @@ class Control extends React.PureComponent {
               props.onChange = ({ from, to }) =>
                 this.onChange(
                   param,
-                  `__interval_${moment(from).format(DATE_FORMAT_DAY)}_${moment(to).format(DATE_FORMAT_DAY)}`,
+                  `__interval_${moment(from).format(DATE_FORMAT_DAY)}_${moment(to).format(
+                    DATE_FORMAT_DAY,
+                  )}`,
                 );
             } catch (error) {
               console.error('DASHKIT_RANGE_DATEPICKER_INCORRECT_VALUE', error);
@@ -260,7 +280,10 @@ class Control extends React.PureComponent {
 
           if (type === TYPE.INPUT) {
             props.onChange = value => {
-              this.onChange(param, this._convertToPartialMatchValue(value, props.fieldDataType));
+              this.onChange(
+                param,
+                this._convertToPartialMatchValue(value, props.fieldDataType),
+              );
             };
 
             props.value = this._convertToPlainValue(valueFromParams, props.fieldDataType);

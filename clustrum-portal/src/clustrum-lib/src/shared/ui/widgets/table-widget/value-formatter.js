@@ -28,7 +28,12 @@ function numberFormatter(
   value,
   {
     precision: outerPrecision,
-    formatter: { suffix = '', prefix = '', multiplier = 1, precision: formatterPrecision } = {},
+    formatter: {
+      suffix = '',
+      prefix = '',
+      multiplier = 1,
+      precision: formatterPrecision,
+    } = {},
   },
 ) {
   if (typeof value !== 'number') {
@@ -58,10 +63,14 @@ function numberFormatter(
 function _diffFormatter(value, { precision, diff_formatter: formatter }) {
   const diff = numberFormatter(value, { precision, formatter });
   if (value > 0) {
-    return <span className="chartkit-table__diff chartkit-table__diff_pos">&#9650;{diff}</span>;
+    return (
+      <span className="chartkit-table__diff chartkit-table__diff_pos">&#9650;{diff}</span>
+    );
   }
   if (value < 0) {
-    return <span className="chartkit-table__diff chartkit-table__diff_neg">&#9660;{diff}</span>;
+    return (
+      <span className="chartkit-table__diff chartkit-table__diff_neg">&#9660;{diff}</span>
+    );
   }
   return <span className="chartkit-table__diff">{diff}</span>;
 }
@@ -107,7 +116,11 @@ function _resultValue(value, type, grid, options, href, newWindow, hasArray) {
     case 'string':
     case 'text':
       resultValue = href ? (
-        <a className="chartkit-table__link" href={href} target={newWindow ? '_blank' : '_self'}>
+        <a
+          className="chartkit-table__link"
+          href={href}
+          target={newWindow ? '_blank' : '_self'}
+        >
           {resultValue}
         </a>
       ) : (
@@ -150,13 +163,21 @@ function _resultValue(value, type, grid, options, href, newWindow, hasArray) {
 }
 
 export function valueFormatter(type, cell = {}, options = {}) {
-  const { value, link: { href, newWindow = true } = {}, grid, valueWithAlias, hasArray } = cell;
+  const {
+    value,
+    link: { href, newWindow = true } = {},
+    grid,
+    valueWithAlias,
+    hasArray,
+  } = cell;
   const { contentCss } = options;
 
   const resultValue = _resultValue(value, type, grid, options, href, newWindow, hasArray);
 
   const resultSchemaIdClass = cell ? cell.resultShemaId || '' : '';
-  const isNullValue = [NullAlias.NULL, null].includes(valueWithAlias) && [NullAlias.NULL, null].includes(value);
+  const isNullValue =
+    [NullAlias.NULL, null].includes(valueWithAlias) &&
+    [NullAlias.NULL, null].includes(value);
   const isNullClass = isNullValue ? 'is_null' : '';
 
   const nullableValue = isNullValue ? NullAlias.NULL : resultValue;
@@ -165,7 +186,9 @@ export function valueFormatter(type, cell = {}, options = {}) {
 
   return (
     <div
-      className={`chartkit-table__content chartkit-table__content_${type} ${extraClasses.join(' ')}`}
+      className={`chartkit-table__content chartkit-table__content_${type} ${extraClasses.join(
+        ' ',
+      )}`}
       style={_camelCaseCss(contentCss)}
       key={value}
     >

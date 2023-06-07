@@ -46,7 +46,10 @@ class EntryPanel extends React.Component {
     const { entry: entryProps } = props;
 
     if (entryState) {
-      if (entryProps && (entryState.entryId !== entryProps.entryId || entryState.key !== entryProps.key)) {
+      if (
+        entryProps &&
+        (entryState.entryId !== entryProps.entryId || entryState.key !== entryProps.key)
+      ) {
         return {
           entry: {
             ...entryProps,
@@ -118,7 +121,8 @@ class EntryPanel extends React.Component {
 
   onCloseEntryContextMenu = () => this.setState({ visibleEntryContextMenu: false });
 
-  toggleEntryContextMenu = () => this.setState({ visibleEntryContextMenu: !this.state.visibleEntryContextMenu });
+  toggleEntryContextMenu = () =>
+    this.setState({ visibleEntryContextMenu: !this.state.visibleEntryContextMenu });
 
   render() {
     const { sdk, additionalEntryItems } = this.props;
