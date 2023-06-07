@@ -1,8 +1,8 @@
 import { AngleAxisComponentOption } from 'echarts';
-import { numberValueToLocaleString } from '../helpers';
+import { numberValueToLocaleString } from '.';
 import { EchartsOptions } from '../../types';
 
-export const useyAxis = (echartsOptions: EchartsOptions): AngleAxisComponentOption | undefined => {
+export const getYAxis = (echartsOptions: EchartsOptions): AngleAxisComponentOption | undefined => {
   const yAxis = {
     axisLabel: {
       color: echartsOptions?.yAxis?.labels?.style?.color,

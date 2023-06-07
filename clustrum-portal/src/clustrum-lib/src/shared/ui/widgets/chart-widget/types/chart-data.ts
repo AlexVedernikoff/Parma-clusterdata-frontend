@@ -1,6 +1,6 @@
 import { ChartType } from './chart-type';
 
-export type ChartData = {
+export interface ChartData {
   config: {
     withoutLineLimit: boolean;
     removeShowHideAll: boolean;
@@ -97,4 +97,4 @@ export type ChartData = {
   };
   logsV2: null;
   comments: null;
-};
+}

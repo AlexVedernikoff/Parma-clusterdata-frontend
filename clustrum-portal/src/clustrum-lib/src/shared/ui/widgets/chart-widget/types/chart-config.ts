@@ -1,6 +1,6 @@
 import { ChartType } from './chart-type';
 
-export type ChartConfig = {
+export interface ChartConfig {
   highcharts: {
     chart: {
       type: ChartType;
@@ -28,4 +28,4 @@ export type ChartConfig = {
   normalizeDiv: boolean;
   normalizeSub: boolean;
   isPercent: boolean;
-};
+}

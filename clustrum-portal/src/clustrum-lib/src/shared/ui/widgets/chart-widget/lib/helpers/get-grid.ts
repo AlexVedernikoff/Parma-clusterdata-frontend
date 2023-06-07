@@ -2,7 +2,7 @@ import { GridComponentOption } from 'echarts';
 
 import { EchartsOptions } from '../../types';
 
-export const useGrid = (echartsOptions: EchartsOptions): GridComponentOption => ({
+export const getGrid = (echartsOptions: EchartsOptions): GridComponentOption => ({
   left: echartsOptions.chart.spacingLeft ?? 10,
   right: 15,
   containLabel: true,

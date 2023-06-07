@@ -1,6 +1,6 @@
 import { ChartType } from './chart-type';
 
-export type EchartsOptions = {
+export interface EchartsOptions {
   _comments: [];
   chart: {
     type: ChartType;
@@ -349,7 +349,7 @@ export type EchartsOptions = {
     };
   };
   _config: {
-    highcharts: {
+    echart: {
       chart: {
         type: 'line';
       };
@@ -393,4 +393,4 @@ export type EchartsOptions = {
     stack: null;
     name: string;
   }[];
-};
+}

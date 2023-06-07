@@ -168,8 +168,6 @@ export const prepareData = (data: IPrepareData, options: IPrepareDataOptions): v
     throw ErrorDispatcher.wrap({ type: ERROR_TYPE.NO_DATA });
   }
 
-  console.log(data);
-
   if (data.graphs) {
     if (data.graphs.length > 50 && !options.withoutLineLimit) {
       throw ErrorDispatcher.wrap({ type: ERROR_TYPE.TOO_MANY_LINES });

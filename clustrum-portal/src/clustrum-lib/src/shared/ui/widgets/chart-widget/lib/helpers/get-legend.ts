@@ -1,7 +1,7 @@
 import { LegendComponentOption } from 'echarts';
 import { EchartsOptions } from '../../types';
 
-export const useLegend = (echartsOptions: EchartsOptions): LegendComponentOption => {
+export const getLegend = (echartsOptions: EchartsOptions): LegendComponentOption => {
   const legend: LegendComponentOption = {
     show: echartsOptions?.legend?.enabled ?? false,
     bottom: '5',

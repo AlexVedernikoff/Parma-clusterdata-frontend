@@ -1,1 +1,5 @@
-export type ChartType = 'line' | 'column' | 'pie';
+export enum ChartType {
+  line = 'line',
+  column = 'column',
+  pie = 'pie',
+}

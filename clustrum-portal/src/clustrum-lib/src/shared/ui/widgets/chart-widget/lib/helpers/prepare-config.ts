@@ -415,8 +415,8 @@ function getTypeParams(data: any, options: any): any {
     };
   }
 
-  if (options.highcharts && options.highcharts.yAxis && options.highcharts.yAxis.length) {
-    params.yAxis = options.highcharts.yAxis;
+  if (options.echart && options.echart.yAxis && options.echart.yAxis.length) {
+    params.yAxis = options.echart.yAxis;
   } else {
     params.yAxis = {
       plotLines: [
@@ -484,7 +484,7 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
           drawOnlyRendererComments(this, this.userOptions._comments, this.userOptions._config);
           manageLegend(this);
 
-          options.highcharts.chart.type === 'column' && redrawDataLabelsInColumnChart(this);
+          options.echart.chart.type === 'column' && redrawDataLabelsInColumnChart(this);
         },
       } as any,
       spacingTop: 20,
@@ -506,7 +506,7 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
       // при sankey тип shared нужно выставлять в false, иначе тултип ведет себя некорректно:
       // * если наведено на пустую область, то показывается тултип какого-либо из полей
       // * Point.onMouseOver -> Highcharts.Pointer.runPointActions -> H.Tooltip.refresh -> Cannot read property 'series' of undefined
-      shared: !options.highcharts || !options.highcharts.chart || options.highcharts.chart.type !== 'sankey',
+      shared: !options.echart || !options.echart.chart || options.echart.chart.type !== 'sankey',
     },
     plotOptions: {
       series: {
@@ -543,7 +543,7 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
     },
   });
 
-  if (options.highcharts.chart.type === 'column') {
+  if (options.echart.chart.type === 'column') {
     params.plotOptions.series.dataLabels = {
       crop: false,
       allowOverlap: true,
@@ -572,38 +572,36 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
     });
   }
 
-  if (options.highcharts && options.highcharts.tooltip && options.highcharts.tooltip.formatter) {
-    const formatter = options.highcharts.tooltip.formatter;
+  if (options.echart && options.echart.tooltip && options.echart.tooltip.formatter) {
+    const formatter = options.echart.tooltip.formatter;
     params.tooltip.formatter = function(tooltip: any): string {
       return `<div">${formatter.call(this, tooltip)}</div>`;
     };
-    delete options.highcharts.tooltip.formatter;
+    delete options.echart.tooltip.formatter;
   }
 
   if (
     params.legend.enabled === undefined &&
     ['pie', 'heatmap', 'treemap'].indexOf(options.type) === -1 &&
-    ['pie', 'heatmap', 'treemap'].indexOf(
-      options.highcharts && options.highcharts.chart && options.highcharts.chart.type,
-    ) === -1
+    ['pie', 'heatmap', 'treemap'].indexOf(options.echart && options.echart.chart && options.echart.chart.type) === -1
   ) {
     params.legend.enabled = params.series.length > 1;
   }
 
   if (
     options &&
-    options.highcharts &&
-    options.highcharts.plotOptions &&
-    options.highcharts.plotOptions.series &&
-    options.highcharts.plotOptions.series.dataLabels
+    options.echart &&
+    options.echart.plotOptions &&
+    options.echart.plotOptions.series &&
+    options.echart.plotOptions.series.dataLabels
   ) {
-    options.highcharts.plotOptions.series.dataLabels.format = undefined;
+    options.echart.plotOptions.series.dataLabels.format = undefined;
   }
 
-  if (options && options.highcharts && options.highcharts.chart.type === 'pie') {
-    options.highcharts.legend.enabled = true;
-    options.highcharts.plotOptions = {
-      ...options.highcharts.plotOptions,
+  if (options && options.echart && options.echart.chart.type === 'pie') {
+    options.echart.legend.enabled = true;
+    options.echart.plotOptions = {
+      ...options.echart.plotOptions,
       pie: {
         dataLabels: {
           format: undefined,
@@ -614,7 +612,7 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
 
     //@ts-ignore
     if (window.DL.exportMode) {
-      options.highcharts.plotOptions.pie.dataLabels.enabled = true;
+      options.echart.plotOptions.pie.dataLabels.enabled = true;
     }
   }
 
@@ -653,7 +651,7 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
     });
   }
 
-  mergeWith(params, options.highcharts, (a, b) => {
+  mergeWith(params, options.echart, (a, b) => {
     // на случай, если кто-то переопределяет события
     // a !== b, например, для случая yAxis.labels.formatter
     if (typeof a === 'function' && typeof b === 'function' && a !== b) {

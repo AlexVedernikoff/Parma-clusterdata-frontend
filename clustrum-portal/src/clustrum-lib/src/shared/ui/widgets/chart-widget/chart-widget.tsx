@@ -1,17 +1,16 @@
-import React, { FC, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ReactECharts from 'echarts-for-react';
 
 import { getEchartsConfig as getConfig } from './lib/helpers';
 import { useCreateOptions } from './lib/hooks/use-create-options';
 import { ChartConfig } from './types';
-import './style.css';
 import { clickHouseDateFormat } from './lib/helpers';
 
 const FILTER_CONDITION_TYPE = {
   IS_NULL: '__is_null',
 };
 
-type Props = {
+interface ChartWidgetProps {
   data: {
     data: {
       categoriesDataTypeName: string;
@@ -29,17 +28,17 @@ type Props = {
     libraryConfig: ChartConfig;
   };
   onLoad(): void;
-  onChange<T>(param: T): void;
-  onStateAndParamsChange<T>(param: T): void;
-};
+  onChange(param: { name: string }): void;
+  onStateAndParamsChange(params: { [key: string]: unknown }): void;
+}
 
-export const ChartWidget: FC<Props> = props => {
-  const data = props.data.data;
-  const conf = props.data.config;
-  const libraryConfig = props.data.libraryConfig;
-  const { config: highchartsOptions } = getConfig(Object.assign({ highcharts: libraryConfig }, conf), data, null, null);
-  const config = props?.data?.libraryConfig;
-  const { option, className } = useCreateOptions(highchartsOptions, config);
+export function ChartWidget(props: ChartWidgetProps): JSX.Element {
+  const { data: propsData } = props;
+  const data = propsData.data;
+  const conf = propsData.config;
+  const libraryConfig = propsData.libraryConfig;
+  const { config: graphOptions } = getConfig(Object.assign({ echart: libraryConfig }, conf), data, null, null);
+  const { option, className } = useCreateOptions(graphOptions, libraryConfig);
 
   function convertCategoryName(category: string, categoriesDataTypeName: string): string {
     if (category === null) {
@@ -56,19 +55,26 @@ export const ChartWidget: FC<Props> = props => {
     }
   }
 
-  const onChange = <T extends { point: { originalCategory: string } }>(data: T): void => {
-    const groupField = props.data.data.groupField;
+  interface DataProps {
+    point: {
+      originalCategory: string;
+    };
+  }
+
+  const onChange = (data: DataProps): void => {
+    const groupField = propsData.data.groupField;
+    const originalCategory = data.point.originalCategory;
     if (groupField) {
       props.onStateAndParamsChange({
         params: {
-          [groupField]: convertCategoryName(data.point.originalCategory, props.data.data.categoriesDataTypeName),
+          [groupField]: convertCategoryName(originalCategory, propsData.data.categoriesDataTypeName),
         },
       });
     }
   };
 
   const onEvents = {
-    click: <T extends { name: string }>(params: T): void => {
+    click: (params: { name: string }): void => {
       onChange({
         point: { originalCategory: params.name },
       });
@@ -89,6 +95,4 @@ export const ChartWidget: FC<Props> = props => {
       onEvents={onEvents}
     />
   );
-};
-
-ChartWidget.displayName = 'ChartWidget';
+}
