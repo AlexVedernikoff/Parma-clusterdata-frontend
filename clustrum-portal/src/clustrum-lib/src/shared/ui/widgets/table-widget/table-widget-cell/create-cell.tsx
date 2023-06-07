@@ -44,59 +44,51 @@ function getResultValue(cell: Cell, options: Options): JSX.Element | string {
       .join('<br/>');
   }
 
-  let resultValue = cell.value;
-
   switch (cell.type.toLowerCase()) {
     case 'grid':
       return renderGrid(cell.grid, options);
     case 'string':
     case 'text':
-      resultValue = cell.link?.href ? (
+      return cell.link?.href ? (
         <a
           className="chartkit-table__link"
           href={cell.link.href}
           target={cell.link.newWindow ? '_blank' : '_self'}
           rel="noreferrer"
         >
-          {resultValue}
+          {cell.value}
         </a>
       ) : (
-        resultValue
+        cell.value
       );
-      break;
     case 'datetime':
     case 'date': {
-      const dateFormat = new DateFormat(resultValue, cell.type);
+      const dateFormat = new DateFormat(cell.value, cell.type);
       if (dateFormat.isNotValidDate()) {
-        break;
+        return cell.value;
       }
-
-      resultValue = dateFormat.date();
-      break;
+      return dateFormat.date();
     }
     case 'integer':
     case 'float':
     case 'double':
     case 'long':
     case 'number':
-      resultValue = numberFormatter(resultValue, options);
-      break;
+      return numberFormatter(cell.value, options);
     case 'diff': {
-      const number = numberFormatter(resultValue[0], options);
-      const diff = diffFormatter(resultValue[1], options);
-      resultValue = (
+      const number = numberFormatter(cell.value[0], options);
+      const diff = diffFormatter(cell.value[1], options);
+      return (
         <div>
           {number} {diff}
         </div>
       );
-      break;
     }
     case 'diff_only':
-      resultValue = diffFormatter(resultValue, options);
-      break;
+      return diffFormatter(cell.value, options);
+    default:
+      return cell.value;
   }
-
-  return resultValue;
 }
 
 export function createCell(
