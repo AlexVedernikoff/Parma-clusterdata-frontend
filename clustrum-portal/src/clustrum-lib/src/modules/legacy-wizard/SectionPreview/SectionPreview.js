@@ -1,3 +1,5 @@
+//TODO Выпилить после окончания рефакторинга визарда
+
 import React, { Component } from 'react';
 
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
