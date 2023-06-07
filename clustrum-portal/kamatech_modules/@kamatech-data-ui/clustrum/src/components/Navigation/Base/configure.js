@@ -140,7 +140,7 @@ export const getCreateMenuItemsExternal = memoize(() => [
   {
     value: 'connection',
     icon: iconConnection,
-    text: 'Соединение',
+    text: 'Подключение',
   },
   {
     value: 'dataset',

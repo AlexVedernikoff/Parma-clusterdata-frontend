@@ -2,14 +2,13 @@ import React, { PureComponent } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import block from 'bem-cn-lite';
 import PropTypes from 'prop-types';
-import { Header, Utils } from '@kamatech-data-ui/clustrum';
+import { Utils } from '@kamatech-data-ui/clustrum';
 import { Pointerfocus } from 'lego-on-react';
 
 import DatasetPage from '../../containers/DatasetPage/DatasetPage';
 import DatasetCreationPage from '../../containers/DatasetCreationPage/DatasetCreationPage';
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
-
-// import './DatasetRouter.scss';
+import { PageContainer } from '../../widgets/page-container/ui/page-container';
 
 const b = block('dataset-router');
 
@@ -36,30 +35,41 @@ class DatasetRouter extends PureComponent {
     return (
       <div className={b()}>
         <Pointerfocus />
-        <Header
-          installationType={installationType}
-          sdk={sdk}
-          endpoints={endpoints}
-          clouds={clouds}
-          userData={userData}
-          menuData={menu}
-          logoText={logoText}
-          toggleTheme={toggleTheme}
-        />
         <Router>
           <Switch>
-            <Route path={'/datasets/new'} render={props => <DatasetCreationPage {...props} sdk={sdk} />} />
+            <Route
+              path={'/datasets/new'}
+              render={props => (
+                <PageContainer withoutReactRouter>
+                  <DatasetCreationPage {...props} sdk={sdk} />
+                </PageContainer>
+              )}
+            />
             <Route
               path={'/datasets/:datasetId/source'}
               render={props => {
                 const { match: { params: { datasetId } = {} } = {} } = props;
 
                 return (
-                  <DatasetCreationPage {...props} modeId={REPLACE_SOURCE_MODE_ID} datasetId={datasetId} sdk={sdk} />
+                  <PageContainer withoutReactRouter>
+                    <DatasetCreationPage
+                      {...props}
+                      modeId={REPLACE_SOURCE_MODE_ID}
+                      datasetId={datasetId}
+                      sdk={sdk}
+                    />
+                  </PageContainer>
                 );
               }}
             />
-            <Route path={'/datasets/:datasetId'} render={props => <DatasetPage {...props} sdk={sdk} />} />
+            <Route
+              path={'/datasets/:datasetId'}
+              render={props => (
+                <PageContainer withoutReactRouter>
+                  <DatasetPage {...props} sdk={sdk} />
+                </PageContainer>
+              )}
+            />
           </Switch>
         </Router>
       </div>

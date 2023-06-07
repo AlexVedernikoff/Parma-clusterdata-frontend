@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import block from 'bem-cn-lite';
-import iconOpenEye from '@kamatech-data-ui/clustrum/src/icons/open-eye.svg';
-import iconCloseEye from '@kamatech-data-ui/clustrum/src/icons/close-eye.svg';
-import { Button, Menu, Dropdown, Popup } from 'lego-on-react';
-import { Icon } from '@kamatech-data-ui/common/src';
-import ButtonIcon from '../ButtonIcon/ButtonIcon';
 
-const b = block('widget-visibility-dropdown');
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import { Button, Dropdown } from 'antd';
 
 function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   const getWidgetList = () => {
@@ -54,43 +49,37 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   };
 
   const [widgetList, setWidgetList] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setWidgetList(getWidgetList());
   }, [items, layout]);
 
+  const visibilityItems = widgetList.map(({ id, title, isHidden }) => {
+    return {
+      label: (
+        <a onClick={() => toggleWidgetVisibility(id)}>
+          {isHidden ? (
+            <EyeInvisibleOutlined className="ant-d-header-eye-icon" />
+          ) : (
+            <EyeOutlined className="ant-d-header-eye-icon" />
+          )}
+          {title}
+        </a>
+      ),
+      key: id,
+    };
+  });
+
   return (
     <Dropdown
-      theme="default"
-      view="default"
-      tone="default"
-      size="n"
-      cls={b()}
-      switcher={
-        <Button cls={b('btn')} theme="flat" view="default" tone="default" size="n" title="Показать или скрыть виджеты">
-          <ButtonIcon>
-            <Icon data={iconOpenEye} width="18" height="18" />
-          </ButtonIcon>
-        </Button>
-      }
-      popup={
-        <Popup hiding autoclosable onOutsideClick={() => {}}>
-          <Menu theme="normal" tone="default" view="default" size="n" type="navigation">
-            {widgetList.map(({ id, title, isHidden }) => {
-              const iconData = isHidden ? iconCloseEye : iconOpenEye;
-              return (
-                <Menu.Item key={id} onClick={() => toggleWidgetVisibility(id)} cls={b('item', { hidden: isHidden })}>
-                  <div className={b('item-icon')}>
-                    <Icon data={iconData} width="18" height={isHidden ? 10 : 18} />
-                  </div>
-                  <div className={b('item-title')}>{title}</div>
-                </Menu.Item>
-              );
-            })}
-          </Menu>
-        </Popup>
-      }
-    />
+      menu={{ items: visibilityItems }}
+      onOpenChange={flag => setOpen(flag)}
+      trigger={['click']}
+      open={open}
+    >
+      <Button icon={<EyeOutlined />} />
+    </Dropdown>
   );
 }
 

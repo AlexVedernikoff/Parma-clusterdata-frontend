@@ -4,7 +4,7 @@ import NavigationBase from './Base/NavigationBase';
 import { PLACE, PLACE_VALUES } from './constants';
 import Utils from '../../utils';
 import { DL } from '../../constants/common';
-import { mapPlaceBackward, isRoot, mapPlace } from './util';
+import { isRoot, mapPlace } from './util';
 
 // use only with react-router
 class ServiceNavigation extends React.PureComponent {
@@ -58,16 +58,6 @@ class ServiceNavigation extends React.PureComponent {
     }
   }
 
-  onSidebarItemClick = item => {
-    if (item.place) {
-      const root = mapPlaceBackward(item.place);
-      this.setState({ path: '', root });
-      this.props.history.push(`${this.props.navigationUrl}/${root}`);
-    } else {
-      this.onCrumbClick({ path: item.key });
-    }
-  };
-
   onEntryParentClick = entry => {
     this.onCrumbClick({ path: entry.key });
   };
@@ -86,11 +76,15 @@ class ServiceNavigation extends React.PureComponent {
 
   getFolderUrl(entry) {
     const { navigationUrl } = this.props;
-    return entry ? `${navigationUrl}/${PLACE.ROOT}/${entry.entryId}` : `${navigationUrl}/${PLACE.ROOT}`;
+    return entry
+      ? `${navigationUrl}/${PLACE.ROOT}/${entry.entryId}`
+      : `${navigationUrl}/${PLACE.ROOT}`;
   }
 
   getEntryByKey(key) {
-    return key && key !== '/' ? this.props.sdk.getEntryByKey({ key: Utils.normalizeDestination(key) }) : undefined;
+    return key && key !== '/'
+      ? this.props.sdk.getEntryByKey({ key: Utils.normalizeDestination(key) })
+      : undefined;
   }
 
   onEntryClick = entry => {
@@ -147,7 +141,6 @@ class ServiceNavigation extends React.PureComponent {
         onCrumbClick={this.onCrumbClick}
         onEntryClick={this.onEntryClick}
         onEntryParentClick={this.onEntryParentClick}
-        onSidebarItemClick={this.onSidebarItemClick}
       />
     ) : null;
   }

@@ -7,15 +7,13 @@ import { withRouter, Switch, Route } from 'react-router-dom';
 import { Wizard } from '@clustrum-lib';
 import { Pointerfocus } from 'lego-on-react';
 
-import { Utils, SDK, Header } from '@kamatech-data-ui/clustrum';
+import { SDK } from '@kamatech-data-ui/clustrum';
 
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
+
 import { exportWidget } from '../services/dashboard/export/export-widget';
-
-// import '@kamatech-data-ui/common/src/styles/styles.scss';
-
-// import './App.scss';
+import { PageContainer } from '../widgets/page-container/ui/page-container';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -30,51 +28,27 @@ class App extends Component {
     exportWidget({ id, name }, undefined, options);
   }
 
-  renderHeader = () => {
-    const {
-      installationType,
-      endpoints,
-      clouds,
-      user,
-      features: { logoText, toggleTheme },
-      menu,
-    } = window.DL;
-
-    user.yu = Utils.getCookie('parmauid');
-
-    return (
-      <Header
-        installationType={installationType}
-        sdk={sdk}
-        endpoints={endpoints}
-        clouds={clouds}
-        userData={user}
-        menuData={menu}
-        toggleTheme={toggleTheme}
-        logoText={logoText}
-      />
-    );
-  };
-
-  renderContent = () => {
-    return (
-      <Switch>
-        <Route
-          path={'/wizard/preview/:id'}
-          component={props => <Wizard {...props} onExport={this._handleExport} preview={true} sdk={sdk} />}
-        />
-        <Route path={'/wizard'} component={props => <Wizard {...props} onExport={this._handleExport} sdk={sdk} />} />
-      </Switch>
-    );
-  };
-
   render() {
     return (
-      <div className={b()}>
+      <>
         <Pointerfocus />
-        <div className={b('header')}>{this.renderHeader()}</div>
-        <div className={b('main')}>{this.renderContent()}</div>
-      </div>
+        <Switch>
+          <Route
+            path={'/wizard/preview/:id'}
+            component={props => (
+              <Wizard {...props} onExport={this._handleExport} preview={true} sdk={sdk} />
+            )}
+          />
+          <Route
+            path={'/wizard'}
+            component={props => (
+              <PageContainer withoutReactRouter>
+                <Wizard {...props} onExport={this._handleExport} sdk={sdk} />
+              </PageContainer>
+            )}
+          />
+        </Switch>
+      </>
     );
   }
 }
