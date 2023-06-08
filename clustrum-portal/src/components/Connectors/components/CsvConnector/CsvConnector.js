@@ -96,8 +96,8 @@ function CsvDropZone(props) {
       )}
       {!isDragActive && isOverMaxSize && (
         <div className={b('text-error')}>
-          Увы, этот файл превышает допустимый лимит размера в CSV-файла в 100 Мб.
-          Попробуйте загрузить другой файл
+          Увы, этот файл превышает допустимый лимит размера CSV-файла в 100 Мб. Попробуйте
+          загрузить другой файл
         </div>
       )}
       {!isDragActive && isNotAllowedType && (
@@ -402,8 +402,7 @@ class CsvConnector extends React.Component {
 
     if (
       connectionId &&
-      (viewStepId === VIEW_STEPS.CSV_SETTING ||
-        viewStepId === VIEW_STEPS.CSV_SETTING_AFTER_SAVE)
+      [VIEW_STEPS.CSV_SETTING, VIEW_STEPS.CSV_SETTING_AFTER_SAVE].includes(viewStepId)
     ) {
       this.setState({
         isConnectionLoading: true,
