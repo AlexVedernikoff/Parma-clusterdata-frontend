@@ -17,7 +17,7 @@ function renderGrid(grid: Cell[], options: Options = {}): JSX.Element {
   }
 
   return (
-    <div className="grid-wrapper_flow_gridFlow" key={gridFlow}>
+    <div key={gridFlow}>
       {grid.map(gridItem =>
         Array.isArray(gridItem)
           ? renderGrid(gridItem, { ...options, gridFlow: reverseGridFlow(gridFlow) })
@@ -106,7 +106,7 @@ export function createCell(
 
   return (
     <div
-      className={`chartkit-table__content chartkit-table__content_${type} ${extraClasses.join(
+      className={`table-widget__content table-widget__content--${type} ${extraClasses.join(
         ' ',
       )}`}
       style={camelCaseCss(options.contentCss)}

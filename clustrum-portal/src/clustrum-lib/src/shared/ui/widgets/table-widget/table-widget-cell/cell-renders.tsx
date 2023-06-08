@@ -7,6 +7,8 @@ import { Cell, DateType, Options } from '../types';
 import { numberFormatter } from '../lib';
 import { diffFormatter } from './diff-formatter';
 
+import '../table-widget.css';
+
 export function toJsxElement(value: unknown): JSX.Element {
   return <>{value}</>;
 }
@@ -23,7 +25,7 @@ export function renderText(cell: Cell): JSX.Element {
   if (cell.link?.href) {
     return (
       <a
-        className="chartkit-table__link"
+        className="table-widget__link"
         href={cell.link.href}
         target={cell.link.newWindow ? '_blank' : '_self'}
         rel="noreferrer"
