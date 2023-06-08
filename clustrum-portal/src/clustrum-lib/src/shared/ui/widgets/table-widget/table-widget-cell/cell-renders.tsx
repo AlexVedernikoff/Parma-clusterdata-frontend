@@ -9,14 +9,10 @@ import { diffFormatter } from './diff-formatter';
 
 import '../table-widget.css';
 
-export function toJsxElement(value: unknown): JSX.Element {
-  return <>{value}</>;
-}
-
 export function renderDate(date: Date, dateType: DateType): JSX.Element {
   const dateFormat = new DateFormat(date, dateType);
   if (dateFormat.isNotValidDate()) {
-    return toJsxElement(date);
+    return <>{date}</>;
   }
   return dateFormat.date();
 }
@@ -35,7 +31,7 @@ export function renderText(cell: Cell): JSX.Element {
     );
   }
 
-  return toJsxElement(cell.value);
+  return <>{cell.value}</>;
 }
 
 export function renderDiff(values: number[], options: Options): JSX.Element {

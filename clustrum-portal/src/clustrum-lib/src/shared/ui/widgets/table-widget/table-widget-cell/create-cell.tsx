@@ -4,7 +4,7 @@ import ReactDomServer from 'react-dom/server';
 import { Options, GridFlow, Cell, NULL_ALIAS, DateType } from '../types';
 import { camelCaseCss, numberFormatter } from '../lib';
 import { diffFormatter } from '.';
-import { renderDate, renderDiff, renderText, toJsxElement } from './cell-renders';
+import { renderDate, renderDiff, renderText } from './cell-renders';
 
 function reverseGridFlow(gridFlow: GridFlow): GridFlow {
   return gridFlow === 'column' ? 'row' : 'column';
@@ -33,7 +33,7 @@ function renderArray(cell: Cell, options: Options): JSX.Element {
   }
 
   if (!Array.isArray(cell.value)) {
-    return toJsxElement(cell.value);
+    return <>{cell.value}</>;
   }
 
   return (
@@ -65,14 +65,14 @@ function getResultValue(cell: Cell, options: Options): JSX.Element {
     case 'double':
     case 'long':
     case 'number':
-      return toJsxElement(numberFormatter(cell.value as number, options));
+      return <>{numberFormatter(cell.value as number, options)}</>;
     case 'diff': {
       return renderDiff(cell.value as number[], options);
     }
     case 'diff_only':
       return diffFormatter(cell.value as number, options);
     default:
-      return toJsxElement(cell.value);
+      return <>{cell.value}</>;
   }
 }
 
