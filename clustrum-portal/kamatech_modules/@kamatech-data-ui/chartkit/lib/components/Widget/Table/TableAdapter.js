@@ -303,18 +303,20 @@ export class TableAdapter extends React.PureComponent {
       };
     });
 
-    const data = rows.map(row =>
+    const data = rows.map((row, rowIndex) =>
       row.values
         ? row.values.reduce((result, value, index) => {
             value.isGroupField = index === groupFieldPosition;
             value.resultShemaId = head[index].resultSchemaId;
             result[names[index]] = { value };
+            result.key = rowIndex;
             return result;
           }, {})
         : row.cells.reduce((result, value, index) => {
             value.isGroupField = index === groupFieldPosition;
             value.resultShemaId = head[index].resultSchemaId;
             result[names[index]] = value;
+            result.key = rowIndex;
             return result;
           }, {}),
     );
