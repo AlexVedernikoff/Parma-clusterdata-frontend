@@ -249,7 +249,6 @@ export class TableAdapter extends React.PureComponent {
 
     return (
       <div
-        className="chartkit-table"
         ref={node => {
           context._domNode = node;
         }}
