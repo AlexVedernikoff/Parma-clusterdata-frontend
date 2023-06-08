@@ -117,7 +117,8 @@ function removeHolidays<
   data.categories_ms.forEach((ts: string, i: number) => {
     const datetime = moment(ts).format('YYYYMMDD');
     const region = (options.region && options.region.toLowerCase()) || 'tot';
-    const holiday = HOLIDAYS.holiday[region][datetime] || HOLIDAYS.weekend[region][datetime];
+    const holiday =
+      HOLIDAYS.holiday[region][datetime] || HOLIDAYS.weekend[region][datetime];
 
     if (!holiday) {
       timeline.push(ts);
@@ -162,7 +163,10 @@ export const prepareData = (data: IPrepareData, options: IPrepareDataOptions): v
   if (
     !data ||
     (typeof data === 'object' && !Object.keys(data).length) ||
-    (data.graphs && !(data.graphs.length && data.graphs.some(graph => graph.data && graph.data.length))) ||
+    (data.graphs &&
+      !(
+        data.graphs.length && data.graphs.some(graph => graph.data && graph.data.length)
+      )) ||
     (Array.isArray(data) && !data.length)
   ) {
     throw ErrorDispatcher.wrap({ type: ERROR_TYPE.NO_DATA });
@@ -184,12 +188,14 @@ export const prepareData = (data: IPrepareData, options: IPrepareDataOptions): v
 
     // данные в милисекундах
     if (data.categories_ms) {
-      options.highchartsScale = HIGHCHARTS_SCALE[options.scale as keyof typeof HIGHCHARTS_SCALE];
+      options.highchartsScale =
+        HIGHCHARTS_SCALE[options.scale as keyof typeof HIGHCHARTS_SCALE];
 
       const closestPointRange = lodashMin(
         data.categories_ms.map(
           (timestamp: number, index: number) =>
-            timestamp - ((data && data.categories_ms && data.categories_ms[index - 1]) ?? 0),
+            timestamp -
+            ((data && data.categories_ms && data.categories_ms[index - 1]) ?? 0),
         ),
       ) as number;
       options.scale = options.scale || computeXTickScale(closestPointRange);
@@ -208,7 +214,8 @@ export const prepareData = (data: IPrepareData, options: IPrepareDataOptions): v
         .filter(({ data }) => Boolean(data))
         .forEach((graph, index: number) => {
           let result = [];
-          const aloneOrHasNull = graph.data.length === 1 || graph.data.indexOf(null) !== -1;
+          const aloneOrHasNull =
+            graph.data.length === 1 || graph.data.indexOf(null) !== -1;
 
           const firstValue = graph.data[0];
 
@@ -266,7 +273,8 @@ export const prepareData = (data: IPrepareData, options: IPrepareDataOptions): v
         graphItem._lastValue =
           (graphItem.data &&
             graphItem.data[graphItem.data.length - 1] &&
-            (graphItem.data[graphItem.data.length - 1][1] || graphItem.data[graphItem.data.length - 1].y)) ||
+            (graphItem.data[graphItem.data.length - 1][1] ||
+              graphItem.data[graphItem.data.length - 1].y)) ||
           0;
       });
       data.graphs.sort(sortByLastValue);

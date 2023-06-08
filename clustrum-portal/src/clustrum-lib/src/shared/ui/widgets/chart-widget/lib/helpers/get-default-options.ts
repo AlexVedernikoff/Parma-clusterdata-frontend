@@ -1,6 +1,10 @@
 function getTooltipHeaderFormat(format: any, showColor: boolean): string {
   return `<div class="chartkit-tooltip__header">
-        ${showColor ? `<span class="chartkit-tooltip__color" style="background-color:{point.color};"></span>` : ''}
+        ${
+          showColor
+            ? `<span class="chartkit-tooltip__color" style="background-color:{point.color};"></span>`
+            : ''
+        }
         ${format}
     </div>`;
 }
@@ -14,7 +18,9 @@ function getTooltipPointFormat(cells: any, showColor: boolean): string {
             </div>`
             : ''
         }
-        ${cells.map((cell: any) => `<div class="chartkit-tooltip__cell">${cell}</div>`).join('')}
+        ${cells
+          .map((cell: any) => `<div class="chartkit-tooltip__cell">${cell}</div>`)
+          .join('')}
     </div>`;
 }
 
@@ -160,7 +166,10 @@ export default {
       {
         tooltip: {
           // headerFormat: getTooltipHeaderFormat('{point.key}'),
-          pointFormat: getTooltipPointFormat(['{point.low} - {point.high}', '{series.name}'], true),
+          pointFormat: getTooltipPointFormat(
+            ['{point.low} - {point.high}', '{series.name}'],
+            true,
+          ),
         },
       },
       first,
@@ -168,14 +177,20 @@ export default {
     scatter: {
       tooltip: {
         headerFormat: getTooltipHeaderFormat('{series.name}', true),
-        pointFormat: getTooltipPointFormat(['<div>X: {point.x}</div><div>Y: {point.y}<div/>'], false),
+        pointFormat: getTooltipPointFormat(
+          ['<div>X: {point.x}</div><div>Y: {point.y}<div/>'],
+          false,
+        ),
       },
     },
     bubble: {
       tooltip: {
         headerFormat: getTooltipHeaderFormat('{series.name}', true),
         // TODO: i18n('Размер')
-        pointFormat: getTooltipPointFormat(['({point.x}, {point.y}), Размер: {point.z}'], false),
+        pointFormat: getTooltipPointFormat(
+          ['({point.x}, {point.y}), Размер: {point.z}'],
+          false,
+        ),
       },
     },
     sankey: {
@@ -190,7 +205,10 @@ export default {
     heatmap: {
       tooltip: {
         headerFormat: getTooltipHeaderFormat('{series.name}', true),
-        pointFormat: getTooltipPointFormat(['{point.x}, {point.y}: {point.value}'], false),
+        pointFormat: getTooltipPointFormat(
+          ['{point.x}, {point.y}: {point.value}'],
+          false,
+        ),
       },
     },
     treemap: {

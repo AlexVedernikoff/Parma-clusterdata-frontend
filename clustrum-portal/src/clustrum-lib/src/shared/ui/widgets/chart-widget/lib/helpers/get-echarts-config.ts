@@ -2,7 +2,12 @@ import { prepareData } from './prepare-data';
 import { prepareConfig } from './prepare-config';
 import { drawComments } from './drawing';
 
-export const getEchartsConfig = (options: any, data: any, vaultId: any, comments: any): any => {
+export const getEchartsConfig = (
+  options: any,
+  data: any,
+  vaultId: any,
+  comments: any,
+): any => {
   prepareData(data, options);
 
   return {
@@ -14,7 +19,10 @@ export const getEchartsConfig = (options: any, data: any, vaultId: any, comments
     }),
     callback: (chart: any): void => {
       chart.series.forEach((serie: any) => {
-        if (['line', 'spline', 'area', 'stack'].includes(serie.type) && !serie.options.connectNulls) {
+        if (
+          ['line', 'spline', 'area', 'stack'].includes(serie.type) &&
+          !serie.options.connectNulls
+        ) {
           const { data } = serie;
           data.forEach((point: any, index: number) => {
             // рисуем маркер, если есть текущее значение, но нет следующего и предыдущего
@@ -42,8 +50,14 @@ export const getEchartsConfig = (options: any, data: any, vaultId: any, comments
           extmax = options.extremes.max;
         } else {
           if (options.highstock.range_min && options.highstock.range_max) {
-            extmin = parseInt(options.highstock.override_range_min || options.highstock.range_min, 10);
-            extmax = parseInt(options.highstock.override_range_max || options.highstock.range_max, 10);
+            extmin = parseInt(
+              options.highstock.override_range_min || options.highstock.range_min,
+              10,
+            );
+            extmax = parseInt(
+              options.highstock.override_range_max || options.highstock.range_max,
+              10,
+            );
           }
         }
 

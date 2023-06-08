@@ -76,7 +76,9 @@ function extendComment({ meta, ...rest }: { meta: any; rest: any }): any {
 
 function isNotFitGrid(x: number, chart: any): boolean {
   const ignoreScale = chart._config.comments?.ignoreScale ?? {};
-  const isXonXAxis = chart.xAxis[0].series.some(({ xData }: { xData: number[] }) => xData.indexOf(x) !== -1);
+  const isXonXAxis = chart.xAxis[0].series.some(
+    ({ xData }: { xData: number[] }) => xData.indexOf(x) !== -1,
+  );
   return !isXonXAxis && !ignoreScale && x % chart.xAxis[0].closestPointRange !== 0;
 }
 
@@ -440,15 +442,22 @@ function drawDot(chart: any, options: any): void | null {
   }
 
   const seriesIndex = chart.series.findIndex(
-    ({ userOptions: { id }, visible }: { userOptions: { id: string | number }; visible: boolean }) =>
-      id === options.graphId && visible,
+    ({
+      userOptions: { id },
+      visible,
+    }: {
+      userOptions: { id: string | number };
+      visible: boolean;
+    }) => id === options.graphId && visible,
   );
 
   if (seriesIndex === -1) {
     return null;
   }
 
-  const point = chart.series[seriesIndex].data.find((_point: any) => _point && _point.x === options.x);
+  const point = chart.series[seriesIndex].data.find(
+    (_point: any) => _point && _point.x === options.x,
+  );
   const color = options.color || chart.series[seriesIndex].color;
 
   if (!point) {
@@ -481,15 +490,22 @@ function drawDotLabel(chart: any, options: any): any {
   }
 
   const seriesIndex = chart.series.findIndex(
-    ({ userOptions: { id }, visible }: { userOptions: { id: string | number }; visible: boolean }) =>
-      id === options.graphId && visible,
+    ({
+      userOptions: { id },
+      visible,
+    }: {
+      userOptions: { id: string | number };
+      visible: boolean;
+    }) => id === options.graphId && visible,
   );
 
   if (seriesIndex === -1) {
     return null;
   }
 
-  const point = chart.series[seriesIndex].data.find((_point: any) => _point && _point.x === options.x);
+  const point = chart.series[seriesIndex].data.find(
+    (_point: any) => _point && _point.x === options.x,
+  );
 
   if (!point) {
     return null;
@@ -697,7 +713,9 @@ function drawOnlyRendererComments(chart: any, comments: any = [], settings: any)
   const notTranslatedDotsLabels: any = [];
 
   if (comments && comments.length && chart.container) {
-    chart.container.querySelectorAll(`.${HIGHCHARTS_RENDERER_COMMENT}`).forEach((elem: any) => elem.remove());
+    chart.container
+      .querySelectorAll(`.${HIGHCHARTS_RENDERER_COMMENT}`)
+      .forEach((elem: any) => elem.remove());
 
     comments.forEach((comment: any) => {
       const extendedComment = extendComment(comment);
@@ -724,17 +742,25 @@ function hideComments(chart: any, comments: any, settings: any, force: any): voi
   // TODO: нужен отельный метод для hide|show = redraw
   // тут проверка на chart, т.к. пока форма открыта, график может обновиться и chart-а, что тут, уже не будет
   if (chart && chart.container && comments) {
-    chart.container.querySelectorAll(`.${HIGHCHARTS_COMMENT}`).forEach((elem: any) => elem.remove());
-    chart.container.querySelectorAll(`.${HIGHCHARTS_RENDERER_COMMENT}`).forEach((elem: any) => elem.remove());
+    chart.container
+      .querySelectorAll(`.${HIGHCHARTS_COMMENT}`)
+      .forEach((elem: any) => elem.remove());
+    chart.container
+      .querySelectorAll(`.${HIGHCHARTS_RENDERER_COMMENT}`)
+      .forEach((elem: any) => elem.remove());
 
     comments.forEach((comment: any) => {
       const extendedComment = extendComment(comment);
 
       if (extendedComment.type === TYPES.DOT_XY) {
-        const seriesIndex = chart.series.findIndex((graph: any) => graph.userOptions.id === extendedComment.graphId);
+        const seriesIndex = chart.series.findIndex(
+          (graph: any) => graph.userOptions.id === extendedComment.graphId,
+        );
 
         if (seriesIndex !== -1) {
-          const point = chart.series[seriesIndex].data.find((_point: any) => _point && _point.x === extendedComment.x);
+          const point = chart.series[seriesIndex].data.find(
+            (_point: any) => _point && _point.x === extendedComment.x,
+          );
           if (point) {
             point.update({ marker: {} }, false, false);
           }

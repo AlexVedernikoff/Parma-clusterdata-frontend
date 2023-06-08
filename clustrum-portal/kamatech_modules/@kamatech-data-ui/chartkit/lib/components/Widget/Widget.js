@@ -81,7 +81,11 @@ class Widget extends React.PureComponent {
   renderSideHtml() {
     const { sideHtml, config } = this.props.data;
     return sideHtml ? (
-      <SideHtml html={sideHtml} visible={!config.hideComments && config.showSideHtml} key="side" />
+      <SideHtml
+        html={sideHtml}
+        visible={!config.hideComments && config.showSideHtml}
+        key="side"
+      />
     ) : null;
   }
 

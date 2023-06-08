@@ -81,7 +81,9 @@ export const clickHouseDateFormat = (originalDate: string, dateType: string): st
       return monthToEnglish();
 
     case DATE_TYPE.datetime:
-      return isDefaultDatetime() ? formattedDate(DATE_FORMAT.clickhouseDatetimeMillisUtc) : originalDate;
+      return isDefaultDatetime()
+        ? formattedDate(DATE_FORMAT.clickhouseDatetimeMillisUtc)
+        : originalDate;
   }
 
   return originalDate;

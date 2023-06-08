@@ -40,7 +40,9 @@ function buildNavigator(graphs: any, options: any): void {
   graphs.forEach((item: any) => {
     if (typeof item.showInNavigator === 'undefined') {
       item.showInNavigator =
-        item.sname === baseSeriesName || item.name === baseSeriesName || item.title === baseSeriesName;
+        item.sname === baseSeriesName ||
+        item.name === baseSeriesName ||
+        item.title === baseSeriesName;
     }
 
     if (!showInNavigator) {
@@ -62,7 +64,8 @@ function redrawDataLabelsInColumnChart(chart: any): void {
     chart.series.forEach(function(series: any, seriesIndex: number) {
       series.points.forEach(function(point: any) {
         if ((point.index + seriesIndex) % 2 === 0) {
-          point.dataLabel && point.dataLabel.translate(point.dataLabel.x, point.dataLabel.y - 10);
+          point.dataLabel &&
+            point.dataLabel.translate(point.dataLabel.x, point.dataLabel.y - 10);
         }
       });
     });
@@ -95,7 +98,11 @@ function buildLegend(options: any): any {
   }
 
   // проверяем, нужна ли плавающая легенда, position - цифра на часовом циферблате
-  if (typeof options.legendPosition === 'number' && options.legendPosition >= 1 && options.legendPosition <= 12) {
+  if (
+    typeof options.legendPosition === 'number' &&
+    options.legendPosition >= 1 &&
+    options.legendPosition <= 12
+  ) {
     if (options.type !== 'map') {
       legend.layout = 'vertical';
     }
@@ -167,12 +174,18 @@ function buildLegend(options: any): any {
 
 function hasChartVisibleSeries(chart: any): boolean {
   return (
-    chart && Array.isArray(chart.series) && chart.series.some((serie: any) => !isManageSerie(serie) && serie.visible)
+    chart &&
+    Array.isArray(chart.series) &&
+    chart.series.some((serie: any) => !isManageSerie(serie) && serie.visible)
   );
 }
 
 function hasChartManageSerie(chart: any): boolean {
-  return chart && Array.isArray(chart.series) && chart.series.some((serie: any) => isManageSerie(serie));
+  return (
+    chart &&
+    Array.isArray(chart.series) &&
+    chart.series.some((serie: any) => isManageSerie(serie))
+  );
 }
 
 function getParamsByCustomType(type = 'line', options: any): any {
@@ -186,7 +199,10 @@ function getParamsByCustomType(type = 'line', options: any): any {
         plotOptions: {
           [customType.type]: {
             stacking: customType.stacking,
-            enableSum: options.enableSum === undefined || options.enableSum === null ? true : options.enableSum,
+            enableSum:
+              options.enableSum === undefined || options.enableSum === null
+                ? true
+                : options.enableSum,
           },
         },
       }
@@ -220,8 +236,18 @@ function legendShowHide(serie: any, type: string, vaultId: number): void {
 
   manageLegend(serie.chart);
 
-  hideComments(serie.chart, serie.chart.userOptions._comments, serie.chart.userOptions._config, null);
-  drawComments(serie.chart, serie.chart.userOptions._comments, serie.chart.userOptions._config, null);
+  hideComments(
+    serie.chart,
+    serie.chart.userOptions._comments,
+    serie.chart.userOptions._config,
+    null,
+  );
+  drawComments(
+    serie.chart,
+    serie.chart.userOptions._comments,
+    serie.chart.userOptions._config,
+    null,
+  );
 }
 
 function manageLegend(chart: any): void {
@@ -325,7 +351,10 @@ function prepareHolidays(data: any, options: any): IPrepareHolidaysReturnType[] 
     const holidayByRegion = HOLIDAYS.holiday[region];
     const weekendByRegion = HOLIDAYS.weekend[region];
 
-    if ((holidayByRegion && holidayByRegion[pointTimestamp]) || (weekendByRegion && weekendByRegion[pointTimestamp])) {
+    if (
+      (holidayByRegion && holidayByRegion[pointTimestamp]) ||
+      (weekendByRegion && weekendByRegion[pointTimestamp])
+    ) {
       const bandStart = item - HALF_DAY;
       const bandStop = item + HALF_DAY;
 
@@ -481,7 +510,11 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
             }
           : undefined,
         redraw: function() {
-          drawOnlyRendererComments(this, this.userOptions._comments, this.userOptions._config);
+          drawOnlyRendererComments(
+            this,
+            this.userOptions._comments,
+            this.userOptions._config,
+          );
           manageLegend(this);
 
           options.echart.chart.type === 'column' && redrawDataLabelsInColumnChart(this);
@@ -497,7 +530,10 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
       text: options.hideTitle ? null : options.subtitle,
     },
     series: data.graphs || data,
-    legend: options.hideLegend === true || options.showLegend === false ? { enabled: false } : buildLegend(options),
+    legend:
+      options.hideLegend === true || options.showLegend === false
+        ? { enabled: false }
+        : buildLegend(options),
     tooltip: {
       style: {
         width: 'auto',
@@ -506,7 +542,10 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
       // при sankey тип shared нужно выставлять в false, иначе тултип ведет себя некорректно:
       // * если наведено на пустую область, то показывается тултип какого-либо из полей
       // * Point.onMouseOver -> Highcharts.Pointer.runPointActions -> H.Tooltip.refresh -> Cannot read property 'series' of undefined
-      shared: !options.echart || !options.echart.chart || options.echart.chart.type !== 'sankey',
+      shared:
+        !options.echart ||
+        !options.echart.chart ||
+        options.echart.chart.type !== 'sankey',
     },
     plotOptions: {
       series: {
@@ -559,7 +598,8 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
     };
   }
 
-  options.showLegendManageLine = !options.removeShowHideAll && params.series.length > COUNT_ROWS_FOR_FORCE_HIDE;
+  options.showLegendManageLine =
+    !options.removeShowHideAll && params.series.length > COUNT_ROWS_FOR_FORCE_HIDE;
 
   if (options.showLegendManageLine) {
     params.series.push({
@@ -583,7 +623,9 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
   if (
     params.legend.enabled === undefined &&
     ['pie', 'heatmap', 'treemap'].indexOf(options.type) === -1 &&
-    ['pie', 'heatmap', 'treemap'].indexOf(options.echart && options.echart.chart && options.echart.chart.type) === -1
+    ['pie', 'heatmap', 'treemap'].indexOf(
+      options.echart && options.echart.chart && options.echart.chart.type,
+    ) === -1
   ) {
     params.legend.enabled = params.series.length > 1;
   }
