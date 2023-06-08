@@ -787,6 +787,7 @@
 }
 
 .dashkit-plugin-control {
+  width: 100%;
   padding: 0.75rem 1rem;
 }
 
@@ -955,10 +956,6 @@
 
 .expanded-filter__clear-filters .button2__text {
   margin: 0;
-}
-
-.dash-header__action-panel {
-  padding: 0.625rem 0 0;
 }
 
 .yc-root_theme_light,

@@ -12,7 +12,10 @@ type KamatechTableViewState = {
   currentEntryContext: object;
 };
 
-export class KamatechTableView extends React.Component<KamatechTableViewInterface, KamatechTableViewState> {
+export class KamatechTableView extends React.Component<
+  KamatechTableViewInterface,
+  KamatechTableViewState
+> {
   constructor(props: KamatechTableViewInterface) {
     super(props);
     this.state = {
@@ -33,7 +36,13 @@ export class KamatechTableView extends React.Component<KamatechTableViewInterfac
     return this.props.rowHeight;
   };
 
-  rowRenderer = ({ index, style }: { index: number; style: React.CSSProperties }): JSX.Element => {
+  rowRenderer = ({
+    index,
+    style,
+  }: {
+    index: number;
+    style: React.CSSProperties;
+  }): JSX.Element => {
     const { entries } = this.state;
     const entry = entries[index];
     const iconEntryData = this.props.iconEntry(entry.scope);

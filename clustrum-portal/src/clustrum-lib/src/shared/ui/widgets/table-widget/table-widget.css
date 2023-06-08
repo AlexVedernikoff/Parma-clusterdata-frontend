@@ -1,3 +1,43 @@
+.table-widget__link {
+  display: block;
+  height: 100%;
+}
+
+.table-widget__diff {
+  font-size: 8pt;
+}
+
+.table-widget__diff--pos {
+  color: green;
+}
+
+.table-widget__diff--neg {
+  color: red;
+}
+
+.table-widget__content {
+  background-clip: padding-box;
+}
+
+.table-widget__content.is_null {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.table-widget__content--number {
+  text-align: right;
+}
+
+.table-widget__content.table-widget__content--string {
+  font-size: var(--table-body-font-size);
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #020202;
+}
+
+/* buil-in Ant Design classes */
 .ant-table-wrapper {
   height: 100%;
 

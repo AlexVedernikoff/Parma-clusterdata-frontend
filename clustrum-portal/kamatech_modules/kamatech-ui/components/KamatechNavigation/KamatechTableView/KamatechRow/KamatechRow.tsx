@@ -42,7 +42,10 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
   onEntryContextClick = (event: React.SyntheticEvent): void => {
     event.preventDefault();
     event.stopPropagation();
-    this.props.onEntryContextClick({ entry: this.props.entry, buttonRef: this.buttonRef });
+    this.props.onEntryContextClick({
+      entry: this.props.entry,
+      buttonRef: this.buttonRef,
+    });
   };
 
   onEntryParentClick = (event: React.SyntheticEvent): void => {
@@ -50,7 +53,9 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
     event.preventDefault();
     const model = new KamatechRowModel(this.props);
     const parentEntry = model.getParentFolderEntry(this.props.entry);
-    this.props.onEntryParentClick ? this.props.onEntryParentClick(parentEntry, event) : '';
+    this.props.onEntryParentClick
+      ? this.props.onEntryParentClick(parentEntry, event)
+      : '';
   };
 
   renderDetails() {
@@ -93,11 +98,21 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
         </div>
         <div className={`${blockName}__row-btns`}>
           <div className={starClassName} onClick={this.onChangeFavorite}>
-            <KamatechIcon className={`${blockName}__icon-star-fill`} data={this.props.iconFavoriteFilled} />
-            <KamatechIcon className={`${blockName}__icon-star-stroke`} data={this.props.iconFavoriteEmpty} />
+            <KamatechIcon
+              className={`${blockName}__icon-star-fill`}
+              data={this.props.iconFavoriteFilled}
+            />
+            <KamatechIcon
+              className={`${blockName}__icon-star-stroke`}
+              data={this.props.iconFavoriteEmpty}
+            />
           </div>
 
-          <div className={`${blockName}__row-btn`} onClick={this.onEntryContextClick} ref={this.setButtonRef}>
+          <div
+            className={`${blockName}__row-btn`}
+            onClick={this.onEntryContextClick}
+            ref={this.setButtonRef}
+          >
             <KamatechIcon
               className={'kamatech-button-edit-entry__icon'}
               data={this.props.iconDots}
@@ -138,7 +153,12 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
         )}
         onClick={this.onClick}
       >
-        <KamatechIcon data={iconEntry} className={`${blockName}__icon`} width="24" height="24" />
+        <KamatechIcon
+          data={iconEntry}
+          className={`${blockName}__icon`}
+          width="24"
+          height="24"
+        />
         <div className={`${blockName}__info`}>
           <div className={`${blockName}__name`}>
             <div className={`${blockName}__name-line`}>
