@@ -1,1 +1,4 @@
-export type GridFlow = 'row' | 'column';
+export enum GridFlow {
+  Row = 'row',
+  Column = 'column',
+}

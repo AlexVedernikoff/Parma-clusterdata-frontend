@@ -7,7 +7,7 @@ import { diffFormatter } from '.';
 import { renderDate, renderDiff, renderText } from './cell-renders';
 
 function reverseGridFlow(gridFlow: GridFlow): GridFlow {
-  return gridFlow === 'column' ? 'row' : 'column';
+  return gridFlow === GridFlow.Column ? GridFlow.Row : GridFlow.Column;
 }
 
 function renderGrid(grid: Cell[], options: Options = {}): JSX.Element {
