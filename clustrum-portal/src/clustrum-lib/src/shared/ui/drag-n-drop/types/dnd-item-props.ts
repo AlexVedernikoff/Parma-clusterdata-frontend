@@ -10,6 +10,6 @@ export interface DndItemProps {
   item: DndItem;
   tooltipVisible: boolean;
   remove(index: number): void;
-  wrapTo(props: DndItemProps, component: JSX.Element): Element;
+  wrapTo(props: DndItemProps, component: HTMLDivElement | null): Element;
   setTooltipVisible(isVisible: boolean): void;
 }
