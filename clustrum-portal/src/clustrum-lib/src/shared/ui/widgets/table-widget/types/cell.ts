@@ -1,5 +1,3 @@
-import { NULL_ALIAS } from '../lib';
-
 type PrimitiveCellValue = number | string | Date;
 type CellValue = PrimitiveCellValue | PrimitiveCellValue[] | null;
 
@@ -11,7 +9,7 @@ export interface Cell {
     newWindow: boolean;
   };
   grid: Cell[];
-  valueWithAlias: CellValue | typeof NULL_ALIAS;
+  valueWithAlias: CellValue;
   hasArray: boolean;
   resultShemaId: string;
 }

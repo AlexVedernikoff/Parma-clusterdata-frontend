@@ -16,6 +16,7 @@ export const TableWidget = (props: TableWidgetProps): JSX.Element => {
   const { columns, dataSource, title } = props;
   return (
     <Table
+      className="table-widget"
       columns={columns}
       dataSource={dataSource}
       title={(): string | null => title}
