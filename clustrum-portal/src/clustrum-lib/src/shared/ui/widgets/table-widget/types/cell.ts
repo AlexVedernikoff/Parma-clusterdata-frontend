@@ -1,4 +1,4 @@
-export const NULL_ALIAS = 'null';
+import { NULL_ALIAS } from '../lib';
 
 type PrimitiveCellValue = number | string | Date;
 type CellValue = PrimitiveCellValue | PrimitiveCellValue[] | null;

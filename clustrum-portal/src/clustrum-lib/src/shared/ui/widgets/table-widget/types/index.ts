@@ -1,4 +1,4 @@
 export { Options } from './options';
 export { GridFlow } from './grid-flow';
 export { CssStyles } from './css-styles';
-export { Cell, NULL_ALIAS, DateType } from './cell';
+export { Cell, DateType } from './cell';

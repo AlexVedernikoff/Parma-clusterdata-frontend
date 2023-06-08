@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDomServer from 'react-dom/server';
 
-import { Options, GridFlow, Cell, NULL_ALIAS, DateType } from '../types';
-import { camelCaseCss, numberFormatter } from '../lib';
+import { Options, GridFlow, Cell, DateType } from '../types';
+import { camelCaseCss, numberFormatter, NULL_ALIAS } from '../lib';
 import { diffFormatter } from '.';
 import { renderDate, renderDiff, renderText } from './cell-renders';
 
