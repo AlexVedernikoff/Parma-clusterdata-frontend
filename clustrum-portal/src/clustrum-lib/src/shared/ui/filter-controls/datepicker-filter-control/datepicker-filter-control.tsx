@@ -65,7 +65,9 @@ export function DatepickerFilterControl({
             value={date}
             onChange={handleChange}
           />
-          {!isValid && <div className="datepicker-control__validation-msg">Укажите дату</div>}
+          {!isValid && (
+            <div className="datepicker-control__validation-msg">Укажите дату</div>
+          )}
         </div>
       </label>
     </div>

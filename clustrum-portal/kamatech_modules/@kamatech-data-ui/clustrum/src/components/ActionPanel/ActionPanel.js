@@ -50,7 +50,13 @@ class ActionPanel extends React.Component {
   }
 
   render() {
-    const { children, sdk, additionalEntryItems, rightItems, className: mix } = this.props;
+    const {
+      children,
+      sdk,
+      additionalEntryItems,
+      rightItems,
+      className: mix,
+    } = this.props;
 
     const { entry } = this.state;
 
@@ -62,7 +68,12 @@ class ActionPanel extends React.Component {
       if (entry) {
         return (
           <div className={className}>
-            <EntryPanel sdk={sdk} entry={entry} additionalEntryItems={additionalEntryItems} rightItems={rightItems} />
+            <EntryPanel
+              sdk={sdk}
+              entry={entry}
+              additionalEntryItems={additionalEntryItems}
+              rightItems={rightItems}
+            />
           </div>
         );
       } else {

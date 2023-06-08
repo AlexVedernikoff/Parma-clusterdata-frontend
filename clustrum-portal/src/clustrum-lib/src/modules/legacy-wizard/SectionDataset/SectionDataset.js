@@ -19,6 +19,7 @@ import {
   HolderOutlined,
   CalendarOutlined,
   NumberOutlined,
+  DownOutlined,
 } from '@ant-design/icons';
 import iconCastBoolean from 'icons/cast-boolean.svg';
 import iconCastGeo from 'icons/cast-geo.svg';
@@ -669,8 +670,8 @@ class SectionDataset extends Component {
                 theme="flat"
                 size="n"
                 switcher={
-                  <Button size="s" theme="flat" type="default" view="default" width="max">
-                    <EllipsisOutlined width="24" height="24" />
+                  <Button size="s" theme="light" type="default" view="default">
+                    <DownOutlined width="24" height="24" />
                   </Button>
                 }
                 popup={
