@@ -30,3 +30,7 @@ export {
   TableWidgetProps,
   createCell,
 } from './shared/ui/widgets/table-widget';
+export {
+  ChartWidget,
+  ChartWidgetProps,
+} from './shared/ui/widgets/chart-widget/chart-widget';

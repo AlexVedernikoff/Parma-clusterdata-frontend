@@ -12,7 +12,10 @@ type KamatechTableViewState = {
   currentEntryContext: object;
 };
 
-export class KamatechTableView extends React.Component<KamatechTableViewInterface, KamatechTableViewState> {
+export class KamatechTableView extends React.Component<
+  KamatechTableViewInterface,
+  KamatechTableViewState
+> {
   constructor(props: KamatechTableViewInterface) {
     super(props);
     this.state = {
@@ -23,17 +26,23 @@ export class KamatechTableView extends React.Component<KamatechTableViewInterfac
     this.getRowHeight = this.getRowHeight.bind(this);
   }
 
-  onScroll = () => {
+  onScroll = (): void => {
     if (this.props.currentEntryContext) {
       this.props.onCloseEntryContextMenu();
     }
   };
 
-  getRowHeight = () => {
+  getRowHeight = (): number => {
     return this.props.rowHeight;
   };
 
-  rowRenderer = ({ index, style }: { index: number; style: React.CSSProperties }) => {
+  rowRenderer = ({
+    index,
+    style,
+  }: {
+    index: number;
+    style: React.CSSProperties;
+  }): JSX.Element => {
     const { entries } = this.state;
     const entry = entries[index];
     const iconEntryData = this.props.iconEntry(entry.scope);
@@ -52,7 +61,7 @@ export class KamatechTableView extends React.Component<KamatechTableViewInterfac
     );
   };
 
-  componentDidUpdate(prevProps: KamatechTableViewInterface) {
+  componentDidUpdate(prevProps: KamatechTableViewInterface): void {
     if (this.props.entries !== prevProps.entries) {
       this.setState(state => {
         return { entries: this.props.entries };
@@ -60,7 +69,7 @@ export class KamatechTableView extends React.Component<KamatechTableViewInterfac
     }
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className={blockName}>
         <AutoSizer>

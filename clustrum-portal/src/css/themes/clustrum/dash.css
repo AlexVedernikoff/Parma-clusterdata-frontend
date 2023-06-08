@@ -957,10 +957,6 @@
   margin: 0;
 }
 
-.dash-header__action-panel {
-  padding: 0.625rem 0 0;
-}
-
 .yc-root_theme_light,
 .dash-header__action-panel {
   background-color: var(--blue-50);
