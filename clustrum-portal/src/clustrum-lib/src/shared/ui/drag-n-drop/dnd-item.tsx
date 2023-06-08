@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { useDrag } from 'react-dnd';
 import { DndItemProps } from './types/dnd-item-props';
 
-//если типизировать пропсы, wrapTo перестает принимать ref
 export function DndItem(props: DndItemProps): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
 
