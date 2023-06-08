@@ -2,8 +2,9 @@ import React, { useCallback, useState, ReactElement } from 'react';
 import cn from 'classnames';
 import { useHistory } from 'react-router-dom';
 import { MenuItemType } from 'antd/es/menu/hooks/useItems';
-import { LeftOutlined, PieChartFilled, RightOutlined } from '@ant-design/icons';
+import Icons, { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+import RedLogo from './red-logo';
 
 import { useActiveMenuItemKey } from '../lib/hooks/use-active-menu-item-key';
 import './side-panel.css';
@@ -36,7 +37,7 @@ export function SidePanel({ withoutReactRouter }: SidePanelProps): ReactElement 
           'side-panel__header--collapsed': collapsed,
         })}
       >
-        <PieChartFilled className="side-panel__header-icon" />
+        <Icons component={RedLogo} className="side-panel__header-icon" />
         <span
           className={cn('side-panel__header-title', {
             'side-panel__header-title--collapsed': collapsed,
