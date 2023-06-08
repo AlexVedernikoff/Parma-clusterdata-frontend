@@ -232,7 +232,7 @@ class Wizard extends Component {
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
     const hidden = isFullscreen ? ' hidden' : '';
-    const saveDisabled = !config || !configType || previewHash === widgetHash;
+    const isSaveBtnDisabled = !config || !configType || previewHash === widgetHash;
     const { entryDialoguesRef } = this;
 
     if (isWidgetLoading) {
@@ -302,7 +302,7 @@ class Wizard extends Component {
                 <Dropdown.Button
                   type="primary"
                   menu={{ items: saveItems }}
-                  disabled={saveDisabled}
+                  disabled={isSaveBtnDisabled}
                   onClick={this.openSaveWidgetDialog}
                   trigger={['click']}
                 >
