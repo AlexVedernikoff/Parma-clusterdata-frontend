@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { TableWidget, createCell } from '@clustrum-lib/shared/ui/widgets';
+import { TableWidget, createCell } from '@clustrum-lib';
 
 function camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;
@@ -229,18 +229,20 @@ export class TableAdapter extends React.PureComponent {
       };
     });
 
-    const data = rows.map(row =>
+    const data = rows.map((row, rowIndex) =>
       row.values
         ? row.values.reduce((result, value, index) => {
             value.isGroupField = index === groupFieldPosition;
             value.resultShemaId = head[index].resultSchemaId;
             result[names[index]] = { value };
+            result.key = rowIndex;
             return result;
           }, {})
         : row.cells.reduce((result, value, index) => {
             value.isGroupField = index === groupFieldPosition;
             value.resultShemaId = head[index].resultSchemaId;
             result[names[index]] = value;
+            result.key = rowIndex;
             return result;
           }, {}),
     );

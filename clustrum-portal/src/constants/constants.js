@@ -43,3 +43,10 @@ export const WIZARD_NODE_TYPE = {
   GRAPH: 'graph_wizard_node',
   INDICATOR: 'indicator_wizard_node',
 };
+
+export const ANT_TOKEN = {
+  token: {
+    colorPrimary: '#bb2649',
+    colorInfo: '#fad54d',
+  },
+};

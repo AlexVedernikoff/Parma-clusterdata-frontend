@@ -7,6 +7,8 @@ import { Utils } from '@kamatech-data-ui/clustrum';
 import App from '../components/App/App';
 import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
+import { ConfigProvider } from 'antd';
+import { ANT_TOKEN } from '../constants/constants';
 
 import './../css/app.css';
 import './../css/vendors.css';
@@ -14,6 +16,7 @@ import './../css/commons.css';
 import './../css/dash.css';
 import './../css/dash-new.css';
 import './../css/card.css';
+import './../css/themes/clustrum/dash.css';
 
 import { logVersion } from '../utils/version-logger';
 
@@ -28,10 +31,12 @@ if (IS_INTERNAL) {
 logVersion();
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
+  <ConfigProvider theme={{ ...ANT_TOKEN }}>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>
+  </ConfigProvider>,
   document.getElementById('root'),
 );
