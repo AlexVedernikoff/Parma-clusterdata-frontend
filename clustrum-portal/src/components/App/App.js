@@ -24,7 +24,7 @@ function App() {
         <Route
           path={`${PREFIX}/:id`}
           render={() => (
-            <PageContainer withoutReactRoute withoutSidePanel>
+            <PageContainer withoutReactRoute>
               <Dash />
             </PageContainer>
           )}
