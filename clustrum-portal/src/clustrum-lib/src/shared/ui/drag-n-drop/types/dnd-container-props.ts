@@ -18,6 +18,6 @@ export interface DndContainerProps {
     action?: string,
     onUndoAction?: () => void,
   ): void;
-  wrapTo(props: DndItemProps, component: JSX.Element): Element;
+  wrapTo(props: DndItemProps, component: HTMLDivElement | null): Element;
   checkAllowed?(item: DndItem): boolean;
 }
