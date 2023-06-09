@@ -15,7 +15,7 @@
 .widget-indicator__value {
   font-weight: 600;
   line-height: 1.2;
-  color: #027bf3;
+  color: var(--antd-color-primary);
   font-size: 48px;
   white-space: nowrap;
 }

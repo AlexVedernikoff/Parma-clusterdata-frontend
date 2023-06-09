@@ -1,140 +1,53 @@
-import React, { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import block from 'bem-cn-lite';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { getCurrentPageTabs } from '../../store/selectors/dash';
-import { setPageTab } from '../../store/actions/dash';
-import TabsDropdown from './TabsDropdown/TabsDropdown';
-import TabLink from './TabLink/TabLink';
+import { Tabs as AntdTabs, Button } from 'antd';
+import { SettingOutlined } from '@ant-design/icons';
+import { DIALOG_TYPE } from '../../modules/constants/constants';
+import { getCurrentPageTabs, isEditMode } from '../../store/selectors/dash';
+import { setPageTab, openDialog } from '../../store/actions/dash';
 
-const b = block('dash-tabs');
-
-function tabsReducer(state, action) {
-  const { visibleTabs, hiddenTabs } = state;
-  switch (action.type) {
-    case 'increaseTabs':
-      return {
-        ...state,
-        visibleTabs: [...visibleTabs, hiddenTabs[0]],
-        hiddenTabs: [...hiddenTabs].slice(1),
-      };
-    case 'decreaseTabs':
-      return {
-        ...state,
-        visibleTabs: visibleTabs.slice(0, -1),
-        hiddenTabs: [visibleTabs[visibleTabs.length - 1], ...hiddenTabs],
-      };
-    case 'setOldTabsWrapWidth':
-      return {
-        ...state,
-        oldTabsWrapWidth: action.payload,
-      };
-    default:
-      throw new Error('tabs state reducer error: do not have action');
-  }
-}
-
-function Tabs(props) {
-  if (window.DL.hideTabs) {
-    return null;
-  }
-
-  const targetRef = useRef();
-
-  const [tabMargin, setTabMargin] = useState(0);
-  const popupBtnWidth = 30;
-  const delta = 5;
-
-  const [state, dispatch] = useReducer(tabsReducer, {
-    visibleTabs: props.tabs,
-    hiddenTabs: [],
-    oldTabsWrapWidth: null,
-  });
-
-  const getVisibleTabElems = () => [...targetRef.current.querySelectorAll('.dash-tab-link')];
-
-  const hideShowTabsElements = () => {
-    if (!targetRef.current) {
-      return;
-    }
-    const { visibleTabs, hiddenTabs, oldTabsWrapWidth } = state;
-    const tabsWrapWidth = targetRef.current.offsetWidth;
-    const visibleTabElems = getVisibleTabElems();
-    const getVisibleTabsWidth = () =>
-      visibleTabElems.reduce((acc, cur) => acc + cur.offsetWidth + tabMargin, 0) + popupBtnWidth + delta;
-    const getVisibleTabsWidthWithFirstHidden = () =>
-      [...visibleTabs, hiddenTabs[0]].reduce((acc, cur) => {
-        return acc + cur.htmlWidth + tabMargin;
-      }, 0) +
-      popupBtnWidth +
-      delta;
-    const isMultiLine = getVisibleTabsWidth() > tabsWrapWidth;
-
-    if (isMultiLine) {
-      while ((oldTabsWrapWidth ? tabsWrapWidth < oldTabsWrapWidth : true) && tabsWrapWidth < getVisibleTabsWidth()) {
-        dispatch({ type: 'decreaseTabs' });
-        visibleTabElems.pop();
-      }
-    }
-
-    if (hiddenTabs.length && tabsWrapWidth > oldTabsWrapWidth && tabsWrapWidth > getVisibleTabsWidthWithFirstHidden()) {
-      dispatch({ type: 'increaseTabs' });
-    }
-
-    dispatch({ type: 'setOldTabsWrapWidth', payload: tabsWrapWidth });
-  };
-
-  const getMarginSum = () => {
-    const tabStyles = window.getComputedStyle(targetRef.current.querySelector('.dash-tab-link'));
-    const getNumb = string => Number(string.match(/\d/g).join(''));
-    let marginLeft = getNumb(tabStyles.marginLeft);
-    let marginRight = getNumb(tabStyles.marginRight);
-    return marginLeft + marginRight;
-  };
-
-  useLayoutEffect(() => {
-    setTabMargin(getMarginSum());
-    const tabElems = getVisibleTabElems();
-    props.tabs.forEach((tab, index) => (tab.htmlWidth = tabElems[index].offsetWidth));
-  }, []);
-
-  useLayoutEffect(() => {
-    hideShowTabsElements();
-  }, [tabMargin, state.visibleTabs, state.hiddenTabs, state.oldTabsWrapWidth]);
-
-  useEffect(() => {
-    window.addEventListener('resize', hideShowTabsElements);
-    return () => {
-      window.removeEventListener('resize', hideShowTabsElements);
-    };
-  }, [tabMargin, state.visibleTabs, state.hiddenTabs, state.oldTabsWrapWidth]);
-
+function Tabs({ isEditMode, tabs, setPageTab, openDialog }) {
+  const antdTabs = tabs.map(({ id, title }) => ({ key: id, label: title }));
   return (
-    <div className={b()} ref={targetRef}>
-      {state.visibleTabs.map(({ title, id }) => (
-        <TabLink {...props} key={id} title={title} id={id} />
-      ))}
-      {state.hiddenTabs.length > 0 && <TabsDropdown {...props} menuItems={state.hiddenTabs} />}
-    </div>
+    <AntdTabs
+      items={antdTabs}
+      onChange={setPageTab}
+      tabBarExtraContent={
+        isEditMode ? (
+          <Button
+            icon={<SettingOutlined />}
+            key="add-dashboard-tabs-button"
+            onClick={() => openDialog(DIALOG_TYPE.TABS)}
+          >
+            Настроить отображение вкладок
+          </Button>
+        ) : null
+      }
+    />
   );
 }
 
 Tabs.propTypes = {
+  isEditMode: PropTypes.bool.isRequired,
   tabs: PropTypes.array.isRequired,
   tabId: PropTypes.string.isRequired,
   location: PropTypes.object.isRequired,
   setPageTab: PropTypes.func.isRequired,
+  openDialog: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
+  isEditMode: isEditMode(state),
   tabs: getCurrentPageTabs(state),
   tabId: state.dash.tabId,
 });
 
 const mapDispatchToProps = {
   setPageTab,
+  openDialog,
 };
 
 export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(Tabs);

@@ -13,14 +13,18 @@ import FieldEditor from '@kamatech-data-ui/clustrum/src/components/FieldEditor/F
 
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
+import {
+  FontSizeOutlined,
+  EllipsisOutlined,
+  HolderOutlined,
+  CalendarOutlined,
+  NumberOutlined,
+  DownOutlined,
+} from '@ant-design/icons';
 import iconCastBoolean from 'icons/cast-boolean.svg';
-import iconCastDate from 'icons/cast-date.svg';
 import iconCastGeo from 'icons/cast-geo.svg';
-import iconCastNumber from 'icons/cast-number.svg';
-import iconCastString from 'icons/cast-string.svg';
 import iconDataset from 'icons/dataset.svg';
 import iconPlus from 'icons/plus.svg';
-import iconMore from 'icons/more.svg';
 
 import {
   fetchDataset,
@@ -33,7 +37,7 @@ import {
 
 import { DATASET_ERRORS, ITEM_TYPES } from '../../../../../constants';
 
-import DNDContainer from '../components/DND/DNDContainer';
+import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
 import SearchInput from '../components/SearchInput/SearchInput';
 
 import { Loader } from '@kamatech-data-ui/common/src';
@@ -146,7 +150,8 @@ class SectionDataset extends Component {
     const { toggleNavigation } = this.props;
 
     if (
-      (this.state.navigationButtonRef && !this.state.navigationButtonRef.contains(event.target)) ||
+      (this.state.navigationButtonRef &&
+        !this.state.navigationButtonRef.contains(event.target)) ||
       (event instanceof KeyboardEvent && event.code === 'Escape')
     ) {
       toggleNavigation();
@@ -355,12 +360,12 @@ class SectionDataset extends Component {
       case 'float':
       case 'double':
       case 'long':
-        castIconData = iconCastNumber;
+        castIconData = <NumberOutlined width="16" />;
         break;
 
       case 'datetime':
       case 'date':
-        castIconData = iconCastDate;
+        castIconData = <CalendarOutlined width="16" />;
         break;
 
       case 'geo':
@@ -373,14 +378,20 @@ class SectionDataset extends Component {
 
       case 'string':
       default:
-        castIconData = iconCastString;
+        castIconData = <FontSizeOutlined width="16" />;
     }
 
     return (
       <div className={resultClassName} title={item.title}>
-        <div className="item-icon">
-          <Icon data={castIconData} width="16" />
-        </div>
+        <HolderOutlined className="item-holder" />
+
+        {/* Не нашел подходящих иконок, поэтому пришлось оставить так */}
+        {!!castIconData.type ? (
+          <div className="item-icon">{castIconData}</div>
+        ) : (
+          <Icon className="item-icon" data={castIconData} width="16" />
+        )}
+
         <div className="item-title" title={item.title}>
           {item.title}
         </div>
@@ -401,13 +412,19 @@ class SectionDataset extends Component {
             size="n"
             switcher={
               <Button size="xs" theme="flat" type="default" view="default" width="max">
-                <Icon data={iconMore} width="20" height="20" />
+                <EllipsisOutlined width="24" height="24" />
               </Button>
             }
             popup={
               <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
                 {item.local ? (
-                  <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
+                  <Menu
+                    theme="normal"
+                    view="default"
+                    tone="default"
+                    size="s"
+                    type="navigation"
+                  >
                     <Menu.Item
                       type="option"
                       val="access"
@@ -428,7 +445,13 @@ class SectionDataset extends Component {
                     </Menu.Item>
                   </Menu>
                 ) : (
-                  <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
+                  <Menu
+                    theme="normal"
+                    view="default"
+                    tone="default"
+                    size="s"
+                    type="navigation"
+                  >
                     <Menu.Item
                       type="option"
                       val="access"
@@ -500,10 +523,11 @@ class SectionDataset extends Component {
               let items = dimensions.filter(d => d.datasetName === value);
               if (
                 items.length > 0 ||
-                (filteredDimensions && filteredDimensions.filter(d => d.datasetName === value).length > 0)
+                (filteredDimensions &&
+                  filteredDimensions.filter(d => d.datasetName === value).length > 0)
               ) {
                 return (
-                  <DNDContainer
+                  <DndContainer
                     id="dimensions-container"
                     noRemove={true}
                     title={value}
@@ -530,10 +554,11 @@ class SectionDataset extends Component {
               let items = measures.filter(d => d.datasetName === value);
               if (
                 items.length > 0 ||
-                (filteredMeasures && filteredMeasures.filter(d => d.datasetName === value).length > 0)
+                (filteredMeasures &&
+                  filteredMeasures.filter(d => d.datasetName === value).length > 0)
               ) {
                 return (
-                  <DNDContainer
+                  <DndContainer
                     id="measures-container"
                     noRemove={true}
                     title={value}
@@ -569,7 +594,8 @@ class SectionDataset extends Component {
     if (datasetError) {
       let datasetErrorText;
       if (datasetError.response) {
-        datasetErrorText = DATASET_ERRORS[datasetError.response.status] || DATASET_ERRORS.UNKNOWN;
+        datasetErrorText =
+          DATASET_ERRORS[datasetError.response.status] || DATASET_ERRORS.UNKNOWN;
       } else {
         datasetErrorText = DATASET_ERRORS.UNKNOWN;
       }
@@ -611,7 +637,13 @@ class SectionDataset extends Component {
   };
 
   render() {
-    const { sdk, dataset, isNavigationVisible, toggleNavigation, defaultPath } = this.props;
+    const {
+      sdk,
+      dataset,
+      isNavigationVisible,
+      toggleNavigation,
+      defaultPath,
+    } = this.props;
 
     return (
       <div className="container datasets-container">
@@ -638,14 +670,24 @@ class SectionDataset extends Component {
                 theme="flat"
                 size="n"
                 switcher={
-                  <Button size="s" theme="flat" type="default" view="default" width="max">
-                    <Icon data={iconMore} width="22" height="22" />
+                  <Button size="s" theme="light" type="default" view="default">
+                    <DownOutlined width="24" height="24" />
                   </Button>
                 }
                 popup={
                   <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
-                    <Menu theme="normal" view="default" tone="default" size="s" type="navigation">
-                      <Menu.Item type="option" val="access" onClick={this.onOpenDatasetClick}>
+                    <Menu
+                      theme="normal"
+                      view="default"
+                      tone="default"
+                      size="s"
+                      type="navigation"
+                    >
+                      <Menu.Item
+                        type="option"
+                        val="access"
+                        onClick={this.onOpenDatasetClick}
+                      >
                         Перейти к датасету
                       </Menu.Item>
                     </Menu>

@@ -72,7 +72,12 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
   });
 
   return (
-    <Dropdown menu={{ items: visibilityItems }} onOpenChange={flag => setOpen(flag)} trigger={['click']} open={open}>
+    <Dropdown
+      menu={{ items: visibilityItems }}
+      onOpenChange={flag => setOpen(flag)}
+      trigger={['click']}
+      open={open}
+    >
       <Button icon={<EyeOutlined />} />
     </Dropdown>
   );

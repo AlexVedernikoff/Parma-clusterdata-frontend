@@ -72,7 +72,11 @@ export function RangeDatepickerFilterControl({
             value={dateRange}
             onChange={handleChange}
           />
-          {!isValid && <div className="range-datepicker-control__validation-msg">Укажите обе даты диапазона</div>}
+          {!isValid && (
+            <div className="range-datepicker-control__validation-msg">
+              Укажите обе даты диапазона
+            </div>
+          )}
         </div>
       </label>
     </div>

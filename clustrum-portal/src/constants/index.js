@@ -2,6 +2,7 @@ import React from 'react';
 
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
+import { ArrowRightOutlined, ArrowUpOutlined, DatabaseOutlined } from '@ant-design/icons';
 import iconVisLines from 'icons/vis-lines.svg';
 import iconOlMap from 'icons/map.svg';
 import iconVisGeopolygon from 'icons/vis-geopolygon.svg';
@@ -55,7 +56,9 @@ export const getAppMetricGroupName = key => _getSelectItemTitle()[key];
 
 // TODO: to think about how to get list of available connectors for creation (yt)
 export const getConnectorsMap = () => {
-  const { features: { dataset: { chOverYtEnabled, appMetricaEnabled } = {} } = {} } = window.DL;
+  const {
+    features: { dataset: { chOverYtEnabled, appMetricaEnabled } = {} } = {},
+  } = window.DL;
 
   const connectorsList = {
     clickhouse: 'ClickHouse',
@@ -186,7 +189,15 @@ export const COUNTER_INPUT_METHODS = {
   MANUALLY: 'manually',
 };
 
-export const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+export const DAYS = [
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+  'sunday',
+];
 
 export const TOAST_TIMEOUT_DEFAULT = 60000;
 
@@ -304,7 +315,10 @@ function onPivotTableMeasuresChange({ placeholder, visualization }) {
   const existingPseudoInColumns = columns.find(item => item.type === 'PSEUDO');
   const existingPseudoInRows = rows.find(item => item.type === 'PSEUDO');
 
-  if (placeholder.items.length > 1 && !(existingPseudoInColumns || existingPseudoInRows)) {
+  if (
+    placeholder.items.length > 1 &&
+    !(existingPseudoInColumns || existingPseudoInRows)
+  ) {
     columns.push({
       title: 'Measure Names',
       type: 'PSEUDO',
@@ -398,7 +412,10 @@ const LINE_VISUALIZATION = {
       return false;
     }
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.every(selectedItem => selectedItem.guid !== item.guid);
   },
@@ -409,7 +426,7 @@ const LINE_VISUALIZATION = {
       id: 'x',
       type: 'x',
       title: 'section_x',
-      icon: <Icon data={iconX} width="24" />,
+      icon: <ArrowRightOutlined width="16" />,
       items: [],
       required: true,
       capacity: 1,
@@ -419,7 +436,7 @@ const LINE_VISUALIZATION = {
       id: 'y',
       type: 'y',
       title: 'section_y',
-      icon: <Icon data={iconY} width="24" />,
+      icon: <ArrowUpOutlined width="16" />,
       items: [],
       capacity: Infinity,
       onChange: onYAxisChange,
@@ -437,7 +454,7 @@ const MULTILINE_VISUALIZATION = {
       id: 'x',
       type: 'x',
       title: 'section_x',
-      icon: <Icon data={iconX} width="24" />,
+      icon: <ArrowRightOutlined width="16" />,
       items: [],
       required: true,
       capacity: Infinity,
@@ -447,7 +464,7 @@ const MULTILINE_VISUALIZATION = {
       id: 'y',
       type: 'y',
       title: 'section_y',
-      icon: <Icon data={iconY} width="24" />,
+      icon: <ArrowUpOutlined width="16" />,
       items: [],
       capacity: 1,
       onChange: onYAxisChange,
@@ -480,7 +497,10 @@ const AREA_VISUALIZATION = {
       return false;
     }
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.every(selectedItem => selectedItem.guid !== item.guid);
   },
@@ -491,7 +511,7 @@ const AREA_VISUALIZATION = {
       id: 'x',
       type: 'x',
       title: 'section_x',
-      icon: <Icon data={iconX} width="24" />,
+      icon: <ArrowRightOutlined width="16" />,
       items: [],
       required: true,
       capacity: 1,
@@ -501,7 +521,7 @@ const AREA_VISUALIZATION = {
       id: 'y',
       type: 'y',
       title: 'section_y',
-      icon: <Icon data={iconY} width="24" />,
+      icon: <ArrowUpOutlined width="16" />,
       items: [],
       capacity: Infinity,
       onChange: onYAxisChange,
@@ -547,7 +567,7 @@ const COLUMN_VISUALIZATION = {
       id: 'x',
       type: 'x',
       title: 'section_x',
-      icon: <Icon data={iconX} width="24" />,
+      icon: <ArrowRightOutlined width="16" />,
       items: [],
       required: false,
       capacity: 2,
@@ -557,7 +577,7 @@ const COLUMN_VISUALIZATION = {
       id: 'y',
       type: 'y',
       title: 'section_y',
-      icon: <Icon data={iconY} width="24" />,
+      icon: <ArrowUpOutlined width="16" />,
       items: [],
       capacity: Infinity,
       onChange: onYAxisChange,
@@ -567,7 +587,7 @@ const COLUMN_VISUALIZATION = {
       id: 'additional_measure',
       type: 'additional_measure',
       title: 'additional_data',
-      icon: <Icon data={iconRows} width="24" />,
+      icon: <DatabaseOutlined width="16" />,
       items: [],
       capacity: Infinity,
     },
@@ -576,7 +596,7 @@ const COLUMN_VISUALIZATION = {
       id: 'signatures',
       type: 'signatures',
       title: 'signatures',
-      icon: <Icon data={iconRows} width="24" />,
+      icon: <DatabaseOutlined width="16" />,
       items: [],
       capacity: 1,
     },
@@ -602,7 +622,7 @@ const COLUMN_PLAN_FACT_VISUALIZATION = {
       id: 'x',
       type: 'x',
       title: 'section_x',
-      icon: <Icon data={iconX} width="24" />,
+      icon: <ArrowRightOutlined width="16" />,
       items: [],
       required: false,
       capacity: 1,
@@ -612,7 +632,7 @@ const COLUMN_PLAN_FACT_VISUALIZATION = {
       id: 'section_plan',
       type: 'y',
       title: 'section_plan',
-      icon: <Icon data={iconY} width="24" />,
+      icon: <ArrowUpOutlined width="16" />,
       items: [],
       capacity: 1,
       onChange: onYAxisChange,
@@ -622,7 +642,7 @@ const COLUMN_PLAN_FACT_VISUALIZATION = {
       id: 'section_fact',
       type: 'y',
       title: 'section_fact',
-      icon: <Icon data={iconY} width="24" />,
+      icon: <ArrowUpOutlined width="16" />,
       items: [],
       capacity: 1,
       onChange: onYAxisChange,
@@ -660,7 +680,7 @@ const SCATTER_VISUALIZATION = {
       id: 'x',
       type: 'x',
       title: 'section_x',
-      icon: <Icon data={iconX} width="24" />,
+      icon: <ArrowRightOutlined width="16" />,
       items: [],
       required: true,
       capacity: 1,
@@ -670,7 +690,7 @@ const SCATTER_VISUALIZATION = {
       id: 'y',
       type: 'y',
       title: 'section_y',
-      icon: <Icon data={iconY} width="24" />,
+      icon: <ArrowUpOutlined width="16" />,
       items: [],
       required: true,
       capacity: 1,
@@ -703,7 +723,10 @@ const PIE_VISUALIZATION = {
       return true;
     }
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.some(selectedItem => selectedItem.guid === item.guid);
   },
@@ -745,7 +768,10 @@ const TREEMAP_VISUALIZATION = {
       return true;
     }
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.some(selectedItem => selectedItem.guid === item.guid);
   },
@@ -788,7 +814,10 @@ const FLAT_TABLE_VISUALIZATION = {
   allowUniqueRows: true,
   allowTotal: true,
   checkAllowedSort: (item, visualization) => {
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.some(selectedItem => selectedItem.guid === item.guid);
   },
@@ -833,7 +862,10 @@ const PIVOT_TABLE_VISUALIZATION = {
   checkAllowedSort: (item, visualization) => {
     if (item.type === 'MEASURE') return false;
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.some(selectedItem => selectedItem.guid === item.guid);
   },
@@ -857,7 +889,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       id: 'rows',
       type: 'rows',
       title: 'section_rows',
-      icon: <Icon data={iconRows} width="24" />,
+      icon: <DatabaseOutlined width="16" />,
       items: [],
       onChange: onTableDimensionsChange,
       capacity: Infinity,
@@ -928,7 +960,7 @@ const MAP_VISUALIZATION = {
       id: 'additional_measure',
       type: 'additional_measure',
       title: 'additional_measure',
-      icon: <Icon data={iconRows} width="24" />,
+      icon: <DatabaseOutlined width="16" />,
       items: [],
       capacity: Infinity,
     },
@@ -1069,7 +1101,7 @@ const MAP_CLUSTER_FOCUS_POINT_VISUALIZATION = {
       id: 'additional_measure',
       type: 'additional_measure',
       title: 'additional_measure',
-      icon: <Icon data={iconRows} width="24" />,
+      icon: <DatabaseOutlined width="16" />,
       items: [],
       capacity: Infinity,
     },
@@ -1088,9 +1120,15 @@ const CARD_VISUALIZATION = {
   allowNullAlias: true,
   allowTotal: true,
   checkAllowedSort: (item, visualization) => {
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
-    return item.type === 'MEASURE' || selectedItems.some(selectedItem => selectedItem.guid === item.guid);
+    return (
+      item.type === 'MEASURE' ||
+      selectedItems.some(selectedItem => selectedItem.guid === item.guid)
+    );
   },
   checkAllowedColors: item => {
     return item.type === 'MEASURE';

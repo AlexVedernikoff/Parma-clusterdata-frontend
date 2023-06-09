@@ -15,7 +15,13 @@ import {
   toggleWidgetVisibility,
   exportStatusReset,
 } from '../../store/actions/dash';
-import { canEdit, getCurrentPageTabs, isDraft, isEditMode, getCurrentTab } from '../../store/selectors/dash';
+import {
+  canEdit,
+  getCurrentPageTabs,
+  isDraft,
+  isEditMode,
+  getCurrentTab,
+} from '../../store/selectors/dash';
 import { DIALOG_TYPE, MODE } from '../../modules/constants/constants';
 import { SDK } from '../../modules/sdk';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
@@ -177,12 +183,8 @@ class Header extends React.PureComponent {
         key: '2',
       },
       {
-        label: <a onClick={this.openDialog(DIALOG_TYPE.TEXT)}>Текст</a>,
-        key: '3',
-      },
-      {
         label: <a onClick={this.openDialog(DIALOG_TYPE.TITLE)}>Заголовок</a>,
-        key: '4',
+        key: '3',
       },
     ];
 
@@ -211,7 +213,13 @@ class Header extends React.PureComponent {
       <Button key="cancel" onClick={this.props.cancelEditMode}>
         Отменить
       </Button>,
-      <Button type="primary" key="save" disabled={!this.props.isDraft} onClick={this.onSave} ref={this.saveRef}>
+      <Button
+        type="primary"
+        key="save"
+        disabled={!this.props.isDraft}
+        onClick={this.onSave}
+        ref={this.saveRef}
+      >
         Сохранить
       </Button>,
       <Tooltip
@@ -233,7 +241,6 @@ class Header extends React.PureComponent {
 
   renderViewItems() {
     const { entry, canEdit, openExpandedFilter, setMode } = this.props;
-
     const exportItems = [
       {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</a>,
@@ -276,7 +283,12 @@ class Header extends React.PureComponent {
         </Dropdown>,
         <>
           {!window.DL.hideEdit && (
-            <Button title="Редактировать" onClick={() => setMode(MODE.EDIT)} key="button-edit" icon={<EditOutlined />}>
+            <Button
+              title="Редактировать"
+              onClick={() => setMode(MODE.EDIT)}
+              key="button-edit"
+              icon={<EditOutlined />}
+            >
               Редактировать
             </Button>
           )}
@@ -287,7 +299,11 @@ class Header extends React.PureComponent {
     const DialogUnlock = EntryDialogues.dialogs.unlock;
 
     return [
-      <Button onClick={() => this.setState({ showRightsDialog: true })} key="button-edit" icon={<EditOutlined />}>
+      <Button
+        onClick={() => this.setState({ showRightsDialog: true })}
+        key="button-edit"
+        icon={<EditOutlined />}
+      >
         Запросить права
       </Button>,
       <DialogUnlock
@@ -301,7 +317,10 @@ class Header extends React.PureComponent {
   }
 
   isExportInProgress() {
-    return this.props.dash.exportStatus && this.props.dash.exportStatus === ExportStatusEnum.PENDING;
+    return (
+      this.props.dash.exportStatus &&
+      this.props.dash.exportStatus === ExportStatusEnum.PENDING
+    );
   }
 
   render() {
@@ -312,7 +331,9 @@ class Header extends React.PureComponent {
           <ActionPanel
             sdk={SDK}
             entryId={this.props.entry.entryId}
-            rightItems={this.props.isEditMode ? this.renderEditItems() : this.renderViewItems()}
+            rightItems={
+              this.props.isEditMode ? this.renderEditItems() : this.renderViewItems()
+            }
             className={b('action-panel', {
               sticky: this.props.isEditMode,
               'is-edit': this.props.isEditMode,

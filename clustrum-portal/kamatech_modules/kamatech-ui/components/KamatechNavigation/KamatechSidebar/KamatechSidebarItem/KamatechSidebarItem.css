@@ -15,14 +15,14 @@
 }
 
 .kamatech-slidebar-item_current {
-  color: var(--color-text-primary);
-  background: var(--color-selection);
+  color: var(--antd-text-color-selection);
+  background: var(--antd-color-selection);
 }
 
 .kamatech-slidebar-item-icon {
   position: relative;
   margin-right: 12px;
-  color: var(--color-text-primary);
+  color: var(--antd-text-color-selection);
   width: 20px;
   top: 3px;
 }
