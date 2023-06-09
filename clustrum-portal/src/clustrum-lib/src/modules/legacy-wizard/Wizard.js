@@ -26,9 +26,18 @@ import { selectDataset } from '../../../../reducers/dataset';
 
 import { selectVisualization } from '../../../../reducers/visualization';
 
-import { selectSettings, selectIsFullscreen, selectIsDefaultsSet } from '../../../../reducers/settings';
+import {
+  selectSettings,
+  selectIsFullscreen,
+  selectIsDefaultsSet,
+} from '../../../../reducers/settings';
 
-import { selectIsWidgetLoading, selectWidgetError, selectWidget, selectWidgetHash } from '../../../../reducers/widget';
+import {
+  selectIsWidgetLoading,
+  selectWidgetError,
+  selectWidget,
+  selectWidgetHash,
+} from '../../../../reducers/widget';
 
 import {
   selectConfig,
@@ -37,7 +46,13 @@ import {
   selectPreviewHash,
 } from '../../../../reducers/preview';
 
-import { fetchWidget, setDefaults, toggleFullscreen, requestUpdateWidget, receiveWidget } from '../../../../actions';
+import {
+  fetchWidget,
+  setDefaults,
+  toggleFullscreen,
+  requestUpdateWidget,
+  receiveWidget,
+} from '../../../../actions';
 
 import { getNavigationPathFromKey } from '../../../../helpers/utils-dash';
 import PageHead from '../../../../components/PageHeader/PageHeader';
@@ -117,7 +132,14 @@ class Wizard extends Component {
   };
 
   openSaveWidgetDialog = async () => {
-    const { widget, sdk, config, requestUpdateWidget, onSavingStart, onSavingEnd } = this.props;
+    const {
+      widget,
+      sdk,
+      config,
+      requestUpdateWidget,
+      onSavingStart,
+      onSavingEnd,
+    } = this.props;
 
     // Обновляем существующий или сохраняем новый?
     if (widget && !widget.fake) {
@@ -194,7 +216,15 @@ class Wizard extends Component {
   }
 
   renderApp() {
-    const { sdk, widget, isFullscreen, preview, isWidgetLoading, toggleFullscreen, onExport } = this.props;
+    const {
+      sdk,
+      widget,
+      isFullscreen,
+      preview,
+      isWidgetLoading,
+      toggleFullscreen,
+      onExport,
+    } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
     const hidden = isFullscreen ? ' hidden' : '';
@@ -259,7 +289,10 @@ class Wizard extends Component {
               >
                 На весь экран
               </Button>,
-              <div className={`pseudosave-btn${entryLocked ? ' active' : ''}`} onClick={this.openNoRightsDialog}></div>,
+              <div
+                className={`pseudosave-btn${entryLocked ? ' active' : ''}`}
+                onClick={this.openNoRightsDialog}
+              ></div>,
               <Space>
                 <Dropdown.Button
                   type="primary"
@@ -289,7 +322,11 @@ class Wizard extends Component {
             </div>
           )}
           <div className="column preview-column">
-            <SectionPreview entryDialoguesRef={entryDialoguesRef} sdk={sdk} onExport={onExport} />
+            <SectionPreview
+              entryDialoguesRef={entryDialoguesRef}
+              sdk={sdk}
+              onExport={onExport}
+            />
           </div>
         </div>
       </div>

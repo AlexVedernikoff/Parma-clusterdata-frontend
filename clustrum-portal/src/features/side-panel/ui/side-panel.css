@@ -55,6 +55,7 @@
 
 .side-panel__footer-icon {
   font-size: 22px;
+  color: rgba(0, 0, 0, 0.45);
 }
 
 .side-panel__footer:hover {

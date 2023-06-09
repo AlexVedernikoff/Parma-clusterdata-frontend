@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
 import { Spin } from 'lego-on-react';
-import { ErrorContent, EntryDialogues, ActionPanel, ErrorDialog } from '@kamatech-data-ui/clustrum';
+import {
+  ErrorContent,
+  EntryDialogues,
+  ActionPanel,
+  ErrorDialog,
+} from '@kamatech-data-ui/clustrum';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
 
 import DatasetPanel from '../../components/DatasetPanel/DatasetPanel';
@@ -241,14 +246,30 @@ class Dataset extends React.Component {
 
   renderErrorContent() {
     const {
-      datasetError: { response: { status, data: { data } = {}, headers: { 'x-request-id': reqId } = {} } = {} } = {},
+      datasetError: {
+        response: {
+          status,
+          data: { data } = {},
+          headers: { 'x-request-id': reqId } = {},
+        } = {},
+      } = {},
       sdk,
     } = this.props;
-    const { type, title, description, action } = this.getErrorMessageByCode({ status, data });
+    const { type, title, description, action } = this.getErrorMessageByCode({
+      status,
+      data,
+    });
 
     return (
       <React.Fragment>
-        <ErrorContent type={type} title={title} description={description} reqId={reqId} action={action} sdk={sdk} />
+        <ErrorContent
+          type={type}
+          title={title}
+          description={description}
+          reqId={reqId}
+          action={action}
+          sdk={sdk}
+        />
         <EntryDialogues ref={this._askAccessRightsDialogRef} sdk={sdk} />
       </React.Fragment>
     );
@@ -352,7 +373,11 @@ class Dataset extends React.Component {
       tab,
       searchKeyword,
     } = this.state;
-    const { requestId, errorDialogTitle, errorDialogMessage } = this.getErrorDialogMessage();
+    const {
+      requestId,
+      errorDialogTitle,
+      errorDialogMessage,
+    } = this.getErrorDialogMessage();
 
     if (isLoading) {
       return (
@@ -400,7 +425,7 @@ class Dataset extends React.Component {
               icon={<BarChartOutlined />}
               key="create-widget-btn"
             >
-              Создать чарт
+              Создать элемент аналитической панели
             </Button>,
             <Button
               disabled={savingDatasetDisabled}

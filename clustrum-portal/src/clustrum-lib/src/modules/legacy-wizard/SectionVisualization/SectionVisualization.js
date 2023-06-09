@@ -1326,7 +1326,7 @@ class SectionVisualization extends Component {
     return (
       <div>
         <div className="dropdown-header">
-          <h1>Тип чарта</h1>
+          <h1>Элемент аналитической панели</h1>
         </div>
         <div className="visualizations-content">
           <div className="items-grid">

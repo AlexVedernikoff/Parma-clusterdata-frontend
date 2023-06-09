@@ -62,7 +62,7 @@ export const getPlaceParameters = memoize(place => {
     {
       place: PLACE.WIDGETS,
       icon: iconWidget,
-      text: 'Диаграммы',
+      text: 'Элементы аналитической панели',
       pagination: true,
       displayParentFolder: true,
       sort: false,
@@ -150,7 +150,7 @@ export const getCreateMenuItemsExternal = memoize(() => [
   {
     value: 'widget',
     icon: iconFilesWidget,
-    text: 'Диаграмму',
+    text: 'Элемент аналитической панели',
   },
   {
     value: 'dashboard',

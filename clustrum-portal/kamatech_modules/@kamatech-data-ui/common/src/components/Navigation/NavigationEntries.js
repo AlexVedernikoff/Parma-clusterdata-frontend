@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import cn from 'bem-cn-lite';
 import Loader from '../Loader/Loader';
 import { NOTIFICATIONS, ERROR_TEXT } from './locale/constants';
-import { ERROR, MODE_FULL, MODE_MINIMAL, NAVIGATION_ROOT, ORDER, OWNERSHIP } from './constants';
+import {
+  ERROR,
+  MODE_FULL,
+  MODE_MINIMAL,
+  NAVIGATION_ROOT,
+  ORDER,
+  OWNERSHIP,
+} from './constants';
 import EntryContextMenu from './EntryContextMenu/EntryContextMenu';
 import { normalizeDestination } from './util';
 import iconFolder from '../../../../clustrum/src/icons/files-folder';
@@ -177,7 +184,8 @@ class NavigationEntries extends React.Component {
       scope,
       path: normalizeDestination(path),
       orderBy: this.state.orderBy,
-      createdBy: this.state.ownership === OWNERSHIP.ONLY_MINE ? this.props.userLogin : undefined,
+      createdBy:
+        this.state.ownership === OWNERSHIP.ONLY_MINE ? this.props.userLogin : undefined,
       pageSize: placeParameters.pageSize || 100,
       page,
     });
@@ -191,7 +199,9 @@ class NavigationEntries extends React.Component {
 
     try {
       const { hasNextPage, entries: requestEntries } = await this.requestList();
-      const entries = this.state.hasNextPage ? [...this.state.entries, ...requestEntries] : requestEntries;
+      const entries = this.state.hasNextPage
+        ? [...this.state.entries, ...requestEntries]
+        : requestEntries;
       const filteredEntries = this.getFilteredEntries(entries, this.state.searchValue);
       if (path === this.props.path && place === this.props.place && this._isMounted) {
         this.setState({
@@ -240,13 +250,17 @@ class NavigationEntries extends React.Component {
       if (path === this.props.path) {
         // rollback
         this.changeFavorite(entryId, isFavorite);
-        const message = isFavorite ? NOTIFICATIONS.FAILED_DELETE_FAVORITE : NOTIFICATIONS.FAILED_ADD_FAVORITE;
+        const message = isFavorite
+          ? NOTIFICATIONS.FAILED_DELETE_FAVORITE
+          : NOTIFICATIONS.FAILED_ADD_FAVORITE;
         this.notify({ type: ERROR, message });
       }
     }
   };
   onEntryContextClick = ({ entry, buttonRef }) => {
-    const isVisible = !this.state.currentEntryContext || this.state.currentEntryContext.entryId !== entry.entryId;
+    const isVisible =
+      !this.state.currentEntryContext ||
+      this.state.currentEntryContext.entryId !== entry.entryId;
 
     this.setState({
       currentEntryContextButton: isVisible ? buttonRef : null,
@@ -259,7 +273,8 @@ class NavigationEntries extends React.Component {
   };
   onCloseEntryContextMenu = event => {
     if (
-      (this.state.currentEntryContextButton && !this.state.currentEntryContextButton.contains(event.target)) ||
+      (this.state.currentEntryContextButton &&
+        !this.state.currentEntryContextButton.contains(event.target)) ||
       (event instanceof KeyboardEvent && event.key === 'Escape')
     ) {
       this.closeEntryContextMenu();
@@ -321,7 +336,13 @@ class NavigationEntries extends React.Component {
     return (
       <div className={b('error')}>
         <div className={b('error-message')}>{ERROR_TEXT.CANT_LOAD_NAVIGATION}</div>
-        <Button theme="action" view="default" tone="default" size="l" onClick={this.onRetryClick}>
+        <Button
+          theme="action"
+          view="default"
+          tone="default"
+          size="l"
+          onClick={this.onRetryClick}
+        >
           {ERROR_TEXT.RETRY}
         </Button>
       </div>
@@ -372,7 +393,11 @@ class NavigationEntries extends React.Component {
     return (
       <div className={b('entries-header')}>
         {modalView ? (
-          <Header leftSideContent={inputSearch} rightSideContent={createButton} path={navigationItems(place, path)} />
+          <Header
+            leftSideContent={inputSearch}
+            rightSideContent={createButton}
+            path={navigationItems(place, path)}
+          />
         ) : (
           <Header
             rightSideContent={
@@ -403,7 +428,9 @@ class NavigationEntries extends React.Component {
           visible={true}
           entry={this.state.currentEntryContext}
           anchor={this.state.currentEntryContextButton}
-          items={this.props.getContextMenuItems({ entry: this.state.currentEntryContext })}
+          items={this.props.getContextMenuItems({
+            entry: this.state.currentEntryContext,
+          })}
           onMenuClick={this.props.onContextMenuClick}
           onClose={this.onCloseEntryContextMenu}
         />
