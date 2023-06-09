@@ -7,20 +7,17 @@ import { ActionPanel } from '@kamatech-data-ui/clustrum';
 import Utils from './../../helpers/utils';
 import { getConnectorsMap, getFakeEntry } from '../../constants';
 
-// import './Connectors.scss';
-
 const b = block('connectors');
 
 function Connectors({ sdk, location: { search } }) {
   const [searchConnectorName, setSearchConnectorName] = useState();
 
   const connectionsList = useMemo(() => {
-    const filteredList = Object.entries(getConnectorsMap());
+    const unfilteredConnectionsList = Object.entries(getConnectorsMap());
+    const loweredSearchConnectorName = searchConnectorName.toLowerCase().replace(/\s+/g, '');
     return searchConnectorName
-      ? filteredList.filter(([, title]) =>
-          title.toLowerCase().includes(searchConnectorName.toLowerCase().replace(/\s+/g, '')),
-        )
-      : filteredList;
+      ? unfilteredConnectionsList.filter(([, title]) => title.toLowerCase().includes(loweredSearchConnectorName))
+      : unfilteredConnectionsList;
   }, [searchConnectorName]);
 
   return (
