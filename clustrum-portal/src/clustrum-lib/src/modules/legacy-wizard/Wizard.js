@@ -233,6 +233,7 @@ class Wizard extends Component {
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
     const hidden = isFullscreen ? ' hidden' : '';
     const isSaveBtnDisabled = !config || !configType || previewHash === widgetHash;
+    const isSaveMoreBtnDisabled = !config || !configType;
     const { entryDialoguesRef } = this;
 
     if (isWidgetLoading) {
@@ -257,6 +258,7 @@ class Wizard extends Component {
           </a>
         ),
         key: '1',
+        disabled: isSaveMoreBtnDisabled,
       },
     ];
 
