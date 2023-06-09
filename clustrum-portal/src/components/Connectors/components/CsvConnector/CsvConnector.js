@@ -9,9 +9,12 @@ import { PathSelect } from '@kamatech-data-ui/clustrum';
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import DataTable from '@kamatech-data-ui/dt100/lib';
 import ContainerLoader from '../../../../components/ContainerLoader/ContainerLoader';
-import Title from '../../subcomponents/Title/Title';
 import ArrowBack from '../../subcomponents/ArrowBack/ArrowBack';
-import { CSV_TOAST_NAME, FIELD_TYPES, TOAST_TIMEOUT_DEFAULT } from '../../../../constants';
+import {
+  CSV_TOAST_NAME,
+  FIELD_TYPES,
+  TOAST_TIMEOUT_DEFAULT,
+} from '../../../../constants';
 import Utils from '../../../../helpers/utils';
 import iconCsv from '@kamatech-data-ui/clustrum/src/icons/csv.svg';
 import { getErrorMessage } from '../../utils';
@@ -93,18 +96,28 @@ function CsvDropZone(props) {
       )}
       {!isDragActive && isOverMaxSize && (
         <div className={b('text-error')}>
-          Увы, этот файл превышает допустимый лимит размера в CSV-файла в 100 Мб. Попробуйте загрузить другой файл
+          Увы, этот файл превышает допустимый лимит размера CSV-файла в 100 Мб. Попробуйте
+          загрузить другой файл
         </div>
       )}
       {!isDragActive && isNotAllowedType && (
-        <div className={b('text-error')}>Данный тип данных не поддерживается для загрузки</div>
+        <div className={b('text-error')}>
+          Данный тип данных не поддерживается для загрузки
+        </div>
       )}
     </div>
   );
 }
 
 function CsvDropZoneWrapper(props) {
-  const { acceptedFile, rejectReasons, onDropAccepted, onDropRejected, onClickDropZone, isFileUploading } = props;
+  const {
+    acceptedFile,
+    rejectReasons,
+    onDropAccepted,
+    onDropRejected,
+    onClickDropZone,
+    isFileUploading,
+  } = props;
 
   if (isFileUploading) {
     return (
@@ -118,7 +131,6 @@ function CsvDropZoneWrapper(props) {
 
   return (
     <div className={b('csv-loading')}>
-      <Title dbType={'csv'} isNewConnection={true} />
       <Dropzone
         multiple={false}
         accept={ALLOWED_EXTENSIONS}
@@ -292,7 +304,11 @@ function CsvSettings(props) {
         </div>
       </div>
       <div className={b('preview')}>
-        <CsvPreview isPreviewLoading={isPreviewLoading} preview={preview} getTableData={getTableData} />
+        <CsvPreview
+          isPreviewLoading={isPreviewLoading}
+          preview={preview}
+          getTableData={getTableData}
+        />
       </div>
     </div>
   );
@@ -384,7 +400,10 @@ class CsvConnector extends React.Component {
     const { sdk } = this.props;
     const { connectionId, viewStepId } = this.state;
 
-    if (connectionId && (viewStepId === VIEW_STEPS.CSV_SETTING || viewStepId === VIEW_STEPS.CSV_SETTING_AFTER_SAVE)) {
+    if (
+      connectionId &&
+      [VIEW_STEPS.CSV_SETTING, VIEW_STEPS.CSV_SETTING_AFTER_SAVE].includes(viewStepId)
+    ) {
       this.setState({
         isConnectionLoading: true,
         isPreviewLoading: true,
@@ -407,8 +426,16 @@ class CsvConnector extends React.Component {
             scope,
             key,
           },
-          { csv_params: { allowed_encodings: allowedEncodings, allowed_delimiters: allowedDelimiters } = {} },
-        ] = await Promise.all([sdk.getEntry({ entryId: connectionId }), sdk.bi.getOptions()]);
+          {
+            csv_params: {
+              allowed_encodings: allowedEncodings,
+              allowed_delimiters: allowedDelimiters,
+            } = {},
+          },
+        ] = await Promise.all([
+          sdk.getEntry({ entryId: connectionId }),
+          sdk.bi.getOptions(),
+        ]);
 
         const name = (title || filename).split('.')[0];
 
@@ -495,7 +522,9 @@ class CsvConnector extends React.Component {
   };
 
   updatePreview = async data => {
-    const needUpdatePreivew = Object.keys(data).some(field => ALLOW_UPDATE_ON_CHANGE_FIELD_LIST.includes(field));
+    const needUpdatePreivew = Object.keys(data).some(field =>
+      ALLOW_UPDATE_ON_CHANGE_FIELD_LIST.includes(field),
+    );
 
     if (needUpdatePreivew) {
       this.setState({

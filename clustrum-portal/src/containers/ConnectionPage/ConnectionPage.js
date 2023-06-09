@@ -1,17 +1,17 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import _intersection from 'lodash/intersection';
 import { ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
-import { Loader, Toaster, YCSelect } from '@kamatech-data-ui/common/src';
+import { Loader, Toaster } from '@kamatech-data-ui/common/src';
 import GeneralConnector from '../../components/Connectors/components/GeneralConnector/GeneralConnector';
 import ChOverYtConnector from '../../components/Connectors/components/ChOverYtConnector/ChOverYtConnector';
 import CsvConnector from '../../components/Connectors/components/CsvConnector/CsvConnector';
 import MetrikaLogsApiConnector from '../../components/Connectors/components/MetrikaLogsApiConnector/MetrikaLogsApiConnector';
 import AppMetricaConnector from '../../components/Connectors/components/AppMetricaAPI/AppMetricaAPI';
-import { TOAST_TYPES, getFakeEntry, getStaticSelectItems } from '../../constants';
+import { TOAST_TYPES, getFakeEntry } from '../../constants';
 import Utils from '../../helpers/utils';
 import {
   createConnection,
@@ -490,13 +490,12 @@ class ConnectionPage extends React.Component {
   }
 
   _renderActionPanel() {
-    const { sdk } = this.props;
+    const { sdk, history } = this.props;
     const {
       params: { connectionId },
     } = this.props.match;
     const {
       connectionState,
-      permissionsMode,
       isActionProgress,
       isStateChanged,
       isChangesSaved,
@@ -523,18 +522,6 @@ class ConnectionPage extends React.Component {
       permissionsSelectVisible = connectionId ? isUnvalidated : false;
     }
 
-    const permissionsSelect = permissionsSelectVisible && (
-      <div key={'permissions-select'} className={b('select-wrap')}>
-        <YCSelect
-          cls={b('select')}
-          items={getStaticSelectItems(['owner_only', 'explicit'])}
-          value={permissionsMode}
-          onChange={val => this.setState({ permissionsMode: val })}
-          showSearch={false}
-        />
-      </div>
-    );
-
     const actionButton = actionButtonVisible && (
       <Button
         key={'action-btn'}
@@ -559,12 +546,18 @@ class ConnectionPage extends React.Component {
       !permissionsSelectVisible &&
       ConnectionPage.getDatasetCreateButton(connectionId, currentDirPath);
 
+    const cancelButton = (
+      <Button key="cancel-btn" type="default" onClick={() => history.goBack()}>
+        {Boolean(this.state.connectionState?.id) ? 'Закрыть' : 'Отменить'}
+      </Button>
+    );
+
     return (
       <ActionPanel
         sdk={sdk}
         entry={entry ? entry : entryId ? null : getFakeEntry('connection')}
         entryId={entryId}
-        rightItems={[permissionsSelect, createDatasetButton, actionButton]}
+        rightItems={[cancelButton, createDatasetButton, actionButton]}
       />
     );
   }
@@ -680,4 +673,4 @@ class ConnectionPage extends React.Component {
   }
 }
 
-export default ConnectionPage;
+export default withRouter(ConnectionPage);
