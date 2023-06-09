@@ -175,7 +175,11 @@ class Header extends React.PureComponent {
 
     const addItems = [
       {
-        label: <a onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Диаграмма</a>,
+        label: (
+          <a onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>
+            Элемент аналитической панели
+          </a>
+        ),
         key: '1',
       },
       {

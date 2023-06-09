@@ -425,7 +425,7 @@ class Dataset extends React.Component {
               icon={<BarChartOutlined />}
               key="create-widget-btn"
             >
-              Создать чарт
+              Создать элемент аналитической панели
             </Button>,
             <Button
               disabled={savingDatasetDisabled}

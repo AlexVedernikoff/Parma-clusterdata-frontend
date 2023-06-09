@@ -45,7 +45,7 @@ class DialogCreateDashboard extends React.PureComponent {
   get defaultDialogProps() {
     return {
       title: 'Создать аналитическую панель',
-      errorText: 'Не удалось сохранить чарт',
+      errorText: 'Не удалось сохранить аналитическую панель',
       withError: true,
       onNotify: noop,
     };
