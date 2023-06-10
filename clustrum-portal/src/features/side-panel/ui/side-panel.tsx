@@ -1,4 +1,4 @@
-import React, { useCallback, useState, ReactElement } from 'react';
+import React, { useState, ReactElement } from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import { MenuItemType } from 'antd/es/menu/hooks/useItems';
@@ -10,7 +10,7 @@ import { MENU_ITEMS } from '../lib/constants/menu-items';
 import { RedLogo } from './red-logo';
 import { SidePanelProps } from '../types';
 import { MAP_PLACE_TO_ROUTE } from '../lib/constants/match-routes';
-import { Places } from '../../../shared/lib/constants/places';
+import { Places } from '@shared/lib/constants/places';
 
 import './side-panel.css';
 
@@ -23,27 +23,25 @@ export function SidePanel(props: SidePanelProps): ReactElement {
     onClickMenuItem,
     selectedItem,
   } = props;
-  const [collapsed, setCollapsed] = useState(false);
+
+  const [collapsed, setCollapsed] = useState<boolean>(false);
   const history = useHistory();
   const selectedKey = useActiveMenuItemKey();
   const { token } = useToken();
 
-  const handleSidePanelItemClick = useCallback(
-    (item: MenuItemType) => {
-      if (onClickMenuItem) {
-        onClickMenuItem(item);
-        return;
-      }
+  const handleSidePanelItemClick = (item: MenuItemType): void => {
+    if (onClickMenuItem) {
+      onClickMenuItem(item);
+      return;
+    }
 
-      const route = MAP_PLACE_TO_ROUTE[item.key as Places];
-      if (withReactRouter) {
-        history.push(route);
-      } else {
-        window.location.pathname = route;
-      }
-    },
-    [history, withReactRouter],
-  );
+    const route = MAP_PLACE_TO_ROUTE[item.key as Places];
+    if (withReactRouter) {
+      history.push(route);
+    } else {
+      window.location.pathname = route;
+    }
+  };
 
   return (
     <div className="side-panel">

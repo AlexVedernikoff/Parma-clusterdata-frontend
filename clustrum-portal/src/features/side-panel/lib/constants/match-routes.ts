@@ -1,5 +1,5 @@
 import { ROUTES } from '@shared/lib/constants/routes';
-import { Places } from '../../../../shared/lib/constants/places';
+import { Places } from '@shared/lib/constants/places';
 
 export const MAP_PLACE_TO_ROUTE = {
   [Places.connections]: ROUTES.connections,
