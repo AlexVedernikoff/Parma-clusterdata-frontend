@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 import Sidebar from './Sidebar/Sidebar';
 import NavigationEntries from './NavigationEntries';
 import Dialog from '../Dialog/Dialog';
+import { BaseNavigationModal } from '@widgets/base-navigation-modal/ui/base-navigation-modal';
 
 import cn from 'bem-cn-lite';
 import noop from 'lodash/noop';
-
-const b = cn('yc-navigation');
 
 class NavigationModal extends React.Component {
   static propTypes = {
     path: PropTypes.string,
     place: PropTypes.string,
+    sdk: PropTypes.object,
     linkWrapper: PropTypes.func,
     quickItems: PropTypes.array,
     crumbLinkWrapper: PropTypes.func,
     onSidebarItemClick: PropTypes.func,
     onClose: PropTypes.func,
     onNavigate: PropTypes.func,
-    getPlaceParameters: PropTypes.func.isRequired,
+    getPlaceParameters: PropTypes.func,
   };
   static defaultProps = {
     onCrumbClick: noop,
@@ -101,33 +101,7 @@ class NavigationModal extends React.Component {
     const { path, place } = this.state;
     return (
       <Dialog visible={visible} onClose={onClose}>
-        <div className={b({ modal: true })}>
-          <div className={b('sidebar')}>
-            <Sidebar
-              path={path}
-              currentPlace={place}
-              quickItems={quickItems}
-              linkWrapper={linkWrapper}
-              onItemClick={this.onSidebarItemClick}
-              getPlaceParameters={this.props.getPlaceParameters}
-            />
-          </div>
-          <div className={b('content')}>
-            <NavigationEntries
-              ref={this.refEntries}
-              {...props}
-              path={path ? path : ''}
-              modalView={true}
-              place={place}
-              linkWrapper={linkWrapper}
-              createMenuItems={createMenuItems}
-              onCreateMenuClick={onCreateMenuClick}
-              onEntryClick={this.onEntryClick}
-              onEntryParentClick={this.onEntryParentClick}
-              getPlaceParameters={this.props.getPlaceParameters}
-            />
-          </div>
-        </div>
+        <BaseNavigationModal sdk={this.props.sdk} />
       </Dialog>
     );
   }

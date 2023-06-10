@@ -8,21 +8,12 @@ import iconDelete from '@kamatech-data-ui/common/src/assets/icons/delete-file.sv
 import iconCopy from '@kamatech-data-ui/common/src/assets/icons/copy-file.svg';
 import iconCopyLink from '@kamatech-data-ui/common/src/assets/icons/link.svg';
 import iconAccessGroup from 'icons/access-group.svg';
-
-export const ENTRY_CONTEXT_MENU_ACTION = {
-  RENAME: 'rename',
-  DESCRIBE: 'describe',
-  DELETE: 'delete',
-  MOVE: 'move',
-  COPY: 'copy',
-  ACCESS: 'access',
-  COPY_LINK: 'copy_link',
-};
+import { ContextMenuActions } from '../../../../../src/shared/lib/constants/context-menu-actions';
 
 const LIMITED_CONTEXT_MENU = [
-  ENTRY_CONTEXT_MENU_ACTION.COPY,
-  ENTRY_CONTEXT_MENU_ACTION.ACCESS,
-  ENTRY_CONTEXT_MENU_ACTION.COPY_LINK,
+  ContextMenuActions.copy,
+  ContextMenuActions.access,
+  ContextMenuActions.copyLink,
 ];
 
 export const getEntryContextMenuItems = ({ entry = {} } = {}) => {
@@ -40,32 +31,32 @@ export const getEntryContextMenuItems = ({ entry = {} } = {}) => {
     {
       icon: iconRename,
       text: TEXT.RENAME,
-      action: ENTRY_CONTEXT_MENU_ACTION.RENAME,
+      action: ContextMenuActions.rename,
     },
     {
       icon: iconRename,
       text: TEXT.DESCRIBE,
-      action: ENTRY_CONTEXT_MENU_ACTION.DESCRIBE,
+      action: ContextMenuActions.describe,
     },
     {
       icon: iconDelete,
       text: TEXT.DELETE,
-      action: ENTRY_CONTEXT_MENU_ACTION.DELETE,
+      action: ContextMenuActions.delete,
     },
     {
       icon: iconMove,
       text: TEXT.MOVE,
-      action: ENTRY_CONTEXT_MENU_ACTION.MOVE,
+      action: ContextMenuActions.move,
     },
     {
       icon: iconCopy,
       text: TEXT.COPY,
-      action: ENTRY_CONTEXT_MENU_ACTION.COPY,
+      action: ContextMenuActions.copy,
     },
     {
       icon: iconCopyLink,
       text: TEXT.COPY_LINK,
-      action: ENTRY_CONTEXT_MENU_ACTION.COPY_LINK,
+      action: ContextMenuActions.COPY_LINK,
       wrapper: ({ entry, children }) => {
         // eslint-disable-line react/display-name, react/prop-types
         return (

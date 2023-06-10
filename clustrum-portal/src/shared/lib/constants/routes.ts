@@ -8,8 +8,11 @@ export const ROUTES = {
   connectionsInFolder: '/connections_in_folder/:id',
   datasets: '/datasets',
   datasetsInFolder: '/datasets_in_folder/:id',
+  datasetsId: '/datasets/:id',
   widgets: '/widgets',
   widgetsInFolder: '/widgets_in_folder/:id',
+  wizard: '/wizard/:id',
   dashboards: '/dashboards',
   dashboardsInFolder: '/dashboards_in_folder/:id',
+  dashboardsId: '/dashboards/:id',
 };

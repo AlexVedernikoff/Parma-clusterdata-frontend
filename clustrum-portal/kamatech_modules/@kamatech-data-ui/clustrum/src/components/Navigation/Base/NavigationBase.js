@@ -9,10 +9,7 @@ import EntryDialogues, {
   ENTRY_DIALOG,
   entryDialoguesNotify,
 } from '../../EntryDialogues/EntryDialogues';
-import {
-  getEntryContextMenuItems,
-  ENTRY_CONTEXT_MENU_ACTION,
-} from '../../../hoc/withConfiguredEntryContextMenu';
+import { getEntryContextMenuItems } from '../../../hoc/withConfiguredEntryContextMenu';
 import { DL } from '../../../constants/common';
 import navigateHelper from '../../../libs/navigateHelper';
 import { mapPlace, mapPlaceBackward } from '../util';
@@ -23,6 +20,7 @@ import {
   getCreateMenuItemsExternal,
   getPlaceParameters,
 } from './configure';
+import { ContextMenuActions } from '../../../../../../../src/shared/lib/constants/context-menu-actions';
 
 const geEntryUrl = (entry, navigationUrl, place) => {
   const link = navigateHelper.redirectUrlSwitcher(entry, place);
@@ -340,27 +338,28 @@ export default class NavigationBase extends React.Component {
       });
     }
   }
+
   onContextMenuClick = ({ entry, action }) => {
     switch (action) {
-      case ENTRY_CONTEXT_MENU_ACTION.RENAME: {
+      case ContextMenuActions.rename: {
         return this.renameEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.DESCRIBE: {
+      case ContextMenuActions.describe: {
         return this.describeEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.MOVE: {
+      case ContextMenuActions.move: {
         return this.moveEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.COPY: {
+      case ContextMenuActions.copy: {
         return this.copyEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.DELETE: {
+      case ContextMenuActions.delete: {
         return this.deleteEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.ACCESS: {
+      case ContextMenuActions.access: {
         return this.accessEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.COPY_LINK: {
+      case ContextMenuActions.copyLink: {
         // do nothing
         return false;
       }

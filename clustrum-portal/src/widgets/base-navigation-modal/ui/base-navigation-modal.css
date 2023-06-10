@@ -1,0 +1,30 @@
+.base-navigation-modal {
+  width: 90vw;
+  height: 90vh;
+  max-width: 1300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.base-navigation-modal__header {
+  padding: 16px 24px 8px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.base-navigation-modal__content {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.base-navigation-modal__navigation {
+  overflow: hidden;
+  display: flex;
+  background-color: rgba(245, 245, 245, 1);
+}
+
+.base-navigation-modal__navigation .base-navigation-modal__navigation {
+  margin: 0 24px 24px 24px;
+}

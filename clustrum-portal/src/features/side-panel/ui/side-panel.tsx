@@ -9,12 +9,20 @@ import { useActiveMenuItemKey } from '../lib/hooks/use-active-menu-item-key';
 import { MENU_ITEMS } from '../lib/constants/menu-items';
 import { RedLogo } from './red-logo';
 import { SidePanelProps } from '../types';
+import { MAP_PLACE_TO_ROUTE } from '../lib/constants/match-routes';
+import { Places } from '../../../shared/lib/constants/places';
 
 import './side-panel.css';
 
 const { useToken } = theme;
 
-export function SidePanel({ withReactRouter = false }: SidePanelProps): ReactElement {
+export function SidePanel(props: SidePanelProps): ReactElement {
+  const {
+    withReactRouter = false,
+    withHeader = true,
+    onClickMenuItem,
+    selectedItem,
+  } = props;
   const [collapsed, setCollapsed] = useState(false);
   const history = useHistory();
   const selectedKey = useActiveMenuItemKey();
@@ -22,10 +30,16 @@ export function SidePanel({ withReactRouter = false }: SidePanelProps): ReactEle
 
   const handleSidePanelItemClick = useCallback(
     (item: MenuItemType) => {
+      if (onClickMenuItem) {
+        onClickMenuItem(item);
+        return;
+      }
+
+      const route = MAP_PLACE_TO_ROUTE[item.key as Places];
       if (withReactRouter) {
-        history.push(item.key.toString());
+        history.push(route);
       } else {
-        window.location.pathname = item.key.toString();
+        window.location.pathname = route;
       }
     },
     [history, withReactRouter],
@@ -33,26 +47,28 @@ export function SidePanel({ withReactRouter = false }: SidePanelProps): ReactEle
 
   return (
     <div className="side-panel">
-      <div
-        className={classNames('side-panel__header', {
-          'side-panel__header--collapsed': collapsed,
-        })}
-      >
-        <Icons component={RedLogo} style={{ color: token.colorPrimary }} />
-        <span
-          className={classNames('side-panel__header-title', {
-            'side-panel__header-title--collapsed': collapsed,
+      {withHeader && (
+        <div
+          className={classNames('side-panel__header', {
+            'side-panel__header--collapsed': collapsed,
           })}
         >
-          Кластрум
-        </span>
-      </div>
+          <Icons component={RedLogo} style={{ color: token.colorPrimary }} />
+          <span
+            className={classNames('side-panel__header-title', {
+              'side-panel__header-title--collapsed': collapsed,
+            })}
+          >
+            Кластрум
+          </span>
+        </div>
+      )}
       <nav className="side-panel__content">
         <Menu
           mode="inline"
           inlineCollapsed={collapsed}
           items={MENU_ITEMS}
-          selectedKeys={selectedKey}
+          selectedKeys={selectedItem || selectedKey}
           onClick={handleSidePanelItemClick}
         />
       </nav>

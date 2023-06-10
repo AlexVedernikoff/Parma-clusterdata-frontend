@@ -37,7 +37,7 @@ export const resolveNavigationPath = Component =>
     }
 
     render() {
-      return 'resolvedPath' in this.state && this.props.visible ? (
+      return this.props.visible ? (
         <Component
           {...this.props}
           path={this.state.resolvedPath}

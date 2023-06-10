@@ -5,6 +5,8 @@ import { PLACE, PLACE_VALUES } from './constants';
 import Utils from '../../utils';
 import { DL } from '../../constants/common';
 import { isRoot, mapPlace } from './util';
+import { withRouter } from 'react-router';
+import { NavigationPage } from '../../../../../../src/pages/navigation-page/ui/navigation-page';
 
 // use only with react-router
 class ServiceNavigation extends React.PureComponent {
@@ -133,17 +135,8 @@ class ServiceNavigation extends React.PureComponent {
   }
 
   render() {
-    return 'path' in this.state ? (
-      <NavigationBase
-        {...this.props}
-        path={this.state.path}
-        root={this.state.root}
-        onCrumbClick={this.onCrumbClick}
-        onEntryClick={this.onEntryClick}
-        onEntryParentClick={this.onEntryParentClick}
-      />
-    ) : null;
+    return <NavigationPage sdk={this.props.sdk} />;
   }
 }
 
-export default ServiceNavigation;
+export default withRouter(ServiceNavigation);

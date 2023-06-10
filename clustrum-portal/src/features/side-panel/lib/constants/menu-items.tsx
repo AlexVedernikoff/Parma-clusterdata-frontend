@@ -8,36 +8,36 @@ import {
   DashboardOutlined,
 } from '@ant-design/icons';
 import { MenuProps } from 'antd';
-import { ROUTES } from '@shared/lib/constants/routes';
+import { Places } from '@shared/lib/constants/places';
 
 export const MENU_ITEMS: NonNullable<MenuProps['items']> = [
   {
-    key: ROUTES.navigation,
+    key: Places.root,
     icon: <FolderOutlined />,
     label: 'Все объекты',
   },
   {
-    key: ROUTES.favorites,
+    key: Places.favorites,
     icon: <LikeOutlined />,
     label: 'Избранное',
   },
   {
-    key: ROUTES.connections,
+    key: Places.connections,
     icon: <ForkOutlined />,
     label: 'Подключения',
   },
   {
-    key: ROUTES.datasets,
+    key: Places.datasets,
     icon: <DatabaseOutlined />,
     label: 'Наборы данных',
   },
   {
-    key: ROUTES.widgets,
+    key: Places.widgets,
     icon: <LineChartOutlined />,
     label: 'Диаграммы',
   },
   {
-    key: ROUTES.dashboards,
+    key: Places.dashboards,
     icon: <DashboardOutlined />,
     label: 'Аналитические панели',
   },

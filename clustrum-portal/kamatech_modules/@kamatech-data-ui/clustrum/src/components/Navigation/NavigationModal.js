@@ -49,15 +49,7 @@ class ServiceNavigationModal extends React.PureComponent {
 
   render() {
     const { path, root } = this.state;
-    return (
-      <NavigationBase
-        {...this.props}
-        path={path}
-        root={root}
-        onNavigate={this.onNavigate}
-        navConstructor={NavigationModal}
-      />
-    );
+    return <NavigationModal sdk={this.props.sdk} path={path} {...this.props} />;
   }
 }
 
