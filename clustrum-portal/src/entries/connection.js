@@ -15,6 +15,7 @@ import './../css/connection.css';
 
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
+import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '../constants/constants';
 
 const sdk = new SDK({
@@ -37,7 +38,7 @@ logVersion();
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <ConfigProvider theme={{ ...ANT_TOKEN }}>
+      <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
         <Provider store={store}>
           <ConnectionsRouter sdk={sdk} />
         </Provider>
