@@ -57,20 +57,23 @@ export const getAppMetricGroupName = key => _getSelectItemTitle()[key];
 // TODO: to think about how to get list of available connectors for creation (yt)
 export const getConnectorsMap = () => {
   const {
-    features: { dataset: { chOverYtEnabled, appMetricaEnabled } = {} } = {},
+    features: {
+      dataset: { chOverYtEnabled, oracleEnabled, appMetricaEnabled } = {},
+    } = {},
   } = window.DL;
 
   const connectorsList = {
     clickhouse: 'ClickHouse',
     csv: 'CSV',
     postgres: 'PostgreSQL',
-    //mysql: 'MySQL',
-    //mssql: 'MS SQL Server',
-    //oracle: 'Oracle Database',
   };
 
   if (chOverYtEnabled) {
     connectorsList['ch_over_yt'] = 'CH over YT';
+  }
+
+  if (oracleEnabled) {
+    connectorsList['oracle'] = 'Oracle Database';
   }
 
   return connectorsList;
