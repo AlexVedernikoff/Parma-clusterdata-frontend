@@ -1343,7 +1343,6 @@ class SectionVisualization extends Component {
                     visualization && visualization.id === item.id ? ' active' : ''
                   }`}
                   onClick={() => {
-                    console.log('click');
                     if (visualization.id === item.id) return;
 
                     this.setState({ isNeedUpdate: true });
