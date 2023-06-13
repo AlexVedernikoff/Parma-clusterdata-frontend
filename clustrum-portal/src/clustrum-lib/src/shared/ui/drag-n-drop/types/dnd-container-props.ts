@@ -20,4 +20,5 @@ export interface DndContainerProps {
   ): void;
   wrapTo(props: DndItemProps, component: JSX.Element): Element;
   checkAllowed?(item: DndItem): boolean;
+  isNeedUpdate?: boolean;
 }
