@@ -21,6 +21,11 @@ export const TableWidget = (props: TableWidgetProps): JSX.Element => {
       dataSource={dataSource}
       title={(): string | null => title}
       size="small"
+      locale={{
+        triggerDesc: 'Сортировать по убыванию',
+        triggerAsc: 'Сортировать по возрастанию',
+        cancelSort: 'Отменить сортировку',
+      }}
     />
   );
 };
