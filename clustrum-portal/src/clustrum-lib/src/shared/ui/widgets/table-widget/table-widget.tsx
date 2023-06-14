@@ -4,7 +4,7 @@ import { Table } from 'antd';
 
 import './table-widget.css';
 
-export interface TableWidgetProps {
+interface TableWidgetProps {
   // TODO: типизировать таблицу (T - тип строки таблицы, record)
   // columns: ColumnType<T>[];
   columns: any;

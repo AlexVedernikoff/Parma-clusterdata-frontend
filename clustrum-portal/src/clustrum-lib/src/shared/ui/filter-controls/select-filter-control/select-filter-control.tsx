@@ -5,7 +5,7 @@ import { Content } from './types/content';
 import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
 import './select-filter-control.css';
 
-export interface SelectFilterControlProps {
+interface SelectFilterControlProps {
   label: string;
   content: Content[];
   value?: string | string[];

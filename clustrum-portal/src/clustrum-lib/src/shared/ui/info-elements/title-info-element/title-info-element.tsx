@@ -1,7 +1,7 @@
 import React from 'react';
 import './title-info-element.css';
 
-export interface TitleInfoElementProps {
+interface TitleInfoElementProps {
   data: {
     text?: string;
     showInTOC?: boolean;

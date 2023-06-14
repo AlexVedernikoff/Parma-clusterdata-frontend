@@ -9,7 +9,7 @@ import { Range } from './types/range';
 import './range-datepicker-filter-control.css';
 const { RangePicker } = DatePicker;
 
-export interface RangeDatepickerProps {
+interface RangeDatepickerProps {
   className?: string;
   dateFormat?: string;
   label: string;

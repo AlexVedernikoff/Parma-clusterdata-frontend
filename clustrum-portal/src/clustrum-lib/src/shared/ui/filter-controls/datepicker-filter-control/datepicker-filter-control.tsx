@@ -6,7 +6,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import './datepicker-filter-control.css';
 
-export interface DatepickerProps {
+interface DatepickerProps {
   className?: string;
   dateFormat?: string;
   label: string;
