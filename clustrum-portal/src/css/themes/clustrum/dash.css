@@ -1657,7 +1657,7 @@
 }
 
 .wizard .dl-entry-panel {
-  width: calc(100% - 18.375rem);
+  width: 100%;
 }
 
 .wizard .dl-entry-panel__entry-title-text {

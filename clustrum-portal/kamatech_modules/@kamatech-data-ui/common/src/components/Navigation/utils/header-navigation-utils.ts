@@ -24,17 +24,24 @@ const translateText = (text: string | undefined): string => {
 };
 
 export function navigationItems(place: string, path: string): BreadcrumbItem[] {
-  return [
-    {
+  const items: BreadcrumbItem[] = [];
+
+  if (place) {
+    items.push({
       title: translateText(place),
-    },
-    ...path
-      .split('/')
-      .filter(item => item !== '')
-      .map(item => ({
+    });
+  }
+
+  if (path) {
+    const pathItems = path.split('/').filter(item => item !== '');
+    items.push(
+      ...pathItems.map(item => ({
         title: translateText(item),
       })),
-  ];
+    );
+  }
+
+  return items;
 }
 
 export function formatPath(path: string): string {
