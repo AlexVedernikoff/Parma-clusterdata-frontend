@@ -67,48 +67,25 @@
   align-items: center;
   min-height: var(--yc-navigation-item-height);
   position: relative;
-  padding-right: 86px;
   overflow: hidden;
 }
 
 .kamatech-table-view__row-btns {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 86px;
-  padding-left: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 40px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--antd-color-primary);
 }
 
 .kamatech-table-view__row-btn {
-  visibility: hidden;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  border-radius: 4px;
 }
 
-.kamatech-table-view__row:hover .kamatech-table-view__row-btn {
-  visibility: visible;
-}
-
-.kamatech-table-view__row-btn:hover {
-  background: var(--color-hover-area);
-}
-
-.kamatech-table-view__btn-change-favorite {
-  visibility: hidden;
-  color: var(--color-text-hint);
-}
-
-.kamatech-table-view__btn-change-favorite_isFavorite {
-  visibility: visible;
+.kamatech-table-view__row-btn + .kamatech-table-view__row-btn {
+  padding-left: 32px;
 }
 
 .kamatech-table-view__row:hover .kamatech-table-view__btn-change-favorite {
