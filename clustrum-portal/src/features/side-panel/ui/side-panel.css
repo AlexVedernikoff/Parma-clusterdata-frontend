@@ -34,11 +34,6 @@
   width: 0;
 }
 
-.side-panel__header-icon {
-  font-size: 22px;
-  color: rgba(24, 144, 255, 1);
-}
-
 .side-panel__content {
   flex-grow: 1;
 }
