@@ -9,6 +9,8 @@ import { DIALOG_TYPE } from '../../modules/constants/constants';
 import { getCurrentPageTabs, isEditMode } from '../../store/selectors/dash';
 import { setPageTab, openDialog } from '../../store/actions/dash';
 
+import './tabs.css';
+
 function Tabs({ isEditMode, tabs, setPageTab, openDialog }) {
   const antdTabs = tabs.map(({ id, title }) => ({ key: id, label: title }));
   return (

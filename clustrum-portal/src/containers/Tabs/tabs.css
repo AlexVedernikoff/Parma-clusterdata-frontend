@@ -1,0 +1,14 @@
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active {
+  padding: 8px 16px;
+  background-color: var(--color-base);
+  border-radius: 6px 6px 0px 0px;
+  color: var(--antd-text-color-selection);
+}
+
+.ant-tabs .ant-tabs-tab {
+  font-weight: 600;
+}
+
+.ant-tabs-top > .ant-tabs-nav .ant-tabs-ink-bar {
+  display: none;
+}
