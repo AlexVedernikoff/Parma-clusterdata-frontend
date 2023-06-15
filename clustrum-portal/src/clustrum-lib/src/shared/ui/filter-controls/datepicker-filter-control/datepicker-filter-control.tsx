@@ -39,14 +39,17 @@ export function DatepickerFilterControl({
     }
   }, [isValid, value]);
 
-  const handleChange = useCallback((dateValue: Dayjs | null): void => {
-    if (dateValue) {
-      setIsValid(true);
-      onChange(dateValue.format(DEFAULT_DATE_FORMAT));
-    } else {
-      setIsValid(false);
-    }
-  }, []);
+  const handleChange = useCallback(
+    (dateValue: Dayjs | null): void => {
+      if (dateValue) {
+        setIsValid(true);
+        onChange(dateValue.format(DEFAULT_DATE_FORMAT));
+      } else {
+        setIsValid(false);
+      }
+    },
+    [onChange],
+  );
 
   return (
     <div className={cn('datepicker-control', className)}>

@@ -28,7 +28,7 @@ export function InputFilterControl({
 
   useEffect(() => {
     onChange(debouncedValue);
-  }, [debouncedValue]);
+  }, [debouncedValue, onChange]);
 
   return (
     <div className={cn('input-filter-control', className)}>

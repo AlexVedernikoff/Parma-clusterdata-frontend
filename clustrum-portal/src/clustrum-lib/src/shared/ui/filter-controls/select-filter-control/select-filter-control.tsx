@@ -33,7 +33,7 @@ export function SelectFilterControl({
 
   useEffect(() => {
     onChange(debouncedValue);
-  }, [debouncedValue]);
+  }, [debouncedValue, onChange]);
 
   return (
     <div className={cn('select-filter-control', className)}>
