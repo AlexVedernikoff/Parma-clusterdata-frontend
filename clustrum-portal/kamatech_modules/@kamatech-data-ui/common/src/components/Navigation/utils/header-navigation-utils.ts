@@ -1,4 +1,4 @@
-import { BreadcrumbItem } from '../../../../../../../src/entities/header/types/breadcrumb-item';
+import { BreadcrumbItem } from '../../../../../../../src/entities/header';
 
 const translateText = (text: string | undefined): string => {
   switch (text) {

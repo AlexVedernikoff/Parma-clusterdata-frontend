@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
 
 import { exportWidget } from '../services/dashboard/export/export-widget';
-import { PageContainer } from '../widgets/page-container/ui/page-container';
+import { PageContainer } from '../widgets/page-container';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,

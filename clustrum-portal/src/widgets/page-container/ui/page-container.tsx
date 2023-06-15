@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { SidePanel } from '../../../features/side-panel/ui/side-panel';
+import { SidePanel } from '../../../features/side-panel';
 import './page-container.css';
 
 interface PageContainerProps {
