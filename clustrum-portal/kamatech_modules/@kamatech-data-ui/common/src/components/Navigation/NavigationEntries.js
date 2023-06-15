@@ -24,7 +24,7 @@ import iconDots from '../../assets/icons/dots.svg';
 import iconFolderInline from '../../assets/icons/folder-inline.svg';
 import { KamatechTableView } from '@kamatech-ui';
 import { ScopeType } from '@kamatech-ui/enums';
-import { Header } from '../../../../../../src/entities/header';
+import { Header } from '@entities/header';
 import { Button, Dropdown, Input, Space } from 'antd';
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
 import { formatPath, navigationItems } from './utils/header-navigation-utils';

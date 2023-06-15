@@ -8,7 +8,7 @@ import { Pointerfocus } from 'lego-on-react';
 import DatasetPage from '../../containers/DatasetPage/DatasetPage';
 import DatasetCreationPage from '../../containers/DatasetCreationPage/DatasetCreationPage';
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
-import { PageContainer } from '../../widgets/page-container';
+import { PageContainer } from '@widgets/page-container';
 
 const b = block('dataset-router');
 
