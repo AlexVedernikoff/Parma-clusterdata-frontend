@@ -18,7 +18,10 @@ export class KamatechSidebarItem extends React.Component<KamatechSidebarItemInte
     const className = ClassHelper.merge(baseClass, currentClass);
     const node = (
       <React.Fragment>
-        <KamatechIcon data={item.icon} className={ClassHelper.merge(`${baseClass}-icon`, item.iconClassName)} />
+        <KamatechIcon
+          data={item.icon}
+          className={ClassHelper.merge(`${baseClass}-icon`, item.iconClassName)}
+        />
         {item.text}
       </React.Fragment>
     );

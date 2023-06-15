@@ -89,7 +89,13 @@ export default class TabMenu extends React.PureComponent {
     return {
       items,
       itemChosen: len ? 0 : null,
-      itemDefault: len ? (isDeleteItemDefault ? 0 : itemDefault < index ? itemDefault : itemDefault - 1) : null,
+      itemDefault: len
+        ? isDeleteItemDefault
+          ? 0
+          : itemDefault < index
+          ? itemDefault
+          : itemDefault - 1
+        : null,
     };
   }
 
@@ -111,7 +117,10 @@ export default class TabMenu extends React.PureComponent {
             {/*</div>*/}
             <span className={b('item-text')}>{title}</span>
             {items.length > 1 ? (
-              <div className={b('item-del')} onClick={this.onAction({ action: 'delete', index })}>
+              <div
+                className={b('item-del')}
+                onClick={this.onAction({ action: 'delete', index })}
+              >
                 <Icon data={iconPreviewClose} width="22px" />
               </div>
             ) : null}

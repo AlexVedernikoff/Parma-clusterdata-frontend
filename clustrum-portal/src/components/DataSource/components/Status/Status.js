@@ -38,7 +38,12 @@ export const Status = ({
   return (
     <React.Fragment>
       {!isDirectDsMode && <ProgressBar current={percentComplete} stage={stage} />}
-      {!isProcessing && <span className={b('last-loaded')} dangerouslySetInnerHTML={{ __html: statusLabel }} />}
+      {!isProcessing && (
+        <span
+          className={b('last-loaded')}
+          dangerouslySetInnerHTML={{ __html: statusLabel }}
+        />
+      )}
     </React.Fragment>
   );
 };

@@ -66,7 +66,12 @@ class WikiText extends React.PureComponent {
       config: { style },
     } = this.props.data;
     return (
-      <div className={b()} style={style} ref={this.blockRef} dangerouslySetInnerHTML={{ __html: this.state.html }} />
+      <div
+        className={b()}
+        style={style}
+        ref={this.blockRef}
+        dangerouslySetInnerHTML={{ __html: this.state.html }}
+      />
     );
   }
 }

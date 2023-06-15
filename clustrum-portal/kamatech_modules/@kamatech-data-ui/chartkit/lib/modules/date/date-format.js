@@ -45,7 +45,9 @@ export default class DateFormat {
 
     switch (this._dateType.toLowerCase()) {
       case DATE_TYPE.date:
-        return this.isClickhouseDateFormat() ? this.formattedDate(DATE_FORMAT.defaultDate) : this.monthToRussian();
+        return this.isClickhouseDateFormat()
+          ? this.formattedDate(DATE_FORMAT.defaultDate)
+          : this.monthToRussian();
 
       case DATE_TYPE.datetime:
         return this.formattedDate(DATE_FORMAT.defaultDatetime);

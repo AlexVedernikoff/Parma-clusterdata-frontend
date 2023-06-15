@@ -26,7 +26,9 @@ function handler(handledError) {
             return {
               title: 'Диаграмма не найдена',
               more:
-                (extra.error && extra.error.messageError ? extra.error.messageError : '') ||
+                (extra.error && extra.error.messageError
+                  ? extra.error.messageError
+                  : '') ||
                 extra.executionError ||
                 extra.stackTrace,
             };
@@ -85,7 +87,12 @@ function handler(handledError) {
 }
 
 function Simple(originalProps) {
-  const props = { extraLines: [], retryParams: {}, ...originalProps, ...handler(originalProps.data.error) };
+  const props = {
+    extraLines: [],
+    retryParams: {},
+    ...originalProps,
+    ...handler(originalProps.data.error),
+  };
   const type = originalProps.data.error.type;
 
   return (

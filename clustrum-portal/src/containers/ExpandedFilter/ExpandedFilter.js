@@ -76,7 +76,11 @@ function ExpandedFilter({
     if (config) {
       setCurrentTabData(config);
     }
-    if (hashState !== itemsStateAndParams && itemsStateAndParams && Object.keys(itemsStateAndParams).length) {
+    if (
+      hashState !== itemsStateAndParams &&
+      itemsStateAndParams &&
+      Object.keys(itemsStateAndParams).length
+    ) {
       setHashState(itemsStateAndParams);
     }
   };

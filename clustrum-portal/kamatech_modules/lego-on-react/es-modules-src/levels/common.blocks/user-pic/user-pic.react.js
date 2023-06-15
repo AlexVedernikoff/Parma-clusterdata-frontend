@@ -48,8 +48,12 @@ export default decl(
       ];
     },
     getAvatarURL: function getAvatarURL() {
-      var host = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'https://avatars.mds.yandex.net';
-      var avatarId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '0/0-0';
+      var host =
+        arguments.length > 0 && arguments[0] !== undefined
+          ? arguments[0]
+          : 'https://avatars.mds.yandex.net';
+      var avatarId =
+        arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '0/0-0';
 
       return {
         lodpiUrl: host + '/get-yapic/' + avatarId + '/islands-middle',

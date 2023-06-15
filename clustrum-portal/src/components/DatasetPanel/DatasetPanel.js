@@ -84,7 +84,9 @@ class DatasetPanel extends React.Component {
               size="n"
               view="default"
               tone="default"
-              iconLeft={<Icon className={b('add-field-btn-ic')} data={iconPlus} width="18" />}
+              iconLeft={
+                <Icon className={b('add-field-btn-ic')} data={iconPlus} width="18" />
+              }
               text="Добавить поле"
               onClick={openFieldEditor}
             />

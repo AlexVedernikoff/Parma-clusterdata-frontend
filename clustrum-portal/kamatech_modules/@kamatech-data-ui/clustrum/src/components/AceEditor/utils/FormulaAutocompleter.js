@@ -23,7 +23,11 @@ class FormulaAutocompleter {
         }
 
         const result = this.completions.map((item, index) => {
-          const { name, completion: { formula, pos_column: posColumn, pos_row: posRow } = {}, type } = item;
+          const {
+            name,
+            completion: { formula, pos_column: posColumn, pos_row: posRow } = {},
+            type,
+          } = item;
 
           return {
             search: name.toLowerCase(),
@@ -57,12 +61,17 @@ class FormulaAutocompleter {
       identifierRegexps: [/[a-zA-Z_0-9\$\.\-\u00A2-\uFFFF]/], // eslint-disable-line no-useless-escape
     };
 
-    this.debouncedDispatcher = debounce(this.autocompleteDispatcher, getAutocompleteTimeout);
+    this.debouncedDispatcher = debounce(
+      this.autocompleteDispatcher,
+      getAutocompleteTimeout,
+    );
   }
 
   autocompleteDispatcher = event => {
     if (
-      ['insertstring', 'backspace', 'del', 'removewordleft', 'removewordright'].includes(event.command.name) &&
+      ['insertstring', 'backspace', 'del', 'removewordleft', 'removewordright'].includes(
+        event.command.name,
+      ) &&
       this.editor.getValue()
     ) {
       this.performAutocomplete(this.editor);
@@ -76,7 +85,9 @@ class FormulaAutocompleter {
     }
 
     const text = editor.getValue();
-    const position = editor.getSession().doc.positionToIndex(editor.getSelection().getCursor());
+    const position = editor
+      .getSession()
+      .doc.positionToIndex(editor.getSelection().getCursor());
 
     this.autocompleteText = text;
     const tabHookEnabled = this.tabHookEnabled;
@@ -99,7 +110,11 @@ class FormulaAutocompleter {
       if (this.autocompleteText === text) {
         if (items.length === 1 && editor.__tabPressed) {
           const regexp = this.completer.identifierRegexps[0];
-          const prefix = AutocompleteUtil.retrievePrecedingIdentifier(text, position, regexp);
+          const prefix = AutocompleteUtil.retrievePrecedingIdentifier(
+            text,
+            position,
+            regexp,
+          );
           this.insertSingleMatch(editor, prefix.length, items[0]);
           return;
         }

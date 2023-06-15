@@ -170,7 +170,10 @@ export default decl(
       window.removeEventListener('resize', this._setMaxHeight);
     },
     getChildContext: function getChildContext() {
-      var processLogout = this.props.processLogout || this.props.hasLogout ? this._processLogout : undefined;
+      var processLogout =
+        this.props.processLogout || this.props.hasLogout
+          ? this._processLogout
+          : undefined;
       var attributes = this.props.accountAttributes;
 
       // Здесь не нужен undefined, user-account и user-pic проверяют на falsy.
@@ -231,7 +234,8 @@ export default decl(
       // true, если has_plus === true
       // false, если has_plus === undefined && attributes.plus_available
       // иначе undefined
-      var plus = accountAttributes.has_plus || (accountAttributes.plus_available && false);
+      var plus =
+        accountAttributes.has_plus || (accountAttributes.plus_available && false);
 
       if (avatarId === undefined) {
         avatarId = pic && pic.avatarId;
@@ -390,16 +394,22 @@ export default decl(
             React.createElement(
               MenuGroup,
               { key: 'menu-group', isNavigation: true },
-              this._renderMenuItems([].concat(_toConsumableArray(actionsMenu), _toConsumableArray(multiAuthMenu)), {
-                unreadCount: unreadCount,
-                plus: yaplus,
-                plusLinkParams: plusLinkParams,
-                exitUrl: exitUrl,
-                retpathEncoded: retpathEncoded,
-                passportHost: passportHost,
-                contentRegion: contentRegion,
-                passportLinkParams: passportLinkParams,
-              }),
+              this._renderMenuItems(
+                [].concat(
+                  _toConsumableArray(actionsMenu),
+                  _toConsumableArray(multiAuthMenu),
+                ),
+                {
+                  unreadCount: unreadCount,
+                  plus: yaplus,
+                  plusLinkParams: plusLinkParams,
+                  exitUrl: exitUrl,
+                  retpathEncoded: retpathEncoded,
+                  passportHost: passportHost,
+                  contentRegion: contentRegion,
+                  passportLinkParams: passportLinkParams,
+                },
+              ),
             ),
             React.createElement(
               Bem,
@@ -480,10 +490,18 @@ export default decl(
       var form = React.createElement(
         'form',
         { action: action, method: 'post' },
-        React.createElement('input', { type: 'hidden', name: 'action', value: 'change_default' }),
+        React.createElement('input', {
+          type: 'hidden',
+          name: 'action',
+          value: 'change_default',
+        }),
         React.createElement('input', { type: 'hidden', name: 'uid', value: uid }),
         React.createElement('input', { type: 'hidden', name: 'retpath', value: retpath }),
-        React.createElement('input', { type: 'hidden', name: 'yu', value: this.props.yu }),
+        React.createElement('input', {
+          type: 'hidden',
+          name: 'yu',
+          value: this.props.yu,
+        }),
       );
       this._userChangeForm = this.__self.inject(this, form, formContainer);
       this._userChangeForm.submit();

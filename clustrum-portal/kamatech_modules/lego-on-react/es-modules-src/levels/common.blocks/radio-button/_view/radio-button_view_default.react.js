@@ -110,7 +110,10 @@ export default declMod(
           return (_this2._checked = radio);
         };
 
-        return React.cloneElement(child, needRef ? { style: style, ref: ref } : { style: style });
+        return React.cloneElement(
+          child,
+          needRef ? { style: style, ref: ref } : { style: style },
+        );
       });
 
       var style = {
@@ -119,7 +122,12 @@ export default declMod(
       };
 
       return [
-        React.createElement(Bem, { key: 'plate', block: 'radio-button', elem: 'plate', attrs: { style: style } }),
+        React.createElement(Bem, {
+          key: 'plate',
+          block: 'radio-button',
+          elem: 'plate',
+          attrs: { style: style },
+        }),
         children,
       ];
     },

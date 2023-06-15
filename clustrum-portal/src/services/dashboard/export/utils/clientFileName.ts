@@ -15,6 +15,9 @@ export const clientFileName = (entryName: string, tabTitle = '') => {
   const trimmedEntryName = limitStringLength(entryName, MAX_ENTRY_NAME_LENGTH);
 
   return tabTitle
-    ? `${trimmedEntryName} (${limitStringLength(tabTitle, MAX_TAB_TITLE_LENGTH)}) ${generateDate()}`
+    ? `${trimmedEntryName} (${limitStringLength(
+        tabTitle,
+        MAX_TAB_TITLE_LENGTH,
+      )}) ${generateDate()}`
     : `${trimmedEntryName} ${generateDate()}`;
 };

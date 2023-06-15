@@ -55,7 +55,8 @@ class SectionPreviousRequests extends React.PureComponent {
     this.setState({ dialogVisible: true, currentParticipantIndex: index });
   }
 
-  onCloseDialog = () => this.setState({ dialogVisible: false, currentParticipantIndex: null });
+  onCloseDialog = () =>
+    this.setState({ dialogVisible: false, currentParticipantIndex: null });
 
   onSuccessDialog = () => {
     this.setState({ dialogVisible: false, currentParticipantIndex: null }, () => {
@@ -76,7 +77,9 @@ class SectionPreviousRequests extends React.PureComponent {
               <div className={b('user')}>
                 <User showIcon participant={participant} />
               </div>
-              <div className={b('permission')}>{Utils.getTextByPermission(permission)}</div>
+              <div className={b('permission')}>
+                {Utils.getTextByPermission(permission)}
+              </div>
               <ButtonDelete
                 className={b('btn-delete')}
                 disabled={this.props.inactive}
@@ -122,7 +125,9 @@ class SectionPreviousRequests extends React.PureComponent {
     return (
       <div className={b()}>
         <div className={b('error')}>
-          <span className={b('error-text')}>Не удалось загрузить предыдущие запросы.</span>
+          <span className={b('error-text')}>
+            Не удалось загрузить предыдущие запросы.
+          </span>
           <br />
           <Button
             theme="action"

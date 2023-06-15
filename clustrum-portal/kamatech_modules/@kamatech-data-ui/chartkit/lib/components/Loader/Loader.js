@@ -36,7 +36,9 @@ class Loader extends React.PureComponent {
   }
 
   get isSilent() {
-    return this.props.silentLoading === true || typeof this.props.silentLoading === 'number';
+    return (
+      this.props.silentLoading === true || typeof this.props.silentLoading === 'number'
+    );
   }
 
   mounted = false;

@@ -108,7 +108,12 @@ export default class AddingParticipant extends React.Component {
   renderItem = data => {
     return (
       <div className={b('item')}>
-        <User showIcon useRole={false} participant={data} onClickLink={this.onClickLink} />
+        <User
+          showIcon
+          useRole={false}
+          participant={data}
+          onClickLink={this.onClickLink}
+        />
       </div>
     );
   };

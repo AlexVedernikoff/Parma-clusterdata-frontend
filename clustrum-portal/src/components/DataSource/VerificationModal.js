@@ -170,7 +170,10 @@ class VerificationModal extends React.Component {
     }
 
     const {
-      response: { data: { message: responseMessage } = {}, headers: { 'x-request-id': requestId } = {} } = {},
+      response: {
+        data: { message: responseMessage } = {},
+        headers: { 'x-request-id': requestId } = {},
+      } = {},
       message,
     } = error;
 
@@ -359,7 +362,9 @@ class VerificationModal extends React.Component {
 
       switch (value) {
         case 'open-connection': {
-          const { dataset: { origin: { table_connection_id: connectionId = '' } = {} } = {} } = this.state;
+          const {
+            dataset: { origin: { table_connection_id: connectionId = '' } = {} } = {},
+          } = this.state;
 
           window.open(`/connections/${connectionId}`, '_blank');
 
@@ -442,14 +447,22 @@ class VerificationModal extends React.Component {
 
   render() {
     const { visible, onClose } = this.props;
-    const { showComponentError, progress, dataset: { connection_type: connectionType } = {} } = this.state;
+    const {
+      showComponentError,
+      progress,
+      dataset: { connection_type: connectionType } = {},
+    } = this.state;
     const disabledApplyBtn = connectionType === 'csv' || showComponentError;
     const { requestId, errorMessage } = this.getDataFromError();
 
     return (
       <Dialog visible={visible} onClose={onClose}>
         <div className={b()}>
-          <Dialog.Header caption="Верификация и сопоставление данных" hr={false} onClose={onClose} />
+          <Dialog.Header
+            caption="Верификация и сопоставление данных"
+            hr={false}
+            onClose={onClose}
+          />
           <div className={b('content')}>{this.renderContent()}</div>
           <ErrorDialog
             ref={this.errorDialogRef}

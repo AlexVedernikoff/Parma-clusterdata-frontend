@@ -195,7 +195,9 @@ const FieldSettingsEditor = props => {
             size="n"
             view="default"
             tone="default"
-            iconLeft={<Icon className={b('plus')} data={iconPlus} width="16" height="16" />}
+            iconLeft={
+              <Icon className={b('plus')} data={iconPlus} width="16" height="16" />
+            }
             text="Добавить описание"
             onClick={displayDescriptionInput}
           />
@@ -231,7 +233,9 @@ const FieldSettingsEditor = props => {
             onChange={e => modifyField({ calc_mode: e.target.value })}
           >
             <RadioButton.Radio value={CalcModes.Formula}>Формула</RadioButton.Radio>
-            <RadioButton.Radio value={CalcModes.Direct}>Поле из источника</RadioButton.Radio>
+            <RadioButton.Radio value={CalcModes.Direct}>
+              Поле из источника
+            </RadioButton.Radio>
             <RadioButton.Radio value={CalcModes.Spel}>Формула EL</RadioButton.Radio>
           </RadioButton>
         </div>
@@ -300,7 +304,13 @@ const FieldSettingsEditor = props => {
         />
       )}
       {calcMode === CalcModes.Spel && (
-        <Spel spel={spel} source={source} modifyField={modifyField} aceModeUrl={aceModeUrl} modePath={modePath} />
+        <Spel
+          spel={spel}
+          source={source}
+          modifyField={modifyField}
+          aceModeUrl={aceModeUrl}
+          modePath={modePath}
+        />
       )}
     </div>
   );

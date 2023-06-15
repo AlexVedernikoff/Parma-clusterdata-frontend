@@ -34,7 +34,8 @@ export default class SDK {
     }
 
     if (displaySuperuserSwitch) {
-      const superuserModeEnabled = Utils.getCookie(COOKIE_TOGGLE_SWITCH_MODE_NAME) === ENABLE;
+      const superuserModeEnabled =
+        Utils.getCookie(COOKIE_TOGGLE_SWITCH_MODE_NAME) === ENABLE;
 
       headers['x-dl-allow-superuser'] = superuserModeEnabled;
       headers['x-dl-sudo'] = superuserModeEnabled;

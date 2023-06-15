@@ -97,7 +97,9 @@ class DropdownMenu extends React.Component {
           this.menu = node;
         }}
       >
-        <div className={b(`button${this.props.select ? '-select' : ''}`)}>{this.getButtonContent()}</div>
+        <div className={b(`button${this.props.select ? '-select' : ''}`)}>
+          {this.getButtonContent()}
+        </div>
         <List
           data={this.props.data}
           visible={this.state.visible}

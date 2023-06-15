@@ -50,7 +50,10 @@ function run({
           : null,
     };
   } catch (error) {
-    throw ErrorDispatcher.wrap({ type: ERROR_TYPE.EXECUTION_ERROR, extra: { tabName: 'node', executionError: error } });
+    throw ErrorDispatcher.wrap({
+      type: ERROR_TYPE.EXECUTION_ERROR,
+      extra: { tabName: 'node', executionError: error },
+    });
   }
 }
 

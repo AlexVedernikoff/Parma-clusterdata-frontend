@@ -14,7 +14,10 @@ const capitalize = str => {
 const checkBrowser = () => {
   const agent = navigator.userAgent;
 
-  if (agent.indexOf('Firefox') !== -1 && parseFloat(agent.substring(agent.indexOf('Firefox') + 8)) >= 3.6) {
+  if (
+    agent.indexOf('Firefox') !== -1 &&
+    parseFloat(agent.substring(agent.indexOf('Firefox') + 8)) >= 3.6
+  ) {
     return 'Firefox';
   } else if (
     agent.indexOf('Safari') !== -1 &&

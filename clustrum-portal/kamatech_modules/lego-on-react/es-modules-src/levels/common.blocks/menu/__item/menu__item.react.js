@@ -76,7 +76,11 @@ export default decl(
       var isNavigation = this.props.isNavigation;
 
       if (isNavigation) {
-        return React.createElement(MenuListItem, null, this.__base.apply(this, arguments));
+        return React.createElement(
+          MenuListItem,
+          null,
+          this.__base.apply(this, arguments),
+        );
       }
       return this.__base.apply(this, arguments);
     },
@@ -90,14 +94,21 @@ export default decl(
       (icon ? [icon] : []).concat(children).forEach(function(child, i) {
         if (Icon.isIcon(child) && i === 0) {
           content.push(
-            React.createElement(MenuIcon, _extends({ size: size, key: 'icon' }, { mix: child.props.mix }), child),
+            React.createElement(
+              MenuIcon,
+              _extends({ size: size, key: 'icon' }, { mix: child.props.mix }),
+              child,
+            ),
           );
         } else {
           content.push(React.createElement(MenuText, { key: 'text-' + i }, child));
         }
       });
 
-      needIconGlyph && content.unshift(React.createElement(Icon, { key: 'check-icon', glyph: 'type-check' }));
+      needIconGlyph &&
+        content.unshift(
+          React.createElement(Icon, { key: 'check-icon', glyph: 'type-check' }),
+        );
 
       return content;
     },
@@ -107,7 +118,11 @@ export default decl(
   },
   {
     isItem: function isItem(child) {
-      return child && typeof child.type === 'function' && child.type.displayName === 'menu__item';
+      return (
+        child &&
+        typeof child.type === 'function' &&
+        child.type.displayName === 'menu__item'
+      );
     },
     propTypes: {
       title: PropTypes.string,

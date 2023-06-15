@@ -93,7 +93,14 @@ function getNextTimestamp(ts, range) {
   return ts + range;
 }
 
-function getTicks({ leftBound, rightBound, width, range, calcTimestamp, initialTimestamp }) {
+function getTicks({
+  leftBound,
+  rightBound,
+  width,
+  range,
+  calcTimestamp,
+  initialTimestamp,
+}) {
   const totalRange = rightBound - leftBound;
   const ratio = width / totalRange;
   let timestamp = initialTimestamp || getInitialTimestamp(leftBound, range);
@@ -111,7 +118,8 @@ function getTicks({ leftBound, rightBound, width, range, calcTimestamp, initialT
 }
 
 function buildTickFactory(width = 1, height = 10, anchor = 0) {
-  return tick => `M${Math.floor(tick.point - width / 2)} ${anchor}v${height}h${width}V${anchor}z`;
+  return tick =>
+    `M${Math.floor(tick.point - width / 2)} ${anchor}v${height}h${width}V${anchor}z`;
 }
 
 function globalDragHandler(onMouseMove, onMouseUp) {
@@ -430,18 +438,42 @@ class TimelineRuler extends React.Component {
       <div onMouseDown={this.onRulerMouseDown} onWheel={this.onRulerWheel}>
         <div className={b('labels-minor')}>
           {ticks.map(tick => (
-            <span key={tick.timestamp} className={b('label-minor')} style={{ left: tick.point }}>
+            <span
+              key={tick.timestamp}
+              className={b('label-minor')}
+              style={{ left: tick.point }}
+            >
               {tick.formatted}
             </span>
           ))}
         </div>
-        <svg className={b('ruler-svg')} viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
+        <svg
+          className={b('ruler-svg')}
+          viewBox={`0 0 ${width} ${height}`}
+          width={width}
+          height={height}
+        >
           {Boolean(this.props.displayNow) && this.renderNow()}
-          <path className={b('ruler-border')} d={`M0 1 V${height - 1}h1V1z M${width} 1V${height - 1}h-1V1z`} />
-          <path className={b('ticks-major')} d={ticks.map(buildTickFactory(1, 7, 1)).join('')} />
-          <path className={b('ticks-major')} d={ticks.map(buildTickFactory(1, 7, height - 8)).join('')} />
-          <path className={b('ticks-minor')} d={microTicks.map(buildTickFactory(1, 4, 1)).join('')} />
-          <path className={b('ticks-minor')} d={microTicks.map(buildTickFactory(1, 4, height - 5)).join('')} />
+          <path
+            className={b('ruler-border')}
+            d={`M0 1 V${height - 1}h1V1z M${width} 1V${height - 1}h-1V1z`}
+          />
+          <path
+            className={b('ticks-major')}
+            d={ticks.map(buildTickFactory(1, 7, 1)).join('')}
+          />
+          <path
+            className={b('ticks-major')}
+            d={ticks.map(buildTickFactory(1, 7, height - 8)).join('')}
+          />
+          <path
+            className={b('ticks-minor')}
+            d={microTicks.map(buildTickFactory(1, 4, 1)).join('')}
+          />
+          <path
+            className={b('ticks-minor')}
+            d={microTicks.map(buildTickFactory(1, 4, height - 5)).join('')}
+          />
         </svg>
         <div
           className={b('selection')}

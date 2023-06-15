@@ -30,7 +30,9 @@ const DEFAULT_COUNTER_SOURCE = 'visits';
 const DAYS_COUNT = 90;
 const MILLISECONDS_IN_DAY = 86400000;
 const CURRENT_DATE = new Date();
-const DEFAULT_DATE_STRING = new Date(CURRENT_DATE - DAYS_COUNT * MILLISECONDS_IN_DAY).toISOString();
+const DEFAULT_DATE_STRING = new Date(
+  CURRENT_DATE - DAYS_COUNT * MILLISECONDS_IN_DAY,
+).toISOString();
 const MAX_DATE_STRING = new Date(CURRENT_DATE - MILLISECONDS_IN_DAY).toISOString();
 
 const getMatSchedConfig = ({ enabled, materializationRegularity }) => {
@@ -133,7 +135,11 @@ class MetricaConnector extends React.Component {
       onChangeCallback(this.state);
     }
 
-    if (data && data.hasOwnProperty('token') && (!id || (id && dbType === 'metrika_api'))) {
+    if (
+      data &&
+      data.hasOwnProperty('token') &&
+      (!id || (id && dbType === 'metrika_api'))
+    ) {
       if (this.debounced) {
         this.debounced.cancel();
       }
@@ -178,7 +184,8 @@ class MetricaConnector extends React.Component {
     const createDate = new Date(createTime);
     const defaultDate = new Date(DEFAULT_DATE_STRING);
     const CREATE_DATE_STRING = createDate.toISOString();
-    const materializationStartDate = defaultDate > createDate ? DEFAULT_DATE_STRING : CREATE_DATE_STRING;
+    const materializationStartDate =
+      defaultDate > createDate ? DEFAULT_DATE_STRING : CREATE_DATE_STRING;
 
     this.changeValue({
       materializationStartDate,
@@ -261,8 +268,13 @@ class MetricaConnector extends React.Component {
                   value={counter}
                   error={getErrorMessage(emptyFields, FIELD_TYPES.COUNTER)}
                   widthSize={'m'}
-                  disabled={!counters.length || (!isNewConnection && dbType === 'metrika_logs_api')}
-                  onChange={dbType === 'metrika_logs_api' ? this.selectCounter : this.changeValue}
+                  disabled={
+                    !counters.length ||
+                    (!isNewConnection && dbType === 'metrika_logs_api')
+                  }
+                  onChange={
+                    dbType === 'metrika_logs_api' ? this.selectCounter : this.changeValue
+                  }
                 />
               ) : (
                 <InputField
@@ -284,11 +296,17 @@ class MetricaConnector extends React.Component {
                     view="default"
                     tone="default"
                     value={counterInputMethod}
-                    onChange={e => this.changeValue({ counterInputMethod: e.target.value })}
+                    onChange={e =>
+                      this.changeValue({ counterInputMethod: e.target.value })
+                    }
                     freeWidth={true}
                   >
-                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.LIST}>Из списка</RadioButton.Radio>
-                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.MANUALLY}>Вручную</RadioButton.Radio>
+                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.LIST}>
+                      Из списка
+                    </RadioButton.Radio>
+                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.MANUALLY}>
+                      Вручную
+                    </RadioButton.Radio>
                   </RadioButton>
                 </div>
               )}
@@ -307,7 +325,9 @@ class MetricaConnector extends React.Component {
                 freeWidth={true}
               >
                 <RadioButton.Radio value={'metrika_api'}>Прямой досту</RadioButton.Radio>
-                <RadioButton.Radio value={'metrika_logs_api'}>Через Logs API</RadioButton.Radio>
+                <RadioButton.Radio value={'metrika_logs_api'}>
+                  Через Logs API
+                </RadioButton.Radio>
               </RadioButton>
             </div>
           )}
@@ -344,7 +364,9 @@ class MetricaConnector extends React.Component {
                   <Datepicker
                     scale="day"
                     inputWidth={240}
-                    callback={({ from }) => this.changeValue({ materializationStartDate: from })}
+                    callback={({ from }) =>
+                      this.changeValue({ materializationStartDate: from })
+                    }
                     minDate={counterCreationDate}
                     maxDate={MAX_DATE_STRING}
                     date={materializationStartDate}

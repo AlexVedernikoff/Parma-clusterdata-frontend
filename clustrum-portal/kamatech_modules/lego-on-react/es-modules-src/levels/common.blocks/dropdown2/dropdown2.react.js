@@ -37,7 +37,10 @@ var _typeof =
         return typeof obj;
       }
     : function(obj) {
-        return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype
+        return obj &&
+          typeof Symbol === 'function' &&
+          obj.constructor === Symbol &&
+          obj !== Symbol.prototype
           ? 'symbol'
           : typeof obj;
       };
@@ -57,13 +60,22 @@ function _possibleConstructorReturn(self, call) {
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' + typeof superClass,
+    );
   }
   subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: { value: subClass, enumerable: false, writable: true, configurable: true },
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
   });
   if (superClass)
-    Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : (subClass.__proto__ = superClass);
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
 }
 
 import React, { Component, Children } from 'react';
@@ -160,7 +172,13 @@ export default decl(
           onClick: this._onSwitcherClick,
           ref: this.switcherReference,
         }),
-        !disabled && this._renderPopup({ view: view, tone: tone, hasTail: hasTail, children: popup }),
+        !disabled &&
+          this._renderPopup({
+            view: view,
+            tone: tone,
+            hasTail: hasTail,
+            children: popup,
+          }),
       ];
 
       if (this.__switcher) {
@@ -224,7 +242,10 @@ export default decl(
 
           return _possibleConstructorReturn(
             this,
-            (Switcher.__proto__ || Object.getPrototypeOf(Switcher)).apply(this, arguments),
+            (Switcher.__proto__ || Object.getPrototypeOf(Switcher)).apply(
+              this,
+              arguments,
+            ),
           );
         }
 
@@ -281,7 +302,10 @@ export default decl(
       zIndexGroupLevel: PropTypes.number,
       size: PropTypes.oneOf(['xs', 's', 'm', 'n']),
       width: PropTypes.oneOf(['fixed', 'max']),
-      switcher: PropTypes.oneOfType([PropTypes.oneOf(['button', 'button2', 'link']), PropTypes.element]),
+      switcher: PropTypes.oneOfType([
+        PropTypes.oneOf(['button', 'button2', 'link']),
+        PropTypes.element,
+      ]),
       popup: PropTypes.element,
       hasTick: PropTypes.bool,
     },

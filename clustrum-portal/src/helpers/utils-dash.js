@@ -4,7 +4,10 @@ import { ENTRY_ID_REGEXP } from '../modules/constants/constants';
 export const getPersonalFolderPath = () => `Users/${window.DL.user.login}/`;
 
 export async function getEntryByIdOrKey(pathname) {
-  const keyAlike = pathname.replace(/^(\/preview)?((\/wizard\/)|(\/editor\/)|(\/navigation\/))/g, '');
+  const keyAlike = pathname.replace(
+    /^(\/preview)?((\/wizard\/)|(\/editor\/)|(\/navigation\/))/g,
+    '',
+  );
   return ENTRY_ID_REGEXP.test(keyAlike)
     ? await SDK.getEntryMeta({ entryId: keyAlike })
     : await SDK.getEntryByKey({ key: keyAlike });

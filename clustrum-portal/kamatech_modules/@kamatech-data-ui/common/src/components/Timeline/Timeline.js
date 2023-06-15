@@ -79,7 +79,11 @@ class Timeline extends React.Component {
   };
   onChange(data) {
     const { from, to } = { ...this.props, ...data };
-    if (this.props.onChange && (from || to) && !(from === this.props.from && to === this.props.to)) {
+    if (
+      this.props.onChange &&
+      (from || to) &&
+      !(from === this.props.from && to === this.props.to)
+    ) {
       this.props.onChange({ from, to });
     }
   }
@@ -107,7 +111,15 @@ class Timeline extends React.Component {
       return null;
     }
 
-    const { from, to, shortcut, shortcuts, topShortcuts, refreshInterval, refreshIntervals } = this.props;
+    const {
+      from,
+      to,
+      shortcut,
+      shortcuts,
+      topShortcuts,
+      refreshInterval,
+      refreshIntervals,
+    } = this.props;
 
     return (
       <TimelinePicker

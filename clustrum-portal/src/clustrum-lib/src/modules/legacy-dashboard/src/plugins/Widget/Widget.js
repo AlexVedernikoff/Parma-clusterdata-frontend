@@ -10,7 +10,8 @@ class PluginWidget extends React.PureComponent {
   static getDerivedStateFromProps(props, state) {
     const { usedParams } = state;
     if (
-      (Array.isArray(usedParams) && !isEqual(pick(props.params, usedParams), pick(state.params, usedParams))) ||
+      (Array.isArray(usedParams) &&
+        !isEqual(pick(props.params, usedParams), pick(state.params, usedParams))) ||
       (usedParams === null && props.params !== state.params) // usedParams === null, например, когда NO_DATA
     ) {
       if (props.paginateInfo) {
@@ -38,12 +39,15 @@ class PluginWidget extends React.PureComponent {
     loadedData: null,
     usedParams: null,
     params: this.props.params,
-    paginateInfo: this.props.paginateInfo ? this.props.paginateInfo : { page: 0, pageSize: 150 },
+    paginateInfo: this.props.paginateInfo
+      ? this.props.paginateInfo
+      : { page: 0, pageSize: 150 },
     orderBy: this.props.orderBy,
   };
 
   componentDidUpdate(prevProps) {
-    const dimensionsChanged = this.props.width !== prevProps.width || this.props.height !== prevProps.height;
+    const dimensionsChanged =
+      this.props.width !== prevProps.width || this.props.height !== prevProps.height;
     if (dimensionsChanged && this.widget && typeof this.widget.reflow === 'function') {
       this.widget.reflow();
     }
@@ -202,7 +206,9 @@ const plugin = {
   },
   renderer(props, forwardedRef) {
     if (!plugin._ChartKit) {
-      throw new Error('плагину widget нужно установить ChartKit: plugin.bindChartKit(ChartKit)');
+      throw new Error(
+        'плагину widget нужно установить ChartKit: plugin.bindChartKit(ChartKit)',
+      );
     }
     return <PluginWidget {...props} ref={forwardedRef} ChartKit={plugin._ChartKit} />;
   },

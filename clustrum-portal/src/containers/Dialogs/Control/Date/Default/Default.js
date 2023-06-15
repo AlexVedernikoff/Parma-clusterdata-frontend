@@ -41,16 +41,24 @@ const getDefaultRanges = () => {
   const currentQuarterStart = currentQuarterEnd - 2;
   const formattedCurrentQuarterStart = `0${currentQuarterStart + 1}`.slice(-2);
   const formattedCurrentQuarterEnd = `0${currentQuarterEnd + 1}`.slice(-2);
-  const currentQuarterEndLastDay = new Date(currentYear, currentQuarterEnd + 2, 0).getDate();
+  const currentQuarterEndLastDay = new Date(
+    currentYear,
+    currentQuarterEnd + 2,
+    0,
+  ).getDate();
 
   return {
     [DEFAULT_RANGE_TYPES.CurrentMonth]: {
       from: moment(`${currentYear}-${formattedCurrentMonth}-01`).format(),
-      to: moment(`${currentYear}-${formattedCurrentMonth}-${currentMonthLastDay}`).format(),
+      to: moment(
+        `${currentYear}-${formattedCurrentMonth}-${currentMonthLastDay}`,
+      ).format(),
     },
     [DEFAULT_RANGE_TYPES.CurrentQuarter]: {
       from: moment(`${currentYear}-${formattedCurrentQuarterStart}-01`).format(),
-      to: moment(`${currentYear}-${formattedCurrentQuarterEnd}-${currentQuarterEndLastDay}`).format(),
+      to: moment(
+        `${currentYear}-${formattedCurrentQuarterEnd}-${currentQuarterEndLastDay}`,
+      ).format(),
     },
     [DEFAULT_RANGE_TYPES.CurrentYear]: {
       from: moment(`${currentYear}-01-01`).format(),
@@ -217,7 +225,10 @@ class Default extends React.PureComponent {
     let data = cloneDeep(defaultValue);
     if (data.type === FILTER_TYPES.Relative) {
       if (this.props.isRange) {
-        if ((data.value.from === '-' && data.value.to === '-') || (data.value.from === '' && data.value.to === '')) {
+        if (
+          (data.value.from === '-' && data.value.to === '-') ||
+          (data.value.from === '' && data.value.to === '')
+        ) {
           data = this.initDefaultValues;
         } else if (data.value.from === '-') {
           data.value.from = '';
@@ -230,7 +241,10 @@ class Default extends React.PureComponent {
           data = this.initDefaultValues;
         }
       }
-    } else if (data.type === FILTER_TYPES.Date || data.type === FILTER_TYPES.DefaultRanges) {
+    } else if (
+      data.type === FILTER_TYPES.Date ||
+      data.type === FILTER_TYPES.DefaultRanges
+    ) {
       if (this.props.isRange) {
         if (data.value.from === '' && data.value.to === '') {
           data = this.initDefaultValues;
@@ -246,7 +260,10 @@ class Default extends React.PureComponent {
     this.closeDialog();
   };
 
-  onChangeRadioBox = event => this.setState({ defaultValue: { ...this.initDefaultValues, type: event.target.value } });
+  onChangeRadioBox = event =>
+    this.setState({
+      defaultValue: { ...this.initDefaultValues, type: event.target.value },
+    });
 
   get initDefaultValues() {
     return { type: '', value: { from: '', to: '' } };
@@ -256,7 +273,12 @@ class Default extends React.PureComponent {
     return text => {
       const { defaultValue } = this.state;
       if (this.isValidNumber(text)) {
-        this.setState({ defaultValue: { ...defaultValue, value: { ...defaultValue.value, [name]: text } } });
+        this.setState({
+          defaultValue: {
+            ...defaultValue,
+            value: { ...defaultValue.value, [name]: text },
+          },
+        });
       }
     };
   }
@@ -458,7 +480,12 @@ class Default extends React.PureComponent {
   renderDialog() {
     const { showDialog } = this.state;
     return (
-      <Dialog visible={showDialog} caption="Значение по умолчанию" onApply={this.onEnter} onClose={this.closeDialog}>
+      <Dialog
+        visible={showDialog}
+        caption="Значение по умолчанию"
+        onApply={this.onEnter}
+        onClose={this.closeDialog}
+      >
         {this.props.isRange ? this.renderRange() : this.renderSingle()}
       </Dialog>
     );

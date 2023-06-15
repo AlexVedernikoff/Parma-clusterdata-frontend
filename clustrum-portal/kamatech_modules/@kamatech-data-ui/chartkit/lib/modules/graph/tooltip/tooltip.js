@@ -102,7 +102,9 @@ ${
             </td>
     
             ${
-              data.holiday || data.commentDateText || (data.xComments && data.xComments.length)
+              data.holiday ||
+              data.commentDateText ||
+              (data.xComments && data.xComments.length)
                 ? `<td class="_tooltip-betw-line"></td>
                     <td class="_tooltip-right__td">
                         ${
@@ -121,9 +123,9 @@ ${
         
                         ${
                           data.commentDateText
-                            ? `<div class="${data.xComments ? '_tooltip-right__margin-bot' : ''}">${
-                                data.commentDateText
-                              }</div>`
+                            ? `<div class="${
+                                data.xComments ? '_tooltip-right__margin-bot' : ''
+                              }">${data.commentDateText}</div>`
                             : ''
                         }
         

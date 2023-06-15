@@ -35,7 +35,12 @@ function _objectSpread(target) {
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
-    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true,
+    });
   } else {
     obj[key] = value;
   }
@@ -282,7 +287,10 @@ export default decl(
         labels = _this$props2.children;
 
       if (Children.count(labels) === 2) {
-        action = (checked && side !== 'left') || (!checked && side !== 'right') ? undefined : action;
+        action =
+          (checked && side !== 'left') || (!checked && side !== 'right')
+            ? undefined
+            : action;
       }
 
       return action;

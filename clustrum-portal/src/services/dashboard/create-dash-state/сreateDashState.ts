@@ -4,7 +4,10 @@ import { store } from '../../../store';
 import { isEmpty } from 'lodash';
 import { HashState } from './types/HashState';
 
-export const createDashState = async (entryId: string, tabItemIds: string[]): Promise<{ uuid: string }> => {
+export const createDashState = async (
+  entryId: string,
+  tabItemIds: string[],
+): Promise<{ uuid: string }> => {
   const emptyResponse = Promise.resolve({ uuid: '' });
 
   const hashState = hashStateByTab(tabItemIds, getHashState(store.getState()));

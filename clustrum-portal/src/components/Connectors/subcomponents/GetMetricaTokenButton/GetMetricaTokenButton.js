@@ -49,11 +49,17 @@ class AppMetricaConnector extends React.Component {
   };
 
   onGetTokenBtnClick = async () => {
-    const { metrikaOAuthClientId, endpoints: { extPassportOAuth: oauthUrl } = {} } = window.DL;
+    const {
+      metrikaOAuthClientId,
+      endpoints: { extPassportOAuth: oauthUrl } = {},
+    } = window.DL;
     const redirectUrl = window.location.origin;
 
     const queryParams = `response_type=code&client_id=${metrikaOAuthClientId}&redirect_uri=${redirectUrl}`;
-    const oauthPageWindow = window.open(`${oauthUrl}/authorize?${queryParams}`, 'authPage');
+    const oauthPageWindow = window.open(
+      `${oauthUrl}/authorize?${queryParams}`,
+      'authPage',
+    );
 
     const confirmCode = await this.getConfirmCode({ oauthPageWindow });
 

@@ -40,7 +40,11 @@ export default decl(
       var action = _ref.action;
 
       return [].concat(_toConsumableArray(this.__base.apply(this, arguments) || []), [
-        { block: 'menu', elem: 'item', mods: { type: 'link', hovered: bool2string(this.state.hovered) } },
+        {
+          block: 'menu',
+          elem: 'item',
+          mods: { type: 'link', hovered: bool2string(this.state.hovered) },
+        },
       ]);
     },
     attrs: function attrs(_ref2) {

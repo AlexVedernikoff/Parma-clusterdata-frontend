@@ -48,7 +48,9 @@
   color: var(--yc-lego-color-placeholder);
 }
 
-.yc-root .kamatech-textinput_view_classic.kamatech-textinput_theme_normal .kamatech-textinput__box {
+.yc-root
+  .kamatech-textinput_view_classic.kamatech-textinput_theme_normal
+  .kamatech-textinput__box {
   border: 1px solid var(--yc-lego-color-border-medium);
   background-color: var(--yc-lego-color-base);
 }
@@ -295,7 +297,9 @@
   top: 0;
 }
 
-.kamatech-textinput_view_default.kamatech-textinput_size_s .kamatech-textinput__clear svg {
+.kamatech-textinput_view_default.kamatech-textinput_size_s
+  .kamatech-textinput__clear
+  svg {
   width: 12px;
   height: 12px;
 }

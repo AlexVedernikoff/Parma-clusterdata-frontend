@@ -137,7 +137,10 @@ export default declMod(
     },
     constructShowUrl_: function constructShowUrl_(bannerData) {
       try {
-        return bannerData.distribution.linkhead + bannerData.distribution.plus_popup[0].linknext || '';
+        return (
+          bannerData.distribution.linkhead +
+            bannerData.distribution.plus_popup[0].linknext || ''
+        );
       } catch (e) {
         return '';
       }

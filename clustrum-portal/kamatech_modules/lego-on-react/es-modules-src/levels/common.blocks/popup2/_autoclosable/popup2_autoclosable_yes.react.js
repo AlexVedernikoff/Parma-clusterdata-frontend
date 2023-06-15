@@ -63,7 +63,10 @@ export default declMod(
       return anchor && anchor.call ? anchor() : anchor;
     },
     _isElementOutside: function _isElementOutside(element) {
-      if (this.containerRef.current.contains(element) || this.isElementInsideChildPopups(element)) {
+      if (
+        this.containerRef.current.contains(element) ||
+        this.isElementInsideChildPopups(element)
+      ) {
         return false;
       }
 
@@ -91,7 +94,10 @@ export default declMod(
       onOutsideClick: function onOutsideClick(_ref3) {
         var autoclosable = _ref3.autoclosable;
 
-        return (autoclosable ? PropTypes.func.isRequired : PropTypes.func).apply(undefined, arguments);
+        return (autoclosable ? PropTypes.func.isRequired : PropTypes.func).apply(
+          undefined,
+          arguments,
+        );
       },
     },
   },

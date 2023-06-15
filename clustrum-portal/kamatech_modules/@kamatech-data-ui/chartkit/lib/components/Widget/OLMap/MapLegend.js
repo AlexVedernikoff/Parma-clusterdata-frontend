@@ -4,16 +4,26 @@ import MapUtils from './MapUtils';
 import { MapConstant } from './map-constant';
 
 class MapLegend {
-  static getLegend(mapColor, colorField, mapColorFieldName, clickCallBack, legendElement) {
+  static getLegend(
+    mapColor,
+    colorField,
+    mapColorFieldName,
+    clickCallBack,
+    legendElement,
+  ) {
     if (!mapColor || mapColor.size === 0) {
       return '';
     }
     let items = '';
-    mapColor.forEach((value, key) => (items += this.getLegendItem(key, value, colorField, clickCallBack)));
+    mapColor.forEach(
+      (value, key) =>
+        (items += this.getLegendItem(key, value, colorField, clickCallBack)),
+    );
     legendElement.innerHTML = `<div  class="legend" >
                     <div  class="legend__header header">
                         <div  class="header__icon"></div>
-                        <div  class="header__title">${mapColorFieldName || 'Легенда'}</div>
+                        <div  class="header__title">${mapColorFieldName ||
+                          'Легенда'}</div>
                     </div>
                     <div  class="legend__body">
                         <div  class="legend__body-column">
@@ -52,7 +62,8 @@ class MapLegend {
       return NumberValue.toLocaleString(value);
     }
 
-    const isRangeNumbers = value && value.toString().split(MapConstant.defaultMapLegendDash).length === 2;
+    const isRangeNumbers =
+      value && value.toString().split(MapConstant.defaultMapLegendDash).length === 2;
     if (isRangeNumbers) {
       const [start, end] = value.split(MapConstant.defaultMapLegendDash);
       return `${NumberValue.toLocaleString(start)} - ${NumberValue.toLocaleString(end)}`;
@@ -70,7 +81,11 @@ class MapLegend {
             </div>`;
   }
 
-  static calcHeatmapLegend(features, originalFeatures, opacity = MapConstant.defaultMapLayerOpacity) {
+  static calcHeatmapLegend(
+    features,
+    originalFeatures,
+    opacity = MapConstant.defaultMapLayerOpacity,
+  ) {
     let colorMap = new Map();
 
     let maxValue = Math.max.apply(
@@ -113,7 +128,10 @@ class MapLegend {
 
       if (diff > 0) {
         let step = Math.ceil(diff / MapConstant.defaultMapLegendRangesLimit);
-        colorMap.set(minValue + step * 5 + MapConstant.defaultMapLegendDash + maxValue, 'rgba(' + colors[0] + ')');
+        colorMap.set(
+          minValue + step * 5 + MapConstant.defaultMapLegendDash + maxValue,
+          'rgba(' + colors[0] + ')',
+        );
         colorMap.set(
           minValue + step * 4 + MapConstant.defaultMapLegendDash + (minValue + step * 5),
           'rgba(' + colors[1] + ')',
@@ -130,7 +148,10 @@ class MapLegend {
           minValue + step + MapConstant.defaultMapLegendDash + (minValue + step * 2),
           'rgba(' + colors[4] + ')',
         );
-        colorMap.set(minValue + MapConstant.defaultMapLegendDash + (minValue + step), 'rgba(' + colors[5] + ')');
+        colorMap.set(
+          minValue + MapConstant.defaultMapLegendDash + (minValue + step),
+          'rgba(' + colors[5] + ')',
+        );
       } else {
         colorMap.set(minValue, 'rgba(' + colors[0] + ')');
       }
@@ -163,7 +184,8 @@ class MapLegend {
     }
 
     const colorKey = Array.from(colorMap.keys()).find(color => {
-      const isRange = color.split && color.split(MapConstant.defaultMapLegendDash).length === 2;
+      const isRange =
+        color.split && color.split(MapConstant.defaultMapLegendDash).length === 2;
       if (isRange) {
         const [start, end] = color.split(MapConstant.defaultMapLegendDash);
         return colorValue >= Number(start) && colorValue <= Number(end);

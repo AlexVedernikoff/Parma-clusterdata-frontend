@@ -282,7 +282,10 @@ export default class Utils {
 
   static getNormalizedError(error) {
     const {
-      response: { data: { message: responseMessage } = {}, headers: { 'x-request-id': requestId } = {} } = {},
+      response: {
+        data: { message: responseMessage } = {},
+        headers: { 'x-request-id': requestId } = {},
+      } = {},
       message,
     } = error;
 

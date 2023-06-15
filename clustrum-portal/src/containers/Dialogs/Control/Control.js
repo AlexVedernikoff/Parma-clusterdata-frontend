@@ -25,7 +25,11 @@ import {
   getOpenedItemDefaults,
   isDialogVisible,
 } from '../../../store/selectors/dash';
-import { closeDialog, openExpandedFilter, setItemData } from '../../../store/actions/dash';
+import {
+  closeDialog,
+  openExpandedFilter,
+  setItemData,
+} from '../../../store/actions/dash';
 
 // import './Control.scss';
 
@@ -73,7 +77,10 @@ class Control extends React.PureComponent {
           external: {},
           defaults: props.defaults,
           availableItems: props.availableItems,
-          control: state.sourceType === CONTROL_SOURCE_TYPE.EXTERNAL ? {} : { elementType: ELEMENT_TYPE.SELECT },
+          control:
+            state.sourceType === CONTROL_SOURCE_TYPE.EXTERNAL
+              ? {}
+              : { elementType: ELEMENT_TYPE.SELECT },
         };
       }
 
@@ -126,7 +133,9 @@ class Control extends React.PureComponent {
         ? propsValue || this._createEmptyValue(control.elementType)
         : controlValue;
 
-    const mergedDefaults = field ? { [field]: selectValue(control.defaultValue, defaults[field]) } : defaults;
+    const mergedDefaults = field
+      ? { [field]: selectValue(control.defaultValue, defaults[field]) }
+      : defaults;
 
     const mergedAvailableItems = field
       ? { [field]: selectValue(control.availableValues, availableItems[field]) }
@@ -227,7 +236,11 @@ class Control extends React.PureComponent {
       <React.Fragment>
         {sourceType === CONTROL_SOURCE_TYPE.DATASET && (
           <React.Fragment>
-            <Dataset title="Набор данных" datasetId={id} onClick={id => this.setState({ dataset: { id } })} />
+            <Dataset
+              title="Набор данных"
+              datasetId={id}
+              onClick={id => this.setState({ dataset: { id } })}
+            />
             <DatasetField
               title="Поле"
               datasetId={id}
@@ -242,7 +255,11 @@ class Control extends React.PureComponent {
           </React.Fragment>
         )}
         {sourceType !== CONTROL_SOURCE_TYPE.EXTERNAL && (
-          <ElementType title="Тип элемента" elementType={elementType} onChange={this.changeElementType} />
+          <ElementType
+            title="Тип элемента"
+            elementType={elementType}
+            onChange={this.changeElementType}
+          />
         )}
         {sourceType !== CONTROL_SOURCE_TYPE.DATASET && (
           <TextInput

@@ -49,7 +49,8 @@ const getShapedMenuData = menuData => {
           return {
             ...item,
             icon: iconData ? iconData.icon : undefined,
-            iconClassName: iconData && iconData.iconClassName ? iconData.iconClassName : undefined,
+            iconClassName:
+              iconData && iconData.iconClassName ? iconData.iconClassName : undefined,
           };
         }),
       };
@@ -59,7 +60,12 @@ const getShapedMenuData = menuData => {
 
 const withPreparedMenu = Component => {
   function WithPreparedMenu(props) {
-    return <Component {...props} menuData={DL.IS_INTERNAL ? props.menuData : getShapedMenuData(props.menuData)} />;
+    return (
+      <Component
+        {...props}
+        menuData={DL.IS_INTERNAL ? props.menuData : getShapedMenuData(props.menuData)}
+      />
+    );
   }
 
   WithPreparedMenu.propTypes = {

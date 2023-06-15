@@ -76,7 +76,11 @@ class DialogCopyEntry extends Component {
       })
       .catch(error => {
         this.setState({ progress: false, showError: this.dialogProps.withError });
-        this.dialogProps.onNotify({ error, message: this.dialogProps.errorText, type: ERROR_TYPE });
+        this.dialogProps.onNotify({
+          error,
+          message: this.dialogProps.errorText,
+          type: ERROR_TYPE,
+        });
       });
   };
 

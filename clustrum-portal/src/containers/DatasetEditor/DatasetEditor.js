@@ -112,7 +112,13 @@ class DatasetEditor extends React.Component {
 
   debouncedUpdate2000 = _debounce(this.props.updateDatasetByValidation, 2000);
 
-  modifyFields = ({ actionType, field, debounce = false, updatePreview = false, validateEnabled = true }) => {
+  modifyFields = ({
+    actionType,
+    field,
+    debounce = false,
+    updatePreview = false,
+    validateEnabled = true,
+  }) => {
     const {
       updateDatasetByValidation,
       addField,
@@ -253,7 +259,16 @@ class DatasetEditor extends React.Component {
   };
 
   render() {
-    const { sdk, datasetId, types, sources, validation, aceModeUrl, fields: fieldsStore, updateRLS } = this.props;
+    const {
+      sdk,
+      datasetId,
+      types,
+      sources,
+      validation,
+      aceModeUrl,
+      fields: fieldsStore,
+      updateRLS,
+    } = this.props;
     const {
       isFieldEditorVisible,
       isDisplayHiddenFields,
@@ -329,4 +344,6 @@ const mapDispatchToProps = {
   updateRLS,
 };
 
-export default compose(connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true }))(DatasetEditor);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true }),
+)(DatasetEditor);

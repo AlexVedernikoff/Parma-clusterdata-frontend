@@ -131,11 +131,17 @@ ChartMetric.prototype.processConfig = function(data) {
         : formattedValue.unit;
     }
     if (content.diff && (content.diff.formatted || content.diff.value == undefined)) {
-      if (content.diff.value == undefined && (content.last.value == undefined || content.current.value == undefined)) {
+      if (
+        content.diff.value == undefined &&
+        (content.last.value == undefined || content.current.value == undefined)
+      ) {
         delete content.diff;
       } else {
         diff = Number(content.current.value) - Number(content.last.value);
-        formattedValue = this.formatValue(content.diff.value == undefined ? diff : content.diff.value, true);
+        formattedValue = this.formatValue(
+          content.diff.value == undefined ? diff : content.diff.value,
+          true,
+        );
 
         data.content.diff.value = formattedValue.value;
         data.content.diff.sign = formattedValue.sign;
@@ -144,14 +150,19 @@ ChartMetric.prototype.processConfig = function(data) {
           : formattedValue.unit;
       }
     }
-    if (content.diffPercent && (content.diffPercent.formatted || content.diffPercent.value == undefined)) {
+    if (
+      content.diffPercent &&
+      (content.diffPercent.formatted || content.diffPercent.value == undefined)
+    ) {
       if (
         content.diffPercent.value == undefined &&
         (content.last.value == undefined || content.current.value == undefined)
       ) {
         delete content.diffPercent;
       } else {
-        diff = (Number(content.current.value) - Number(content.last.value)) / Number(content.last.value);
+        diff =
+          (Number(content.current.value) - Number(content.last.value)) /
+          Number(content.last.value);
         formattedValue = this.formatValue(
           content.diffPercent.value == undefined ? diff : content.diffPercent.value,
           true,
@@ -171,7 +182,12 @@ ChartMetric.prototype.processConfig = function(data) {
     data.background = this.getBackground(data, GREEN_BACKGROUND, RED_BACKGROUND);
   }
 
-  if (data.colorize && data.chart && Array.isArray(data.chart.graphs) && !data.chart.graphs[0].color) {
+  if (
+    data.colorize &&
+    data.chart &&
+    Array.isArray(data.chart.graphs) &&
+    !data.chart.graphs[0].color
+  ) {
     data.chart.graphs[0].color = this.getBackground(data, GREEN_COLOR, RED_COLOR);
   }
 
@@ -245,7 +261,8 @@ ChartMetric.prototype.getBackground = function(data, green, red) {
     diffContent = content.diffPercent;
   } else if (content.current.value != undefined && content.last.value) {
     diffContent = this.formatValue(
-      (Number(content.current.value) - Number(content.last.value)) / Number(content.last.value),
+      (Number(content.current.value) - Number(content.last.value)) /
+        Number(content.last.value),
       true,
       'percentage',
     );
@@ -300,7 +317,10 @@ ChartMetric.prototype.generateChart = function(metricData, chartContainer) {
     if (
       !data ||
       (typeof data === 'object' && !Object.keys(data).length) ||
-      (data.graphs && !(data.graphs.length && data.graphs.some(graph => graph.data && graph.data.length))) ||
+      (data.graphs &&
+        !(
+          data.graphs.length && data.graphs.some(graph => graph.data && graph.data.length)
+        )) ||
       (Array.isArray(data) && !data.length)
     ) {
       return null;
@@ -309,7 +329,10 @@ ChartMetric.prototype.generateChart = function(metricData, chartContainer) {
 
     try {
       const renderConfig = getGraph(config, data);
-      ReactDOM.render(<ReactHighcharts chartType="Chart" {...renderConfig} />, chartContainer);
+      ReactDOM.render(
+        <ReactHighcharts chartType="Chart" {...renderConfig} />,
+        chartContainer,
+      );
     } catch (error) {
       console.error('METRIC_CHART_RENDER', error);
       return null;

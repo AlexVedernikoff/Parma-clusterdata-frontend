@@ -20,7 +20,8 @@ const b = block('dl-suggest');
 export default class Suggest extends React.Component {
   static propTypes = {
     renderItem: PropTypes.func.isRequired,
-    data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object])).isRequired,
+    data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object]))
+      .isRequired,
     emptyItem: PropTypes.element,
     disabled: PropTypes.bool,
     visible: PropTypes.bool,
@@ -232,7 +233,9 @@ export default class Suggest extends React.Component {
           hasClear
           {...inputProps}
         />
-        <div className={b('omnibar', { visible: omnibarVisible && 'yes' })}>{this.renderList()}</div>
+        <div className={b('omnibar', { visible: omnibarVisible && 'yes' })}>
+          {this.renderList()}
+        </div>
       </div>
     );
   }

@@ -4,7 +4,10 @@ var _typeof =
         return typeof obj;
       }
     : function(obj) {
-        return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype
+        return obj &&
+          typeof Symbol === 'function' &&
+          obj.constructor === Symbol &&
+          obj !== Symbol.prototype
           ? 'symbol'
           : typeof obj;
       };
