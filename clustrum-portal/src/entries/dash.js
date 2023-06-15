@@ -13,6 +13,7 @@ import { ANT_TOKEN } from '../constants/constants';
 
 import './../css/app.css';
 import './../css/vendors.css';
+import './../css/colors.css';
 import './../css/commons.css';
 import './../css/dash.css';
 import './../css/dash-new.css';

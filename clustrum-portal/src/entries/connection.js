@@ -10,6 +10,7 @@ import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 import ConnectionsRouter from '../components/ConnectionsRouter/ConnectionsRouter';
 
 import './../css/vendors.css';
+import './../css/colors.css';
 import './../css/commons.css';
 import './../css/connection.css';
 
