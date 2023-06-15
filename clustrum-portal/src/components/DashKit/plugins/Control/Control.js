@@ -361,7 +361,7 @@ class Control extends React.PureComponent {
   }
 
   _convertToPartialMatchValue(valueInput, fieldDataType) {
-    //TODO добавить enum для DataType
+    // TODO добавить enum для DataType
     if (fieldDataType !== 'STRING') {
       return valueInput;
     }

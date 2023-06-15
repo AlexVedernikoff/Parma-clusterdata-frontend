@@ -3,7 +3,9 @@ import merge from 'lodash/merge';
 import mergeWith from 'lodash/mergeWith';
 import { drawComments, hideComments, drawOnlyRendererComments } from './drawing';
 import defaultOptions from './get-default-options';
-//LEGACY: зависимости старой фабрики виджитов
+// TODO: убрать зависимость старой фабрики виджетов после переписывания этого скрипта
+// eslint-disable-next-line
+// @ts-ignore
 import ExtensionsManager from '@kamatech-data-ui/chartkit/lib/modules/extensions-manager/extensions-manager';
 
 const EXTENSION_KEY = {

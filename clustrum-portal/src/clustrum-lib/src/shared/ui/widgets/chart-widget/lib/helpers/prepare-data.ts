@@ -1,8 +1,12 @@
 import moment from 'moment';
 import lodashMin from 'lodash/min';
-//LEGACY: зависимости старой фабрики виджитов
+// TODO: убрать зависимость старой фабрики виджетов после переписывания этого скрипта
+// eslint-disable-next-line
+// @ts-ignore
 import ErrorDispatcher from '@kamatech-data-ui/chartkit/lib/modules/error-dispatcher/error-dispatcher';
-//LEGACY: зависимости старой фабрики виджитов
+// TODO: убрать зависимость старой фабрики виджетов после переписывания этого скрипта
+// eslint-disable-next-line
+// @ts-ignore
 import ExtensionsManager from '@kamatech-data-ui/chartkit/lib/modules/extensions-manager/extensions-manager';
 
 const ERROR_TYPE = {
