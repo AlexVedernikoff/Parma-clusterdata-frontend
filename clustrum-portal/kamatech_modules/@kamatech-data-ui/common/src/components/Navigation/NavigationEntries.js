@@ -395,7 +395,7 @@ class NavigationEntries extends React.Component {
         {modalView ? (
           <Header
             leftSideContent={inputSearch}
-            rightSideContent={createButton}
+            rightSideContent={mode !== 'minimal' ? createButton : <></>}
             path={navigationItems(place, path)}
           />
         ) : (

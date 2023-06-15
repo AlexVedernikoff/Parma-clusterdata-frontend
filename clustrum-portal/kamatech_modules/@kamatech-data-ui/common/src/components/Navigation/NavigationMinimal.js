@@ -237,6 +237,7 @@ class NavigationMinimal extends React.Component {
               ref={this.refEntries}
               {...this.props}
               mode={MODE_MINIMAL}
+              modalView={true}
               getPlaceParameters={this.props.getPlaceParameters}
               focusSearchInput={this.focusSearchInput}
               clearSearchInput={this.clearSearchInput}
