@@ -10,23 +10,23 @@ import './side-panel.css';
 import { MENU_ITEMS } from '../lib/constants/menu-items';
 
 interface SidePanelProps {
-  withoutReactRouter?: boolean;
+  withReactRouter?: boolean;
 }
 
-export function SidePanel({ withoutReactRouter = true }: SidePanelProps): ReactElement {
+export function SidePanel({ withReactRouter = false }: SidePanelProps): ReactElement {
   const [collapsed, setCollapsed] = useState(false);
   const history = useHistory();
   const selectedKey = useActiveMenuItemKey();
 
   const handleSidePanelItemClick = useCallback(
     (item: MenuItemType) => {
-      if (withoutReactRouter) {
+      if (!withReactRouter) {
         window.location.pathname = item.key.toString();
       } else {
         history.push(item.key.toString());
       }
     },
-    [history, withoutReactRouter],
+    [history, withReactRouter],
   );
 
   return (
