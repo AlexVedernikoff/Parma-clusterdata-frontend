@@ -1,7 +1,9 @@
 import React from 'react';
 
-// LEGACY
-import DateFormat from '../../../../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/date/date-format';
+// TODO: убрать зависимость после её переписывания
+// eslint-disable-next-line
+// @ts-ignore
+import DateFormat from '@kamatech-data-ui/chartkit/lib/modules/date/date-format';
 
 import { Cell, DateType, Options } from '../types';
 import { numberFormatter } from '../lib';

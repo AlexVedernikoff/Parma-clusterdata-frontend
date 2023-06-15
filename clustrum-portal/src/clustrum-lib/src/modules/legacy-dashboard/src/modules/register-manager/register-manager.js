@@ -2,7 +2,12 @@ export class RegisterManager {
   constructor() {
     this._items = {};
     this._defaultLayout = { x: 0, y: Infinity, w: Infinity, h: 4, minW: 4, minH: 2 };
-    this._gridLayout = { rowHeight: 18, cols: 36, margin: [2, 2], containerPadding: [0, 0] };
+    this._gridLayout = {
+      rowHeight: 18,
+      cols: 36,
+      margin: [2, 2],
+      containerPadding: [0, 0],
+    };
     this._settings = {
       theme: 'default',
     };

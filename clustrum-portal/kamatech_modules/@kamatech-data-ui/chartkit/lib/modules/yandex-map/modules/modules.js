@@ -16,7 +16,8 @@ function defineGridmapAndPolygonmap(ymaps) {
     (n.m = t),
       (n.c = e),
       (n.d = function(t, e, r) {
-        n.o(t, e) || Object.defineProperty(t, e, { configurable: !1, enumerable: !0, get: r });
+        n.o(t, e) ||
+          Object.defineProperty(t, e, { configurable: !1, enumerable: !0, get: r });
       }),
       (n.r = function(t) {
         Object.defineProperty(t, '__esModule', { value: !0 });
@@ -58,7 +59,11 @@ function defineGridmapAndPolygonmap(ymaps) {
     },
     function(t, e, n) {
       t.exports = function(t, e) {
-        for (var n = e[0], i = e[1], o = t.length, s = 1, a = o, d = 0, u = o - 1; d < a; u = d++) {
+        for (
+          var n = e[0], i = e[1], o = t.length, s = 1, a = o, d = 0, u = o - 1;
+          d < a;
+          u = d++
+        ) {
           var c = t[d],
             g = t[u],
             l = c[1],
@@ -191,7 +196,8 @@ function defineGridmapAndPolygonmap(ymaps) {
         return [t[0] / 255, t[1] / 255, t[2] / 255, t[3]];
       }
       function s(t) {
-        for (var e, n = '#', r = 0; r < 3; ++r) n += ('00' + (e = (e = t[r]).toString(16))).substr(e.length);
+        for (var e, n = '#', r = 0; r < 3; ++r)
+          n += ('00' + (e = (e = t[r]).toString(16))).substr(e.length);
         return n;
       }
       function a(t) {
@@ -200,15 +206,19 @@ function defineGridmapAndPolygonmap(ymaps) {
       t.exports = function(t) {
         var e, n, d, u, c, g, l, p, f, b;
         t || (t = {});
-        (p = (t.nshades || 72) - 1), (l = t.format || 'hex'), (g = t.colormap) || (g = 'jet');
+        (p = (t.nshades || 72) - 1),
+          (l = t.format || 'hex'),
+          (g = t.colormap) || (g = 'jet');
         if ('string' == typeof g) {
-          if (((g = g.toLowerCase()), !r[g])) throw Error(g + ' not a supported colorscale');
+          if (((g = g.toLowerCase()), !r[g]))
+            throw Error(g + ' not a supported colorscale');
           c = r[g];
         } else {
           if (!Array.isArray(g)) throw Error('unsupported colormap option', g);
           c = g.slice();
         }
-        if (c.length > p) throw new Error(g + ' map requires nshades to be at least size ' + c.length);
+        if (c.length > p)
+          throw new Error(g + ' map requires nshades to be at least size ' + c.length);
         f = Array.isArray(t.alpha)
           ? 2 !== t.alpha.length
             ? [1, 1]
@@ -224,7 +234,9 @@ function defineGridmapAndPolygonmap(ymaps) {
         var h = c.map(function(t, e) {
             var n = c[e].index,
               r = c[e].rgb.slice();
-            return 4 === r.length && r[3] >= 0 && r[3] <= 1 ? r : ((r[3] = f[0] + (f[1] - f[0]) * n), r);
+            return 4 === r.length && r[3] >= 0 && r[3] <= 1
+              ? r
+              : ((r[3] = f[0] + (f[1] - f[0]) * n), r);
           }),
           x = [];
         for (b = 0; b < e.length - 1; ++b) {
@@ -240,7 +252,11 @@ function defineGridmapAndPolygonmap(ymaps) {
           }
         }
         x.push(c[c.length - 1].rgb.concat(f[1])),
-          'hex' === l ? (x = x.map(s)) : 'rgbaString' === l ? (x = x.map(a)) : 'float' === l && (x = x.map(o));
+          'hex' === l
+            ? (x = x.map(s))
+            : 'rgbaString' === l
+            ? (x = x.map(a))
+            : 'float' === l && (x = x.map(o));
         return x;
       };
     },
@@ -251,8 +267,11 @@ function defineGridmapAndPolygonmap(ymaps) {
         let { type: r, coordinates: i } = t.geometry;
         return (
           'MultiPolygon' === t.geometry.type &&
-            ((r = 'Polygon'), (i = t.geometry.coordinates.reduce((t, e) => t.concat(e), []))),
-          Object.assign({}, n, t, { geometry: { type: r, coordinates: i, fillRule: 'evenOdd' } })
+            ((r = 'Polygon'),
+            (i = t.geometry.coordinates.reduce((t, e) => t.concat(e), []))),
+          Object.assign({}, n, t, {
+            geometry: { type: r, coordinates: i, fillRule: 'evenOdd' },
+          })
         );
       };
       var i = function(t) {
@@ -347,15 +366,19 @@ function defineGridmapAndPolygonmap(ymaps) {
           if (
             ((this._maxPointsCount = t),
             'object' == typeof e.colorRanges
-              ? ((this._ranges = e.colorRanges), (this._rangesCount = this._ranges.length))
-              : ((this._rangesCount = e.colorRanges), (this._ranges = this._createRangesArray())),
+              ? ((this._ranges = e.colorRanges),
+                (this._rangesCount = this._ranges.length))
+              : ((this._rangesCount = e.colorRanges),
+                (this._ranges = this._createRangesArray())),
             (this._colors =
               'object' == typeof e.colorScheme
                 ? e.colorScheme
                 : f()({ colormap: e.colorScheme, nshades: this._rangesCount })),
             this._colors.length !== this._rangesCount)
           )
-            throw new Error('The length of the colorScheme array and ranges must be equal');
+            throw new Error(
+              'The length of the colorScheme array and ranges must be equal',
+            );
         }
         _createRangesArray() {
           const t = [];
@@ -387,7 +410,11 @@ function defineGridmapAndPolygonmap(ymaps) {
             n = t.getMap(),
             r = t.colorize.getColorMap(),
             i = t.colorize.getColorRanges(),
-            o = r.map((e, n) => ({ name: e, value: i[n], opacity: t.options.get('colorOpacity') })),
+            o = r.map((e, n) => ({
+              name: e,
+              value: i[n],
+              opacity: t.options.get('colorOpacity'),
+            })),
             s = function(t) {
               s.superclass.constructor.call(this, t);
             };
@@ -401,7 +428,9 @@ function defineGridmapAndPolygonmap(ymaps) {
             },
             _onGetChildElement(t) {
               const n = document.createElement('div');
-              (n.className = 'ymaps-color-legend'), (n.innerHTML = e(o.reverse())), t.appendChild(n);
+              (n.className = 'ymaps-color-legend'),
+                (n.innerHTML = e(o.reverse())),
+                t.appendChild(n);
             },
           });
           const a = new s();
@@ -419,151 +448,180 @@ function defineGridmapAndPolygonmap(ymaps) {
             )
             .join('\n')}\n        </div>\n    `,
       };
-      ymaps.modules.define('Polygonmap', ['meta', 'option.Manager', 'ObjectManager'], (t, e, n, c) => {
-        t(
-          class {
-            constructor(t, e) {
-              const r = new n({
-                mapper: i,
-                fillBy: 'points',
-                fillByWeightProp: 'weight',
-                fillByWeightType: 'middle',
-                colorRanges: 4,
-                colorScheme: ['#e66a54', '#ce4356', '#ab2960', '#571756'],
-                fillOpacity: 0.8,
-                fillColorEmptyPolygon: '#f4f6f8',
-                strokeColor: '#fff',
-                strokeWidth: 1,
-                showLegend: !0,
-                legendTemplate: h.defaultTemplate,
-                legendPosition: { top: 10, right: 10 },
-                filter: void 0,
-                filterEmptyPolygons: !1,
-                onMouseEnter: s,
-                onMouseLeave: a,
-                onClick: u,
-                balloonContent: d,
-                fillOpacityHover: 0.9,
-                strokeWidthHover: 2,
-                fillOpacityActive: 0.9,
-                strokeWidthActive: 2,
-                interactivity: !0,
-              });
-              this._initOptions(e, r), this.setData(t);
-            }
-            getData() {
-              return this._data || null;
-            }
-            setData(t) {
-              return (
-                (this._data = t),
-                t &&
-                  ((this._data = {
-                    points: { type: 'FeatureCollection', features: [] },
-                    polygons: { type: 'FeatureCollection', features: [] },
-                  }),
-                  this._prepare(t),
-                  this._initObjectManager()),
-                this
-              );
-            }
-            getMap() {
-              return this._map;
-            }
-            setMap(t) {
-              return this._map !== t && ((this._map = t), t && this._data && this._render()), this;
-            }
-            destroy() {
-              this.setData(null),
-                this.objectManager.removeAll(),
-                this._legendControl.setParent(null),
-                this.balloon.close(),
-                this.setMap(null);
-            }
-            _prepare(t) {
-              const n = t.polygons.features,
-                i = this.options.get('fillBy'),
-                o = this.options.get('fillByWeightType'),
-                s = this.options.get('fillByWeightProp');
-              let a = t.points.features,
-                d = 0,
-                u = 0,
-                c = 0;
-              if ('FeatureCollection' === t.polygons.type && 'FeatureCollection' === t.points.type)
-                for (let t = 0; t < n.length; t++) {
-                  const g = [],
-                    p = r(n[t], e, { id: t });
-                  let f = 0,
-                    b = 0;
-                  for (let n = 0; n < a.length; n++) {
-                    let i;
-                    0 === t ? ((i = r(a[n], e, { id: n })), this._data.points.features.push(i)) : (i = a[n]),
-                      l(p.geometry, i.geometry) ? (f++, (b += i.properties[s])) : g.push(i);
+      ymaps.modules.define(
+        'Polygonmap',
+        ['meta', 'option.Manager', 'ObjectManager'],
+        (t, e, n, c) => {
+          t(
+            class {
+              constructor(t, e) {
+                const r = new n({
+                  mapper: i,
+                  fillBy: 'points',
+                  fillByWeightProp: 'weight',
+                  fillByWeightType: 'middle',
+                  colorRanges: 4,
+                  colorScheme: ['#e66a54', '#ce4356', '#ab2960', '#571756'],
+                  fillOpacity: 0.8,
+                  fillColorEmptyPolygon: '#f4f6f8',
+                  strokeColor: '#fff',
+                  strokeWidth: 1,
+                  showLegend: !0,
+                  legendTemplate: h.defaultTemplate,
+                  legendPosition: { top: 10, right: 10 },
+                  filter: void 0,
+                  filterEmptyPolygons: !1,
+                  onMouseEnter: s,
+                  onMouseLeave: a,
+                  onClick: u,
+                  balloonContent: d,
+                  fillOpacityHover: 0.9,
+                  strokeWidthHover: 2,
+                  fillOpacityActive: 0.9,
+                  strokeWidthActive: 2,
+                  interactivity: !0,
+                });
+                this._initOptions(e, r), this.setData(t);
+              }
+              getData() {
+                return this._data || null;
+              }
+              setData(t) {
+                return (
+                  (this._data = t),
+                  t &&
+                    ((this._data = {
+                      points: { type: 'FeatureCollection', features: [] },
+                      polygons: { type: 'FeatureCollection', features: [] },
+                    }),
+                    this._prepare(t),
+                    this._initObjectManager()),
+                  this
+                );
+              }
+              getMap() {
+                return this._map;
+              }
+              setMap(t) {
+                return (
+                  this._map !== t && ((this._map = t), t && this._data && this._render()),
+                  this
+                );
+              }
+              destroy() {
+                this.setData(null),
+                  this.objectManager.removeAll(),
+                  this._legendControl.setParent(null),
+                  this.balloon.close(),
+                  this.setMap(null);
+              }
+              _prepare(t) {
+                const n = t.polygons.features,
+                  i = this.options.get('fillBy'),
+                  o = this.options.get('fillByWeightType'),
+                  s = this.options.get('fillByWeightProp');
+                let a = t.points.features,
+                  d = 0,
+                  u = 0,
+                  c = 0;
+                if (
+                  'FeatureCollection' === t.polygons.type &&
+                  'FeatureCollection' === t.points.type
+                )
+                  for (let t = 0; t < n.length; t++) {
+                    const g = [],
+                      p = r(n[t], e, { id: t });
+                    let f = 0,
+                      b = 0;
+                    for (let n = 0; n < a.length; n++) {
+                      let i;
+                      0 === t
+                        ? ((i = r(a[n], e, { id: n })),
+                          this._data.points.features.push(i))
+                        : (i = a[n]),
+                        l(p.geometry, i.geometry)
+                          ? (f++, (b += i.properties[s]))
+                          : g.push(i);
+                    }
+                    (a = g),
+                      f < d && (d = f),
+                      f > u && (u = f),
+                      (p.properties = p.properties || {}),
+                      (p.properties.pointsCount = f),
+                      'weight' === i &&
+                        ('middle' === o
+                          ? (b = 0 === b && 0 === f ? 0 : b / f) > c && (c = b)
+                          : b > c && (c = b),
+                        (p.properties.pointsWeight = b)),
+                      this._data.polygons.features.push(p);
                   }
-                  (a = g),
-                    f < d && (d = f),
-                    f > u && (u = f),
-                    (p.properties = p.properties || {}),
-                    (p.properties.pointsCount = f),
-                    'weight' === i &&
-                      ('middle' === o ? (b = 0 === b && 0 === f ? 0 : b / f) > c && (c = b) : b > c && (c = b),
-                      (p.properties.pointsWeight = b)),
-                    this._data.polygons.features.push(p);
-                }
-              (this.pointsCountMinimum = d),
-                (this.pointsCountMaximum = u),
-                'weight' === i && (this.pointsWeightMaximum = c);
-            }
-            _render() {
-              this.options.get('interactivity') && this._initInteractivity(),
-                this._map.geoObjects.add(this.objectManager),
-                h.init(this);
-            }
-            _initOptions(t, e) {
-              this.options = new n(t, e);
-              const r = this.options.get('mapper'),
-                i = this.options.get('filterEmptyPolygons'),
-                s = this.options.get('onMouseEnter'),
-                a = this.options.get('onMouseLeave'),
-                d = this.options.get('onClick');
-              this.options.set('mapper', r.bind(this)),
-                i && this.options.set('filter', o.bind(this)),
-                this.options.set('onMouseEnter', s.bind(this)),
-                this.options.set('onMouseLeave', a.bind(this)),
-                this.options.set('onClick', d.bind(this));
-            }
-            _initObjectManager() {
-              const t = this.options.get('mapper'),
-                e = this.options.get('filter'),
-                n = 'weight' === this.options.get('fillBy');
-              if (
-                ((this.colorize = new b(n ? this.pointsWeightMaximum : this.pointsCountMaximum, {
-                  colorScheme: this.options.get('colorScheme'),
-                  colorRanges: this.options.get('colorRanges'),
-                })),
-                t && e)
-              ) {
-                const n = (n, r) => (e(r) && n.push(t(r)), n);
-                this._data.polygons.features = this._data.polygons.features.reduce(n, []);
-              } else
-                t && !e
-                  ? (this._data.polygons.features = this._data.polygons.features.map(t))
-                  : !t && e && (this._data.polygons.features = this._data.polygons.features.filter(e));
-              (this.objectManager = new c()), this.objectManager.add(this._data.polygons);
-            }
-            _initInteractivity() {
-              (this._prevObjectId = null), (this.balloon = new ymaps.Balloon(this._map));
-              const t = this.options.get('onMouseEnter'),
-                e = this.options.get('onMouseLeave'),
-                n = this.options.get('onClick');
-              this.objectManager.events.add('mouseenter', t),
-                this.objectManager.events.add('mouseleave', e),
-                this.balloon.options.setParent(this._map.options),
-                this.objectManager.events.add('click', n);
-            }
-          },
-        );
-      });
+                (this.pointsCountMinimum = d),
+                  (this.pointsCountMaximum = u),
+                  'weight' === i && (this.pointsWeightMaximum = c);
+              }
+              _render() {
+                this.options.get('interactivity') && this._initInteractivity(),
+                  this._map.geoObjects.add(this.objectManager),
+                  h.init(this);
+              }
+              _initOptions(t, e) {
+                this.options = new n(t, e);
+                const r = this.options.get('mapper'),
+                  i = this.options.get('filterEmptyPolygons'),
+                  s = this.options.get('onMouseEnter'),
+                  a = this.options.get('onMouseLeave'),
+                  d = this.options.get('onClick');
+                this.options.set('mapper', r.bind(this)),
+                  i && this.options.set('filter', o.bind(this)),
+                  this.options.set('onMouseEnter', s.bind(this)),
+                  this.options.set('onMouseLeave', a.bind(this)),
+                  this.options.set('onClick', d.bind(this));
+              }
+              _initObjectManager() {
+                const t = this.options.get('mapper'),
+                  e = this.options.get('filter'),
+                  n = 'weight' === this.options.get('fillBy');
+                if (
+                  ((this.colorize = new b(
+                    n ? this.pointsWeightMaximum : this.pointsCountMaximum,
+                    {
+                      colorScheme: this.options.get('colorScheme'),
+                      colorRanges: this.options.get('colorRanges'),
+                    },
+                  )),
+                  t && e)
+                ) {
+                  const n = (n, r) => (e(r) && n.push(t(r)), n);
+                  this._data.polygons.features = this._data.polygons.features.reduce(
+                    n,
+                    [],
+                  );
+                } else
+                  t && !e
+                    ? (this._data.polygons.features = this._data.polygons.features.map(t))
+                    : !t &&
+                      e &&
+                      (this._data.polygons.features = this._data.polygons.features.filter(
+                        e,
+                      ));
+                (this.objectManager = new c()),
+                  this.objectManager.add(this._data.polygons);
+              }
+              _initInteractivity() {
+                (this._prevObjectId = null),
+                  (this.balloon = new ymaps.Balloon(this._map));
+                const t = this.options.get('onMouseEnter'),
+                  e = this.options.get('onMouseLeave'),
+                  n = this.options.get('onClick');
+                this.objectManager.events.add('mouseenter', t),
+                  this.objectManager.events.add('mouseleave', e),
+                  this.balloon.options.setParent(this._map.options),
+                  this.objectManager.events.add('click', n);
+              }
+            },
+          );
+        },
+      );
     },
     function(t, e, n) {
       var r = n(6),
@@ -576,7 +634,8 @@ function defineGridmapAndPolygonmap(ymaps) {
     },
     function(t, e) {
       t.exports = function(t, e) {
-        for (var n = -1, r = null == t ? 0 : t.length, i = Array(r); ++n < r; ) i[n] = e(t[n], n, t);
+        for (var n = -1, r = null == t ? 0 : t.length, i = Array(r); ++n < r; )
+          i[n] = e(t[n], n, t);
         return i;
       };
     },
@@ -625,7 +684,9 @@ function defineGridmapAndPolygonmap(ymaps) {
     function(t, e) {
       t.exports = function(t) {
         var e = typeof t;
-        return 'string' == e || 'number' == e || 'symbol' == e || 'boolean' == e ? '__proto__' !== t : null === t;
+        return 'string' == e || 'number' == e || 'symbol' == e || 'boolean' == e
+          ? '__proto__' !== t
+          : null === t;
       };
     },
     function(t, e, n) {
@@ -672,7 +733,9 @@ function defineGridmapAndPolygonmap(ymaps) {
       t.exports = function(t) {
         var e = this.__data__,
           n = r(e, t);
-        return !(n < 0 || (n == e.length - 1 ? e.pop() : i.call(e, n, 1), --this.size, 0));
+        return !(
+          n < 0 || (n == e.length - 1 ? e.pop() : i.call(e, n, 1), --this.size, 0)
+        );
       };
     },
     function(t, e) {
@@ -706,7 +769,9 @@ function defineGridmapAndPolygonmap(ymaps) {
         i = '__lodash_hash_undefined__';
       t.exports = function(t, e) {
         var n = this.__data__;
-        return (this.size += this.has(t) ? 0 : 1), (n[t] = r && void 0 === e ? i : e), this;
+        return (
+          (this.size += this.has(t) ? 0 : 1), (n[t] = r && void 0 === e ? i : e), this
+        );
       };
     },
     function(t, e, n) {
@@ -762,7 +827,9 @@ function defineGridmapAndPolygonmap(ymaps) {
     function(t, e, n) {
       var r,
         i = n(37),
-        o = (r = /[^.]+$/.exec((i && i.keys && i.keys.IE_PROTO) || '')) ? 'Symbol(src)_1.' + r : '';
+        o = (r = /[^.]+$/.exec((i && i.keys && i.keys.IE_PROTO) || ''))
+          ? 'Symbol(src)_1.' + r
+          : '';
       t.exports = function(t) {
         return !!o && o in t;
       };
@@ -795,7 +862,10 @@ function defineGridmapAndPolygonmap(ymaps) {
             c
               .call(g)
               .replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
-              .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') +
+              .replace(
+                /hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,
+                '$1.*?',
+              ) +
             '$',
         );
       t.exports = function(t) {
@@ -834,7 +904,8 @@ function defineGridmapAndPolygonmap(ymaps) {
         i = n(30),
         o = n(23);
       t.exports = function() {
-        (this.size = 0), (this.__data__ = { hash: new r(), map: new (o || i)(), string: new r() });
+        (this.size = 0),
+          (this.__data__ = { hash: new r(), map: new (o || i)(), string: new r() });
       };
     },
     function(t, e, n) {
@@ -862,7 +933,8 @@ function defineGridmapAndPolygonmap(ymaps) {
       var r = n(44),
         i = 'Expected a function';
       function o(t, e) {
-        if ('function' != typeof t || (null != e && 'function' != typeof e)) throw new TypeError(i);
+        if ('function' != typeof t || (null != e && 'function' != typeof e))
+          throw new TypeError(i);
         var n = function() {
           var r = arguments,
             i = e ? e.apply(this, r) : r[0],
@@ -991,7 +1063,15 @@ function defineGridmapAndPolygonmap(ymaps) {
       'use strict';
       (e.__esModule = !0),
         (e.default = function(t, e, n, r, i, o, s) {
-          for (var a = o / n, d = s / n, u = { type: 'FeatureCollection', features: [] }, c = 0, g = 0; g < d; g++)
+          for (
+            var a = o / n,
+              d = s / n,
+              u = { type: 'FeatureCollection', features: [] },
+              c = 0,
+              g = 0;
+            g < d;
+            g++
+          )
             for (var l = 0; l < a; l++) {
               var p = r + l * n,
                 f = i + g * n,
@@ -1074,7 +1154,10 @@ function defineGridmapAndPolygonmap(ymaps) {
         if (!t || 'string' != typeof t) return t;
         var n = e.protocol + '//' + e.host,
           r = n + e.pathname.replace(/\/[^\/]*$/, '/');
-        return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(t, e) {
+        return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(
+          t,
+          e,
+        ) {
           var i,
             o = e
               .trim()
@@ -1086,7 +1169,12 @@ function defineGridmapAndPolygonmap(ymaps) {
               });
           return /^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(o)
             ? t
-            : ((i = 0 === o.indexOf('//') ? o : 0 === o.indexOf('/') ? n + o : r + o.replace(/^\.\//, '')),
+            : ((i =
+                0 === o.indexOf('//')
+                  ? o
+                  : 0 === o.indexOf('/')
+                  ? n + o
+                  : r + o.replace(/^\.\//, '')),
               'url(' + JSON.stringify(i) + ')');
         });
       };
@@ -1157,7 +1245,11 @@ function defineGridmapAndPolygonmap(ymaps) {
           );
         var r = c[c.length - 1];
         if ('top' === t.insertAt)
-          r ? (r.nextSibling ? n.insertBefore(e, r.nextSibling) : n.appendChild(e)) : n.insertBefore(e, n.firstChild),
+          r
+            ? r.nextSibling
+              ? n.insertBefore(e, r.nextSibling)
+              : n.appendChild(e)
+            : n.insertBefore(e, n.firstChild),
             c.push(e);
         else if ('bottom' === t.insertAt) n.appendChild(e);
         else {
@@ -1177,7 +1269,12 @@ function defineGridmapAndPolygonmap(ymaps) {
       }
       function h(t) {
         var e = document.createElement('style');
-        return void 0 === t.attrs.type && (t.attrs.type = 'text/css'), x(e, t.attrs), f(t, e), e;
+        return (
+          void 0 === t.attrs.type && (t.attrs.type = 'text/css'),
+          x(e, t.attrs),
+          f(t, e),
+          e
+        );
       }
       function x(t, e) {
         Object.keys(e).forEach(function(n) {
@@ -1192,7 +1289,9 @@ function defineGridmapAndPolygonmap(ymaps) {
         }
         if (e.singleton) {
           var s = u++;
-          (n = d || (d = h(e))), (r = _.bind(null, n, s, !1)), (i = _.bind(null, n, s, !0));
+          (n = d || (d = h(e))),
+            (r = _.bind(null, n, s, !1)),
+            (i = _.bind(null, n, s, !0));
         } else
           t.sourceMap &&
           'function' == typeof URL &&
@@ -1245,7 +1344,8 @@ function defineGridmapAndPolygonmap(ymaps) {
           r(t),
           function(e) {
             if (e) {
-              if (e.css === t.css && e.media === t.media && e.sourceMap === t.sourceMap) return;
+              if (e.css === t.css && e.media === t.media && e.sourceMap === t.sourceMap)
+                return;
               r((t = e));
             } else i();
           }
@@ -1289,7 +1389,8 @@ function defineGridmapAndPolygonmap(ymaps) {
         else {
           var o = document.createTextNode(i),
             s = t.childNodes;
-          s[e] && t.removeChild(s[e]), s.length ? t.insertBefore(o, s[e]) : t.appendChild(o);
+          s[e] && t.removeChild(s[e]),
+            s.length ? t.insertBefore(o, s[e]) : t.appendChild(o);
         }
       }
     },
@@ -1332,7 +1433,8 @@ function defineGridmapAndPolygonmap(ymaps) {
             for (i = 0; i < t.length; i++) {
               var s = t[i];
               ('number' == typeof s[0] && r[s[0]]) ||
-                (n && !s[2] ? (s[2] = n) : n && (s[2] = '(' + s[2] + ') and (' + n + ')'), e.push(s));
+                (n && !s[2] ? (s[2] = n) : n && (s[2] = '(' + s[2] + ') and (' + n + ')'),
+                e.push(s));
             }
           }),
           e
@@ -1949,7 +2051,11 @@ function defineGridmapAndPolygonmap(ymaps) {
         a = 5;
       function d(t, e) {
         for (var n = new Array(t.length - 1), r = 1; r < t.length; ++r)
-          for (var i = (n[r - 1] = new Array(t.length - 1)), o = 0, s = 0; o < t.length; ++o)
+          for (
+            var i = (n[r - 1] = new Array(t.length - 1)), o = 0, s = 0;
+            o < t.length;
+            ++o
+          )
             o !== e && (i[s++] = t[r][o]);
         return n;
       }
@@ -1961,9 +2067,30 @@ function defineGridmapAndPolygonmap(ymaps) {
       }
       function c(t) {
         if (2 === t.length)
-          return [['sum(prod(', t[0][0], ',', t[1][1], '),prod(-', t[0][1], ',', t[1][0], '))'].join('')];
+          return [
+            [
+              'sum(prod(',
+              t[0][0],
+              ',',
+              t[1][1],
+              '),prod(-',
+              t[0][1],
+              ',',
+              t[1][0],
+              '))',
+            ].join(''),
+          ];
         for (var e = [], n = 0; n < t.length; ++n)
-          e.push(['scale(', u(c(d(t, n))), ',', ((r = n), 1 & r ? '-' : ''), t[0][n], ')'].join(''));
+          e.push(
+            [
+              'scale(',
+              u(c(d(t, n))),
+              ',',
+              ((r = n), 1 & r ? '-' : ''),
+              t[0][n],
+              ')',
+            ].join(''),
+          );
         return e;
         var r;
       }
@@ -1974,7 +2101,8 @@ function defineGridmapAndPolygonmap(ymaps) {
             a = (function(t) {
               for (var e = new Array(t), n = 0; n < t; ++n) {
                 e[n] = new Array(t);
-                for (var r = 0; r < t; ++r) e[n][r] = ['m', r, '[', t - n - 1, ']'].join('');
+                for (var r = 0; r < t; ++r)
+                  e[n][r] = ['m', r, '[', t - n - 1, ']'].join('');
               }
               return e;
             })(t),
@@ -1983,7 +2111,8 @@ function defineGridmapAndPolygonmap(ymaps) {
           l < t;
           ++l
         )
-          0 == (1 & l) ? e.push.apply(e, c(d(a, l))) : n.push.apply(n, c(d(a, l))), g.push('m' + l);
+          0 == (1 & l) ? e.push.apply(e, c(d(a, l))) : n.push.apply(n, c(d(a, l))),
+            g.push('m' + l);
         var p = u(e),
           f = u(n),
           b = 'orientation' + t + 'Exact',
@@ -2056,9 +2185,15 @@ function defineGridmapAndPolygonmap(ymaps) {
         ];
       !(function() {
         for (; f.length <= a; ) f.push(g(f.length));
-        for (var e = [], n = ['slow'], r = 0; r <= a; ++r) e.push('a' + r), n.push('o' + r);
-        var i = ['function getOrientation(', e.join(), '){switch(arguments.length){case 0:case 1:return 0;'];
-        for (r = 2; r <= a; ++r) i.push('case ', r, ':return o', r, '(', e.slice(0, r).join(), ');');
+        for (var e = [], n = ['slow'], r = 0; r <= a; ++r)
+          e.push('a' + r), n.push('o' + r);
+        var i = [
+          'function getOrientation(',
+          e.join(),
+          '){switch(arguments.length){case 0:case 1:return 0;',
+        ];
+        for (r = 2; r <= a; ++r)
+          i.push('case ', r, ':return o', r, '(', e.slice(0, r).join(), ');');
         i.push(
           '}var s=new Array(arguments.length);for(var i=0;i<arguments.length;++i){s[i]=arguments[i]};return slow(s);}return getOrientation',
         ),
@@ -2100,14 +2235,18 @@ function defineGridmapAndPolygonmap(ymaps) {
           (function() {
             function t(e, n) {
               !(function(t, e) {
-                if (!(t instanceof e)) throw new TypeError('Cannot call a class as a function');
+                if (!(t instanceof e))
+                  throw new TypeError('Cannot call a class as a function');
               })(this, t),
                 (this._data = e),
                 (this.options = n);
             }
             return (
               (t.prototype.setMap = function(t) {
-                return this._map !== t && ((this._map = t), t && this._data && this._render()), this;
+                return (
+                  this._map !== t && ((this._map = t), t && this._data && this._render()),
+                  this
+                );
               }),
               (t.prototype.getMap = function() {
                 return this._map;
@@ -2119,7 +2258,8 @@ function defineGridmapAndPolygonmap(ymaps) {
                   u = void 0,
                   c = void 0;
                 if ((0, o.default)(this.options, 'grid.bounds'))
-                  (u = s(this.options, 'grid.bounds.leftBottom')), (c = s(this.options, 'grid.bounds.rightTop'));
+                  (u = s(this.options, 'grid.bounds.leftBottom')),
+                    (c = s(this.options, 'grid.bounds.rightTop'));
                 else {
                   var g = t.features.map(function(t) {
                       return t.geometry.coordinates;
@@ -2169,7 +2309,13 @@ function defineHeatmap(ymaps) {
   /* eslint-disable */
   ymaps.modules.define(
     'Heatmap',
-    ['option.Manager', 'Monitor', 'Layer', 'heatmap.component.dataConverter', 'heatmap.component.TileUrlsGenerator'],
+    [
+      'option.Manager',
+      'Monitor',
+      'Layer',
+      'heatmap.component.dataConverter',
+      'heatmap.component.TileUrlsGenerator',
+    ],
     function(a, b, c, d, e, f) {
       var g = function(a, c) {
         (this._unprocessedPoints = []), a && this.setData(a), (this.options = new b(c));
@@ -2193,7 +2339,8 @@ function defineHeatmap(ymaps) {
         (g.prototype.setMap = function(a) {
           return (
             this._map != a &&
-              (this._layer && (this._map.layers.remove(this._layer), this._destroyLayer()),
+              (this._layer &&
+                (this._map.layers.remove(this._layer), this._destroyLayer()),
               (this._map = a),
               a && (this._setupLayer(), this._map.layers.add(this._layer))),
             this
@@ -2208,14 +2355,23 @@ function defineHeatmap(ymaps) {
         (g.prototype._setupLayer = function() {
           this._setupTileUrlsGenerator();
           var a = this._tileUrlsGenerator.getTileUrl.bind(this._tileUrlsGenerator);
-          return (this._layer = new d(a, { tileTransparent: !0 })), this._setupOptionMonitor(), this._layer;
+          return (
+            (this._layer = new d(a, { tileTransparent: !0 })),
+            this._setupOptionMonitor(),
+            this._layer
+          );
         }),
         (g.prototype._destroyLayer = function() {
-          this._destroyTileUrlsGenerator(), this._destroyOptionMonitor(), (this._layer = null);
+          this._destroyTileUrlsGenerator(),
+            this._destroyOptionMonitor(),
+            (this._layer = null);
         }),
         (g.prototype._setupTileUrlsGenerator = function() {
           return (
-            (this._tileUrlsGenerator = new f(this._map.options.get('projection'), this._unprocessedPoints)),
+            (this._tileUrlsGenerator = new f(
+              this._map.options.get('projection'),
+              this._unprocessedPoints,
+            )),
             (this._unprocessedPoints = null),
             this._tileUrlsGenerator.options.setParent(this.options),
             this._tileUrlsGenerator
@@ -2246,18 +2402,26 @@ function defineHeatmap(ymaps) {
       var b = {};
       (b.convert = function(a) {
         var b = [];
-        if (('string' == typeof object && (a = JSON.parse(a)), this._isJsonFeatureCollection(a)))
-          for (var c = 0, d = a.features.length; d > c; c++) b = b.concat(this.convert(a.features[c]));
+        if (
+          ('string' == typeof object && (a = JSON.parse(a)),
+          this._isJsonFeatureCollection(a))
+        )
+          for (var c = 0, d = a.features.length; d > c; c++)
+            b = b.concat(this.convert(a.features[c]));
         else if (this._isCoordinates(a)) b.push(this._convertCoordinatesToPoint(a));
         else
           for (var e, f = [].concat(a), c = 0, d = f.length; d > c; c++)
-            if (((e = f[c]), this._isCoordinates(e))) b.push(this._convertCoordinatesToPoint(e));
+            if (((e = f[c]), this._isCoordinates(e)))
+              b.push(this._convertCoordinatesToPoint(e));
             else if (this._isJsonGeometry(e) && 'Point' == e.type)
               b.push(this._convertCoordinatesToPoint(e.coordinates));
-            else if (this._isJsonFeature(e) && 'Point' == e.geometry.type) b.push(this._convertJsonFeatureToPoint(e));
-            else if (this._isGeoObject(e) && 'Point' == e.geometry.getType()) b.push(this._convertGeoObjectToPoint(e));
+            else if (this._isJsonFeature(e) && 'Point' == e.geometry.type)
+              b.push(this._convertJsonFeatureToPoint(e));
+            else if (this._isGeoObject(e) && 'Point' == e.geometry.getType())
+              b.push(this._convertGeoObjectToPoint(e));
             else if (this._isCollection(e))
-              for (var g, h = e.getIterator(); (g = h.getNext()) != h.STOP_ITERATION; ) b = b.concat(this.convert(g));
+              for (var g, h = e.getIterator(); (g = h.getNext()) != h.STOP_ITERATION; )
+                b = b.concat(this.convert(g));
         return b;
       }),
         (b._isJsonFeature = function(a) {
@@ -2275,7 +2439,9 @@ function defineHeatmap(ymaps) {
         }),
         (b._isCoordinates = function(a) {
           return (
-            '[object Array]' == Object.prototype.toString.call(a) && 'number' == typeof a[0] && 'number' == typeof a[1]
+            '[object Array]' == Object.prototype.toString.call(a) &&
+            'number' == typeof a[0] &&
+            'number' == typeof a[1]
           );
         }),
         (b._convertCoordinatesToPoint = function(a) {
@@ -2288,7 +2454,10 @@ function defineHeatmap(ymaps) {
           return Boolean(a.geometry && a.getOverlay);
         }),
         (b._convertGeoObjectToPoint = function(a) {
-          return { coordinates: a.geometry.getCoordinates(), weight: a.properties.get('weight') || 1 };
+          return {
+            coordinates: a.geometry.getCoordinates(),
+            weight: a.properties.get('weight') || 1,
+          };
         }),
         (b._isCollection = function(a) {
           return Boolean(a.getIterator);
@@ -2331,7 +2500,10 @@ function defineHeatmap(ymaps) {
           (h.prototype.getPoints = function() {
             for (var a = [], b = 0, c = this._points.length; c > b; b++)
               a.push({
-                coordinates: this._projection.fromGlobalPixels(this._points[b].coordinates, 0),
+                coordinates: this._projection.fromGlobalPixels(
+                  this._points[b].coordinates,
+                  0,
+                ),
                 weight: this._points[b].weight,
               });
             return a;
@@ -2358,115 +2530,152 @@ function defineHeatmap(ymaps) {
             )
               (f = this._points[l].coordinates),
                 this._contains(i, f, j) &&
-                  k.push({ coordinates: [(f[0] - i[0][0]) * h, (f[1] - i[0][1]) * h], weight: this._points[l].weight });
+                  k.push({
+                    coordinates: [(f[0] - i[0][0]) * h, (f[1] - i[0][1]) * h],
+                    weight: this._points[l].weight,
+                  });
             return this._canvas.generateDataURLHeatmap(k);
           }),
           (h.prototype.destroy = function() {
             this._canvas.destroy(), (this._canvas = null), (this._projection = null);
           }),
           (h.prototype._contains = function(a, b, c) {
-            return b[0] >= a[0][0] - c && b[0] <= a[1][0] + c && b[1] >= a[0][1] - c && b[1] <= a[1][1] + c;
+            return (
+              b[0] >= a[0][0] - c &&
+              b[0] <= a[1][0] + c &&
+              b[1] >= a[0][1] - c &&
+              b[1] <= a[1][1] + c
+            );
           }),
           a(h);
       },
     ),
-    ymaps.modules.define('heatmap.component.Canvas', ['option.Manager', 'Monitor'], function(a, b, c) {
-      var d = {
-          radius: 10,
-          radiusFactor: 1,
-          opacity: 0.8,
-          intensityOfMidpoint: 0.2,
-          medianaOfWeights: 1,
-          gradient: {
-            0.1: 'rgba(128, 255, 0, 0.7)',
-            0.2: 'rgba(255, 255, 0, 0.8)',
-            0.7: 'rgba(234, 72, 58, 0.9)',
-            1: 'rgba(162, 36, 25, 1)',
+    ymaps.modules.define(
+      'heatmap.component.Canvas',
+      ['option.Manager', 'Monitor'],
+      function(a, b, c) {
+        var d = {
+            radius: 10,
+            radiusFactor: 1,
+            opacity: 0.8,
+            intensityOfMidpoint: 0.2,
+            medianaOfWeights: 1,
+            gradient: {
+              0.1: 'rgba(128, 255, 0, 0.7)',
+              0.2: 'rgba(255, 255, 0, 0.8)',
+              0.7: 'rgba(234, 72, 58, 0.9)',
+              1: 'rgba(162, 36, 25, 1)',
+            },
           },
-        },
-        e =
-          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAABFUlEQVR4nO3BMQEAAADCoPVP7WsIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAMBPAABPO1TCQAAAABJRU5ErkJggg==',
-        f = function(a) {
-          (this._canvas = document.createElement('canvas')),
-            (this._canvas.width = a[0]),
-            (this._canvas.height = a[1]),
-            (this._context = this._canvas.getContext('2d')),
-            (this.options = new b({})),
-            this._setupDrawTools(),
-            this._setupOptionMonitor();
-        };
-      (f.prototype.getBrushRadius = function() {
-        return this.options.get('radius', d.radius) * this.options.get('radiusFactor', d.radiusFactor);
-      }),
-        (f.prototype.generateDataURLHeatmap = function(a) {
-          return a && a.length > 0 ? (this._drawHeatmap(a), this._canvas.toDataURL()) : e;
-        }),
-        (f.prototype.destroy = function() {
-          this._destroyOptionMonitor(), this._destroyDrawTools();
-        }),
-        (f.prototype._setupOptionMonitor = function() {
+          e =
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAABFUlEQVR4nO3BMQEAAADCoPVP7WsIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAMBPAABPO1TCQAAAABJRU5ErkJggg==',
+          f = function(a) {
+            (this._canvas = document.createElement('canvas')),
+              (this._canvas.width = a[0]),
+              (this._canvas.height = a[1]),
+              (this._context = this._canvas.getContext('2d')),
+              (this.options = new b({})),
+              this._setupDrawTools(),
+              this._setupOptionMonitor();
+          };
+        (f.prototype.getBrushRadius = function() {
           return (
-            (this._optionMonitor = new c(this.options)),
-            this._optionMonitor.add(['radius', 'radiusFactor', 'gradient'], this._setupDrawTools, this)
+            this.options.get('radius', d.radius) *
+            this.options.get('radiusFactor', d.radiusFactor)
           );
         }),
-        (f.prototype._destroyOptionMonitor = function() {
-          this._optionMonitor.removeAll(), (this._optionMonitor = {});
-        }),
-        (f.prototype._setupDrawTools = function() {
-          return (this._brush = this._createBrush()), (this._gradient = this._createGradient()), this;
-        }),
-        (f.prototype._destroyDrawTools = function() {
-          (this._brush = null), (this._gradient = null);
-        }),
-        (f.prototype._createBrush = function() {
-          var a = document.createElement('canvas'),
-            b = a.getContext('2d'),
-            c = this.getBrushRadius(),
-            d = b.createRadialGradient(c, c, 0, c, c, c);
-          return (
-            (a.width = 2 * c),
-            (a.height = 2 * c),
-            d.addColorStop(0, 'rgba(0,0,0,1)'),
-            d.addColorStop(1, 'rgba(0,0,0,0)'),
-            (b.fillStyle = d),
-            b.fillRect(0, 0, 2 * c, 2 * c),
-            a
-          );
-        }),
-        (f.prototype._createGradient = function() {
-          var a = document.createElement('canvas'),
-            b = a.getContext('2d'),
-            c = b.createLinearGradient(0, 0, 0, 256);
-          (a.width = 1), (a.height = 256);
-          var e = this.options.get('gradient', d.gradient);
-          for (var f in e) e.hasOwnProperty(f) && c.addColorStop(f, e[f]);
-          return (b.fillStyle = c), b.fillRect(0, 0, 1, 256), b.getImageData(0, 0, 1, 256).data;
-        }),
-        (f.prototype._drawHeatmap = function(a) {
-          var b = this._context,
-            c = this.getBrushRadius(),
-            e = this.options.get('intensityOfMidpoint', d.intensityOfMidpoint),
-            f = this.options.get('medianaOfWeights', d.medianaOfWeights),
-            g = e / f;
-          b.clearRect(0, 0, this._canvas.width, this._canvas.height);
-          for (var h = 0, i = a.length; i > h; h++)
-            (b.globalAlpha = Math.min(a[h].weight * g, 1)),
-              b.drawImage(this._brush, a[h].coordinates[0] - c, a[h].coordinates[1] - c);
-          var j = b.getImageData(0, 0, this._canvas.width, this._canvas.height);
-          return this._colorize(j.data), b.putImageData(j, 0, 0), this;
-        }),
-        (f.prototype._colorize = function(a) {
-          for (var b, c = this.options.get('opacity', d.opacity), e = 3, f = a.length; f > e; e += 4)
-            a[e] &&
-              ((b = 4 * a[e]),
-              (a[e - 3] = this._gradient[b]),
-              (a[e - 2] = this._gradient[b + 1]),
-              (a[e - 1] = this._gradient[b + 2]),
-              (a[e] = c * (this._gradient[b + 3] || 255)));
-        }),
-        a(f);
-    });
+          (f.prototype.generateDataURLHeatmap = function(a) {
+            return a && a.length > 0
+              ? (this._drawHeatmap(a), this._canvas.toDataURL())
+              : e;
+          }),
+          (f.prototype.destroy = function() {
+            this._destroyOptionMonitor(), this._destroyDrawTools();
+          }),
+          (f.prototype._setupOptionMonitor = function() {
+            return (
+              (this._optionMonitor = new c(this.options)),
+              this._optionMonitor.add(
+                ['radius', 'radiusFactor', 'gradient'],
+                this._setupDrawTools,
+                this,
+              )
+            );
+          }),
+          (f.prototype._destroyOptionMonitor = function() {
+            this._optionMonitor.removeAll(), (this._optionMonitor = {});
+          }),
+          (f.prototype._setupDrawTools = function() {
+            return (
+              (this._brush = this._createBrush()),
+              (this._gradient = this._createGradient()),
+              this
+            );
+          }),
+          (f.prototype._destroyDrawTools = function() {
+            (this._brush = null), (this._gradient = null);
+          }),
+          (f.prototype._createBrush = function() {
+            var a = document.createElement('canvas'),
+              b = a.getContext('2d'),
+              c = this.getBrushRadius(),
+              d = b.createRadialGradient(c, c, 0, c, c, c);
+            return (
+              (a.width = 2 * c),
+              (a.height = 2 * c),
+              d.addColorStop(0, 'rgba(0,0,0,1)'),
+              d.addColorStop(1, 'rgba(0,0,0,0)'),
+              (b.fillStyle = d),
+              b.fillRect(0, 0, 2 * c, 2 * c),
+              a
+            );
+          }),
+          (f.prototype._createGradient = function() {
+            var a = document.createElement('canvas'),
+              b = a.getContext('2d'),
+              c = b.createLinearGradient(0, 0, 0, 256);
+            (a.width = 1), (a.height = 256);
+            var e = this.options.get('gradient', d.gradient);
+            for (var f in e) e.hasOwnProperty(f) && c.addColorStop(f, e[f]);
+            return (
+              (b.fillStyle = c),
+              b.fillRect(0, 0, 1, 256),
+              b.getImageData(0, 0, 1, 256).data
+            );
+          }),
+          (f.prototype._drawHeatmap = function(a) {
+            var b = this._context,
+              c = this.getBrushRadius(),
+              e = this.options.get('intensityOfMidpoint', d.intensityOfMidpoint),
+              f = this.options.get('medianaOfWeights', d.medianaOfWeights),
+              g = e / f;
+            b.clearRect(0, 0, this._canvas.width, this._canvas.height);
+            for (var h = 0, i = a.length; i > h; h++)
+              (b.globalAlpha = Math.min(a[h].weight * g, 1)),
+                b.drawImage(
+                  this._brush,
+                  a[h].coordinates[0] - c,
+                  a[h].coordinates[1] - c,
+                );
+            var j = b.getImageData(0, 0, this._canvas.width, this._canvas.height);
+            return this._colorize(j.data), b.putImageData(j, 0, 0), this;
+          }),
+          (f.prototype._colorize = function(a) {
+            for (
+              var b, c = this.options.get('opacity', d.opacity), e = 3, f = a.length;
+              f > e;
+              e += 4
+            )
+              a[e] &&
+                ((b = 4 * a[e]),
+                (a[e - 3] = this._gradient[b]),
+                (a[e - 2] = this._gradient[b + 1]),
+                (a[e - 1] = this._gradient[b + 2]),
+                (a[e] = c * (this._gradient[b + 3] || 255)));
+          }),
+          a(f);
+      },
+    );
   /* eslint-enable */
 }
 

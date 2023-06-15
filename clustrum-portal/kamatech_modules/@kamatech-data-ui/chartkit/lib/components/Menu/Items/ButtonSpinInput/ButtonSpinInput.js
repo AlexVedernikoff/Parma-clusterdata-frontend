@@ -82,7 +82,12 @@ export default class ButtonSpinInput extends React.PureComponent {
 
   _textInput = () => (
     <div className={b({ 'text-input': true })}>
-      <TextInput mix={{ block: b, elem: 'item' }} theme="normal" size="s" text={this._text} />
+      <TextInput
+        mix={{ block: b, elem: 'item' }}
+        theme="normal"
+        size="s"
+        text={this._text}
+      />
       <ClipboardButton className={b('item')} theme="normal" size="s" text={this._text} />
     </div>
   );
@@ -92,7 +97,8 @@ export default class ButtonSpinInput extends React.PureComponent {
   }
 
   render() {
-    const content = this.state.status === STATUSES.DONE ? this._textInput() : this._buttonSpin();
+    const content =
+      this.state.status === STATUSES.DONE ? this._textInput() : this._buttonSpin();
     return content;
   }
 }

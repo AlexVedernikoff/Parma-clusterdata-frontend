@@ -12,7 +12,14 @@ describe('range picker', () => {
 
   beforeEach(() => {
     mockFn = jest.fn();
-    render(<KamatechRangePicker initialValue={initialValue} min={minValue} max={maxValue} onChange={mockFn} />);
+    render(
+      <KamatechRangePicker
+        initialValue={initialValue}
+        min={minValue}
+        max={maxValue}
+        onChange={mockFn}
+      />,
+    );
     rangeInput = screen.getByRole('slider');
     output = screen.getByRole('status');
   });

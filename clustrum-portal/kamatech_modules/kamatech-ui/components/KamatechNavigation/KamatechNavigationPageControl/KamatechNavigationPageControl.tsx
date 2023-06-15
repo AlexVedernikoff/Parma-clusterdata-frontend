@@ -35,12 +35,15 @@ export const KamatechNavigationPageControl = ({
     <div className="pagination">
       <div className="pagination__total">
         <span className="pagination__total-label">Всего:</span>
-        <span className="pagination__total-count">{NumberValueHelper.toLocaleString(rowsCount)}</span>
+        <span className="pagination__total-count">
+          {NumberValueHelper.toLocaleString(rowsCount)}
+        </span>
       </div>
 
       <GoToPage
         goTo={(pageNumber: number) => {
-          const isValidNumber = !isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= totalPageCount;
+          const isValidNumber =
+            !isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= totalPageCount;
           if (isValidNumber) {
             handleChangePage(pageNumber);
           }
@@ -49,7 +52,9 @@ export const KamatechNavigationPageControl = ({
       />
 
       <div
-        className={`pagination__page-back ${isPageBackDisabled ? 'pagination__page-back_disabled' : ''}`}
+        className={`pagination__page-back ${
+          isPageBackDisabled ? 'pagination__page-back_disabled' : ''
+        }`}
         onClick={() => !isPageBackDisabled && handleChangePage(viewPage - 1)}
       >
         &lt;
@@ -58,7 +63,9 @@ export const KamatechNavigationPageControl = ({
       <PageNumbers currentPage={viewPage} totalPageCount={totalPageCount} />
 
       <div
-        className={`pagination__page-forward ${isPageForwardDisabled ? 'pagination__page-forward_disabled' : ''}`}
+        className={`pagination__page-forward ${
+          isPageForwardDisabled ? 'pagination__page-forward_disabled' : ''
+        }`}
         onClick={() => !isPageForwardDisabled && handleChangePage(viewPage + 1)}
       >
         &gt;

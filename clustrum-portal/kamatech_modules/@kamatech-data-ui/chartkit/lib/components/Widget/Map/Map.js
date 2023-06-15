@@ -48,7 +48,9 @@ class Map extends React.PureComponent {
     container.style.height = '100%';
     container.style.width = '100%';
     // может вызываться после unmount, поэтому проверям наличие ref
-    window.requestAnimationFrame(() => this.chartComponent.current && this.chartComponent.current.chart.reflow());
+    window.requestAnimationFrame(
+      () => this.chartComponent.current && this.chartComponent.current.chart.reflow(),
+    );
   }
 
   componentDidCatch(error, info) {

@@ -19,7 +19,14 @@ export default declMod(
       if (text && !children) {
         var name = String(text);
 
-        return [React.createElement(UserAccountAccentLetter, { key: 'accent-letter' }, name.charAt(0)), name.slice(1)];
+        return [
+          React.createElement(
+            UserAccountAccentLetter,
+            { key: 'accent-letter' },
+            name.charAt(0),
+          ),
+          name.slice(1),
+        ];
       }
 
       return children;

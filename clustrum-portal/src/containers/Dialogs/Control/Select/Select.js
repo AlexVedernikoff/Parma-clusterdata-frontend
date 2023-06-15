@@ -60,7 +60,11 @@ class Select extends React.PureComponent {
 
   async componentDidUpdate(prevProps) {
     const { datasetId, datasetField } = this.props;
-    if (datasetId && datasetField && (datasetId !== prevProps.datasetId || datasetField !== prevProps.datasetField)) {
+    if (
+      datasetId &&
+      datasetField &&
+      (datasetId !== prevProps.datasetId || datasetField !== prevProps.datasetField)
+    ) {
       try {
         const {
           result: {
@@ -90,8 +94,13 @@ class Select extends React.PureComponent {
     return values.filter(value => availableSet.has(value));
   }
 
-  handleAvailableValuesChange(defaultValue, selectedAvailableValues, availableValuesList) {
-    const availableValues = selectedAvailableValues.length > 0 ? selectedAvailableValues : availableValuesList;
+  handleAvailableValuesChange(
+    defaultValue,
+    selectedAvailableValues,
+    availableValuesList,
+  ) {
+    const availableValues =
+      selectedAvailableValues.length > 0 ? selectedAvailableValues : availableValuesList;
 
     return {
       availableValues: selectedAvailableValues,
@@ -100,13 +109,20 @@ class Select extends React.PureComponent {
   }
 
   render() {
-    const { sourceType, defaultValue, availableValues, multiselectable, onChange } = this.props;
+    const {
+      sourceType,
+      defaultValue,
+      availableValues,
+      multiselectable,
+      onChange,
+    } = this.props;
     const { acceptableValues = [] } = this.state;
 
     const selectedAvailableValues = Array.isArray(availableValues)
       ? this.filterByAvailableValues(acceptableValues, availableValues)
       : [];
-    const availableValuesList = selectedAvailableValues.length > 0 ? selectedAvailableValues : acceptableValues;
+    const availableValuesList =
+      selectedAvailableValues.length > 0 ? selectedAvailableValues : acceptableValues;
     let selectedDefaultValues = [];
 
     if (Array.isArray(defaultValue)) {
@@ -117,17 +133,26 @@ class Select extends React.PureComponent {
       selectedDefaultValues = [defaultValue];
     }
 
-    const availableSelectedDefaultValues = this.filterByAvailableValues(selectedDefaultValues, availableValuesList);
+    const availableSelectedDefaultValues = this.filterByAvailableValues(
+      selectedDefaultValues,
+      availableValuesList,
+    );
 
     return (
       <React.Fragment>
         {sourceType === CONTROL_SOURCE_TYPE.MANUAL && (
-          <Acceptable acceptableValues={acceptableValues} multiselectable={multiselectable} onApply={onChange} />
+          <Acceptable
+            acceptableValues={acceptableValues}
+            multiselectable={multiselectable}
+            onApply={onChange}
+          />
         )}
         <CheckBox
           text="Множественный выбор"
           checked={multiselectable}
-          onChange={() => onChange({ multiselectable: !multiselectable, defaultValue: undefined })}
+          onChange={() =>
+            onChange({ multiselectable: !multiselectable, defaultValue: undefined })
+          }
         />
         <Wrapper title="Значение по умолчанию">
           <YCSelect
@@ -153,7 +178,11 @@ class Select extends React.PureComponent {
             value={selectedAvailableValues}
             onChange={selectedAvailableValues =>
               onChange(
-                this.handleAvailableValuesChange(selectedDefaultValues, selectedAvailableValues, availableValuesList),
+                this.handleAvailableValuesChange(
+                  selectedDefaultValues,
+                  selectedAvailableValues,
+                  availableValuesList,
+                ),
               )
             }
             disabled={!acceptableValues.length}

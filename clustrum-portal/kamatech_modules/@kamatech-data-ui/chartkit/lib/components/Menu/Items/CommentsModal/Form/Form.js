@@ -16,7 +16,11 @@ import Icon from '../../../../Icon/Icon';
 import settings from '../../../../../modules/settings/settings';
 import CONFIGS_OF_TYPES from './configsOfTypes';
 import { TYPES as TYPES_OF_COMMENTS } from './commentsTypes';
-import { DEFAULT_COLOR, createComment, updateComment } from '../../../../../modules/comments/comments';
+import {
+  DEFAULT_COLOR,
+  createComment,
+  updateComment,
+} from '../../../../../modules/comments/comments';
 
 // import './Form.scss';
 
@@ -94,7 +98,9 @@ export default class Form extends React.PureComponent {
   static propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     feed: PropTypes.string,
-    type: PropTypes.oneOf(Object.keys(TYPES_OF_COMMENTS).map(key => TYPES_OF_COMMENTS[key])),
+    type: PropTypes.oneOf(
+      Object.keys(TYPES_OF_COMMENTS).map(key => TYPES_OF_COMMENTS[key]),
+    ),
     text: PropTypes.string,
     date: PropTypes.string,
     dateUntil: PropTypes.string,
@@ -137,7 +143,9 @@ export default class Form extends React.PureComponent {
         params: PropTypes.object,
       }),
     ),
-    graphs: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string, text: PropTypes.string })),
+    graphs: PropTypes.arrayOf(
+      PropTypes.shape({ value: PropTypes.string, text: PropTypes.string }),
+    ),
 
     // isStatChart: PropTypes.bool,
     // isBrowserChart: PropTypes.bool,
@@ -188,13 +196,15 @@ export default class Form extends React.PureComponent {
         <div className={b('cell')}>
           {this.props.isStat
             ? `Создан: <${this.state.creatorLogin}>`
-            : `Создан: ${moment(this.state.createdDate).format(INFO_DATE_FORMAT)} <${this.state.creatorLogin}>`}
+            : `Создан: ${moment(this.state.createdDate).format(INFO_DATE_FORMAT)} <${
+                this.state.creatorLogin
+              }>`}
         </div>
         {this.state.modifiedDate && (
           <div className={b('cell')}>
-            {`Отредактирован: ${moment(this.state.modifiedDate).format(INFO_DATE_FORMAT)} <${
-              this.state.modifierLogin
-            }>`}
+            {`Отредактирован: ${moment(this.state.modifiedDate).format(
+              INFO_DATE_FORMAT,
+            )} <${this.state.modifierLogin}>`}
           </div>
         )}
       </div>
@@ -204,7 +214,9 @@ export default class Form extends React.PureComponent {
   }
 
   _renderTypes() {
-    const availableTypes = this.props.isStat ? CONFIGS_OF_TYPES.slice(0, 2) : CONFIGS_OF_TYPES;
+    const availableTypes = this.props.isStat
+      ? CONFIGS_OF_TYPES.slice(0, 2)
+      : CONFIGS_OF_TYPES;
     return (
       <div className={b('row')}>
         <div className={b('cell', { header: true })}>Тип</div>
@@ -214,7 +226,9 @@ export default class Form extends React.PureComponent {
             size="s"
             width="max"
             value={availableTypes.findIndex(({ value }) => value === this.state.type)}
-            onChange={event => this.setState({ type: availableTypes[Number(event.target.value)].value })}
+            onChange={event =>
+              this.setState({ type: availableTypes[Number(event.target.value)].value })
+            }
           >
             {availableTypes.map(({ text }, index) => (
               <RadioButton.Radio value={index} key={index}>
@@ -252,7 +266,10 @@ export default class Form extends React.PureComponent {
     let timeFormat = null;
 
     // TODO: брать 86400000 из closesPointRange
-    if (['i', 'h'].includes(this.props.scale) || moment(this.state.date).valueOf() % 86400000 !== 0) {
+    if (
+      ['i', 'h'].includes(this.props.scale) ||
+      moment(this.state.date).valueOf() % 86400000 !== 0
+    ) {
       timeFormat = 'HH:mm';
     }
 
@@ -361,7 +378,9 @@ export default class Form extends React.PureComponent {
                 size="s"
                 width="max"
                 value={Number(this.state[name])}
-                onChange={event => this.setState({ [name]: Boolean(Number(event.target.value)) })}
+                onChange={event =>
+                  this.setState({ [name]: Boolean(Number(event.target.value)) })
+                }
               >
                 {control.items.map((item, index) => (
                   <RadioButton.Radio value={item.value} key={index}>
@@ -374,7 +393,12 @@ export default class Form extends React.PureComponent {
         }
 
         return (
-          <div className={b('control', { [Array.isArray(name) ? name.join('-') : name]: true })} key={name}>
+          <div
+            className={b('control', {
+              [Array.isArray(name) ? name.join('-') : name]: true,
+            })}
+            key={name}
+          >
             <div className={b('cell', { header: true })}>{title}</div>
             <div className={b('cell')}>{component}</div>
           </div>
@@ -399,7 +423,10 @@ export default class Form extends React.PureComponent {
               if (!this.state.isParamsEditing) {
                 this.setState({
                   paramsText: paramsToText(
-                    this.props.feeds.reduce((result, item) => (item.feed === feed ? item.params : result), {}),
+                    this.props.feeds.reduce(
+                      (result, item) => (item.feed === feed ? item.params : result),
+                      {},
+                    ),
                   ),
                 });
               }
@@ -407,7 +434,9 @@ export default class Form extends React.PureComponent {
           >
             {this.props.feeds.map(({ feed, params = {} }, index) => (
               <Select.Item val={feed} key={index}>
-                {`${feed}${Object.keys(params).length ? ` [${Object.keys(params).join(', ')}]` : ''}`}
+                {`${feed}${
+                  Object.keys(params).length ? ` [${Object.keys(params).join(', ')}]` : ''
+                }`}
               </Select.Item>
             ))}
           </Select>
@@ -490,7 +519,8 @@ export default class Form extends React.PureComponent {
         validation: {
           field: 'paramsText',
           type: 'error',
-          text: 'Описание параметров должно быть в формате:\nscale=d\nregion=TOT\nregion=RU',
+          text:
+            'Описание параметров должно быть в формате:\nscale=d\nregion=TOT\nregion=RU',
           directions: ['right-center', 'top-center'],
         },
       });
@@ -510,9 +540,14 @@ export default class Form extends React.PureComponent {
         feed: this.state.feed,
         type: this.state.type,
         date: this.state.date,
-        dateUntil: !this.props.isStat && TYPES_OF_COMMENTS.BAND_X === this.state.type ? this.state.dateUntil : null,
+        dateUntil:
+          !this.props.isStat && TYPES_OF_COMMENTS.BAND_X === this.state.type
+            ? this.state.dateUntil
+            : null,
         text: this.state.text,
-        meta: CONFIGS_OF_TYPES.find(({ value }) => value === this.state.type).controls.reduce((result, { name }) => {
+        meta: CONFIGS_OF_TYPES.find(
+          ({ value }) => value === this.state.type,
+        ).controls.reduce((result, { name }) => {
           if (Array.isArray(name)) {
             name.forEach(item => {
               result[item] = this.state[item];
@@ -529,7 +564,9 @@ export default class Form extends React.PureComponent {
       // TODO: не передавать seriesIds параметром
       const seriesIds = this.props.graphs.map(({ value }) => value);
 
-      const response = await (this._isEdit ? updateComment(comment, seriesIds) : createComment(comment));
+      const response = await (this._isEdit
+        ? updateComment(comment, seriesIds)
+        : createComment(comment));
       const result = Object.assign(
         {
           createdDate: this.props.createdDate,
@@ -583,7 +620,9 @@ export default class Form extends React.PureComponent {
   render() {
     return (
       <div className={b()}>
-        <div className={b('header')}>{this._isEdit ? 'Редактировать комментарий' : 'Добавить комментарий'}</div>
+        <div className={b('header')}>
+          {this._isEdit ? 'Редактировать комментарий' : 'Добавить комментарий'}
+        </div>
         <div className={b('body')}>
           {this._renderInfo()}
           {this._renderTypes()}
@@ -608,7 +647,12 @@ export default class Form extends React.PureComponent {
           >
             {this._isEdit ? 'Сохранить' : 'Добавить'}
           </Button>
-          <Button theme="normal" size="m" mix={{ block: b('button') }} onClick={this.props.onClose}>
+          <Button
+            theme="normal"
+            size="m"
+            mix={{ block: b('button') }}
+            onClick={this.props.onClose}
+          >
             Закрыть
           </Button>
         </div>

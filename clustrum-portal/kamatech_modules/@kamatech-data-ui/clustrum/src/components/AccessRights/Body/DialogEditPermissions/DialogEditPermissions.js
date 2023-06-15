@@ -29,7 +29,11 @@ class DialogEditPermissions extends React.Component {
               onSuccess={this.props.onSuccess}
               editable={this.props.editable}
             />
-            <GrantDetails sdk={this.props.sdk} entry={this.props.entry} participant={this.props.participant} />
+            <GrantDetails
+              sdk={this.props.sdk}
+              entry={this.props.entry}
+              participant={this.props.participant}
+            />
           </Dialog.Body>
         </div>
       </Dialog>

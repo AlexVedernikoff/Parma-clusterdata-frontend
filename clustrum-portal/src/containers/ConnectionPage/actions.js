@@ -238,7 +238,10 @@ const uploadCsv = async ({ sdk, connectionState = {} }) => {
   formData.append('dir_path', window.DL.user.login ? `users/${login}` : '/');
   formData.append('initial_permissions', JSON.stringify(initialPermissions));
 
-  const connection = await sdk.sendFileInConnectionUploader({ formData }, { passTimezoneOffset: false });
+  const connection = await sdk.sendFileInConnectionUploader(
+    { formData },
+    { passTimezoneOffset: false },
+  );
 
   const { data: { parsing_error: parsingError } = {} } = connection;
 
@@ -250,7 +253,15 @@ const uploadCsv = async ({ sdk, connectionState = {} }) => {
 };
 
 const saveCsv = async ({ sdk, permissionsMode, connectionState = {} }) => {
-  const { connectionId, meta: { state } = {}, name, dirPath, delimiter, encoding, hasHeader } = connectionState;
+  const {
+    connectionId,
+    meta: { state } = {},
+    name,
+    dirPath,
+    delimiter,
+    encoding,
+    hasHeader,
+  } = connectionState;
 
   const isUnvalidated = state === 'unvalidated';
 

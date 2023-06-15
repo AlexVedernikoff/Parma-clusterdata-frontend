@@ -4,7 +4,7 @@ import { Breadcrumb } from 'antd';
 import './header.css';
 import { BreadcrumbItem } from '../types/breadcrumb-item';
 
-export interface HeaderProps {
+interface HeaderProps {
   path: BreadcrumbItem[];
   title?: string;
   rightSideContent?: JSX.Element;

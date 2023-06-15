@@ -58,7 +58,10 @@ class MenuGroup extends React.Component {
     return (
       <div className={b('group', { current })}>
         {this.renderTitle()}
-        <div className={b('items', { current })} style={{ height: this.getItemsHeight() }}>
+        <div
+          className={b('items', { current })}
+          style={{ height: this.getItemsHeight() }}
+        >
           {Array.isArray(items) &&
             items
               .filter(item => filterItems(item, searchText))
@@ -70,10 +73,20 @@ class MenuGroup extends React.Component {
 }
 
 function MenuItem(props) {
-  const { icon: iconData, title, alpha, disabled, wrapper = defaultWrapper, onClick, iconClassName } = props;
+  const {
+    icon: iconData,
+    title,
+    alpha,
+    disabled,
+    wrapper = defaultWrapper,
+    onClick,
+    iconClassName,
+  } = props;
   const item = (
     <div className={b('item', { disabled })}>
-      <div className={b('item-icon')}>{Boolean(iconData) && <Icon data={iconData} className={iconClassName} />}</div>
+      <div className={b('item-icon')}>
+        {Boolean(iconData) && <Icon data={iconData} className={iconClassName} />}
+      </div>
       <div className={b('item-text')}>{title}</div>
       {Boolean(alpha) && <div className={b('alpha')}>{alpha}</div>}
     </div>
@@ -109,7 +122,8 @@ class ServiceMenu extends React.Component {
   state = {
     searchText: '',
     currentGroup:
-      this.props.menuData.currentGroup || (this.props.menuData.groups.length && this.props.menuData.groups[0].name),
+      this.props.menuData.currentGroup ||
+      (this.props.menuData.groups.length && this.props.menuData.groups[0].name),
   };
   onGroupTitleClick = groupName => {
     if (this.props.accordion) {
@@ -137,7 +151,9 @@ class ServiceMenu extends React.Component {
   renderCommon = () => {
     const { searchText } = this.state;
     const { common = [] } = this.props.menuData;
-    return common.filter(item => filterItems(item, searchText)).map(item => <MenuItem key={item.name} {...item} />);
+    return common
+      .filter(item => filterItems(item, searchText))
+      .map(item => <MenuItem key={item.name} {...item} />);
   };
   renderSearch() {
     const { hasSearch, searchPlaceholder } = this.props.menuData;

@@ -6769,11 +6769,3 @@ html {
 .ant-d-header-eye-icon {
   margin-right: 9px;
 }
-/* Цвета antdesign (красная тема) */
-:root {
-  --antd-color-primary: #bb2649;
-  --antd-color-info: #fad54d;
-  --antd-color-primary-hover: #c74861;
-  --antd-color-selection: #faebec;
-  --antd-text-color-selection: #bb2649;
-}

@@ -38,11 +38,15 @@ export default class List extends React.PureComponent {
     try {
       const comments = cloneDeep(this.props.comments);
       const index = comments.findIndex(
-        ({ id: currentId, feed: currentFeed }) => currentId === id && currentFeed === feed,
+        ({ id: currentId, feed: currentFeed }) =>
+          currentId === id && currentFeed === feed,
       );
       comments.splice(index, 1);
 
-      const selectedIndex = Math.min(Math.max(0, this.props.selectedIndex - 1), comments.length);
+      const selectedIndex = Math.min(
+        Math.max(0, this.props.selectedIndex - 1),
+        comments.length,
+      );
 
       this.props.updateComments(comments);
       this.props.updateSelectedIndex(selectedIndex);
@@ -69,7 +73,8 @@ export default class List extends React.PureComponent {
       if (selectedIndex !== null) {
         const { id, feed } = this.props.comments[selectedIndex];
         selectedIndex = comments.findIndex(
-          ({ id: currentId, feed: currentFeed }) => currentId === id && currentFeed === feed,
+          ({ id: currentId, feed: currentFeed }) =>
+            currentId === id && currentFeed === feed,
         );
 
         if (selectedIndex === -1) {
@@ -113,19 +118,21 @@ export default class List extends React.PureComponent {
             <Icon size="22" name="plus" className={b('icon')} />
             Новый комментарий
           </div>
-          {this.props.comments.map(({ id, feed, text, date, dateUntil, isStat, meta: { color } }, index) => (
-            <Comment
-              {...{ id, feed, text, date, dateUntil, color, isStat }}
-              key={`${feed}-${id}`}
-              isSelected={this.props.selectedIndex === index}
-              onClick={() => this.props.updateSelectedIndex(index)}
-              showConfirmParanja={this.props.showConfirmParanja}
-              onRemoved={() => this._onRemoved(id, feed, isStat)}
-              refSelected={node => {
-                this._selectedCommentNode = node;
-              }}
-            />
-          ))}
+          {this.props.comments.map(
+            ({ id, feed, text, date, dateUntil, isStat, meta: { color } }, index) => (
+              <Comment
+                {...{ id, feed, text, date, dateUntil, color, isStat }}
+                key={`${feed}-${id}`}
+                isSelected={this.props.selectedIndex === index}
+                onClick={() => this.props.updateSelectedIndex(index)}
+                showConfirmParanja={this.props.showConfirmParanja}
+                onRemoved={() => this._onRemoved(id, feed, isStat)}
+                refSelected={node => {
+                  this._selectedCommentNode = node;
+                }}
+              />
+            ),
+          )}
         </div>
         {
           // this.props.isBrowserChart ?
@@ -158,15 +165,27 @@ export default class List extends React.PureComponent {
 
         const parent = element.parentNode;
         const parentComputedStyle = window.getComputedStyle(parent, null);
-        const parentBorderTopWidth = parseInt(parentComputedStyle.getPropertyValue('border-top-width'), 10);
-        const parentBorderLeftWidth = parseInt(parentComputedStyle.getPropertyValue('border-left-width'), 10);
+        const parentBorderTopWidth = parseInt(
+          parentComputedStyle.getPropertyValue('border-top-width'),
+          10,
+        );
+        const parentBorderLeftWidth = parseInt(
+          parentComputedStyle.getPropertyValue('border-left-width'),
+          10,
+        );
         const overTop = element.offsetTop - parent.offsetTop < parent.scrollTop;
         const overBottom =
-          element.offsetTop - parent.offsetTop + element.clientHeight - parentBorderTopWidth >
+          element.offsetTop -
+            parent.offsetTop +
+            element.clientHeight -
+            parentBorderTopWidth >
           parent.scrollTop + parent.clientHeight;
         const overLeft = element.offsetLeft - parent.offsetLeft < parent.scrollLeft;
         const overRight =
-          element.offsetLeft - parent.offsetLeft + element.clientWidth - parentBorderLeftWidth >
+          element.offsetLeft -
+            parent.offsetLeft +
+            element.clientWidth -
+            parentBorderLeftWidth >
           parent.scrollLeft + parent.clientWidth;
         const alignWithTop = overTop && !overBottom;
 

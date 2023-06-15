@@ -15,7 +15,14 @@ function getContent(year, lang, minDate, maxDate) {
     const isMonthDisabled = dateHelpers.isDateOutOfRange(curDate, minDate, maxDate);
 
     return (
-      <SketchMonth key={`${year}-${month}`} disabled={isMonthDisabled} lang={lang} year={year} month={month} size="m" />
+      <SketchMonth
+        key={`${year}-${month}`}
+        disabled={isMonthDisabled}
+        lang={lang}
+        year={year}
+        month={month}
+        size="m"
+      />
     );
   });
 }
@@ -24,11 +31,17 @@ export default function MonthContent(props) {
   const { year, lang, minDate, maxDate } = props;
 
   const firstYearDay = new Date(year, 0, 1);
-  const isMonthTitleDisabled = dateHelpers.isDateOutOfRange(firstYearDay, minDate, maxDate);
+  const isMonthTitleDisabled = dateHelpers.isDateOutOfRange(
+    firstYearDay,
+    minDate,
+    maxDate,
+  );
 
   return (
     <div className={b('chunk-month')} data-year={year}>
-      <div className={b('chunk-month-title', { disabled: isMonthTitleDisabled })}>{year}</div>
+      <div className={b('chunk-month-title', { disabled: isMonthTitleDisabled })}>
+        {year}
+      </div>
 
       {getContent(year, lang, minDate, maxDate)}
     </div>

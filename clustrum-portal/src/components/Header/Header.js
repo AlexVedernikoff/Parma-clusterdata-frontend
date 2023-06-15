@@ -4,7 +4,9 @@ import { SDK } from '../../modules/sdk';
 import { IS_INTERNAL } from '../../modules/constants/constants';
 
 function Header() {
-  const { DL: { installationType, endpoints, user, menu, features: { toggleTheme } } = {} } = window;
+  const {
+    DL: { installationType, endpoints, user, menu, features: { toggleTheme } } = {},
+  } = window;
 
   return (
     <ClustrumHeader

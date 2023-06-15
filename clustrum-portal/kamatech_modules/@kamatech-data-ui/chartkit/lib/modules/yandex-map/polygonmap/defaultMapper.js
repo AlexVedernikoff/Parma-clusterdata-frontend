@@ -16,7 +16,8 @@ const defaultMapper = function(feature) {
   if (pointsCount === 0) {
     fillColor = this.options.get('fillColorEmptyPolygon');
   } else {
-    const colorNumber = this.options.get('fillBy') === 'weight' ? pointsWeight : pointsCount;
+    const colorNumber =
+      this.options.get('fillBy') === 'weight' ? pointsWeight : pointsCount;
 
     fillColor = this.colorize.getColor(colorNumber);
   }

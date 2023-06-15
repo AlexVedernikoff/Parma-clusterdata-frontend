@@ -7,7 +7,7 @@ import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown/should-move-dropdown';
 import './datepicker-filter-control.css';
 
-export interface DatepickerProps {
+interface DatepickerProps {
   className?: string;
   dateFormat?: string;
   label: string;

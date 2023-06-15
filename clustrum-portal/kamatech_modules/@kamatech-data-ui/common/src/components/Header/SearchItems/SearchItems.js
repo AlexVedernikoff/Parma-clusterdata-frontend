@@ -65,7 +65,8 @@ export default class SearchItems extends React.PureComponent {
   setFocusedItemIndex = step => {
     const { items = [] } = this.state;
 
-    const focusedItemIndex = (this.state.focusedItemIndex + step + items.length) % items.length;
+    const focusedItemIndex =
+      (this.state.focusedItemIndex + step + items.length) % items.length;
 
     if (isNaN(focusedItemIndex)) {
       return;
@@ -123,8 +124,12 @@ export default class SearchItems extends React.PureComponent {
 
         <div className={b('item-title')}>{item.title}</div>
 
-        {Boolean(getSecondaryMeta) && <div className={b('item-meta')}>{getSecondaryMeta(item)}</div>}
-        {Boolean(getPrimaryMeta) && <div className={b('item-meta')}>{getPrimaryMeta(item)}</div>}
+        {Boolean(getSecondaryMeta) && (
+          <div className={b('item-meta')}>{getSecondaryMeta(item)}</div>
+        )}
+        {Boolean(getPrimaryMeta) && (
+          <div className={b('item-meta')}>{getPrimaryMeta(item)}</div>
+        )}
       </div>
     );
   }
@@ -148,7 +153,11 @@ export default class SearchItems extends React.PureComponent {
     }
 
     if (searchPattern && !items.length) {
-      return <div className={b('not-found')}>{`По запросу "${searchPattern}" ничего не найдено`}</div>;
+      return (
+        <div
+          className={b('not-found')}
+        >{`По запросу "${searchPattern}" ничего не найдено`}</div>
+      );
     }
 
     return this._getItemList();

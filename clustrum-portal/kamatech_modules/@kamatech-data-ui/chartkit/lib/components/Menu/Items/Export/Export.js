@@ -26,7 +26,8 @@ function Block({ title, children }) {
 
 Block.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
+    .isRequired,
 };
 
 function Row({ title, children }) {
@@ -40,7 +41,8 @@ function Row({ title, children }) {
 
 Row.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
+    .isRequired,
 };
 
 class Export extends React.PureComponent {
@@ -93,12 +95,23 @@ class Export extends React.PureComponent {
       return null;
     }
 
-    const commonProps = { theme: 'normal', view: 'default', tone: 'default', size: 'n', type: 'radio', width: 'max' };
+    const commonProps = {
+      theme: 'normal',
+      view: 'default',
+      tone: 'default',
+      size: 'n',
+      type: 'radio',
+      width: 'max',
+    };
 
     return (
       <Block title="Настройки">
         <Row title="Разделитель значений">
-          <Select {...commonProps} val={this.state.delValues} onChange={([delValues]) => this.setState({ delValues })}>
+          <Select
+            {...commonProps}
+            val={this.state.delValues}
+            onChange={([delValues]) => this.setState({ delValues })}
+          >
             <Select.Item val=";">точка с запятой ;</Select.Item>
             <Select.Item val=",">запятая ,</Select.Item>
             <Select.Item val="tab">таб</Select.Item>
@@ -116,7 +129,11 @@ class Export extends React.PureComponent {
           </Select>
         </Row>
         <Row title="Кодировка">
-          <Select {...commonProps} val={this.state.encoding} onChange={([encoding]) => this.setState({ encoding })}>
+          <Select
+            {...commonProps}
+            val={this.state.encoding}
+            onChange={([encoding]) => this.setState({ encoding })}
+          >
             <Select.Item val={Encoding.UTF8}>utf8</Select.Item>
             <Select.Item val={Encoding.CP1251}>cp1251</Select.Item>
           </Select>
@@ -145,7 +162,9 @@ class Export extends React.PureComponent {
             </RadioButton>
           </Block>
           {this.renderSettings()}
-          <div className={b('hint')}>Этот диалог можно пропустить, кликнув по элементу меню с зажатым CMD/CTRL</div>
+          <div className={b('hint')}>
+            Этот диалог можно пропустить, кликнув по элементу меню с зажатым CMD/CTRL
+          </div>
         </Modal.Body>
         <Modal.Footer onApply={this.onApply} applyText="Скачать" />
       </Modal>
@@ -165,7 +184,14 @@ export default {
         console.error('Отсутствует метод exportWidget!');
       }
     } else {
-      ReactDOM.render(<Export element={anchorNode} runPayload={runPayload} exportWidget={exportWidget} />, anchorNode);
+      ReactDOM.render(
+        <Export
+          element={anchorNode}
+          runPayload={runPayload}
+          exportWidget={exportWidget}
+        />,
+        anchorNode,
+      );
     }
   },
 };

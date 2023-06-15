@@ -11,7 +11,10 @@ const b = block('chart-source-modal');
 const generateKey = value => `${value}${Date.now()}`;
 
 export default function AppMetrikaSourceView({ index, source }) {
-  const { data: { application: { id, name, bundle_id: bundleId } = {} } = {}, name: sourceName } = source;
+  const {
+    data: { application: { id, name, bundle_id: bundleId } = {} } = {},
+    name: sourceName,
+  } = source;
 
   const title = `ID: ${id}`;
   const subTitle = `${name} ${(bundleId && `(${bundleId})`) || ''}`;

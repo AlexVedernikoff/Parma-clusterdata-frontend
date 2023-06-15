@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import update from 'immutability-helper';
+// TODO: убрать зависимость из старого кода
 import { getUniqueId } from '../../../../../utils/helpers';
 import { useDrop } from 'react-dnd';
 import { DndItem } from './dnd-item';

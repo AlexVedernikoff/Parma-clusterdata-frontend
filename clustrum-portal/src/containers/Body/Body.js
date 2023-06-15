@@ -101,7 +101,9 @@ class Body extends React.PureComponent {
     this.props.toggleWidgetVisibility(itemId, layoutId);
   };
 
-  widgetMenu = createWidgetMenu(widgetEditorUUID => this.props.setWidgetEditorUUID(widgetEditorUUID));
+  widgetMenu = createWidgetMenu(widgetEditorUUID =>
+    this.props.setWidgetEditorUUID(widgetEditorUUID),
+  );
 
   renderBody() {
     const {

@@ -20,9 +20,18 @@ export function prepareItem(Component) {
 
     shouldComponentUpdate(nextProps) {
       const { width, height, transform } = this.props;
-      const { width: widthNext, height: heightNext, transform: transformNext } = nextProps;
+      const {
+        width: widthNext,
+        height: heightNext,
+        transform: transformNext,
+      } = nextProps;
 
-      if (!nextProps.shouldItemUpdate && width === widthNext && height === heightNext && transform === transformNext) {
+      if (
+        !nextProps.shouldItemUpdate &&
+        width === widthNext &&
+        height === heightNext &&
+        transform === transformNext
+      ) {
         return false;
       }
 
@@ -61,13 +70,27 @@ export function prepareItem(Component) {
       const { itemsParams, exportWidget } = this.context;
 
       return exportWidget
-        ? (runPayload, options) => exportWidget(runPayload.id, itemDataOnTab.title, Object.keys(itemsParams), options)
+        ? (runPayload, options) =>
+            exportWidget(
+              runPayload.id,
+              itemDataOnTab.title,
+              Object.keys(itemsParams),
+              options,
+            )
         : null;
     };
 
     render() {
       const { id, width, height, item } = this.props;
-      const { itemsState, itemsParams, registerManager, context, paginateInfo, widgetMenu, orderBy } = this.context;
+      const {
+        itemsState,
+        itemsParams,
+        registerManager,
+        context,
+        paginateInfo,
+        widgetMenu,
+        orderBy,
+      } = this.context;
       const { type, data, defaults, namespace } = item;
       const ownWidgetParams = this.#getOwnWidgetParams(id);
       const rendererProps = {

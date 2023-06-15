@@ -50,7 +50,12 @@ class DatasetHistory extends React.Component {
     }
 
     return (
-      <PreviewResizer isVisible={isVisible} view={view} tab={tab} className={ResizerType.HISTORY}>
+      <PreviewResizer
+        isVisible={isVisible}
+        view={view}
+        tab={tab}
+        className={ResizerType.HISTORY}
+      >
         <div className={b()}>
           <PreviewHeader
             view={view}

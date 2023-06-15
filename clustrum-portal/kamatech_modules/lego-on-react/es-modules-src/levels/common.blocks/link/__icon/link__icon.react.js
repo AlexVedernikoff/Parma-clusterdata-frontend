@@ -12,7 +12,11 @@ export default decl({
       children = _props.children;
 
     return cloneElement(children, {
-      mix: [].concat(children.props.mix, { block: block, elem: elem, mods: { side: side } }),
+      mix: [].concat(children.props.mix, {
+        block: block,
+        elem: elem,
+        mods: { side: side },
+      }),
     });
   },
 });

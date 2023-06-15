@@ -12,7 +12,12 @@ const customSettingsBlock = block('materialization-custom-settings');
 const datasourceBlock = block('data-source');
 
 function MaterializationSettings(props) {
-  const { materializationCustomSettings, changeMaterializationCustomSettings, onEntryClick, sdk } = props;
+  const {
+    materializationCustomSettings,
+    changeMaterializationCustomSettings,
+    onEntryClick,
+    sdk,
+  } = props;
 
   const handleChange = e => {
     materializationCustomSettings[e.target.name] = e.target.value;
@@ -22,7 +27,9 @@ function MaterializationSettings(props) {
 
   return (
     <div className={datasourceBlock('section')}>
-      <div className={datasourceBlock('caption', datasourceBlock('margin', { bottom: 5 }))}>
+      <div
+        className={datasourceBlock('caption', datasourceBlock('margin', { bottom: 5 }))}
+      >
         <span>Настройки материализации</span>
       </div>
       <div className={customSettingsBlock()}>
@@ -36,8 +43,12 @@ function MaterializationSettings(props) {
           value={materializationCustomSettings.modeType}
           onChange={handleChange}
         >
-          <RadioBox.Radio value={DATASET_MATERIALIZED_MODES.DEFAULT}>По умолчанию</RadioBox.Radio>
-          <RadioBox.Radio value={DATASET_MATERIALIZED_MODES.CUSTOM}>Пользовательские</RadioBox.Radio>
+          <RadioBox.Radio value={DATASET_MATERIALIZED_MODES.DEFAULT}>
+            По умолчанию
+          </RadioBox.Radio>
+          <RadioBox.Radio value={DATASET_MATERIALIZED_MODES.CUSTOM}>
+            Пользовательские
+          </RadioBox.Radio>
         </RadioBox>
 
         {materializationCustomSettings.modeType === DATASET_MATERIALIZED_MODES.CUSTOM && (

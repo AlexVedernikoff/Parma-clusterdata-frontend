@@ -17,7 +17,10 @@ const b = block('chartkit-modal');
 class Modal extends React.PureComponent {
   static propTypes = {
     element: PropTypes.object.isRequired,
-    children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]).isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element),
+    ]).isRequired,
   };
 
   static Header = Header;

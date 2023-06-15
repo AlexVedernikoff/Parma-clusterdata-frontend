@@ -6,7 +6,9 @@ import { KamatechNavigationBreadcrumbsInterface } from './KamatechNavigationBrea
 import { KamatechNavigationBreadcrumbsModel } from './KamatechNavigationBreadcrumbs.model';
 import { ClassHelper } from '../../../helpers';
 
-export class KamatechNavigationBreadcrumbs extends React.PureComponent<KamatechNavigationBreadcrumbsInterface> {
+export class KamatechNavigationBreadcrumbs extends React.PureComponent<
+  KamatechNavigationBreadcrumbsInterface
+> {
   static defaultProps = {
     size: KamatechNavigationBreadcrumbsModel.size,
     path: KamatechNavigationBreadcrumbsModel.path,

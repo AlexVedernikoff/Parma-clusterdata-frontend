@@ -9,7 +9,9 @@ const QUERY_JING = '&__scr_jing=1';
 export default function DownloadScreenshotJing(props) {
   const _onClick = () => {
     return new Promise(resolve =>
-      axiosInstance.get(props.screenshotUrl + QUERY_JING).then(response => resolve(response.data)),
+      axiosInstance
+        .get(props.screenshotUrl + QUERY_JING)
+        .then(response => resolve(response.data)),
     );
   };
 

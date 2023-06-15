@@ -12,7 +12,9 @@ const Item = ({ registerManager, rendererProps, type, forwardedPluginRef }) => {
   }
 
   return (
-    <div className={b('renderer')}>{registerManager.getItem(type).renderer(rendererProps, forwardedPluginRef)}</div>
+    <div className={b('renderer')}>
+      {registerManager.getItem(type).renderer(rendererProps, forwardedPluginRef)}
+    </div>
   );
 };
 

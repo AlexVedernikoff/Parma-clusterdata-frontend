@@ -9,7 +9,10 @@ export default decl(
       var _mods = _ref.mods;
 
       /*%%%ISLDEBUG%%%*/ +0 &&
-        console.assert((_mods || {}).side, 'tooltip: Модификатор side элемента corner скоро станет обязательным');
+        console.assert(
+          (_mods || {}).side,
+          'tooltip: Модификатор side элемента corner скоро станет обязательным',
+        );
 
       return _mods;
     },

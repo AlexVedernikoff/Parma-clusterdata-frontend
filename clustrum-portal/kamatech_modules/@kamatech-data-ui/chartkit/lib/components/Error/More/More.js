@@ -44,7 +44,13 @@ ${JSON.stringify(this.props.text, null, 4)}`;
                 </Button>
               )}
             </CopyToClipboard>
-            <Button theme="pseudo" tone="default" view="default" size="m" onClick={this.onClose}>
+            <Button
+              theme="pseudo"
+              tone="default"
+              view="default"
+              size="m"
+              onClick={this.onClose}
+            >
               Закрыть
             </Button>
           </div>
@@ -57,7 +63,14 @@ ${JSON.stringify(this.props.text, null, 4)}`;
   render() {
     return (
       <React.Fragment>
-        <Button theme="pseudo" tone="default" view="default" size="m" cls={b('button')} onClick={this.onClick}>
+        <Button
+          theme="pseudo"
+          tone="default"
+          view="default"
+          size="m"
+          cls={b('button')}
+          onClick={this.onClick}
+        >
           Подробнее
         </Button>
         <div ref={this.anchorRef} />

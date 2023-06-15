@@ -20,7 +20,11 @@ class Tab extends React.Component {
   render() {
     const { active, disabled, hint, title = this.props.id } = this.props;
     return (
-      <div className={b('tab', { active, disabled })} title={hint || title} onClick={this.onClick}>
+      <div
+        className={b('tab', { active, disabled })}
+        title={hint || title}
+        onClick={this.onClick}
+      >
         {title}
       </div>
     );
@@ -63,7 +67,16 @@ class Tabs extends React.Component {
     const activeTab = this.activeTab;
     const { items, wrapTo } = this.props;
     return items.map((item, index) =>
-      wrapTo(item, <Tab key={item.id} {...item} active={item.id === activeTab} onClick={this.onTabClick} />, index),
+      wrapTo(
+        item,
+        <Tab
+          key={item.id}
+          {...item}
+          active={item.id === activeTab}
+          onClick={this.onTabClick}
+        />,
+        index,
+      ),
     );
   };
   render() {

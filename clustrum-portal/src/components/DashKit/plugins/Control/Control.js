@@ -77,9 +77,75 @@ class Control extends React.PureComponent {
 
   _isUnmounted = false;
   _cancelSource = null;
+  _memoizedHandlers = {
+    defaultChangeHandler: {
+      param: '',
+      memoizedHandleFn: null,
+    },
+    inputChangeHandler: {
+      param: '',
+      fieldDataType: '',
+      memoizedHandleFn: null,
+    },
+    rangeDatepickerChangeHandler: {
+      param: '',
+      memoizedHandleFn: null,
+    },
+  };
 
   get actualParams() {
     return pick(getParamsValue(this.props.params), Object.keys(this.props.defaults));
+  }
+
+  _createDefaultChangeHandler(param) {
+    const handler = this._memoizedHandlers.defaultChangeHandler;
+
+    if (handler.param === param) {
+      return handler.memoizedHandleFn;
+    }
+
+    handler.param = param;
+    handler.memoizedHandleFn = value => this.onChange(handler.param, value);
+
+    return handler.memoizedHandleFn;
+  }
+
+  _createInputChangeHandler(param, fieldDataType) {
+    const handler = this._memoizedHandlers.inputChangeHandler;
+
+    if (handler.param === param && handler.fieldDataType === fieldDataType) {
+      return handler.memoizedHandleFn;
+    }
+
+    handler.param = param;
+    handler.fieldDataType = fieldDataType;
+    handler.memoizedHandleFn = value => {
+      this.onChange(
+        handler.param,
+        this._convertToPartialMatchValue(value, handler.fieldDataType),
+      );
+    };
+
+    return handler.memoizedHandleFn;
+  }
+
+  _createRangeDatepickerChangeHandler(param) {
+    const handler = this._memoizedHandlers.rangeDatepickerChangeHandler;
+
+    if (handler.param === param) {
+      return handler.memoizedHandleFn;
+    }
+
+    handler.param = param;
+    handler.memoizedHandleFn = ({ from, to }) =>
+      this.onChange(
+        handler.param,
+        `__interval_${moment(from).format(DATE_FORMAT_DAY)}_${moment(to).format(
+          DATE_FORMAT_DAY,
+        )}`,
+      );
+
+    return handler.memoizedHandleFn;
   }
 
   reload() {
@@ -248,7 +314,7 @@ class Control extends React.PureComponent {
             className: b('item'),
             key: param,
             value: valueFromParams,
-            onChange: value => this.onChange(param, value),
+            onChange: this._createDefaultChangeHandler(param),
           };
 
           if (type === TYPE.RANGE_DATEPICKER) {
@@ -266,26 +332,14 @@ class Control extends React.PureComponent {
               to = `${y2}-${m2}-${d2}`;
 
               props.value = { from, to };
-              props.onChange = ({ from, to }) =>
-                this.onChange(
-                  param,
-                  `__interval_${moment(from).format(DATE_FORMAT_DAY)}_${moment(to).format(
-                    DATE_FORMAT_DAY,
-                  )}`,
-                );
+              props.onChange = this._createRangeDatepickerChangeHandler(param);
             } catch (error) {
               console.error('DASHKIT_RANGE_DATEPICKER_INCORRECT_VALUE', error);
             }
           }
 
           if (type === TYPE.INPUT) {
-            props.onChange = value => {
-              this.onChange(
-                param,
-                this._convertToPartialMatchValue(value, props.fieldDataType),
-              );
-            };
-
+            props.onChange = this._createInputChangeHandler(param, props.fieldDataType);
             props.value = this._convertToPlainValue(valueFromParams, props.fieldDataType);
           }
 
@@ -307,7 +361,7 @@ class Control extends React.PureComponent {
   }
 
   _convertToPartialMatchValue(valueInput, fieldDataType) {
-    //TODO добавить enum для DataType
+    // TODO добавить enum для DataType
     if (fieldDataType !== 'STRING') {
       return valueInput;
     }

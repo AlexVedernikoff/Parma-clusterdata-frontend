@@ -65,7 +65,10 @@ class Card extends React.Component {
         return (
           <div className={b('row')} key={key}>
             <div className={b('row_cell_key')}>{key}</div>
-            <div className={b('row_cell_value')} dangerouslySetInnerHTML={{ __html: value }} />
+            <div
+              className={b('row_cell_value')}
+              dangerouslySetInnerHTML={{ __html: value }}
+            />
           </div>
         );
       }

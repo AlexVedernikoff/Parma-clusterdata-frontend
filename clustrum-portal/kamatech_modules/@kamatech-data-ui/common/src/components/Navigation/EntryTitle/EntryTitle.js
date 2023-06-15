@@ -37,7 +37,10 @@ const EntryTitle = props => {
   const entryName = getEntryName(entry);
   const isClicked = typeof props.onClick === 'function';
   return (
-    <div className={b({ pointer: isClicked, theme })} onClick={isClicked ? props.onClick : undefined}>
+    <div
+      className={b({ pointer: isClicked, theme })}
+      onClick={isClicked ? props.onClick : undefined}
+    >
       {props.hasIcon && <div className={b('icon')}>{iconSwitcher(entry, theme)}</div>}
       <div className={b('text')}>{entryName}</div>
     </div>

@@ -6,7 +6,8 @@ export default declMod(
     block: 'user-pic',
     getAvatarURL: function getAvatarURL() {
       var host = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-      var avatarId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '0';
+      var avatarId =
+        arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '0';
 
       return {
         lodpiUrl: host + '/api/v1/user/' + avatarId + '/avatar/42.jpg',

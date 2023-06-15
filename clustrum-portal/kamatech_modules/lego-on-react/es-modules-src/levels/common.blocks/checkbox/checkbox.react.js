@@ -192,7 +192,11 @@ export default decl(
       size: PropTypes.oneOf(['s', 'm', 'n']),
       name: PropTypes.string,
       title: PropTypes.string,
-      children: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.element]),
+      children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array,
+        PropTypes.element,
+      ]),
       lines: PropTypes.oneOf([false, 'one', 'multi']),
       onChange: PropTypes.func,
       onKeyUp: PropTypes.func,

@@ -106,7 +106,10 @@ class ChOverYtConnector extends React.Component {
                 widthSize={'m'}
                 onChange={this.changeValue}
               />
-              <HelpButton title="Получение OAuth-токена для YT" url={'https://oauth.yt.yandex.net'} />
+              <HelpButton
+                title="Получение OAuth-токена для YT"
+                url={'https://oauth.yt.yandex.net'}
+              />
             </div>
           </div>
           <div className={b('row')}>

@@ -9,7 +9,13 @@ import Dialogs from '../Dialogs/Dialogs';
 import PageHead from '../../components/PageHeader/PageHeader';
 
 import { load as loadDash, setErrorMode } from '../../store/actions/dash';
-import { isDraft, getEntryTitle, canEdit, isEditMode, getWidgetEditorUUID } from '../../store/selectors/dash';
+import {
+  isDraft,
+  getEntryTitle,
+  canEdit,
+  isEditMode,
+  getWidgetEditorUUID,
+} from '../../store/selectors/dash';
 import { setWidgetEditorUUID, setWidgetForReloadUUID } from '../../store/actions/dash';
 
 import { SDK } from '@kamatech-data-ui/clustrum';
@@ -76,13 +82,20 @@ class Dash extends React.PureComponent {
   };
 
   _handleSavingEnd = (response, error) => {
-    this._wizardSavingStatus = error ? WizardSavingStatus.ERROR : WizardSavingStatus.SAVED;
+    this._wizardSavingStatus = error
+      ? WizardSavingStatus.ERROR
+      : WizardSavingStatus.SAVED;
 
     this.closeWidgetEditor();
   };
 
   closeWidgetEditor = () => {
-    const { setWidgetEditorUUID, setWidgetForReloadUUID, widgetEditorUUID, resetWizard } = this.props;
+    const {
+      setWidgetEditorUUID,
+      setWidgetForReloadUUID,
+      widgetEditorUUID,
+      resetWizard,
+    } = this.props;
 
     if (this._wizardSavingStatus === WizardSavingStatus.SAVING) {
       return;

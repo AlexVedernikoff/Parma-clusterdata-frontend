@@ -206,7 +206,8 @@ export default decl(
           ? placeholder
           : flattenItems
               .reduce(function(res, item) {
-                val.indexOf(item.props.val) !== -1 && res.push(item.props.checkedText || item.props.children);
+                val.indexOf(item.props.val) !== -1 &&
+                  res.push(item.props.checkedText || item.props.children);
                 return res;
               }, [])
               .join(', ');

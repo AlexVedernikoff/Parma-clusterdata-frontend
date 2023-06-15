@@ -111,12 +111,20 @@ export default decl(
         if (Icon.isIcon(child)) {
           var onlyIcon = Children.count(children) === 1;
           var side = onlyIcon ? '' : i === 0 ? 'left' : 'right';
-          content.push(React.createElement(LinkIcon, { key: 'icon-' + i, side: side, children: child }));
+          content.push(
+            React.createElement(LinkIcon, {
+              key: 'icon-' + i,
+              side: side,
+              children: child,
+            }),
+          );
         } else if (child) {
           // Undefined protection
           if (!innerElems.length) {
             content.push(
-              hasIconFromContent ? React.createElement(LinkInner, { key: 'inner' }, innerElems) : innerElems,
+              hasIconFromContent
+                ? React.createElement(LinkInner, { key: 'inner' }, innerElems)
+                : innerElems,
             );
           }
           innerElems.push(child);
@@ -139,13 +147,19 @@ export default decl(
           React.createElement(LinkIcon, {
             key: 'icon-side-left',
             side: needSetSide ? 'left' : '',
-            children: Icon.isIcon(iconLeft) ? iconLeft : React.createElement(Icon, iconLeft),
+            children: Icon.isIcon(iconLeft)
+              ? iconLeft
+              : React.createElement(Icon, iconLeft),
           }),
         );
       if (text) {
         if (!innerElems.length) {
           var hasIconFromFields = this._hasIconFromFields(this.props);
-          content.push(hasIconFromFields ? React.createElement(LinkInner, { key: 'inner' }, innerElems) : innerElems);
+          content.push(
+            hasIconFromFields
+              ? React.createElement(LinkInner, { key: 'inner' }, innerElems)
+              : innerElems,
+          );
         }
         innerElems.push(text);
       }
@@ -154,7 +168,9 @@ export default decl(
           React.createElement(LinkIcon, {
             key: 'icon-side-right',
             side: needSetSide ? 'right' : '',
-            children: Icon.isIcon(iconRight) ? iconRight : React.createElement(Icon, iconRight),
+            children: Icon.isIcon(iconRight)
+              ? iconRight
+              : React.createElement(Icon, iconRight),
           }),
         );
       return content;

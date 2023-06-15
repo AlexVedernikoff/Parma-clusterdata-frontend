@@ -69,7 +69,9 @@ export default decl({
     var id = this.generateId();
     var arrowIconOptions = _extends(
       {},
-      view === 'default' ? { glyph: 'carets-v' } : { type: 'arrow', direction: opened ? 'top' : 'bottom' },
+      view === 'default'
+        ? { glyph: 'carets-v' }
+        : { type: 'arrow', direction: opened ? 'top' : 'bottom' },
       {
         key: 'arrow',
         mix: { block: block, elem: 'arrow' },
@@ -103,7 +105,10 @@ export default decl({
           textAttrs: { id: id },
           text: placeholder,
           iconLeft: icon,
-          iconRight: React.createElement(Icon, _extends({ key: 'arrow' }, arrowIconOptions)),
+          iconRight: React.createElement(
+            Icon,
+            _extends({ key: 'arrow' }, arrowIconOptions),
+          ),
         },
         buttonProps,
       ),

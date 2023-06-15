@@ -6,7 +6,10 @@ import { Button, Icon } from 'lego-on-react';
 import { NavigationMinimal, EntryTitle } from '@kamatech-data-ui/clustrum';
 import Loader from '../../components/Loader/Loader';
 import { SDK } from '../../modules/sdk';
-import { getPersonalFolderPath, getNavigationPathFromKey } from '../../helpers/utils-dash';
+import {
+  getPersonalFolderPath,
+  getNavigationPathFromKey,
+} from '../../helpers/utils-dash';
 import { changeNavigationPath } from '../../store/actions/dash';
 import { ENTRY_SCOPE, ENTRY_TYPE } from '../../constants/constants';
 
@@ -87,8 +90,15 @@ class DropdownNavigation extends React.PureComponent {
           innerRef={this.setButtonRef}
           cls={b('button')}
         >
-          {this.state.entry ? <EntryTitle entry={this.state.entry} theme="inline" /> : 'Выбрать'}
-          <Icon glyph="type-arrow" direction={this.state.showNavigation ? 'top' : 'bottom'} />
+          {this.state.entry ? (
+            <EntryTitle entry={this.state.entry} theme="inline" />
+          ) : (
+            'Выбрать'
+          )}
+          <Icon
+            glyph="type-arrow"
+            direction={this.state.showNavigation ? 'top' : 'bottom'}
+          />
         </Button>
         <NavigationMinimal
           sdk={SDK}

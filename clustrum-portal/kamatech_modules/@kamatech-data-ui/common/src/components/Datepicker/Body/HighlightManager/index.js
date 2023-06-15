@@ -101,7 +101,8 @@ export default class HighlightManager {
     const priority = HighlightManager.typesPriority;
     const isSameType = this.type() === type;
     // при уменьшении масштаба красим ранее выделенный диапазон дат (исключая тип week)
-    const isLessPriorityOrNotWeek = priority[this.type()] > priority[type] && type !== 'week';
+    const isLessPriorityOrNotWeek =
+      priority[this.type()] > priority[type] && type !== 'week';
 
     this._start = start;
     this._end = end;
@@ -211,7 +212,10 @@ export default class HighlightManager {
       const firstDate = dateHelpers.getDateFromNode(list[0], type);
       const lastDate = dateHelpers.getDateFromNode(list[list.length - 1], type);
 
-      if (firstDate.getTime() > endDate.getTime() || lastDate.getTime() < startDate.getTime()) {
+      if (
+        firstDate.getTime() > endDate.getTime() ||
+        lastDate.getTime() < startDate.getTime()
+      ) {
         // если вышли за пределы диапазона - ничего не делаем
         return;
       }
@@ -233,7 +237,9 @@ export default class HighlightManager {
       if (nextSibling) {
         next = nextSibling;
       } else if (nextParentSibling) {
-        next = startNode.parentElement.nextElementSibling.querySelector(`.${b(selectors[type])}`);
+        next = startNode.parentElement.nextElementSibling.querySelector(
+          `.${b(selectors[type])}`,
+        );
       } else {
         return;
       }
@@ -254,7 +260,9 @@ export default class HighlightManager {
       }
 
       if (!next.nextElementSibling && next.parentElement.nextElementSibling) {
-        next = next.parentElement.nextElementSibling.querySelector(`.${b(selectors[type])}`);
+        next = next.parentElement.nextElementSibling.querySelector(
+          `.${b(selectors[type])}`,
+        );
 
         continue;
       }
