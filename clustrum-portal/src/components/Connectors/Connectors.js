@@ -9,20 +9,30 @@ import { getConnectorsMap, getFakeEntry } from '../../constants';
 
 const b = block('connectors');
 
-function Connectors({ sdk, location: { search } }) {
+export function Connectors({ sdk, location: { search } }) {
   const [searchConnectorName, setSearchConnectorName] = useState();
 
   const connectionsList = useMemo(() => {
     const unfilteredConnectionsList = Object.entries(getConnectorsMap());
-    const loweredSearchConnectorName = searchConnectorName.toLowerCase().replace(/\s+/g, '');
-    return searchConnectorName
-      ? unfilteredConnectionsList.filter(([, title]) => title.toLowerCase().includes(loweredSearchConnectorName))
-      : unfilteredConnectionsList;
+
+    if (!searchConnectorName) {
+      return unfilteredConnectionsList;
+    }
+    const formattedSearchConnectorName = searchConnectorName
+      .toLowerCase()
+      .replace(/\s+/g, '');
+    return unfilteredConnectionsList.filter(([, title]) =>
+      title.toLowerCase().includes(formattedSearchConnectorName),
+    );
   }, [searchConnectorName]);
 
   return (
     <div className={b()}>
-      <ActionPanel sdk={sdk} entry={getFakeEntry('connection')} rightItems={[<div key={'fake'} />]} />
+      <ActionPanel
+        sdk={sdk}
+        entry={getFakeEntry('connection')}
+        rightItems={[<div key={'fake'} />]}
+      />
       <div className={b('panel')}>
         <TextInput
           tabIndex={1}
@@ -42,8 +52,18 @@ function Connectors({ sdk, location: { search } }) {
       <div className={b('list')}>
         {connectionsList.map(([connector, title]) => {
           return (
-            <Link key={connector} className={b('link')} to={`/connections/new/${connector}${search}`}>
-              <Button cls={b('connector-btn')} theme="pseudo" size="n" view="default" tone="default">
+            <Link
+              key={connector}
+              className={b('link')}
+              to={`/connections/new/${connector}${search}`}
+            >
+              <Button
+                cls={b('connector-btn')}
+                theme="pseudo"
+                size="n"
+                view="default"
+                tone="default"
+              >
                 <Icon
                   key={connector}
                   className={b('connector-icon')}
@@ -60,5 +80,3 @@ function Connectors({ sdk, location: { search } }) {
     </div>
   );
 }
-
-export default Connectors;

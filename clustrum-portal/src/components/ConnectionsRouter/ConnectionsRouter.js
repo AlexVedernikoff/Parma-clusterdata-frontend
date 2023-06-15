@@ -4,7 +4,7 @@ import block from 'bem-cn-lite';
 import PropTypes from 'prop-types';
 import { Pointerfocus } from 'lego-on-react';
 import { Utils } from '@kamatech-data-ui/clustrum';
-import Connectors from '../Connectors/Connectors';
+import { Connectors } from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
 import { getConnectorsMap } from '../../constants';
 import { PageContainer } from '../../widgets/page-container/ui/page-container';
