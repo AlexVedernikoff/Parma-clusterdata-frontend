@@ -76,8 +76,12 @@ export function RangeDatepickerFilterControl({
             placement={shouldMoveCalendar ? 'bottomRight' : 'bottomLeft'}
             value={dateRange}
             onChange={handleChange}
-            onOpenChange={(): void => {
-              setShouldMoveCalendar(shouldMoveDropdown(pickerRef?.current, POPUP_WIDTH));
+            onOpenChange={(isOpening): void => {
+              if (isOpening) {
+                setShouldMoveCalendar(
+                  shouldMoveDropdown(pickerRef?.current, POPUP_WIDTH),
+                );
+              }
             }}
           />
           {!isValid && (
