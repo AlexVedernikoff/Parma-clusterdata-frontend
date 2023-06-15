@@ -1673,7 +1673,7 @@
 }
 
 .wizard .columns .column {
-  height: calc(100vh - 9.375rem);
+  height: calc(100vh - 14rem);
 }
 
 .yc-dialog-btn-close .button2 {
