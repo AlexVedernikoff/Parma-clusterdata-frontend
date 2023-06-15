@@ -7,7 +7,7 @@ import { Menu, theme } from 'antd';
 
 import { useActiveMenuItemKey } from '../lib/hooks/use-active-menu-item-key';
 import { MENU_ITEMS } from '../lib/constants/menu-items';
-import RedLogo from './red-logo';
+import { RedLogo } from './red-logo';
 import './side-panel.css';
 const { useToken } = theme;
 

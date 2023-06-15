@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-function RedLogo(): ReactElement {
+export function RedLogo(): ReactElement {
   return (
     <svg
       width={24}
@@ -16,5 +16,3 @@ function RedLogo(): ReactElement {
     </svg>
   );
 }
-
-export default RedLogo;
