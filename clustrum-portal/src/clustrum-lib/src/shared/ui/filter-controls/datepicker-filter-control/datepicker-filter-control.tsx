@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import cn from 'classnames';
 import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
@@ -43,17 +43,14 @@ export function DatepickerFilterControl({
     }
   }, [isValid, value]);
 
-  const handleChange = useCallback(
-    (dateValue: Dayjs | null): void => {
-      if (dateValue) {
-        setIsValid(true);
-        onChange(dateValue.format(DEFAULT_DATE_FORMAT));
-      } else {
-        setIsValid(false);
-      }
-    },
-    [onChange],
-  );
+  const handleChange = (dateValue: Dayjs | null): void => {
+    if (dateValue) {
+      setIsValid(true);
+      onChange(dateValue.format(DEFAULT_DATE_FORMAT));
+    } else {
+      setIsValid(false);
+    }
+  };
 
   return (
     <div className={cn('datepicker-control', className)}>

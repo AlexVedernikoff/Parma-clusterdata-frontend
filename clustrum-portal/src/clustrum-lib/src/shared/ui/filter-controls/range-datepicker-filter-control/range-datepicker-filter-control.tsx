@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
@@ -47,20 +47,17 @@ export function RangeDatepickerFilterControl({
     }
   }, [isValid, value]);
 
-  const handleChange = useCallback(
-    (values: Range): void => {
-      if (values?.[0] && values?.[1]) {
-        setIsValid(true);
-        onChange({
-          from: values[0].format(DEFAULT_DATE_FORMAT),
-          to: values[1].format(DEFAULT_DATE_FORMAT),
-        });
-      } else {
-        setIsValid(false);
-      }
-    },
-    [onChange],
-  );
+  const handleChange = (values: Range): void => {
+    if (values?.[0] && values?.[1]) {
+      setIsValid(true);
+      onChange({
+        from: values[0].format(DEFAULT_DATE_FORMAT),
+        to: values[1].format(DEFAULT_DATE_FORMAT),
+      });
+    } else {
+      setIsValid(false);
+    }
+  };
 
   return (
     <div className={cn('range-datepicker-control', className)}>
