@@ -52,6 +52,12 @@ export function DatepickerFilterControl({
     }
   };
 
+  const handleCalendarPosition = (isOpening: boolean): void => {
+    if (isOpening) {
+      setShouldMoveCalendar(shouldMoveDropdown(pickerRef?.current, POPUP_WIDTH));
+    }
+  };
+
   return (
     <div className={cn('datepicker-control', className)}>
       <label className="datepicker-control__label">
@@ -69,13 +75,7 @@ export function DatepickerFilterControl({
             placement={shouldMoveCalendar ? 'bottomRight' : 'bottomLeft'}
             value={date}
             onChange={handleChange}
-            onOpenChange={(isOpening): void => {
-              if (isOpening) {
-                setShouldMoveCalendar(
-                  shouldMoveDropdown(pickerRef?.current, POPUP_WIDTH),
-                );
-              }
-            }}
+            onOpenChange={handleCalendarPosition}
           />
           {!isValid && (
             <div className="datepicker-control__validation-msg">Укажите дату</div>

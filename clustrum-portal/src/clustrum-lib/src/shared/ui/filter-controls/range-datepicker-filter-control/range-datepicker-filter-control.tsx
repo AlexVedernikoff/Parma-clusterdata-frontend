@@ -59,6 +59,12 @@ export function RangeDatepickerFilterControl({
     }
   };
 
+  const handleCalendarPosition = (isOpening: boolean): void => {
+    if (isOpening) {
+      setShouldMoveCalendar(shouldMoveDropdown(pickerRef?.current, POPUP_WIDTH));
+    }
+  };
+
   return (
     <div className={cn('range-datepicker-control', className)}>
       <label className="range-datepicker-control__label">
@@ -76,13 +82,7 @@ export function RangeDatepickerFilterControl({
             placement={shouldMoveCalendar ? 'bottomRight' : 'bottomLeft'}
             value={dateRange}
             onChange={handleChange}
-            onOpenChange={(isOpening): void => {
-              if (isOpening) {
-                setShouldMoveCalendar(
-                  shouldMoveDropdown(pickerRef?.current, POPUP_WIDTH),
-                );
-              }
-            }}
+            onOpenChange={handleCalendarPosition}
           />
           {!isValid && (
             <div className="range-datepicker-control__validation-msg">
