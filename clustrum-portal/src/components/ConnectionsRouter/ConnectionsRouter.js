@@ -44,7 +44,7 @@ class ConnectionsRouter extends PureComponent {
                     exact
                     path={'/connections/new'}
                     render={props => (
-                      <PageContainer withoutReactRouter>
+                      <PageContainer>
                         <Connectors {...props} sdk={sdk} />
                       </PageContainer>
                     )}
@@ -56,7 +56,7 @@ class ConnectionsRouter extends PureComponent {
 
                       if (Object.keys(getConnectorsMap()).includes(connectorType)) {
                         return (
-                          <PageContainer withoutReactRouter>
+                          <PageContainer>
                             <ConnectionPage {...props} sdk={sdk} />
                           </PageContainer>
                         );
@@ -72,7 +72,7 @@ class ConnectionsRouter extends PureComponent {
               path={'/connections/:connectionId'}
               render={props => {
                 return (
-                  <PageContainer withoutReactRouter>
+                  <PageContainer>
                     <ConnectionPage {...props} sdk={sdk} />
                   </PageContainer>
                 );

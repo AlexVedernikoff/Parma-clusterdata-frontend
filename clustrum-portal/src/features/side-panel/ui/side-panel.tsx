@@ -12,10 +12,10 @@ import './side-panel.css';
 const { useToken } = theme;
 
 interface SidePanelProps {
-  withoutReactRouter?: boolean;
+  withReactRouter?: boolean;
 }
 
-export function SidePanel({ withoutReactRouter }: SidePanelProps): ReactElement {
+export function SidePanel({ withReactRouter = false }: SidePanelProps): ReactElement {
   const [collapsed, setCollapsed] = useState(false);
   const history = useHistory();
   const selectedKey = useActiveMenuItemKey();
@@ -23,13 +23,13 @@ export function SidePanel({ withoutReactRouter }: SidePanelProps): ReactElement 
 
   const handleSidePanelItemClick = useCallback(
     (item: MenuItemType) => {
-      if (withoutReactRouter) {
+      if (!withReactRouter) {
         window.location.pathname = item.key.toString();
       } else {
         history.push(item.key.toString());
       }
     },
-    [history, withoutReactRouter],
+    [history, withReactRouter],
   );
 
   return (
