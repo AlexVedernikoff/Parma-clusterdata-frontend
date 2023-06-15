@@ -196,7 +196,10 @@ export default declMod(
       var _this3 = this;
 
       this.props.onChange &&
-        this.props.onChange(item.props.val, this.props, { source: 'suggest', byKeyboard: byKeyboard });
+        this.props.onChange(item.props.val, this.props, {
+          source: 'suggest',
+          byKeyboard: byKeyboard,
+        });
       this._setCarret();
       this._suggestHide();
       if (!byKeyboard) {

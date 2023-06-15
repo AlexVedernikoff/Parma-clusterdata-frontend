@@ -29,7 +29,10 @@ export default class SideHtml extends React.PureComponent {
       <Button theme="clear" mix={{ block: b('hide') }} onClick={this._toggleVisible}>
         <Icon glyph="type-cross" mix={{ block: b('cross') }} />
       </Button>
-      <IFrame className={b('body')} sandbox="allow-same-origin allow-scripts allow-popups">
+      <IFrame
+        className={b('body')}
+        sandbox="allow-same-origin allow-scripts allow-popups"
+      >
         <div dangerouslySetInnerHTML={{ __html: this.props.html }} />
       </IFrame>
     </div>

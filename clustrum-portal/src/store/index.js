@@ -22,6 +22,17 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const getAllReducers = history =>
-  combineReducers({ dataset, visualization, preview, widget, settings, dash, router: connectRouter(history) });
+  combineReducers({
+    dataset,
+    visualization,
+    preview,
+    widget,
+    settings,
+    dash,
+    router: connectRouter(history),
+  });
 
-export const store = createStore(getAllReducers(history), composeWithDevTools(applyMiddleware(...middlewares)));
+export const store = createStore(
+  getAllReducers(history),
+  composeWithDevTools(applyMiddleware(...middlewares)),
+);

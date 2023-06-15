@@ -20,7 +20,9 @@ class PreviewTable extends React.Component {
   });
 
   getTableData() {
-    const { preview: { data: { regular: { Type = [], Data = [] } = {} } = {} } = {} } = this.props;
+    const {
+      preview: { data: { regular: { Type = [], Data = [] } = {} } = {} } = {},
+    } = this.props;
 
     try {
       const rows = Data.map((row, index) =>

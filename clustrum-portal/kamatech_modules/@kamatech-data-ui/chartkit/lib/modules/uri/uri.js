@@ -35,7 +35,12 @@ class URI {
 
     return stringifiedDict.length
       ? '?' +
-          stringifiedDict.map(({ key, value }) => encodeURIComponent(key) + '=' + encodeURIComponent(value)).join('&')
+          stringifiedDict
+            .map(
+              ({ key, value }) =>
+                encodeURIComponent(key) + '=' + encodeURIComponent(value),
+            )
+            .join('&')
       : '';
   }
 
@@ -49,7 +54,9 @@ class URI {
   }
 
   constructor(url = '') {
-    const parts = /^(?:([^:]*):\/\/([^:/?#]+)(?::([\d]+))?)?(\/[^?#]*)?(?:\?([^#]*))?(?:#(.*))?$/.exec(url);
+    const parts = /^(?:([^:]*):\/\/([^:/?#]+)(?::([\d]+))?)?(\/[^?#]*)?(?:\?([^#]*))?(?:#(.*))?$/.exec(
+      url,
+    );
 
     this._protocol = parts[1] || '';
     this._hostname = parts[2] || '';

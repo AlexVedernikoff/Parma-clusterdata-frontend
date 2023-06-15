@@ -19,7 +19,8 @@ class SectionParticipants extends React.Component {
     this.setState({ dialogVisible: true, currentParticipantIndex: index });
   }
 
-  onCloseDialog = () => this.setState({ dialogVisible: false, currentParticipantIndex: null });
+  onCloseDialog = () =>
+    this.setState({ dialogVisible: false, currentParticipantIndex: null });
 
   onSuccessDialog = () => {
     this.setState({ dialogVisible: false, currentParticipantIndex: null }, () => {
@@ -37,11 +38,17 @@ class SectionParticipants extends React.Component {
           const { permission } = participant;
 
           return (
-            <div key={index} className={b('participant', { editable })} onClick={() => editable && this.onClick(index)}>
+            <div
+              key={index}
+              className={b('participant', { editable })}
+              onClick={() => editable && this.onClick(index)}
+            >
               <div className={b('user')}>
                 <User showIcon participant={participant} />
               </div>
-              <div className={b('permission')}>{Utils.getTextByPermission(permission)}</div>
+              <div className={b('permission')}>
+                {Utils.getTextByPermission(permission)}
+              </div>
             </div>
           );
         })}

@@ -7,7 +7,7 @@ import { Utils } from '@kamatech-data-ui/clustrum';
 import Connectors from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
 import { getConnectorsMap } from '../../constants';
-import { PageContainer } from '../../widgets/page-container/ui/page-container';
+import { PageContainer } from '@widgets/page-container';
 
 const b = block('connections-router');
 

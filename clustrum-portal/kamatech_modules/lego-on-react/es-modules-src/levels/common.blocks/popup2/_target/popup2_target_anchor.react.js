@@ -71,7 +71,10 @@ export default declMod(
     },
     _getFirstFixedParent: function _getFirstFixedParent(elem) {
       while (elem) {
-        if (elem.nodeType === 1 && getComputedStyle(elem).getPropertyValue('position') === 'fixed') {
+        if (
+          elem.nodeType === 1 &&
+          getComputedStyle(elem).getPropertyValue('position') === 'fixed'
+        ) {
           return elem;
         }
 

@@ -78,7 +78,12 @@ export default class Body extends React.PureComponent {
 
   componentDidMount() {
     const content = this.contentRef.current.scrollContentRef.current;
-    this.hManager.mark(content, this.state.type, this.state.startDate, this.state.endDate);
+    this.hManager.mark(
+      content,
+      this.state.type,
+      this.state.startDate,
+      this.state.endDate,
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -154,7 +159,10 @@ export default class Body extends React.PureComponent {
     const { type } = this.state;
 
     // контент для типа 'day' и 'week' одинаковый
-    if ((type === 'day' || type === 'week') && (tabType === 'day' || tabType === 'week')) {
+    if (
+      (type === 'day' || type === 'week') &&
+      (tabType === 'day' || tabType === 'week')
+    ) {
       this.setState({ type: tabType });
     } else {
       this.setState({
@@ -368,8 +376,12 @@ export default class Body extends React.PureComponent {
     return (
       <div ref={this.ref} className={b()}>
         <div className={b('controls')}>
-          {scale ? null : <Tabs activeTab={type} lang={lang} onTabClick={this.onTabClick} />}
-          {scale ? null : <Presets type={type} lang={lang} onPresetClick={this.onPresetClick} />}
+          {scale ? null : (
+            <Tabs activeTab={type} lang={lang} onTabClick={this.onTabClick} />
+          )}
+          {scale ? null : (
+            <Presets type={type} lang={lang} onPresetClick={this.onPresetClick} />
+          )}
           {this.renderYearSwitcher()}
         </div>
 

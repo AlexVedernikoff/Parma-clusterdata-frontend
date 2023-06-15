@@ -77,7 +77,10 @@ class CommentDialogBase extends React.Component {
             textButtonCancel="Отмена"
             propsButtonCancel={{ disabled: this.state.progress }}
             progress={this.state.progress}
-            errorText={this.props.errorText || 'Что-то пошло не так. Пожалуйста, повторите запрос позже.'}
+            errorText={
+              this.props.errorText ||
+              'Что-то пошло не так. Пожалуйста, повторите запрос позже.'
+            }
             showError={this.state.showError}
           />
         </div>

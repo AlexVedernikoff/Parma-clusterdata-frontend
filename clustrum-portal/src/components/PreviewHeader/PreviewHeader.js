@@ -49,7 +49,10 @@ class PreviewHeader extends React.Component {
     }
 
     if (props.datasetUpdated === true && state.datasetUpdated === false) {
-      const debouncedChangeAmountPreviewRows = _debounce(props.changeAmountPreviewRows, amountPreviewRowsProps);
+      const debouncedChangeAmountPreviewRows = _debounce(
+        props.changeAmountPreviewRows,
+        amountPreviewRowsProps,
+      );
       debouncedChangeAmountPreviewRows({
         amountPreviewRows: state.amountPreviewRows,
       });

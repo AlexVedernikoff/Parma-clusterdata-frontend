@@ -79,14 +79,13 @@ export default class Utils {
     return Object.entries(permissions)
       .reduce((participants, [permission, participantsByPermission]) => {
         participantsByPermission.forEach(participantByPermission => {
-          const participantByPermissionFormatted = Object.entries(participantByPermission).reduce(
-            (reducer, [key, value]) => {
-              reducer[key] = [null, undefined].includes(value) ? {} : value;
+          const participantByPermissionFormatted = Object.entries(
+            participantByPermission,
+          ).reduce((reducer, [key, value]) => {
+            reducer[key] = [null, undefined].includes(value) ? {} : value;
 
-              return reducer;
-            },
-            {},
-          );
+            return reducer;
+          }, {});
 
           participants.push({
             ...participantByPermissionFormatted,
@@ -107,7 +106,12 @@ export default class Utils {
       });
   }
 
-  static removePermission({ body = { diff: { added: {}, removed: {} } }, permission, subject, comment = '' }) {
+  static removePermission({
+    body = { diff: { added: {}, removed: {} } },
+    permission,
+    subject,
+    comment = '',
+  }) {
     return {
       ...body,
       diff: {
@@ -200,7 +204,11 @@ export default class Utils {
 
   static parseErrorResponse(error = {}) {
     const {
-      response: { status, data: { message: dataMessage } = {}, headers: { 'x-request-id': requestId } = {} } = {},
+      response: {
+        status,
+        data: { message: dataMessage } = {},
+        headers: { 'x-request-id': requestId } = {},
+      } = {},
       message,
     } = error;
     return { status, requestId, message: dataMessage || message };

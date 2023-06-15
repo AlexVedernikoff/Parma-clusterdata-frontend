@@ -1,4 +1,6 @@
-import ExtensionsManager, { EXTENSION_KEY } from '../modules/extensions-manager/extensions-manager';
+import ExtensionsManager, {
+  EXTENSION_KEY,
+} from '../modules/extensions-manager/extensions-manager';
 
 import holidays from '../modules/holidays/holidays';
 

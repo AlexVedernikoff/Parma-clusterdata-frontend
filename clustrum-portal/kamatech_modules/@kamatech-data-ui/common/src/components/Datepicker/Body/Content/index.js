@@ -146,7 +146,9 @@ export default class Content extends React.PureComponent {
 
     // когда выбраны day или week отступаем на высоту свитчера, учитывая положение заголовка месяца
     if (this.props.type === 'day' || this.props.type === 'week') {
-      topOffset = node.classList.contains(b(LIFTED_TITLE_CL)) ? LIFTED_TITLE_TOP_OFFSET : TITLE_TOP_OFFSET;
+      topOffset = node.classList.contains(b(LIFTED_TITLE_CL))
+        ? LIFTED_TITLE_TOP_OFFSET
+        : TITLE_TOP_OFFSET;
     }
 
     contentNode.scrollTop = node.offsetTop - topOffset;

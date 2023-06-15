@@ -33,7 +33,8 @@ class EditPermissionsPanel extends React.Component {
 
   onCloseDialogRevokeRights = () => this.setState({ visibleDialogRevokeRights: false });
 
-  onClickBtnCancel = () => this.setState({ permission: this.props.participant.permission });
+  onClickBtnCancel = () =>
+    this.setState({ permission: this.props.participant.permission });
 
   onClickBtnSave = async () => {
     try {
@@ -55,7 +56,10 @@ class EditPermissionsPanel extends React.Component {
       if (this._isUnmounted) {
         return;
       }
-      this.setState({ progress: false, error: 'Что-то пошло не так. Пожалуйста, повторите запрос позже.' });
+      this.setState({
+        progress: false,
+        error: 'Что-то пошло не так. Пожалуйста, повторите запрос позже.',
+      });
     }
   };
 
@@ -79,7 +83,9 @@ class EditPermissionsPanel extends React.Component {
                 scope={this.props.entry.scope}
               />
             ) : (
-              <div className={b('permission')}>{Utils.getTextByPermission(permission)}</div>
+              <div className={b('permission')}>
+                {Utils.getTextByPermission(permission)}
+              </div>
             )}
             <Button
               theme="pseudo"

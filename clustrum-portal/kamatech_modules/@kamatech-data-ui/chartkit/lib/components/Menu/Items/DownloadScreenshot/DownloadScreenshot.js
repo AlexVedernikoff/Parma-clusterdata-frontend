@@ -47,7 +47,11 @@ export default function DownloadScreenshot(props) {
   return props.initDownload ? (
     <DownloadScreenshotCmd download={download} />
   ) : (
-    <DownloadScreenshotModal element={props.element} download={download} getScreenshotUrl={getScreenshotUrl} />
+    <DownloadScreenshotModal
+      element={props.element}
+      download={download}
+      getScreenshotUrl={getScreenshotUrl}
+    />
   );
 }
 DownloadScreenshot.propTypes = {

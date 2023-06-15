@@ -3,9 +3,16 @@ import block from 'bem-cn-lite';
 import merge from 'lodash/merge';
 import mergeWith from 'lodash/mergeWith';
 
-import ExtensionsManager, { EXTENSION_KEY } from '../../extensions-manager/extensions-manager';
+import ExtensionsManager, {
+  EXTENSION_KEY,
+} from '../../extensions-manager/extensions-manager';
 import defaultOptions from './options';
-import { getCommentsOnLine, drawComments, hideComments, drawOnlyRendererComments } from '../../comments/drawing';
+import {
+  getCommentsOnLine,
+  drawComments,
+  hideComments,
+  drawOnlyRendererComments,
+} from '../../comments/drawing';
 import ChartKit from '../../../components/ChartKit/ChartKit';
 import formatTooltip from '../tooltip/tooltip';
 import { MEASURE_TYPE } from '../../../../../../../src/constants';
@@ -97,7 +104,11 @@ function buildLegend(options) {
   // }
 
   // проверяем, нужна ли плавающая легенда, position - цифра на часовом циферблате
-  if (typeof options.legendPosition === 'number' && options.legendPosition >= 1 && options.legendPosition <= 12) {
+  if (
+    typeof options.legendPosition === 'number' &&
+    options.legendPosition >= 1 &&
+    options.legendPosition <= 12
+  ) {
     if (options.type !== 'map') {
       legend.layout = 'vertical';
     }
@@ -177,11 +188,19 @@ function buildLegend(options) {
 }
 
 function hasChartVisibleSeries(chart) {
-  return chart && Array.isArray(chart.series) && chart.series.some(serie => !isManageSerie(serie) && serie.visible);
+  return (
+    chart &&
+    Array.isArray(chart.series) &&
+    chart.series.some(serie => !isManageSerie(serie) && serie.visible)
+  );
 }
 
 function hasChartManageSerie(chart) {
-  return chart && Array.isArray(chart.series) && chart.series.some(serie => isManageSerie(serie));
+  return (
+    chart &&
+    Array.isArray(chart.series) &&
+    chart.series.some(serie => isManageSerie(serie))
+  );
 }
 
 function manageLegend(chart) {
@@ -258,8 +277,16 @@ function legendShowHide(serie, type, vaultId) {
   //     }
   // }
 
-  hideComments(serie.chart, serie.chart.userOptions._comments, serie.chart.userOptions._config);
-  drawComments(serie.chart, serie.chart.userOptions._comments, serie.chart.userOptions._config);
+  hideComments(
+    serie.chart,
+    serie.chart.userOptions._comments,
+    serie.chart.userOptions._config,
+  );
+  drawComments(
+    serie.chart,
+    serie.chart.userOptions._comments,
+    serie.chart.userOptions._config,
+  );
 }
 
 function buildNavigator(graphs, options) {
@@ -269,7 +296,9 @@ function buildNavigator(graphs, options) {
   graphs.forEach(item => {
     if (typeof item.showInNavigator === 'undefined') {
       item.showInNavigator =
-        item.sname === baseSeriesName || item.name === baseSeriesName || item.title === baseSeriesName;
+        item.sname === baseSeriesName ||
+        item.name === baseSeriesName ||
+        item.title === baseSeriesName;
     }
 
     if (!showInNavigator) {
@@ -297,7 +326,10 @@ function prepareHolidays(data, options) {
     const holidayByRegion = HOLIDAYS.holiday[region];
     const weekendByRegion = HOLIDAYS.weekend[region];
 
-    if ((holidayByRegion && holidayByRegion[pointTimestamp]) || (weekendByRegion && weekendByRegion[pointTimestamp])) {
+    if (
+      (holidayByRegion && holidayByRegion[pointTimestamp]) ||
+      (weekendByRegion && weekendByRegion[pointTimestamp])
+    ) {
       const bandStart = item - HALF_DAY;
       const bandStop = item + HALF_DAY;
 
@@ -473,7 +505,10 @@ function getTypeParams(data, options, vaultId) {
     if (options.isPercent) {
       params.yAxis.labels.formatter = function() {
         const isNormalize = options.normalizeDiv || options.normalizeSub;
-        return Highcharts.Axis.prototype.defaultLabelFormatter.call(this) + (isNormalize ? '' : ' %');
+        return (
+          Highcharts.Axis.prototype.defaultLabelFormatter.call(this) +
+          (isNormalize ? '' : ' %')
+        );
       };
     }
 
@@ -600,7 +635,9 @@ function getTooltip(tooltip, options, comments) {
       lines: [
         {
           value: Highcharts.numberFormat(this.y, 1),
-          percentValue: this.percentage ? Highcharts.numberFormat(this.percentage, 1) : '',
+          percentValue: this.percentage
+            ? Highcharts.numberFormat(this.percentage, 1)
+            : '',
           seriesName: this.point ? this.point.name : '',
         },
       ],
@@ -646,7 +683,12 @@ function getTooltip(tooltip, options, comments) {
 
     const xDateFormat = highchartsScale
       ? tooltip.options.dateTimeLabelFormats[highchartsScale]
-      : Highcharts.Tooltip.prototype.getXDateFormat.call(tooltip, items[0], tooltip.options, xAxis);
+      : Highcharts.Tooltip.prototype.getXDateFormat.call(
+          tooltip,
+          items[0],
+          tooltip.options,
+          xAxis,
+        );
 
     json.onlyDate = chart.time.dateFormat(xDateFormat, this.x);
   } else if (xAxis.categories && extendedPoint) {
@@ -691,8 +733,13 @@ function getTooltip(tooltip, options, comments) {
   points.forEach(point => {
     const obj = {
       selectedSeries: point.series.index === chart.userOptions._activeSeries,
-      hideSeriesName: options.highcharts && options.highcharts.tooltip && options.highcharts.tooltip.hideSeriesName,
-      seriesColor: shared ? point.point.series.color || point.point.color : point.series.color,
+      hideSeriesName:
+        options.highcharts &&
+        options.highcharts.tooltip &&
+        options.highcharts.tooltip.hideSeriesName,
+      seriesColor: shared
+        ? point.point.series.color || point.point.color
+        : point.series.color,
       seriesName: point.series.name,
     };
 
@@ -727,7 +774,10 @@ function getTooltip(tooltip, options, comments) {
       const precision = point.series.options && point.series.options.precision;
 
       if (options.isPercent) {
-        obj.value = numberFormat(originvalValue, calculatePrecision(precision || 2, options));
+        obj.value = numberFormat(
+          originvalValue,
+          calculatePrecision(precision || 2, options),
+        );
         const isNormalize = options.normalizeDiv || options.normalizeSub;
         obj.value = obj.value + (isNormalize ? '' : ' %');
       } else {
@@ -743,7 +793,10 @@ function getTooltip(tooltip, options, comments) {
     obj.originalValue = originvalValue;
 
     // TODO: проверить
-    const useInSum = point.series.userOptions.useInSum == undefined ? true : point.series.userOptions.useInSum;
+    const useInSum =
+      point.series.userOptions.useInSum == undefined
+        ? true
+        : point.series.userOptions.useInSum;
     if (options.enableSum && useInSum) {
       val += point.y;
     }
@@ -768,7 +821,10 @@ function getTooltip(tooltip, options, comments) {
       let issetComment = issetComments[point.series.userOptions.fname];
 
       if (!issetComment) {
-        issetComment = issetComments[point.series.userOptions.reportId + '_' + point.series.userOptions.fname];
+        issetComment =
+          issetComments[
+            point.series.userOptions.reportId + '_' + point.series.userOptions.fname
+          ];
       }
 
       if (issetComment) {
@@ -797,7 +853,11 @@ function getTooltip(tooltip, options, comments) {
     }
   });
 
-  if (issetCommentsDate && issetCommentsDate.timestamp_ms && issetCommentsDate.timestamp_ms === this.x) {
+  if (
+    issetCommentsDate &&
+    issetCommentsDate.timestamp_ms &&
+    issetCommentsDate.timestamp_ms === this.x
+  ) {
     json.commentDateText = issetCommentsDate.text;
   }
 
@@ -910,7 +970,10 @@ function getParamsByCustomType(type = 'line', options) {
         plotOptions: {
           [customType.type]: {
             stacking: customType.stacking,
-            enableSum: options.enableSum === undefined || options.enableSum === null ? true : options.enableSum,
+            enableSum:
+              options.enableSum === undefined || options.enableSum === null
+                ? true
+                : options.enableSum,
           },
         },
       }
@@ -931,7 +994,8 @@ function redrawDataLabelsInColumnChart(chart) {
     chart.series.forEach(function(series, seriesIndex) {
       series.points.forEach(function(point) {
         if ((point.index + seriesIndex) % 2 === 0) {
-          point.dataLabel && point.dataLabel.translate(point.dataLabel.x, point.dataLabel.y - 10);
+          point.dataLabel &&
+            point.dataLabel.translate(point.dataLabel.x, point.dataLabel.y - 10);
         }
       });
     });
@@ -972,10 +1036,15 @@ function prepareConfig(data, options, vaultId) {
             }
           : undefined,
         redraw: function() {
-          drawOnlyRendererComments(this, this.userOptions._comments, this.userOptions._config);
+          drawOnlyRendererComments(
+            this,
+            this.userOptions._comments,
+            this.userOptions._config,
+          );
           manageLegend(this, options);
 
-          options.highcharts.chart.type === 'column' && redrawDataLabelsInColumnChart(this);
+          options.highcharts.chart.type === 'column' &&
+            redrawDataLabelsInColumnChart(this);
         },
       },
       spacingTop: 20,
@@ -988,7 +1057,10 @@ function prepareConfig(data, options, vaultId) {
       text: options.hideTitle ? null : options.subtitle,
     },
     series: data.graphs || data,
-    legend: options.hideLegend === true || options.showLegend === false ? { enabled: false } : buildLegend(options),
+    legend:
+      options.hideLegend === true || options.showLegend === false
+        ? { enabled: false }
+        : buildLegend(options),
     tooltip: {
       style: {
         width: 'auto',
@@ -997,7 +1069,10 @@ function prepareConfig(data, options, vaultId) {
       // при sankey тип shared нужно выставлять в false, иначе тултип ведет себя некорректно:
       // * если наведено на пустую область, то показывается тултип какого-либо из полей
       // * Point.onMouseOver -> Highcharts.Pointer.runPointActions -> H.Tooltip.refresh -> Cannot read property 'series' of undefined
-      shared: !options.highcharts || !options.highcharts.chart || options.highcharts.chart.type !== 'sankey',
+      shared:
+        !options.highcharts ||
+        !options.highcharts.chart ||
+        options.highcharts.chart.type !== 'sankey',
     },
     plotOptions: {
       series: {
@@ -1034,8 +1109,12 @@ function prepareConfig(data, options, vaultId) {
           const highchartsScale = this.chart.userOptions._config.highchartsScale;
 
           if (axis.isDatetimeAxis && highchartsScale) {
-            const dateTimeLabelFormat = axis.options.dateTimeLabelFormats[highchartsScale];
-            return this.chart.time.dateFormat(dateTimeLabelFormat.main || dateTimeLabelFormat, this.value);
+            const dateTimeLabelFormat =
+              axis.options.dateTimeLabelFormats[highchartsScale];
+            return this.chart.time.dateFormat(
+              dateTimeLabelFormat.main || dateTimeLabelFormat,
+              this.value,
+            );
           }
 
           return Highcharts.Axis.prototype.defaultLabelFormatter.call(this);
@@ -1061,7 +1140,8 @@ function prepareConfig(data, options, vaultId) {
     };
   }
 
-  options.showLegendManageLine = !options.removeShowHideAll && params.series.length > COUNT_ROWS_FOR_FORCE_HIDE;
+  options.showLegendManageLine =
+    !options.removeShowHideAll && params.series.length > COUNT_ROWS_FOR_FORCE_HIDE;
 
   if (options.showLegendManageLine) {
     params.series.push({
@@ -1074,7 +1154,11 @@ function prepareConfig(data, options, vaultId) {
     });
   }
 
-  if (options.highcharts && options.highcharts.tooltip && options.highcharts.tooltip.formatter) {
+  if (
+    options.highcharts &&
+    options.highcharts.tooltip &&
+    options.highcharts.tooltip.formatter
+  ) {
     const formatter = options.highcharts.tooltip.formatter;
     params.tooltip.formatter = function(tooltip) {
       return `<div class="${b()}">${formatter.call(this, tooltip)}</div>`;
@@ -1083,17 +1167,28 @@ function prepareConfig(data, options, vaultId) {
   } else {
     params.tooltip.formatter = function(tooltip) {
       // у графиков с разными типами линий и раздельным тултипом
-      const serieType = (this.series && this.series.type) || tooltip.chart.options.chart.type;
+      const serieType =
+        (this.series && this.series.type) || tooltip.chart.options.chart.type;
       if (
         !options.manageTooltipConfig &&
-        (['scatter', 'bubble', 'sankey', 'heatmap', 'treemap', 'variwide', 'waterfall', 'pie', 'streamgraph'].includes(
-          serieType,
-        ) ||
+        ([
+          'scatter',
+          'bubble',
+          'sankey',
+          'heatmap',
+          'treemap',
+          'variwide',
+          'waterfall',
+          'pie',
+          'streamgraph',
+        ].includes(serieType) ||
           tooltip.chart.options.chart.polar ||
           (this.points &&
             this.points.some(
               point =>
-                ['arearange', 'histogram', 'bellcurve', 'ohlc'].includes(point.series.type) ||
+                ['arearange', 'histogram', 'bellcurve', 'ohlc'].includes(
+                  point.series.type,
+                ) ||
                 // TODO: по идее можно оставить только это (+ polar?)
                 // у area, column и других может быть {enableSum: true}
                 (!['line', 'spline', 'area', 'column'].includes(serieType) &&
@@ -1107,16 +1202,25 @@ function prepareConfig(data, options, vaultId) {
         //     ${tooltip.bodyFormatter(items).join('')}
         //     ${tooltip.tooltipFooterHeaderFormatter(items[0], true)}
         // </div>`;
-        return `<div class="${b()}">${tooltip.defaultFormatter.call(this, tooltip).join('')}</div>`;
+        return `<div class="${b()}">${tooltip.defaultFormatter
+          .call(this, tooltip)
+          .join('')}</div>`;
       }
 
-      const { menu: { comments = [], data: { comments: dataComments = [] } = {} } = {} } = vaultId
+      const {
+        menu: { comments = [], data: { comments: dataComments = [] } = {} } = {},
+      } = vaultId
         ? ChartKit.openVault(vaultId)
         : // график показателя
           {};
       const vaultComments = comments.concat(dataComments);
       const chartComments = tooltip.chart.userOptions._comments;
-      return getTooltip.call(this, tooltip, options, vaultComments.length ? vaultComments : chartComments);
+      return getTooltip.call(
+        this,
+        tooltip,
+        options,
+        vaultComments.length ? vaultComments : chartComments,
+      );
     };
   }
 
@@ -1148,10 +1252,10 @@ function prepareConfig(data, options, vaultId) {
         dataLabels: {
           format: undefined,
           formatter: function() {
-            return `${getDiagramMeasure(MEASURE_TYPE.ABSOLUTE, this)}<br/>(${getDiagramMeasure(
-              MEASURE_TYPE.RELATIVE,
+            return `${getDiagramMeasure(
+              MEASURE_TYPE.ABSOLUTE,
               this,
-            )})`;
+            )}<br/>(${getDiagramMeasure(MEASURE_TYPE.RELATIVE, this)})`;
           },
           enabled: false,
         },

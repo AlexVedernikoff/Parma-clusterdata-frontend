@@ -49,9 +49,11 @@ export function preview(state = initialState, action = {}) {
           previewEntryId,
         };
       } else {
-        const atLeastOnePlaceholderIsFull = visualization.placeholders.some(placeholder => {
-          return placeholder.items.length > 0;
-        });
+        const atLeastOnePlaceholderIsFull = visualization.placeholders.some(
+          placeholder => {
+            return placeholder.items.length > 0;
+          },
+        );
 
         const placeholdersAreValid =
           atLeastOnePlaceholderIsFull &&
@@ -74,7 +76,12 @@ export function preview(state = initialState, action = {}) {
           return !sortItem.conflict;
         });
 
-        if (placeholdersAreValid && filtersAreValid && colorItemsAreNotConflicting && sortItemsAreNotConflicting) {
+        if (
+          placeholdersAreValid &&
+          filtersAreValid &&
+          colorItemsAreNotConflicting &&
+          sortItemsAreNotConflicting
+        ) {
           const data = {
             colors: lodash.cloneDeep(colors),
             dataset,

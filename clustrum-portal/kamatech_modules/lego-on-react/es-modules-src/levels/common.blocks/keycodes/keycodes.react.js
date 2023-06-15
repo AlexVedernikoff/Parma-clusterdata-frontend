@@ -58,9 +58,12 @@ export default decl(
      * @returns {Boolean}
      */
     is: function is(code, name) {
-      return (Array.isArray(name) ? name : Array.prototype.slice.call(arguments, 1)).some(function(name) {
-        return this[name] === code;
-      }, this);
+      return (Array.isArray(name) ? name : Array.prototype.slice.call(arguments, 1)).some(
+        function(name) {
+          return this[name] === code;
+        },
+        this,
+      );
     },
   }),
 );

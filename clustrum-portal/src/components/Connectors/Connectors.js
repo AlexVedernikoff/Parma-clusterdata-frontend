@@ -56,13 +56,25 @@ class Connectors extends React.Component {
           {Object.entries(getConnectorsMap())
             .filter(([, title]) => {
               return searchConnectorName
-                ? title.toLowerCase().includes(searchConnectorName.toLowerCase().replace(/\s+/g, ''))
+                ? title
+                    .toLowerCase()
+                    .includes(searchConnectorName.toLowerCase().replace(/\s+/g, ''))
                 : true;
             })
             .map(([connector, title]) => {
               return (
-                <Link key={connector} className={b('link')} to={`/connections/new/${connector}${search}`}>
-                  <Button cls={b('connector-btn')} theme="pseudo" size="n" view="default" tone="default">
+                <Link
+                  key={connector}
+                  className={b('link')}
+                  to={`/connections/new/${connector}${search}`}
+                >
+                  <Button
+                    cls={b('connector-btn')}
+                    theme="pseudo"
+                    size="n"
+                    view="default"
+                    tone="default"
+                  >
                     <Icon
                       key={connector}
                       className={b('connector-icon')}

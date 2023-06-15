@@ -66,7 +66,13 @@ class Menu extends React.PureComponent {
           }
           popup={
             <Popup hiding autoclosable onOutsideClick={() => {}}>
-              <LegoMenu theme="normal" tone="default" view="default" size="s" type="navigation">
+              <LegoMenu
+                theme="normal"
+                tone="default"
+                view="default"
+                size="s"
+                type="navigation"
+              >
                 {items
                   .filter(({ isVisible }) => {
                     try {

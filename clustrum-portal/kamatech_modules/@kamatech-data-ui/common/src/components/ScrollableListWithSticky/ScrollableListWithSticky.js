@@ -57,7 +57,9 @@ export default class ScrollableList extends React.PureComponent {
   state = {};
   componentDidMount() {
     document.addEventListener('keydown', this.onKeyDown);
-    setImmediate(() => this.selectItem(this.findClosestSelectableIndex(this.props.currentIndex)));
+    setImmediate(() =>
+      this.selectItem(this.findClosestSelectableIndex(this.props.currentIndex)),
+    );
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onKeyDown);
@@ -168,7 +170,11 @@ export default class ScrollableList extends React.PureComponent {
     if (!stickyItem) {
       return null;
     }
-    return this.renderItemInner({ item: stickyItem, index: stickyItemIndex, sticky: true });
+    return this.renderItemInner({
+      item: stickyItem,
+      index: stickyItemIndex,
+      sticky: true,
+    });
   };
   innerElementRender = ({ children, ...rest }, ref) => {
     return (

@@ -9,7 +9,14 @@ import { Button } from 'lego-on-react';
 const b = block('dl-ar-btn-delete');
 
 const ButtonDelete = ({ className, ...btnProps }) => (
-  <Button theme="light" size="s" view="default" tone="default" cls={b(false, className)} {...btnProps}>
+  <Button
+    theme="light"
+    size="s"
+    view="default"
+    tone="default"
+    cls={b(false, className)}
+    {...btnProps}
+  >
     <Icon data={iconClose} width="24" height="24" />
   </Button>
 );

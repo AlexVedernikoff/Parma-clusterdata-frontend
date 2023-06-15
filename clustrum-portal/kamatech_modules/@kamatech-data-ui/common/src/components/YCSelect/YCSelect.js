@@ -16,7 +16,12 @@ const bPopup = block('yc-select-popup');
 
 const DEBOUNCE_DELAY = 350;
 const EMPTY_VALUE = '—';
-const AVAILABLE_POPUP_DIRECTIONS = ['bottom-left', 'bottom-right', 'top-left', 'top-right'];
+const AVAILABLE_POPUP_DIRECTIONS = [
+  'bottom-left',
+  'bottom-right',
+  'top-left',
+  'top-right',
+];
 const ItemShape = PropTypes.shape({
   value: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -55,7 +60,11 @@ export default class YCSelect extends React.PureComponent {
     hiding: PropTypes.bool,
     disabled: PropTypes.bool,
     stretched: PropTypes.bool,
-    items: PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(ItemShape), PropTypes.arrayOf(ItemsGroupShape)]),
+    items: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.arrayOf(ItemShape),
+      PropTypes.arrayOf(ItemsGroupShape),
+    ]),
     value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
     placeholder: PropTypes.oneOfType([
       PropTypes.string,
@@ -147,7 +156,9 @@ export default class YCSelect extends React.PureComponent {
     if (isItemsGrouped) {
       return items
         .map(({ items: groupedItems }) => {
-          return groupedItems.filter(item => innerValue.has(item.value)).map(item => item.title);
+          return groupedItems
+            .filter(item => innerValue.has(item.value))
+            .map(item => item.title);
         })
         .reduce((acc, val) => acc.concat(val));
     }
@@ -160,7 +171,9 @@ export default class YCSelect extends React.PureComponent {
 
     if (isItemsGrouped) {
       const filteredList = items
-        .map(({ items: groupedItems }) => groupedItems.find(item => innerValue.has(item.value)))
+        .map(({ items: groupedItems }) =>
+          groupedItems.find(item => innerValue.has(item.value)),
+        )
         .filter(Boolean);
 
       return filteredList[0];
@@ -270,7 +283,10 @@ export default class YCSelect extends React.PureComponent {
   selectItem = item => {
     const { allowEmptyValue } = this.props;
     const prevInnerValue = new Set(this.state.innerValue);
-    const innerValue = allowEmptyValue && prevInnerValue.has(item.value) ? new Set() : new Set([item.value]);
+    const innerValue =
+      allowEmptyValue && prevInnerValue.has(item.value)
+        ? new Set()
+        : new Set([item.value]);
 
     this.setState(
       {
@@ -334,13 +350,17 @@ export default class YCSelect extends React.PureComponent {
           .reduce((acc, val) => acc.concat(val)),
       );
     } else {
-      shownItemsValue = new Set(shownItems.filter(item => !item.disabled).map(item => item.value));
+      shownItemsValue = new Set(
+        shownItems.filter(item => !item.disabled).map(item => item.value),
+      );
     }
 
     let innerValue = new Set([...this.state.innerValue, ...shownItemsValue]);
 
     if (innerValue.size === this.state.innerValue.size) {
-      innerValue = new Set([...this.state.innerValue].filter(innerVal => !shownItemsValue.has(innerVal)));
+      innerValue = new Set(
+        [...this.state.innerValue].filter(innerVal => !shownItemsValue.has(innerVal)),
+      );
     }
 
     state.innerValue = innerValue;
@@ -382,7 +402,9 @@ export default class YCSelect extends React.PureComponent {
         );
       } else {
         innerValue = new Set(
-          itemsToFilter.filter(item => !item.disabled && item.value !== selectedItem.value).map(item => item.value),
+          itemsToFilter
+            .filter(item => !item.disabled && item.value !== selectedItem.value)
+            .map(item => item.value),
         );
       }
 
@@ -447,7 +469,9 @@ export default class YCSelect extends React.PureComponent {
       nextPageToken,
     });
 
-    const items = nextPageToken ? this.state.items.concat(fetchData.items) : fetchData.items;
+    const items = nextPageToken
+      ? this.state.items.concat(fetchData.items)
+      : fetchData.items;
 
     this.setState({
       items: selectItems.concat(items),
@@ -489,7 +513,9 @@ export default class YCSelect extends React.PureComponent {
           .reduce((acc, val) => acc.concat(val)),
       );
     } else {
-      shownItemsValue = new Set(shownItems.filter(item => !item.disabled).map(item => item.value));
+      shownItemsValue = new Set(
+        shownItems.filter(item => !item.disabled).map(item => item.value),
+      );
     }
 
     const innerValue = new Set([...this.state.innerValue, ...shownItemsValue]);
@@ -565,7 +591,14 @@ export default class YCSelect extends React.PureComponent {
 
   _onBadgeClick = e => {
     const { getItems } = this.props;
-    const { items, innerValue, showSelectedPopup, selectItems, showMainPopup, isItemsGrouped } = this.state;
+    const {
+      items,
+      innerValue,
+      showSelectedPopup,
+      selectItems,
+      showMainPopup,
+      isItemsGrouped,
+    } = this.state;
 
     e.stopPropagation();
 
@@ -673,20 +706,42 @@ export default class YCSelect extends React.PureComponent {
       placeholderText = placeholder;
     }
 
-    placeholderText = isInitPending ? YCSelect.INIT_ITEMS_PLACEHOLDER : placeholderText || EMPTY_VALUE;
+    placeholderText = isInitPending
+      ? YCSelect.INIT_ITEMS_PLACEHOLDER
+      : placeholderText || EMPTY_VALUE;
 
     return (
       <div className={bControl('tokens')}>
-        {placeholderIcon && !titles.length && <div className={bControl('placeholder-icon')}>{placeholderIcon}</div>}
-        <span className={bControl('tokens-text')}>{titles.length ? titles.join(', ') : placeholderText}</span>
+        {placeholderIcon && !titles.length && (
+          <div className={bControl('placeholder-icon')}>{placeholderIcon}</div>
+        )}
+        <span className={bControl('tokens-text')}>
+          {titles.length ? titles.join(', ') : placeholderText}
+        </span>
       </div>
     );
   }
 
   _renderControl() {
-    const { controlWidth, size, type, cls, label, showArrow, showItemIcon, stretched, disabled } = this.props;
+    const {
+      controlWidth,
+      size,
+      type,
+      cls,
+      label,
+      showArrow,
+      showItemIcon,
+      stretched,
+      disabled,
+    } = this.props;
 
-    const { showMainPopup, showSelectedPopup, innerValue, isInitPending, singleSelectItem: { icon } = {} } = this.state;
+    const {
+      showMainPopup,
+      showSelectedPopup,
+      innerValue,
+      isInitPending,
+      singleSelectItem: { icon } = {},
+    } = this.state;
 
     const controlMods = {
       size: size,
@@ -716,12 +771,17 @@ export default class YCSelect extends React.PureComponent {
         onClick={this._onControlClick}
       >
         {label && <span className={bControl('label')}>{label}</span>}
-        {!isMultiply && showItemIcon && icon && <div className={bControl('selected-item-icon')}>{icon}</div>}
+        {!isMultiply && showItemIcon && icon && (
+          <div className={bControl('selected-item-icon')}>{icon}</div>
+        )}
 
         {this._renderTokens()}
 
         {isMultiply && Boolean(innerValue.size) && (
-          <div className={bControl('badge', badgeMods)} onClick={isMultiply ? this._onBadgeClick : null}>
+          <div
+            className={bControl('badge', badgeMods)}
+            onClick={isMultiply ? this._onBadgeClick : null}
+          >
             {innerValue.size}
           </div>
         )}
@@ -794,7 +854,9 @@ export default class YCSelect extends React.PureComponent {
 
     const isMultiply = type === SelectTypes.Multiple;
     const selectItemHandler = isMultiply ? this.selectItems : this.selectItem;
-    const inputChangeHandler = getItems ? this._onInputChangeDynamic : this._onInputChangeStatic;
+    const inputChangeHandler = getItems
+      ? this._onInputChangeDynamic
+      : this._onInputChangeStatic;
 
     const popupStyles = { minWidth: controlWidth || this.state.controlWidth };
     let searchWidth;
@@ -803,11 +865,15 @@ export default class YCSelect extends React.PureComponent {
       popupStyles.width = this.state.popupWidth;
       searchWidth = this.state.popupWidth;
     } else {
-      searchWidth = this.state.popupWidth > this.state.controlWidth ? this.state.popupWidth : this.state.controlWidth;
+      searchWidth =
+        this.state.popupWidth > this.state.controlWidth
+          ? this.state.popupWidth
+          : this.state.controlWidth;
     }
 
     if (getItems || shownItems.length > virtualizeThreshold) {
-      popupStyles.width = this.props.popupWidth || controlWidth || this.state.controlWidth;
+      popupStyles.width =
+        this.props.popupWidth || controlWidth || this.state.controlWidth;
     }
 
     return (
@@ -818,7 +884,10 @@ export default class YCSelect extends React.PureComponent {
           <Popup
             cls={
               popupCls
-                ? bPopup({ search: showSearch, multi: isMultiply }, LEGO_POPUP_MIX_CLASS + ' ' + popupCls)
+                ? bPopup(
+                    { search: showSearch, multi: isMultiply },
+                    LEGO_POPUP_MIX_CLASS + ' ' + popupCls,
+                  )
                 : bPopup({ search: showSearch, multi: isMultiply }, LEGO_POPUP_MIX_CLASS)
             }
             style={popupStyles}
@@ -837,7 +906,11 @@ export default class YCSelect extends React.PureComponent {
                 minWidth={controlWidth || this.state.controlWidth}
                 searchButtonSettings={this._getSearchButtonSettings()}
                 onInputChange={inputChangeHandler}
-                selectAllItems={isMultiply ? this.onMultipleSearchButtonClick : this.onSingleSearchButtonClick}
+                selectAllItems={
+                  isMultiply
+                    ? this.onMultipleSearchButtonClick
+                    : this.onSingleSearchButtonClick
+                }
               />
             )}
             <Items
@@ -870,7 +943,10 @@ export default class YCSelect extends React.PureComponent {
           <Popup
             cls={
               popupCls
-                ? bPopup({ search: showSearch, multi: isMultiply }, LEGO_POPUP_MIX_CLASS + ' ' + popupCls)
+                ? bPopup(
+                    { search: showSearch, multi: isMultiply },
+                    LEGO_POPUP_MIX_CLASS + ' ' + popupCls,
+                  )
                 : bPopup({ search: showSearch, multi: isMultiply }, LEGO_POPUP_MIX_CLASS)
             }
             style={popupStyles}

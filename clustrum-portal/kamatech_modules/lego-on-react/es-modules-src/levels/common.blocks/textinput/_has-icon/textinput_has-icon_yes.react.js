@@ -49,8 +49,17 @@ export default declMod(
       var content = [];
 
       (icon || iconLeft) &&
-        content.push(React.createElement(TextInputIcon, { side: 'left', key: 'left' }, iconLeft || icon));
-      iconRight && content.push(React.createElement(TextInputIcon, { side: 'right', key: 'right' }, iconRight));
+        content.push(
+          React.createElement(
+            TextInputIcon,
+            { side: 'left', key: 'left' },
+            iconLeft || icon,
+          ),
+        );
+      iconRight &&
+        content.push(
+          React.createElement(TextInputIcon, { side: 'right', key: 'right' }, iconRight),
+        );
 
       return [].concat(content, this.__base.apply(this, arguments));
     },

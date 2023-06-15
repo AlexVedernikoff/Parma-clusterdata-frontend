@@ -8,7 +8,7 @@ import ExtensionsManager from '../../modules/extensions-manager/extensions-manag
 import Card from './Card/Card';
 import Indicator from './Indicator/Indicator';
 import { WIDGET_TYPE as WIDGET_TYPE_CONST } from './WidgetType';
-import { ChartWidget } from '@clustrum-lib/shared/ui/widgets/chart-widget/chart-widget';
+import { ChartWidget } from '@clustrum-lib/shared/ui/widgets/chart-widget';
 
 class Unknown extends React.PureComponent {
   static propTypes = {

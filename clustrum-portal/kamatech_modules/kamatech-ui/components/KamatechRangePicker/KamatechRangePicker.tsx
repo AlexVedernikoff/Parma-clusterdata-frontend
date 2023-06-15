@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import './KamatechRangePicker.css';
 import { KamatechRangePicker } from './KamatechRangePicker.interface';
 
-export function KamatechRangePicker({ min = 0, max = 100, step = 1, initialValue = 0, onChange }: KamatechRangePicker) {
+export function KamatechRangePicker({
+  min = 0,
+  max = 100,
+  step = 1,
+  initialValue = 0,
+  onChange,
+}: KamatechRangePicker) {
   const [value, setValue] = useState<number>(initialValue);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

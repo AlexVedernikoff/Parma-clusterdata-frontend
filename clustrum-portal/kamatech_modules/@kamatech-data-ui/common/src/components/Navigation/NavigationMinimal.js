@@ -107,11 +107,18 @@ class NavigationMinimal extends React.Component {
 
   offsetPopupPosition = () => {
     // offset popup if not in viewport
-    if (this.props.visible && this.refPopup.current && this.refPopup.current.containerRef.current) {
+    if (
+      this.props.visible &&
+      this.refPopup.current &&
+      this.refPopup.current.containerRef.current
+    ) {
       const popupComponent = this.refPopup.current;
       const node = popupComponent.containerRef.current;
       const { left, height, top, width } = node.getBoundingClientRect();
-      const { width: bodyWidth, height: bodyHeight } = document.body.getBoundingClientRect();
+      const {
+        width: bodyWidth,
+        height: bodyHeight,
+      } = document.body.getBoundingClientRect();
       let secondaryOffset = 0;
       let tailOffset = 0;
       // REMARK: _direction - доступ к нему костыль
@@ -172,7 +179,15 @@ class NavigationMinimal extends React.Component {
   }
 
   render() {
-    const { popupDirections, anchor, visible, hasTail, clickableScope, className, placeholder } = this.props;
+    const {
+      popupDirections,
+      anchor,
+      visible,
+      hasTail,
+      clickableScope,
+      className,
+      placeholder,
+    } = this.props;
     const { searchValue } = this.state;
 
     if (!anchor) {

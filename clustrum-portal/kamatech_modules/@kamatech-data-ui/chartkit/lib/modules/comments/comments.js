@@ -12,7 +12,10 @@ const DEFAULT_COLOR = '#ffcc00';
 
 // TODO: убрать отстой с пробрасыванием seriesIds
 
-function fromStatComment({ id, path, user, date, subject, fields, meta_data }, seriesIds) {
+function fromStatComment(
+  { id, path, user, date, subject, fields, meta_data },
+  seriesIds,
+) {
   const { point_color, color, visible, ...restMeta } = JSON.parse(meta_data);
   const matchedIds = fields.filter(field => seriesIds.includes(field));
   return {
@@ -32,7 +35,13 @@ function fromStatComment({ id, path, user, date, subject, fields, meta_data }, s
   };
 }
 
-function toStatComment({ id, feed, date, text, meta: { color, graphId, visible, ...restMeta } }) {
+function toStatComment({
+  id,
+  feed,
+  date,
+  text,
+  meta: { color, graphId, visible, ...restMeta },
+}) {
   const dateMs = moment(date).valueOf();
   const metaData = {
     position: '1',
@@ -87,7 +96,16 @@ async function updateComment({ isStat, ...comment }, seriesIds) {
 }
 
 function removeComment(commentid, path, isStat) {
-  return isStat ? ApiStat.removeById({ path, commentid, _method: 'DELETE' }) : Api.removeById(commentid);
+  return isStat
+    ? ApiStat.removeById({ path, commentid, _method: 'DELETE' })
+    : Api.removeById(commentid);
 }
 
-export { DEFAULT_COLOR, prepareComments, createComment, readComments, updateComment, removeComment };
+export {
+  DEFAULT_COLOR,
+  prepareComments,
+  createComment,
+  readComments,
+  updateComment,
+  removeComment,
+};

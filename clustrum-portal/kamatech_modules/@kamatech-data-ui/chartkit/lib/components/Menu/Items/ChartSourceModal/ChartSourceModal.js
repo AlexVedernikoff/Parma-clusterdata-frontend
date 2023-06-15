@@ -40,7 +40,9 @@ const orderSources = ['solomon', 'yql', 'metrics', 'appmetrika', 'metrika', 'sta
 const sortSources = (sourceInitial, sourceNext) => {
   if (orderSources.indexOf(sourceInitial.type) < orderSources.indexOf(sourceNext.type)) {
     return 1;
-  } else if (orderSources.indexOf(sourceInitial.type) === orderSources.indexOf(sourceNext.type)) {
+  } else if (
+    orderSources.indexOf(sourceInitial.type) === orderSources.indexOf(sourceNext.type)
+  ) {
     return 0;
   } else {
     return -1;
@@ -126,7 +128,9 @@ export default class ChartSourceModal extends React.PureComponent {
     return axiosInstance({
       url: `${settings.chartsEndpoint}${API}`,
       method: 'post',
-      data: JSON.stringify({ uris: sourceData.map(source => source.url.replace('/_stat/', '/')) }),
+      data: JSON.stringify({
+        uris: sourceData.map(source => source.url.replace('/_stat/', '/')),
+      }),
       headers: { 'Content-Type': 'application/json' },
       timeout: REQUEST_TIMEOUT,
     })
@@ -217,7 +221,9 @@ export default class ChartSourceModal extends React.PureComponent {
   );
 
   _fail = () => (
-    <div className={b('row', { fail: true })}>Произошла ошибка при загрузке источника. Попробуйте снова</div>
+    <div className={b('row', { fail: true })}>
+      Произошла ошибка при загрузке источника. Попробуйте снова
+    </div>
   );
 
   _viewSwitcher(index, source) {
@@ -260,7 +266,11 @@ export default class ChartSourceModal extends React.PureComponent {
             <div className={b()}>{content}</div>
           </ChartsModal.Body>
           <ChartsModal.Footer>
-            <Button theme="normal" size="m" onClick={proxy => ChartsModal.onClickClose(proxy, this.props.element)}>
+            <Button
+              theme="normal"
+              size="m"
+              onClick={proxy => ChartsModal.onClickClose(proxy, this.props.element)}
+            >
               Закрыть
             </Button>
           </ChartsModal.Footer>

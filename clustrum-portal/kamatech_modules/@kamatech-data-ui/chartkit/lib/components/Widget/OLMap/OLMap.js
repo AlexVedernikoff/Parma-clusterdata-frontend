@@ -126,7 +126,9 @@ class OLMap extends React.Component {
       this.props.onLoad();
 
       // может вызываться после unmount, поэтому проверям наличие ref
-      window.requestAnimationFrame(() => this.chartComponent.current && this.chartComponent.current.chart.reflow());
+      window.requestAnimationFrame(
+        () => this.chartComponent.current && this.chartComponent.current.chart.reflow(),
+      );
     }
   };
 
@@ -148,9 +150,12 @@ class OLMap extends React.Component {
   };
 
   #updateLegend = loadedData => {
-    const mapColorField = loadedData.data.geoJson.customData && loadedData.data.geoJson.customData['mapColor'];
+    const mapColorField =
+      loadedData.data.geoJson.customData &&
+      loadedData.data.geoJson.customData['mapColor'];
     const mapColorFieldName =
-      loadedData.data.geoJson.customData && loadedData.data.geoJson.customData['mapColorFieldName'];
+      loadedData.data.geoJson.customData &&
+      loadedData.data.geoJson.customData['mapColorFieldName'];
 
     MapLegend.getLegend(
       this.colorMap,
@@ -166,8 +171,12 @@ class OLMap extends React.Component {
    * */
   #redirectByTooltipHref = feature => {
     const hrefRegex = /href=['"]([^'"]+?)['"]/;
-    const tooltip_value = get(feature, 'values_.customProperties.tooltips[0].tooltip_value');
-    const hrefResult = typeof tooltip_value === 'string' && tooltip_value.match(hrefRegex);
+    const tooltip_value = get(
+      feature,
+      'values_.customProperties.tooltips[0].tooltip_value',
+    );
+    const hrefResult =
+      typeof tooltip_value === 'string' && tooltip_value.match(hrefRegex);
     const href = hrefResult && hrefResult[1];
     if (href) {
       window.open(href);
@@ -307,18 +316,23 @@ class OLMap extends React.Component {
     }
 
     const selectedFeature = features.find(
-      feature => feature.properties.customProperties.drill_down_filter === selectedFeatureValue,
+      feature =>
+        feature.properties.customProperties.drill_down_filter === selectedFeatureValue,
     );
 
     if (selectedFeature) {
       this.#updateFeatures(
         [{ id: selectedFeature.id, value: selectedFeatureValue }],
-        this.#ownWidgetParamsFeature && this.#ownWidgetParamsFeature.id !== selectedFeature.id
+        this.#ownWidgetParamsFeature &&
+          this.#ownWidgetParamsFeature.id !== selectedFeature.id
           ? [this.#ownWidgetParamsFeature]
           : [],
       );
 
-      this.#ownWidgetParamsFeature = { id: selectedFeature.id, value: selectedFeatureValue };
+      this.#ownWidgetParamsFeature = {
+        id: selectedFeature.id,
+        value: selectedFeatureValue,
+      };
     }
   };
 
@@ -336,7 +350,9 @@ class OLMap extends React.Component {
       return;
     }
 
-    const paramValue = [...this.selectedFeatures.values()].filter(featureValue => featureValue !== null);
+    const paramValue = [...this.selectedFeatures.values()].filter(
+      featureValue => featureValue !== null,
+    );
 
     onStateAndParamsChange({ params: { [paramId]: paramValue } });
   };
@@ -403,7 +419,11 @@ class OLMap extends React.Component {
   };
 
   #bbox = () => {
-    return this.#roundedBbox(this.#extentToProjection(this.olmap.getView().calculateExtent(this.olmap.getSize())));
+    return this.#roundedBbox(
+      this.#extentToProjection(
+        this.olmap.getView().calculateExtent(this.olmap.getSize()),
+      ),
+    );
   };
 
   #roundedBbox = bbox => {
@@ -683,7 +703,9 @@ class OLMap extends React.Component {
   };
 
   isHeatMap = () => {
-    return this.props.data.data.geoJson.widgetType.toLowerCase() === 'heatMap'.toLowerCase();
+    return (
+      this.props.data.data.geoJson.widgetType.toLowerCase() === 'heatMap'.toLowerCase()
+    );
   };
 
   /*
@@ -721,7 +743,9 @@ class OLMap extends React.Component {
     const requestCancelToken = this.props.requestCancelToken;
 
     params.BBOX_IN = this.#bbox();
-    params.FOCUS_DISTANCE = MapUtils.getClusterDistanceByZoom(this.olmap.getView().getZoom());
+    params.FOCUS_DISTANCE = MapUtils.getClusterDistanceByZoom(
+      this.olmap.getView().getZoom(),
+    );
     params.FOCUS_INCLUDES = ['POLYGON', 'POINT'];
     params.UNIQUE_QUALIFICATION = '__gt_5';
 
@@ -752,7 +776,9 @@ class OLMap extends React.Component {
   };
 
   #isBboxNotChangedWhileDataWasPending(data) {
-    return !data.params.BBOX_IN || data.params.BBOX_IN.toString() === this.#bbox().toString();
+    return (
+      !data.params.BBOX_IN || data.params.BBOX_IN.toString() === this.#bbox().toString()
+    );
   }
 
   appendFeaturesByWidgetType = loadedData => {
@@ -807,8 +833,16 @@ class OLMap extends React.Component {
     this.titleLayer.forEach(item => item.getSource());
 
     return (
-      <div id={`map-${this.mapId}`} className="olmap" style={{ width: '100%', height: '100%' }}>
-        <div id={`legend-${this.mapId}`} className="olmap__legend" style={{ position: 'absolute', zIndex: 99 }}></div>
+      <div
+        id={`map-${this.mapId}`}
+        className="olmap"
+        style={{ width: '100%', height: '100%' }}
+      >
+        <div
+          id={`legend-${this.mapId}`}
+          className="olmap__legend"
+          style={{ position: 'absolute', zIndex: 99 }}
+        ></div>
         <div id={`tooltip-${this.mapId}`} className="olmap__tooltip"></div>
       </div>
     );

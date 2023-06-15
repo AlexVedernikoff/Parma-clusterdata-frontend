@@ -6,7 +6,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import './datepicker-filter-control.css';
 
-export interface DatepickerProps {
+interface DatepickerProps {
   className?: string;
   dateFormat?: string;
   label: string;
@@ -39,14 +39,17 @@ export function DatepickerFilterControl({
     }
   }, [isValid, value]);
 
-  const handleChange = useCallback((dateValue: Dayjs | null): void => {
-    if (dateValue) {
-      setIsValid(true);
-      onChange(dateValue.format(DEFAULT_DATE_FORMAT));
-    } else {
-      setIsValid(false);
-    }
-  }, []);
+  const handleChange = useCallback(
+    (dateValue: Dayjs | null): void => {
+      if (dateValue) {
+        setIsValid(true);
+        onChange(dateValue.format(DEFAULT_DATE_FORMAT));
+      } else {
+        setIsValid(false);
+      }
+    },
+    [onChange],
+  );
 
   return (
     <div className={cn('datepicker-control', className)}>

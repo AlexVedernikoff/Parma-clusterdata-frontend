@@ -42,7 +42,11 @@ export default decl(
     block: 'textarea',
     tag: 'span',
     willInit: function willInit() {
-      /*%%%ISLDEBUG%%%*/ +0 && console.assert(!this.props.autoFocus, 'вместо autoFocus надо использовать focused');
+      /*%%%ISLDEBUG%%%*/ +0 &&
+        console.assert(
+          !this.props.autoFocus,
+          'вместо autoFocus надо использовать focused',
+        );
 
       this.__base.apply(this, arguments);
 

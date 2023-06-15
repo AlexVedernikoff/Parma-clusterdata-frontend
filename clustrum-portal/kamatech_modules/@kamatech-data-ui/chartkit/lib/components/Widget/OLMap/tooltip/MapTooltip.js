@@ -51,7 +51,9 @@ export default class MapTooltip {
         MapTooltipTemplate.overlay.setPosition(evt.coordinate);
 
         const tooltipsValues = this._tooltipsValues(clusterSize, tooltips);
-        MapTooltipTemplate.tooltip.innerHTML = MapTooltipTemplate.tooltipsTemplate(tooltipsValues);
+        MapTooltipTemplate.tooltip.innerHTML = MapTooltipTemplate.tooltipsTemplate(
+          tooltipsValues,
+        );
       }
     } else {
       if (MapTooltipTemplate.tooltip) {

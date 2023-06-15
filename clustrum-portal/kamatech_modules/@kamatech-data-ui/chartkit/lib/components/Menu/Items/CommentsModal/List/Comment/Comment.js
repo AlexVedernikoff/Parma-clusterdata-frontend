@@ -62,7 +62,8 @@ export default class Comment extends React.PureComponent {
 
   render() {
     const date = moment(this.props.date).format(DATE_FORMAT);
-    const dateUntil = this.props.dateUntil && moment(this.props.dateUntil).format(DATE_FORMAT);
+    const dateUntil =
+      this.props.dateUntil && moment(this.props.dateUntil).format(DATE_FORMAT);
     return (
       <div
         className={b({ selected: this.props.isSelected })}
@@ -86,7 +87,13 @@ export default class Comment extends React.PureComponent {
               attrs={{ onClick: this._onRemove.bind(this) }}
             />
           )}
-          {this.state.isError && <Icon glyph="alert" glyphSize="15" mix={{ block: b('icon', { error: true }) }} />}
+          {this.state.isError && (
+            <Icon
+              glyph="alert"
+              glyphSize="15"
+              mix={{ block: b('icon', { error: true }) }}
+            />
+          )}
         </div>
         <div>{this.props.text}</div>
       </div>

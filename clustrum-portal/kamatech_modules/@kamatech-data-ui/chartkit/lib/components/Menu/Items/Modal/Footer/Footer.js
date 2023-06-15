@@ -30,10 +30,24 @@ class Footer extends React.PureComponent {
   render() {
     return (
       <div className={b()}>
-        <Button theme="pseudo" view="default" tone="default" width="max" size="m" onClick={this.context.onClose}>
+        <Button
+          theme="pseudo"
+          view="default"
+          tone="default"
+          width="max"
+          size="m"
+          onClick={this.context.onClose}
+        >
           Отменить
         </Button>
-        <Button theme="action" view="default" tone="default" width="max" size="m" onClick={this.onApply}>
+        <Button
+          theme="action"
+          view="default"
+          tone="default"
+          width="max"
+          size="m"
+          onClick={this.onApply}
+        >
           {this.props.applyText}
         </Button>
       </div>

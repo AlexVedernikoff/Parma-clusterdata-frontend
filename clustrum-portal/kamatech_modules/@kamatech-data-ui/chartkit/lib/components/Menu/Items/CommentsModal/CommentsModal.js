@@ -65,7 +65,8 @@ export default class CommentsModal extends React.PureComponent {
     const comments = this.state.excludeParams
       ? // this.state.comments.filter(({notMatchedByParams}) => !notMatchedByParams) :
         this.state.comments.filter(
-          ({ feed, params, isStat }) => isStat || this.props.checkMatchCommentsConfig(feed, params),
+          ({ feed, params, isStat }) =>
+            isStat || this.props.checkMatchCommentsConfig(feed, params),
         )
       : this.state.comments;
 
@@ -98,7 +99,11 @@ export default class CommentsModal extends React.PureComponent {
   render() {
     const { meta, ...comment } = this.state.comments[this.state.selectedIndex] || {};
     return (
-      <ChartsModal element={this.props.element} onOutsideClick={this._onClickClose.bind(this)} mix={b()}>
+      <ChartsModal
+        element={this.props.element}
+        onOutsideClick={this._onClickClose.bind(this)}
+        mix={b()}
+      >
         <ChartsModal.Section mix={b('section')}>
           <ChartsModal.Body>
             <List
@@ -114,7 +119,9 @@ export default class CommentsModal extends React.PureComponent {
               showConfirmParanja={confirmParanjaConfig =>
                 this.setState({ showConfirmParanja: true, confirmParanjaConfig })
               }
-              toggleLoadingParanja={showLoadingParanja => this.setState({ showLoadingParanja })}
+              toggleLoadingParanja={showLoadingParanja =>
+                this.setState({ showLoadingParanja })
+              }
               setState={this.setState.bind(this)}
               // isBrowserChart={this.props.isBrowserChart}
             />
@@ -145,9 +152,13 @@ export default class CommentsModal extends React.PureComponent {
                     comments = [newComment].concat(this.state.comments);
                   }
 
-                  comments.sort((a, b) => moment(b.date).valueOf() - moment(a.date).valueOf());
+                  comments.sort(
+                    (a, b) => moment(b.date).valueOf() - moment(a.date).valueOf(),
+                  );
 
-                  const selectedIndex = comments.findIndex(({ id }) => id === newComment.id);
+                  const selectedIndex = comments.findIndex(
+                    ({ id }) => id === newComment.id,
+                  );
 
                   // TODO: pending comments или отправлять в list новый коммент?
 

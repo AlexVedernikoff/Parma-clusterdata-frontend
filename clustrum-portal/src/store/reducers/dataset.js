@@ -386,7 +386,10 @@ export function fetchDataset({ datasetId }) {
         payload: {},
       });
 
-      const dataset = await sdk.bi.getDataSetByVersion({ dataSetId: datasetId, version: 'draft' });
+      const dataset = await sdk.bi.getDataSetByVersion({
+        dataSetId: datasetId,
+        version: 'draft',
+      });
 
       dispatch({
         type: FETCH_DATASET.SUCCESS,
@@ -433,7 +436,9 @@ const dispatchFetchPreviewDataset = async (
         rs.source !== '' &&
         rs.formula === '' &&
         (rs.calc_mode === CalcModes.Direct || rs.calc_mode === CalcModes.Spel) &&
-        (rs.spel === '' || rs.spel.substring(rs.spel.indexOf('[') + 1, rs.spel.lastIndexOf(']')) === rs.source),
+        (rs.spel === '' ||
+          rs.spel.substring(rs.spel.indexOf('[') + 1, rs.spel.lastIndexOf(']')) ===
+            rs.source),
     );
 
     const previewDataset = await sdk.bi.previewDataSet(
@@ -611,7 +616,10 @@ function prepareUpdates(updates) {
   });
 }
 
-export function validateDataset({ isProcessingDatasetOnRequest = false, initial = false } = {}) {
+export function validateDataset({
+  isProcessingDatasetOnRequest = false,
+  initial = false,
+} = {}) {
   return async (dispatch, getState, { sdk, toaster }) => {
     try {
       dispatch({
@@ -621,7 +629,9 @@ export function validateDataset({ isProcessingDatasetOnRequest = false, initial 
         },
       });
 
-      const { dataset: { id: datasetId, updates, initialResultSchema } = {} } = getState();
+      const {
+        dataset: { id: datasetId, updates, initialResultSchema } = {},
+      } = getState();
 
       const validation = await sdk.bi.validateDataSet(
         {
@@ -654,7 +664,10 @@ export function validateDataset({ isProcessingDatasetOnRequest = false, initial 
       if (!sdk.isCancel()) {
         const {
           data: {
-            data: { dataset_errors: datasetErrors = [], field_errors: fieldErrors = [] } = {},
+            data: {
+              dataset_errors: datasetErrors = [],
+              field_errors: fieldErrors = [],
+            } = {},
             data: validation,
             error: { messageError: messageError = '' } = {},
           } = {},
@@ -970,7 +983,9 @@ export function dataset(state = initialState, action) {
       };
     }
     case INITIAL_FETCH_DATASET.SUCCESS: {
-      const { dataset: { result_schema: resultSchema, ...restDatasetParams } = {} } = action.payload;
+      const {
+        dataset: { result_schema: resultSchema, ...restDatasetParams } = {},
+      } = action.payload;
 
       return {
         ...state,
@@ -1010,7 +1025,9 @@ export function dataset(state = initialState, action) {
       };
     }
     case SYNC_DATASET.SUCCESS: {
-      const { dataset: { result_schema: resultSchema, ...restDatasetParams } = {} } = action.payload;
+      const {
+        dataset: { result_schema: resultSchema, ...restDatasetParams } = {},
+      } = action.payload;
 
       return {
         ...state,
@@ -1217,7 +1234,9 @@ export function dataset(state = initialState, action) {
       const { field: { guid } = {} } = action.payload;
       const { resultSchema, updates } = state;
 
-      const resultSchemaNext = resultSchema.filter(({ guid: currentGuid }) => currentGuid !== guid);
+      const resultSchemaNext = resultSchema.filter(
+        ({ guid: currentGuid }) => currentGuid !== guid,
+      );
       const update = {
         action: 'delete',
         field: {
@@ -1485,5 +1504,7 @@ export const isDatasetChangedDatasetSelector = state => state.dataset.isDatasetC
 export const isLoadingDatasetSelector = state => state.dataset.isLoading;
 export const isFavoriteDatasetSelector = state => state.dataset.is_favorite;
 export const isProcessingDatasetSelector = state => state.dataset.isProcessingDataset;
-export const isSavingDatasetSelector = state => state.dataset.savingDataset.isProcessingSavingDataset;
-export const isSavingDatasetDisabledSelector = state => state.dataset.savingDataset.savingDatasetDisabled;
+export const isSavingDatasetSelector = state =>
+  state.dataset.savingDataset.isProcessingSavingDataset;
+export const isSavingDatasetDisabledSelector = state =>
+  state.dataset.savingDataset.savingDatasetDisabled;

@@ -24,7 +24,7 @@ import {
   VISUALIZATIONS,
 } from '../../../../../constants';
 
-import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
+import { DndContainer } from '../../../shared/ui/drag-n-drop';
 import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';

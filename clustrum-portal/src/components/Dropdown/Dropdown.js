@@ -95,8 +95,12 @@ class Dropdown extends React.Component {
           this.dropdown = node;
         }}
       >
-        <div className={b(`button${this.props.select ? '-select' : ''}`)}>{this.getButtonContent()}</div>
-        <div className={`dropdown-content${this.state.visible ? '' : ' hidden'}`}>{this.props.content}</div>
+        <div className={b(`button${this.props.select ? '-select' : ''}`)}>
+          {this.getButtonContent()}
+        </div>
+        <div className={`dropdown-content${this.state.visible ? '' : ' hidden'}`}>
+          {this.props.content}
+        </div>
       </div>
     );
   }

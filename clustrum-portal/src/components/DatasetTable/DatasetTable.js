@@ -136,7 +136,10 @@ class DatasetTable extends React.Component {
   };
 
   getDatasetPopups = (names = ['yc-select-popup', 'field-actions-popup__popup']) => {
-    return names.reduce((popups, name) => [...popups, ...Array.from(document.getElementsByClassName(name))], []);
+    return names.reduce(
+      (popups, name) => [...popups, ...Array.from(document.getElementsByClassName(name))],
+      [],
+    );
   };
 
   activateRow = rowNode => {
@@ -285,9 +288,13 @@ class DatasetTable extends React.Component {
   getAggregationSwitchTo = (currentAggregation, selectedCast) => {
     const { types = [] } = this.props;
 
-    const { aggregations: availableAggregations = [] } = types.find(({ name }) => name === selectedCast);
+    const { aggregations: availableAggregations = [] } = types.find(
+      ({ name }) => name === selectedCast,
+    );
 
-    const isCurrentAggregationAvailableForCast = availableAggregations.includes(currentAggregation);
+    const isCurrentAggregationAvailableForCast = availableAggregations.includes(
+      currentAggregation,
+    );
 
     return isCurrentAggregationAvailableForCast ? currentAggregation : 'none';
   };
@@ -393,14 +400,18 @@ class DatasetTable extends React.Component {
     const aggregationCurrentLocale = getAggregationLabel(aggregationCurrent);
     const aggregationNextLocale = getAggregationLabel(aggregationNext);
 
-    return aggregationCurrentLocale.localeCompare(aggregationNextLocale, undefined, { numeric: true });
+    return aggregationCurrentLocale.localeCompare(aggregationNextLocale, undefined, {
+      numeric: true,
+    });
   };
 
   sortDescriptionColumn = (rowCurrent, rowNext) => {
     const { row: { description: descriptionCurrent } = {} } = rowCurrent;
     const { row: { description: descriptionNext } = {} } = rowNext;
 
-    return descriptionCurrent.localeCompare(descriptionNext, undefined, { numeric: true });
+    return descriptionCurrent.localeCompare(descriptionNext, undefined, {
+      numeric: true,
+    });
   };
 
   IndexColumn = {
@@ -409,7 +420,9 @@ class DatasetTable extends React.Component {
     align: DataTable.CENTER,
     width: '50px',
     sortable: false,
-    header: <Icon className={b('header-icon-table-count')} data={iconTableCount} width="10" />,
+    header: (
+      <Icon className={b('header-icon-table-count')} data={iconTableCount} width="10" />
+    ),
     render: ({ index }) => index + 1,
   };
 
@@ -449,7 +462,14 @@ class DatasetTable extends React.Component {
     width: '70px',
     align: DataTable.LEFT,
     sortable: true,
-    header: <Icon className={b('header-icon')} data={iconLinkedDataset} width="18" height="18" />,
+    header: (
+      <Icon
+        className={b('header-icon')}
+        data={iconLinkedDataset}
+        width="18"
+        height="18"
+      />
+    ),
     render: ({ index, row }) => {
       const { linkedDataset } = row;
 
@@ -528,7 +548,12 @@ class DatasetTable extends React.Component {
           title={value ? 'Скрыть поле' : 'Показать поле'}
           onClick={() => this.toggleHidden({ row })}
         >
-          <Icon className={b('hidden', { hidden: value })} data={iconEyeCross} width="24" height="28" />
+          <Icon
+            className={b('hidden', { hidden: value })}
+            data={iconEyeCross}
+            width="24"
+            height="28"
+          />
         </Button>
       );
     },
@@ -555,7 +580,12 @@ class DatasetTable extends React.Component {
           title="Имеются правила верификации и/или сопоставления"
           onClick={() => this.openFieldEditor({ field: row })}
         >
-          <Icon className={b('verification_rules')} data={iconVerificationRules} width="24" height="28" />
+          <Icon
+            className={b('verification_rules')}
+            data={iconVerificationRules}
+            width="24"
+            height="28"
+          />
         </Button>
       ) : null;
     },
@@ -580,7 +610,12 @@ class DatasetTable extends React.Component {
           title={value ? 'Имеется индекс' : 'Отсутствует индекс'}
           onClick={() => this.toggleHasIndex({ row })}
         >
-          <Icon className={b('hidden', { hidden: value })} data={indexIcon} width="24" height="28" />
+          <Icon
+            className={b('hidden', { hidden: value })}
+            data={indexIcon}
+            width="24"
+            height="28"
+          />
         </Button>
       );
     },
@@ -630,7 +665,12 @@ class DatasetTable extends React.Component {
           title={value ? 'Поле-массив' : 'Поле-не масив'}
           onClick={() => this.toggleHasArray({ row })}
         >
-          <Icon className={b('hidden', { hidden: value })} data={arrayIcon} width="24" height="28" />
+          <Icon
+            className={b('hidden', { hidden: value })}
+            data={arrayIcon}
+            width="24"
+            height="28"
+          />
         </Button>
       );
     },
@@ -652,10 +692,19 @@ class DatasetTable extends React.Component {
           size="n"
           view="default"
           tone="default"
-          title={value ? 'Поле используется для версионирования' : 'Поле не используется для версионирования'}
+          title={
+            value
+              ? 'Поле используется для версионирования'
+              : 'Поле не используется для версионирования'
+          }
           onClick={() => this.toggleHasVersion({ row })}
         >
-          <Icon className={b('hidden', { hidden: value })} data={iconVersion} width="24" height="28" />
+          <Icon
+            className={b('hidden', { hidden: value })}
+            data={iconVersion}
+            width="24"
+            height="28"
+          />
         </Button>
       );
     },
@@ -720,7 +769,9 @@ class DatasetTable extends React.Component {
     width: '70px',
     sortable: false,
     header: null,
-    render: ({ row }) => <FieldActionsPopup field={row} onClickItem={this.onClickMoreRowAction} />,
+    render: ({ row }) => (
+      <FieldActionsPopup field={row} onClickItem={this.onClickMoreRowAction} />
+    ),
   };
 
   columns = [

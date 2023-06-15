@@ -57,7 +57,11 @@ class Item extends React.Component {
     return (
       <div className={b('item-icon')}>
         <svg width={24} height={24} viewBox="0 0 24 24">
-          {typeof icon === 'string' ? <g dangerouslySetInnerHTML={{ __html: icon }} /> : icon}
+          {typeof icon === 'string' ? (
+            <g dangerouslySetInnerHTML={{ __html: icon }} />
+          ) : (
+            icon
+          )}
         </svg>
       </div>
     );
@@ -65,7 +69,13 @@ class Item extends React.Component {
 
   renderItemContent(props) {
     return (
-      <div className={props.hasIcons ? b.builder()('item-content')({ offset: true }) : b('item-content')}>
+      <div
+        className={
+          props.hasIcons
+            ? b.builder()('item-content')({ offset: true })
+            : b('item-content')
+        }
+      >
         {props.data.icon && this.renderIcon(props.data.icon)}
         <div className={b('item-title')}>{props.data.name}</div>
       </div>
@@ -101,7 +111,12 @@ class Item extends React.Component {
       >
         {node}
         {Boolean(data.submenu) && (
-          <List width={this.getMenuWidth()} data={data.submenu} visible={this.state.submenuVisible} wrapTo={wrapTo} />
+          <List
+            width={this.getMenuWidth()}
+            data={data.submenu}
+            visible={this.state.submenuVisible}
+            wrapTo={wrapTo}
+          />
         )}
       </div>
     );

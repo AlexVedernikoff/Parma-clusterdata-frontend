@@ -17,7 +17,10 @@ export default function configureStore(services) {
     middlewares.push(logger);
   }
 
-  const store = createStore(rootReducer(history), composeWithDevTools(applyMiddleware(...middlewares)));
+  const store = createStore(
+    rootReducer(history),
+    composeWithDevTools(applyMiddleware(...middlewares)),
+  );
 
   return store;
 }

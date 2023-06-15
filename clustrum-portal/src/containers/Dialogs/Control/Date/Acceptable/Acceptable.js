@@ -47,7 +47,9 @@ class Acceptable extends React.PureComponent {
               allowEmptyValue={true}
               hasClear={false}
               emptyValueText="Не ограничено"
-              callback={({ from }) => this.setState({ acceptableValues: { ...acceptableValues, from } })}
+              callback={({ from }) =>
+                this.setState({ acceptableValues: { ...acceptableValues, from } })
+              }
               showApply={false}
             />
           </div>
@@ -62,7 +64,9 @@ class Acceptable extends React.PureComponent {
               allowEmptyValue={true}
               hasClear={false}
               emptyValueText="Не ограничено"
-              callback={({ from: to }) => this.setState({ acceptableValues: { ...acceptableValues, to } })}
+              callback={({ from: to }) =>
+                this.setState({ acceptableValues: { ...acceptableValues, to } })
+              }
               showApply={false}
             />
           </div>

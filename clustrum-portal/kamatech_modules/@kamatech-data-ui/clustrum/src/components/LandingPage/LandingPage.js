@@ -2,7 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import ErrorContent, { Types, TypesHeaderWithoutCloudFolderSelect } from '../ErrorContent/ErrorContent';
+import ErrorContent, {
+  Types,
+  TypesHeaderWithoutCloudFolderSelect,
+} from '../ErrorContent/ErrorContent';
 import Header from '../Header/Header';
 import Utils from '../../utils';
 import { Pointerfocus } from 'lego-on-react';
@@ -57,7 +60,9 @@ class LandingPage extends PureComponent {
       ...user,
       yu: Utils.getCookie('parmauid'),
     };
-    const withCloudFolderSelect = !TypesHeaderWithoutCloudFolderSelect.includes(errorType);
+    const withCloudFolderSelect = !TypesHeaderWithoutCloudFolderSelect.includes(
+      errorType,
+    );
 
     return (
       <div className={b()}>

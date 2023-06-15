@@ -31,7 +31,9 @@ class EntryContextMenuItem extends React.Component {
         {text}
       </div>
     );
-    return this.props.wrapper ? this.props.wrapper({ entry: this.props.entry, children: node }) : node;
+    return this.props.wrapper
+      ? this.props.wrapper({ entry: this.props.entry, children: node })
+      : node;
   }
 }
 
@@ -71,7 +73,12 @@ class EntryContextMenu extends React.Component {
       >
         <Menu size="n" view="default" tone="default" theme="normal" cls={b('menu')}>
           {items.map((item, index) => (
-            <EntryContextMenuItem key={index} {...item} entry={entry} onClick={this.onMenuClick} />
+            <EntryContextMenuItem
+              key={index}
+              {...item}
+              entry={entry}
+              onClick={this.onMenuClick}
+            />
           ))}
         </Menu>
       </Popup>

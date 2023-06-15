@@ -36,7 +36,10 @@ export function withContext(Component) {
       exportWidget: PropTypes.func,
     };
 
-    _onChange({ config = this.props.config, itemsStateAndParams = this.props.itemsStateAndParams }) {
+    _onChange({
+      config = this.props.config,
+      itemsStateAndParams = this.props.itemsStateAndParams,
+    }) {
       this.props.onChange({
         config,
         itemsStateAndParams,
@@ -45,7 +48,11 @@ export function withContext(Component) {
 
     _onLayoutChange = layout => {
       const { layoutId } = this.props;
-      const newConfig = UpdateManager.updateLayout({ layout, config: this.props.config, layoutId });
+      const newConfig = UpdateManager.updateLayout({
+        layout,
+        config: this.props.config,
+        layoutId,
+      });
       if (!isEqual(newConfig[layoutId], this.props.config[layoutId])) {
         this._onChange({
           config: newConfig,
@@ -55,7 +62,9 @@ export function withContext(Component) {
 
     _onItemRemove = id => {
       const { config, itemsStateAndParams, layoutId } = this.props;
-      this._onChange(UpdateManager.removeItem({ id, config, itemsStateAndParams, layoutId }));
+      this._onChange(
+        UpdateManager.removeItem({ id, config, itemsStateAndParams, layoutId }),
+      );
     };
 
     _onItemEdit = id => {
@@ -81,7 +90,9 @@ export function withContext(Component) {
       return items.map(item => {
         const { type } = item;
         const plugin = registerManager.getItem(type);
-        return typeof plugin.prerenderMiddleware === 'function' ? plugin.prerenderMiddleware(item) : item;
+        return typeof plugin.prerenderMiddleware === 'function'
+          ? plugin.prerenderMiddleware(item)
+          : item;
       });
     }
 
@@ -110,7 +121,9 @@ export function withContext(Component) {
         const ignoreIds = config.ignores
           .filter(
             ({ who }) =>
-              who === itemId || (Array.isArray(itemData) && itemData.findIndex(({ id }) => id === who) !== -1),
+              who === itemId ||
+              (Array.isArray(itemData) &&
+                itemData.findIndex(({ id }) => id === who) !== -1),
           )
           .map(({ whom }) => whom);
         params[itemId] = Object.assign(

@@ -1,6 +1,11 @@
 import { ASCENDING, DESCENDING } from './constants';
 
-export function getSortOrder(column, { sortOrder = {}, sortColumns = [] }, multisort, settings = {}) {
+export function getSortOrder(
+  column,
+  { sortOrder = {}, sortColumns = [] },
+  multisort,
+  settings = {},
+) {
   const defaultOrder = column.defaultOrder || settings.defaultOrder;
   const columnName = column.name;
   const emptyResult = {
@@ -88,7 +93,10 @@ export function getSortedData(data, dataColumns, { sortOrder, sortColumns }) {
 
   dataColumns.forEach(column => {
     if (sortOrder[column.name]) {
-      sortFunctionDict[column.name] = generateSortingFunction(column, sortOrder[column.name]);
+      sortFunctionDict[column.name] = generateSortingFunction(
+        column,
+        sortOrder[column.name],
+      );
     }
   });
 

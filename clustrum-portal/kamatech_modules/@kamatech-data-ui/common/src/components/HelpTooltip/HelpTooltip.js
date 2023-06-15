@@ -63,7 +63,14 @@ function TooltipLinks(props) {
 
         return (
           <React.Fragment key={`link-${index}`}>
-            <Link cls={b('popup-link')} theme="normal" text={text} url={url} target={target} onClick={onClick} />
+            <Link
+              cls={b('popup-link')}
+              theme="normal"
+              text={text}
+              url={url}
+              target={target}
+              onClick={onClick}
+            />
             <br />
           </React.Fragment>
         );

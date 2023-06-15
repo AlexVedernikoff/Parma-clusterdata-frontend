@@ -22,9 +22,20 @@ class VerifyButton extends React.Component {
 
     return (
       <div className={b()}>
-        <Button size="s" theme="normal" view="default" tone="default" text={text} onClick={verifyConnection} />
+        <Button
+          size="s"
+          theme="normal"
+          view="default"
+          tone="default"
+          text={text}
+          onClick={verifyConnection}
+        />
         {typeof isVerifySuccess === 'boolean' && (
-          <Icon className={b('icon')} data={isVerifySuccess ? iconOkay : iconError} width="16" />
+          <Icon
+            className={b('icon')}
+            data={isVerifySuccess ? iconOkay : iconError}
+            width="16"
+          />
         )}
       </div>
     );

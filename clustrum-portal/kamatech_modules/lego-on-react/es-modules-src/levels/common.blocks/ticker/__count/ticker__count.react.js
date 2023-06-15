@@ -52,7 +52,11 @@ export default decl(
           TickerValue,
           _extends(
             { key: 'value' },
-            { count: count, maxCount: maxCount, mix: !url && [{ block: block, elem: 'plain' }, mix] },
+            {
+              count: count,
+              maxCount: maxCount,
+              mix: !url && [{ block: block, elem: 'plain' }, mix],
+            },
           ),
         ),
       ];

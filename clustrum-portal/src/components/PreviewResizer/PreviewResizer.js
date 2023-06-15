@@ -53,7 +53,10 @@ class PreviewResizer extends React.Component {
   PREVIEW_WIDTH_LS = 'previewWidth';
   VIEW_LS = 'viewLast';
 
-  allResizers = () => [ResizerType.PREVIEW, ResizerType.HISTORY].map(name => document.querySelector(`.${b(name)}`));
+  allResizers = () =>
+    [ResizerType.PREVIEW, ResizerType.HISTORY].map(name =>
+      document.querySelector(`.${b(name)}`),
+    );
 
   makeInitialActions = () => {
     const { isVisible, className } = this.props;
@@ -82,7 +85,11 @@ class PreviewResizer extends React.Component {
       }
       case this.RIGHT_VIEW: {
         const heightPage = window.innerHeight;
-        const heigth = heightPage - this.headerHeight - this.actionPanelHeight - this.datasetActionPanelHeight;
+        const heigth =
+          heightPage -
+          this.headerHeight -
+          this.actionPanelHeight -
+          this.datasetActionPanelHeight;
 
         this.resizableElement.style.height = `${heigth}px`;
         this.resizableElement.style.width = `${this.minWidth}px`;
@@ -220,10 +227,13 @@ class PreviewResizer extends React.Component {
     if (view === this.RIGHT_VIEW) {
       this.tableDataset.style.marginBottom = '0px';
     } else {
-      const previewHeight = Math.max(...this.allResizers().map(element => element.getBoundingClientRect().height));
+      const previewHeight = Math.max(
+        ...this.allResizers().map(element => element.getBoundingClientRect().height),
+      );
       const { height: tableDatasetHeight } = this.tableDataset.getBoundingClientRect();
 
-      const datasetHeight = tableDatasetHeight + parseInt(this.tableDataset.style.marginBottom || 0, 10);
+      const datasetHeight =
+        tableDatasetHeight + parseInt(this.tableDataset.style.marginBottom || 0, 10);
 
       if (datasetHeight - previewHeight >= 0) {
         this.tableDataset.style.marginBottom = `${previewHeight}px`;
@@ -271,10 +281,20 @@ class PreviewResizer extends React.Component {
 
     return (
       <div className={b(className)}>
-        <div className={b('resizer', b('resizer-top', { visible: isVisibleVerticalResizer }))}>
+        <div
+          className={b(
+            'resizer',
+            b('resizer-top', { visible: isVisibleVerticalResizer }),
+          )}
+        >
           <div className={b('resizer-anchor-horizontal')} />
         </div>
-        <div className={b('resizer', b('resizer-left', { visible: isVisibleHorizontalResizer }))}>
+        <div
+          className={b(
+            'resizer',
+            b('resizer-left', { visible: isVisibleHorizontalResizer }),
+          )}
+        >
           <div className={b('resizer-anchor-vertical')} />
         </div>
         {children}

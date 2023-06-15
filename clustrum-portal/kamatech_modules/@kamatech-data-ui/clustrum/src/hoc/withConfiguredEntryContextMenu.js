@@ -68,7 +68,9 @@ export const getEntryContextMenuItems = ({ entry = {} } = {}) => {
       action: ENTRY_CONTEXT_MENU_ACTION.COPY_LINK,
       wrapper: ({ entry, children }) => {
         // eslint-disable-line react/display-name, react/prop-types
-        return <ReactCopyToClipboard text={entry.entryId}>{children}</ReactCopyToClipboard>;
+        return (
+          <ReactCopyToClipboard text={entry.entryId}>{children}</ReactCopyToClipboard>
+        );
       },
     },
   ];
@@ -76,7 +78,9 @@ export const getEntryContextMenuItems = ({ entry = {} } = {}) => {
   if (entry.permissions) {
     return entry.permissions.admin
       ? entryContextMenuItems
-      : entryContextMenuItems.filter(({ action }) => LIMITED_CONTEXT_MENU.includes(action));
+      : entryContextMenuItems.filter(({ action }) =>
+          LIMITED_CONTEXT_MENU.includes(action),
+        );
   }
 
   return entryContextMenuItems;

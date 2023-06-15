@@ -6,7 +6,9 @@ const paramsValue = (params: { [key: string]: any }, paramKey: string): unknown 
   return params[paramKey].value;
 };
 
-export const getParamsValue = (params: { [key: string]: any }): { [key: string]: any } => {
+export const getParamsValue = (params: {
+  [key: string]: any;
+}): { [key: string]: any } => {
   return Object.keys(params).reduce((acc, paramKey) => {
     return {
       ...acc,
