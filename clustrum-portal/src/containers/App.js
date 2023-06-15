@@ -42,7 +42,7 @@ class App extends Component {
           <Route
             path={'/wizard'}
             component={props => (
-              <PageContainer withoutReactRouter>
+              <PageContainer>
                 <Wizard {...props} onExport={this._handleExport} sdk={sdk} />
               </PageContainer>
             )}

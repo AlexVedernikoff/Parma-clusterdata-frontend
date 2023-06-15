@@ -13,7 +13,7 @@ interface SidePanelProps {
   withoutReactRouter?: boolean;
 }
 
-export function SidePanel({ withoutReactRouter }: SidePanelProps): ReactElement {
+export function SidePanel({ withoutReactRouter = true }: SidePanelProps): ReactElement {
   const [collapsed, setCollapsed] = useState(false);
   const history = useHistory();
   const selectedKey = useActiveMenuItemKey();

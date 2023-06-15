@@ -46,7 +46,7 @@ class NavigationPage extends React.Component {
           <Route
             path="/:root?/:path*"
             render={({ match, location, history }) => (
-              <PageContainer>
+              <PageContainer withoutReactRouter={false}>
                 <Navigation
                   sdk={sdk}
                   match={match}
