@@ -44,7 +44,12 @@ const _getConnectorFields = (type, isCreateForm) => {
 
       break;
     default:
-      fields = [FIELD_TYPES.NAME, FIELD_TYPES.HOST, FIELD_TYPES.PORT, FIELD_TYPES.USERNAME];
+      fields = [
+        FIELD_TYPES.NAME,
+        FIELD_TYPES.HOST,
+        FIELD_TYPES.PORT,
+        FIELD_TYPES.USERNAME,
+      ];
 
       if (type !== 'clickhouse') {
         fields.push(FIELD_TYPES.DB_NAME);

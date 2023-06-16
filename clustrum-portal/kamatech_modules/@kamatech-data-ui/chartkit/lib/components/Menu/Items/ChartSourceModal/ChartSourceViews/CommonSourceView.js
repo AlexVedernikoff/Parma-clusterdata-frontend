@@ -13,15 +13,24 @@ const b = block('chart-source-modal');
 export default function CommonSourceView({ index, source }) {
   const config = settings.config[source.type];
   // у источников из ноды начало на https://..., у yql - //:..., у других - /_...
-  const url = /\/\/:?/.test(source.url) ? source.url : settings.chartsEndpoint + source.url;
+  const url = /\/\/:?/.test(source.url)
+    ? source.url
+    : settings.chartsEndpoint + source.url;
   return (
     <div className={b('row', { border_bottom: true })} key={`${index}_${source.url}`}>
       <div className={b('column')}>{index + 1}.</div>
-      <div className={b('column', { left: true })}>{config ? config.description.title : source.type}</div>
+      <div className={b('column', { left: true })}>
+        {config ? config.description.title : source.type}
+      </div>
       <div className={b('column', { middle: true })}>
         <div className={b('cell')}>
           {source.method === 'get' ? (
-            <Link theme="normal" mix={{ block: b('link', { source: true }) }} target="_blank" url={url}>
+            <Link
+              theme="normal"
+              mix={{ block: b('link', { source: true }) }}
+              target="_blank"
+              url={url}
+            >
               {source.name}
             </Link>
           ) : (

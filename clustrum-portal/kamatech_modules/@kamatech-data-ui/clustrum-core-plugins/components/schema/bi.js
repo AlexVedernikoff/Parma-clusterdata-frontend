@@ -11,7 +11,11 @@ const BI_API_SCHEMA = {
     url: `${utils.config.endpoints.biConverter}/api/v1/parsing_options/`,
     headers,
   }),
-  getPreview: (headers, utils, { connectionId, previewLines, delimiter, encoding, hasHeader }) => ({
+  getPreview: (
+    headers,
+    utils,
+    { connectionId, previewLines, delimiter, encoding, hasHeader },
+  ) => ({
     method: 'get',
     url: `${utils.config.endpoints.biConverter}/api/v1/preview/${connectionId}`,
     headers,
@@ -22,7 +26,11 @@ const BI_API_SCHEMA = {
       has_header: hasHeader,
     },
   }),
-  saveConnection: (headers, utils, { connectionId, name, dirPath, delimiter, encoding, hasHeader }) => ({
+  saveConnection: (
+    headers,
+    utils,
+    { connectionId, name, dirPath, delimiter, encoding, hasHeader },
+  ) => ({
     method: 'post',
     url: `${utils.config.endpoints.biConverter}/api/v1/save_connection/${connectionId}`,
     headers,
@@ -191,7 +199,11 @@ const BI_API_SCHEMA = {
     url: `${utils.config.endpoints.bi}/api/v1/datasets/${dataSetId}`,
     headers,
   }),
-  modifyDatasetSource: (headers, utils, { datasetId, tableName, dbName, connectionId }) => ({
+  modifyDatasetSource: (
+    headers,
+    utils,
+    { datasetId, tableName, dbName, connectionId },
+  ) => ({
     method: 'put',
     url: `${utils.config.endpoints.bi}/api/v1/datasets/${datasetId}/source`,
     headers,
@@ -204,7 +216,19 @@ const BI_API_SCHEMA = {
   getResultBySQL: (
     headers,
     utils,
-    { dataSetId, version, where, limit, groupBy, orderBy, offset, columns, customWhere, resultSchema, updates },
+    {
+      dataSetId,
+      version,
+      where,
+      limit,
+      groupBy,
+      orderBy,
+      offset,
+      columns,
+      customWhere,
+      resultSchema,
+      updates,
+    },
   ) => ({
     method: 'post',
     url: `${utils.config.endpoints.bi}/api/v1/datasets/${dataSetId}/versions/${version}/result`,
@@ -251,7 +275,11 @@ const BI_API_SCHEMA = {
     },
   }),
 
-  getFormulaSuggest: (headers, utils, { dataSetId, version, fieldNames, formula, posRow, posColumn }) => ({
+  getFormulaSuggest: (
+    headers,
+    utils,
+    { dataSetId, version, fieldNames, formula, posRow, posColumn },
+  ) => ({
     method: 'post',
     url: `${utils.config.endpoints.bi}/api/v1/datasets/${dataSetId}/versions/${version}/suggest/formula`,
     headers,
@@ -392,7 +420,21 @@ const BI_API_SCHEMA = {
   verifyConnection: (
     headers,
     utils,
-    { connectionId, type, name, dbName, password, host, port, token, username, alias, cluster, counter, counterSource },
+    {
+      connectionId,
+      type,
+      name,
+      dbName,
+      password,
+      host,
+      port,
+      token,
+      username,
+      alias,
+      cluster,
+      counter,
+      counterSource,
+    },
   ) => ({
     method: 'post',
     url: `${utils.config.endpoints.bi}/api/v1/connections/test_connection/${connectionId}`,

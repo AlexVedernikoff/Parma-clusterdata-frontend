@@ -29,7 +29,11 @@ export default function GoToPage({ goTo, disabled = false }: Props) {
           }
         }}
       />
-      <button disabled={disabled} className="pagination__go-to-btn" onClick={handleGoTo} />
+      <button
+        disabled={disabled}
+        className="pagination__go-to-btn"
+        onClick={handleGoTo}
+      />
     </div>
   );
 }

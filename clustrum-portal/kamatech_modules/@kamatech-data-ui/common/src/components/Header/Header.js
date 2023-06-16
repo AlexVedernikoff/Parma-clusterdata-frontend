@@ -52,7 +52,13 @@ export default class Header extends React.PureComponent {
           </div>
         )}
         <div className={b('logo-section')} onClick={this.props.onLogoClick}>
-          {<Logo logoIcon={this.props.logoIcon} logoText={this.props.logoText} logoHref={this.props.logoHref} />}
+          {
+            <Logo
+              logoIcon={this.props.logoIcon}
+              logoText={this.props.logoText}
+              logoHref={this.props.logoHref}
+            />
+          }
           {window.DL.title}
         </div>
         {this.renderSearchSection()}

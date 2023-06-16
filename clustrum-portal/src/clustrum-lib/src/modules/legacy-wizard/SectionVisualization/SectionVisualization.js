@@ -24,7 +24,7 @@ import {
   VISUALIZATIONS,
 } from '../../../../../constants';
 
-import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
+import { DndContainer } from '../../../shared/ui/drag-n-drop';
 import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';
@@ -220,6 +220,7 @@ class SectionVisualization extends Component {
           itemsClassName="placeholder-item"
           wrapTo={this.renderDatasetItem}
           disabled={datasetError}
+          isNeedUpdate={this.state.isNeedUpdate}
           onItemClick={(e, item) => {
             if (
               ['flat-table-columns', 'measures', 'dimensions'].includes(placeholder.id)
@@ -1342,8 +1343,9 @@ class SectionVisualization extends Component {
                     visualization && visualization.id === item.id ? ' active' : ''
                   }`}
                   onClick={() => {
-                    console.log('click');
                     if (visualization.id === item.id) return;
+
+                    this.setState({ isNeedUpdate: true });
 
                     this.dropdownRef.toggle();
 

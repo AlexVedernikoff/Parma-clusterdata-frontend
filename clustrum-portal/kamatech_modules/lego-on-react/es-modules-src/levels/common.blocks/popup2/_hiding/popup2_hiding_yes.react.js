@@ -147,8 +147,12 @@ export default declMod(
       var anchorRight = anchorLeft + anchorDOMNode.offsetWidth;
       var anchorBottom = anchorTop + anchorDOMNode.offsetHeight;
 
-      var vertBorder = Math.floor(this._checkDirection(direction, 'top') ? anchorTop : anchorBottom);
-      var horizBorder = Math.floor(this._checkDirection(direction, 'left') ? anchorLeft : anchorRight);
+      var vertBorder = Math.floor(
+        this._checkDirection(direction, 'top') ? anchorTop : anchorBottom,
+      );
+      var horizBorder = Math.floor(
+        this._checkDirection(direction, 'left') ? anchorLeft : anchorRight,
+      );
 
       for (var i = 0; i < this._anchorParents.length; i++) {
         var parent = this._anchorParents[i];
@@ -162,12 +166,18 @@ export default declMod(
           var parentOffsets = parent.getBoundingClientRect(),
             parentTopOffset = Math.floor(parentOffsets.top);
 
-          if (vertBorder < parentTopOffset || parentTopOffset + parent.offsetHeight < vertBorder) {
+          if (
+            vertBorder < parentTopOffset ||
+            parentTopOffset + parent.offsetHeight < vertBorder
+          ) {
             return false;
           }
 
           var parentLeftOffset = Math.floor(parentOffsets.left);
-          return horizBorder >= parentLeftOffset && parentLeftOffset + parent.offsetWidth >= horizBorder;
+          return (
+            horizBorder >= parentLeftOffset &&
+            parentLeftOffset + parent.offsetWidth >= horizBorder
+          );
         }
       }
 

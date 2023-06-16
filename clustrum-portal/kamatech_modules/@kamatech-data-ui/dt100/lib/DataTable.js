@@ -4,7 +4,16 @@ import ReactList from 'react-list';
 import cn from 'bem-cn-lite';
 import { positionStickySupported } from './featureSupport';
 import { getSortOrder, getIndexedData, getSortedData } from './util';
-import { ASCENDING, DESCENDING, LEFT, RIGHT, CENTER, FIXED, MOVING, INDEX_COLUMN } from './constants';
+import {
+  ASCENDING,
+  DESCENDING,
+  LEFT,
+  RIGHT,
+  CENTER,
+  FIXED,
+  MOVING,
+  INDEX_COLUMN,
+} from './constants';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
 import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 import { ORDER } from '../../common/src/components/Navigation/constants';
@@ -89,7 +98,8 @@ class TableRow extends React.PureComponent {
   checkRowSelection = (selectedRow, row) => {
     if (selectedRow) {
       for (let r in row) {
-        if (selectedRow[row[r].resultShemaId] === row[r].value && row[r].isGroupField) return true;
+        if (selectedRow[row[r].resultShemaId] === row[r].value && row[r].isGroupField)
+          return true;
       }
     }
     return false;
@@ -102,7 +112,8 @@ class TableRow extends React.PureComponent {
   render() {
     const { className, columns, row, index, odd, footer, selectedRow } = this.props;
     const isRowSelected = this.checkRowSelection(selectedRow, row);
-    const classNameRow = b('row', { odd, footer }, className) + (isRowSelected ? ' selected' : '');
+    const classNameRow =
+      b('row', { odd, footer }, className) + (isRowSelected ? ' selected' : '');
 
     return (
       <tr className={classNameRow} onClick={this.onClick}>
@@ -116,11 +127,19 @@ class TableRow extends React.PureComponent {
               key={columnIndex}
               className={classNameValue}
               title={column._getTitle(row)}
-              style={column.customStyle({ row, index, name: column.name, header: false, footer })}
+              style={column.customStyle({
+                row,
+                index,
+                name: column.name,
+                header: false,
+                footer,
+              })}
               onClick={column._getOnClick({ row, index, footer })}
             >
               {footer ? (
-                <div className={b('footer')}>{column._renderValue({ value, row, index, footer })}</div>
+                <div className={b('footer')}>
+                  {column._renderValue({ value, row, index, footer })}
+                </div>
               ) : (
                 column._renderValue({ value, row, index, footer })
               )}
@@ -156,7 +175,9 @@ class TableHead extends React.Component {
   };
   _calculateColumnsWidth() {
     const { onColumnsUpdated } = this.props;
-    const widths = this.renderedColumns.map(col => col && col.getBoundingClientRect().width);
+    const widths = this.renderedColumns.map(
+      col => col && col.getBoundingClientRect().width,
+    );
     if (typeof onColumnsUpdated === 'function') {
       onColumnsUpdated(widths);
     }
@@ -182,7 +203,14 @@ class TableHead extends React.Component {
   }
   renderHeadCell = headCell => {
     const { column, rowSpan, colSpan } = headCell;
-    const { sortable = false, header = column.name, className, index, columnIndex, align } = column;
+    const {
+      sortable = false,
+      header = column.name,
+      className,
+      index,
+      columnIndex,
+      align,
+    } = column;
 
     const { headerTitle = (typeof header === 'string' && header) || undefined } = column;
 
@@ -195,12 +223,16 @@ class TableHead extends React.Component {
         data-index={index}
         colSpan={colSpan}
         rowSpan={rowSpan}
-        style={column.customStyle && column.customStyle({ header: true, name: column.name })}
+        style={
+          column.customStyle && column.customStyle({ header: true, name: column.name })
+        }
         onClick={this._getonOrderByClickInWizard(column)}
       >
         <div
           className={b('head-cell')}
-          title={header && header.props && header.props.children ? header.props.children : ''}
+          title={
+            header && header.props && header.props.children ? header.props.children : ''
+          }
         >
           {header}
           {<ColumnSortIcon {...column} />}
@@ -240,7 +272,16 @@ class TableFooter extends React.Component {
     const className = typeof rowClassName === 'function' ? rowClassName(row) : '';
     const footerColumns = this._getColumnsWithoutOnClick(columns);
 
-    return <TableRow key={index} className={className} row={row} index={index} footer={true} columns={footerColumns} />;
+    return (
+      <TableRow
+        key={index}
+        className={className}
+        row={row}
+        index={index}
+        footer={true}
+        columns={footerColumns}
+      />
+    );
   };
 
   _getColumnsWithoutOnClick(columns) {
@@ -258,7 +299,11 @@ class TableFooter extends React.Component {
 
     // tfoot - строка итогов внизу
     // thead - строка итогов вверху
-    return Boolean(data.length) && <thead className={b('foot')}>{data.map(this.renderFootLevel)}</thead>;
+    return (
+      Boolean(data.length) && (
+        <thead className={b('foot')}>{data.map(this.renderFootLevel)}</thead>
+      )
+    );
   }
 }
 
@@ -291,7 +336,10 @@ class StickyHead extends React.Component {
     const totalWidth = widths.reduce((sum, val) => sum + val, 0);
     return (
       <div className={b('table-wrapper', { sticky: true })}>
-        <table className={b('table', { sticky: true })} style={{ width: totalWidth || 'auto' }}>
+        <table
+          className={b('table', { sticky: true })}
+          style={{ width: totalWidth || 'auto' }}
+        >
           <colgroup>
             {widths.map((width, index) => (
               <col key={index} style={{ width }} />
@@ -493,7 +541,13 @@ class Table extends React.PureComponent {
             })}
           </colgroup>
           {this.renderHead()}
-          {Boolean(footerData) && <TableFooter columns={dataColumns} data={footerData} rowClassName={rowClassName} />}
+          {Boolean(footerData) && (
+            <TableFooter
+              columns={dataColumns}
+              data={footerData}
+              rowClassName={rowClassName}
+            />
+          )}
           <tbody ref={ref}>{items.length ? items : this._getEmptyRow()}</tbody>
         </table>
       </div>
@@ -502,7 +556,11 @@ class Table extends React.PureComponent {
   renderTableDynamic() {
     const {
       data,
-      settings: { dynamicRenderType = 'uniform', dynamicRenderUseStaticSize, dynamicRenderThreshold } = {},
+      settings: {
+        dynamicRenderType = 'uniform',
+        dynamicRenderUseStaticSize,
+        dynamicRenderThreshold,
+      } = {},
     } = this.props;
 
     return (
@@ -527,7 +585,11 @@ class Table extends React.PureComponent {
     return (
       <div className={className} ref={this._refBody}>
         {stickyHead && this.renderStickyHead()}
-        <div ref={this._refBox} className={b('box', { sticky: stickyHead })} onScroll={this._onBoxScroll}>
+        <div
+          ref={this._refBox}
+          className={b('box', { sticky: stickyHead })}
+          onScroll={this._onBoxScroll}
+        >
           {dynamicRender ? this.renderTableDynamic() : this.renderTableSimple()}
         </div>
       </div>
@@ -634,7 +696,9 @@ class DataTableView extends React.Component {
 
   static getStickyHead({ stickyHead = false }) {
     if (stickyHead === MOVING && !positionStickySupported) {
-      console.warn('Your browser does not support position: sticky, moving sticky headers will be disabled.');
+      console.warn(
+        'Your browser does not support position: sticky, moving sticky headers will be disabled.',
+      );
       return false;
     }
     return stickyHead;
@@ -667,7 +731,8 @@ class DataTableView extends React.Component {
     const settings = DataTableView.calculateSettings(nextProps.settings);
     return {
       settings,
-      indexColumn: Boolean(settings.displayIndices) && DataTableView.getIndexColumn(nextProps),
+      indexColumn:
+        Boolean(settings.displayIndices) && DataTableView.getIndexColumn(nextProps),
     };
   }
 
@@ -729,17 +794,24 @@ class DataTableView extends React.Component {
         ? row => column.title(row)
         : () => (typeof column.title === 'string' && column.title) || undefined;
 
-    const _getSortValue = typeof column.sortAccessor === 'function' ? row => column.sortAccessor(row) : _getValue;
+    const _getSortValue =
+      typeof column.sortAccessor === 'function'
+        ? row => column.sortAccessor(row)
+        : _getValue;
 
     const _renderValue =
       typeof column.render === 'function'
-        ? ({ value, row, index, footer }) => this.renderMemoizedCell({ column, value, row, index, footer })
+        ? ({ value, row, index, footer }) =>
+            this.renderMemoizedCell({ column, value, row, index, footer })
         : ({ value }) => value.value;
 
-    const customStyle = typeof column.customStyle === 'function' ? column.customStyle : () => undefined;
+    const customStyle =
+      typeof column.customStyle === 'function' ? column.customStyle : () => undefined;
 
     const _getOnClick =
-      typeof column.onClick === 'function' ? row => event => column.onClick(row, column, event) : () => undefined;
+      typeof column.onClick === 'function'
+        ? row => event => column.onClick(row, column, event)
+        : () => undefined;
 
     return {
       index: columnIndex - indexAdjustment,
@@ -805,14 +877,25 @@ class DataTableView extends React.Component {
   };
 
   onSort = (column, multisort) => {
-    const { onStateAndParamsChange: onOrderByClickInDash, onOrderByClickInWizard } = this.props;
+    const {
+      onStateAndParamsChange: onOrderByClickInDash,
+      onOrderByClickInWizard,
+    } = this.props;
 
     if (column) {
-      const { sortOrder, sortColumns } = getSortOrder(column, this.state, multisort, this.props.settings);
+      const { sortOrder, sortColumns } = getSortOrder(
+        column,
+        this.state,
+        multisort,
+        this.props.settings,
+      );
       const sortingDirection = this.sortingDirection(sortOrder, sortColumns);
 
       if (onOrderByClickInDash) {
-        onOrderByClickInDash({ direction: sortingDirection, field: column.resultSchemaId });
+        onOrderByClickInDash({
+          direction: sortingDirection,
+          field: column.resultSchemaId,
+        });
       } else if (onOrderByClickInWizard) {
         onOrderByClickInWizard(sortingDirection, column.resultSchemaId);
       }
@@ -894,7 +977,10 @@ class DataTableView extends React.Component {
         renderEmptyRow={renderEmptyRow}
         rowClassName={rowClassName}
         onRowClick={onRowClick}
-        data={this._dataForTableByTableTheme(theme, data, dataColumns, { sortOrder, sortColumns })}
+        data={this._dataForTableByTableTheme(theme, data, dataColumns, {
+          sortOrder,
+          sortColumns,
+        })}
         footerData={footerData}
         onSort={this.onSort}
         selectedRow={selectedRow}
@@ -937,7 +1023,9 @@ export default class DataTable extends React.PureComponent {
   render() {
     const { error } = this.state;
     if (!this.props.theme) {
-      console.warn("Starting from dt100@1.4.0 'theme' prop should be passed into the component");
+      console.warn(
+        "Starting from dt100@1.4.0 'theme' prop should be passed into the component",
+      );
     }
     if (error) {
       return (

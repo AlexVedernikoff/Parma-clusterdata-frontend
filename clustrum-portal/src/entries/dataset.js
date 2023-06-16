@@ -10,6 +10,7 @@ import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 import DatasetRouter from '../components/DatasetRouter/DatasetRouter';
 
 import './../css/vendors.css';
+import './../css/colors.css';
 import './../css/commons.css';
 import './../css/dataset.css';
 

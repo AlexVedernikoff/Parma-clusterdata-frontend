@@ -18,7 +18,14 @@ function getContent(year, lang, type, minDate, maxDate) {
 
     const quarterItem = Array.from({ length: 3 }, () => {
       return (
-        <SketchMonth key={`${year}-${month}-quarter`} lang={lang} type={type} year={year} month={month++} size="s" />
+        <SketchMonth
+          key={`${year}-${month}-quarter`}
+          lang={lang}
+          type={type}
+          year={year}
+          month={month++}
+          size="s"
+        />
       );
     });
 
@@ -47,11 +54,17 @@ export default function QuarterContent(props) {
   const { year, lang, type, minDate, maxDate } = props;
 
   const firstYearDay = new Date(year, 0, 1);
-  const isQuarterTitleDisabled = dateHelpers.isDateOutOfRange(firstYearDay, minDate, maxDate);
+  const isQuarterTitleDisabled = dateHelpers.isDateOutOfRange(
+    firstYearDay,
+    minDate,
+    maxDate,
+  );
 
   return (
     <div className={b('chunk-quarter')} data-year={year}>
-      <div className={b('chunk-quarter-title', { disabled: isQuarterTitleDisabled })}>{year}</div>
+      <div className={b('chunk-quarter-title', { disabled: isQuarterTitleDisabled })}>
+        {year}
+      </div>
       {getContent(year, lang, type, minDate, maxDate)}
     </div>
   );

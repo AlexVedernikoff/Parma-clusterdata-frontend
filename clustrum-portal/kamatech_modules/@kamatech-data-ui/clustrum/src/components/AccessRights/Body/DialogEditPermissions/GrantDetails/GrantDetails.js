@@ -83,7 +83,9 @@ class GrantDetails extends React.PureComponent {
               return (
                 <div key={index} className={b('row')}>
                   <div className={b('grant-section')}>
-                    <div className={b('timestamp')}>{moment(timestamp).format(TIMESTAMP_FORMAT)}</div>
+                    <div className={b('timestamp')}>
+                      {moment(timestamp).format(TIMESTAMP_FORMAT)}
+                    </div>
                     <div className={b('user')}>
                       <User participant={grantInfo} role="author" />
                     </div>
@@ -101,9 +103,17 @@ class GrantDetails extends React.PureComponent {
     return (
       <div className={b()}>
         <div className={b('error')}>
-          <span className={b('error-text')}>Не удалось загрузить историю изменения прав. Повторите запрос позже.</span>
+          <span className={b('error-text')}>
+            Не удалось загрузить историю изменения прав. Повторите запрос позже.
+          </span>
           <br />
-          <Button theme="action" size="m" view="default" tone="default" onClick={this.refresh}>
+          <Button
+            theme="action"
+            size="m"
+            view="default"
+            tone="default"
+            onClick={this.refresh}
+          >
             Повторить
           </Button>
         </div>

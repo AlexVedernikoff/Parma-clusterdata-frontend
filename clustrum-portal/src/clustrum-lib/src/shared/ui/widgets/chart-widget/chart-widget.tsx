@@ -10,7 +10,7 @@ const FILTER_CONDITION_TYPE = {
   IS_NULL: '__is_null',
 };
 
-export interface ChartWidgetProps {
+interface ChartWidgetProps {
   data: {
     data: {
       categoriesDataTypeName: string;

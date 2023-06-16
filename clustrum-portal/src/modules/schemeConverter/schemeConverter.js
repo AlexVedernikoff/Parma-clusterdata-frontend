@@ -32,48 +32,60 @@ class SchemeConverter {
         return {
           id: tabId,
           items: await Promise.all(
-            items.map(async ({ id, data: itemData, tabs, type, defaults, namespace = 'default' }) => {
-              const data = itemData || tabs;
-              if (type === ITEM_TYPE.CONTROL && !defaults) {
-                const defaultValue = data.control.defaultValue || '';
+            items.map(
+              async ({
+                id,
+                data: itemData,
+                tabs,
+                type,
+                defaults,
+                namespace = 'default',
+              }) => {
+                const data = itemData || tabs;
+                if (type === ITEM_TYPE.CONTROL && !defaults) {
+                  const defaultValue = data.control.defaultValue || '';
 
-                if (data.dataset) {
-                  const { id: datasetId, fieldName } = data.dataset;
+                  if (data.dataset) {
+                    const { id: datasetId, fieldName } = data.dataset;
 
-                  try {
-                    const { fields } =
-                      savedResponses[datasetId] || (await sdk.bi.getDataSetFieldsById({ dataSetId: datasetId }));
-                    savedResponses[datasetId] = { fields };
+                    try {
+                      const { fields } =
+                        savedResponses[datasetId] ||
+                        (await sdk.bi.getDataSetFieldsById({ dataSetId: datasetId }));
+                      savedResponses[datasetId] = { fields };
 
-                    const field = fields.find(({ title }) => title === fieldName);
+                      const field = fields.find(({ title }) => title === fieldName);
 
-                    if (field) {
-                      data.dataset.fieldId = field.guid;
-                      delete data.dataset.fieldName;
-                      delete data.dataset.name;
-                      defaults = { [field.guid]: defaultValue };
-                    } else {
+                      if (field) {
+                        data.dataset.fieldId = field.guid;
+                        delete data.dataset.fieldName;
+                        delete data.dataset.name;
+                        defaults = { [field.guid]: defaultValue };
+                      } else {
+                        defaults = { [fieldName]: defaultValue };
+                      }
+                    } catch (error) {
+                      console.error('DATASET_FIELDS', id, error);
                       defaults = { [fieldName]: defaultValue };
                     }
-                  } catch (error) {
-                    console.error('DATASET_FIELDS', id, error);
-                    defaults = { [fieldName]: defaultValue };
-                  }
-                } else {
-                  const connection = tab.connections.find(({ fromId }) => fromId === id);
-
-                  if (connection) {
-                    data.control.fieldName = connection.param;
-                    defaults = { [connection.param]: defaultValue };
                   } else {
-                    defaults = {};
+                    const connection = tab.connections.find(
+                      ({ fromId }) => fromId === id,
+                    );
+
+                    if (connection) {
+                      data.control.fieldName = connection.param;
+                      defaults = { [connection.param]: defaultValue };
+                    } else {
+                      defaults = {};
+                    }
                   }
+                } else if (!defaults) {
+                  defaults = {};
                 }
-              } else if (!defaults) {
-                defaults = {};
-              }
-              return { id, data, type, defaults, namespace };
-            }),
+                return { id, data, type, defaults, namespace };
+              },
+            ),
           ),
           title,
           layout,

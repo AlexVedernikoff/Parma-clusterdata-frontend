@@ -22,7 +22,9 @@ class DialogDenyAllRequests extends React.Component {
   };
 
   renderContent = () => {
-    return <div className={b()}>Будут отклонены все запросы на получение прав доступа</div>;
+    return (
+      <div className={b()}>Будут отклонены все запросы на получение прав доступа</div>
+    );
   };
 
   render() {

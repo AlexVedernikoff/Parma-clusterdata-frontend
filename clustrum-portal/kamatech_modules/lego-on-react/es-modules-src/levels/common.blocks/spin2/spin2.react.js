@@ -11,7 +11,13 @@ export default decl(
         view = _ref.view,
         tone = _ref.tone;
 
-      return { size: size, view: view, tone: tone, position: position, progress: bool2string(progress) };
+      return {
+        size: size,
+        view: view,
+        tone: tone,
+        position: position,
+        progress: bool2string(progress),
+      };
     },
   },
   {

@@ -31,7 +31,13 @@ class DialogSaveDashboard extends Component {
     return this.saveEntry({ key });
   };
   render() {
-    return <DialogCreateEntry {...this.props} onApply={this.onApply} defaultDialogProps={defaultDialogProps} />;
+    return (
+      <DialogCreateEntry
+        {...this.props}
+        onApply={this.onApply}
+        defaultDialogProps={defaultDialogProps}
+      />
+    );
   }
 }
 

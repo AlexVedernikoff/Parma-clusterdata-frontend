@@ -139,7 +139,10 @@ function getMap(options, data) {
     }
 
     if (data[0].datetime) {
-      const datetime = Highcharts.dateFormat(scale.strftime, new Date(Number(data[0].datetime)));
+      const datetime = Highcharts.dateFormat(
+        scale.strftime,
+        new Date(Number(data[0].datetime)),
+      );
       if (!params.title.text) {
         params.title.text = datetime;
       } else if (!params.subtitle.text) {

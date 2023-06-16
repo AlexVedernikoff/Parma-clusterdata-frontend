@@ -10,9 +10,13 @@ type Props = {
 export default function PageNumbers({ currentPage, totalPageCount }: Props) {
   return (
     <div className="pagination__page-numbers">
-      <span className="pagination__page-numbers-current">{NumberValueHelper.toLocaleString(currentPage)}</span>
+      <span className="pagination__page-numbers-current">
+        {NumberValueHelper.toLocaleString(currentPage)}
+      </span>
       из
-      <span className="pagination__page-numbers-total">{NumberValueHelper.toLocaleString(totalPageCount)}</span>
+      <span className="pagination__page-numbers-total">
+        {NumberValueHelper.toLocaleString(totalPageCount)}
+      </span>
     </div>
   );
 }

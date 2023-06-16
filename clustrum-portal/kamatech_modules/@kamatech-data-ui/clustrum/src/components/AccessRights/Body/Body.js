@@ -113,8 +113,10 @@ class AccessRightsBodyContent extends React.Component {
     return (
       <div className={b()}>
         {this.renderActionPanel()}
-        {this.state.pendingParticipants.length !== 0 && this.section('Запросы', this.sectionRequests())}
-        {this.state.participants.length !== 0 && this.section('Участники', this.sectionParticipants())}
+        {this.state.pendingParticipants.length !== 0 &&
+          this.section('Запросы', this.sectionRequests())}
+        {this.state.participants.length !== 0 &&
+          this.section('Участники', this.sectionParticipants())}
       </div>
     );
   }
@@ -131,7 +133,13 @@ class AccessRightsBodyContent extends React.Component {
           <span className={b('error-text')}>{text}</span>
           <br />
           {isFail && (
-            <Button theme="action" size="m" view="default" tone="default" onClick={this.refresh}>
+            <Button
+              theme="action"
+              size="m"
+              view="default"
+              tone="default"
+              onClick={this.refresh}
+            >
               Повторить
             </Button>
           )}

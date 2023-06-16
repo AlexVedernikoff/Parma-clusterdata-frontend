@@ -52,7 +52,13 @@ class Acceptable extends React.PureComponent {
               onKeyPress: event => event.charCode === 13 && this.addItem(),
             }}
           />
-          <LegoButton theme="normal" view="default" tone="default" size="s" onClick={this.addItem}>
+          <LegoButton
+            theme="normal"
+            view="default"
+            tone="default"
+            size="s"
+            onClick={this.addItem}
+          >
             Добавить
           </LegoButton>
         </div>
@@ -68,7 +74,10 @@ class Acceptable extends React.PureComponent {
                     width="16"
                     onClick={() =>
                       this.setState({
-                        acceptableValues: [...acceptableValues.slice(0, index), ...acceptableValues.slice(index + 1)],
+                        acceptableValues: [
+                          ...acceptableValues.slice(0, index),
+                          ...acceptableValues.slice(index + 1),
+                        ],
                       })
                     }
                   />
@@ -112,7 +121,11 @@ class Acceptable extends React.PureComponent {
       <React.Fragment>
         <Button
           title="Возможные значения"
-          text={acceptableValues.length ? `Значений: ${acceptableValues.length}` : 'Не выбрано'}
+          text={
+            acceptableValues.length
+              ? `Значений: ${acceptableValues.length}`
+              : 'Не выбрано'
+          }
           onClick={() => this.setState({ showDialog: !this.state.showDialog })}
         />
         {this.renderDialog()}

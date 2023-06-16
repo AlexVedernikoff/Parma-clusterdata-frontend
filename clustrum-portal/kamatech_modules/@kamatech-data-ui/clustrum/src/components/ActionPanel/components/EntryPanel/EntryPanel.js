@@ -6,7 +6,7 @@ import { Button } from 'antd';
 import NavigationModal from 'components/Navigation/NavigationModal';
 import Utils from 'utils';
 import EntryContextMenu from '../../../EntryContextMenu/EntryContextMenu';
-import { Header } from '../../../../../../../../src/entities/header/ui/header';
+import { Header } from '@entities/header';
 import { FolderOutlined, MoreOutlined, StarTwoTone } from '@ant-design/icons';
 import {
   formatPath,

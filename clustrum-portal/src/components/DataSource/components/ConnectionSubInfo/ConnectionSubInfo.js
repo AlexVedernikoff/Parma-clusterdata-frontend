@@ -10,7 +10,10 @@ const b = block('connection-sub-info');
 
 function ConnectionSubInfo(props) {
   const {
-    connection: { db_type: connectionType, meta: { content_length: contentLength } = {} } = {},
+    connection: {
+      db_type: connectionType,
+      meta: { content_length: contentLength } = {},
+    } = {},
     origin: { table_name: connectionTableName, cluster, path } = {},
     tableDbName,
   } = props;

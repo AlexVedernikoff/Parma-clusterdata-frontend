@@ -72,7 +72,10 @@ function getDaysNodes(opt) {
     // дни, на которые при выделении не вешается ::before
     const firstDay = content === 1 ? 'first-day' : '';
     const lastDay =
-      (isFilled && i === cellsCount - 1) || (isFilled && i + 1 >= daysCount + firstWeekday) ? 'last-day' : '';
+      (isFilled && i === cellsCount - 1) ||
+      (isFilled && i + 1 >= daysCount + firstWeekday)
+        ? 'last-day'
+        : '';
 
     curWeekday += 1;
 
@@ -81,7 +84,11 @@ function getDaysNodes(opt) {
     }
 
     return (
-      <div key={key} className={`${b('month-day', mods)} ${firstDay} ${lastDay}`} data-day={content}>
+      <div
+        key={key}
+        className={`${b('month-day', mods)} ${firstDay} ${lastDay}`}
+        data-day={content}
+      >
         {content}
       </div>
     );
@@ -90,7 +97,14 @@ function getDaysNodes(opt) {
 
 export default function Fullmonth(props) {
   const { year, month, lang, minDate, maxDate } = props;
-  const { date, daysCount, cellsCount, firstWeekday, isExtMonth, isLiftedTitle } = getDateInfo(year, month);
+  const {
+    date,
+    daysCount,
+    cellsCount,
+    firstWeekday,
+    isExtMonth,
+    isLiftedTitle,
+  } = getDateInfo(year, month);
 
   const daysNodes = getDaysNodes({
     year,
@@ -103,7 +117,11 @@ export default function Fullmonth(props) {
   });
 
   const firstMonthDay = new Date(year, month, 1);
-  const isMonthTitleDisabled = dateHelpers.isDateOutOfRange(firstMonthDay, minDate, maxDate);
+  const isMonthTitleDisabled = dateHelpers.isDateOutOfRange(
+    firstMonthDay,
+    minDate,
+    maxDate,
+  );
 
   return (
     <div
@@ -111,7 +129,12 @@ export default function Fullmonth(props) {
       data-year={year}
       data-month={month}
     >
-      <div className={b('month-title', { lifted: isLiftedTitle, disabled: isMonthTitleDisabled })}>
+      <div
+        className={b('month-title', {
+          lifted: isLiftedTitle,
+          disabled: isMonthTitleDisabled,
+        })}
+      >
         {getMonthTitle(date, lang)}
       </div>
 

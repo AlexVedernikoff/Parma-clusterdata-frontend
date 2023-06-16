@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import update from 'immutability-helper';
+// TODO: убрать зависимость из старого кода
 import { getUniqueId } from '../../../../../utils/helpers';
 import { useDrop } from 'react-dnd';
 import { DndItem } from './dnd-item';
-import { findDOMNode } from 'react-dom';
 import { DndItem as IDndItem } from './types/dnd-item';
 import { DndContainerProps } from './types/dnd-container-props';
 
@@ -14,13 +14,19 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
   const [usedItem, setUsedItem] = useState<IDndItem>();
   const [action, setAction] = useState<string>();
   const [onUndoActionState, setOnUndoActionState] = useState<() => void>();
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (props.onUpdate && items != props.items) {
       props.onUpdate(items, usedItem, action, onUndoActionState);
     }
   }, [items]);
+
+  useEffect(() => {
+    if (props.isNeedUpdate) {
+      setItems(props.items);
+    }
+  }, [props.items, props.isNeedUpdate]);
 
   const [, drop] = useDrop(() => ({
     accept: 'ITEM',

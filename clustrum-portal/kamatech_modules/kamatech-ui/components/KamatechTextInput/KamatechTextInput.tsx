@@ -12,7 +12,10 @@ type KamatechTextInputState = {
   focused: boolean;
 };
 
-export class KamatechTextInput extends React.Component<KamatechTextInputInterface, KamatechTextInputState> {
+export class KamatechTextInput extends React.Component<
+  KamatechTextInputInterface,
+  KamatechTextInputState
+> {
   constructor(props: KamatechTextInputInterface) {
     super(props);
     this.state = {

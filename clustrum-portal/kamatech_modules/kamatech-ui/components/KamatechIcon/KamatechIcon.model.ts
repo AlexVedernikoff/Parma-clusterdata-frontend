@@ -5,7 +5,16 @@ import { UnitsHelper, CallbackFunctionArgs } from '../../helpers';
  * Модель пиктограммы
  */
 export class KamatechIconModel implements KamatechIconInterface {
-  constructor({ data, width, height, className, prefix, onClick, fill, stroke }: KamatechIconInterface) {
+  constructor({
+    data,
+    width,
+    height,
+    className,
+    prefix,
+    onClick,
+    fill,
+    stroke,
+  }: KamatechIconInterface) {
     this.data = data;
     this.width = width;
     this.height = height;
@@ -68,7 +77,9 @@ export class KamatechIconModel implements KamatechIconInterface {
    * Высота пиктограммы
    */
   get viewHeight(): number {
-    return UnitsHelper.convertToNumber(this.height) || this.viewBoxValue(this.HEIGHT_INDEX);
+    return (
+      UnitsHelper.convertToNumber(this.height) || this.viewBoxValue(this.HEIGHT_INDEX)
+    );
   }
 
   /**
@@ -78,7 +89,9 @@ export class KamatechIconModel implements KamatechIconInterface {
   private viewBoxValue(index: number): number {
     return UnitsHelper.isNullOrUndefined(this.data.viewBox)
       ? 0
-      : UnitsHelper.convertToNumber(KamatechIconModel.splitViewBox(this.data.viewBox)[index]);
+      : UnitsHelper.convertToNumber(
+          KamatechIconModel.splitViewBox(this.data.viewBox)[index],
+        );
   }
 
   /**

@@ -21,7 +21,13 @@ class Header extends React.PureComponent {
     return (
       <div className={b()}>
         {this.props.caption}
-        <Button theme="clear" view="default" tone="default" size="head" onClick={this.context.onClose}>
+        <Button
+          theme="clear"
+          view="default"
+          tone="default"
+          size="head"
+          onClick={this.context.onClose}
+        >
           <Icon glyph="type-cross" />
         </Button>
       </div>

@@ -80,7 +80,9 @@ export default class YandexMap {
     try {
       defineModules(YandexMap._ymaps);
 
-      YandexMap._ymaps.template.filtersStorage.add('number', (dataLogger, value) => numberFormat(value));
+      YandexMap._ymaps.template.filtersStorage.add('number', (dataLogger, value) =>
+        numberFormat(value),
+      );
 
       // https://tech.yandex.ru/maps/jsbox/2.1/placemark_hint_layout
       YandexMap._shared.hintLayout = YandexMap._ymaps.templateLayoutFactory.createClass(
@@ -101,7 +103,9 @@ export default class YandexMap {
                     {% if (properties.value !== undefined || properties.text) %}
                         <div class="${b('row')}">
                             {% if (properties.value !== undefined) %}
-                                <div class="${b('cell', { 'yandex-map': true })}">{{properties.value|number}}</div>
+                                <div class="${b('cell', {
+                                  'yandex-map': true,
+                                })}">{{properties.value|number}}</div>
                             {% endif %}
                             {% if (properties.text) %}
                                 <div class="${b('cell', { 'yandex-map': true })}">
@@ -120,9 +124,13 @@ export default class YandexMap {
                         {% for part in properties.data %}
                             <div class="${b('row')}">
                                 <div class="${b('cell')}">
-                                    <span class="${b('color')}" style="background-color: {{part.color}};"></span>
+                                    <span class="${b(
+                                      'color',
+                                    )}" style="background-color: {{part.color}};"></span>
                                 </div>
-                                <div class="${b('cell', { 'yandex-map': true })}">{{part.weight|number}}</div>
+                                <div class="${b('cell', {
+                                  'yandex-map': true,
+                                })}">{{part.weight|number}}</div>
                                 <div class="${b('cell', { 'yandex-map': true })}">
                                     {% if (properties.rawText) %}
                                         {{part.text|raw}}
@@ -192,7 +200,11 @@ export default class YandexMap {
     }
   }
 
-  static async draw({ node, data, config: { ymap: { state, options: configOptions } = {} } }) {
+  static async draw({
+    node,
+    data,
+    config: { ymap: { state, options: configOptions } = {} },
+  }) {
     if (!YandexMap._ymaps) {
       await YandexMap._initYmaps();
     }
@@ -228,10 +240,13 @@ export default class YandexMap {
           options,
         } = item;
 
-        const geoObjectChildren = children.reduce((result, { feature, options: childOptions }) => {
-          result.push(new YandexMap._ymaps.GeoObject(feature, childOptions));
-          return result;
-        }, []);
+        const geoObjectChildren = children.reduce(
+          (result, { feature, options: childOptions }) => {
+            result.push(new YandexMap._ymaps.GeoObject(feature, childOptions));
+            return result;
+          },
+          [],
+        );
 
         const geoCollection = new YandexMap._ymaps.GeoObjectCollection(
           { geometry, properties, children: geoObjectChildren },
@@ -245,19 +260,28 @@ export default class YandexMap {
         const geoClusterer = new YandexMap._ymaps.Clusterer(options);
 
         clusterer.forEach(({ feature, options: innerOptions }) => {
-          const geoObject = new YandexMap._ymaps.GeoObject(feature, extendOptions(innerOptions));
+          const geoObject = new YandexMap._ymaps.GeoObject(
+            feature,
+            extendOptions(innerOptions),
+          );
           geoClusterer.add(geoObject);
         });
 
         map.geoObjects.add(geoClusterer);
       } else if (item.polygonmap) {
         const {
-          polygonmap: { polygons, points = { type: 'FeatureCollection', features: [] }, values },
+          polygonmap: {
+            polygons,
+            points = { type: 'FeatureCollection', features: [] },
+            values,
+          },
           options,
         } = item;
 
         const featurePointsCollection =
-          points.type === 'FeatureCollection' ? points : arrayOfArraysToPointsCollection(points);
+          points.type === 'FeatureCollection'
+            ? points
+            : arrayOfArraysToPointsCollection(points);
 
         const useValues = options.joinByProperty && values;
 
@@ -286,10 +310,14 @@ export default class YandexMap {
           );
 
           if (useValues) {
-            polygonmap._data.polygons.features = polygonmap._data.polygons.features.map(feature => {
-              const key = feature.properties[options.joinByProperty];
-              return merge({}, feature, { properties: { pointsCount: valuesDict[key] } });
-            });
+            polygonmap._data.polygons.features = polygonmap._data.polygons.features.map(
+              feature => {
+                const key = feature.properties[options.joinByProperty];
+                return merge({}, feature, {
+                  properties: { pointsCount: valuesDict[key] },
+                });
+              },
+            );
 
             polygonmap.pointsCountMinimum = pointsCountMinimum;
             polygonmap.pointsCountMaximum = pointsCountMaximum;
@@ -302,14 +330,21 @@ export default class YandexMap {
       }
       if (item.gridmap) {
         const featurePointsCollection =
-          item.gridmap.type === 'FeatureCollection' ? item.gridmap : arrayOfArraysToPointsCollection(item.gridmap);
+          item.gridmap.type === 'FeatureCollection'
+            ? item.gridmap
+            : arrayOfArraysToPointsCollection(item.gridmap);
 
         YandexMap._ymaps.modules.require(['Gridmap'], Gridmap => {
           const gridmap = new Gridmap(
             featurePointsCollection,
             merge(
               {
-                grid: { bounds: { leftBottom: map.getBounds()[0], rightTop: map.getBounds()[1] } },
+                grid: {
+                  bounds: {
+                    leftBottom: map.getBounds()[0],
+                    rightTop: map.getBounds()[1],
+                  },
+                },
                 filterEmptyPolygons: true,
                 onClick: function() {},
                 mapper,

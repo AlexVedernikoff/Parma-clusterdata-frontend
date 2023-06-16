@@ -54,11 +54,15 @@ class CloudFolderSelect extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     const popupDomElem = this.popupRef.current.containerRef.current;
     const isOpenPopup =
-      this.state.popupVisible && prevState.popupVisible !== this.state.popupVisible && popupDomElem !== null;
+      this.state.popupVisible &&
+      prevState.popupVisible !== this.state.popupVisible &&
+      popupDomElem !== null;
 
     if (isOpenPopup) {
       popupDomElem.removeEventListener('animationend', this.onPopupAnimationEnd);
-      popupDomElem.addEventListener('animationend', this.onPopupAnimationEnd, { once: true });
+      popupDomElem.addEventListener('animationend', this.onPopupAnimationEnd, {
+        once: true,
+      });
     }
 
     requestAnimationFrame(this.updatePopupLayout);
@@ -110,7 +114,8 @@ class CloudFolderSelect extends React.Component {
     const { currentCloudId } = this.props;
     const { currentFolderId } = this.state;
     return this.preparedCloudList.findIndex(
-      ({ cloudId, folderId }) => cloudId === currentCloudId && folderId === currentFolderId,
+      ({ cloudId, folderId }) =>
+        cloudId === currentCloudId && folderId === currentFolderId,
     );
   }
 
@@ -143,7 +148,11 @@ class CloudFolderSelect extends React.Component {
   }
 
   get currentCloudItem() {
-    return this.preparedCloudList.find(({ cloudId }) => cloudId === this.props.currentCloudId) || {};
+    return (
+      this.preparedCloudList.find(
+        ({ cloudId }) => cloudId === this.props.currentCloudId,
+      ) || {}
+    );
   }
 
   get currentFolderItem() {
@@ -156,7 +165,8 @@ class CloudFolderSelect extends React.Component {
 
     return (
       this.preparedCloudList.find(
-        ({ cloudId, folderId }) => cloudId === currentCloudId && folderId === currentFolderId,
+        ({ cloudId, folderId }) =>
+          cloudId === currentCloudId && folderId === currentFolderId,
       ) || {}
     );
   }
@@ -205,10 +215,13 @@ class CloudFolderSelect extends React.Component {
     this.closePopup();
   };
 
-  isCurrentFolder = ({ type, folderId }) => type === 'folder' && folderId === this.state.currentFolderId;
+  isCurrentFolder = ({ type, folderId }) =>
+    type === 'folder' && folderId === this.state.currentFolderId;
 
   isCurrentCloud = ({ type, cloudId }) =>
-    !this.state.currentFolderId && type === 'cloud' && cloudId === this.props.currentCloudId;
+    !this.state.currentFolderId &&
+    type === 'cloud' &&
+    cloudId === this.props.currentCloudId;
 
   renderIcon = ({ type, name }, size = 16) => {
     const className = b(`${type}-icon`);
@@ -255,7 +268,9 @@ class CloudFolderSelect extends React.Component {
         )}
         <div>
           {item.folderName !== undefined && <div>{item.folderName}</div>}
-          <div className={b('current-cloud-name', { root: !item.folderName })}>{item.cloudName}</div>
+          <div className={b('current-cloud-name', { root: !item.folderName })}>
+            {item.cloudName}
+          </div>
         </div>
       </React.Fragment>
     );

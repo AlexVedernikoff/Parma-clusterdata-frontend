@@ -1,7 +1,9 @@
 import moment from 'moment';
 import lodashMin from 'lodash/min';
 
-import ExtensionsManager, { EXTENSION_KEY } from '../../extensions-manager/extensions-manager';
+import ExtensionsManager, {
+  EXTENSION_KEY,
+} from '../../extensions-manager/extensions-manager';
 import ErrorDispatcher, { ERROR_TYPE } from '../../error-dispatcher/error-dispatcher';
 
 function prepareValue(value, firstValue, options) {
@@ -85,7 +87,8 @@ function removeHolidays(data, options) {
   data.categories_ms.forEach((ts, i) => {
     const datetime = moment(ts).format('YYYYMMDD');
     const region = (options.region && options.region.toLowerCase()) || 'tot';
-    const holiday = HOLIDAYS.holiday[region][datetime] || HOLIDAYS.weekend[region][datetime];
+    const holiday =
+      HOLIDAYS.holiday[region][datetime] || HOLIDAYS.weekend[region][datetime];
 
     if (!holiday) {
       timeline.push(ts);
@@ -104,7 +107,10 @@ function prepareData(data, options) {
   if (
     !data ||
     (typeof data === 'object' && !Object.keys(data).length) ||
-    (data.graphs && !(data.graphs.length && data.graphs.some(graph => graph.data && graph.data.length))) ||
+    (data.graphs &&
+      !(
+        data.graphs.length && data.graphs.some(graph => graph.data && graph.data.length)
+      )) ||
     (Array.isArray(data) && !data.length)
   ) {
     throw ErrorDispatcher.wrap({ type: ERROR_TYPE.NO_DATA });
@@ -135,7 +141,9 @@ function prepareData(data, options) {
       options.highchartsScale = HIGHCHARTS_SCALE[options.scale];
 
       const closestPointRange = lodashMin(
-        data.categories_ms.map((timestamp, index) => timestamp - data.categories_ms[index - 1]),
+        data.categories_ms.map(
+          (timestamp, index) => timestamp - data.categories_ms[index - 1],
+        ),
       );
       // TODO: у визарда по дефолту ставится минут
       // TODO: веротяно стоит унести вперед computeXTickScale или сравнивать со scale
@@ -156,7 +164,8 @@ function prepareData(data, options) {
         .filter(({ data }) => Boolean(data))
         .forEach((graph, index) => {
           let result = [];
-          const aloneOrHasNull = graph.data.length === 1 || graph.data.indexOf(null) !== -1;
+          const aloneOrHasNull =
+            graph.data.length === 1 || graph.data.indexOf(null) !== -1;
 
           const firstValue = graph.data[0];
 
@@ -214,7 +223,8 @@ function prepareData(data, options) {
         graphItem._lastValue =
           (graphItem.data &&
             graphItem.data[graphItem.data.length - 1] &&
-            (graphItem.data[graphItem.data.length - 1][1] || graphItem.data[graphItem.data.length - 1].y)) ||
+            (graphItem.data[graphItem.data.length - 1][1] ||
+              graphItem.data[graphItem.data.length - 1].y)) ||
           0;
       });
       data.graphs.sort(sortByLastValue);

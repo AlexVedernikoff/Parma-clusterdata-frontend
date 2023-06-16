@@ -30,7 +30,10 @@ import '../../../desktop.blocks/textinput/textinput.react.js';
 import '../_has-icon/textinput_has-icon_yes.react.js';
 
 var hasClear = function hasClear(props) {
-  return (props.hasClear || props.theme === 'websearch') && !(props.controlAttrs && props.controlAttrs.readOnly);
+  return (
+    (props.hasClear || props.theme === 'websearch') &&
+    !(props.controlAttrs && props.controlAttrs.readOnly)
+  );
 };
 
 export default declMod(

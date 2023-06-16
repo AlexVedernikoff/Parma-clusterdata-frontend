@@ -71,7 +71,14 @@ export default decl(
               isAddAccount: true,
               key: 'add-account',
               url: passportUrl,
-              mix: [mix, { block: this.block, elem: 'add-account', mods: { hidden: bool2string(addAccountHidden) } }],
+              mix: [
+                mix,
+                {
+                  block: this.block,
+                  elem: 'add-account',
+                  mods: { hidden: bool2string(addAccountHidden) },
+                },
+              ],
             },
             React.createElement(UserAccountPic, null),
             React.createElement(UserAccountName, { text: 'Добавить аккаунт' }),

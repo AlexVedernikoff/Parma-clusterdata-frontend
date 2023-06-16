@@ -49,7 +49,11 @@ class SectionRequests extends React.PureComponent {
     switch (action) {
       case PERMISSION_ACTION.SELECT_CHANGE:
         this.setState({
-          permissions: [...permissions.slice(0, index), permission, ...permissions.slice(index + 1)],
+          permissions: [
+            ...permissions.slice(0, index),
+            permission,
+            ...permissions.slice(index + 1),
+          ],
         });
         break;
       case PERMISSION_ACTION.DENY:
@@ -65,7 +69,8 @@ class SectionRequests extends React.PureComponent {
     }
   };
 
-  onCloseDialog = () => this.setState({ currentDialogVisible: null, currentParticipantIndex: null });
+  onCloseDialog = () =>
+    this.setState({ currentDialogVisible: null, currentParticipantIndex: null });
 
   onSuccessDialog = () => {
     this.setState({ currentDialogVisible: null, currentParticipantIndex: null }, () => {
@@ -178,7 +183,11 @@ class SectionRequests extends React.PureComponent {
                   <User participant={participant} />
                 )}
               </div>
-              {!editable && <div className={b('permission')}>{Utils.getTextByPermission(permission)}</div>}
+              {!editable && (
+                <div className={b('permission')}>
+                  {Utils.getTextByPermission(permission)}
+                </div>
+              )}
               {editable && (
                 <div className={b('interactive-panel')}>
                   <div className={b('comment-icon', { hidden: !comment, inactive })}>
@@ -255,7 +264,12 @@ class SectionRequests extends React.PureComponent {
               onClick={() => this.onAction({ action: PERMISSION_ACTION.DENY_ALL })}
             >
               <div className={b('btn-icon-text-content')}>
-                <Icon className={b('icon-deny-all')} data={iconDecline} width="24" height="24" />
+                <Icon
+                  className={b('icon-deny-all')}
+                  data={iconDecline}
+                  width="24"
+                  height="24"
+                />
                 Отказать всем
               </div>
             </Button>
@@ -268,7 +282,12 @@ class SectionRequests extends React.PureComponent {
               onClick={() => this.onAction({ action: PERMISSION_ACTION.ACCEPT_ALL })}
             >
               <div className={b('btn-icon-text-content')}>
-                <Icon className={b('icon-accept-all')} data={iconTick} width="18" height="18" />
+                <Icon
+                  className={b('icon-accept-all')}
+                  data={iconTick}
+                  width="18"
+                  height="18"
+                />
                 Разрешить всем
               </div>
             </Button>

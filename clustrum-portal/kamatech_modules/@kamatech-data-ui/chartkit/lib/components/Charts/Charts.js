@@ -39,7 +39,10 @@ class Charts extends React.PureComponent {
     this.run();
   }
 
-  componentDidUpdate({ id, source, params, forceUpdate, editMode, paginateInfo, orderBy }, prevState) {
+  componentDidUpdate(
+    { id, source, params, forceUpdate, editMode, paginateInfo, orderBy },
+    prevState,
+  ) {
     /**
      * todo в родительском компоненте уже происходит проверка на обновление
      * это сделано потому что размазали логику по нескольким компонентам (Charts и Charkit) - хорошо бы структурировать
@@ -81,7 +84,10 @@ class Charts extends React.PureComponent {
     if (ErrorDispatcher.isCustomError(data.error)) {
       // || для случая, когда, например, NO_DATA
       // || undefined для случая UNSUPPORTED_EXTENSION, чтобы не падали isVisible в Items Menu
-      this.props.onError({ ...data, loadedData: data.error.extra || this.state.loadedData || undefined });
+      this.props.onError({
+        ...data,
+        loadedData: data.error.extra || this.state.loadedData || undefined,
+      });
     } else {
       this.props.onError({ ...data });
     }
@@ -101,14 +107,17 @@ class Charts extends React.PureComponent {
         orderBy,
       } = this.props;
       if (
-        (this.props.editMode && this.props.editMode.type && this.props.editMode.type === WIZARD_NODE_TYPE.MAP) ||
+        (this.props.editMode &&
+          this.props.editMode.type &&
+          this.props.editMode.type === WIZARD_NODE_TYPE.MAP) ||
         widgetType === 'map'
       ) {
         const mapLoadedData = {
           widgetType: 'map',
           params: params,
           data: {
-            shared: editMode.config && editMode.config.shared ? editMode.config.shared : {},
+            shared:
+              editMode.config && editMode.config.shared ? editMode.config.shared : {},
             geoJson: {
               coordType: this.props.editMode.config.shared.coordType,
               titleLayerSource: this.props.editMode.config.shared.titleLayerSource,
@@ -120,7 +129,11 @@ class Charts extends React.PureComponent {
         return;
       }
 
-      if (this.props.editMode && this.props.editMode.type && this.props.editMode.type === WIZARD_NODE_TYPE.TABLE) {
+      if (
+        this.props.editMode &&
+        this.props.editMode.type &&
+        this.props.editMode.type === WIZARD_NODE_TYPE.TABLE
+      ) {
         editMode.config.shared.paginateInfo = paginateInfo;
       }
 

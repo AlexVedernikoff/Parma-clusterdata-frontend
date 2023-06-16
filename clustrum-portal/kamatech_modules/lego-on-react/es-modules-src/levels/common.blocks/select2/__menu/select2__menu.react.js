@@ -54,7 +54,9 @@ import "./../../menu/_tone/menu_tone_grey.css";*/ export default decl(
         var bestHeight = 0;
 
         drawingParams.forEach(function(params) {
-          params.width >= menuWidth && params.height > bestHeight && (bestHeight = params.height);
+          params.width >= menuWidth &&
+            params.height > bestHeight &&
+            (bestHeight = params.height);
         });
 
         if (bestHeight > 0) {

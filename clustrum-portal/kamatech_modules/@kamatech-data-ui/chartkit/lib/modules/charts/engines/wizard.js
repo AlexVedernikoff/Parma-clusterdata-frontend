@@ -138,7 +138,10 @@ function _processHighcharts({ axis, legend, config, highstock }) {
     }
   }
 
-  if (config.showValues && (config.showValues === 'all' || config.showValues === 'onlyLast')) {
+  if (
+    config.showValues &&
+    (config.showValues === 'all' || config.showValues === 'onlyLast')
+  ) {
     graph.plotOptions = {
       series: {
         dataLabels: {
@@ -150,13 +153,19 @@ function _processHighcharts({ axis, legend, config, highstock }) {
           allowOverlap: config.showValues === 'onlyLast',
           formatter: function() {
             if (
-              (config.showValues === 'onlyLast' && this.point.index === this.series.data.length - 1) ||
+              (config.showValues === 'onlyLast' &&
+                this.point.index === this.series.data.length - 1) ||
               config.showValues === 'all'
             ) {
               if (Number.isInteger(this.y)) {
                 return Highcharts.numberFormat(this.y, 0, ',', ' ');
               }
-              return Highcharts.numberFormat(this.y, this.series.options.precision, ',', ' ');
+              return Highcharts.numberFormat(
+                this.y,
+                this.series.options.precision,
+                ',',
+                ' ',
+              );
             }
             return null;
           },
@@ -192,10 +201,17 @@ function _processConfig(
     periodValue: _replaceWizardParam(config.periodValue, params), // TODO: проверить действительно ли надо тут
   };
 
-  if (order && order.orderType && (order.orderType === 'alphabet' || order.orderType === 'byLastValue')) {
+  if (
+    order &&
+    order.orderType &&
+    (order.orderType === 'alphabet' || order.orderType === 'byLastValue')
+  ) {
     statface_graph.orderType = order.orderType;
 
-    if (order.orderSort && (order.orderSort === 'fromBottom' || order.orderSort === 'fromTop')) {
+    if (
+      order.orderSort &&
+      (order.orderSort === 'fromBottom' || order.orderSort === 'fromTop')
+    ) {
       statface_graph.orderSort = order.orderSort;
     }
   }
@@ -211,7 +227,12 @@ function _processConfig(
   if (legend && legend.visible && legend.visible === 'no') {
     statface_graph.hideLegend = true;
   } else if (
-    ['inside-left-bottom', 'inside-left-top', 'inside-right-bottom', 'inside-right-top'].indexOf(legend.position) !== -1
+    [
+      'inside-left-bottom',
+      'inside-left-top',
+      'inside-right-bottom',
+      'inside-right-top',
+    ].indexOf(legend.position) !== -1
   ) {
     switch (legend.position) {
       case 'inside-left-bottom':
@@ -276,7 +297,10 @@ function _processConfig(
 function _processExtra({ confStorageConfig, data, params }) {
   const processed = {};
 
-  if (confStorageConfig.config.calendar === 'outside' || confStorageConfig.config.calendar === 'inside') {
+  if (
+    confStorageConfig.config.calendar === 'outside' ||
+    confStorageConfig.config.calendar === 'inside'
+  ) {
     // TODO: посмотреть можно ли не менять объект params
 
     if (!params.date_min || !moment(params.date_min).isValid()) {
@@ -284,7 +308,9 @@ function _processExtra({ confStorageConfig, data, params }) {
     }
 
     if (!params.date_max || !moment(params.date_max).isValid()) {
-      params.date_max = moment.utc(data.categories_ms[data.categories_ms.length - 1], 'x').format('YYYY-MM-DD');
+      params.date_max = moment
+        .utc(data.categories_ms[data.categories_ms.length - 1], 'x')
+        .format('YYYY-MM-DD');
     }
 
     processed.uiScheme = [

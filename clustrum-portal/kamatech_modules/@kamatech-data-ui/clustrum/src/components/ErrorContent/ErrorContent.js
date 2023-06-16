@@ -209,7 +209,10 @@ class ErrorContent extends PureComponent {
     if (TypesWithCloudFolderSelect.includes(this.props.type)) {
       return (
         <div className={b('cloud-folder-select')}>
-          <CloudFolderSelect sdk={this.props.sdk} onNotify={this.onNotifyCloudFolderSelect} />
+          <CloudFolderSelect
+            sdk={this.props.sdk}
+            onNotify={this.onNotifyCloudFolderSelect}
+          />
         </div>
       );
     }

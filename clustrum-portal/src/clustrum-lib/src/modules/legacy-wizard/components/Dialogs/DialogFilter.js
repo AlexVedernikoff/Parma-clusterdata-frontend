@@ -87,7 +87,10 @@ class DialogFilter extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const { item, dataset, updates, callback } = nextProps;
-    if (!item || (nextProps.item === this.state.item && callback === this.state.callback)) {
+    if (
+      !item ||
+      (nextProps.item === this.state.item && callback === this.state.callback)
+    ) {
       return;
     }
 
@@ -581,11 +584,15 @@ class DialogFilter extends PureComponent {
             minDate={minDate}
             maxDate={maxDate}
             callback={({ from, to }) => {
-              let formattedFrom = withTime ? from.slice(0, 19).replace('T', ' ') : from.slice(0, 10);
+              let formattedFrom = withTime
+                ? from.slice(0, 19).replace('T', ' ')
+                : from.slice(0, 10);
               let formattedTo;
 
               if (to) {
-                formattedTo = withTime ? to.slice(0, 19).replace('T', ' ') : to.slice(0, 10);
+                formattedTo = withTime
+                  ? to.slice(0, 19).replace('T', ' ')
+                  : to.slice(0, 10);
 
                 this.setState({
                   value: [formattedFrom, formattedTo],
@@ -657,18 +664,26 @@ class DialogFilter extends PureComponent {
                       dimensions.splice(dimensions.indexOf(dimension), 1);
 
                       if (leftFilteredDimensions) {
-                        leftFilteredDimensions.splice(leftFilteredDimensions.indexOf(dimension), 1);
+                        leftFilteredDimensions.splice(
+                          leftFilteredDimensions.indexOf(dimension),
+                          1,
+                        );
 
                         this.setState({
                           leftFilteredDimensions: [...leftFilteredDimensions],
                         });
                       }
 
-                      if (rightSearchPhrase && dimension.indexOf(rightSearchPhrase) > -1) {
+                      if (
+                        rightSearchPhrase &&
+                        dimension.indexOf(rightSearchPhrase) > -1
+                      ) {
                         rightFilteredDimensions.push(dimension);
 
                         this.setState({
-                          rightFilteredDimensions: [...rightFilteredDimensions].sort(collator.compare),
+                          rightFilteredDimensions: [...rightFilteredDimensions].sort(
+                            collator.compare,
+                          ),
                         });
                       }
 
@@ -689,14 +704,20 @@ class DialogFilter extends PureComponent {
               </div>
             )}
           </div>
-          {dimensions && !leftFilteredDimensions && dimensions.length >= VALUES_LOAD_LIMIT && (
-            <span className="limit-message">Значений больше 1000, ограничьте значения</span>
-          )}
+          {dimensions &&
+            !leftFilteredDimensions &&
+            dimensions.length >= VALUES_LOAD_LIMIT && (
+              <span className="limit-message">
+                Значений больше 1000, ограничьте значения
+              </span>
+            )}
         </div>
         <div className={'right-column'}>
           <span className={'column-title'}>Выбраны</span>
           <span
-            className={`column-action${state.value && state.value.length ? ' active' : ''}`}
+            className={`column-action${
+              state.value && state.value.length ? ' active' : ''
+            }`}
             onClick={() => {
               this.setState({
                 dimensions: [...dimensions].concat(value).sort(collator.compare),
@@ -716,43 +737,50 @@ class DialogFilter extends PureComponent {
             onChange={this.onFilterInputChange('rightSearchPhrase')}
           />
           <div className={'options-list'}>
-            {(rightFilteredDimensions ? rightFilteredDimensions : value ? value : []).map((dimension, i) => {
-              return (
-                <div
-                  className="dimension-option"
-                  key={`dimension-selected-option-${i}`}
-                  title={dimension}
-                  onClick={() => {
-                    dimensions.push(dimension);
-                    value.splice(i, 1);
+            {(rightFilteredDimensions ? rightFilteredDimensions : value ? value : []).map(
+              (dimension, i) => {
+                return (
+                  <div
+                    className="dimension-option"
+                    key={`dimension-selected-option-${i}`}
+                    title={dimension}
+                    onClick={() => {
+                      dimensions.push(dimension);
+                      value.splice(i, 1);
 
-                    if (rightFilteredDimensions) {
-                      rightFilteredDimensions.splice(rightFilteredDimensions.indexOf(dimension), 1);
+                      if (rightFilteredDimensions) {
+                        rightFilteredDimensions.splice(
+                          rightFilteredDimensions.indexOf(dimension),
+                          1,
+                        );
+
+                        this.setState({
+                          rightFilteredDimensions: [...rightFilteredDimensions],
+                        });
+                      }
+
+                      if (leftSearchPhrase && dimension.indexOf(leftSearchPhrase) > -1) {
+                        leftFilteredDimensions.push(dimension);
+
+                        this.setState({
+                          leftFilteredDimensions: [...leftFilteredDimensions].sort(
+                            collator.compare,
+                          ),
+                        });
+                      }
 
                       this.setState({
-                        rightFilteredDimensions: [...rightFilteredDimensions],
+                        dimensions: [...dimensions].sort(collator.compare),
+                        value: [...value],
                       });
-                    }
-
-                    if (leftSearchPhrase && dimension.indexOf(leftSearchPhrase) > -1) {
-                      leftFilteredDimensions.push(dimension);
-
-                      this.setState({
-                        leftFilteredDimensions: [...leftFilteredDimensions].sort(collator.compare),
-                      });
-                    }
-
-                    this.setState({
-                      dimensions: [...dimensions].sort(collator.compare),
-                      value: [...value],
-                    });
-                  }}
-                >
-                  <span className="dimension-value">{dimension}</span>
-                  <span className="dimension-select">Удалить</span>
-                </div>
-              );
-            })}
+                    }}
+                  >
+                    <span className="dimension-value">{dimension}</span>
+                    <span className="dimension-select">Удалить</span>
+                  </div>
+                );
+              },
+            )}
           </div>
         </div>
       </div>
@@ -771,7 +799,9 @@ class DialogFilter extends PureComponent {
     if (state.error) {
       return (
         <div>
-          <div className="error-text">Ошибка: не удалось загрузить значения для фильтра</div>
+          <div className="error-text">
+            Ошибка: не удалось загрузить значения для фильтра
+          </div>
         </div>
       );
     }
@@ -811,7 +841,9 @@ class DialogFilter extends PureComponent {
             {availableOperations.map((operation, i) => {
               return (
                 <Select.Item key={`operation-${i}`} val={operation}>
-                  {labelOperations[operation.title] ? labelOperations[operation.title] : ''}
+                  {labelOperations[operation.title]
+                    ? labelOperations[operation.title]
+                    : ''}
                 </Select.Item>
               );
             })}
@@ -851,8 +883,15 @@ class DialogFilter extends PureComponent {
 
       return (
         <Dialog visible={this.state.visible} onClose={this.onClose}>
-          <div className={`dialog-filter dialog-filter-${itemType}${isDate ? ' dialog-filter-date' : ''}`}>
-            <Dialog.Header caption={item.title} insertBefore={<Icon data={castIconData} width="16" />} />
+          <div
+            className={`dialog-filter dialog-filter-${itemType}${
+              isDate ? ' dialog-filter-date' : ''
+            }`}
+          >
+            <Dialog.Header
+              caption={item.title}
+              insertBefore={<Icon data={castIconData} width="16" />}
+            />
             <Dialog.Body>{this.renderModalBody()}</Dialog.Body>
             <Dialog.Footer
               preset="default"

@@ -71,7 +71,12 @@ export class KamatechPopup extends React.Component<any> {
         this.popup.height !== popupEl.offsetHeight;
 
       if (needUpdate) {
-        this.anchor = new NodeModel(anchorOffset.left, anchorOffset.top, anchorEl.offsetWidth, anchorEl.offsetHeight);
+        this.anchor = new NodeModel(
+          anchorOffset.left,
+          anchorOffset.top,
+          anchorEl.offsetWidth,
+          anchorEl.offsetHeight,
+        );
         this.popup = new NodeModel(0, 0, popupEl.offsetWidth, popupEl.offsetHeight);
         this.updatePosition();
       }
@@ -80,7 +85,12 @@ export class KamatechPopup extends React.Component<any> {
 
   private updatePosition() {
     const { offsetWidth, offsetHeight } = document.body;
-    const { left, top } = PopupHelper.calcPositionOffset(this.anchor, this.popup, offsetWidth, offsetHeight);
+    const { left, top } = PopupHelper.calcPositionOffset(
+      this.anchor,
+      this.popup,
+      offsetWidth,
+      offsetHeight,
+    );
     this.popup.left = left;
     this.popup.top = top;
     this.forceUpdate();

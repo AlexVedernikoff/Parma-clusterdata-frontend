@@ -24,7 +24,9 @@ class ErrorView extends React.Component {
         <div className={b('error-message')}>
           <span>{errorMessage}</span>
         </div>
-        {actionBtnProps && <Button size="s" type="submit" theme="action" {...actionBtnProps} />}
+        {actionBtnProps && (
+          <Button size="s" type="submit" theme="action" {...actionBtnProps} />
+        )}
       </div>
     );
   }

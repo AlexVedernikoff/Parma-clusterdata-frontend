@@ -11,7 +11,11 @@ import SelectField from '../../subcomponents/SelectField/SelectField';
 import LoaderField from '../../subcomponents/LoaderField/LoaderField';
 import GetMetricaTokenButton from '../../subcomponents/GetMetricaTokenButton/GetMetricaTokenButton';
 import { getErrorMessage, getCounterSelectItems } from '../../utils';
-import { FIELD_TYPES, COUNTER_INPUT_METHODS, METRIKA_TOKEN_FAKE_VALUE } from '../../../../constants';
+import {
+  FIELD_TYPES,
+  COUNTER_INPUT_METHODS,
+  METRIKA_TOKEN_FAKE_VALUE,
+} from '../../../../constants';
 import Utils from '../../../../helpers/utils';
 import { getSearchParam } from '../../../../helpers/QueryParams';
 
@@ -108,7 +112,16 @@ class AppMetricaConnector extends React.Component {
 
   render() {
     const { sdk, emptyFields } = this.props;
-    const { id, name, dirPath, dbType, counters, counter, counterInputMethod, isApplicationsFetching } = this.state;
+    const {
+      id,
+      name,
+      dirPath,
+      dbType,
+      counters,
+      counter,
+      counterInputMethod,
+      isApplicationsFetching,
+    } = this.state;
 
     const isNewConnection = !id;
 
@@ -178,11 +191,17 @@ class AppMetricaConnector extends React.Component {
                     view="default"
                     tone="default"
                     value={counterInputMethod}
-                    onChange={e => this.changeValue({ counterInputMethod: e.target.value })}
+                    onChange={e =>
+                      this.changeValue({ counterInputMethod: e.target.value })
+                    }
                     freeWidth={true}
                   >
-                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.LIST}>Из списка</RadioButton.Radio>
-                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.MANUALLY}>Вручную</RadioButton.Radio>
+                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.LIST}>
+                      Из списка
+                    </RadioButton.Radio>
+                    <RadioButton.Radio value={COUNTER_INPUT_METHODS.MANUALLY}>
+                      Вручную
+                    </RadioButton.Radio>
                   </RadioButton>
                 </div>
               )}

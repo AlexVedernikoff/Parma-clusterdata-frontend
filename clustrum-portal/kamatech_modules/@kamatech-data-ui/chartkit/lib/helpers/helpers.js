@@ -37,7 +37,10 @@ function numberFormat(value) {
     : value;
 }
 
-function goAwayLink({ loadedData, propsData }, { extraParams = {}, urlPostfix = '', idPrefix = '' }) {
+function goAwayLink(
+  { loadedData, propsData },
+  { extraParams = {}, urlPostfix = '', idPrefix = '' },
+) {
   let url = settings.chartsEndpoint + urlPostfix;
 
   const id = (loadedData && loadedData.entryId) || propsData.id;

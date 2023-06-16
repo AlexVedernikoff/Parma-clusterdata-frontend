@@ -25,7 +25,9 @@ function formatDiff(data, colorize) {
   }
 
   return data && data.value
-    ? `<div class="chart-metric__diff-abs${className}" ${data.color ? `style="color: ${data.color};"` : ''}>
+    ? `<div class="chart-metric__diff-abs${className}" ${
+        data.color ? `style="color: ${data.color};"` : ''
+      }>
     ${sign}
     ${data.value}
     <span class="chart-metric__diff_unit">
@@ -40,7 +42,9 @@ function formatMetric(data) {
   const current = data.content.current;
   const last = data.content.last;
   return `
-<div class="chart-metric" ${data.background ? `style="background: ${data.background}";` : ''}>
+<div class="chart-metric" ${
+    data.background ? `style="background: ${data.background}";` : ''
+  }>
     <div class="chart-metric__content">
         <div class="chart-metric__title" title="${data.title}">
             ${data.title || ''}
@@ -51,7 +55,9 @@ function formatMetric(data) {
         </div>
     
         <div class="chart-metric__metric">
-            <span class="chart-metric__value" ${current.color ? `style="color: ${current.color};"` : ''}>
+            <span class="chart-metric__value" ${
+              current.color ? `style="color: ${current.color};"` : ''
+            }>
                 ${current.sign === '-' ? current.sign : ''}
                 ${current.value}
             </span>
@@ -73,7 +79,9 @@ function formatMetric(data) {
                     ${last.text || ''}
                 </div>
                 
-                <div class="chart-metric__last-value" ${last.color ? `style="color: ${last.color};"` : ''}>
+                <div class="chart-metric__last-value" ${
+                  last.color ? `style="color: ${last.color};"` : ''
+                }>
                     ${last.sign === '-' ? last.sign : ''}
                     ${last.value || ''}
                     <span class="chart-metric__last_unit">

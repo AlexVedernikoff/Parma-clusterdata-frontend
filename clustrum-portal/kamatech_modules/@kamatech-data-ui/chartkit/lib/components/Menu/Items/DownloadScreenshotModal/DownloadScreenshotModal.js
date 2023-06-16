@@ -101,7 +101,9 @@ export default class DownloadScreenshotModal extends React.PureComponent {
                     size="s"
                     value={this.state.sizeIndex}
                     name="radiobox"
-                    onChange={proxy => this.setState({ sizeIndex: Number(proxy.target.value) })}
+                    onChange={proxy =>
+                      this.setState({ sizeIndex: Number(proxy.target.value) })
+                    }
                   >
                     {SIZES.map((size, index) => (
                       <RadioBox.Radio value={index} key={size.key}>
@@ -129,7 +131,9 @@ export default class DownloadScreenshotModal extends React.PureComponent {
                       tone="default"
                       size="s"
                       checked={this.state[parameter.name]}
-                      onChange={() => this.setState({ [parameter.name]: !this.state[parameter.name] })}
+                      onChange={() =>
+                        this.setState({ [parameter.name]: !this.state[parameter.name] })
+                      }
                     >
                       {parameter.label}
                     </CheckBox>
@@ -137,7 +141,8 @@ export default class DownloadScreenshotModal extends React.PureComponent {
                 ))}
               </div>
               <div className={b('row', { hint: true })}>
-                Этот диалог можно пропустить, кликнув по «Сохранить картинку» в меню графика с зажатым cmd/ctrl
+                Этот диалог можно пропустить, кликнув по «Сохранить картинку» в меню
+                графика с зажатым cmd/ctrl
                 <Link key="wiki-link" theme="normal" url={API_WIKI} target="_blank">
                   API
                 </Link>
@@ -146,7 +151,10 @@ export default class DownloadScreenshotModal extends React.PureComponent {
           </ChartsModal.Body>
           <div className={b('footer')}>
             <div className={b('button', { jing: true })}>
-              <DownloadScreenshotJing text="Сохранить в Jing" screenshotUrl={this.props.getScreenshotUrl(this.state)} />
+              <DownloadScreenshotJing
+                text="Сохранить в Jing"
+                screenshotUrl={this.props.getScreenshotUrl(this.state)}
+              />
             </div>
             <Button
               theme="action"

@@ -133,8 +133,12 @@ export default function DatePickerFactory(moment, DatePicker) {
       const valueChanged =
         this.localMoment(this.props.value.from).isValid() &&
         this.localMoment(this.props.value.to).isValid() &&
-        (!this.localMoment(prevProps.value.from).isSame(this.localMoment(this.props.value.from)) ||
-          !this.localMoment(prevProps.value.to).isSame(this.localMoment(this.props.value.to)));
+        (!this.localMoment(prevProps.value.from).isSame(
+          this.localMoment(this.props.value.from),
+        ) ||
+          !this.localMoment(prevProps.value.to).isSame(
+            this.localMoment(this.props.value.to),
+          ));
 
       if (valueChanged) {
         this.setState({
@@ -182,7 +186,9 @@ export default function DatePickerFactory(moment, DatePicker) {
 
     setDateFormat(props) {
       this.picker = {
-        dateFormat: props.picker.dateFormat ? props.picker.dateFormat : props.displayDateFormat,
+        dateFormat: props.picker.dateFormat
+          ? props.picker.dateFormat
+          : props.displayDateFormat,
         viewMode: props.picker.viewMode,
       };
 
@@ -212,8 +218,10 @@ export default function DatePickerFactory(moment, DatePicker) {
       const outsideClick = !(
         this.baseElem.contains(event.target) ||
         this.popupElem.containerRef.current.contains(event.target) ||
-        (this.startPickerRef && this.startPickerRef.popupElem.containerRef.current.contains(event.target)) ||
-        (this.endPickerRef && this.endPickerRef.popupElem.containerRef.current.contains(event.target)) ||
+        (this.startPickerRef &&
+          this.startPickerRef.popupElem.containerRef.current.contains(event.target)) ||
+        (this.endPickerRef &&
+          this.endPickerRef.popupElem.containerRef.current.contains(event.target)) ||
         event.target.classList.contains('rdtSwitch') ||
         event.target.classList.contains('rdtDay') ||
         event.target.classList.contains('rdtMonth') ||
@@ -237,17 +245,26 @@ export default function DatePickerFactory(moment, DatePicker) {
 
     reportChange() {
       const { selectedFrom, selectedTo } = this.state;
-      const propsFrom = (this.props.value.from && this.localMoment(this.props.value.from)) || null;
-      const propsTo = (this.props.value.to && this.localMoment(this.props.value.to)) || null;
+      const propsFrom =
+        (this.props.value.from && this.localMoment(this.props.value.from)) || null;
+      const propsTo =
+        (this.props.value.to && this.localMoment(this.props.value.to)) || null;
 
-      const fromChanged = selectedFrom !== propsFrom || (selectedFrom && propsFrom && !selectedFrom.isSame(propsFrom));
-      const toChanged = selectedTo !== propsTo || (selectedFrom && propsTo && !selectedFrom.isSame(propsTo));
+      const fromChanged =
+        selectedFrom !== propsFrom ||
+        (selectedFrom && propsFrom && !selectedFrom.isSame(propsFrom));
+      const toChanged =
+        selectedTo !== propsTo ||
+        (selectedFrom && propsTo && !selectedFrom.isSame(propsTo));
       const intervalChanged = fromChanged || toChanged;
 
-      const reversedInterval = selectedFrom && selectedTo && selectedFrom.isAfter(selectedTo);
+      const reversedInterval =
+        selectedFrom && selectedTo && selectedFrom.isAfter(selectedTo);
 
       const from =
-        (selectedFrom && this.props.useStringsInCallback && typeof selectedFrom !== 'string'
+        (selectedFrom &&
+        this.props.useStringsInCallback &&
+        typeof selectedFrom !== 'string'
           ? selectedFrom.toISOString()
           : selectedFrom) || null;
 
@@ -292,7 +309,8 @@ export default function DatePickerFactory(moment, DatePicker) {
               }}
               onChange={selectedFrom => {
                 this.setState({
-                  selectedFrom: selectedFrom === null ? null : this.localMoment(selectedFrom),
+                  selectedFrom:
+                    selectedFrom === null ? null : this.localMoment(selectedFrom),
                   selectedQuickInterval: null,
                 });
               }}
@@ -382,7 +400,9 @@ export default function DatePickerFactory(moment, DatePicker) {
                 return (
                   <div
                     key={i}
-                    className={b('last-periods-element', { active: i === this.state.selectedQuickInterval })}
+                    className={b('last-periods-element', {
+                      active: i === this.state.selectedQuickInterval,
+                    })}
                     onClick={() => {
                       this.setState({
                         selectedFrom: this.localMoment().subtract(...interval.interval),
@@ -426,12 +446,16 @@ export default function DatePickerFactory(moment, DatePicker) {
             <span>
               <span>
                 &nbsp;&nbsp;
-                {(this.props.value.from && this.localMoment(this.props.value.from).format(this.displayDateFormat)) ||
+                {(this.props.value.from &&
+                  this.localMoment(this.props.value.from).format(
+                    this.displayDateFormat,
+                  )) ||
                   this.props.emptyValueText}
               </span>
               <span>&nbsp;—&nbsp;</span>
               <span>
-                {(this.props.value.to && this.localMoment(this.props.value.to).format(this.displayDateFormat)) ||
+                {(this.props.value.to &&
+                  this.localMoment(this.props.value.to).format(this.displayDateFormat)) ||
                   this.props.emptyValueText}
               </span>
             </span>

@@ -176,26 +176,50 @@ export default decl(
       var textElems = [];
       Children.forEach(children, function(child, i) {
         if (Children.count(children) === 1 && Icon.isIcon(child)) {
-          content.unshift(React.createElement(ButtonIcon, { key: 'only-icon', size: size, children: child }));
+          content.unshift(
+            React.createElement(ButtonIcon, {
+              key: 'only-icon',
+              size: size,
+              children: child,
+            }),
+          );
         } else if (Icon.isIcon(child) && i === 0) {
           content.unshift(
-            React.createElement(ButtonIcon, { key: 'icon-left', side: 'left', size: size, children: child }),
+            React.createElement(ButtonIcon, {
+              key: 'icon-left',
+              side: 'left',
+              size: size,
+              children: child,
+            }),
           );
         } else if (Icon.isIcon(child) && content.length) {
           content.unshift(
-            React.createElement(ButtonIcon, { key: 'icon-right', side: 'right', size: size, children: child }),
+            React.createElement(ButtonIcon, {
+              key: 'icon-right',
+              side: 'right',
+              size: size,
+              children: child,
+            }),
           );
         } else if (child) {
           // Undifined protection
           if (!textElems.length) {
-            content.push(React.createElement(ButtonText, { key: 'text', attrs: textAttrs }, textElems));
+            content.push(
+              React.createElement(
+                ButtonText,
+                { key: 'text', attrs: textAttrs },
+                textElems,
+              ),
+            );
           }
           textElems.push(child);
         }
       });
       if (text) {
         if (!textElems.length) {
-          content.push(React.createElement(ButtonText, { key: 'text', attrs: textAttrs }, textElems));
+          content.push(
+            React.createElement(ButtonText, { key: 'text', attrs: textAttrs }, textElems),
+          );
         }
         textElems.push(text);
       }
@@ -213,7 +237,9 @@ export default decl(
             key: 'icon-right',
             side: 'right',
             size: size,
-            children: Icon.isIcon(iconRight) ? iconRight : React.createElement(Icon, iconRight.mods),
+            children: Icon.isIcon(iconRight)
+              ? iconRight
+              : React.createElement(Icon, iconRight.mods),
           }),
         );
       iconLeft &&
@@ -222,7 +248,9 @@ export default decl(
             key: 'icon-left',
             side: 'left',
             size: size,
-            children: Icon.isIcon(iconLeft) ? iconLeft : React.createElement(Icon, iconLeft.mods),
+            children: Icon.isIcon(iconLeft)
+              ? iconLeft
+              : React.createElement(Icon, iconLeft.mods),
           }),
         );
       return content;
