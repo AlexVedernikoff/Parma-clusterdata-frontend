@@ -14,7 +14,7 @@ import './tabs.css';
 function Tabs({ isEditMode, tabs, setPageTab, openDialog }) {
   const antdTabs = tabs.map(({ id, title }) => ({ key: id, label: title }));
   return (
-    <div class="tabs-wrapper">
+    <div className="tabs-wrapper">
       <AntdTabs
         type="card"
         items={antdTabs}
