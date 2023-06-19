@@ -66,7 +66,9 @@ class Sidebar extends React.Component {
     });
   }
   locatedAtQuickItems() {
-    return Boolean(this.props.path && this.props.quickItems.some(({ key }) => key === this.props.path));
+    return Boolean(
+      this.props.path && this.props.quickItems.some(({ key }) => key === this.props.path),
+    );
   }
   renderQuickItems() {
     const { quickItems, linkWrapper, onItemClick, path } = this.props;

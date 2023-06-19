@@ -20,7 +20,13 @@ export default function TinyUrlButton(props) {
     );
   };
 
-  return <ButtonSpinInput text="Получить короткую ссылку" popup={{ to: 'right' }} onClick={_onClick} />;
+  return (
+    <ButtonSpinInput
+      text="Получить короткую ссылку"
+      popup={{ to: 'right' }}
+      onClick={_onClick}
+    />
+  );
 }
 
 TinyUrlButton.propTypes = {

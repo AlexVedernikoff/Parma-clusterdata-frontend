@@ -24,7 +24,9 @@ export class KamatechDropdown extends React.Component<any, any> {
   }
 
   render() {
-    const switcher = React.cloneElement(this.props.switcher, { onClick: this.onClick.bind(this) });
+    const switcher = React.cloneElement(this.props.switcher, {
+      onClick: this.onClick.bind(this),
+    });
     return (
       <React.Fragment>
         <div ref={this.switcherRef}>{switcher}</div>

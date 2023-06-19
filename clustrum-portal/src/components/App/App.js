@@ -9,7 +9,7 @@ import { Pointerfocus } from 'lego-on-react';
 import Index from '../Index/Index';
 import Dash from '../../containers/Dash/Dash';
 import { PREFIX } from '../../modules/constants/constants';
-import { PageContainer } from '../../widgets/page-container/ui/page-container';
+import { PageContainer } from '@widgets/page-container';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <Route
           path={`${PREFIX}/:id`}
           render={() => (
-            <PageContainer withoutReactRoute withoutSidePanel>
+            <PageContainer>
               <Dash />
             </PageContainer>
           )}

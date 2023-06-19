@@ -77,7 +77,11 @@ class RLSDialog extends React.Component {
 
     return (
       <Dialog visible={visible} onClose={onClose}>
-        <Dialog.Header caption="Настройка прав доступа для поля" hr={false} onClose={onClose} />
+        <Dialog.Header
+          caption="Настройка прав доступа для поля"
+          hr={false}
+          onClose={onClose}
+        />
         <Dialog.Body className={b()}>
           <div className={b('field-name')}>
             <span>{title}</span>

@@ -32,7 +32,15 @@ class List extends React.Component {
           return <Title key={index} content={item.content} />;
         case 'item':
         default:
-          return <Item key={index} hasIcons={hasIcons} data={item} wrapTo={wrapTo} onClick={this.props.onClick} />;
+          return (
+            <Item
+              key={index}
+              hasIcons={hasIcons}
+              data={item}
+              wrapTo={wrapTo}
+              onClick={this.props.onClick}
+            />
+          );
       }
     };
   };

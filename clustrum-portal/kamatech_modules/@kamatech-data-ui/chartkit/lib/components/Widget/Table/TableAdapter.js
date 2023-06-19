@@ -1,22 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import block from 'bem-cn-lite';
 
 import { TableWidget, createCell } from '@clustrum-lib';
 
-const b = block('chartkit-table');
-
-function _camelCaseCss(_style) {
+function camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;
   return Object.keys(style || {}).reduce((result, key) => {
-    const camelCasedKey = key.replace(/-(\w|$)/g, (dashChar, char) => char.toUpperCase());
+    const camelCasedKey = key.replace(/-(\w|$)/g, (_, char) => char.toUpperCase());
     result[camelCasedKey] = style[key];
     return result;
   }, {});
-}
-
-function _generateName({ id = 'id', name = 'name', shift, level, index }) {
-  return `${level}_${shift}_${index}_id=${id}_name=${name}`;
 }
 
 const findGroupField = row => {
@@ -87,85 +80,25 @@ const handleCellClick = (context, row, field, columnName, prevSelectedCell, call
   }
 };
 
-function _getColumnsAndNames(
-  { head, context, level = 0, shift = 0 },
-  clickCallback,
-  field,
-  prevSelectedCell,
-) {
+function getColumnsAndNames({ head, context }, clickCallback, field, prevSelectedCell) {
   return head.reduce(
     (result, column, index) => {
-      if (column.sub) {
-        const { columns, names } = _getColumnsAndNames(
-          {
-            head: column.sub,
-            context,
-            level: level + 1,
-            shift: index,
-          },
-          clickCallback,
-          field,
-          prevSelectedCell,
-        );
-        const columnName = _generateName({
-          id: column.id,
-          name: column.name,
-          level,
-          shift,
-          index,
-        });
-        result.columns.push({
-          name: columnName,
-          header: <span className={b('head-cell')}>{column.name}</span>,
-          customStyle: ({ row, header, name }) => {
-            if (header) {
-              return _camelCaseCss(column.css);
-            }
-            return _camelCaseCss((row[name] && row[name].css) || undefined);
-          },
-          align: DataTable.CENTER,
-          sub: columns,
-        });
-        result.names = result.names.concat(names);
-      } else {
-        const { id, name, type, css: columnCss, resultSchemaId, ...options } = column;
-        const columnName = _generateName({ id, name, level, shift, index });
+      const { name, type, ...options } = column;
+      const columnName = `${index}_name=${name}`;
 
-        const columnData = {
-          name: columnName,
-          header: <span className={b('head-cell')}>{name}</span>,
-          className: b('cell', { type }),
-          render: ({ value }) => createCell(type, value, options),
-          customStyle: ({ row, header, name }) => {
-            if (header) {
-              return _camelCaseCss(columnCss);
-            }
-            return _camelCaseCss((row[name] && row[name].css) || undefined);
-          },
-          sortAccessor: row =>
-            Array.isArray(row[columnName].value)
-              ? row[columnName].value[0]
-              : row[columnName].valueWithoutFormat
-              ? row[columnName].valueWithoutFormat
-              : row[columnName].value,
-          onClick: ({ row }, { name: columnName }) => {
-            handleCellClick(
-              context,
-              row,
-              field,
-              columnName,
-              prevSelectedCell,
-              clickCallback,
-            );
-          },
-          sortable: type !== 'grid',
-          resultSchemaId,
-          handlerData: { context, field, columnName, prevSelectedCell, clickCallback },
-        };
+      const columnData = {
+        dataIndex: columnName,
+        header: name,
+        render: ({ value }) => createCell(type, value, options),
+        context,
+        field,
+        columnName,
+        prevSelectedCell,
+        clickCallback,
+      };
 
-        result.columns.push(columnData);
-        result.names.push(columnName);
-      }
+      result.columns.push(columnData);
+      result.names.push(columnName);
 
       return result;
     },
@@ -173,9 +106,9 @@ function _getColumnsAndNames(
   );
 }
 
-function _getTitle(title) {
+function getTitle(title) {
   return title ? (
-    <div className={b('title')} style={_camelCaseCss(title.style)}>
+    <div className="chartkit-table__title" style={camelCaseCss(title.style)}>
       {title.text || title}
     </div>
   ) : null;
@@ -216,7 +149,7 @@ export class TableAdapter extends React.PureComponent {
     this.props.onError({ error });
   }
 
-  _getSelectedCell() {
+  getSelectedCell() {
     const { ownWidgetParams } = this.props;
     const selectedCell = {
       paramId: '',
@@ -237,11 +170,7 @@ export class TableAdapter extends React.PureComponent {
 
   render() {
     const {
-      data: {
-        data: { head, rows = [], total = [] } = {},
-        config: { title, sort, order, settings } = {},
-      } = {},
-      orderBy,
+      data: { data: { head, rows = [] } = {}, config: { title } = {} } = {},
     } = this.props;
 
     if (!head || !rows) {
@@ -255,11 +184,11 @@ export class TableAdapter extends React.PureComponent {
       );
     }
 
-    const selectedCell = this._getSelectedCell();
+    const selectedCell = this.getSelectedCell();
     // контекст только для передачи _domNode
     const context = {};
 
-    const { columns, names } = _getColumnsAndNames(
+    const { columns, names } = getColumnsAndNames(
       { head, context },
       this.props.onStateAndParamsChange,
       this.props.data.data.groupField,
@@ -274,28 +203,25 @@ export class TableAdapter extends React.PureComponent {
 
     const antdTableColumns = columns.map((col, index) => {
       return {
-        title: col.header.props.children,
+        title: col.header,
         key: index,
-        dataIndex: col.name,
+        dataIndex: col.dataIndex,
         render: item => renderCell(item),
-        sorter: col.sortAccessor,
+        sorter: (row1, row2) => {
+          const left = row1[col.dataIndex].value;
+          const right = row2[col.dataIndex].value;
+          return left > right ? 1 : left < right ? -1 : 0;
+        },
         onCell: row => {
           return {
-            onClick: event => {
-              const {
-                context,
-                field,
-                columnName,
-                prevSelectedCell,
-                clickCallback,
-              } = col.handlerData;
+            onClick: () => {
               handleCellClick(
-                context,
+                col.context,
                 row,
-                field,
-                columnName,
-                prevSelectedCell,
-                clickCallback,
+                col.field,
+                col.columnName,
+                col.prevSelectedCell,
+                col.clickCallback,
               );
             },
           };
@@ -323,7 +249,7 @@ export class TableAdapter extends React.PureComponent {
 
     return (
       <div
-        className={b()}
+        className="chartkit-table"
         ref={node => {
           context._domNode = node;
         }}
@@ -331,7 +257,7 @@ export class TableAdapter extends React.PureComponent {
         <TableWidget
           columns={antdTableColumns}
           dataSource={data}
-          title={_getTitle(title)}
+          title={getTitle(title)}
           {...this.props}
         />
       </div>

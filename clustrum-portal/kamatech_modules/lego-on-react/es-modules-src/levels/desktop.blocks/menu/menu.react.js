@@ -212,7 +212,10 @@ export default decl(
       while (i < len) {
         item = items[i];
 
-        if (!item.props.disabled && this._normalizeText(item.getText()).indexOf(term) === 0) {
+        if (
+          !item.props.disabled &&
+          this._normalizeText(item.getText()).indexOf(term) === 0
+        ) {
           this.removeHover();
           this.hoverItem(item);
           this.scrollToItem(item);
@@ -238,7 +241,11 @@ export default decl(
       if (itemOffsetTop < menuOffsetTop) {
         relativeScroll = itemOffsetTop - menuOffsetTop;
       } else {
-        relativeScroll = itemOffsetTop + itemDOMNode.offsetHeight - menuOffsetTop - menuDOMNode.offsetHeight;
+        relativeScroll =
+          itemOffsetTop +
+          itemDOMNode.offsetHeight -
+          menuOffsetTop -
+          menuDOMNode.offsetHeight;
 
         relativeScroll < 0 && (relativeScroll = 0);
       }

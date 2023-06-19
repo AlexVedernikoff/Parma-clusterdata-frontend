@@ -102,7 +102,12 @@ const DEFAULT_PRESETTINGS = {
 const getPresetsList = (type, lang) => {
   return DEFAULT_PRESETTINGS[type].map(preset => {
     return (
-      <Preset key={`preset-${preset.name[lang]}`} content={preset.name[lang]} interval={preset.interval} type={type} />
+      <Preset
+        key={`preset-${preset.name[lang]}`}
+        content={preset.name[lang]}
+        interval={preset.interval}
+        type={type}
+      />
     );
   });
 };

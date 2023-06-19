@@ -32,7 +32,9 @@ const typeSwitcher = ({ type }) => {
     default:
       return {
         className: b({ type: 'default' }),
-        icon: <Icon className={b('icon')} data={iconUndefined} width={size} height={size} />,
+        icon: (
+          <Icon className={b('icon')} data={iconUndefined} width={size} height={size} />
+        ),
       };
   }
 };
@@ -58,7 +60,10 @@ export default class Notification extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.notify !== null && !isEqual(this.state.currentNotify, nextProps.notify)) {
+    if (
+      nextProps.notify !== null &&
+      !isEqual(this.state.currentNotify, nextProps.notify)
+    ) {
       this.setState({
         currentNotify: nextProps.notify,
       });
@@ -102,7 +107,12 @@ export default class Notification extends Component {
         {typeInfo.icon}
         <div className={b('message')}>{currentNotify.message}</div>
         <div className={b('close')} onClick={this.onClose}>
-          <Icon className={b('icon-close')} data={iconSearchClear} width="14" height="14" />
+          <Icon
+            className={b('icon-close')}
+            data={iconSearchClear}
+            width="14"
+            height="14"
+          />
         </div>
       </div>
     );

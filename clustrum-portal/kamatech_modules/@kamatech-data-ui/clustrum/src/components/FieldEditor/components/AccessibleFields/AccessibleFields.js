@@ -22,14 +22,20 @@ function AccessibleFields(props) {
         const isFormula = calMode === 'formula';
 
         return (
-          <div className={b('row')} key={`accessible-fields-${index}`} onClick={() => onClick({ title })}>
+          <div
+            className={b('row')}
+            key={`accessible-fields-${index}`}
+            onClick={() => onClick({ title })}
+          >
             <div className={b('data-type', { [type.toLowerCase()]: true })}>
               <DataTypeIconSelector type={cast} />
             </div>
             <div className={b('title')}>
               <span>{title}</span>
             </div>
-            {isFormula && <Icon className={b('formula')} data={iconFormula2} width="24" height="24" />}
+            {isFormula && (
+              <Icon className={b('formula')} data={iconFormula2} width="24" height="24" />
+            )}
           </div>
         );
       })}

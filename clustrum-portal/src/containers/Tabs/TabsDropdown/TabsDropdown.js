@@ -13,7 +13,12 @@ function TabsDropdown({ menuItems, location, tabId, setPageTab }) {
   let buttonEl = useRef(null);
   return (
     <div className={b()}>
-      <Button ref={buttonEl} theme={theme} cls={b('toogle-btn')} onClick={() => setIsPopupVisible(true)}>
+      <Button
+        ref={buttonEl}
+        theme={theme}
+        cls={b('toogle-btn')}
+        onClick={() => setIsPopupVisible(true)}
+      >
         <div className={b('toogle-btn-dots')}></div>
       </Button>
       {isPopupVisible && (

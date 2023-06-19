@@ -11,7 +11,16 @@ const b = block(constants.cNameBody);
 
 function getContent(year, lang, type) {
   return Array.from({ length: 12 }, (it, i) => {
-    return <SketchMonth key={`${year}-${i}-year`} lang={lang} type={type} year={year} month={i} size="s" />;
+    return (
+      <SketchMonth
+        key={`${year}-${i}-year`}
+        lang={lang}
+        type={type}
+        year={year}
+        month={i}
+        size="s"
+      />
+    );
   });
 }
 

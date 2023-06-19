@@ -229,7 +229,11 @@ class Charts {
       }
 
       if (status === 489) {
-        throw ErrorDispatcher.wrap({ type: ERROR_TYPE.AUTHORIZATION_ERROR, error, extra });
+        throw ErrorDispatcher.wrap({
+          type: ERROR_TYPE.AUTHORIZATION_ERROR,
+          error,
+          extra,
+        });
       }
 
       if (extra.errorType) {
@@ -241,8 +245,26 @@ class Charts {
     }
   }
 
-  static async getData({ id, source, params, editMode, paginateInfo, headers, cancelToken, orderBy }) {
-    const loaded = await Charts.load({ id, source, params, editMode, paginateInfo, headers, cancelToken, orderBy });
+  static async getData({
+    id,
+    source,
+    params,
+    editMode,
+    paginateInfo,
+    headers,
+    cancelToken,
+    orderBy,
+  }) {
+    const loaded = await Charts.load({
+      id,
+      source,
+      params,
+      editMode,
+      paginateInfo,
+      headers,
+      cancelToken,
+      orderBy,
+    });
 
     if (loaded) {
       if (loaded.NO_DATA_AVAILABLE_HERE) {

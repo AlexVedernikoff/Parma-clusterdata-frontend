@@ -13,7 +13,8 @@ const NEW_TAB = {
   },
   icon: <Icon data={iconAnotherTab} width="16" height="16" />,
   isVisible: () => true,
-  action: ({ propsData: { id } }) => window.open(window.DL.endpoints.wizard + `/preview/${id}`),
+  action: ({ propsData: { id } }) =>
+    window.open(window.DL.endpoints.wizard + `/preview/${id}`),
 };
 
 const createWidgetEditorOpeningItem = onOpenWidgetEditor => ({

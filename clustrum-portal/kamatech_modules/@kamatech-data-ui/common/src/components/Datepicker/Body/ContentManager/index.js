@@ -19,7 +19,9 @@ export default class ContentManager {
     const chunk = this[method](date, position);
 
     if (position === 'start') {
-      this.content[type] = chunk.concat(this.content[type].slice(0, this.content[type].length - chunk.length));
+      this.content[type] = chunk.concat(
+        this.content[type].slice(0, this.content[type].length - chunk.length),
+      );
     } else {
       this.content[type] = this.content[type].slice(chunk.length).concat(chunk);
     }
@@ -116,7 +118,15 @@ export default class ContentManager {
     const [start, end] = getRange[position]();
 
     return utils.range(start, end + 1).map(year => {
-      return <MonthContent key={year} year={year} lang={this._lang} minDate={this._minDate} maxDate={this._maxDate} />;
+      return (
+        <MonthContent
+          key={year}
+          year={year}
+          lang={this._lang}
+          minDate={this._minDate}
+          maxDate={this._maxDate}
+        />
+      );
     });
   }
 

@@ -3,7 +3,10 @@ import { KamatechIconModel } from './KamatechIcon.model';
 import { KamatechIconInterface } from './KamatechIcon.interface';
 
 export class KamatechIcon extends React.Component<KamatechIconInterface> {
-  static defaultProps = { fill: KamatechIconModel.fill, stroke: KamatechIconModel.stroke };
+  static defaultProps = {
+    fill: KamatechIconModel.fill,
+    stroke: KamatechIconModel.stroke,
+  };
 
   render() {
     const model = new KamatechIconModel(this.props);

@@ -80,7 +80,10 @@ class EntryLink extends React.PureComponent {
       const entryName = getEntryName(entry);
       const isClickable = typeof onClick === 'function';
       return (
-        <div className={b({ pointer: isClickable, size })} onClick={isClickable ? onClick : undefined}>
+        <div
+          className={b({ pointer: isClickable, size })}
+          onClick={isClickable ? onClick : undefined}
+        >
           {hasIcon && <Icon entry={entry} size={size} />}
           <div className={b('text')}>{entryName}</div>
         </div>

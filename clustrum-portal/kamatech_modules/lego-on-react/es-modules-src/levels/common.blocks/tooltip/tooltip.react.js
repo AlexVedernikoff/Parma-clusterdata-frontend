@@ -132,7 +132,8 @@ export default decl(
           'tooltip: Свойство offset является устаревшим, для указания отступа используйте mainOffset.',
         );
 
-      var mainOffset = this.props.mainOffset === undefined ? this.props.offset : this.props.mainOffset;
+      var mainOffset =
+        this.props.mainOffset === undefined ? this.props.offset : this.props.mainOffset;
       var to = [].concat(this.props.to).map(function(direction) {
         if (direction.indexOf('-') < 0) {
           direction = direction + '-center';
@@ -146,7 +147,10 @@ export default decl(
           {
             view: view,
             tone: tone,
-            mix: [].concat({ block: block, mods: this.mods(this.props) }, this.mix(this.props) || []),
+            mix: [].concat(
+              { block: block, mods: this.mods(this.props) },
+              this.mix(this.props) || [],
+            ),
             cls: cls,
             onMouseOver: this.onMouseOver,
             onMouseLeave: this.state.hovered ? this.onMouseLeave : undefined,
@@ -167,7 +171,11 @@ export default decl(
           },
           popupProps,
         ),
-        React.createElement(Bem, { block: 'tooltip', elem: 'backdrop' }, tail && React.createElement(PopupTail, null)),
+        React.createElement(
+          Bem,
+          { block: 'tooltip', elem: 'backdrop' },
+          tail && React.createElement(PopupTail, null),
+        ),
         React.createElement(Bem, { block: 'tooltip', elem: 'content' }, children),
       );
     },

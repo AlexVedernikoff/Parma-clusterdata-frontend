@@ -47,7 +47,11 @@ export default decl(
       title: PropTypes.string,
     },
     isGroup: function isGroup(child) {
-      return child && typeof child.type === 'function' && child.type.displayName === 'menu__group';
+      return (
+        child &&
+        typeof child.type === 'function' &&
+        child.type.displayName === 'menu__group'
+      );
     },
   },
 );

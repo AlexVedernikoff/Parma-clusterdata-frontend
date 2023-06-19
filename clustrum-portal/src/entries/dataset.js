@@ -10,11 +10,13 @@ import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 import DatasetRouter from '../components/DatasetRouter/DatasetRouter';
 
 import './../css/vendors.css';
+import './../css/colors.css';
 import './../css/commons.css';
 import './../css/dataset.css';
 
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
+import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '../constants/constants';
 
 const sdk = new SDK({
@@ -37,7 +39,7 @@ logVersion();
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <ConfigProvider theme={{ ...ANT_TOKEN }}>
+      <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
         <Provider store={store}>
           <DatasetRouter sdk={sdk} />
         </Provider>

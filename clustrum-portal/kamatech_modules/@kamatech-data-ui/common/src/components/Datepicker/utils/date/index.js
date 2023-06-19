@@ -99,7 +99,11 @@ function getWeekDays(node) {
       }
 
       const nextSib = leftSib.previousSibling;
-      if (nextSib && nextSib.classList.contains(LEFT_CL) && nextSib.classList.contains(MAIN_CL)) {
+      if (
+        nextSib &&
+        nextSib.classList.contains(LEFT_CL) &&
+        nextSib.classList.contains(MAIN_CL)
+      ) {
         hoverList.push(nextSib);
         break;
       }
@@ -125,7 +129,11 @@ function getWeekDays(node) {
 
       const nextSib = rightSib.nextSibling;
 
-      if (nextSib && nextSib.classList.contains(RIGHT_CL) && nextSib.classList.contains(MAIN_CL)) {
+      if (
+        nextSib &&
+        nextSib.classList.contains(RIGHT_CL) &&
+        nextSib.classList.contains(MAIN_CL)
+      ) {
         hoverList.push(nextSib);
         break;
       }

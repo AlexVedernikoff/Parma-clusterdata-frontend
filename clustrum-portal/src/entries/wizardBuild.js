@@ -13,6 +13,7 @@ import reducers from '../reducers';
 import App from '../containers/App';
 
 import './../css/vendors.css';
+import './../css/colors.css';
 import './../css/commons.css';
 import './../css/app.css';
 import './../css/app-table-settings-total.css';

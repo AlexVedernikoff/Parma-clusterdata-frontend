@@ -8,7 +8,11 @@ export default decl(
   },
   {
     isBox: function isBox(child) {
-      return child && typeof child.type === 'function' && child.type.displayName === 'textinput__box';
+      return (
+        child &&
+        typeof child.type === 'function' &&
+        child.type.displayName === 'textinput__box'
+      );
     },
   },
 );

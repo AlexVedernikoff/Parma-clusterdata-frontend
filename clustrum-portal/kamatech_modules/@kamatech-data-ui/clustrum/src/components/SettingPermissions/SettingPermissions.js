@@ -200,7 +200,10 @@ class SettingPermissions extends React.Component {
                     scope="connection" // т.к. диалог для connections
                   />
                 </div>
-                <ButtonDelete className={b('btn-delete', { hidden: freeze })} onClick={this.onDelete(index)} />
+                <ButtonDelete
+                  className={b('btn-delete', { hidden: freeze })}
+                  onClick={this.onDelete(index)}
+                />
               </div>
             );
           })}

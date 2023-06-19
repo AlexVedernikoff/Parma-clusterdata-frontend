@@ -3,7 +3,18 @@ import { CallbackFunctionArgs } from '../../helpers';
 
 export class KamatechTextInputModel implements KamatechTextInputInterface {
   constructor(value: KamatechTextInputInterface) {
-    const { hasClear, iconClearData, onChange, placeholder, size, text, theme, tone, type, view } = value || {};
+    const {
+      hasClear,
+      iconClearData,
+      onChange,
+      placeholder,
+      size,
+      text,
+      theme,
+      tone,
+      type,
+      view,
+    } = value || {};
     this.hasClear = hasClear;
     this.iconClearData = iconClearData;
     this.onChange = onChange;

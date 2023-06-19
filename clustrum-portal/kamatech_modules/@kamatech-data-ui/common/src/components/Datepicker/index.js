@@ -15,7 +15,12 @@ import { LEGO_POPUP_MIX_CLASS } from '../constants';
 // import './index.scss';
 
 const b = block(constants.cName);
-const AVAILABLE_POPUP_DIRECTIONS = ['bottom-left', 'bottom-right', 'top-left', 'top-right'];
+const AVAILABLE_POPUP_DIRECTIONS = [
+  'bottom-left',
+  'bottom-right',
+  'top-left',
+  'top-right',
+];
 const VALID_SCALES = ['day', 'month', 'year'];
 const VALID_TIME_PRECISION_FORMATS = ['min', 'sec'];
 // const VALID_DATES_FORMATS = ['iso'];
@@ -317,7 +322,11 @@ export default class Datepicker extends React.PureComponent {
     }
 
     if (this.type === 'day' && isPresetClicked) {
-      const [year, month, day] = [range[0].getFullYear(), range[0].getMonth(), range[0].getDate()];
+      const [year, month, day] = [
+        range[0].getFullYear(),
+        range[0].getMonth(),
+        range[0].getDate(),
+      ];
       range[1] = new Date(year, month, day, 23, 59);
     }
 
@@ -328,7 +337,10 @@ export default class Datepicker extends React.PureComponent {
         searchText: rangeHandlers.getConvertingDateFromRange(this.props, range),
       },
       () => {
-        if (!this.props.showApply && ((this.props.scale && range.length) || range.length === 2)) {
+        if (
+          !this.props.showApply &&
+          ((this.props.scale && range.length) || range.length === 2)
+        ) {
           this.onSubmit();
         }
       },
@@ -377,7 +389,11 @@ export default class Datepicker extends React.PureComponent {
     const { getRegularizeRange, getTrimmedRegularizedRange } = rangeHandlers;
 
     const regularizedRange = getRegularizeRange(this.state.range);
-    const trimmedRegularizedRange = getTrimmedRegularizedRange(regularizedRange, this.minDate, this.maxDate);
+    const trimmedRegularizedRange = getTrimmedRegularizedRange(
+      regularizedRange,
+      this.minDate,
+      this.maxDate,
+    );
     const [fromDate, toDate] = [...trimmedRegularizedRange];
 
     const ISODates = {
@@ -407,7 +423,10 @@ export default class Datepicker extends React.PureComponent {
       lastValidRange: trimmedRegularizedRange,
       isBodyVisible: false,
       errorMessage: getErrorMessage(this.props, trimmedRegularizedRange, scale),
-      searchText: rangeHandlers.getConvertingDateFromRange(this.props, trimmedRegularizedRange),
+      searchText: rangeHandlers.getConvertingDateFromRange(
+        this.props,
+        trimmedRegularizedRange,
+      ),
     });
   };
 

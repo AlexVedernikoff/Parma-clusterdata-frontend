@@ -18,15 +18,27 @@ class DialogNoRights extends PureComponent {
           <Dialog.Header caption="Нет прав для редактирования" />
           <Dialog.Body>
             <div>
-              Диаграмма доступен в режиме «Только для чтения». Запросите права на редактирование или сохраните изменения
-              новым чартом
+              Диаграмма доступен в режиме «Только для чтения». Запросите права
+              на редактирование или сохраните изменения новым чартом
             </div>
           </Dialog.Body>
           <Dialog.Footer preset="default" listenKeyEnter hr={false}>
-            <Button theme="pseudo" view="default" tone="default" size="n" onClick={this.props.onAccessRights}>
+            <Button
+              theme="pseudo"
+              view="default"
+              tone="default"
+              size="n"
+              onClick={this.props.onAccessRights}
+            >
               Запросить права
             </Button>
-            <Button theme="pseudo" view="default" tone="default" size="n" onClick={this.props.onSaveAs}>
+            <Button
+              theme="pseudo"
+              view="default"
+              tone="default"
+              size="n"
+              onClick={this.props.onSaveAs}
+            >
               Сохранить как
             </Button>
           </Dialog.Footer>

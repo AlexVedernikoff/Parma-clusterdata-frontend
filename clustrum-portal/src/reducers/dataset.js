@@ -1,4 +1,9 @@
-import { REQUEST_DATASET, RECEIVE_DATASET, UPDATE_DATASET_FIELDS, RESET_DATASET } from '../actions';
+import {
+  REQUEST_DATASET,
+  RECEIVE_DATASET,
+  UPDATE_DATASET_FIELDS,
+  RESET_DATASET,
+} from '../actions';
 
 const initialState = {
   isLoading: false,
@@ -77,7 +82,8 @@ export const selectFields = state => {
     return [];
   }
 };
-export const selectAceModeUrl = state => (state.dataset.dataset ? state.dataset.dataset.ace_url : null);
+export const selectAceModeUrl = state =>
+  state.dataset.dataset ? state.dataset.dataset.ace_url : null;
 export const selectDatasetError = state => state.dataset.error;
 export const selectMeasures = state => state.dataset.measures;
 export const selectDimensions = state => state.dataset.dimensions;

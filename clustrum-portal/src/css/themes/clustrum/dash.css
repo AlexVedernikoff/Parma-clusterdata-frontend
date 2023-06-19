@@ -701,7 +701,7 @@
 }
 
 .dash-body__content {
-  padding: 0 1.75rem 3.125rem;
+  padding: 0;
   overflow: visible;
 }
 
@@ -1657,7 +1657,7 @@
 }
 
 .wizard .dl-entry-panel {
-  width: calc(100% - 18.375rem);
+  width: 100%;
 }
 
 .wizard .dl-entry-panel__entry-title-text {
@@ -1673,7 +1673,7 @@
 }
 
 .wizard .columns .column {
-  height: calc(100vh - 9.375rem);
+  height: calc(100vh - 14rem);
 }
 
 .yc-dialog-btn-close .button2 {

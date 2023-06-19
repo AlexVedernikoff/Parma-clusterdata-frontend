@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import cn from 'classnames';
 import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
+import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown/should-move-dropdown';
 import './datepicker-filter-control.css';
 
-export interface DatepickerProps {
+interface DatepickerProps {
   className?: string;
   dateFormat?: string;
   label: string;
@@ -17,6 +18,7 @@ export interface DatepickerProps {
 }
 
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
+const POPUP_WIDTH = 288;
 
 export function DatepickerFilterControl({
   className,
@@ -29,6 +31,8 @@ export function DatepickerFilterControl({
 }: DatepickerProps): JSX.Element {
   const [date, setDate] = useState<Dayjs | null>(null);
   const [isValid, setIsValid] = useState<boolean>(true);
+  const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
+  const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const currentValue = dayjs(value);
@@ -39,20 +43,26 @@ export function DatepickerFilterControl({
     }
   }, [isValid, value]);
 
-  const handleChange = useCallback((dateValue: Dayjs | null): void => {
+  const handleChange = (dateValue: Dayjs | null): void => {
     if (dateValue) {
       setIsValid(true);
       onChange(dateValue.format(DEFAULT_DATE_FORMAT));
     } else {
       setIsValid(false);
     }
-  }, []);
+  };
+
+  const handleCalendarPosition = (isOpening: boolean): void => {
+    if (isOpening) {
+      setShouldMoveCalendar(shouldMoveDropdown(pickerRef?.current, POPUP_WIDTH));
+    }
+  };
 
   return (
     <div className={cn('datepicker-control', className)}>
       <label className="datepicker-control__label">
         {`${label}:`}
-        <div className="datepicker-control__picker">
+        <div ref={pickerRef} className="datepicker-control__picker">
           <DatePicker
             className={cn(!isValid && 'datepicker-control__picker--invalid')}
             disabledDate={(current): boolean =>
@@ -62,8 +72,10 @@ export function DatepickerFilterControl({
             format={dateFormat}
             locale={ruRU.DatePicker}
             picker="date"
+            placement={shouldMoveCalendar ? 'bottomRight' : 'bottomLeft'}
             value={date}
             onChange={handleChange}
+            onOpenChange={handleCalendarPosition}
           />
           {!isValid && (
             <div className="datepicker-control__validation-msg">Укажите дату</div>

@@ -46,7 +46,14 @@ export default class ChartsModal extends React.PureComponent {
       >
         <div className={b(false, this.props.mix)}>
           {this.props.children}
-          <Button theme="clear" view="default" tone="default" size="head" onClick={this._onClickClose} cls={b('cross')}>
+          <Button
+            theme="clear"
+            view="default"
+            tone="default"
+            size="head"
+            onClick={this._onClickClose}
+            cls={b('cross')}
+          >
             <Icon glyph="type-cross" />
           </Button>
         </div>
@@ -63,12 +70,20 @@ export default class ChartsModal extends React.PureComponent {
   };
 }
 
-ChartsModal.Section = props => <div className={b('section', props.mix)}>{props.children}</div>;
+ChartsModal.Section = props => (
+  <div className={b('section', props.mix)}>{props.children}</div>
+);
 ChartsModal.Section.propTypes = {
   children: (props, propName) => {
     React.Children.forEach(props[propName], child => {
-      if (child.type !== ChartsModal.Body && child.type !== ChartsModal.Header && child.type !== ChartsModal.Footer) {
-        console.warn("children should be of type 'ChartsModal.Header', 'ChartsModal.Body', 'ChartsModal.Footer'.");
+      if (
+        child.type !== ChartsModal.Body &&
+        child.type !== ChartsModal.Header &&
+        child.type !== ChartsModal.Footer
+      ) {
+        console.warn(
+          "children should be of type 'ChartsModal.Header', 'ChartsModal.Body', 'ChartsModal.Footer'.",
+        );
       }
     });
   },
@@ -78,7 +93,9 @@ ChartsModal.Section.defaultProps = {
   mix: '',
 };
 
-ChartsModal.Header = props => <div className={b('header', props.mix)}>{props.children}</div>;
+ChartsModal.Header = props => (
+  <div className={b('header', props.mix)}>{props.children}</div>
+);
 ChartsModal.Header.propTypes = {
   mix: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };

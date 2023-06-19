@@ -210,7 +210,10 @@ export function visualization(state = initialState, action) {
           case 'column-flatTable':
           case 'column100p-flatTable':
           case 'pie-flatTable':
-            placeholders[0].items = [...oldPlaceholders[0].items, ...oldPlaceholders[1].items].filter(item => {
+            placeholders[0].items = [
+              ...oldPlaceholders[0].items,
+              ...oldPlaceholders[1].items,
+            ].filter(item => {
               return item.type !== 'PSEUDO';
             });
             break;
@@ -232,7 +235,9 @@ export function visualization(state = initialState, action) {
           case 'column100p-pivotTable':
           case 'pie-pivotTable':
           case 'treemap-pivotTable':
-            placeholders[0].items = oldPlaceholders[0].items.filter(item => item.type !== 'PSEUDO');
+            placeholders[0].items = oldPlaceholders[0].items.filter(
+              item => item.type !== 'PSEUDO',
+            );
             placeholders[2].items = oldPlaceholders[1].items;
             break;
 
@@ -305,9 +310,10 @@ export function visualization(state = initialState, action) {
           case 'pivotTable-column100p':
           case 'pivotTable-pie':
           case 'pivotTable-treemap': {
-            const firstDimension = [...oldPlaceholders[0].items, ...oldPlaceholders[1].items].filter(
-              item => item.type !== 'PSEUDO',
-            )[0];
+            const firstDimension = [
+              ...oldPlaceholders[0].items,
+              ...oldPlaceholders[1].items,
+            ].filter(item => item.type !== 'PSEUDO')[0];
 
             const firstMeasure = oldPlaceholders[2].items[0];
 
@@ -375,7 +381,11 @@ export function visualization(state = initialState, action) {
       });
 
       if (visualization.onColorsChange) {
-        visualization.onColorsChange({ placeholders: visualization.placeholders, visualization, colors });
+        visualization.onColorsChange({
+          placeholders: visualization.placeholders,
+          visualization,
+          colors,
+        });
       }
 
       return {
@@ -424,7 +434,11 @@ export function visualization(state = initialState, action) {
       const { visualization } = state;
 
       if (visualization && visualization.onColorsChange) {
-        visualization.onColorsChange({ placeholders: visualization.placeholders, colors, visualization });
+        visualization.onColorsChange({
+          placeholders: visualization.placeholders,
+          colors,
+          visualization,
+        });
       }
 
       return {

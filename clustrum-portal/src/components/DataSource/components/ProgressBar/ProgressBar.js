@@ -39,7 +39,10 @@ export const ProgressBar = props => {
         <span>{`${current}%`}</span>
       </div>
       <div className={b('progress-line')}>
-        <div className={b('progress-line-occupied', { 'bar-color': barColor })} style={{ width: `${current}%` }} />
+        <div
+          className={b('progress-line-occupied', { 'bar-color': barColor })}
+          style={{ width: `${current}%` }}
+        />
       </div>
       <div className={b('sub-info')}>
         <span>{labelStage.toLowerCase()}</span>

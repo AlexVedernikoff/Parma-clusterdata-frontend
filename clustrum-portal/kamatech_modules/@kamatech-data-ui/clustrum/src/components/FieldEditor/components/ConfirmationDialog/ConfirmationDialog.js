@@ -25,7 +25,15 @@ class ConfirmationDialog extends React.Component {
             <span>Данные будут утеряны</span>
           </div>
           <div className={b('confirm-btns')}>
-            <Button cls={b('no-btn')} size="m" theme="flat" view="default" tone="default" text="Нет" onClick={cancel} />
+            <Button
+              cls={b('no-btn')}
+              size="m"
+              theme="flat"
+              view="default"
+              tone="default"
+              text="Нет"
+              onClick={cancel}
+            />
             <Button
               cls={b('yes-btn')}
               size="m"

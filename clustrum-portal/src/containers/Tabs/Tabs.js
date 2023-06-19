@@ -9,24 +9,29 @@ import { DIALOG_TYPE } from '../../modules/constants/constants';
 import { getCurrentPageTabs, isEditMode } from '../../store/selectors/dash';
 import { setPageTab, openDialog } from '../../store/actions/dash';
 
+import './tabs.css';
+
 function Tabs({ isEditMode, tabs, setPageTab, openDialog }) {
   const antdTabs = tabs.map(({ id, title }) => ({ key: id, label: title }));
   return (
-    <AntdTabs
-      items={antdTabs}
-      onChange={setPageTab}
-      tabBarExtraContent={
-        isEditMode ? (
-          <Button
-            icon={<SettingOutlined />}
-            key="add-dashboard-tabs-button"
-            onClick={() => openDialog(DIALOG_TYPE.TABS)}
-          >
-            Настроить отображение вкладок
-          </Button>
-        ) : null
-      }
-    />
+    <div className="tabs-wrapper">
+      <AntdTabs
+        type="card"
+        items={antdTabs}
+        onChange={setPageTab}
+        tabBarExtraContent={
+          isEditMode ? (
+            <Button
+              icon={<SettingOutlined />}
+              key="add-dashboard-tabs-button"
+              onClick={() => openDialog(DIALOG_TYPE.TABS)}
+            >
+              Настроить отображение вкладок
+            </Button>
+          ) : null
+        }
+      />
+    </div>
   );
 }
 

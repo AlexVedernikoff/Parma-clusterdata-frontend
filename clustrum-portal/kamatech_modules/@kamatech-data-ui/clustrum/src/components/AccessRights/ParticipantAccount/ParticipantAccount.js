@@ -47,9 +47,17 @@ class ParticipantAccount extends React.PureComponent {
         case KIND.USER:
         case KIND.SYSTEM_USER:
           if (this.props.picUrl) {
-            return <img src={this.props.picUrl} alt={this.props.title} className={b('img')} />;
+            return (
+              <img src={this.props.picUrl} alt={this.props.title} className={b('img')} />
+            );
           } else {
-            return <img src="/api/v1/user/default/photo/64/square.jpg" alt={this.props.title} className={b('img')} />;
+            return (
+              <img
+                src="/api/v1/user/default/photo/64/square.jpg"
+                alt={this.props.title}
+                className={b('img')}
+              />
+            );
           }
         case KIND.GROUP:
         case KIND.SYSTEM_GROUP:
@@ -64,7 +72,12 @@ class ParticipantAccount extends React.PureComponent {
 
   _renderName(name) {
     return DL.IS_INTERNAL && this.props.link ? (
-      <Link theme="black" target="_blank" url={this.props.link} onClick={this.props.onClickLink}>
+      <Link
+        theme="black"
+        target="_blank"
+        url={this.props.link}
+        onClick={this.props.onClickLink}
+      >
         {name}
       </Link>
     ) : (
@@ -82,7 +95,9 @@ class ParticipantAccount extends React.PureComponent {
       <div className={b()}>
         {showPic && this.displayPic()}
         <div className={b('name', { 'has-accent': hasAccent, 'has-bold': hasBold })}>
-          {title ? this._renderName(hasAccent ? this._accentLetter(title) : title) : undefined}
+          {title
+            ? this._renderName(hasAccent ? this._accentLetter(title) : title)
+            : undefined}
         </div>
       </div>
     );

@@ -193,7 +193,15 @@ export default class Toast extends React.PureComponent {
         this.remove();
       };
 
-      return <Link key={`${label}__${index}`} cls={b('action')} theme="normal" text={label} onClick={onActionClick} />;
+      return (
+        <Link
+          key={`${label}__${index}`}
+          cls={b('action')}
+          theme="normal"
+          text={label}
+          onClick={onActionClick}
+        />
+      );
     });
   }
 

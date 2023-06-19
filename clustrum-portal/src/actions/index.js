@@ -258,7 +258,13 @@ export function fetchDataset({ datasetId, sdk }) {
           } = {},
         } = getState();
 
-        receiveVisualization({ visualization, fields: [...dimensions, ...measures], filters, colors, sort });
+        receiveVisualization({
+          visualization,
+          fields: [...dimensions, ...measures],
+          filters,
+          colors,
+          sort,
+        });
         dispatch(setVisualization({ visualization }));
 
         dispatch(
@@ -483,7 +489,11 @@ function validateItem({ fields, item, placeholder }) {
   }
 
   if (placeholder) {
-    if (existingField && placeholder.allowedTypes && !placeholder.allowedTypes.has(item.type)) {
+    if (
+      existingField &&
+      placeholder.allowedTypes &&
+      !placeholder.allowedTypes.has(item.type)
+    ) {
       item.conflict = 'wrong-type';
       item.undragable = true;
     }
@@ -515,7 +525,9 @@ function receiveVisualization({ visualization, fields = [], filters, colors, sor
 
   // Проставляем из него в сохраненный все метаданные
   placeholdersOrdered.forEach(placeholder => {
-    const presetPlaceholder = presetVisualization.placeholders.find(p => p.id === placeholder.id);
+    const presetPlaceholder = presetVisualization.placeholders.find(
+      p => p.id === placeholder.id,
+    );
 
     const items = [...placeholder.items];
 
@@ -733,7 +745,9 @@ export function fetchWidget({ entryId, preview, sdk }) {
             }
 
             // Попытаемся найти фильтруемое поле
-            const foundItem = [...dimensions, ...measures].find(item => (item.guid === key ? item : null));
+            const foundItem = [...dimensions, ...measures].find(item =>
+              item.guid === key ? item : null,
+            );
 
             // Если такого нет в данных – игнорируем такой фильтр
             if (!foundItem) {

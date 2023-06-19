@@ -58,7 +58,9 @@ export default class PlaceSelect extends React.PureComponent {
   }
 
   _onChange = value => {
-    const { key } = this._getFullConfig().find(({ place, key }) => place === value || key === value);
+    const { key } = this._getFullConfig().find(
+      ({ place, key }) => place === value || key === value,
+    );
 
     this.props.onChange({
       path: key,

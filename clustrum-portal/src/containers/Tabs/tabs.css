@@ -1,0 +1,17 @@
+.tabs-wrapper {
+  background: var(--color-contrast-4-solid);
+}
+
+.ant-tabs-top > .ant-tabs-nav {
+  font-weight: 600;
+  margin-bottom: 0px;
+  padding-left: 1.75rem;
+}
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
+  border-color: var(--color-contrast-4-solid);
+}
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab:not(.ant-tabs-tab-active) {
+  background: var(--color-contrast-4-solid);
+}

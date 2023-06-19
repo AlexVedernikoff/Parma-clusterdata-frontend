@@ -23,6 +23,9 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
     preferRelative: false,
     alias: {
+      '@entities': path.resolve('./src/entities/'),
+      '@features': path.resolve('./src/features/'),
+      '@widgets': path.resolve('./src/widgets/'),
       '@clustrum-lib': path.resolve('./src/clustrum-lib/src/'),
       '@kamatech-ui': path.resolve('./kamatech_modules/kamatech-ui'),
       '@kamatech-data-ui': path.resolve('./kamatech_modules/@kamatech-data-ui/'),

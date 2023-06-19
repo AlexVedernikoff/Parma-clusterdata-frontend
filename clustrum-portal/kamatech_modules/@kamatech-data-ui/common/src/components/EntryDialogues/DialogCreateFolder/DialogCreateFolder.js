@@ -27,7 +27,13 @@ class DialogCreateFolder extends Component {
     return this.props.sdk.createFolder({ key });
   };
   render() {
-    return <DialogCreateEntry {...this.props} onApply={this.onApply} defaultDialogProps={defaultDialogProps} />;
+    return (
+      <DialogCreateEntry
+        {...this.props}
+        onApply={this.onApply}
+        defaultDialogProps={defaultDialogProps}
+      />
+    );
   }
 }
 

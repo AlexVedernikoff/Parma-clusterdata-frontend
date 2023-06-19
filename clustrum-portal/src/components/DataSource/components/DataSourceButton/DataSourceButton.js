@@ -5,7 +5,14 @@ import { Button, Spin } from 'lego-on-react';
 
 const b = block('data-source-button');
 
-export const DataSourceButton = ({ disabled = false, label = '', cls = '', text, isLoading = false, onClick }) => {
+export const DataSourceButton = ({
+  disabled = false,
+  label = '',
+  cls = '',
+  text,
+  isLoading = false,
+  onClick,
+}) => {
   return (
     <React.Fragment>
       {label && (
@@ -13,7 +20,15 @@ export const DataSourceButton = ({ disabled = false, label = '', cls = '', text,
           <span>{label}</span>
         </div>
       )}
-      <Button disabled={disabled} cls={cls} size="s" theme="pseudo" tone="default" view="default" onClick={onClick}>
+      <Button
+        disabled={disabled}
+        cls={cls}
+        size="s"
+        theme="pseudo"
+        tone="default"
+        view="default"
+        onClick={onClick}
+      >
         {isLoading ? (
           <div className={b('loader')}>
             <Spin size="xxs" progress />

@@ -175,7 +175,11 @@ class Header extends React.PureComponent {
 
     const addItems = [
       {
-        label: <a onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>Диаграмма</a>,
+        label: (
+          <a onClick={this.openDialog(DIALOG_TYPE.WIDGET)}>
+            Элемент аналитической панели
+          </a>
+        ),
         key: '1',
       },
       {
@@ -267,7 +271,10 @@ class Header extends React.PureComponent {
             title="Открыть панель расширенных фильтров"
             onClick={openExpandedFilter}
             key="button-expanded-filter-panel"
-          ></Button>
+            icon={<FilterOutlined />}
+          >
+            Фильтры
+          </Button>
         ) : null,
         <Button
           title="Сбросить фильтры"

@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import EntryContextMenu from '@kamatech-data-ui/common/src/components/Navigation/EntryContextMenu/EntryContextMenu';
-import { withConfiguredEntryContextMenu, ENTRY_CONTEXT_MENU_ACTION } from '../../hoc/withConfiguredEntryContextMenu';
-import EntryDialogues, { ENTRY_DIALOG, entryDialoguesNotify } from '../EntryDialogues/EntryDialogues';
+import {
+  withConfiguredEntryContextMenu,
+  ENTRY_CONTEXT_MENU_ACTION,
+} from '../../hoc/withConfiguredEntryContextMenu';
+import EntryDialogues, {
+  ENTRY_DIALOG,
+  entryDialoguesNotify,
+} from '../EntryDialogues/EntryDialogues';
 import Utils from '../../utils';
 import navigateHelper from '../../libs/navigateHelper';
 import ErrorDialog from '../ErrorDialog/ErrorDialog';

@@ -63,7 +63,9 @@ export default function createBody(config) {
     // TODO: нельзя выбрать ранее выбранный radio / github.com/facebook/react/issues/9988
     _radiobox = () => (
       <div className={b('row', { common: true, radiobox: true })}>
-        <span className={b('cell', { flex: 'zero', inline: true })}>Размер (ширина/высота):</span>
+        <span className={b('cell', { flex: 'zero', inline: true })}>
+          Размер (ширина/высота):
+        </span>
         <span className={b('cell', { inline: true })}>
           <RadioBox
             theme="normal"
@@ -91,7 +93,9 @@ export default function createBody(config) {
                 theme="normal"
                 size="s"
                 checked={this.state[checkbox.key]}
-                onChange={() => this.setState({ [checkbox.key]: !this.state[checkbox.key] })}
+                onChange={() =>
+                  this.setState({ [checkbox.key]: !this.state[checkbox.key] })
+                }
               >
                 {checkbox.text}
               </CheckBox>
@@ -120,7 +124,9 @@ export default function createBody(config) {
           }
         });
 
-      const result = config.format ? config.format(config, this.state, this.pathURI) : this.pathURI.toString();
+      const result = config.format
+        ? config.format(config, this.state, this.pathURI)
+        : this.pathURI.toString();
 
       return (
         <div className={b()}>
@@ -136,7 +142,13 @@ export default function createBody(config) {
               />
             </span>
             <span className={b('cell', { flex: 'zero', inline: true })}>
-              <ClipboardButton theme="pseudo" view="default" tone="default" size="s" text={result} />
+              <ClipboardButton
+                theme="pseudo"
+                view="default"
+                tone="default"
+                size="s"
+                text={result}
+              />
             </span>
           </div>
           {config.shortLinkItem && this._tinyUrlButton(result)}

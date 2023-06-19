@@ -5,13 +5,24 @@ import NavigationInline from '@kamatech-data-ui/common/src/components/Navigation
 import { PLACE } from '../constants';
 import '../../EntryIcon/EntryIcon';
 import Utils from '../../../utils';
-import EntryDialogues, { ENTRY_DIALOG, entryDialoguesNotify } from '../../EntryDialogues/EntryDialogues';
-import { getEntryContextMenuItems, ENTRY_CONTEXT_MENU_ACTION } from '../../../hoc/withConfiguredEntryContextMenu';
+import EntryDialogues, {
+  ENTRY_DIALOG,
+  entryDialoguesNotify,
+} from '../../EntryDialogues/EntryDialogues';
+import {
+  getEntryContextMenuItems,
+  ENTRY_CONTEXT_MENU_ACTION,
+} from '../../../hoc/withConfiguredEntryContextMenu';
 import { DL } from '../../../constants/common';
 import navigateHelper from '../../../libs/navigateHelper';
 import { mapPlace, mapPlaceBackward } from '../util';
 import ErrorDialog from '../../ErrorDialog/ErrorDialog';
-import { getQuickItems, getCreateMenuItemsInternal, getCreateMenuItemsExternal, getPlaceParameters } from './configure';
+import {
+  getQuickItems,
+  getCreateMenuItemsInternal,
+  getCreateMenuItemsExternal,
+  getPlaceParameters,
+} from './configure';
 
 const geEntryUrl = (entry, navigationUrl, place) => {
   const link = navigateHelper.redirectUrlSwitcher(entry, place);
@@ -243,11 +254,16 @@ export default class NavigationBase extends React.Component {
       dialogProps: {
         path: this.props.path,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.CREATE_DASHBOARD, this.refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.CREATE_DASHBOARD,
+          this.refErrorDialog,
+        ),
       },
     });
     if (DL.IS_INTERNAL && response.status === 'success') {
-      window.location.assign(`${this.props.sdk.config.endpoints.dash}/${response.data.entryId}`);
+      window.location.assign(
+        `${this.props.sdk.config.endpoints.dash}/${response.data.entryId}`,
+      );
     }
     this.update(response, ENTRY_DIALOG.CREATE_DASHBOARD);
   }
@@ -299,10 +315,14 @@ export default class NavigationBase extends React.Component {
           this.defaulActionCreate(type);
         } else {
           // TODO: возможно стоит оторвать часть с new в enpoints.editor после того как он выйдет в prod
-          const place = this.props.root ? `&place=${encodeURIComponent(this.props.root)}` : '';
+          const place = this.props.root
+            ? `&place=${encodeURIComponent(this.props.root)}`
+            : '';
           const currentPath = path ? `&currentPath=${encodeURIComponent(path)}` : '';
           const url =
-            type === 'script' ? sdk.config.endpoints.editor : sdk.config.endpoints.legacyWizard + place + currentPath;
+            type === 'script'
+              ? sdk.config.endpoints.editor
+              : sdk.config.endpoints.legacyWizard + place + currentPath;
           window.location.assign(url);
         }
         break;
@@ -387,7 +407,9 @@ export default class NavigationBase extends React.Component {
       sdk,
       place: place,
       quickItems: this.quickItems,
-      createMenuItems: DL.IS_INTERNAL ? getCreateMenuItemsInternal() : getCreateMenuItemsExternal(),
+      createMenuItems: DL.IS_INTERNAL
+        ? getCreateMenuItemsInternal()
+        : getCreateMenuItemsExternal(),
       onCreateMenuClick: this.onCreateMenuClick,
       linkWrapper: linkWrapper({ navigationUrl, place }),
       crumbLinkWrapper,

@@ -71,7 +71,10 @@ function getDaysNodes(opt) {
 
 export default function SketchMonth(props) {
   const { year, month, lang, size, type, disabled } = props;
-  const { date, daysCount, cellsCount, firstWeekday, isExtMonth } = getDateInfo(year, month);
+  const { date, daysCount, cellsCount, firstWeekday, isExtMonth } = getDateInfo(
+    year,
+    month,
+  );
 
   const daysNodes = getDaysNodes({
     year,
@@ -95,8 +98,12 @@ export default function SketchMonth(props) {
 
   return (
     <div className={b('sketch-month-wrap', wrapMods)} data-year={year} data-month={month}>
-      <div className={b('sketch-month-title', commonMods)}>{getMonthTitle(date, lang, type)}</div>
-      <div className={b('sketch-month', { ext: isExtMonth, [size]: true })}>{daysNodes}</div>
+      <div className={b('sketch-month-title', commonMods)}>
+        {getMonthTitle(date, lang, type)}
+      </div>
+      <div className={b('sketch-month', { ext: isExtMonth, [size]: true })}>
+        {daysNodes}
+      </div>
     </div>
   );
 }

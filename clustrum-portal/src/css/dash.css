@@ -345,6 +345,8 @@
 .dashkit {
   width: 100%;
   position: relative;
+  padding-left: 1.75rem;
+  margin-top: 20px;
 }
 
 .dashkit_theme_clustrum .dashkit-plugin-title {
@@ -3875,7 +3877,7 @@ td.rdtYear:hover {
 .dash-body__content {
   width: 100%;
   transition: width 0.1s;
-  background-color: var(--yc-color-base-area);
+  background-color: var(--color-base);
   padding: 20px 24px 48px;
   overflow: auto;
 }

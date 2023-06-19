@@ -7,7 +7,12 @@ import { ErrorDialog } from '@kamatech-data-ui/clustrum';
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
-import { ConnectionInfo, DataSourceButton, MaterializationScheduler, Status } from './components';
+import {
+  ConnectionInfo,
+  DataSourceButton,
+  MaterializationScheduler,
+  Status,
+} from './components';
 import ErrorView from '../ErrorView/ErrorView';
 import { Stage } from './Stage';
 import MaterializationSettings from './components/MaterializationCustomSettings/MaterializationSettings';
@@ -52,11 +57,18 @@ function SelectionMaterializationType(props) {
         <RadioBox.Radio value={DATASET_MODES.DIRECT} disabled={disabledDirectMode}>
           Прямой доступ
         </RadioBox.Radio>
-        <RadioBox.Radio value={DATASET_MODES.MATERIALIZED}>Единовременная материализация</RadioBox.Radio>
-        <RadioBox.Radio value={DATASET_MODES.MATERIALIZED_BY_PERIOD}>Периодическая материализация</RadioBox.Radio>
+        <RadioBox.Radio value={DATASET_MODES.MATERIALIZED}>
+          Единовременная материализация
+        </RadioBox.Radio>
+        <RadioBox.Radio value={DATASET_MODES.MATERIALIZED_BY_PERIOD}>
+          Периодическая материализация
+        </RadioBox.Radio>
       </RadioBox>
       {selectedDsMode === DATASET_MODES.MATERIALIZED_BY_PERIOD && (
-        <MaterializationScheduler changeScheduleSettings={changeScheduleSettings} scheduleSettings={scheduleSettings} />
+        <MaterializationScheduler
+          changeScheduleSettings={changeScheduleSettings}
+          scheduleSettings={scheduleSettings}
+        />
       )}
     </div>
   );
@@ -126,12 +138,16 @@ function RightColumn(props) {
   if (
     materializationStatus.isProcessing ||
     connectionType === 'csv' ||
-    (selectedDsMode !== DATASET_MODES.MATERIALIZED && selectedDsMode !== DATASET_MODES.MATERIALIZED_BY_PERIOD)
+    (selectedDsMode !== DATASET_MODES.MATERIALIZED &&
+      selectedDsMode !== DATASET_MODES.MATERIALIZED_BY_PERIOD)
   ) {
     isAllowedMaterialization = false;
   }
 
-  if (selectedDsMode !== DATASET_MODES.MATERIALIZED && selectedDsMode !== DATASET_MODES.MATERIALIZED_BY_PERIOD) {
+  if (
+    selectedDsMode !== DATASET_MODES.MATERIALIZED &&
+    selectedDsMode !== DATASET_MODES.MATERIALIZED_BY_PERIOD
+  ) {
     isAllowedDeleteMaterialization = false;
   }
 
@@ -139,8 +155,11 @@ function RightColumn(props) {
 
   return (
     <div className={b('column-right')}>
-      {(selectedDsMode === DATASET_MODES.MATERIALIZED || selectedDsMode === DATASET_MODES.MATERIALIZED_BY_PERIOD) &&
-        materializationStatus.stage && <StatusPanel status={materializationStatus} isDirectDsMode={isDirectDsMode} />}
+      {(selectedDsMode === DATASET_MODES.MATERIALIZED ||
+        selectedDsMode === DATASET_MODES.MATERIALIZED_BY_PERIOD) &&
+        materializationStatus.stage && (
+          <StatusPanel status={materializationStatus} isDirectDsMode={isDirectDsMode} />
+        )}
       {isAllowedMaterialization && (
         <div className={b('section', b('margin', { bottom: 22 }))}>
           <DataSourceButton
@@ -245,7 +264,8 @@ class DataSource extends React.Component {
         modeType: materializationCustomSettings.modeType,
         materializationSchemaName: materializationSchemaName,
         materializationTableName: materializationCustomSettings.materializationTableName,
-        materializationThreadCount: materializationCustomSettings.materializationThreadCount,
+        materializationThreadCount:
+          materializationCustomSettings.materializationThreadCount,
         materializationPageSize: materializationCustomSettings.materializationPageSize,
         connectionType: entry.type,
         connectionName: entry.name,
@@ -308,7 +328,10 @@ class DataSource extends React.Component {
 
     const {
       response: {
-        data: { message: responseMessage, error: { messageError: responseErrorMessage } } = {},
+        data: {
+          message: responseMessage,
+          error: { messageError: responseErrorMessage },
+        } = {},
         headers: { 'x-request-id': requestId } = {},
       } = {},
       message,
@@ -368,7 +391,9 @@ class DataSource extends React.Component {
 
       const scheduleSettingsState = {
         materializationCron:
-          materializationCron === '' ? this.state.scheduleSettings.materializationCron : materializationCron,
+          materializationCron === ''
+            ? this.state.scheduleSettings.materializationCron
+            : materializationCron,
       };
 
       const selectedDsMode = this.state.isMaterializationRun
@@ -410,11 +435,15 @@ class DataSource extends React.Component {
       };
     }
 
-    const { items: databases } = await sdk.bi.getConnectionStructure({ connectionId, infoType: 'dbs' });
+    const { items: databases } = await sdk.bi.getConnectionStructure({
+      connectionId,
+      infoType: 'dbs',
+    });
 
     const sortedDatabases = databases.sort(Utils.sortStrings);
 
-    const materializationSchemaName = sortedDatabases.find(item => item === schemaName) || sortedDatabases[0];
+    const materializationSchemaName =
+      sortedDatabases.find(item => item === schemaName) || sortedDatabases[0];
 
     return {
       sortedDatabases: sortedDatabases,
@@ -426,12 +455,15 @@ class DataSource extends React.Component {
     const { materializationCustomSettings } = this.state;
     try {
       const connectionId =
-        dataset.materializationProperties.materializationConnectionId || materializationCustomSettings.connectionId;
+        dataset.materializationProperties.materializationConnectionId ||
+        materializationCustomSettings.connectionId;
 
-      const materializationConnection = connectionId !== null ? await sdk.bi.getConnection({ connectionId }) : null;
+      const materializationConnection =
+        connectionId !== null ? await sdk.bi.getConnection({ connectionId }) : null;
 
       const materializationTableName =
-        dataset.materializationProperties.materializationTableName || dataset.origin.table_name;
+        dataset.materializationProperties.materializationTableName ||
+        dataset.origin.table_name;
       const materializationSchemaName =
         dataset.materializationProperties.materializationSchemaName ||
         materializationCustomSettings.materializationSchemaName;
@@ -440,12 +472,18 @@ class DataSource extends React.Component {
         materializationCustomSettings.connectionType ||
         'Clickhouse';
       const materializationConnectionName =
-        (materializationConnection && materializationConnection.name) || materializationCustomSettings.connectionName;
+        (materializationConnection && materializationConnection.name) ||
+        materializationCustomSettings.connectionName;
       const materializationConnectionId = connectionId;
-      const materializationThreadCount = dataset.materializationProperties.materializationThreadCount;
-      const materializationPageSize = dataset.materializationProperties.materializationPageSize;
+      const materializationThreadCount =
+        dataset.materializationProperties.materializationThreadCount;
+      const materializationPageSize =
+        dataset.materializationProperties.materializationPageSize;
 
-      const database = await this.fetchSortedDatabase(materializationConnectionId, materializationSchemaName);
+      const database = await this.fetchSortedDatabase(
+        materializationConnectionId,
+        materializationSchemaName,
+      );
 
       const modeType =
         dataset.materializationProperties.materializationConnectionId === null
@@ -496,7 +534,10 @@ class DataSource extends React.Component {
       if (stage) {
         this._clearTimer(this._materializationStatusTimer);
 
-        this._materializationStatusTimer = setTimeout(this.fetchMaterializationStatus, 5000);
+        this._materializationStatusTimer = setTimeout(
+          this.fetchMaterializationStatus,
+          5000,
+        );
       }
 
       if (stage) {
@@ -520,7 +561,9 @@ class DataSource extends React.Component {
 
   treatScheduleSettings = () => {
     const { datasetId } = this.props;
-    const { scheduleSettings: { materializationCron: materializationCron } = {} } = this.state;
+    const {
+      scheduleSettings: { materializationCron: materializationCron } = {},
+    } = this.state;
 
     return {
       datasetId: datasetId,
@@ -536,8 +579,12 @@ class DataSource extends React.Component {
     const materializationProperties = {
       materializationSchemaName: materializationCustomSettings.materializationSchemaName,
       materializationTableName: materializationCustomSettings.materializationTableName,
-      materializationThreadCount: Number(materializationCustomSettings.materializationThreadCount),
-      materializationPageSize: Number(materializationCustomSettings.materializationPageSize),
+      materializationThreadCount: Number(
+        materializationCustomSettings.materializationThreadCount,
+      ),
+      materializationPageSize: Number(
+        materializationCustomSettings.materializationPageSize,
+      ),
       materializationConnectionId: materializationCustomSettings.connectionId,
       materializationConnectionMode: materializationCustomSettings.modeType,
     };
@@ -547,14 +594,17 @@ class DataSource extends React.Component {
     };
 
     const isDefaultMode =
-      materializationCustomSettings.modeType === MaterializationSettings.DATASET_MATERIALIZED_MODES.DEFAULT;
+      materializationCustomSettings.modeType ===
+      MaterializationSettings.DATASET_MATERIALIZED_MODES.DEFAULT;
 
     await sdk.bi.updateDataSet({
       dataSetId: datasetId,
       version: 'draft',
       resultSchema: [],
       rls: {},
-      materializationProperties: isDefaultMode ? emptyMaterializationProperties : materializationProperties,
+      materializationProperties: isDefaultMode
+        ? emptyMaterializationProperties
+        : materializationProperties,
     });
   };
 
@@ -677,7 +727,9 @@ class DataSource extends React.Component {
 
       switch (value) {
         case 'open-connection': {
-          const { dataset: { origin: { table_connection_id: connectionId = '' } = {} } = {} } = this.state;
+          const {
+            dataset: { origin: { table_connection_id: connectionId = '' } = {} } = {},
+          } = this.state;
 
           window.open(`/connections/${connectionId}`, '_blank');
 
@@ -715,9 +767,11 @@ class DataSource extends React.Component {
     this.setState({
       materializationCustomSettings: {
         modeType: materializationCustomSettings.modeType,
-        materializationSchemaName: materializationCustomSettings.materializationSchemaName,
+        materializationSchemaName:
+          materializationCustomSettings.materializationSchemaName,
         materializationTableName: materializationCustomSettings.materializationTableName,
-        materializationThreadCount: materializationCustomSettings.materializationThreadCount,
+        materializationThreadCount:
+          materializationCustomSettings.materializationThreadCount,
         materializationPageSize: materializationCustomSettings.materializationPageSize,
         connectionType: materializationCustomSettings.connectionType,
         connectionName: materializationCustomSettings.connectionName,
@@ -776,9 +830,12 @@ class DataSource extends React.Component {
 
     const disabledDirectMode = DISABLE_DIRECT_MODE_FOR_TYPES.includes(connectionType);
     const disableMaterialization =
-      isProcessingMaterialization || selectedDsMode === DATASET_MODES.DIRECT || connectionType === 'csv';
+      isProcessingMaterialization ||
+      selectedDsMode === DATASET_MODES.DIRECT ||
+      connectionType === 'csv';
     const disableChangeMaterialization =
-      DISABLE_TYPES.includes(connectionType) || (!isDirectDsMode && isProcessingMaterialization);
+      DISABLE_TYPES.includes(connectionType) ||
+      (!isDirectDsMode && isProcessingMaterialization);
     const disableDeleteMaterialization =
       isDirectDsMode ||
       isMaterializationDeleting ||
@@ -825,7 +882,11 @@ class DataSource extends React.Component {
 
   render() {
     const { visible, onClose } = this.props;
-    const { showComponentError, progress, dataset: { connection_type: connectionType } = {} } = this.state;
+    const {
+      showComponentError,
+      progress,
+      dataset: { connection_type: connectionType } = {},
+    } = this.state;
     const disabledApplyBtn = connectionType === 'csv' || showComponentError;
     const { requestId, errorMessage } = this.getDataFromError();
 

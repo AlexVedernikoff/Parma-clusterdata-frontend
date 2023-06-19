@@ -156,5 +156,7 @@ function getDateFromTemplate(tmpl, scale, dateFormat) {
 }
 
 export default function getDatesFromSearchTemplate(searchTmpl, scale, dateFormat) {
-  return searchTmpl.split(DATES_SEPARATOR_PATTERN).map(tmpl => getDateFromTemplate(tmpl, scale, dateFormat));
+  return searchTmpl
+    .split(DATES_SEPARATOR_PATTERN)
+    .map(tmpl => getDateFromTemplate(tmpl, scale, dateFormat));
 }
