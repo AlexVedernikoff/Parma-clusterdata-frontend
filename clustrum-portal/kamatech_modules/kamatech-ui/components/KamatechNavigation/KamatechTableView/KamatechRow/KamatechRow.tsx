@@ -9,8 +9,6 @@ import { KamatechIcon } from '../../..';
 import { KamatechRowModel } from './KamatechRow.model';
 
 import moment from 'moment';
-import { Space } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 
 moment.locale('ru');
 
@@ -84,6 +82,12 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
   renderFullDetails(entry: any) {
     const { createdBy, updatedAt, isFavorite } = entry;
 
+    const starClassName = ClassHelper.merge(
+      `${blockName}__row-btn`,
+      `${blockName}__btn-change-favorite`,
+      isFavorite ? `${blockName}__btn-change-favorite_isFavorite` : '',
+    );
+
     return (
       <React.Fragment>
         <div className={`${blockName}__createdBy`}>
@@ -93,8 +97,15 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
           <span>{moment(updatedAt).format('DD MMMM YYYY')}</span>
         </div>
         <div className={`${blockName}__row-btns`}>
-          <div className={`${blockName}__row-btn`} onClick={this.onChangeFavorite}>
-            {isFavorite ? 'Убрать из избранного' : 'Добавить в избранное'}
+          <div className={starClassName} onClick={this.onChangeFavorite}>
+            <KamatechIcon
+              className={`${blockName}__icon-star-fill`}
+              data={this.props.iconFavoriteFilled}
+            />
+            <KamatechIcon
+              className={`${blockName}__icon-star-stroke`}
+              data={this.props.iconFavoriteEmpty}
+            />
           </div>
 
           <div
@@ -102,10 +113,12 @@ export class KamatechRow extends React.Component<KamatechRowInterface> {
             onClick={this.onEntryContextClick}
             ref={this.setButtonRef}
           >
-            <Space>
-              Дополнительно
-              <DownOutlined />
-            </Space>
+            <KamatechIcon
+              className={'kamatech-button-edit-entry__icon'}
+              data={this.props.iconDots}
+              width="24"
+              height="24"
+            />
           </div>
         </div>
       </React.Fragment>
