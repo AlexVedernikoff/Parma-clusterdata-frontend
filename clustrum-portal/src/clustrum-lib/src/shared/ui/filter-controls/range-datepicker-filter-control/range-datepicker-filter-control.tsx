@@ -33,29 +33,40 @@ export function RangeDatepickerFilterControl({
   onChange,
 }: RangeDatepickerProps): JSX.Element {
   const [dateRange, setDateRange] = useState<Range>(null);
-  const [isValid, setIsValid] = useState<boolean>(true);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const from = dayjs(value?.from);
     const to = dayjs(value?.to);
-    if (isValid && from.isValid() && to.isValid()) {
+    if (from.isValid() && to.isValid()) {
       setDateRange([from, to]);
     } else {
       setDateRange(null);
     }
-  }, [isValid, value]);
+  }, [value]);
+
+  useEffect(() => {
+    const from = dayjs(value?.from);
+    const to = dayjs(value?.to);
+
+    onChange({
+      from: from.format(DEFAULT_DATE_FORMAT),
+      to: to.format(DEFAULT_DATE_FORMAT),
+    });
+  }, []);
 
   const handleChange = (values: Range): void => {
     if (values?.[0] && values?.[1]) {
-      setIsValid(true);
       onChange({
         from: values[0].format(DEFAULT_DATE_FORMAT),
         to: values[1].format(DEFAULT_DATE_FORMAT),
       });
     } else {
-      setIsValid(false);
+      onChange({
+        from: '',
+        to: '',
+      });
     }
   };
 
@@ -71,7 +82,6 @@ export function RangeDatepickerFilterControl({
         {`${label}:`}
         <div ref={pickerRef} className="range-datepicker-control__picker">
           <RangePicker
-            className={cn(!isValid && 'range-datepicker-control__picker--invalid')}
             disabledDate={(current): boolean =>
               (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
               (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
@@ -84,11 +94,6 @@ export function RangeDatepickerFilterControl({
             onChange={handleChange}
             onOpenChange={handleCalendarPosition}
           />
-          {!isValid && (
-            <div className="range-datepicker-control__validation-msg">
-              Укажите обе даты диапазона
-            </div>
-          )}
         </div>
       </label>
     </div>
