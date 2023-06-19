@@ -15,6 +15,7 @@ import './../css/dash.css';
 import './../css/dash-new.css';
 import './../css/card.css';
 import './../css/dash-redesign.css';
+import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
 

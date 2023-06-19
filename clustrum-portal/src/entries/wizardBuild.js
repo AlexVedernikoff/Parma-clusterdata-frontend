@@ -18,6 +18,7 @@ import './../css/commons.css';
 import './../css/app.css';
 import './../css/app-table-settings-total.css';
 import './../css/card.css';
+import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
 
