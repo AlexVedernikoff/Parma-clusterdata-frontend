@@ -30,25 +30,23 @@ export function DatepickerFilterControl({
   onChange,
 }: DatepickerProps): JSX.Element {
   const [date, setDate] = useState<Dayjs | null>(null);
-  const [isValid, setIsValid] = useState<boolean>(true);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const currentValue = dayjs(value);
-    if (isValid && currentValue.isValid()) {
+    if (currentValue.isValid()) {
       setDate(currentValue);
     } else {
       setDate(null);
     }
-  }, [isValid, value]);
+  }, [value]);
 
   const handleChange = (dateValue: Dayjs | null): void => {
     if (dateValue) {
-      setIsValid(true);
       onChange(dateValue.format(DEFAULT_DATE_FORMAT));
     } else {
-      setIsValid(false);
+      onChange('');
     }
   };
 
@@ -64,7 +62,6 @@ export function DatepickerFilterControl({
         {`${label}:`}
         <div ref={pickerRef} className="datepicker-control__picker">
           <DatePicker
-            className={cn(!isValid && 'datepicker-control__picker--invalid')}
             disabledDate={(current): boolean =>
               (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
               (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
@@ -77,9 +74,6 @@ export function DatepickerFilterControl({
             onChange={handleChange}
             onOpenChange={handleCalendarPosition}
           />
-          {!isValid && (
-            <div className="datepicker-control__validation-msg">Укажите дату</div>
-          )}
         </div>
       </label>
     </div>
