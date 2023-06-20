@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import update from 'immutability-helper';
 // TODO: убрать зависимость из старого кода
 import { getUniqueId } from '../../../../../utils/helpers';
 import { useDrop } from 'react-dnd';
@@ -32,10 +31,9 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     accept: 'ITEM',
     drop: (item: any, monitor: any): any => {
       const { id } = props;
-      const sourceObj = monitor.getItem();
-      const itemType = sourceObj.item.type;
+      const itemType = item.item.type;
 
-      if (id !== sourceObj.listId) {
+      if (id !== item.listId) {
         // отменяем, если не вмещается (но если не разрешена замена)
         if (props.capacity && props.capacity <= items.length) {
           return { revert: true };
@@ -47,13 +45,11 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
             return { revert: true };
           }
         } else if (props.checkAllowed) {
-          if (!props.checkAllowed(sourceObj.item)) {
+          if (!props.checkAllowed(item.item)) {
             return { revert: true };
           }
         }
       }
-
-      setDropPlace(null);
 
       const targetIndex =
         typeof dropPlace === 'number'
@@ -64,87 +60,19 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
       if (
         !(
-          props.listId === item.listId &&
+          props.id === item.listId &&
           (targetIndex === item.index + 1 || targetIndex === item.index)
         )
       ) {
-        // удаляем в исходном контейнере
         remove(item.index);
-
         // добавляем в целевой контейнер
-        insert(item.item, targetIndex, () => {
-          insert(item.item, item.index);
-        });
-      }
-    },
-    hover: (item: any, monitor: any): any => {
-      const dragIndex = monitor.getItem().index;
-      const hoverIndex = item.index;
-      const sourceListId = monitor.getItem().listId;
-
-      // сохраним индекс положения куда мы захуверились
-      monitor.getItem().hoverIndex = hoverIndex;
-
-      const domNode = ref.current;
-      if (!domNode) {
-        return;
-      }
-      const hoverBoundingRect = domNode.getBoundingClientRect();
-      const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-      // Представьте себе систему координат в евклидовом пространстве, где ось y направлена вниз (ось х не важна):
-      // 0 находится там, где верхний край элемента, на который мы попали курсором, пока что-то тащили;
-      // elementSize находится там, где нижний край этого же элемента.
-      // Зона, которую мы считаем триггером для реплейса - это зона размером с половину элемента от 1/4 его высоты до 3/4 его высоты
-      const replaceZoneSize = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const replaceZoneBottom =
-        hoverBoundingRect.bottom - replaceZoneSize / 2 - hoverBoundingRect.top;
-      const replaceZoneTop = replaceZoneSize / 2;
-
-      if (hoverClientY < replaceZoneTop) {
-        if (
-          !(
-            item.listId === sourceListId &&
-            (dragIndex === hoverIndex || dragIndex === hoverIndex - 1)
-          )
-        ) {
-          setDropPlace(hoverIndex);
-        }
-      } else if (replaceZoneBottom < hoverClientY) {
-        if (
-          !(
-            item.listId === sourceListId &&
-            (dragIndex === hoverIndex + 1 || dragIndex === hoverIndex)
-          )
-        ) {
-          setDropPlace(hoverIndex + 1);
-        }
-      } else {
-        setDropPlace(null);
+        insert(item.item, targetIndex);
       }
     },
   }));
 
   function setTooltipVisible(visibility: boolean): void {
     setTooltipVisibleState(visibility);
-  }
-
-  function move(dragIndex: number, hoverIndex: number): void {
-    const dragItem = items[dragIndex];
-
-    setItems(
-      update(items, {
-        $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, dragItem],
-        ],
-      }),
-    );
-
-    if (props.onUpdate) {
-      props.onUpdate(items);
-    }
   }
 
   function insert(item: IDndItem, index: number, onUndoInsert?: () => void): void {
@@ -163,23 +91,12 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       setUsedItem(insertedItem);
       setAction('insert');
       setOnUndoActionState(onUndoInsert);
-      setItems(
-        update(items, {
-          $splice: [[index, 0, insertedItem]],
-        }),
-      );
+      setItems(prevItems => {
+        const updatedItems = [...prevItems];
+        updatedItems.splice(index, 0, insertedItem);
+        return updatedItems;
+      });
     }
-  }
-
-  function replace(index: number, item: IDndItem, onUndoReplace?: () => void): void {
-    setUsedItem(item);
-    setAction('replace');
-    setOnUndoActionState(onUndoReplace);
-    setItems(
-      update(items, {
-        $splice: [[index, 1, item]],
-      }),
-    );
   }
 
   function remove(index: number): void {
@@ -188,11 +105,14 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       return;
     }
 
-    const removedItems = items.splice(index, 1);
-    setItems(items);
+    const removedItem = items[index];
+    setItems(prev => {
+      const tempItems = prev.filter((_, i) => i !== index);
+      return tempItems;
+    });
 
     if (props.onUpdate) {
-      props.onUpdate(items, removedItems[0], 'remove');
+      props.onUpdate(items, removedItem, 'remove');
     }
   }
 
@@ -224,6 +144,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
               setTooltipVisible={setTooltipVisible}
               tooltipVisible={tooltipVisible}
               remove={remove}
+              setDropPlace={setDropPlace}
             />
           );
         })}

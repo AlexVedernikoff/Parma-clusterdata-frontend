@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useDrag } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 import { DndItemProps } from './types/dnd-item-props';
 
 export function DndItem(props: DndItemProps): JSX.Element {
@@ -17,9 +17,62 @@ export function DndItem(props: DndItemProps): JSX.Element {
     },
   }));
 
+  const [, drop] = useDrop(() => ({
+    accept: 'ITEM',
+    hover: (item: any, monitor: any): any => {
+      const dragIndex = monitor.getItem().index;
+      const hoverIndex = props.index;
+      const sourceListId = monitor.getItem().listId;
+
+      // сохраним индекс положения куда мы захуверились
+      monitor.getItem().hoverIndex = hoverIndex;
+
+      const domNode = ref.current;
+      if (!domNode) {
+        return;
+      }
+      const hoverBoundingRect = domNode.getBoundingClientRect();
+      const clientOffset = monitor.getClientOffset();
+      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+      // Представьте себе систему координат в евклидовом пространстве, где ось y направлена вниз (ось х не важна):
+      // 0 находится там, где верхний край элемента, на который мы попали курсором, пока что-то тащили;
+      // elementSize находится там, где нижний край этого же элемента.
+      // Зона, которую мы считаем триггером для реплейса - это зона размером с половину элемента от 1/4 его высоты до 3/4 его высоты
+      const replaceZoneSize = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      const replaceZoneBottom =
+        hoverBoundingRect.bottom - replaceZoneSize / 2 - hoverBoundingRect.top;
+      const replaceZoneTop = replaceZoneSize / 2;
+
+      if (hoverClientY < replaceZoneTop) {
+        if (
+          !(
+            item.listId === sourceListId &&
+            (dragIndex === hoverIndex || dragIndex === hoverIndex - 1)
+          )
+        ) {
+          props.setDropPlace(hoverIndex);
+        }
+      } else if (replaceZoneBottom < hoverClientY) {
+        if (
+          !(
+            item.listId === sourceListId &&
+            (dragIndex === hoverIndex + 1 || dragIndex === hoverIndex)
+          )
+        ) {
+          props.setDropPlace(hoverIndex + 1);
+        }
+      } else {
+        props.setDropPlace(-1);
+      }
+    },
+  }));
+
   return (
-    <div ref={drag}>
-      <div ref={ref}>{props.wrapTo(props, ref.current)}</div>
+    <div ref={drop}>
+      <div ref={drag}>
+        <div ref={ref}>{props.wrapTo(props, ref.current)}</div>
+      </div>
     </div>
   );
 }
