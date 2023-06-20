@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Select } from 'antd';
-import { Content } from './types/content';
+import { Content } from './types';
 import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
 import './select-filter-control.css';
 

@@ -4,9 +4,8 @@ import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
-import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown/should-move-dropdown';
-import { PickerValue } from './types/picker-value';
-import { Range } from './types/range';
+import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown';
+import { PickerValue, Range } from './types';
 import './range-datepicker-filter-control.css';
 const { RangePicker } = DatePicker;
 

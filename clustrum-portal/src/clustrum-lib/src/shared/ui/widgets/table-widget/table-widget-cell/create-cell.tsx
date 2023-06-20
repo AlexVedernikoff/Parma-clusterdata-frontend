@@ -3,7 +3,7 @@ import ReactDomServer from 'react-dom/server';
 
 import { Options, GridFlow, Cell, DateType } from '../types';
 import { camelCaseCss, numberFormatter, NULL_ALIAS } from '../lib';
-import { diffFormatter } from '.';
+import { diffFormatter } from './diff-formatter';
 import { renderDate, renderDiff, renderText } from './cell-renders';
 
 function reverseGridFlow(gridFlow: GridFlow): GridFlow {
