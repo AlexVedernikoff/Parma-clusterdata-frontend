@@ -71,7 +71,7 @@ export default class GridLayout extends React.PureComponent {
     const item = this._findWidgetItemByUuid(widgetForReloadUUID);
 
     if (item) {
-      const ref = this.pluginsRefs.find(ref => ref.props.id === item.id);
+      const ref = this.pluginsRefs.find(ref => ref.props?.id === item.id);
 
       if (ref) {
         reloadItem(ref);
