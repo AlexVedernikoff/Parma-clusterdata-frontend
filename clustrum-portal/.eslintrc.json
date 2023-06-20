@@ -36,6 +36,7 @@
         "selector": "enumMember",
         "format": ["PascalCase"]
       }
-    ]
+    ],
+    "curly": ["error", "all"]
   }
 }
