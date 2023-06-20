@@ -16,7 +16,8 @@ import { ExportWidgetOptions } from 'src/services/dashboard/export/export-widget
 import './section-preview.css';
 
 function goAwayLink({ loadedData, propsData, urlPostfix = '', idPrefix = '' }: goAwayLinkProps): string {
-  let url = window.DL.endpoints.wizard + urlPostfix;
+  const { endpoints } = window.DL;
+  let url = endpoints.wizard + urlPostfix;
   url += loadedData.entryId || propsData.id ? idPrefix + (loadedData.entryId || propsData.id) : propsData.source;
 
   let query = new URLSearchParams({ ...propsData.params }).toString();
@@ -48,7 +49,8 @@ function SectionPreview({
     onExport(runPayload.id, widget?.name ?? '', options);
   };
 
-  const renderChartkit = (): JSX.Element | null => {
+  const renderChartKit = (): JSX.Element | null => {
+    const { installationType } = window.DL;
     if (datasetError) {
       return (
         <div className="preview-chartkit__dataset-error-container">
@@ -60,7 +62,7 @@ function SectionPreview({
     if (previewEntryId || (config && configType)) {
       let LINK_NEW_WINDOW;
 
-      if (window.DL.installationType === 'external') {
+      if (installationType === 'external') {
         LINK_NEW_WINDOW = {
           title: 'Открыть в новой вкладке',
           icon: <ExpandOutlined width="20" />,
@@ -96,15 +98,9 @@ function SectionPreview({
               highchartsWidget: result.data.widget,
             });
 
-            if (result.status === 'success') {
-              const event = new Event('chart-preview.done', { bubbles: true, cancelable: true });
-
-              document.querySelector('.preview-container__preview-chartkit')?.dispatchEvent(event);
-            } else {
-              const event = new Event('chart-preview.error', { bubbles: true, cancelable: true });
-
-              document.querySelector('.preview-container__preview-chartkit')?.dispatchEvent(event);
-            }
+            const eventName = result.status === 'success' ? 'chart-preview.done' : 'chart-preview.error';
+            const event = new Event(eventName, { bubbles: true, cancelable: true });
+            document.querySelector('.preview-container__preview-chartkit')?.dispatchEvent(event);
           }}
           menu={menuItems}
           exportWidget={exportWidget.current}
@@ -114,7 +110,7 @@ function SectionPreview({
     return null;
   };
 
-  return <div className="preview-chartkit">{renderChartkit()}</div>;
+  return <div className="preview-chartkit">{renderChartKit()}</div>;
 }
 
 const mapStateToProps = createStructuredSelector({

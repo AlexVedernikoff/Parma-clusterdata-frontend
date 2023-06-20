@@ -8,7 +8,6 @@ export interface SectionPreviewProps {
         page: number;
         pageSize: number;
       };
-      orderBy: object;
     };
   };
   widget: {
