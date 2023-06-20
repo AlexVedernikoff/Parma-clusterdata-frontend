@@ -1,5 +1,5 @@
 import React, { useCallback, useState, ReactElement } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import { MenuItemType } from 'antd/es/menu/hooks/useItems';
 import Icons, { LeftOutlined, RightOutlined } from '@ant-design/icons';
@@ -35,13 +35,13 @@ export function SidePanel({ withReactRouter = false }: SidePanelProps): ReactEle
   return (
     <div className="side-panel">
       <div
-        className={cn('side-panel__header', {
+        className={classNames('side-panel__header', {
           'side-panel__header--collapsed': collapsed,
         })}
       >
         <Icons component={RedLogo} style={{ color: token.colorPrimary }} />
         <span
-          className={cn('side-panel__header-title', {
+          className={classNames('side-panel__header-title', {
             'side-panel__header-title--collapsed': collapsed,
           })}
         >

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { Select } from 'antd';
 import { Content } from './types/content';
 import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
@@ -36,7 +36,7 @@ export function SelectFilterControl({
   }, [debouncedValue, onChange]);
 
   return (
-    <div className={cn('select-filter-control', className)}>
+    <div className={classNames('select-filter-control', className)}>
       <label className="select-filter-control__label">
         {`${label}:`}
         <Select

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import dayjs from 'dayjs';
@@ -77,7 +77,7 @@ export function RangeDatepickerFilterControl({
   };
 
   return (
-    <div className={cn('range-datepicker-control', className)}>
+    <div className={classNames('range-datepicker-control', className)}>
       <label className="range-datepicker-control__label">
         {`${label}:`}
         <div ref={pickerRef} className="range-datepicker-control__picker">
