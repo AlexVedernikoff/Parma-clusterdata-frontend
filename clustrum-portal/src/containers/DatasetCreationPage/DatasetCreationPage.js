@@ -398,8 +398,6 @@ class DatasetCreationPage extends React.Component {
       section: isReplaceSourceMode ? 'change-source' : 'creation-dataset',
     });
 
-    console.log(connectionId);
-
     return (
       <div className={b()}>
         <ActionPanel
