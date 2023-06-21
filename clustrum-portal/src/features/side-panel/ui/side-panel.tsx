@@ -8,12 +8,11 @@ import { Menu, theme } from 'antd';
 import { useActiveMenuItemKey } from '../lib/hooks/use-active-menu-item-key';
 import { MENU_ITEMS } from '../lib/constants/menu-items';
 import { RedLogo } from './red-logo';
-import './side-panel.css';
-const { useToken } = theme;
+import { SidePanelProps } from '../types';
 
-interface SidePanelProps {
-  withReactRouter?: boolean;
-}
+import './side-panel.css';
+
+const { useToken } = theme;
 
 export function SidePanel({ withReactRouter = false }: SidePanelProps): ReactElement {
   const [collapsed, setCollapsed] = useState(false);

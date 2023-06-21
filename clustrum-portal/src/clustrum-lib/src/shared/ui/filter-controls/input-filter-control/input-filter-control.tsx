@@ -2,15 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Input } from 'antd';
 import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
 import classNames from 'classnames';
-import './input-filter-control.css';
+import { InputFilterControlProps } from './types';
 
-interface InputFilterControlProps {
-  label: string;
-  className?: string;
-  placeholder?: string;
-  defaultValue?: string;
-  onChange(str: string): void;
-}
+import './input-filter-control.css';
 
 export function InputFilterControl({
   label,

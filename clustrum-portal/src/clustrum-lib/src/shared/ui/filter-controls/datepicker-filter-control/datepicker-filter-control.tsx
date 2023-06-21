@@ -5,17 +5,9 @@ import ruRU from 'antd/locale/ru_RU';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown';
-import './datepicker-filter-control.css';
+import { DatepickerFilterControlProps } from './types';
 
-interface DatepickerProps {
-  className?: string;
-  dateFormat?: string;
-  label: string;
-  maxDate?: string;
-  minDate?: string;
-  value?: string;
-  onChange(value: string): void;
-}
+import './datepicker-filter-control.css';
 
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 const POPUP_WIDTH = 288;
@@ -28,7 +20,7 @@ export function DatepickerFilterControl({
   value,
   dateFormat = DEFAULT_DATE_FORMAT,
   onChange,
-}: DatepickerProps): JSX.Element {
+}: DatepickerFilterControlProps): JSX.Element {
   const [date, setDate] = useState<Dayjs | null>(null);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
   const pickerRef = useRef<HTMLDivElement>(null);
