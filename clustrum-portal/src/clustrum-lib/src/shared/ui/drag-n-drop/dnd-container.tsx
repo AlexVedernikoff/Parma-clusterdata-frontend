@@ -162,12 +162,12 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
       setUsedItem(insertedItem);
       setAction('insert');
-      setOnUndoActionState(onUndoInsert);
       setItems(
         update(items, {
           $splice: [[index, 0, insertedItem]],
         }),
       );
+      setOnUndoActionState(onUndoInsert);
     }
   }
 
