@@ -21,7 +21,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
   const [, drop] = useDrop(() => ({
     accept: 'ITEM',
     //TODO 696922 вынести в отдельный метод и типизировать
-    hover: (item: any, monitor: any): any => {
+    hover: (itemWrapper: any, monitor: any): any => {
       const sourceItem = monitor.getItem();
       const dragIndex = sourceItem.index;
       const sourceListId = sourceItem.listId;
@@ -47,7 +47,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
         hoverBoundingRect.bottom - replaceZoneSize / 2 - hoverBoundingRect.top;
       const replaceZoneTop = replaceZoneSize / 2;
 
-      const isContainerTypeMatch = item.listId === sourceListId;
+      const isContainerTypeMatch = itemWrapper.listId === sourceListId;
       const isUnderTarget = dragIndex === hoverIndex || dragIndex === hoverIndex - 1;
       const isOnTarget = dragIndex === hoverIndex + 1 || dragIndex === hoverIndex;
 

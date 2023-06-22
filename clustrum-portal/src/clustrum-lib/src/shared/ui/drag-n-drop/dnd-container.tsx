@@ -7,7 +7,7 @@ import { DndItem as IDndItem, DndContainerProps } from './types';
 
 //TODO 696922 деконструировать просы и вынести функции
 export function DndContainer(props: DndContainerProps): JSX.Element {
-  const [items, setItems] = useState<IDndItem[]>([]);
+  const [items, setItems] = useState<IDndItem[]>(props.items || []);
   const [dropPlace, setDropPlace] = useState<number | null>();
   const [tooltipVisible, setTooltipVisibleState] = useState(false);
   const [usedItem, setUsedItem] = useState<IDndItem>();
@@ -29,11 +29,11 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
   const [, drop] = useDrop(() => ({
     accept: 'ITEM',
     //TODO 696922 вынести в отдельный метод и типизировать
-    drop: (item: any, monitor: any): any => {
+    drop: (itemWrapper: any, monitor: any): any => {
       const { id } = props;
-      const itemType = item.item.type;
+      const itemType = itemWrapper.item.type;
 
-      if (id !== item.listId) {
+      if (id !== itemWrapper.listId) {
         // отменяем, если не вмещается (но если не разрешена замена)
         if (props.capacity && props.capacity <= items.length) {
           return { revert: true };
@@ -45,7 +45,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
             return { revert: true };
           }
         } else if (props.checkAllowed) {
-          if (!props.checkAllowed(item.item)) {
+          if (!props.checkAllowed(itemWrapper.item)) {
             return { revert: true };
           }
         }
@@ -54,16 +54,16 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       const targetIndex =
         typeof dropPlace === 'number'
           ? dropPlace
-          : typeof item.hoverIndex === 'number'
-          ? item.hoverIndex
+          : typeof itemWrapper.hoverIndex === 'number'
+          ? itemWrapper.hoverIndex
           : items.length;
 
-      if (props.id === item.listId) {
-        remove(item.index);
+      if (props.id === itemWrapper.listId) {
+        remove(itemWrapper.index);
       }
 
       // добавляем в целевой контейнер
-      insert(item.item, targetIndex);
+      insert(itemWrapper.item, targetIndex);
     },
   }));
 
@@ -71,7 +71,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     setTooltipVisibleState(visibility);
   }
 
-  function insert(item: IDndItem, index: number, onUndoInsert?: () => void): void {
+  function insert(item: IDndItem, index: number): void {
     // по умолчанию пушим всегда
     let insert = true;
 
@@ -84,10 +84,10 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       const insertedItem = { ...item };
       insertedItem.id = getUniqueId('inserted');
 
-      setIsNeedToUpdate(true);
       setUsedItem(insertedItem);
       setAction('insert');
       setItems(prevItems => {
+        setIsNeedToUpdate(true);
         const updatedItems = [...prevItems];
         updatedItems.splice(index, 0, insertedItem);
         return updatedItems;
@@ -102,10 +102,10 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     }
 
     const removedItem = items[index];
-    setIsNeedToUpdate(true);
     setUsedItem(removedItem);
     setAction('remove');
     setItems(prev => {
+      setIsNeedToUpdate(true);
       const filtredItems = prev.filter((_, i) => i !== index);
       return filtredItems;
     });
