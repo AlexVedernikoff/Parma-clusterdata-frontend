@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { Select } from 'antd';
 import { SelectFilterControlProps } from './types';
 import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
+import { SelectAllBtn } from './select-all-btn';
 
 import './select-filter-control.css';
 
@@ -26,6 +27,17 @@ export function SelectFilterControl({
     onChange(debouncedValue);
   }, [debouncedValue, onChange]);
 
+  const handleSelectAll = (): void => {
+    const allValues = content.map(({ value }) => value);
+    const isAllItemsSelected =
+      Array.isArray(currentValue) && allValues.length === currentValue.length;
+    if (isAllItemsSelected) {
+      setCurrentValue([]);
+    } else {
+      setCurrentValue(allValues);
+    }
+  };
+
   return (
     <div className={classNames('select-filter-control', className)}>
       <label className="select-filter-control__label">
@@ -48,6 +60,12 @@ export function SelectFilterControl({
               setCurrentValue([]);
             }
           }}
+          dropdownRender={(menu): React.ReactElement => (
+            <>
+              {multiselect && <SelectAllBtn onClick={handleSelectAll} />}
+              {menu}
+            </>
+          )}
         />
       </label>
     </div>
