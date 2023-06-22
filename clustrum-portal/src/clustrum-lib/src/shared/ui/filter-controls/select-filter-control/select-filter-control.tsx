@@ -43,6 +43,7 @@ export function SelectFilterControl({
       <label className="select-filter-control__label">
         {`${label}:`}
         <Select
+          placeholder="Все"
           className="select-filter-control__select"
           mode={multiselect ? 'multiple' : undefined}
           maxTagCount="responsive"
