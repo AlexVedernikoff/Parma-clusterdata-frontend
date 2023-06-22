@@ -12,13 +12,7 @@ export interface DndContainerProps {
   title?: string;
   listId?: string;
   onItemClick(e: Event, item: DndItem): void;
-  onUpdate(
-    items: DndItem[],
-    insertItem?: DndItem,
-    action?: string,
-    onUndoAction?: () => void,
-  ): void;
+  onUpdate(items: DndItem[], insertItem?: DndItem, action?: string): void;
   wrapTo(props: DndItemProps, component: HTMLDivElement | null): Element;
   checkAllowed?(item: DndItem): boolean;
-  isNeedUpdate?: boolean;
 }

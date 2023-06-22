@@ -7,25 +7,24 @@ import { DndItem as IDndItem } from './types/dnd-item';
 import { DndContainerProps } from './types/dnd-container-props';
 
 export function DndContainer(props: DndContainerProps): JSX.Element {
-  const [items, setItems] = useState<IDndItem[]>(props.items || []);
+  const [items, setItems] = useState<IDndItem[]>([]);
   const [dropPlace, setDropPlace] = useState<number | null>();
   const [tooltipVisible, setTooltipVisibleState] = useState(false);
   const [usedItem, setUsedItem] = useState<IDndItem>();
   const [action, setAction] = useState<string>();
-  const [onUndoActionState, setOnUndoActionState] = useState<() => void>();
-  const ref = useRef<HTMLDivElement>(null);
+  const [isNeedToUpdate, setIsNeedToUpdate] = useState(false);
+  const ref = useRef(null);
 
   useEffect(() => {
-    if (props.onUpdate && items != props.items) {
-      props.onUpdate(items, usedItem, action, onUndoActionState);
+    setItems(props.items);
+  }, [props.items]);
+
+  useEffect(() => {
+    if (props.onUpdate && isNeedToUpdate) {
+      props.onUpdate(items, usedItem, action);
+      setIsNeedToUpdate(false);
     }
   }, [items]);
-
-  useEffect(() => {
-    if (props.isNeedUpdate) {
-      setItems(props.items);
-    }
-  }, [props.items, props.isNeedUpdate]);
 
   const [, drop] = useDrop(() => ({
     accept: 'ITEM',
@@ -58,16 +57,12 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
           ? item.hoverIndex
           : items.length;
 
-      if (
-        !(
-          props.id === item.listId &&
-          (targetIndex === item.index + 1 || targetIndex === item.index)
-        )
-      ) {
+      if (props.id === item.listId) {
         remove(item.index);
-        // добавляем в целевой контейнер
-        insert(item.item, targetIndex);
       }
+
+      // добавляем в целевой контейнер
+      insert(item.item, targetIndex);
     },
   }));
 
@@ -88,9 +83,9 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       const insertedItem = { ...item };
       insertedItem.id = getUniqueId('inserted');
 
+      setIsNeedToUpdate(true);
       setUsedItem(insertedItem);
       setAction('insert');
-      setOnUndoActionState(onUndoInsert);
       setItems(prevItems => {
         const updatedItems = [...prevItems];
         updatedItems.splice(index, 0, insertedItem);
@@ -106,14 +101,13 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     }
 
     const removedItem = items[index];
+    setIsNeedToUpdate(true);
+    setUsedItem(removedItem);
+    setAction('remove');
     setItems(prev => {
-      const tempItems = prev.filter((_, i) => i !== index);
-      return tempItems;
+      const filtredItems = prev.filter((_, i) => i !== index);
+      return filtredItems;
     });
-
-    if (props.onUpdate) {
-      props.onUpdate(items, removedItem, 'remove');
-    }
   }
 
   let title;

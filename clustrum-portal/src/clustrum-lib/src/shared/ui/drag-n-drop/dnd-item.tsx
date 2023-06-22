@@ -20,9 +20,10 @@ export function DndItem(props: DndItemProps): JSX.Element {
   const [, drop] = useDrop(() => ({
     accept: 'ITEM',
     hover: (item: any, monitor: any): any => {
-      const dragIndex = monitor.getItem().index;
+      const sourceItem = monitor.getItem();
+      const dragIndex = sourceItem.index;
+      const sourceListId = sourceItem.listId;
       const hoverIndex = props.index;
-      const sourceListId = monitor.getItem().listId;
 
       // сохраним индекс положения куда мы захуверились
       monitor.getItem().hoverIndex = hoverIndex;
@@ -44,26 +45,18 @@ export function DndItem(props: DndItemProps): JSX.Element {
         hoverBoundingRect.bottom - replaceZoneSize / 2 - hoverBoundingRect.top;
       const replaceZoneTop = replaceZoneSize / 2;
 
-      if (hoverClientY < replaceZoneTop) {
-        if (
-          !(
-            item.listId === sourceListId &&
-            (dragIndex === hoverIndex || dragIndex === hoverIndex - 1)
-          )
-        ) {
-          props.setDropPlace(hoverIndex);
-        }
-      } else if (replaceZoneBottom < hoverClientY) {
-        if (
-          !(
-            item.listId === sourceListId &&
-            (dragIndex === hoverIndex + 1 || dragIndex === hoverIndex)
-          )
-        ) {
-          props.setDropPlace(hoverIndex + 1);
-        }
+      const isContainerTypeMatch = item.listId === sourceListId;
+      const isUnderTarget = dragIndex === hoverIndex || dragIndex === hoverIndex - 1;
+      const isOnTarget = dragIndex === hoverIndex + 1 || dragIndex === hoverIndex;
+
+      if (hoverClientY < replaceZoneTop && !(isContainerTypeMatch && isUnderTarget)) {
+        props.setDropPlace(hoverIndex);
       } else {
-        props.setDropPlace(-1);
+        if (replaceZoneBottom < hoverClientY && !(isContainerTypeMatch && isOnTarget)) {
+          props.setDropPlace(hoverIndex + 1);
+        } else {
+          props.setDropPlace(-1);
+        }
       }
     },
   }));
