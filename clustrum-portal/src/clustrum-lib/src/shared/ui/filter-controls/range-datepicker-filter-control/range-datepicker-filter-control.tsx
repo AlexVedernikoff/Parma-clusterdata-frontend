@@ -37,22 +37,21 @@ export function RangeDatepickerFilterControl({
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const from = dayjs(value?.from);
-    const to = dayjs(value?.to);
-    if (from.isValid() && to.isValid()) {
-      setDateRange([from, to]);
-    } else {
-      setDateRange(null);
+    if (value?.from && value?.to) {
+      const from = dayjs(value?.from);
+      const to = dayjs(value?.to);
+      if (from.isValid() && to.isValid()) {
+        setDateRange([from, to]);
+        return;
+      }
     }
+    setDateRange(null);
   }, [value]);
 
   useEffect(() => {
-    const from = dayjs(value?.from);
-    const to = dayjs(value?.to);
-
     onChange({
-      from: from.format(DEFAULT_DATE_FORMAT),
-      to: to.format(DEFAULT_DATE_FORMAT),
+      from: value?.from ? dayjs(value?.from).format(DEFAULT_DATE_FORMAT) : '',
+      to: value?.to ? dayjs(value?.to).format(DEFAULT_DATE_FORMAT) : '',
     });
   }, []);
 

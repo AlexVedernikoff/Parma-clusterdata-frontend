@@ -66,7 +66,7 @@ class OLMap extends React.Component {
     this.currentZoom = null;
     this.currentBbox = null;
     this.hasMoveToDataExtent = true;
-    this.loadedData = null;
+    this.loadedData = this.props.data;
     this.isLoadingData = false;
 
     const titleLayerSourceDelimiter = ';';
