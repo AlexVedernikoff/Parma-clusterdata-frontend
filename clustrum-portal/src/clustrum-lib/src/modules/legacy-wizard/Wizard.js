@@ -92,16 +92,26 @@ class Wizard extends Component {
   }
 
   openSaveAsWidgetDialog = async () => {
-    const { config, dataset, visualization, defaultPath, receiveWidget } = this.props;
+    const { config, dataset, visualization, receiveWidget } = this.props;
 
     const labelVisualization = {
+      'label_visualization-area': 'Диаграмма с областями',
+      'label_visualization-area-100p': '100% диаграмма с областями',
+      'label_visualization-column': 'Столбчатая диаграмма',
+      'label_visualization-column-100p': '100% cтолбчатая диаграмма',
+      'label_visualization-flat-table': 'Таблица',
+      'label_visualization-line': 'Линейная диаграмма',
+      'label_visualization-pie': 'Круговая диаграмма',
+      'label_visualization-pivot-table': 'Сводная таблица',
+      map: 'Карта',
+      heatmap: 'Фоновая карта',
+      map_cluster_focus_point: 'Карта очагов по кластеризации',
+      label_visualization_card: 'Карточка объекта',
       'label_visualization-scatter': 'Точечная  диаграмма',
       'label_visualization-treemap': 'Древовидная диаграмма',
-      'label_visualization-types-all': 'Все',
-      'label_visualization-types-column': 'Столбчатые',
-      'label_visualization-types-line': 'Графики',
-      'label_visualization-types-pie': 'Круговые',
-      'label_visualization-types-table': 'Таблицы',
+      label_visualization_indicator: 'Индикатор',
+      label_visualization_multiline: 'График',
+      label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
     };
 
     const result = await this.entryDialoguesRef.current.openDialog({
@@ -111,7 +121,7 @@ class Wizard extends Component {
         widgetName: `${dataset.name} — ${labelVisualization[visualization.name]}`,
         widgetData: config.shared,
         title: 'Сохранить чарт',
-        onNotify: ({ error, message, type }) => {
+        onNotify: ({ error }) => {
           if (error && error.response && error.response.status === 400) {
             this.toaster.createToast({
               title: 'Диаграмма с таким именем уже существует',
