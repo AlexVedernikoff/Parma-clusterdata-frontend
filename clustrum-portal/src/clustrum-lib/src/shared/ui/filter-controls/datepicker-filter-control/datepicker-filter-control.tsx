@@ -1,21 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
-import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown/should-move-dropdown';
-import './datepicker-filter-control.css';
+import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown';
+import { DatepickerFilterControlProps } from './types';
 
-interface DatepickerProps {
-  className?: string;
-  dateFormat?: string;
-  label: string;
-  maxDate?: string;
-  minDate?: string;
-  value?: string;
-  onChange(value: string): void;
-}
+import './datepicker-filter-control.css';
 
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 const POPUP_WIDTH = 288;
@@ -28,27 +20,25 @@ export function DatepickerFilterControl({
   value,
   dateFormat = DEFAULT_DATE_FORMAT,
   onChange,
-}: DatepickerProps): JSX.Element {
+}: DatepickerFilterControlProps): JSX.Element {
   const [date, setDate] = useState<Dayjs | null>(null);
-  const [isValid, setIsValid] = useState<boolean>(true);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const currentValue = dayjs(value);
-    if (isValid && currentValue.isValid()) {
+    if (currentValue.isValid()) {
       setDate(currentValue);
     } else {
       setDate(null);
     }
-  }, [isValid, value]);
+  }, [value]);
 
   const handleChange = (dateValue: Dayjs | null): void => {
     if (dateValue) {
-      setIsValid(true);
       onChange(dateValue.format(DEFAULT_DATE_FORMAT));
     } else {
-      setIsValid(false);
+      onChange('');
     }
   };
 
@@ -59,12 +49,11 @@ export function DatepickerFilterControl({
   };
 
   return (
-    <div className={cn('datepicker-control', className)}>
+    <div className={classNames('datepicker-control', className)}>
       <label className="datepicker-control__label">
         {`${label}:`}
         <div ref={pickerRef} className="datepicker-control__picker">
           <DatePicker
-            className={cn(!isValid && 'datepicker-control__picker--invalid')}
             disabledDate={(current): boolean =>
               (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
               (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
@@ -77,9 +66,6 @@ export function DatepickerFilterControl({
             onChange={handleChange}
             onOpenChange={handleCalendarPosition}
           />
-          {!isValid && (
-            <div className="datepicker-control__validation-msg">Укажите дату</div>
-          )}
         </div>
       </label>
     </div>

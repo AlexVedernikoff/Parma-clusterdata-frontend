@@ -1,15 +1,8 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
+import { HeaderProps } from '../types';
 
 import './header.css';
-import { BreadcrumbItem } from '../types/breadcrumb-item';
-
-interface HeaderProps {
-  path: BreadcrumbItem[];
-  title?: string;
-  rightSideContent?: JSX.Element;
-  leftSideContent?: JSX.Element;
-}
 
 export function Header({
   leftSideContent,

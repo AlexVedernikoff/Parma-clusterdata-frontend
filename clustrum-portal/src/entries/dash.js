@@ -11,14 +11,14 @@ import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '../constants/constants';
 
+import './../css/clustrum/colors.css';
 import './../css/app.css';
 import './../css/vendors.css';
-import './../css/colors.css';
 import './../css/commons.css';
 import './../css/dash.css';
 import './../css/dash-new.css';
 import './../css/card.css';
-import './../css/themes/clustrum/dash.css';
+import './../css/dash-redesign.css';
 
 import { logVersion } from '../utils/version-logger';
 

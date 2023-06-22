@@ -29,6 +29,14 @@
     "import/no-default-export": "error",
     "import/no-namespace": "error",
     "max-lines": ["warn", 400],
-    "max-lines-per-function": ["warn", 100]
+    "max-lines-per-function": ["warn", 100],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "enumMember",
+        "format": ["PascalCase"]
+      }
+    ],
+    "curly": ["error", "all"]
   }
 }

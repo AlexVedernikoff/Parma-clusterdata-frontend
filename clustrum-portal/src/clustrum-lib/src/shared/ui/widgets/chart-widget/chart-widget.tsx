@@ -3,34 +3,12 @@ import ReactECharts from 'echarts-for-react';
 
 import { getEchartsConfig } from './lib/helpers';
 import { useCreateOptions } from './lib/hooks/use-create-options';
-import { ChartConfig } from './types';
+import { ChartWidgetProps } from './types';
 import { clickHouseDateFormat } from './lib/helpers';
 
 const FILTER_CONDITION_TYPE = {
   IS_NULL: '__is_null',
 };
-
-interface ChartWidgetProps {
-  data: {
-    data: {
-      categoriesDataTypeName: string;
-      groupField: string;
-    };
-    config: {
-      hideComments: boolean;
-      hideHolidays: boolean;
-      manageTooltipConfig(): void;
-      normalizeDiv: boolean;
-      normalizeSub: boolean;
-      removeShowHideAll: boolean;
-      withoutLineLimit: boolean;
-    };
-    libraryConfig: ChartConfig;
-  };
-  onLoad(): void;
-  onChange(param: { name: string }): void;
-  onStateAndParamsChange(params: { [key: string]: unknown }): void;
-}
 
 export function ChartWidget(props: ChartWidgetProps): JSX.Element {
   const { data: propsData } = props;

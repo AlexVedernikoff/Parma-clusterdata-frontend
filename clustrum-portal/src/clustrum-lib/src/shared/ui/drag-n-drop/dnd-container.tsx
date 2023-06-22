@@ -3,8 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { getUniqueId } from '../../../../../utils/helpers';
 import { useDrop } from 'react-dnd';
 import { DndItem } from './dnd-item';
-import { DndItem as IDndItem } from './types/dnd-item';
-import { DndContainerProps } from './types/dnd-container-props';
+import { DndItem as IDndItem, DndContainerProps } from './types';
 
 export function DndContainer(props: DndContainerProps): JSX.Element {
   const [items, setItems] = useState<IDndItem[]>([]);

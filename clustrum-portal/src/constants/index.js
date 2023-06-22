@@ -66,9 +66,6 @@ export const getConnectorsMap = () => {
     clickhouse: 'ClickHouse',
     csv: 'CSV',
     postgres: 'PostgreSQL',
-    mysql: 'MySQL',
-    mssql: 'MS SQL Server',
-    oracle: 'Oracle Database',
   };
 
   if (chOverYtEnabled) {
