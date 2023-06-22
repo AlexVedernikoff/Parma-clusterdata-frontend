@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useDrag } from 'react-dnd';
-import { DndItemProps } from './types/dnd-item-props';
+import { DndItemProps } from './types';
 
 export function DndItem(props: DndItemProps): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);

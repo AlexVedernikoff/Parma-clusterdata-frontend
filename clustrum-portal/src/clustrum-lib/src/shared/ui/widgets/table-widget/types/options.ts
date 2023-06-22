@@ -1,4 +1,5 @@
-import { CssStyles, GridFlow } from '.';
+import { CssStyles } from './css-styles';
+import { GridFlow } from './grid-flow';
 import { Formatter } from './formatter';
 
 export interface Options {

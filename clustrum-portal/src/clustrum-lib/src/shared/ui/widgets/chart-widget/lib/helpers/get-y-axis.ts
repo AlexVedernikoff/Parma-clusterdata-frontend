@@ -1,5 +1,5 @@
 import { AngleAxisComponentOption } from 'echarts';
-import { numberValueToLocaleString } from '.';
+import { numberValueToLocaleString } from './number-value-to-locale-string';
 import { EchartsOptions } from '../../types';
 
 export const getYAxis = (

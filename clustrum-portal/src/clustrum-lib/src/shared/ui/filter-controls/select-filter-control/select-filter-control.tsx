@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { Select } from 'antd';
-import { Content } from './types/content';
+import { SelectFilterControlProps } from './types';
 import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
-import './select-filter-control.css';
 
-interface SelectFilterControlProps {
-  label: string;
-  content: Content[];
-  value?: string | string[];
-  multiselect?: boolean;
-  searchable?: boolean;
-  className?: string;
-  onChange: (value: string | string[]) => void;
-}
+import './select-filter-control.css';
 
 export function SelectFilterControl({
   multiselect = false,
@@ -36,7 +27,7 @@ export function SelectFilterControl({
   }, [debouncedValue, onChange]);
 
   return (
-    <div className={cn('select-filter-control', className)}>
+    <div className={classNames('select-filter-control', className)}>
       <label className="select-filter-control__label">
         {`${label}:`}
         <Select

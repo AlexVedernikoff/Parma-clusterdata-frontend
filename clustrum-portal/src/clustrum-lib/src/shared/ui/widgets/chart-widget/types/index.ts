@@ -5,3 +5,4 @@ export { EchartsOptions } from './echarts-options';
 export { CreateOptionsReturnType } from './create-options';
 export { Series, SeriesData } from './series';
 export { SeriesOption } from './series-option';
+export { ChartWidgetProps } from './chart-widget-props';

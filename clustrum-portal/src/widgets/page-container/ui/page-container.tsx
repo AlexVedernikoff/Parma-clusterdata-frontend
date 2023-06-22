@@ -2,13 +2,9 @@ import React, { ReactElement } from 'react';
 // eslint-disable-next-line
 // @ts-ignore
 import { SidePanel } from '@features/side-panel';
-import './page-container.css';
+import { PageContainerProps } from '../types';
 
-interface PageContainerProps {
-  withoutSidePanel?: boolean;
-  withReactRouter?: boolean;
-  children?: ReactElement;
-}
+import './page-container.css';
 
 export function PageContainer(props: PageContainerProps): ReactElement {
   const { withoutSidePanel, withReactRouter } = props;
