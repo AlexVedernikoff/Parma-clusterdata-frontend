@@ -1,0 +1,14 @@
+/* Тема для скролла */
+
+::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--antd-color-primary);
+}
+
+::-webkit-scrollbar-corner {
+  background: #000;
+}

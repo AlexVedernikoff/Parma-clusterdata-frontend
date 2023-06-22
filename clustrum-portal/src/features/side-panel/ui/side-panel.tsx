@@ -22,10 +22,10 @@ export function SidePanel({ withReactRouter = false }: SidePanelProps): ReactEle
 
   const handleSidePanelItemClick = useCallback(
     (item: MenuItemType) => {
-      if (!withReactRouter) {
-        window.location.pathname = item.key.toString();
-      } else {
+      if (withReactRouter) {
         history.push(item.key.toString());
+      } else {
+        window.location.pathname = item.key.toString();
       }
     },
     [history, withReactRouter],

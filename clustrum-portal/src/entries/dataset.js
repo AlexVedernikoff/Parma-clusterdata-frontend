@@ -13,11 +13,12 @@ import './../css/clustrum/colors.css';
 import './../css/vendors.css';
 import './../css/commons.css';
 import './../css/dataset.css';
+import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { ANT_TOKEN } from '../constants/constants';
+import { ANT_TOKEN } from '../shared/config/theme';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
