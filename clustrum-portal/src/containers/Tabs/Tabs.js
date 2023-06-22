@@ -65,10 +65,10 @@ const mapDispatchToProps = {
   openDialog,
 };
 
-export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(Tabs);
-
 function addTabIdToUrl(tabId) {
   const url = new URL(window.location.href);
   url.searchParams.set('tab', tabId);
   window.history.replaceState(null, null, url);
 }
+
+export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(Tabs);
