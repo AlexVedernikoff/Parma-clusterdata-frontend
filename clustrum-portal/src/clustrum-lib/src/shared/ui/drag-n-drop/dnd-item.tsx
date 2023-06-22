@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { DndItemProps } from './types';
 
+//TODO 696922 деконструировать просы
 export function DndItem(props: DndItemProps): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -19,6 +20,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
 
   const [, drop] = useDrop(() => ({
     accept: 'ITEM',
+    //TODO 696922 вынести в отдельный метод и типизировать
     hover: (item: any, monitor: any): any => {
       const sourceItem = monitor.getItem();
       const dragIndex = sourceItem.index;

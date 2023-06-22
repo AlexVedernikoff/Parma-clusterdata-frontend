@@ -5,6 +5,7 @@ import { useDrop } from 'react-dnd';
 import { DndItem } from './dnd-item';
 import { DndItem as IDndItem, DndContainerProps } from './types';
 
+//TODO 696922 деконструировать просы и вынести функции
 export function DndContainer(props: DndContainerProps): JSX.Element {
   const [items, setItems] = useState<IDndItem[]>([]);
   const [dropPlace, setDropPlace] = useState<number | null>();
@@ -27,6 +28,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
   const [, drop] = useDrop(() => ({
     accept: 'ITEM',
+    //TODO 696922 вынести в отдельный метод и типизировать
     drop: (item: any, monitor: any): any => {
       const { id } = props;
       const itemType = item.item.type;
