@@ -26,8 +26,13 @@ export default class ReactHighcharts extends React.Component {
       this._chart.destroy();
     }
     const { chartType, callback } = this.props;
-    this._chart = new Highcharts[chartType](merge({ chart: { renderTo: this._node } }, config), callback);
-    window.requestAnimationFrame(() => this._chart && this._chart.options && this._chart.reflow());
+    this._chart = new Highcharts[chartType](
+      merge({ chart: { renderTo: this._node } }, config),
+      callback,
+    );
+    window.requestAnimationFrame(
+      () => this._chart && this._chart.options && this._chart.reflow(),
+    );
   }
 
   componentDidMount() {

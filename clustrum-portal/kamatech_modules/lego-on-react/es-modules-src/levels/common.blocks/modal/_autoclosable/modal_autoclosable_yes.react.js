@@ -16,7 +16,10 @@ export default declMod(
      * @override
      */
     _isElementOutside: function _isElementOutside(element) {
-      return this.containerRef.current.contains(element) && !this._contentElement.contains(element);
+      return (
+        this.containerRef.current.contains(element) &&
+        !this._contentElement.contains(element)
+      );
     },
   },
 );

@@ -6,12 +6,13 @@ import { Button } from 'antd';
 import NavigationModal from 'components/Navigation/NavigationModal';
 import Utils from 'utils';
 import EntryContextMenu from '../../../EntryContextMenu/EntryContextMenu';
-import { Header } from '../../../../../../../../src/entities/header/ui/header';
+import { Header } from '@entities/header';
 import { FolderOutlined, MoreOutlined, StarTwoTone } from '@ant-design/icons';
 import {
   formatPath,
   navigationItems,
 } from '../../../../../../common/src/components/Navigation/utils/header-navigation-utils';
+import { ANT_TOKEN, COLOR_ACCENT } from '../../../../../../../../src/shared/config/theme';
 
 const b = block('dl-entry-panel');
 
@@ -46,7 +47,10 @@ class EntryPanel extends React.Component {
     const { entry: entryProps } = props;
 
     if (entryState) {
-      if (entryProps && (entryState.entryId !== entryProps.entryId || entryState.key !== entryProps.key)) {
+      if (
+        entryProps &&
+        (entryState.entryId !== entryProps.entryId || entryState.key !== entryProps.key)
+      ) {
         return {
           entry: {
             ...entryProps,
@@ -118,23 +122,22 @@ class EntryPanel extends React.Component {
 
   onCloseEntryContextMenu = () => this.setState({ visibleEntryContextMenu: false });
 
-  toggleEntryContextMenu = () => this.setState({ visibleEntryContextMenu: !this.state.visibleEntryContextMenu });
+  toggleEntryContextMenu = () =>
+    this.setState({ visibleEntryContextMenu: !this.state.visibleEntryContextMenu });
 
   render() {
     const { sdk, additionalEntryItems } = this.props;
     const { entry: { isFavorite } = {}, entry, isNavigationVisible } = this.state;
 
-    let disabled = false;
-    if (entry.fake) {
-      disabled = true;
-    }
+    const disabled = Boolean(entry.fake);
+    const iconColor = isFavorite ? ANT_TOKEN.token.colorPrimary : COLOR_ACCENT;
 
     const standardBtns = [
       <Button
         className="ant-d-header-small-btn"
         disabled={disabled}
         title={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
-        icon={isFavorite ? <StarTwoTone twoToneColor="#FFD700" /> : <StarTwoTone />}
+        icon={<StarTwoTone twoToneColor={iconColor} />}
         onClick={this.toggleFavorite}
         key="favorite-btn"
       ></Button>,

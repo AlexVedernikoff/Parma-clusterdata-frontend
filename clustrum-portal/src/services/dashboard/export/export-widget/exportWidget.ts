@@ -12,14 +12,20 @@ import {
 } from '../../../../api/Dashboard';
 import { store } from '../../../../store';
 import { endExport, exportError, startExport } from '../../../../store/actions/dash';
-import { FIRST_EXPORT_STATUS_REQUEST_DELAY, TIME_BETWEEN_EXPORT_STATUS_REQUESTS } from '../consts/timer-consts';
+import {
+  FIRST_EXPORT_STATUS_REQUEST_DELAY,
+  TIME_BETWEEN_EXPORT_STATUS_REQUESTS,
+} from '../consts/timer-consts';
 import { CreateStateUuidFunc } from '../../create-dash-state';
 import { ExportWidgetOptions } from './types/ExportWidgetOptions';
 import { WidgetData } from './types/WidgetData';
 import { clientFileName } from '../utils/clientFileName';
 import { startExportStatusTimer } from '../utils/startExportStatusTimer';
 
-async function getStateUuid(entryId: string, createStateUuid: CreateStateUuidFunc | undefined) {
+async function getStateUuid(
+  entryId: string,
+  createStateUuid: CreateStateUuidFunc | undefined,
+) {
   if (!createStateUuid) {
     return '';
   }
@@ -47,11 +53,18 @@ export const exportWidget = async (
       delimiter: options.delValues,
       format: options.format,
       floatDelimiter: options.delNumbers,
-      encoding: options.encoding ? (options.encoding === Encoding.UTF8 ? ApiEncoding.UTF8 : ApiEncoding.CP1251) : null,
+      encoding: options.encoding
+        ? options.encoding === Encoding.UTF8
+          ? ApiEncoding.UTF8
+          : ApiEncoding.CP1251
+        : null,
     },
   };
 
-  const clientFileNameWithoutFormat = clientFileName(widgetData.name, widgetData.tabTitle);
+  const clientFileNameWithoutFormat = clientFileName(
+    widgetData.name,
+    widgetData.tabTitle,
+  );
 
   try {
     const {

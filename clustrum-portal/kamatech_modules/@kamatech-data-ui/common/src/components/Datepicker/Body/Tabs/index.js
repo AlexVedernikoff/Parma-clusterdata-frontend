@@ -11,7 +11,14 @@ const TAB_TYPES = ['day', 'week', 'month', 'quarter', 'year'];
 
 const getTabsList = (activeTab, lang) => {
   return TAB_TYPES.map(type => {
-    return <Tab key={`tab-${type}`} content={locales[lang].tab[type]} isActive={type === activeTab} type={type} />;
+    return (
+      <Tab
+        key={`tab-${type}`}
+        content={locales[lang].tab[type]}
+        isActive={type === activeTab}
+        type={type}
+      />
+    );
   });
 };
 

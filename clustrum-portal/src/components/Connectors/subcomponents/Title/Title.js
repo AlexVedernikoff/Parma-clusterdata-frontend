@@ -28,7 +28,11 @@ class Title extends React.Component {
     return (
       <div className={b()}>
         {isNewConnection && <ArrowBack />}
-        <Icon className={b('icon')} data={Utils.getConnectorIcon({ type: dbType })} width={32} />
+        <Icon
+          className={b('icon')}
+          data={Utils.getConnectorIcon({ type: dbType })}
+          width={32}
+        />
         <span>{getConnectorsMap()[this._getDbType()]}</span>
       </div>
     );

@@ -105,7 +105,8 @@ export default decl(
       var val = this.state.val;
 
       var isNavigation = type === 'navigation';
-      var needIconGlyph = view === 'default' && ['check', 'radio', 'radiocheck'].indexOf(type) !== -1;
+      var needIconGlyph =
+        view === 'default' && ['check', 'radio', 'radiocheck'].indexOf(type) !== -1;
 
       if (items) {
         children = items.map(this.__self.normalizeItem);
@@ -128,7 +129,10 @@ export default decl(
                 checked: val.indexOf(item.props.val) !== -1,
                 onClick: item.props.disabled
                   ? undefined
-                  : this._provideClick(item.props.val === undefined ? null : item.props.val, item.props.onClick),
+                  : this._provideClick(
+                      item.props.val === undefined ? null : item.props.val,
+                      item.props.onClick,
+                    ),
               });
             } else if (isNavigation) {
               item = cloneElement(item, {
@@ -142,7 +146,10 @@ export default decl(
               item = cloneElement(item, {
                 onClick: item.props.disabled
                   ? undefined
-                  : this._provideClick(item.props.val === undefined ? null : item.props.val, item.props.onClick),
+                  : this._provideClick(
+                      item.props.val === undefined ? null : item.props.val,
+                      item.props.onClick,
+                    ),
               });
             }
           } else if (MenuGroup.isGroup(item)) {
@@ -221,7 +228,11 @@ export default decl(
 );
 
 function _normalizeItem(item, i) {
-  return typeof item === 'string' ? _toItem({ text: item }, i) : item.items ? _toGroup(item) : _toItem(item, i);
+  return typeof item === 'string'
+    ? _toItem({ text: item }, i)
+    : item.items
+    ? _toGroup(item)
+    : _toItem(item, i);
 }
 
 function _toItem(item, i) {
@@ -240,5 +251,9 @@ function _toItem(item, i) {
 }
 
 function _toGroup(group) {
-  return React.createElement(MenuGroup, { title: group.title }, group.items.map(_normalizeItem));
+  return React.createElement(
+    MenuGroup,
+    { title: group.title },
+    group.items.map(_normalizeItem),
+  );
 }

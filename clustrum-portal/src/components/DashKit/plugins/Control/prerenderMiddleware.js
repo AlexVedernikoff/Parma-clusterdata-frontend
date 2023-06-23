@@ -5,7 +5,9 @@ import { FILTER_TYPES } from '../../../../constants/constants';
 export const DATE_FORMAT = 'YYYY-MM-DD';
 
 const itervalToString = (from, to) => {
-  return `__interval_${moment(from).format(DATE_FORMAT)}_${moment(to).format(DATE_FORMAT)}`;
+  return `__interval_${moment(from).format(DATE_FORMAT)}_${moment(to).format(
+    DATE_FORMAT,
+  )}`;
 };
 
 const dateToString = date => {
@@ -22,9 +24,13 @@ const formatDefaultToString = (defaultValue, control) => {
   const { type, value: { from, to } = {} } = defaultValue;
   switch (type) {
     case FILTER_TYPES.AcceptableFrom: // always isRange = false
-      return acceptableValues && acceptableValues.from ? dateToString(acceptableValues.from) : '';
+      return acceptableValues && acceptableValues.from
+        ? dateToString(acceptableValues.from)
+        : '';
     case FILTER_TYPES.AcceptableTo: // always isRange = false
-      return acceptableValues && acceptableValues.to ? dateToString(acceptableValues.to) : '';
+      return acceptableValues && acceptableValues.to
+        ? dateToString(acceptableValues.to)
+        : '';
     case FILTER_TYPES.AcceptableFullInterval: // always isRange = true
       return acceptableValues && acceptableValues.from && acceptableValues.to
         ? itervalToString(acceptableValues.from, acceptableValues.to)
@@ -32,15 +38,24 @@ const formatDefaultToString = (defaultValue, control) => {
     case FILTER_TYPES.DefaultRanges:
     case FILTER_TYPES.Date:
       if (isRange) {
-        const fromDate = acceptableValues && acceptableValues.from ? getAfterDate(from, acceptableValues.from) : from;
-        const toDate = acceptableValues && acceptableValues.to ? getBeforeDate(to, acceptableValues.to) : to;
+        const fromDate =
+          acceptableValues && acceptableValues.from
+            ? getAfterDate(from, acceptableValues.from)
+            : from;
+        const toDate =
+          acceptableValues && acceptableValues.to
+            ? getBeforeDate(to, acceptableValues.to)
+            : to;
         return itervalToString(fromDate, toDate);
       } else {
         return dateToString(from);
       }
     case FILTER_TYPES.Relative: // что делать при acceptableValues?
       if (isRange) {
-        return itervalToString(moment().subtract(from, 'days'), moment().subtract(to, 'days'));
+        return itervalToString(
+          moment().subtract(from, 'days'),
+          moment().subtract(to, 'days'),
+        );
       } else {
         return dateToString(moment().subtract(from, 'days'));
       }

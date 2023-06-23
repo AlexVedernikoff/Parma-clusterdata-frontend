@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   FolderOutlined,
   LikeOutlined,
@@ -6,7 +7,6 @@ import {
   LineChartOutlined,
   DashboardOutlined,
 } from '@ant-design/icons';
-import React from 'react';
 import { MenuProps } from 'antd';
 import { ROUTES } from '../../../../shared/lib/constants/routes';
 

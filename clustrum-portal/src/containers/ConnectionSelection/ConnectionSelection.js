@@ -102,7 +102,11 @@ class ConnectionSelection extends React.Component {
             ) : (
               <React.Fragment>
                 <Icon className={b('icon-folder')} data={iconFolder} />
-                <SelectConnection sdk={sdk} onEntryClick={onEntryClick} connectionId={connectionId} />
+                <SelectConnection
+                  sdk={sdk}
+                  onEntryClick={onEntryClick}
+                  connectionId={connectionId}
+                />
               </React.Fragment>
             )}
           </div>

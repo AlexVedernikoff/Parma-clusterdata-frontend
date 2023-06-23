@@ -1,9 +1,13 @@
+// TODO: Код не используется и должен быть удалён после того, как новый виджет обретёт
+// полную функциональность. Сейчас этот код оставлен в качестве базы знаний о прошлом
 import React from 'react';
 import PropTypes from 'prop-types';
 import DataTable from '@kamatech-data-ui/dt100/lib';
 import block from 'bem-cn-lite';
-import ErrorDispatcher, { ERROR_TYPE } from '../../../modules/error-dispatcher/error-dispatcher';
-import { KamatechNavigationPageControl } from './../../../../../../kamatech-ui/components';
+import ErrorDispatcher, {
+  ERROR_TYPE,
+} from '../../../modules/error-dispatcher/error-dispatcher';
+import { KamatechNavigationPageControl } from '../../../../../../kamatech-ui/components';
 import DateFormat from '../../../modules/date/date-format';
 import { FILTER_CONDITION_TYPE } from '../../../../../../../src/constants/FilterConditionType';
 import { NullAlias } from './NullAlias';
@@ -34,7 +38,12 @@ export function numberFormatter(
   value,
   {
     precision: outerPrecision,
-    formatter: { suffix = '', prefix = '', multiplier = 1, precision: formatterPrecision } = {},
+    formatter: {
+      suffix = '',
+      prefix = '',
+      multiplier = 1,
+      precision: formatterPrecision,
+    } = {},
   },
 ) {
   if (typeof value !== 'number') {
@@ -84,7 +93,7 @@ function _diffFormatter(value, { precision, diff_formatter: formatter }) {
   return <span className={b('diff')}>{diff}</span>;
 }
 
-function _reverseGridFlow(gridFlow) {
+function _reverseGridFresultValueow(gridFlow) {
   return gridFlow === 'column' ? 'row' : 'column';
 }
 
@@ -102,13 +111,21 @@ function _renderGrid(grid, options = {}) {
 }
 
 export function _valueFormatter(type, cell = {}, options = {}) {
-  const { value, link: { href, newWindow = true } = {}, grid, valueWithAlias, hasArray } = cell;
+  const {
+    value,
+    link: { href, newWindow = true } = {},
+    grid,
+    valueWithAlias,
+    hasArray,
+  } = cell;
   const { contentCss } = options;
 
   const resultValue = _resultValue(value, type, grid, options, href, newWindow, hasArray);
 
   const resultSchemaIdClass = cell ? cell.resultShemaId || '' : '';
-  const isNullValue = [NullAlias.NULL, null].includes(valueWithAlias) && [NullAlias.NULL, null].includes(value);
+  const isNullValue =
+    [NullAlias.NULL, null].includes(valueWithAlias) &&
+    [NullAlias.NULL, null].includes(value);
   const isNullClass = isNullValue ? 'is_null' : '';
 
   const nullableValue = isNullValue ? NullAlias.NULL : resultValue;
@@ -270,7 +287,12 @@ const handleCellClick = (context, row, field, columnName, prevSelectedCell, call
   }
 };
 
-function _getColumnsAndNames({ head, context, level = 0, shift = 0 }, clickCallback, field, prevSelectedCell) {
+function _getColumnsAndNames(
+  { head, context, level = 0, shift = 0 },
+  clickCallback,
+  field,
+  prevSelectedCell,
+) {
   return head.reduce(
     (result, column, index) => {
       if (column.sub) {
@@ -285,7 +307,13 @@ function _getColumnsAndNames({ head, context, level = 0, shift = 0 }, clickCallb
           field,
           prevSelectedCell,
         );
-        const columnName = _generateName({ id: column.id, name: column.name, level, shift, index });
+        const columnName = _generateName({
+          id: column.id,
+          name: column.name,
+          level,
+          shift,
+          index,
+        });
         result.columns.push({
           name: columnName,
           header: <span className={b('head-cell')}>{column.name}</span>,
@@ -321,7 +349,14 @@ function _getColumnsAndNames({ head, context, level = 0, shift = 0 }, clickCallb
               ? row[columnName].valueWithoutFormat
               : row[columnName].value,
           onClick: ({ row }, { name: columnName }) => {
-            handleCellClick(context, row, field, columnName, prevSelectedCell, clickCallback);
+            handleCellClick(
+              context,
+              row,
+              field,
+              columnName,
+              prevSelectedCell,
+              clickCallback,
+            );
           },
           sortable: type !== 'grid',
           resultSchemaId,
@@ -345,7 +380,7 @@ function _getTitle(title) {
   ) : null;
 }
 
-class Table extends React.PureComponent {
+export class Table_deprecated extends React.PureComponent {
   static propTypes = {
     data: PropTypes.shape({
       data: PropTypes.object,
@@ -401,7 +436,10 @@ class Table extends React.PureComponent {
 
   render() {
     const {
-      data: { data: { head, rows = [], total = [] } = {}, config: { title, sort, order, settings } = {} } = {},
+      data: {
+        data: { head, rows = [], total = [] } = {},
+        config: { title, sort, order, settings } = {},
+      } = {},
       orderBy,
     } = this.props;
 
@@ -411,12 +449,16 @@ class Table extends React.PureComponent {
 
     let groupFieldPosition = -1;
     if (this.props.data.data.groupField) {
-      groupFieldPosition = head.findIndex(h => h.resultSchemaId === this.props.data.data.groupField);
+      groupFieldPosition = head.findIndex(
+        h => h.resultSchemaId === this.props.data.data.groupField,
+      );
     }
 
     const selectedCell = this._getSelectedCell();
     const selectedRow =
-      selectedCell.paramId && selectedCell.value !== null ? { [selectedCell.paramId]: selectedCell.value } : null;
+      selectedCell.paramId && selectedCell.value !== null
+        ? { [selectedCell.paramId]: selectedCell.value }
+        : null;
     // контекст только для передачи _domNode
     const context = {};
 
@@ -429,7 +471,9 @@ class Table extends React.PureComponent {
 
     let initialSortOrder;
     if (sort) {
-      const nameIndex = names.findIndex(generatedName => _getIdFromGeneratedName(generatedName) === sort);
+      const nameIndex = names.findIndex(
+        generatedName => _getIdFromGeneratedName(generatedName) === sort,
+      );
       if (nameIndex !== -1) {
         initialSortOrder = {
           columnId: names[nameIndex],
@@ -513,7 +557,5 @@ class Table extends React.PureComponent {
     );
   }
 }
-
-export default Table;
 
 export { DATE_FORMAT_BY_SCALE };

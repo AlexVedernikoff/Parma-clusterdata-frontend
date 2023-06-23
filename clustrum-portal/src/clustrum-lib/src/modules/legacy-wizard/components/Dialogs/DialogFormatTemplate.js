@@ -182,7 +182,10 @@ class DialogFormatTemplate extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const { item, dataset, updates, callback } = nextProps;
-    if (!item || (nextProps.item === this.state.item && callback === this.state.callback)) {
+    if (
+      !item ||
+      (nextProps.item === this.state.item && callback === this.state.callback)
+    ) {
       return;
     }
     let templateFormat = nextProps.item.templateFormat;
@@ -219,8 +222,15 @@ class DialogFormatTemplate extends PureComponent {
 
       return (
         <Dialog visible={this.state.visible} onClose={this.onClose}>
-          <div className={`dialog-filter dialog-filter-${itemType}${isDate ? ' dialog-filter-date' : ''}`}>
-            <Dialog.Header caption={item.title} insertBefore={<Icon data={castIconData} width="16" />} />
+          <div
+            className={`dialog-filter dialog-filter-${itemType}${
+              isDate ? ' dialog-filter-date' : ''
+            }`}
+          >
+            <Dialog.Header
+              caption={item.title}
+              insertBefore={<Icon data={castIconData} width="16" />}
+            />
             <Dialog.Body>{this.renderBody()}</Dialog.Body>
             <Dialog.Footer
               preset="default"

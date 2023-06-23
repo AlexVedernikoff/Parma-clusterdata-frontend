@@ -65,7 +65,11 @@ class DialogCreateEntry extends Component {
       return data;
     } catch (error) {
       this.setState({ progress: false, showError: this.dialogProps.withError });
-      this.dialogProps.onNotify({ error, message: this.dialogProps.errorText, type: ERROR_TYPE });
+      this.dialogProps.onNotify({
+        error,
+        message: this.dialogProps.errorText,
+        type: ERROR_TYPE,
+      });
       return null;
     }
   };
@@ -96,7 +100,13 @@ class DialogCreateEntry extends Component {
   render() {
     const { entryName, progress, showError, path } = this.state;
     const { visible } = this.props;
-    const { title, errorText, defaultName, textButtonApply, textButtonCancel } = this.dialogProps;
+    const {
+      title,
+      errorText,
+      defaultName,
+      textButtonApply,
+      textButtonCancel,
+    } = this.dialogProps;
 
     return (
       <TemplateDialog

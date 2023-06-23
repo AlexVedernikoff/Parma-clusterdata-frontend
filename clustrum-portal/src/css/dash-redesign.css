@@ -2,144 +2,144 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100;
-  src: url('../../../fonts/Inter/Inter-Thin.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-Thin.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-Thin.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-Thin.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 100;
-  src: url('../../../fonts/Inter/Inter-ThinItalic.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-ThinItalic.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-ThinItalic.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-ThinItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 200;
-  src: url('../../../fonts/Inter/Inter-ExtraLight.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-ExtraLight.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-ExtraLight.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-ExtraLight.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 200;
-  src: url('../../../fonts/Inter/Inter-ExtraLightItalic.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-ExtraLightItalic.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-ExtraLightItalic.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-ExtraLightItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 300;
-  src: url('../../../fonts/Inter/Inter-Light.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-Light.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-Light.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-Light.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 300;
-  src: url('../../../fonts/Inter/Inter-LightItalic.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-LightItalic.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-LightItalic.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-LightItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  src: url('../../../fonts/Inter/Inter-Regular.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-Regular.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-Regular.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-Regular.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 400;
-  src: url('../../../fonts/Inter/Inter-Italic.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-Italic.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-Italic.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-Italic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  src: url('../../../fonts/Inter/Inter-Medium.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-Medium.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-Medium.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-Medium.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 500;
-  src: url('../../../fonts/Inter/Inter-MediumItalic.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-MediumItalic.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-MediumItalic.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-MediumItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  src: url('../../../fonts/Inter/Inter-SemiBold.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-SemiBold.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-SemiBold.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-SemiBold.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 600;
-  src: url('../../../fonts/Inter/Inter-SemiBoldItalic.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-SemiBoldItalic.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-SemiBoldItalic.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-SemiBoldItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  src: url('../../../fonts/Inter/Inter-Bold.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-Bold.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-Bold.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-Bold.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 700;
-  src: url('../../../fonts/Inter/Inter-BoldItalic.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-BoldItalic.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-BoldItalic.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-BoldItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 800;
-  src: url('../../../fonts/Inter/Inter-ExtraBold.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-ExtraBold.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-ExtraBold.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-ExtraBold.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 800;
-  src: url('../../../fonts/Inter/Inter-ExtraBoldItalic.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-ExtraBoldItalic.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-ExtraBoldItalic.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-ExtraBoldItalic.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
-  src: url('../../../fonts/Inter/Inter-Black.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-Black.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-Black.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-Black.woff?v=3.19') format('woff');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 900;
-  src: url('../../../fonts/Inter/Inter-BlackItalic.woff2?v=3.19') format('woff2'),
-    url('../../../fonts/Inter/Inter-BlackItalic.woff?v=3.19') format('woff');
+  src: url('../fonts/Inter/Inter-BlackItalic.woff2?v=3.19') format('woff2'),
+    url('../fonts/Inter/Inter-BlackItalic.woff?v=3.19') format('woff');
 }
 
 :root {
@@ -176,7 +176,6 @@
   --neutral-900: #252625;
   --blue-50: #f2f9ff;
   --blue-200: #bfe2ff;
-  --antd-color-primary: #008cff;
   --blue-600: #007ee6;
   --blue-800: #005499;
   --lime-100: #edf6ea;
@@ -473,7 +472,9 @@
 }
 
 .yc-select-item:hover,
-.yc-root .menu_view_default.menu_tone_default.menu_theme_normal .menu__item.menu__item_hovered_yes {
+.yc-root
+  .menu_view_default.menu_tone_default.menu_theme_normal
+  .menu__item.menu__item_hovered_yes {
   background-color: var(--blue-50);
 }
 
@@ -528,11 +529,15 @@
   display: none;
 }
 
-.yc-root .textinput_view_default.textinput_tone_default.textinput_theme_normal .textinput__control {
+.yc-root
+  .textinput_view_default.textinput_tone_default.textinput_theme_normal
+  .textinput__control {
   color: var(--neutral-900);
 }
 
-.yc-root .textinput_view_default.textinput_tone_default.textinput_theme_normal .textinput__control::placeholder {
+.yc-root
+  .textinput_view_default.textinput_tone_default.textinput_theme_normal
+  .textinput__control::placeholder {
   color: var(--neutral-400);
 }
 
@@ -654,7 +659,8 @@
   display: none;
 }
 
-.menu_view_default.menu_tone_default.menu_theme_normal .menu__item.widget-visibility-dropdown__item_hidden {
+.menu_view_default.menu_tone_default.menu_theme_normal
+  .menu__item.widget-visibility-dropdown__item_hidden {
   color: var(--neutral-900);
 }
 
@@ -666,8 +672,10 @@
   width: auto;
 }
 
-.yc-root .dash-header__action-right_expand-filter-panel.button2_theme_flat.button2_hovered_yes:before,
-.yc-root .dash-header__action-right_button-settings.button2_theme_flat.button2_hovered_yes:before {
+.yc-root
+  .dash-header__action-right_expand-filter-panel.button2_theme_flat.button2_hovered_yes:before,
+.yc-root
+  .dash-header__action-right_button-settings.button2_theme_flat.button2_hovered_yes:before {
   background-color: transparent;
 }
 
@@ -692,7 +700,7 @@
 }
 
 .dash-body__content {
-  padding: 0 1.75rem 3.125rem;
+  padding: 0;
   overflow: visible;
 }
 
@@ -778,6 +786,7 @@
 }
 
 .dashkit-plugin-control {
+  width: 100%;
   padding: 0.75rem 1rem;
 }
 
@@ -948,10 +957,6 @@
   margin: 0;
 }
 
-.dash-header__action-panel {
-  padding: 0.625rem 0 0;
-}
-
 .yc-root_theme_light,
 .dash-header__action-panel {
   background-color: var(--blue-50);
@@ -1116,7 +1121,7 @@
 
 .yc-select-control {
   height: 2rem;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--color-divider);
 }
 
 .yc-select-control:hover {
@@ -1126,7 +1131,7 @@
 
 .yc-select-control__tokens {
   height: 100%;
-  border-right: 1px solid var(--blue-200);
+  border-right: 1px solid var(--color-divider);
 }
 
 .yc-select-control__tokens-text {
@@ -1297,11 +1302,20 @@
   border-right: 1px solid var(--blue-200);
 }
 
-.chartkit-table .data-table .data-table__box .data-table__head .data-table__th:last-child {
+.chartkit-table
+  .data-table
+  .data-table__box
+  .data-table__head
+  .data-table__th:last-child {
   border-right: none;
 }
 
-.chartkit-table .data-table .data-table__box .data-table__head .data-table__th .chartkit-table__head-cell {
+.chartkit-table
+  .data-table
+  .data-table__box
+  .data-table__head
+  .data-table__th
+  .chartkit-table__head-cell {
   width: 100%;
   font-weight: 500;
   font-size: 0.75rem;
@@ -1590,7 +1604,8 @@
   background-repeat: no-repeat;
 }
 
-.dashkit-grid-item__controls .button2.dashkit-grid-item__button_visibility-hidden-icon:before {
+.dashkit-grid-item__controls
+  .button2.dashkit-grid-item__button_visibility-hidden-icon:before {
   background-image: var(--visibility-hidden-icon);
 }
 
@@ -1641,7 +1656,7 @@
 }
 
 .wizard .dl-entry-panel {
-  width: calc(100% - 18.375rem);
+  width: 100%;
 }
 
 .wizard .dl-entry-panel__entry-title-text {
@@ -1657,7 +1672,7 @@
 }
 
 .wizard .columns .column {
-  height: calc(100vh - 9.375rem);
+  height: calc(100vh - 14rem);
 }
 
 .yc-dialog-btn-close .button2 {

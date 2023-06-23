@@ -90,7 +90,11 @@ class MapUtils {
           sector.Y +
           ' z',
       );
-      newSector.setAttributeNS(null, 'transform', 'rotate(' + sector.R + ', ' + sector.L + ', ' + sector.L + ')');
+      newSector.setAttributeNS(
+        null,
+        'transform',
+        'rotate(' + sector.R + ', ' + sector.L + ', ' + sector.L + ')',
+      );
       newSVG.appendChild(newSector);
     });
     let style = iconCache.get(colors + '_' + radius);
@@ -184,7 +188,11 @@ class MapUtils {
     if (feature.values_['customProperties']['_size'] !== undefined) {
       let minRadius = 10 - (20 - zoom) / 2 + 1;
       let maxRadius = 50 - (20 - zoom);
-      radius = this.getRadius(minRadius, maxRadius, Number(feature.values_['customProperties']['_size']));
+      radius = this.getRadius(
+        minRadius,
+        maxRadius,
+        Number(feature.values_['customProperties']['_size']),
+      );
     }
 
     if (feature.values_['customProperties']['_color']) {
@@ -197,12 +205,18 @@ class MapUtils {
       }
       let data = { size: radius, sectors: [] };
       colorsData.forEach(c => {
-        data.sectors.push({ percentage: 100 / colorsData.length / 100, color: this.getSectorColor(c, colorMap) });
+        data.sectors.push({
+          percentage: 100 / colorsData.length / 100,
+          color: this.getSectorColor(c, colorMap),
+        });
       });
       return MapUtils.calculateSectors(data, radius, iconCache);
     }
 
-    if (feature.values_['customProperties']['_size'] || feature.values_['customProperties']['_color']) {
+    if (
+      feature.values_['customProperties']['_size'] ||
+      feature.values_['customProperties']['_color']
+    ) {
       let style = iconCache.get(color + '_' + radius);
       if (style) {
         return style;
@@ -298,7 +312,13 @@ class MapUtils {
     });
   }
 
-  static polygonStyle({ feature, color, isFeatureDeselected, colorMap, opacity = MapConstant.defaultMapLayerOpacity }) {
+  static polygonStyle({
+    feature,
+    color,
+    isFeatureDeselected,
+    colorMap,
+    opacity = MapConstant.defaultMapLayerOpacity,
+  }) {
     if (
       ![null, undefined].includes(feature.values_.customProperties) &&
       ![null, undefined].includes(feature.values_.customProperties.color) &&
@@ -359,7 +379,9 @@ class MapUtils {
 
   static hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)] : null;
+    return result
+      ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
+      : null;
   }
 
   static isRangeLegend(colorName) {

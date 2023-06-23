@@ -11,17 +11,21 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
-import { ANT_TOKEN } from '../constants/constants';
+import { ANT_TOKEN } from '../shared/config/theme';
+import ruRU from 'antd/locale/ru_RU';
 
 import reducers from '../reducers';
 
 import App from '../containers/App';
 
+import './../css/clustrum/colors.css';
 import './../css/vendors.css';
 import './../css/commons.css';
 import './../css/app.css';
 import './../css/app-table-settings-total.css';
 import './../css/card.css';
+import './../css/clustrum/styles.css';
+
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 
@@ -46,7 +50,7 @@ logVersion();
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <ConfigProvider theme={{ ...ANT_TOKEN }}>
+      <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
         <Provider store={store}>
           <DndProvider backend={HTML5Backend}>
             <BrowserRouter>

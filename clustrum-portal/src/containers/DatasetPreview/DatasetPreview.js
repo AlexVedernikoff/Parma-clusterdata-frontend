@@ -52,7 +52,12 @@ class DatasetPreview extends React.Component {
     }
 
     return (
-      <PreviewResizer isVisible={isVisible} view={view} tab={tab} className={ResizerType.PREVIEW}>
+      <PreviewResizer
+        isVisible={isVisible}
+        view={view}
+        tab={tab}
+        className={ResizerType.PREVIEW}
+      >
         <div className={b()}>
           <PreviewHeader
             view={view}

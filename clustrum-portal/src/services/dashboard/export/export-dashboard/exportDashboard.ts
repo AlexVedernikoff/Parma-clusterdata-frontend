@@ -6,9 +6,17 @@ import { Tab } from './types/Tab';
 import { PORTAL_PATH } from '../../../../context-path';
 import { store } from '../../../../store';
 import { endExport, exportError, startExport } from '../../../../store/actions/dash';
-import { downloadExportedExcel, exportExcelAsync, exportPdf, getExportExcelStatus } from '../../../../api/Dashboard';
+import {
+  downloadExportedExcel,
+  exportExcelAsync,
+  exportPdf,
+  getExportExcelStatus,
+} from '../../../../api/Dashboard';
 import { startExportStatusTimer } from '../utils/startExportStatusTimer';
-import { FIRST_EXPORT_STATUS_REQUEST_DELAY, TIME_BETWEEN_EXPORT_STATUS_REQUESTS } from '../consts/timer-consts';
+import {
+  FIRST_EXPORT_STATUS_REQUEST_DELAY,
+  TIME_BETWEEN_EXPORT_STATUS_REQUESTS,
+} from '../consts/timer-consts';
 import { clientFileName } from '../utils/clientFileName';
 
 const generateFileNameFormat = (format: ExportFormat) => {
@@ -64,7 +72,12 @@ const exportToPdf = async (entry: Entry, tab: Tab, stateUuid: string) => {
   }
 };
 
-const exportToExcel = async (entry: Entry, tab: Tab, format = ExportFormat.XLSX, stateUuid: string) => {
+const exportToExcel = async (
+  entry: Entry,
+  tab: Tab,
+  format = ExportFormat.XLSX,
+  stateUuid: string,
+) => {
   const exportConfig = {
     format,
     delValues: null,
@@ -112,7 +125,12 @@ const exportToExcel = async (entry: Entry, tab: Tab, format = ExportFormat.XLSX,
   }
 };
 
-export const exportDashboard = (entry: Entry, tab: Tab, format: ExportFormat, stateUuid = '') => {
+export const exportDashboard = (
+  entry: Entry,
+  tab: Tab,
+  format: ExportFormat,
+  stateUuid = '',
+) => {
   store.dispatch(startExport());
 
   switch (format) {

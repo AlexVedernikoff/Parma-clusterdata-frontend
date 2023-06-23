@@ -55,7 +55,18 @@ ChartKit.setSettings({
     return request;
   },
   menu: Utils.isInternalInstallation()
-    ? [HIDE_COMMENTS, SHOW_COMMENTS, COMMENTS, SCREENSHOT, EXPORT, NEW_WINDOW, OPEN_AS_TABLE, GET_LINK, SOURCES, EDIT]
+    ? [
+        HIDE_COMMENTS,
+        SHOW_COMMENTS,
+        COMMENTS,
+        SCREENSHOT,
+        EXPORT,
+        NEW_WINDOW,
+        OPEN_AS_TABLE,
+        GET_LINK,
+        SOURCES,
+        EDIT,
+      ]
     : [EXPORT],
 });
 

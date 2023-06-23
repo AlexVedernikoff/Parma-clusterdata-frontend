@@ -12,7 +12,9 @@ const Logo = props => (
   <div className={b('logo')}>
     <a href={props.logoHref} className={b('logo-link')}>
       <div className={b('logo-wrapper')}>
-        {Boolean(props.logoIcon) && <span className={b('logo-icon')}>{props.logoIcon}</span>}
+        {Boolean(props.logoIcon) && (
+          <span className={b('logo-icon')}>{props.logoIcon}</span>
+        )}
         {Boolean(props.logoText) && (
           <React.Fragment>
             <Icon className={b('icon-star-stroke')} data={monoWidgetLogoIcon} />

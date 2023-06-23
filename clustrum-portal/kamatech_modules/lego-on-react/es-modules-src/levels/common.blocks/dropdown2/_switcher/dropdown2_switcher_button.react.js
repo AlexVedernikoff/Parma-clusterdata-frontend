@@ -70,7 +70,9 @@ export default declMod(
             { key: 'arrow' },
             _extends(
               {},
-              view === 'default' ? { glyph: 'carets-v' } : { type: 'arrow', direction: opened ? 'top' : 'bottom' },
+              view === 'default'
+                ? { glyph: 'carets-v' }
+                : { type: 'arrow', direction: opened ? 'top' : 'bottom' },
             ),
             {
               mix: { block: block, elem: 'arrow' },

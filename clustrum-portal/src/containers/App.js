@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'recompose';
 
 import { exportWidget } from '../services/dashboard/export/export-widget';
-import { PageContainer } from '../widgets/page-container/ui/page-container';
+import { PageContainer } from '@widgets/page-container';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -35,12 +35,14 @@ class App extends Component {
         <Switch>
           <Route
             path={'/wizard/preview/:id'}
-            component={props => <Wizard {...props} onExport={this._handleExport} preview={true} sdk={sdk} />}
+            component={props => (
+              <Wizard {...props} onExport={this._handleExport} preview={true} sdk={sdk} />
+            )}
           />
           <Route
             path={'/wizard'}
             component={props => (
-              <PageContainer withoutReactRouter>
+              <PageContainer>
                 <Wizard {...props} onExport={this._handleExport} sdk={sdk} />
               </PageContainer>
             )}

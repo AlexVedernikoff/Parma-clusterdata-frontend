@@ -4,10 +4,10 @@ import block from 'bem-cn-lite';
 import PropTypes from 'prop-types';
 import { Pointerfocus } from 'lego-on-react';
 import { Utils } from '@kamatech-data-ui/clustrum';
-import Connectors from '../Connectors/Connectors';
+import { Connectors } from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
 import { getConnectorsMap } from '../../constants';
-import { PageContainer } from '../../widgets/page-container/ui/page-container';
+import { PageContainer } from '@widgets/page-container';
 
 const b = block('connections-router');
 
@@ -44,7 +44,7 @@ class ConnectionsRouter extends PureComponent {
                     exact
                     path={'/connections/new'}
                     render={props => (
-                      <PageContainer withoutReactRouter>
+                      <PageContainer>
                         <Connectors {...props} sdk={sdk} />
                       </PageContainer>
                     )}
@@ -56,7 +56,7 @@ class ConnectionsRouter extends PureComponent {
 
                       if (Object.keys(getConnectorsMap()).includes(connectorType)) {
                         return (
-                          <PageContainer withoutReactRouter>
+                          <PageContainer>
                             <ConnectionPage {...props} sdk={sdk} />
                           </PageContainer>
                         );
@@ -72,7 +72,7 @@ class ConnectionsRouter extends PureComponent {
               path={'/connections/:connectionId'}
               render={props => {
                 return (
-                  <PageContainer withoutReactRouter>
+                  <PageContainer>
                     <ConnectionPage {...props} sdk={sdk} />
                   </PageContainer>
                 );

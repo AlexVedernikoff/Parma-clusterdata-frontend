@@ -11,5 +11,9 @@ export const exportWidget = (
   tabItemIds: string[],
   options?: ExportWidgetOptions,
 ) => {
-  exportWidgetService({ id, name, tabTitle }, entryId => createDashState(entryId, tabItemIds), options);
+  exportWidgetService(
+    { id, name, tabTitle },
+    entryId => createDashState(entryId, tabItemIds),
+    options,
+  );
 };

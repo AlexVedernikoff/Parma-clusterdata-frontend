@@ -58,7 +58,15 @@ class ErrorDialog extends PureComponent {
         <span className={b('request-id-value')}>{requestId}</span>
         <div className={b('request-id-copy-btn')}>
           <CopyToClipboard text={requestId} resetTimeout={5000} onCopy={this.onCopy}>
-            {() => <Button theme="light" tone="default" view="default" size="s" text="Скопировать" />}
+            {() => (
+              <Button
+                theme="light"
+                tone="default"
+                view="default"
+                size="s"
+                text="Скопировать"
+              />
+            )}
           </CopyToClipboard>
         </div>
       </div>

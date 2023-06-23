@@ -19,7 +19,10 @@ function VolumeBar(props) {
         <span>{Utils.bytesToSize(max)}</span>
       </div>
       <div className={b('progress-line', b('margin', { bottom: 5, top: 5 }))}>
-        <div className={b('progress-line-occupied')} style={{ width: `${occupiedPercent}%` }} />
+        <div
+          className={b('progress-line-occupied')}
+          style={{ width: `${occupiedPercent}%` }}
+        />
       </div>
       <div className={b('sub-info')}>
         <span>занято</span>

@@ -38,7 +38,9 @@ export default class DropdownPicker extends React.PureComponent {
           width="max"
           onClick={() => this.setState({ isOpened: !this.state.isOpened })}
         >
-          <div className={b('button-text')}>{this.props.buttonText(this.props.value)}</div>
+          <div className={b('button-text')}>
+            {this.props.buttonText(this.props.value)}
+          </div>
         </Button>
         <Popup
           autoclosable

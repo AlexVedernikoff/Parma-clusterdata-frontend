@@ -9,13 +9,16 @@ import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
 import ConnectionsRouter from '../components/ConnectionsRouter/ConnectionsRouter';
 
+import './../css/clustrum/colors.css';
 import './../css/vendors.css';
 import './../css/commons.css';
 import './../css/connection.css';
+import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
-import { ANT_TOKEN } from '../constants/constants';
+import ruRU from 'antd/locale/ru_RU';
+import { ANT_TOKEN } from '../shared/config/theme';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -37,7 +40,7 @@ logVersion();
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <ConfigProvider theme={{ ...ANT_TOKEN }}>
+      <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
         <Provider store={store}>
           <ConnectionsRouter sdk={sdk} />
         </Provider>

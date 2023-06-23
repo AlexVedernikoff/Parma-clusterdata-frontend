@@ -11,10 +11,18 @@ import { Icon } from '@kamatech-data-ui/common/src';
 const b = block('dataset-creation');
 
 function MaterializationCustomSettings(props) {
-  const { changeMaterializationCustomSettings, materializationCustomSettings, onEntryClick, sdk } = props;
+  const {
+    changeMaterializationCustomSettings,
+    materializationCustomSettings,
+    onEntryClick,
+    sdk,
+  } = props;
 
   const handleChange = (name, value) => {
-    if ((name === 'materializationThreadCount' || name === 'materializationPageSize') && /\D/.test(value)) {
+    if (
+      (name === 'materializationThreadCount' || name === 'materializationPageSize') &&
+      /\D/.test(value)
+    ) {
       return;
     }
     materializationCustomSettings[name] = value;
@@ -33,13 +41,17 @@ function MaterializationCustomSettings(props) {
       <div className={b('dataset-panel')}>
         <Icon
           className={b('connector-ic')}
-          data={Utils.getConnectorIcon({ type: materializationCustomSettings.connectionType })}
+          data={Utils.getConnectorIcon({
+            type: materializationCustomSettings.connectionType,
+          })}
           width="32"
         />
         <span className={b('label-connection-type')}>
           {getConnectorsMap()[materializationCustomSettings.connectionType]}
         </span>
-        <span className={b('label-connection-name')}>{materializationCustomSettings.connectionName}</span>
+        <span className={b('label-connection-name')}>
+          {materializationCustomSettings.connectionName}
+        </span>
         <SelectConnection
           sdk={sdk}
           connectionId={materializationCustomSettings.connectionId}

@@ -44,7 +44,9 @@ export default class ItemsWrapper extends React.PureComponent {
 
   componentDidMount() {
     if (this.ref.current) {
-      this.props.setPopupWidth(this.ref.current.getBoundingClientRect().width + BORDER_WIDTH);
+      this.props.setPopupWidth(
+        this.ref.current.getBoundingClientRect().width + BORDER_WIDTH,
+      );
     }
   }
 
@@ -100,13 +102,25 @@ export default class ItemsWrapper extends React.PureComponent {
       }
 
       return (
-        <div className={b('show-more-link')} style={style} onClick={this._onShowMoreLinkClick}>
+        <div
+          className={b('show-more-link')}
+          style={style}
+          onClick={this._onShowMoreLinkClick}
+        >
           <Link theme="ghost" text="Показать еще" />
         </div>
       );
     }
 
-    return <Item {...this.props} key={item.key} style={style} item={item} isSelected={isSelected} />;
+    return (
+      <Item
+        {...this.props}
+        key={item.key}
+        style={style}
+        item={item}
+        isSelected={isSelected}
+      />
+    );
   };
 
   _renderItemsWithoutVirtualized() {
@@ -119,7 +133,15 @@ export default class ItemsWrapper extends React.PureComponent {
         // при allowEmptyValue: true, когда есть пустой элемент
         if (!groupTitle && !items) {
           const isSelected = innerValue.has(item.value);
-          return <Item {...this.props} key={item.key} style={{}} item={item} isSelected={isSelected} />;
+          return (
+            <Item
+              {...this.props}
+              key={item.key}
+              style={{}}
+              item={item}
+              isSelected={isSelected}
+            />
+          );
         }
 
         const groupTitleNode = (
@@ -129,7 +151,15 @@ export default class ItemsWrapper extends React.PureComponent {
         );
         const groupItems = items.map(item => {
           const isSelected = innerValue.has(item.value);
-          return <Item {...this.props} key={item.key} style={{}} item={item} isSelected={isSelected} />;
+          return (
+            <Item
+              {...this.props}
+              key={item.key}
+              style={{}}
+              item={item}
+              isSelected={isSelected}
+            />
+          );
         });
 
         return groupItems.length ? [groupTitleNode, ...groupItems] : null;
@@ -138,7 +168,15 @@ export default class ItemsWrapper extends React.PureComponent {
 
     return items.map(item => {
       const isSelected = innerValue.has(item.value);
-      return <Item {...this.props} key={item.key} style={{}} item={item} isSelected={isSelected} />;
+      return (
+        <Item
+          {...this.props}
+          key={item.key}
+          style={{}}
+          item={item}
+          isSelected={isSelected}
+        />
+      );
     });
   }
 
@@ -178,7 +216,9 @@ export default class ItemsWrapper extends React.PureComponent {
       );
     }
 
-    const isNotFound = !items.length || (isItemsGrouped && items.every(group => group.items && !group.items.length));
+    const isNotFound =
+      !items.length ||
+      (isItemsGrouped && items.every(group => group.items && !group.items.length));
 
     if (isNotFound) {
       return (

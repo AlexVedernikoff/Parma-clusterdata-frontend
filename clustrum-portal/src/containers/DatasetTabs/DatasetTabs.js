@@ -5,7 +5,14 @@ import DatasetEditor from '../DatasetEditor/DatasetEditor';
 import { TAB_DATA, TAB_DATASET, DATASET_TABS } from '../../constants';
 
 function DatasetTabs(props) {
-  const { tab, sdk, datasetId, searchKeyword, forwardedRef, datasetErrorDialogRef } = props;
+  const {
+    tab,
+    sdk,
+    datasetId,
+    searchKeyword,
+    forwardedRef,
+    datasetErrorDialogRef,
+  } = props;
 
   switch (tab) {
     case TAB_DATA:

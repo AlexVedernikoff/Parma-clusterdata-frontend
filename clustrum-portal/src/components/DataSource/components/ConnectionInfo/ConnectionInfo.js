@@ -24,7 +24,11 @@ function ConnectionInfo(props) {
 
   return (
     <div className={b('connection')}>
-      <Icon className={b('connector-icon')} data={Utils.getConnectorIcon({ type: connectionType })} width={36} />
+      <Icon
+        className={b('connector-icon')}
+        data={Utils.getConnectorIcon({ type: connectionType })}
+        width={36}
+      />
       <div className={b('connection-info')}>
         <div className={b('connection-info-main')}>
           <ConnectionName {...connection} />
@@ -40,9 +44,24 @@ function ConnectionInfo(props) {
               </Button>
             }
             popup={
-              <Popup cls={b('entry-panel-more-popup')} hiding autoclosable onOutsideClick={() => ({})}>
-                <Menu theme="normal" view="default" tone="default" size="s" onClick={onClickConnectionMoreMenuItem}>
-                  <Menu.Item disabled={isProcessing} type="option" val="update-dataset-schema">
+              <Popup
+                cls={b('entry-panel-more-popup')}
+                hiding
+                autoclosable
+                onOutsideClick={() => ({})}
+              >
+                <Menu
+                  theme="normal"
+                  view="default"
+                  tone="default"
+                  size="s"
+                  onClick={onClickConnectionMoreMenuItem}
+                >
+                  <Menu.Item
+                    disabled={isProcessing}
+                    type="option"
+                    val="update-dataset-schema"
+                  >
                     Обновить схему
                   </Menu.Item>
                   <Menu.Item disabled={isProcessing} type="option" val="replace-source">
@@ -59,7 +78,11 @@ function ConnectionInfo(props) {
           />
         </div>
         <div className={b('connection-info-sub', b('text-inactive'))}>
-          <ConnectionSubInfo origin={origin} connection={connection} tableDbName={tableDbName} />
+          <ConnectionSubInfo
+            origin={origin}
+            connection={connection}
+            tableDbName={tableDbName}
+          />
         </div>
       </div>
     </div>

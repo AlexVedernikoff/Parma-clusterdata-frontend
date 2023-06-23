@@ -8,7 +8,7 @@ import { Pointerfocus } from 'lego-on-react';
 import DatasetPage from '../../containers/DatasetPage/DatasetPage';
 import DatasetCreationPage from '../../containers/DatasetCreationPage/DatasetCreationPage';
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
-import { PageContainer } from '../../widgets/page-container/ui/page-container';
+import { PageContainer } from '@widgets/page-container';
 
 const b = block('dataset-router');
 
@@ -40,7 +40,7 @@ class DatasetRouter extends PureComponent {
             <Route
               path={'/datasets/new'}
               render={props => (
-                <PageContainer withoutReactRouter>
+                <PageContainer>
                   <DatasetCreationPage {...props} sdk={sdk} />
                 </PageContainer>
               )}
@@ -51,8 +51,13 @@ class DatasetRouter extends PureComponent {
                 const { match: { params: { datasetId } = {} } = {} } = props;
 
                 return (
-                  <PageContainer withoutReactRouter>
-                    <DatasetCreationPage {...props} modeId={REPLACE_SOURCE_MODE_ID} datasetId={datasetId} sdk={sdk} />
+                  <PageContainer>
+                    <DatasetCreationPage
+                      {...props}
+                      modeId={REPLACE_SOURCE_MODE_ID}
+                      datasetId={datasetId}
+                      sdk={sdk}
+                    />
                   </PageContainer>
                 );
               }}
@@ -60,7 +65,7 @@ class DatasetRouter extends PureComponent {
             <Route
               path={'/datasets/:datasetId'}
               render={props => (
-                <PageContainer withoutReactRouter>
+                <PageContainer>
                   <DatasetPage {...props} sdk={sdk} />
                 </PageContainer>
               )}

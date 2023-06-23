@@ -103,7 +103,15 @@ class FormulaEditor extends React.Component {
   };
 
   render() {
-    const { sdk, formula, annotations, aceModeUrl, modePath, isVisibleFunctionManual, onChange } = this.props;
+    const {
+      sdk,
+      formula,
+      annotations,
+      aceModeUrl,
+      modePath,
+      isVisibleFunctionManual,
+      onChange,
+    } = this.props;
     const { searchKeyword } = this.state;
     const { endpoints: { docsSyntax } = {} } = window.DL;
 

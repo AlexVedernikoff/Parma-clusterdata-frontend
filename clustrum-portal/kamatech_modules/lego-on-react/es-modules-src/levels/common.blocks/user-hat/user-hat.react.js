@@ -142,7 +142,11 @@ export default decl(
             onClick: this.onBannerClick_,
             tag: 'a',
           },
-          React.createElement(Bem, { block: 'user-hat', elem: 'title' }, this.state.title),
+          React.createElement(
+            Bem,
+            { block: 'user-hat', elem: 'title' },
+            this.state.title,
+          ),
           React.createElement(Bem, { block: 'user-hat', elem: 'text' }, this.state.text),
           React.createElement(Bem, {
             block: 'user-hat',

@@ -60,11 +60,14 @@ class InputLink extends React.PureComponent {
       this.setState({ progress: true });
       const entry = await getEntryByIdOrKey(url.pathname);
 
-      const params = Array.from(url.searchParams.entries()).reduce((result, [key, value]) => {
-        result[key] = result[key] || [];
-        result[key].push(value);
-        return result;
-      }, {});
+      const params = Array.from(url.searchParams.entries()).reduce(
+        (result, [key, value]) => {
+          result[key] = result[key] || [];
+          result[key].push(value);
+          return result;
+        },
+        {},
+      );
 
       this.props.onApply({ entry, params });
     } catch (error) {

@@ -17,7 +17,15 @@ function Label({ text }) {
 
 Label.propTypes = { text: PropTypes.string };
 
-function ControlSelect({ label, searchable = true, multiselect, content, value, onChange, className = '' }) {
+function ControlSelect({
+  label,
+  searchable = true,
+  multiselect,
+  content,
+  value,
+  onChange,
+  className = '',
+}) {
   return (
     <div className={b('control', { 'is-select': true }, className)}>
       <Label text={label} />
@@ -108,7 +116,13 @@ ControlInput.propTypes = {
 
 function ControlDatepicker({ label, minDate, maxDate, value, onChange, className = '' }) {
   return (
-    <div className={b('control', { 'is-datepicker': true, 'is-single-datepicker': true }, className)}>
+    <div
+      className={b(
+        'control',
+        { 'is-datepicker': true, 'is-single-datepicker': true },
+        className,
+      )}
+    >
       <Label text={label} />
       <Datepicker
         locale={settings.lang}
@@ -133,9 +147,22 @@ ControlDatepicker.propTypes = {
   className: PropTypes.string,
 };
 
-function ControlRangeDatepicker({ label, minDate, maxDate, value: { from, to }, onChange, className = '' }) {
+function ControlRangeDatepicker({
+  label,
+  minDate,
+  maxDate,
+  value: { from, to },
+  onChange,
+  className = '',
+}) {
   return (
-    <div className={b('control', { 'is-datepicker': true, 'is-range-datepicker': true }, className)}>
+    <div
+      className={b(
+        'control',
+        { 'is-datepicker': true, 'is-range-datepicker': true },
+        className,
+      )}
+    >
       <Label text={label} />
       <Datepicker
         locale={settings.lang}
@@ -222,4 +249,11 @@ ControlCheckbox.propTypes = {
   className: PropTypes.string,
 };
 
-export { ControlSelect, ControlInput, ControlDatepicker, ControlRangeDatepicker, ControlCheckbox, ControlButton };
+export {
+  ControlSelect,
+  ControlInput,
+  ControlDatepicker,
+  ControlRangeDatepicker,
+  ControlCheckbox,
+  ControlButton,
+};

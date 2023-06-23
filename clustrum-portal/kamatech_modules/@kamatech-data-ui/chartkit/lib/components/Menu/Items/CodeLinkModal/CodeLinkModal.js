@@ -213,7 +213,9 @@ export default class CodeLinkModal extends React.PureComponent {
 
     const body =
       (this.state.selected === SERVICES.CHARTS && <Charts url={this.props.url} />) ||
-      (this.state.selected === SERVICES.STATISTICS && <Statistics url={this.props.url} />) ||
+      (this.state.selected === SERVICES.STATISTICS && (
+        <Statistics url={this.props.url} />
+      )) ||
       (this.state.selected === SERVICES.STARTREK && <Startrek url={this.props.url} />) ||
       (this.state.selected === SERVICES.WIKI && <Wiki url={this.props.url} />) ||
       (this.state.selected === SERVICES.AT && <At url={this.props.url} />) ||

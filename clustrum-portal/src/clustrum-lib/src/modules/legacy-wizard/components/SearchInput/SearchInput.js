@@ -62,7 +62,11 @@ class SearchInput extends PureComponent {
     };
 
     return (
-      <div data-name={dataName} data-guid={dataGuid} className={b(customClass, className)}>
+      <div
+        data-name={dataName}
+        data-guid={dataGuid}
+        className={b(customClass, className)}
+      >
         {LeftIcon}
         <TextInput
           autocomplete={autocomplete}

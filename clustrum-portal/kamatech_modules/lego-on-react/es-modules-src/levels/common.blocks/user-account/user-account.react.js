@@ -126,7 +126,13 @@ export default decl(
             UserAccountPic,
             _extends(
               { key: 'pic' },
-              { pic: pic, avatarId: avatarId, avatarHost: avatarHost, provider: provider, plus: plus },
+              {
+                pic: pic,
+                avatarId: avatarId,
+                avatarHost: avatarHost,
+                provider: provider,
+                plus: plus,
+              },
             ),
           ),
         );

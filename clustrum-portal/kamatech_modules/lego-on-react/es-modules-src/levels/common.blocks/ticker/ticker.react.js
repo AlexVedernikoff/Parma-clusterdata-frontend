@@ -36,7 +36,11 @@ export default decl(
         count = _ref3.count,
         maxCount = _ref3.maxCount;
 
-      return React.createElement(TickerCount, { url: url, count: count, maxCount: maxCount });
+      return React.createElement(TickerCount, {
+        url: url,
+        count: count,
+        maxCount: maxCount,
+      });
     },
   },
   {

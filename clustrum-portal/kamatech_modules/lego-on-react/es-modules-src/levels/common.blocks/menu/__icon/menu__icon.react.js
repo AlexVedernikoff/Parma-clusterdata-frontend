@@ -12,6 +12,9 @@ export default decl({
       children = _props.children,
       size = _props.size;
 
-    return React.cloneElement(children, { size: size, mix: [].concat(mix, { block: block, elem: elem }) });
+    return React.cloneElement(children, {
+      size: size,
+      mix: [].concat(mix, { block: block, elem: elem }),
+    });
   },
 });

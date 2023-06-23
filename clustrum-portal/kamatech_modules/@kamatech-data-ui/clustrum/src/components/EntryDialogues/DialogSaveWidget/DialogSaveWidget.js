@@ -81,7 +81,11 @@ class DialogSaveWidget extends Component {
       })
       .catch(error => {
         this.setState({ progress: false, showError: this.dialogProps.withError });
-        this.dialogProps.onNotify({ error, message: this.dialogProps.errorText, type: NOTIFY_TYPES.ERROR });
+        this.dialogProps.onNotify({
+          error,
+          message: this.dialogProps.errorText,
+          type: NOTIFY_TYPES.ERROR,
+        });
       });
   };
 

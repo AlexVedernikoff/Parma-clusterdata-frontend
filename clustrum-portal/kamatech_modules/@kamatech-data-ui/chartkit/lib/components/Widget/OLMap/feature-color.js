@@ -12,7 +12,10 @@ export default class FeatureColor {
   }
 
   hasColorName() {
-    return ![undefined, null].includes(this.featureColorName()) && typeof this.featureColorName() === 'string';
+    return (
+      ![undefined, null].includes(this.featureColorName()) &&
+      typeof this.featureColorName() === 'string'
+    );
   }
 
   featureColor() {

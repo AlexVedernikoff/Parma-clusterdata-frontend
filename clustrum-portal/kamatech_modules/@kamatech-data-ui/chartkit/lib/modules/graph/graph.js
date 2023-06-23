@@ -22,7 +22,10 @@ export default function getGraph(options, data, vaultId, comments) {
     }),
     callback: chart => {
       chart.series.forEach(serie => {
-        if (['line', 'spline', 'area', 'stack'].includes(serie.type) && !serie.options.connectNulls) {
+        if (
+          ['line', 'spline', 'area', 'stack'].includes(serie.type) &&
+          !serie.options.connectNulls
+        ) {
           const { data } = serie;
           data.forEach((point, index) => {
             // рисуем маркер, если есть текущее значение, но нет следующего и предыдущего
@@ -50,8 +53,14 @@ export default function getGraph(options, data, vaultId, comments) {
           extmax = options.extremes.max;
         } else {
           if (options.highstock.range_min && options.highstock.range_max) {
-            extmin = parseInt(options.highstock.override_range_min || options.highstock.range_min, 10);
-            extmax = parseInt(options.highstock.override_range_max || options.highstock.range_max, 10);
+            extmin = parseInt(
+              options.highstock.override_range_min || options.highstock.range_min,
+              10,
+            );
+            extmax = parseInt(
+              options.highstock.override_range_max || options.highstock.range_max,
+              10,
+            );
           }
 
           // if (options.redrawState && options.redrawState.highstock) {

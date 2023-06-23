@@ -14,16 +14,26 @@ import iconPreviewDatasetError from 'icons/preview-dataset-error.svg';
 
 import { EXPORT, NEW_WINDOW } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
 
-import { selectConfig, selectConfigType, selectPreviewEntryId } from '../../../../../reducers/preview';
+import {
+  selectConfig,
+  selectConfigType,
+  selectPreviewEntryId,
+} from '../../../../../reducers/preview';
 import { selectDatasetError } from '../../../../../reducers/dataset';
 import { selectWidget } from '../../../../../reducers/widget';
 import { setHighchartsWidget } from '../../../../../actions';
 import { createStructuredSelector } from 'reselect';
 
-function goAwayLink({ loadedData, propsData }, { extraParams = {}, urlPostfix = '', idPrefix = '' }) {
+function goAwayLink(
+  { loadedData, propsData },
+  { extraParams = {}, urlPostfix = '', idPrefix = '' },
+) {
   let url = window.DL.endpoints.wizard + urlPostfix;
 
-  url += loadedData.entryId || propsData.id ? idPrefix + (loadedData.entryId || propsData.id) : propsData.source;
+  url +=
+    loadedData.entryId || propsData.id
+      ? idPrefix + (loadedData.entryId || propsData.id)
+      : propsData.source;
 
   let query = new URLSearchParams({ ...propsData.params, ...extraParams }).toString();
   query = query ? '?' + query : query;
@@ -49,7 +59,8 @@ const EDIT = {
   title: 'Редактировать',
   icon: <Icon size="20" data={iconPencil} />,
   isVisible: () => true,
-  action: ({ loadedData = {}, propsData }) => window.open(goAwayLink({ loadedData, propsData }, { idPrefix: '/' })),
+  action: ({ loadedData = {}, propsData }) =>
+    window.open(goAwayLink({ loadedData, propsData }, { idPrefix: '/' })),
 };
 
 class SectionPreview extends Component {
@@ -60,7 +71,14 @@ class SectionPreview extends Component {
   };
 
   renderChartkit() {
-    const { configType, config, widget, previewEntryId, setHighchartsWidget, datasetError } = this.props;
+    const {
+      configType,
+      config,
+      widget,
+      previewEntryId,
+      setHighchartsWidget,
+      datasetError,
+    } = this.props;
 
     if (datasetError) {
       return (
@@ -80,7 +98,12 @@ class SectionPreview extends Component {
           icon: <Icon width="20" data={iconFullscreen} />,
           isVisible: () => true,
           action: ({ loadedData, propsData }) =>
-            window.open(goAwayLink({ loadedData, propsData }, { urlPostfix: '/preview', idPrefix: '/' })),
+            window.open(
+              goAwayLink(
+                { loadedData, propsData },
+                { urlPostfix: '/preview', idPrefix: '/' },
+              ),
+            ),
         };
       } else {
         LINK_NEW_WINDOW = NEW_WINDOW;
