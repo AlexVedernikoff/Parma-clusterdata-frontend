@@ -1223,8 +1223,8 @@ class SectionVisualization extends Component {
           props.setTooltipVisible(false);
         }}
         onClick={e => {
-          if (this.props?.onItemClick) {
-            this.props?.onItemClick(e, item);
+          if (props?.onItemClick) {
+            props?.onItemClick(e, item);
           }
         }}
       >
@@ -1272,7 +1272,7 @@ class SectionVisualization extends Component {
                 {CONFLICT_TOOLTIPS[item.conflict]}
               </Tooltip>
             ) : null}
-            {this.props?.id === 'sort-container' ? (
+            {props?.listId === 'sort-container' ? (
               <div className="item-right-icon sort-icon">
                 {item.direction === 'ASC' ? (
                   <SortAscendingOutlined width="16" height="16" />
