@@ -140,6 +140,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
               tooltipVisible={tooltipVisible}
               remove={remove}
               setDropPlace={setDropPlace}
+              onItemClick={props.onItemClick}
             />
           );
         })}
