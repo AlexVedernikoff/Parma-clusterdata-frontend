@@ -37,7 +37,7 @@ import {
 
 import { DATASET_ERRORS, ITEM_TYPES } from '../../../../../constants';
 
-import { DndContainer } from '../../../shared/ui/drag-n-drop';
+import { DndContainer } from '@lib-shared/ui/drag-n-drop';
 import SearchInput from '../components/SearchInput/SearchInput';
 
 import { Loader } from '@kamatech-data-ui/common/src';

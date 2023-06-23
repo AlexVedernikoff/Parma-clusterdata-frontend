@@ -1,6 +1,4 @@
 import React, { ReactElement } from 'react';
-// eslint-disable-next-line
-// @ts-ignore
 import { SidePanel } from '@features/side-panel';
 import { PageContainerProps } from '../types';
 

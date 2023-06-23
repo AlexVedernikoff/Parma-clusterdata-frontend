@@ -12,7 +12,7 @@ import {
   formatPath,
   navigationItems,
 } from '../../../../../../common/src/components/Navigation/utils/header-navigation-utils';
-import { ANT_TOKEN, COLOR_ACCENT } from '../../../../../../../../src/shared/config/theme';
+import { ANT_TOKEN, COLOR_ACCENT } from '@shared/config/theme';
 
 const b = block('dl-entry-panel');
 
