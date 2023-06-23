@@ -38,8 +38,8 @@ export function RangeDatepickerFilterControl({
 
   useEffect(() => {
     if (value?.from && value?.to) {
-      const from = dayjs(value?.from);
-      const to = dayjs(value?.to);
+      const from = dayjs(value.from);
+      const to = dayjs(value.to);
       if (from.isValid() && to.isValid()) {
         setDateRange([from, to]);
         return;
@@ -50,8 +50,8 @@ export function RangeDatepickerFilterControl({
 
   useEffect(() => {
     onChange({
-      from: value?.from ? dayjs(value?.from).format(DEFAULT_DATE_FORMAT) : '',
-      to: value?.to ? dayjs(value?.to).format(DEFAULT_DATE_FORMAT) : '',
+      from: value?.from ? dayjs(value.from).format(DEFAULT_DATE_FORMAT) : '',
+      to: value?.to ? dayjs(value.to).format(DEFAULT_DATE_FORMAT) : '',
     });
   }, []);
 
