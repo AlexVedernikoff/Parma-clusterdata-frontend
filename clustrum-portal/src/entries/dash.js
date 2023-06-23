@@ -9,7 +9,7 @@ import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { ANT_TOKEN } from '../shared/config/theme';
+import { ANT_TOKEN } from '@shared/config/theme';
 
 import './../css/clustrum/colors.css';
 import './../css/app.css';

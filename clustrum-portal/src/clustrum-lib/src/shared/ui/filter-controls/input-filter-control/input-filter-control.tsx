@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from 'antd';
-import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
+import { useDebounce } from '@lib-shared/lib/hooks/use-debounce';
 import classNames from 'classnames';
 import { InputFilterControlProps } from './types';
 

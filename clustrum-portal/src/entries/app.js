@@ -11,7 +11,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
-import { ANT_TOKEN } from '../shared/config/theme';
+import { ANT_TOKEN } from '@shared/config/theme';
 import ruRU from 'antd/locale/ru_RU';
 
 import reducers from '../reducers';
