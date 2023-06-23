@@ -3,21 +3,27 @@ import classNames from 'classnames';
 import { Select } from 'antd';
 import { SelectFilterControlProps } from './types';
 import { useDebounce } from '@lib-shared/lib/hooks/use-debounce';
-import { SelectAllBtn } from './select-all-btn';
+import { SelectionAllBtn } from './selection-all-btn';
+import { CheckOutlined } from '@ant-design/icons';
 
 import './select-filter-control.css';
 
-export function SelectFilterControl({
-  multiselect = false,
-  searchable = true,
-  value = [],
-  content,
-  onChange,
-  label,
-  className,
-}: SelectFilterControlProps): JSX.Element {
+export function SelectFilterControl(props: SelectFilterControlProps): JSX.Element {
+  const {
+    multiselect = false,
+    searchable = true,
+    value = [],
+    content,
+    onChange,
+    label,
+    className,
+  } = props;
   const [currentValue, setCurrentValue] = useState<string | string[]>(value);
   const debouncedValue = useDebounce(currentValue, 500);
+
+  const allValues = content.map(({ value }) => value);
+  const isClearBtnVisible =
+    Array.isArray(currentValue) && allValues.length === currentValue.length;
 
   useEffect(() => {
     setCurrentValue(value);
@@ -26,17 +32,6 @@ export function SelectFilterControl({
   useEffect(() => {
     onChange(debouncedValue);
   }, [debouncedValue, onChange]);
-
-  const handleSelectAll = (): void => {
-    const allValues = content.map(({ value }) => value);
-    const isAllItemsSelected =
-      Array.isArray(currentValue) && allValues.length === currentValue.length;
-    if (isAllItemsSelected) {
-      setCurrentValue([]);
-    } else {
-      setCurrentValue(allValues);
-    }
-  };
 
   return (
     <div className={classNames('select-filter-control', className)}>
@@ -63,7 +58,18 @@ export function SelectFilterControl({
           }}
           dropdownRender={(menu): React.ReactElement => (
             <>
-              {multiselect && <SelectAllBtn onClick={handleSelectAll} />}
+              {multiselect && isClearBtnVisible ? (
+                <SelectionAllBtn
+                  onClick={(): void => setCurrentValue([])}
+                  label="Очистить"
+                />
+              ) : (
+                <SelectionAllBtn
+                  onClick={(): void => setCurrentValue(allValues)}
+                  label="Выбрать все"
+                  icon={<CheckOutlined />}
+                />
+              )}
               {menu}
             </>
           )}
