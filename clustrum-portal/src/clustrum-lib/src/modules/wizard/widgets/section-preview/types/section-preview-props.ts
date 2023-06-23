@@ -1,6 +1,6 @@
 import { ExportWidgetOptions } from 'src/services/dashboard/export/export-widget/types/ExportWidgetOptions';
 
-export interface SectionPreviewProps {
+export interface sectionPreviewProps {
   configType: string;
   config: {
     shared: {

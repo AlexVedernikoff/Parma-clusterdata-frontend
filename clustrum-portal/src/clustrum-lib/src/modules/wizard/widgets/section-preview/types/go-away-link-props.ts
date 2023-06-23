@@ -5,7 +5,7 @@ export interface goAwayLinkProps {
   propsData: {
     id: string;
     source: string;
-    params: object;
+    params: Record<string, string>;
   };
   urlPostfix?: string;
   idPrefix?: string;

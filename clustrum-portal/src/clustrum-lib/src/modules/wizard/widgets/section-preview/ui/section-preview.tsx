@@ -2,23 +2,33 @@ import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import ChartKit from '@kamatech-data-ui/clustrum/src/components/ChartKit/ChartKit';
 import { EXPORT, NEW_WINDOW } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
-import { selectConfig, selectConfigType, selectPreviewEntryId } from '../../../../../../../reducers/preview';
+import {
+  selectConfig,
+  selectConfigType,
+  selectPreviewEntryId,
+} from '../../../../../../../reducers/preview';
 import { selectDatasetError } from '../../../../../../../reducers/dataset';
 import { selectWidget } from '../../../../../../../reducers/widget';
 import { setHighchartsWidget } from '../../../../../../../actions';
 import { createStructuredSelector } from 'reselect';
 import { Empty } from 'antd';
 import { DownloadOutlined, EditOutlined, ExpandOutlined } from '@ant-design/icons';
-import { SectionPreviewProps } from '../types/section-preview-props';
-import { goAwayLinkProps } from '../types/go-away-link-props';
-import { onLoadProps } from '../types/on-load-props';
+import { sectionPreviewProps, goAwayLinkProps, onLoadProps } from '../types/index';
 import { ExportWidgetOptions } from 'src/services/dashboard/export/export-widget/types/ExportWidgetOptions';
 import './section-preview.css';
 
-function goAwayLink({ loadedData, propsData, urlPostfix = '', idPrefix = '' }: goAwayLinkProps): string {
+function goAwayLink({
+  loadedData,
+  propsData,
+  urlPostfix = '',
+  idPrefix = '',
+}: goAwayLinkProps): string {
   const { endpoints } = window.DL;
   let url = endpoints.wizard + urlPostfix;
-  url += loadedData.entryId || propsData.id ? idPrefix + (loadedData.entryId || propsData.id) : propsData.source;
+  url +=
+    loadedData.entryId || propsData.id
+      ? idPrefix + (loadedData.entryId || propsData.id)
+      : propsData.source;
 
   let query = new URLSearchParams({ ...propsData.params }).toString();
   query = query ? '?' + query : query;
@@ -30,7 +40,10 @@ const EDIT = {
   title: 'Редактировать',
   icon: <EditOutlined />,
   isVisible: (): boolean => true,
-  action: ({ loadedData = { entryId: null }, propsData }: goAwayLinkProps): Window | null =>
+  action: ({
+    loadedData = { entryId: null },
+    propsData,
+  }: goAwayLinkProps): Window | null =>
     window.open(goAwayLink({ loadedData, propsData, idPrefix: '/' })),
 };
 
@@ -42,10 +55,15 @@ function SectionPreview({
   datasetError,
   setHighchartsWidget,
   onExport,
-}: SectionPreviewProps): JSX.Element {
-  const exportWidget = useRef<(runPayload: { id: string }, options: ExportWidgetOptions) => void>();
+}: sectionPreviewProps): JSX.Element {
+  const exportWidget = useRef<
+    (runPayload: { id: string }, options: ExportWidgetOptions) => void
+  >();
 
-  exportWidget.current = (runPayload: { id: string }, options: ExportWidgetOptions): void => {
+  exportWidget.current = (
+    runPayload: { id: string },
+    options: ExportWidgetOptions,
+  ): void => {
     onExport(runPayload.id, widget?.name ?? '', options);
   };
 
@@ -68,7 +86,14 @@ function SectionPreview({
           icon: <ExpandOutlined width="20" />,
           isVisible: () => true,
           action: ({ loadedData, propsData }: goAwayLinkProps) =>
-            window.open(goAwayLink({ loadedData, propsData, urlPostfix: '/preview', idPrefix: '/' })),
+            window.open(
+              goAwayLink({
+                loadedData,
+                propsData,
+                urlPostfix: '/preview',
+                idPrefix: '/',
+              }),
+            ),
         };
       } else {
         LINK_NEW_WINDOW = NEW_WINDOW;
@@ -98,9 +123,12 @@ function SectionPreview({
               highchartsWidget: result.data.widget,
             });
 
-            const eventName = result.status === 'success' ? 'chart-preview.done' : 'chart-preview.error';
+            const eventName =
+              result.status === 'success' ? 'chart-preview.done' : 'chart-preview.error';
             const event = new Event(eventName, { bubbles: true, cancelable: true });
-            document.querySelector('.preview-container__preview-chartkit')?.dispatchEvent(event);
+            document
+              .querySelector('.preview-container__preview-chartkit')
+              ?.dispatchEvent(event);
           }}
           menu={menuItems}
           exportWidget={exportWidget.current}
@@ -125,4 +153,7 @@ const mapDispatchToProps = {
   setHighchartsWidget,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SectionPreview);
+export const ConnectedSectionPreview = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SectionPreview);
