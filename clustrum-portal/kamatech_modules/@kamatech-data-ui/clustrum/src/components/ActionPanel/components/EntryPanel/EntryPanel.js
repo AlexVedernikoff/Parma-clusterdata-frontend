@@ -130,7 +130,7 @@ class EntryPanel extends React.Component {
     const { entry: { isFavorite } = {}, entry, isNavigationVisible } = this.state;
 
     const disabled = Boolean(entry.fake);
-    const iconColor = isFavorite ? ANT_TOKEN.token.colorPrimary : COLOR_ACCENT;
+    const iconColor = isFavorite ? COLOR_ACCENT : ANT_TOKEN.token.colorPrimary;
 
     const standardBtns = [
       <Button
