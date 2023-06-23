@@ -1,25 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
-import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown/should-move-dropdown';
-import { PickerValue } from './types/picker-value';
-import { Range } from './types/range';
+import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown';
+import { Range, RangeDatepickerFilterControlProps } from './types';
+
 import './range-datepicker-filter-control.css';
+
 const { RangePicker } = DatePicker;
-
-interface RangeDatepickerProps {
-  className?: string;
-  dateFormat?: string;
-  label: string;
-  maxDate?: string;
-  minDate?: string;
-  value?: PickerValue;
-  onChange(value: PickerValue): void;
-}
-
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 const POPUP_WIDTH = 576;
 
@@ -31,7 +21,7 @@ export function RangeDatepickerFilterControl({
   value,
   dateFormat = DEFAULT_DATE_FORMAT,
   onChange,
-}: RangeDatepickerProps): JSX.Element {
+}: RangeDatepickerFilterControlProps): JSX.Element {
   const [dateRange, setDateRange] = useState<Range>(null);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
   const pickerRef = useRef<HTMLDivElement>(null);
@@ -76,7 +66,7 @@ export function RangeDatepickerFilterControl({
   };
 
   return (
-    <div className={cn('range-datepicker-control', className)}>
+    <div className={classNames('range-datepicker-control', className)}>
       <label className="range-datepicker-control__label">
         {`${label}:`}
         <div ref={pickerRef} className="range-datepicker-control__picker">

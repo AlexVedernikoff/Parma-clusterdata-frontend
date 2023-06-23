@@ -220,7 +220,6 @@ class SectionVisualization extends Component {
           itemsClassName="placeholder-item"
           wrapTo={this.renderDatasetItem}
           disabled={datasetError}
-          isNeedUpdate={this.state.isNeedUpdate}
           onItemClick={(e, item) => {
             if (
               ['flat-table-columns', 'measures', 'dimensions'].includes(placeholder.id)
@@ -442,7 +441,7 @@ class SectionVisualization extends Component {
                   },
                 });
               }}
-              onUpdate={(items, item, action, onUndoInsert) => {
+              onUpdate={(items, item, action) => {
                 if (action === 'remove') {
                   // Обрабатываем удаление фильтра
                   setFilters({
@@ -498,13 +497,6 @@ class SectionVisualization extends Component {
                           diagramMagnitude,
                           exportLimit,
                         });
-                      } else {
-                        // Модалку с фильтром закенселили
-                        items.splice(items.indexOf(item), 1);
-
-                        if (onUndoInsert) {
-                          onUndoInsert();
-                        }
                       }
                     },
                   });
@@ -566,11 +558,6 @@ class SectionVisualization extends Component {
                             diagramMagnitude,
                             exportLimit,
                           });
-                        } else {
-                          // Модалку с фильтром закенселили
-                          if (onUndoInsert) {
-                            onUndoInsert();
-                          }
                         }
                       },
                     });
@@ -1344,8 +1331,6 @@ class SectionVisualization extends Component {
                   }`}
                   onClick={() => {
                     if (visualization.id === item.id) return;
-
-                    this.setState({ isNeedUpdate: true });
 
                     this.dropdownRef.toggle();
 

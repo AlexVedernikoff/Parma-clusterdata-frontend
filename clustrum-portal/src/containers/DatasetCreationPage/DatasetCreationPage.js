@@ -419,18 +419,19 @@ class DatasetCreationPage extends React.Component {
                 progress={isActionProgress}
               />
             ) : (
-              <Button
-                disabled={!connectionId}
-                key={'action-btn'}
-                cls={b('action-btn')}
-                theme="action"
-                size="n"
-                view="default"
-                tone="default"
-                text="Создать набор данных"
-                onClick={this.createDataset}
-                progress={isActionProgress}
-              />
+              connectionId && (
+                <Button
+                  key={'action-btn'}
+                  cls={b('action-btn')}
+                  theme="action"
+                  size="n"
+                  view="default"
+                  tone="default"
+                  text="Создать набор данных"
+                  onClick={this.createDataset}
+                  progress={isActionProgress}
+                />
+              )
             ),
           ]}
         />

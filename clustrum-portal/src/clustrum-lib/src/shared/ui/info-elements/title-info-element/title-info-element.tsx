@@ -1,12 +1,7 @@
 import React from 'react';
-import './title-info-element.css';
+import { TitleInfoElementProps } from './types';
 
-interface TitleInfoElementProps {
-  data: {
-    text?: string;
-    showInTOC?: boolean;
-  };
-}
+import './title-info-element.css';
 
 export const TitleInfoElement = React.forwardRef<HTMLDivElement, TitleInfoElementProps>(
   (
