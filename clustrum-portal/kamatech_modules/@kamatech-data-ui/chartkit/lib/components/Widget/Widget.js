@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ChartWidget } from '@lib-shared/ui/widgets/chart-widget';
 import OLMap from './OLMap/OLMap';
 import SideHtml from './SideHtml/SideHtml';
-
-import ExtensionsManager from '../../modules/extensions-manager/extensions-manager';
 import Card from './Card/Card';
 import Indicator from './Indicator/Indicator';
+import { TableAdapter as Table } from './Table/TableAdapter';
+import YandexMap from './YandexMap/YandexMap';
+import Text from './WikiText/WikiText';
+import Metric from './Metric/Metric';
+import Control from './Control/Control';
+
 import { WIDGET_TYPE as WIDGET_TYPE_CONST } from './WidgetType';
-import { ChartWidget } from '@clustrum-lib/shared/ui/widgets/chart-widget';
 
 class Unknown extends React.PureComponent {
   static propTypes = {
@@ -50,32 +54,28 @@ class Widget extends React.PureComponent {
   renderWidget() {
     const { widgetType } = this.props.data;
 
-    if (widgetType === WIDGET_TYPE.GRAPH) {
-      return <ChartWidget {...this.props} />;
+    switch (widgetType) {
+      case WIDGET_TYPE.GRAPH:
+        return <ChartWidget {...this.props} />;
+      case WIDGET_TYPE.MAP:
+        return <OLMap {...this.props} />;
+      case WIDGET_TYPE.CARD:
+        return <Card {...this.props} />;
+      case WIDGET_TYPE.INDICATOR:
+        return <Indicator {...this.props} />;
+      case WIDGET_TYPE.TABLE:
+        return <Table {...this.props} />;
+      case WIDGET_TYPE.YMAP:
+        return <YandexMap {...this.props} />;
+      case WIDGET_TYPE.TEXT:
+        return <Text {...this.props} />;
+      case WIDGET_TYPE.METRIC:
+        return <Metric {...this.props} />;
+      case WIDGET_TYPE.CONTROL:
+        return null;
+      default:
+        return <Unknown {...this.props} />;
     }
-
-    if (widgetType === WIDGET_TYPE.MAP) {
-      return <OLMap {...this.props} />;
-    }
-
-    if (widgetType === WIDGET_TYPE.CARD) {
-      return <Card {...this.props} />;
-    }
-
-    if (widgetType === WIDGET_TYPE.INDICATOR) {
-      return <Indicator {...this.props} />;
-    }
-
-    if (widgetType === WIDGET_TYPE.CONTROL) {
-      return null;
-    }
-
-    if (ExtensionsManager.has(widgetType)) {
-      const Component = ExtensionsManager.get(widgetType);
-      return <Component {...this.props} />;
-    }
-
-    return <Unknown {...this.props} />;
   }
 
   renderSideHtml() {
@@ -93,20 +93,15 @@ class Widget extends React.PureComponent {
     const { uiScheme, params, entryId, widgetType } = this.props.data;
 
     if (uiScheme) {
-      if (ExtensionsManager.has(WIDGET_TYPE.CONTROL)) {
-        const Control = ExtensionsManager.get(WIDGET_TYPE.CONTROL);
-        return (
-          <Control
-            scheme={uiScheme}
-            params={params}
-            entryId={entryId}
-            onChange={this.props.onChange}
-            standalone={widgetType === WIDGET_TYPE.CONTROL}
-          />
-        );
-      }
-
-      console.warn('Control extension not found');
+      return (
+        <Control
+          scheme={uiScheme}
+          params={params}
+          entryId={entryId}
+          onChange={this.props.onChange}
+          standalone={widgetType === WIDGET_TYPE.CONTROL}
+        />
+      );
     }
 
     return null;
