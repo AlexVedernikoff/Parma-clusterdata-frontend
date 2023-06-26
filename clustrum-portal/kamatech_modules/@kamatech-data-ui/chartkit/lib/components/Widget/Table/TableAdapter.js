@@ -106,6 +106,57 @@ function getColumnsAndNames({ head, context }, clickCallback, field, prevSelecte
   );
 }
 
+function renderCell(item) {
+  const { type, ...options } = item;
+  const cellContent = createCell(type, item, options);
+  return cellContent;
+}
+
+function getAntdColumn(col, index, total) {
+  const currentCol = {
+    title: col.header,
+    key: index,
+    dataIndex: col.dataIndex,
+    sorter: (row1, row2) => {
+      const left = row1[col.dataIndex].value;
+      const right = row2[col.dataIndex].value;
+      return left > right ? 1 : left < right ? -1 : 0;
+    },
+    onCell: row => ({
+      onClick: () =>
+        handleCellClick(
+          col.context,
+          row,
+          col.field,
+          col.columnName,
+          col.prevSelectedCell,
+          col.clickCallback,
+        ),
+    }),
+  };
+
+  if (total) {
+    return {
+      ...currentCol,
+      children: [
+        {
+          title:
+            index === 0
+              ? 'Общий итог'
+              : total[0].values?.[index]?.value || total[0].cells[index].value,
+          dataIndex: col.dataIndex,
+          key: index,
+          render: item => renderCell(item),
+        },
+      ],
+    };
+  }
+  return {
+    ...currentCol,
+    render: item => renderCell(item),
+  };
+}
+
 function getTitle(title) {
   return title ? (
     <div className="chartkit-table__title" style={camelCaseCss(title.style)}>
@@ -170,7 +221,7 @@ export class TableAdapter extends React.PureComponent {
 
   render() {
     const {
-      data: { data: { head, rows = [] } = {}, config: { title } = {} } = {},
+      data: { data: { head, rows = [], total } = {}, config: { title } = {} } = {},
     } = this.props;
 
     if (!head || !rows) {
@@ -195,39 +246,9 @@ export class TableAdapter extends React.PureComponent {
       selectedCell,
     );
 
-    const renderCell = item => {
-      const { type, ...options } = item;
-      const cellContent = createCell(type, item, options);
-      return cellContent;
-    };
-
-    const antdTableColumns = columns.map((col, index) => {
-      return {
-        title: col.header,
-        key: index,
-        dataIndex: col.dataIndex,
-        render: item => renderCell(item),
-        sorter: (row1, row2) => {
-          const left = row1[col.dataIndex].value;
-          const right = row2[col.dataIndex].value;
-          return left > right ? 1 : left < right ? -1 : 0;
-        },
-        onCell: row => {
-          return {
-            onClick: () => {
-              handleCellClick(
-                col.context,
-                row,
-                col.field,
-                col.columnName,
-                col.prevSelectedCell,
-                col.clickCallback,
-              );
-            },
-          };
-        },
-      };
-    });
+    const antdTableColumns = columns.map((col, index) =>
+      getAntdColumn(col, index, total),
+    );
 
     const data = rows.map((row, rowIndex) =>
       row.values

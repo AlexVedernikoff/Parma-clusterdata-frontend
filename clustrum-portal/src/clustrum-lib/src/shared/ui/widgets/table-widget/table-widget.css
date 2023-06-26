@@ -71,3 +71,16 @@
     }
   }
 }
+
+.table-widget .ant-table-thead > tr:nth-of-type(2) > .ant-table-cell {
+  border-right: 1px solid transparent;
+  background-color: var(--data-table-color-base);
+}
+
+.table-widget .ant-table-thead > tr:nth-of-type(2):hover > .ant-table-cell {
+  background-color: var(--color-contrast-4-solid);
+}
+
+.table-widget .ant-table-thead > tr:nth-of-type(2) > .ant-table-cell::before {
+  display: none;
+}
