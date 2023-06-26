@@ -40,7 +40,11 @@ export default function StatSourceView({ index, source }) {
 
   if (source.data) {
     if (source.data.is_dictionary) {
-      _source = { name: source.name, title: source.data.name, url: source.data.uri.replace('/vcfs/', '/') };
+      _source = {
+        name: source.name,
+        title: source.data.name,
+        url: source.data.uri.replace('/vcfs/', '/'),
+      };
 
       const params = source.data.params;
 
@@ -67,7 +71,11 @@ export default function StatSourceView({ index, source }) {
         _reports = _breadcrumbs(reports, 'report');
       }
 
-      _source = { name: source.name, title: source.data.title, url: `${settings.statfaceEndpoint}${source.data.uri}` };
+      _source = {
+        name: source.name,
+        title: source.data.title,
+        url: `${settings.statfaceEndpoint}${source.data.uri}`,
+      };
 
       const reportInfo = source.data.extras.reportInfo;
 
@@ -75,7 +83,9 @@ export default function StatSourceView({ index, source }) {
         let dimensions = reportInfo.dimensions || [];
 
         if (reportInfo.region) {
-          dimensions = [{ title: 'Регион', valueTitle: reportInfo.region.title }].concat(dimensions);
+          dimensions = [{ title: 'Регион', valueTitle: reportInfo.region.title }].concat(
+            dimensions,
+          );
         }
 
         if (reportInfo.scale) {
@@ -89,12 +99,17 @@ export default function StatSourceView({ index, source }) {
             yearly: 'по годам',
           };
 
-          dimensions = [{ title: 'Детализация', valueTitle: scaleLabels[reportInfo.scale.title] }].concat(dimensions);
+          dimensions = [
+            { title: 'Детализация', valueTitle: scaleLabels[reportInfo.scale.title] },
+          ].concat(dimensions);
         }
 
         if (dimensions && dimensions.length > 0) {
           _dimensions = dimensions.map(dimension => (
-            <div className={b('cell', { dimension: true })} key={generateKey(dimension.title)}>
+            <div
+              className={b('cell', { dimension: true })}
+              key={generateKey(dimension.title)}
+            >
               <span className={b('grey')}>{`${dimension.title}: `}</span>
               {dimension.valueTitle}
             </div>
@@ -136,7 +151,12 @@ export default function StatSourceView({ index, source }) {
         {_projects}
         {_reports}
         <div className={b('cell')}>
-          <Link theme="normal" mix={{ block: b('link', { source: true }) }} target="_blank" url={_source.url}>
+          <Link
+            theme="normal"
+            mix={{ block: b('link', { source: true }) }}
+            target="_blank"
+            url={_source.url}
+          >
             {_source.title}
           </Link>
         </div>

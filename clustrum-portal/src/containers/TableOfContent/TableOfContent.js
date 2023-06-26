@@ -78,7 +78,12 @@ class TableOfContent extends React.PureComponent {
           cls={b('toggle', { opened })}
           onClick={() => toggleTableOfContent(!opened)}
         >
-          <Icon className={b('arrow', { opened })} data={iconArrowSidebar} width="16" height="16" />
+          <Icon
+            className={b('arrow', { opened })}
+            data={iconArrowSidebar}
+            width="16"
+            height="16"
+          />
         </Button>
         <div className={b()}>
           {/*<div className={b('hidebar')}>*/}
@@ -97,7 +102,9 @@ class TableOfContent extends React.PureComponent {
                 <Link
                   to={{
                     ...this.props.location,
-                    search: appendSearchParams(this.props.location.search, { tab: tab.id }),
+                    search: appendSearchParams(this.props.location.search, {
+                      tab: tab.id,
+                    }),
                   }}
                   className={b('title', { selected: tab.id === this.props.tabId })}
                   onClick={() => this.props.setPageTab(tab.id)}
@@ -109,7 +116,9 @@ class TableOfContent extends React.PureComponent {
                     <Link
                       to={{
                         ...this.props.location,
-                        search: appendSearchParams(this.props.location.search, { tab: tab.id }),
+                        search: appendSearchParams(this.props.location.search, {
+                          tab: tab.id,
+                        }),
                         hash: `#${encodeURIComponent(item.title)}`,
                       }}
                       className={b('title', { item: true })}
@@ -153,4 +162,7 @@ const mapDispatchToProps = {
   toggleTableOfContent,
 };
 
-export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(TableOfContent);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+)(TableOfContent);

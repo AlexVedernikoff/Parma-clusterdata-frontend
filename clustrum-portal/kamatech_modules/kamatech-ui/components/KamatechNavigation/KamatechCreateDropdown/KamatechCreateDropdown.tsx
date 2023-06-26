@@ -1,9 +1,16 @@
 import * as React from 'react';
 import { KamatechCreateDropdownInterface } from './KamatechCreateDropdown.interface';
 import { ControlSize } from '../../../enums';
-import { KamatechMenu, KamatechCreateDropdownItem, KamatechButton, KamatechDropdown } from '../..';
+import {
+  KamatechMenu,
+  KamatechCreateDropdownItem,
+  KamatechButton,
+  KamatechDropdown,
+} from '../..';
 
-export class KamatechCreateDropdown extends React.Component<KamatechCreateDropdownInterface> {
+export class KamatechCreateDropdown extends React.Component<
+  KamatechCreateDropdownInterface
+> {
   static defaultProps = {
     size: ControlSize.N,
     items: [] as any[],
@@ -18,7 +25,11 @@ export class KamatechCreateDropdown extends React.Component<KamatechCreateDropdo
     return (
       <KamatechMenu view="default" tone="default" theme="normal" size={this.props.size}>
         {items.map((item, index) => (
-          <KamatechCreateDropdownItem key={index} {...item} onClick={onMenuClick}></KamatechCreateDropdownItem>
+          <KamatechCreateDropdownItem
+            key={index}
+            {...item}
+            onClick={onMenuClick}
+          ></KamatechCreateDropdownItem>
         ))}
       </KamatechMenu>
     );
@@ -33,6 +44,11 @@ export class KamatechCreateDropdown extends React.Component<KamatechCreateDropdo
   }
 
   render() {
-    return <KamatechDropdown switcher={this.renderSwitcher()} popup={this.renderPopup()}></KamatechDropdown>;
+    return (
+      <KamatechDropdown
+        switcher={this.renderSwitcher()}
+        popup={this.renderPopup()}
+      ></KamatechDropdown>
+    );
   }
 }

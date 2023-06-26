@@ -7,7 +7,12 @@ import Icon from '../../Icon/Icon';
 import iconCalendar from '../../../assets/icons/calendar.svg';
 import iconRefresh from '../../../assets/icons/time-refresh.svg';
 import noop from 'lodash/noop';
-import { humanizeInterval, formatInterval, formatTimeCanonical, getTimestampFromDate } from '../util';
+import {
+  humanizeInterval,
+  formatInterval,
+  formatTimeCanonical,
+  getTimestampFromDate,
+} from '../util';
 import TimelineDatepicker from './TimelineDatepicker';
 
 // import './TimelinePicker.scss';
@@ -200,7 +205,10 @@ class TimelinePicker extends React.Component {
     if (!refreshIntervals) {
       return null;
     }
-    const title = (refreshIntervals.find(item => item.value === String(refreshInterval)) || refreshIntervals[0]).title;
+    const title = (
+      refreshIntervals.find(item => item.value === String(refreshInterval)) ||
+      refreshIntervals[0]
+    ).title;
     const placeholder = (
       <span key="placeholder">
         <Icon className={b('refresh-selector-icon')} data={iconRefresh} />
@@ -247,7 +255,12 @@ class TimelinePicker extends React.Component {
           ))}
           <div className={b('hot-custom')}>
             {customInput ? (
-              <EnterInput autoFocus={true} placeholder="6h" onCancel={this.onCustomCancel} onDone={this.onCustomDone} />
+              <EnterInput
+                autoFocus={true}
+                placeholder="6h"
+                onCancel={this.onCustomCancel}
+                onDone={this.onCustomDone}
+              />
             ) : (
               <TimeHotButton
                 checked={isShortcutCustom}
@@ -257,7 +270,11 @@ class TimelinePicker extends React.Component {
             )}
           </div>
         </div>
-        <div ref={this._datepickerRef} className={b('datepicker', { opened })} onClick={this.onOpenPickerClick}>
+        <div
+          ref={this._datepickerRef}
+          className={b('datepicker', { opened })}
+          onClick={this.onOpenPickerClick}
+        >
           {picker}
         </div>
         <Popup

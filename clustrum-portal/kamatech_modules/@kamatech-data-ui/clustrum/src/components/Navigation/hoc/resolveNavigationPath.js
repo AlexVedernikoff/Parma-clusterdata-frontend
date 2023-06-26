@@ -38,7 +38,11 @@ export const resolveNavigationPath = Component =>
 
     render() {
       return 'resolvedPath' in this.state && this.props.visible ? (
-        <Component {...this.props} path={this.state.resolvedPath} root={this.state.resolvedRoot} />
+        <Component
+          {...this.props}
+          path={this.state.resolvedPath}
+          root={this.state.resolvedRoot}
+        />
       ) : null;
     }
   };

@@ -76,8 +76,10 @@ export default class Toaster {
   }
 
   _render() {
-    ReactDOM.render(<ToastsContainer toasts={this._toasts} removeCallback={this.removeToast} />, this._rootNode, () =>
-      Promise.resolve(),
+    ReactDOM.render(
+      <ToastsContainer toasts={this._toasts} removeCallback={this.removeToast} />,
+      this._rootNode,
+      () => Promise.resolve(),
     );
   }
 }

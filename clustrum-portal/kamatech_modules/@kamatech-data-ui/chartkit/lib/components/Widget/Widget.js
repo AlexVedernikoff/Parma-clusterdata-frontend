@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Graph from './Graph/Graph';
+import { ChartWidget } from '@lib-shared/ui/widgets/chart-widget';
 import OLMap from './OLMap/OLMap';
 import SideHtml from './SideHtml/SideHtml';
 import Card from './Card/Card';
 import Indicator from './Indicator/Indicator';
-import Table from './Table/Table';
+import { TableAdapter as Table } from './Table/TableAdapter';
 import YandexMap from './YandexMap/YandexMap';
 import Text from './WikiText/WikiText';
 import Metric from './Metric/Metric';
@@ -56,7 +56,7 @@ class Widget extends React.PureComponent {
 
     switch (widgetType) {
       case WIDGET_TYPE.GRAPH:
-        return <Graph {...this.props} />;
+        return <ChartWidget {...this.props} />;
       case WIDGET_TYPE.MAP:
         return <OLMap {...this.props} />;
       case WIDGET_TYPE.CARD:
@@ -81,7 +81,11 @@ class Widget extends React.PureComponent {
   renderSideHtml() {
     const { sideHtml, config } = this.props.data;
     return sideHtml ? (
-      <SideHtml html={sideHtml} visible={!config.hideComments && config.showSideHtml} key="side" />
+      <SideHtml
+        html={sideHtml}
+        visible={!config.hideComments && config.showSideHtml}
+        key="side"
+      />
     ) : null;
   }
 

@@ -6,7 +6,12 @@ import { PathSelect } from '@kamatech-data-ui/clustrum';
 
 import getErrorMessageHelper from './getErrorMessageHelper';
 import UserName from '../UserName/UserName';
-import { getConnectorsMap, getStaticSelectItems, TOAST_NAME, REPLACE_SOURCE_MODE_ID } from '../../constants';
+import {
+  getConnectorsMap,
+  getStaticSelectItems,
+  TOAST_NAME,
+  REPLACE_SOURCE_MODE_ID,
+} from '../../constants';
 import Utils from '../../helpers/utils';
 import SelectConnection from '../../containers/SelectConnection/SelectConnection';
 import { getSearchParam } from '../../helpers/QueryParams';
@@ -37,7 +42,13 @@ class DatasetCreation extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     const { dirPath } = state;
-    const { connectionType, connectionId, connectionName, cluster, pathSelectInputError } = props;
+    const {
+      connectionType,
+      connectionId,
+      connectionName,
+      cluster,
+      pathSelectInputError,
+    } = props;
 
     if (pathSelectInputError) {
       return {
@@ -85,7 +96,8 @@ class DatasetCreation extends React.Component {
   async componentDidMount() {
     const { sdk, connectionId, connectionType } = this.props;
     const isNeedDatabaseList =
-      connectionId && ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
+      connectionId &&
+      ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
     const isYtConnection = connectionType === 'yt';
 
     if (isNeedDatabaseList) {
@@ -135,7 +147,8 @@ class DatasetCreation extends React.Component {
     } else if (isYtConnection && !connectionId) {
       const { connections } = await sdk.bi.getConnections();
 
-      const { id: connectionIdYt, ...ytConnection } = connections.find(({ type }) => type === 'yt') || {};
+      const { id: connectionIdYt, ...ytConnection } =
+        connections.find(({ type }) => type === 'yt') || {};
 
       this.setState(
         {
@@ -155,7 +168,8 @@ class DatasetCreation extends React.Component {
     const { selectedDatabase: selectedDatabasePrev } = prevState;
 
     const isNeedDatabaseTableList =
-      connectionId && ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
+      connectionId &&
+      ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
 
     if (selectedDatabasePrev !== selectedDatabase && isNeedDatabaseTableList) {
       try {
@@ -237,11 +251,19 @@ class DatasetCreation extends React.Component {
         break;
       }
       case 'yt': {
-        allowedSections = [SECTION_PATH_SELECTION, SECTION_SELECTION_YT_ID, SECTION_WARNING_YT];
+        allowedSections = [
+          SECTION_PATH_SELECTION,
+          SECTION_SELECTION_YT_ID,
+          SECTION_WARNING_YT,
+        ];
         break;
       }
       case 'clickhouse': {
-        allowedSections = [SECTION_PATH_SELECTION, SECTION_SELECTION_DB_TABLES_HINTS, SECTION_DATABASE_TABLE_SELECTION];
+        allowedSections = [
+          SECTION_PATH_SELECTION,
+          SECTION_SELECTION_DB_TABLES_HINTS,
+          SECTION_DATABASE_TABLE_SELECTION,
+        ];
 
         if (isInternal) {
           // allowedSections.push(SECTION_CLICKHOUSE_YQL);
@@ -253,7 +275,11 @@ class DatasetCreation extends React.Component {
       case 'mysql':
       case 'postgres':
       case 'oracle': {
-        allowedSections = [SECTION_PATH_SELECTION, SECTION_SELECTION_DB_TABLES_HINTS, SECTION_DATABASE_TABLE_SELECTION];
+        allowedSections = [
+          SECTION_PATH_SELECTION,
+          SECTION_SELECTION_DB_TABLES_HINTS,
+          SECTION_DATABASE_TABLE_SELECTION,
+        ];
 
         break;
       }
@@ -369,10 +395,20 @@ class DatasetCreation extends React.Component {
     return (
       <div className={b()}>
         <div className={b('panel')}>
-          <Icon className={b('connector-ic')} data={Utils.getConnectorIcon({ type: connectionType })} width="32" />
-          <span className={b('label-connection-type')}>{getConnectorsMap()[connectionType]}</span>
+          <Icon
+            className={b('connector-ic')}
+            data={Utils.getConnectorIcon({ type: connectionType })}
+            width="32"
+          />
+          <span className={b('label-connection-type')}>
+            {getConnectorsMap()[connectionType]}
+          </span>
           <span className={b('label-connection-name')}>{connectionName}</span>
-          <SelectConnection sdk={sdk} connectionId={connectionId} onEntryClick={onEntryClick} />
+          <SelectConnection
+            sdk={sdk}
+            connectionId={connectionId}
+            onEntryClick={onEntryClick}
+          />
         </div>
         <div className={b('fields')}>
           {!isHiddenItem &&
@@ -383,14 +419,16 @@ class DatasetCreation extends React.Component {
               <div className="row">
                 <PathSelect
                   inputRef={this._setDatabaseNameInpInnerRef}
-                  inputError={pathSelectInputError ? 'Поле обязательно для заполнения' : null}
+                  inputError={
+                    pathSelectInputError ? 'Поле обязательно для заполнения' : null
+                  }
                   sdk={sdk}
                   defaultPath={dirPath}
                   withInput={true}
                   onChoosePath={dirPath => this.changeValue({ dirPath })}
                   inputValue={datasetTitle}
                   onChangeInput={datasetTitle => this.changeValue({ datasetTitle })}
-                  placeholder="Имя датасета"
+                  placeholder="Имя набора данных"
                 />
               </div>
             )}
@@ -552,7 +590,10 @@ class DatasetCreation extends React.Component {
             isInternal,
           }) && (
             <div className={b('warning-yt')}>
-              <span>Указанная таблица будет загружена в ClickHouse, должна соответствовать требованиям:</span>
+              <span>
+                Указанная таблица будет загружена в ClickHouse, должна соответствовать
+                требованиям:
+              </span>
               <ol>
                 <li>Быть схематизированной</li>
                 <li>
@@ -561,8 +602,9 @@ class DatasetCreation extends React.Component {
                 <li>Размер (uncompressed size) таблицы не должен превышать 1ГБ</li>
               </ol>
               <span>
-                В текущей реализации Статистика ходит за данными от имени <UserName inline>@robot-clustrum</UserName>.
-                Создание подключений от имени других пользователей и роботов пока недоступно.
+                В текущей реализации Статистика ходит за данными от имени{' '}
+                <UserName inline>@robot-clustrum</UserName>. Создание подключений от имени
+                других пользователей и роботов пока недоступно.
               </span>
             </div>
           )}

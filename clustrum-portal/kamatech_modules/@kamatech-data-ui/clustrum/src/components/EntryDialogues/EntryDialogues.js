@@ -24,7 +24,11 @@ export const ENTRY_DIALOG = {
   SAVE_EDITOR_CHART: 'save_editor_chart',
 };
 
-export const entryDialoguesNotify = (dialogName, errorDialogRef) => ({ message: title, type, error }) => {
+export const entryDialoguesNotify = (dialogName, errorDialogRef) => ({
+  message: title,
+  type,
+  error,
+}) => {
   // eslint-disable-line no-unused-vars
   const toaster = new Toaster();
   switch (dialogName) {

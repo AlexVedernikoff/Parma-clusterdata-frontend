@@ -9,12 +9,20 @@ import { Loader } from '@kamatech-data-ui/common/src';
 const b = block('function-manual');
 
 function AvailableFunctions(props) {
-  const { functionsByTypes, onClickFunctionItem, selectedFunctionItem, displayTypeSections } = props;
-  const functionTypesToggle = functionsByTypes.reduce((functionsTypesToggleReducer, { name }) => {
-    functionsTypesToggleReducer[name] = !displayTypeSections;
+  const {
+    functionsByTypes,
+    onClickFunctionItem,
+    selectedFunctionItem,
+    displayTypeSections,
+  } = props;
+  const functionTypesToggle = functionsByTypes.reduce(
+    (functionsTypesToggleReducer, { name }) => {
+      functionsTypesToggleReducer[name] = !displayTypeSections;
 
-    return functionsTypesToggleReducer;
-  }, {});
+      return functionsTypesToggleReducer;
+    },
+    {},
+  );
 
   const [state, setState] = useState(functionTypesToggle);
 
@@ -53,7 +61,10 @@ function AvailableFunctions(props) {
               return (
                 <div
                   key={id}
-                  className={b('function-name', { selected, indent: displayTypeSections })}
+                  className={b('function-name', {
+                    selected,
+                    indent: displayTypeSections,
+                  })}
                   onClick={() => onClickFunctionItem({ id, href, name })}
                 >
                   <span>{name}</span>

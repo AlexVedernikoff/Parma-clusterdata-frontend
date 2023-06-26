@@ -3,7 +3,9 @@ import './KamatechCreateDropdownItem.css';
 import { KamatechCreateDropdownItemInterface } from './KamatechCreateDropdownItem.interface';
 import { KamatechIcon } from '../../..';
 
-export class KamatechCreateDropdownItem extends React.Component<KamatechCreateDropdownItemInterface> {
+export class KamatechCreateDropdownItem extends React.Component<
+  KamatechCreateDropdownItemInterface
+> {
   onClick = (event: React.SyntheticEvent) => {
     if (this.props.onClick) {
       this.props.onClick(this.props.value, event);

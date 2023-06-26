@@ -26,9 +26,18 @@ import { selectDataset } from '../../../../reducers/dataset';
 
 import { selectVisualization } from '../../../../reducers/visualization';
 
-import { selectSettings, selectIsFullscreen, selectIsDefaultsSet } from '../../../../reducers/settings';
+import {
+  selectSettings,
+  selectIsFullscreen,
+  selectIsDefaultsSet,
+} from '../../../../reducers/settings';
 
-import { selectIsWidgetLoading, selectWidgetError, selectWidget, selectWidgetHash } from '../../../../reducers/widget';
+import {
+  selectIsWidgetLoading,
+  selectWidgetError,
+  selectWidget,
+  selectWidgetHash,
+} from '../../../../reducers/widget';
 
 import {
   selectConfig,
@@ -37,7 +46,13 @@ import {
   selectPreviewHash,
 } from '../../../../reducers/preview';
 
-import { fetchWidget, setDefaults, toggleFullscreen, requestUpdateWidget, receiveWidget } from '../../../../actions';
+import {
+  fetchWidget,
+  setDefaults,
+  toggleFullscreen,
+  requestUpdateWidget,
+  receiveWidget,
+} from '../../../../actions';
 
 import { getNavigationPathFromKey } from '../../../../helpers/utils-dash';
 import PageHead from '../../../../components/PageHeader/PageHeader';
@@ -77,16 +92,26 @@ class Wizard extends Component {
   }
 
   openSaveAsWidgetDialog = async () => {
-    const { config, dataset, visualization, defaultPath, receiveWidget } = this.props;
+    const { config, dataset, visualization, receiveWidget } = this.props;
 
     const labelVisualization = {
+      'label_visualization-area': 'Диаграмма с областями',
+      'label_visualization-area-100p': '100% диаграмма с областями',
+      'label_visualization-column': 'Столбчатая диаграмма',
+      'label_visualization-column-100p': '100% cтолбчатая диаграмма',
+      'label_visualization-flat-table': 'Таблица',
+      'label_visualization-line': 'Линейная диаграмма',
+      'label_visualization-pie': 'Круговая диаграмма',
+      'label_visualization-pivot-table': 'Сводная таблица',
+      map: 'Карта',
+      heatmap: 'Фоновая карта',
+      map_cluster_focus_point: 'Карта очагов по кластеризации',
+      label_visualization_card: 'Карточка объекта',
       'label_visualization-scatter': 'Точечная  диаграмма',
       'label_visualization-treemap': 'Древовидная диаграмма',
-      'label_visualization-types-all': 'Все',
-      'label_visualization-types-column': 'Столбчатые',
-      'label_visualization-types-line': 'Графики',
-      'label_visualization-types-pie': 'Круговые',
-      'label_visualization-types-table': 'Таблицы',
+      label_visualization_indicator: 'Индикатор',
+      label_visualization_multiline: 'График',
+      label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
     };
 
     const result = await this.entryDialoguesRef.current.openDialog({
@@ -96,7 +121,7 @@ class Wizard extends Component {
         widgetName: `${dataset.name} — ${labelVisualization[visualization.name]}`,
         widgetData: config.shared,
         title: 'Сохранить чарт',
-        onNotify: ({ error, message, type }) => {
+        onNotify: ({ error }) => {
           if (error && error.response && error.response.status === 400) {
             this.toaster.createToast({
               title: 'Диаграмма с таким именем уже существует',
@@ -117,7 +142,14 @@ class Wizard extends Component {
   };
 
   openSaveWidgetDialog = async () => {
-    const { widget, sdk, config, requestUpdateWidget, onSavingStart, onSavingEnd } = this.props;
+    const {
+      widget,
+      sdk,
+      config,
+      requestUpdateWidget,
+      onSavingStart,
+      onSavingEnd,
+    } = this.props;
 
     // Обновляем существующий или сохраняем новый?
     if (widget && !widget.fake) {
@@ -194,10 +226,24 @@ class Wizard extends Component {
   }
 
   renderApp() {
-    const { sdk, widget, isFullscreen, preview, isWidgetLoading, toggleFullscreen, onExport } = this.props;
+    const {
+      sdk,
+      widget,
+      isFullscreen,
+      preview,
+      isWidgetLoading,
+      toggleFullscreen,
+      onExport,
+      config,
+      configType,
+      previewHash,
+      widgetHash,
+    } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
     const hidden = isFullscreen ? ' hidden' : '';
+    const isSaveBtnDisabled = !config || !configType || previewHash === widgetHash;
+    const isSaveMoreBtnDisabled = !config || !configType;
     const { entryDialoguesRef } = this;
 
     if (isWidgetLoading) {
@@ -222,6 +268,7 @@ class Wizard extends Component {
           </a>
         ),
         key: '1',
+        disabled: isSaveMoreBtnDisabled,
       },
     ];
 
@@ -259,11 +306,15 @@ class Wizard extends Component {
               >
                 На весь экран
               </Button>,
-              <div className={`pseudosave-btn${entryLocked ? ' active' : ''}`} onClick={this.openNoRightsDialog}></div>,
+              <div
+                className={`pseudosave-btn${entryLocked ? ' active' : ''}`}
+                onClick={this.openNoRightsDialog}
+              ></div>,
               <Space>
                 <Dropdown.Button
                   type="primary"
                   menu={{ items: saveItems }}
+                  disabled={isSaveBtnDisabled}
                   onClick={this.openSaveWidgetDialog}
                   trigger={['click']}
                 >
@@ -289,7 +340,11 @@ class Wizard extends Component {
             </div>
           )}
           <div className="column preview-column">
-            <SectionPreview entryDialoguesRef={entryDialoguesRef} sdk={sdk} onExport={onExport} />
+            <SectionPreview
+              entryDialoguesRef={entryDialoguesRef}
+              sdk={sdk}
+              onExport={onExport}
+            />
           </div>
         </div>
       </div>

@@ -19,11 +19,24 @@ import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close
 const b = block('control-external-defaults');
 
 const Input = ({ text, onChange }) => (
-  <TextInput theme="normal" view="default" tone="default" size="s" text={text} onChange={onChange} />
+  <TextInput
+    theme="normal"
+    view="default"
+    tone="default"
+    size="s"
+    text={text}
+    onChange={onChange}
+  />
 );
 
 const Remove = ({ onClick }) => (
-  <Icon width="18" height="18" className={b('icon')} onClick={onClick} data={iconPreviewClose} />
+  <Icon
+    width="18"
+    height="18"
+    className={b('icon')}
+    onClick={onClick}
+    data={iconPreviewClose}
+  />
 );
 
 const AddButton = ({ text, onClick }) => (
@@ -50,7 +63,11 @@ const makeEntries = obj => {
 };
 
 const makeObject = entries =>
-  entries.reduce((result, [key, value]) => (key ? { ...result, [key]: unwrapFromArray(value) } : result), {});
+  entries.reduce(
+    (result, [key, value]) =>
+      key ? { ...result, [key]: unwrapFromArray(value) } : result,
+    {},
+  );
 
 function Defaults({ defaults, onChange }) {
   const [showDialog, setShowDialog] = React.useState(false);
@@ -58,7 +75,12 @@ function Defaults({ defaults, onChange }) {
 
   return (
     <React.Fragment>
-      <WrappedButton title="Параметры" text="Настроить" disabled={false} onClick={() => setShowDialog(!showDialog)} />
+      <WrappedButton
+        title="Параметры"
+        text="Настроить"
+        disabled={false}
+        onClick={() => setShowDialog(!showDialog)}
+      />
       <SubDialog
         caption="Параметры"
         visible={showDialog}
@@ -78,15 +100,26 @@ function Defaults({ defaults, onChange }) {
                   <Input
                     text={key}
                     onChange={text =>
-                      setEntries(entries.map((pair, index) => (keyIndex === index ? [text, pair[1]] : pair)))
+                      setEntries(
+                        entries.map((pair, index) =>
+                          keyIndex === index ? [text, pair[1]] : pair,
+                        ),
+                      )
                     }
                   />
                   {entries.length > 1 && (
-                    <Remove onClick={() => setEntries(entries.filter((pair, index) => keyIndex !== index))} />
+                    <Remove
+                      onClick={() =>
+                        setEntries(entries.filter((pair, index) => keyIndex !== index))
+                      }
+                    />
                   )}
                 </div>
                 {keyIndex === entries.length - 1 && (
-                  <AddButton text="Добавить ключ" onClick={() => setEntries([...entries, EMPTY_ENTRY])} />
+                  <AddButton
+                    text="Добавить ключ"
+                    onClick={() => setEntries([...entries, EMPTY_ENTRY])}
+                  />
                 )}
               </div>
               <div className={b('column')}>
@@ -98,7 +131,12 @@ function Defaults({ defaults, onChange }) {
                         setEntries(
                           entries.map((pair, index) =>
                             keyIndex === index
-                              ? [pair[0], pair[1].map((value, index) => (index === valueIndex ? text : value))]
+                              ? [
+                                  pair[0],
+                                  pair[1].map((value, index) =>
+                                    index === valueIndex ? text : value,
+                                  ),
+                                ]
                               : pair,
                           ),
                         )
@@ -110,7 +148,12 @@ function Defaults({ defaults, onChange }) {
                           setEntries(
                             entries.map((pair, index) =>
                               index === keyIndex
-                                ? [pair[0], pair[1].filter((value, index) => index !== valueIndex)]
+                                ? [
+                                    pair[0],
+                                    pair[1].filter(
+                                      (value, index) => index !== valueIndex,
+                                    ),
+                                  ]
                                 : pair,
                             ),
                           )
@@ -122,7 +165,11 @@ function Defaults({ defaults, onChange }) {
                 <AddButton
                   text="Добавить значение"
                   onClick={() =>
-                    setEntries(entries.map((pair, index) => (index === keyIndex ? [pair[0], [...pair[1], '']] : pair)))
+                    setEntries(
+                      entries.map((pair, index) =>
+                        index === keyIndex ? [pair[0], [...pair[1], '']] : pair,
+                      ),
+                    )
                   }
                 />
               </div>

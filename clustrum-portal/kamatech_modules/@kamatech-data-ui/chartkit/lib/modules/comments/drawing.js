@@ -89,7 +89,9 @@ function isGridNotFitBetween(from, to, chart) {
   const {
     userOptions: { _config: { comments: { ignoreScale } = {} } = {} },
   } = chart;
-  const isXonXAxisBetween = chart.xAxis[0].series.some(({ xData }) => xData.some(x => x >= from && x <= to));
+  const isXonXAxisBetween = chart.xAxis[0].series.some(({ xData }) =>
+    xData.some(x => x >= from && x <= to),
+  );
   return !isXonXAxisBetween && !ignoreScale;
 }
 
@@ -427,13 +429,17 @@ function drawDot(chart, options) {
     return;
   }
 
-  const seriesIndex = chart.series.findIndex(({ userOptions: { id }, visible }) => id === options.graphId && visible);
+  const seriesIndex = chart.series.findIndex(
+    ({ userOptions: { id }, visible }) => id === options.graphId && visible,
+  );
 
   if (seriesIndex === -1) {
     return null;
   }
 
-  const point = chart.series[seriesIndex].data.find(_point => _point && _point.x === options.x);
+  const point = chart.series[seriesIndex].data.find(
+    _point => _point && _point.x === options.x,
+  );
   const color = options.color || chart.series[seriesIndex].color;
 
   if (!point) {
@@ -465,13 +471,17 @@ function drawDotLabel(chart, options) {
     return null;
   }
 
-  const seriesIndex = chart.series.findIndex(({ userOptions: { id }, visible }) => id === options.graphId && visible);
+  const seriesIndex = chart.series.findIndex(
+    ({ userOptions: { id }, visible }) => id === options.graphId && visible,
+  );
 
   if (seriesIndex === -1) {
     return null;
   }
 
-  const point = chart.series[seriesIndex].data.find(_point => _point && _point.x === options.x);
+  const point = chart.series[seriesIndex].data.find(
+    _point => _point && _point.x === options.x,
+  );
 
   if (!point) {
     return null;
@@ -672,7 +682,9 @@ function drawOnlyRendererComments(chart, comments = [], settings) {
   const notTranslatedDotsLabels = [];
 
   if (comments && comments.length && chart.container) {
-    chart.container.querySelectorAll(`.${HIGHCHARTS_RENDERER_COMMENT}`).forEach(elem => elem.remove());
+    chart.container
+      .querySelectorAll(`.${HIGHCHARTS_RENDERER_COMMENT}`)
+      .forEach(elem => elem.remove());
 
     comments.forEach(comment => {
       const extendedComment = extendComment(comment);
@@ -698,17 +710,25 @@ function hideComments(chart, comments, settings, force) {
   // TODO: нужен отельный метод для hide|show = redraw
   // тут проверка на chart, т.к. пока форма открыта, график может обновиться и chart-а, что тут, уже не будет
   if (chart && chart.container && comments) {
-    chart.container.querySelectorAll(`.${HIGHCHARTS_COMMENT}`).forEach(elem => elem.remove());
-    chart.container.querySelectorAll(`.${HIGHCHARTS_RENDERER_COMMENT}`).forEach(elem => elem.remove());
+    chart.container
+      .querySelectorAll(`.${HIGHCHARTS_COMMENT}`)
+      .forEach(elem => elem.remove());
+    chart.container
+      .querySelectorAll(`.${HIGHCHARTS_RENDERER_COMMENT}`)
+      .forEach(elem => elem.remove());
 
     comments.forEach(comment => {
       const extendedComment = extendComment(comment);
 
       if (extendedComment.type === TYPES.DOT_XY) {
-        const seriesIndex = chart.series.findIndex(graph => graph.userOptions.id === extendedComment.graphId);
+        const seriesIndex = chart.series.findIndex(
+          graph => graph.userOptions.id === extendedComment.graphId,
+        );
 
         if (seriesIndex !== -1) {
-          const point = chart.series[seriesIndex].data.find(_point => _point && _point.x === extendedComment.x);
+          const point = chart.series[seriesIndex].data.find(
+            _point => _point && _point.x === extendedComment.x,
+          );
           if (point) {
             point.update({ marker: {} }, false, false);
           }
@@ -735,7 +755,9 @@ function getCommentsOnLine(xLine, comments) {
         if (comment.graphId) {
           xyComments[comment.graphId] = { text: comment.text };
         } else {
-          const text = comment.title ? comment.title + '\r\n' + (comment.text || '') : comment.text;
+          const text = comment.title
+            ? comment.title + '\r\n' + (comment.text || '')
+            : comment.text;
 
           xComments.push({ text: text, color: comment.color || DEFAULT_COLOR });
         }

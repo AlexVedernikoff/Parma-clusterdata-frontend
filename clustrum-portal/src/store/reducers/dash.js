@@ -10,7 +10,15 @@ import { MODE } from '../../modules/constants/constants';
 import { LAYOUT_ID } from '../../constants/constants';
 import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
 
-const TAB_PROPERTIES = ['id', 'title', 'items', 'layout', 'filtersLayout', 'ignores', 'aliases'];
+const TAB_PROPERTIES = [
+  'id',
+  'title',
+  'items',
+  'layout',
+  'filtersLayout',
+  'ignores',
+  'aliases',
+];
 
 const initialState = {
   mode: MODE.LOADING,
@@ -84,7 +92,9 @@ function dash(state = initialState, action) {
 
       const hashids = new Hashids(data.salt);
 
-      const newTabs = action.payload.map(tab => (tab.id ? tab : { id: hashids.encode(++counter), ...tab }));
+      const newTabs = action.payload.map(tab =>
+        tab.id ? tab : { id: hashids.encode(++counter), filtersLayout: [], ...tab },
+      );
 
       let newTabId = tabId;
 

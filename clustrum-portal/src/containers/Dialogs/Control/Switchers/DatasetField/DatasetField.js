@@ -60,12 +60,19 @@ class DatasetField extends React.PureComponent {
         disabled={!items}
         placeholder="Выбрать"
         value={fieldId}
-        onChange={fieldId => onChange({ fieldId, fieldName: items.find(({ guid }) => guid === fieldId).title })}
+        onChange={fieldId =>
+          onChange({
+            fieldId,
+            fieldName: items.find(({ guid }) => guid === fieldId).title,
+          })
+        }
         items={(items || []).map(({ title, guid, data_type }) => ({
           value: guid,
           title,
           key: guid,
-          icon: data_type ? <DataTypeIconSelector type={data_type} className={b('icon')} /> : null,
+          icon: data_type ? (
+            <DataTypeIconSelector type={data_type} className={b('icon')} />
+          ) : null,
         }))}
       />
     );

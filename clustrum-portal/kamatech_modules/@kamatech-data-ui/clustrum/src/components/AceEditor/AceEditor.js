@@ -94,7 +94,11 @@ class AceEditor extends React.Component {
   }
 
   _disableAutocomplete() {
-    if (this._forwardedRef && this._forwardedRef.current && !this.props.isAutocompleteEnabled) {
+    if (
+      this._forwardedRef &&
+      this._forwardedRef.current &&
+      !this.props.isAutocompleteEnabled
+    ) {
       const { editor } = this._forwardedRef.current;
 
       const autocompleter = new FormulaAutocompleter({

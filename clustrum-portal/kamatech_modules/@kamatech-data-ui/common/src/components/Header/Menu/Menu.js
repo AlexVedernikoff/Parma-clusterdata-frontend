@@ -92,14 +92,24 @@ export default class Menu extends React.Component {
 
     return (
       <React.Fragment>
-        <div className={b('inner', { view: isMenuOpen ? 'open' : 'close' })} ref={this.containerRef}>
+        <div
+          className={b('inner', { view: isMenuOpen ? 'open' : 'close' })}
+          ref={this.containerRef}
+        >
           <div className={b('inner-content')}>
             {Boolean(menuData) && (
-              <ServiceMenu menuData={menuData} searchText={searchText} onItemClick={this.onMenuItemClick} />
+              <ServiceMenu
+                menuData={menuData}
+                searchText={searchText}
+                onItemClick={this.onMenuItemClick}
+              />
             )}
           </div>
         </div>
-        <div className={b('blind', { view: isMenuOpen ? 'open' : 'close' })} ref={this.blindRef} />
+        <div
+          className={b('blind', { view: isMenuOpen ? 'open' : 'close' })}
+          ref={this.blindRef}
+        />
         <button className={b('hamburger-place')} onClick={this.toggleOpen}>
           <Icon data={iconHamburger} />
         </button>

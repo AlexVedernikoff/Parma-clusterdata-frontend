@@ -1,27 +1,12 @@
-export { default as Wizard } from './modules/legacy-wizard/Wizard';
-export { DashKit, pluginTitle, pluginWidget } from './modules/legacy-dashboard/src';
+export { default as Wizard } from '@lib-modules/legacy-wizard/Wizard';
+export { DashKit, pluginTitle, pluginWidget } from '@lib-modules/legacy-dashboard/src';
 
-export {
-  TitleInfoElement,
-  TitleInfoElementProps,
-} from './shared/ui/info-elements/title-info-element/title-info-element';
+export { useDebounce } from '@lib-shared/lib/hooks/use-debounce';
 
-export { useDebounce } from './shared/lib/hooks/use-debounce/use-debounce';
-
-export {
-  InputFilterControl,
-  InputFilterControlProps,
-} from './shared/ui/filter-controls/input-filter-control/input-filter-control';
-export {
-  SelectFilterControl,
-  SelectFilterControlProps,
-} from './shared/ui/filter-controls/select-filter-control/select-filter-control';
-export {
-  DatepickerFilterControl,
-  DatepickerProps,
-} from './shared/ui/filter-controls/datepicker-filter-control/datepicker-filter-control';
-export {
-  RangeDatepickerFilterControl,
-  RangeDatepickerProps,
-} from './shared/ui/filter-controls/range-datepicker-filter-control/range-datepicker-filter-control';
-export { PickerValue } from './shared/ui/filter-controls/range-datepicker-filter-control/types/picker-value';
+export { TitleInfoElement } from '@lib-shared/ui/info-elements/title-info-element';
+export { InputFilterControl } from '@lib-shared/ui/filter-controls/input-filter-control';
+export { SelectFilterControl } from '@lib-shared/ui/filter-controls/select-filter-control';
+export { DatepickerFilterControl } from '@lib-shared/ui/filter-controls/datepicker-filter-control';
+export { RangeDatepickerFilterControl } from '@lib-shared/ui/filter-controls/range-datepicker-filter-control';
+export { TableWidget, createCell } from '@lib-shared/ui/widgets/table-widget';
+export { ChartWidget } from '@lib-shared/ui/widgets/chart-widget';

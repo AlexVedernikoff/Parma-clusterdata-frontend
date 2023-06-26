@@ -187,7 +187,10 @@ export default decl(
         var _calcBestDrawingParam = this._calcBestDrawingParams(this.props),
           tail = _calcBestDrawingParam.tail,
           direction = _calcBestDrawingParam.direction,
-          positions = _objectWithoutProperties(_calcBestDrawingParam, ['tail', 'direction']);
+          positions = _objectWithoutProperties(_calcBestDrawingParam, [
+            'tail',
+            'direction',
+          ]);
 
         var scopeOffsets = scope.getBoundingClientRect();
         // При [обязательном] наличии у scope position:relative необходимо
@@ -206,7 +209,12 @@ export default decl(
         }
 
         this._direction = direction;
-        this._style.popup = _extends({}, this._style.popup, { left: left, top: top }, this.props.style);
+        this._style.popup = _extends(
+          {},
+          this._style.popup,
+          { left: left, top: top },
+          this.props.style,
+        );
         this._style.tail = _extends({}, tail, { width: tailSize, height: tailSize });
       }
 
@@ -221,7 +229,10 @@ export default decl(
             mix: this.mix(this.props),
             // React не позволяет изменять объект со стилями, т.к. это anti-pattern
             // поэтому используем spread, чтобы каждый раз получать новый объект
-            attrs: _extends({ style: _extends({}, this._style.popup) }, this.attrs(this.props)),
+            attrs: _extends(
+              { style: _extends({}, this._style.popup) },
+              this.attrs(this.props),
+            ),
           },
           hasTail &&
             React.createElement(PopupTail, {
@@ -322,7 +333,10 @@ export default decl(
      */
     isElementInsideChildPopups: function isElementInsideChildPopups(element) {
       return this._childPopups.some(function(popup) {
-        return popup.containerRef.current.contains(element) || popup.isElementInsideChildPopups(element);
+        return (
+          popup.containerRef.current.contains(element) ||
+          popup.isElementInsideChildPopups(element)
+        );
       });
     },
     _onWinScrollAndResize: function _onWinScrollAndResize() {
@@ -350,7 +364,12 @@ export default decl(
             res.height = viewport.bottom - viewport.top - 2 * offsets.viewport;
             res.top = target.top + (target.height - res.height) / 2;
           } else if (_this4._checkSecondaryDirection(direction, 'bottom')) {
-            res.height = target.top + target.height - viewport.top - offsets.secondary - offsets.viewport;
+            res.height =
+              target.top +
+              target.height -
+              viewport.top -
+              offsets.secondary -
+              offsets.viewport;
             res.top = target.top + target.height - res.height - offsets.secondary;
           } else if (_this4._checkSecondaryDirection(direction, 'top')) {
             res.top = target.top + offsets.secondary;
@@ -367,7 +386,12 @@ export default decl(
         }
 
         if (_this4._checkSecondaryDirection(direction, 'right')) {
-          res.width = target.left + target.width - viewport.left - offsets.secondary - offsets.viewport;
+          res.width =
+            target.left +
+            target.width -
+            viewport.left -
+            offsets.secondary -
+            offsets.viewport;
           res.left = target.left + target.width - res.width - offsets.secondary;
         } else if (_this4._checkSecondaryDirection(direction, 'left')) {
           res.left = target.left + offsets.secondary;
@@ -404,7 +428,11 @@ export default decl(
         pos = this._calcPos(direction, target, popup);
         viewportFactor = this._calcViewportFactor(pos, viewport, popup);
 
-        if (i === 0 || viewportFactor > bestViewportFactor || (!bestViewportFactor && props.direction === direction)) {
+        if (
+          i === 0 ||
+          viewportFactor > bestViewportFactor ||
+          (!bestViewportFactor && props.direction === direction)
+        ) {
           bestDirection = direction;
           bestViewportFactor = viewportFactor;
           bestPos = pos;
@@ -510,16 +538,28 @@ export default decl(
     _calcViewportFactor: function _calcViewportFactor(pos, viewport, popup) {
       var viewportOffset = this.props.viewportOffset || this.defaultViewportOffset;
       var intersectionLeft = Math.max(pos.left, viewport.left + viewportOffset);
-      var intersectionRight = Math.min(pos.left + popup.width, viewport.right - viewportOffset);
+      var intersectionRight = Math.min(
+        pos.left + popup.width,
+        viewport.right - viewportOffset,
+      );
       var intersectionTop = Math.max(pos.top, viewport.top + viewportOffset);
-      var intersectionBottom = Math.min(pos.top + popup.height, viewport.bottom - viewportOffset);
+      var intersectionBottom = Math.min(
+        pos.top + popup.height,
+        viewport.bottom - viewportOffset,
+      );
 
-      if (!(intersectionLeft < intersectionRight && intersectionTop < intersectionBottom)) {
+      if (
+        !(intersectionLeft < intersectionRight && intersectionTop < intersectionBottom)
+      ) {
         // Нет пересечения
         return 0;
       }
 
-      return ((intersectionRight - intersectionLeft) * (intersectionBottom - intersectionTop)) / popup.area;
+      return (
+        ((intersectionRight - intersectionLeft) *
+          (intersectionBottom - intersectionTop)) /
+        popup.area
+      );
     },
     _calcTailPos: function _calcTailPos(direction, target, popup, pos) {
       var res = {};
@@ -537,14 +577,27 @@ export default decl(
       }
 
       if (this._checkSecondaryDirection(direction, 'right')) {
-        res.left = popup.popupWidth - Math.ceil(Math.min(popup.popupWidth, target.width) / 2) - halfOfTail - tailOffset;
+        res.left =
+          popup.popupWidth -
+          Math.ceil(Math.min(popup.popupWidth, target.width) / 2) -
+          halfOfTail -
+          tailOffset;
       } else if (this._checkSecondaryDirection(direction, 'left')) {
-        res.left = Math.ceil(Math.min(popup.popupWidth, target.width) / 2) - halfOfTail + tailOffset;
+        res.left =
+          Math.ceil(Math.min(popup.popupWidth, target.width) / 2) -
+          halfOfTail +
+          tailOffset;
       } else if (this._checkSecondaryDirection(direction, 'bottom')) {
         res.top =
-          popup.popupHeight - Math.ceil(Math.min(popup.popupHeight, target.height) / 2) - halfOfTail - tailOffset;
+          popup.popupHeight -
+          Math.ceil(Math.min(popup.popupHeight, target.height) / 2) -
+          halfOfTail -
+          tailOffset;
       } else if (this._checkSecondaryDirection(direction, 'top')) {
-        res.top = Math.ceil(Math.min(popup.popupHeight, target.height) / 2) - halfOfTail + tailOffset;
+        res.top =
+          Math.ceil(Math.min(popup.popupHeight, target.height) / 2) -
+          halfOfTail +
+          tailOffset;
       } else if (this._checkSecondaryDirection(direction, 'center')) {
         if (this._checkMainDirection(direction, 'top', 'bottom')) {
           res.left = Math.ceil(popup.popupWidth / 2) - halfOfTail + tailOffset;
@@ -557,7 +610,10 @@ export default decl(
     },
     _calcOffsets: function _calcOffsets() {
       var tailDimension = this._calcTailDimension();
-      var mainOffset = this.props.mainOffset === undefined ? this.defaultMainOffset : this.props.mainOffset;
+      var mainOffset =
+        this.props.mainOffset === undefined
+          ? this.defaultMainOffset
+          : this.props.mainOffset;
 
       return {
         main:
@@ -568,10 +624,20 @@ export default decl(
         viewport: this.props.viewportOffset || this.defaultViewportOffset,
       };
     },
-    _checkMainDirection: function _checkMainDirection(direction, mainDirection1, mainDirection2) {
-      return direction.indexOf(mainDirection1) === 0 || (mainDirection2 && direction.indexOf(mainDirection2) === 0);
+    _checkMainDirection: function _checkMainDirection(
+      direction,
+      mainDirection1,
+      mainDirection2,
+    ) {
+      return (
+        direction.indexOf(mainDirection1) === 0 ||
+        (mainDirection2 && direction.indexOf(mainDirection2) === 0)
+      );
     },
-    _checkSecondaryDirection: function _checkSecondaryDirection(direction, secondaryDirection) {
+    _checkSecondaryDirection: function _checkSecondaryDirection(
+      direction,
+      secondaryDirection,
+    ) {
       return direction.indexOf('-' + secondaryDirection) > 0;
     },
     _checkDirection: function _checkDirection(direction, directionPart) {
@@ -597,7 +663,9 @@ export default decl(
       var zIndexes = visiblePopupsZIndexes[level];
 
       if (!zIndexes) {
-        zIndexes = visiblePopupsZIndexes[level] = [(level + 1) * this.__self.ZINDEX_FACTOR];
+        zIndexes = visiblePopupsZIndexes[level] = [
+          (level + 1) * this.__self.ZINDEX_FACTOR,
+        ];
       }
 
       this._zIndex = zIndexes[zIndexes.length - 1] + 1;

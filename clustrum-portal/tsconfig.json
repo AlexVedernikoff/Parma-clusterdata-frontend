@@ -14,7 +14,20 @@
     "esModuleInterop": true,
     "jsx": "react",
     "allowJs": true,
-    "checkJs": false
+    "checkJs": false,
+    "paths": {
+      "@pages/*": ["./src/pages/*"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@features/*": ["./src/features/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@clustrum-lib/*": ["./src/clustrum-lib/src/*"],
+      "@lib-modules/*": ["./src/clustrum-lib/src/modules/*"],
+      "@lib-widgets/*": ["./src/clustrum-lib/src/widgets/*"],
+      "@lib-features/*": ["./src/clustrum-lib/src/features/*"],
+      "@lib-entities/*": ["./src/clustrum-lib/src/entities/*"],
+      "@lib-shared/*": ["./src/clustrum-lib/src/shared/*"]
+    }
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules", "./src/tests/**/*"]

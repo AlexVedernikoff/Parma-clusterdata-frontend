@@ -2,7 +2,10 @@ import React, { useState, useRef } from 'react';
 import { Button, Popup } from 'lego-on-react';
 import { NavigationMinimal } from '@kamatech-data-ui/clustrum';
 
-import { PLACE, QUICK_ITEMS } from '@kamatech-data-ui/clustrum/src/components/Navigation/constants';
+import {
+  PLACE,
+  QUICK_ITEMS,
+} from '@kamatech-data-ui/clustrum/src/components/Navigation/constants';
 import PropTypes from 'prop-types';
 
 const POPUP_DIRECTIONS = Popup.defaultProps.directions;

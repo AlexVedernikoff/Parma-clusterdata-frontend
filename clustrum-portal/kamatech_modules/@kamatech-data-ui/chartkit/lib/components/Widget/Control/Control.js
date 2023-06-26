@@ -111,7 +111,10 @@ class Control extends React.PureComponent {
     });
   }
 
-  onChange({ type, param, paramFrom, paramTo, updateOnChange, updateControlsOnChange }, value) {
+  onChange(
+    { type, param, paramFrom, paramTo, updateOnChange, updateControlsOnChange },
+    value,
+  ) {
     const newParams = { ...this.params };
 
     if (type === TYPE.RANGE_DATEPICKER) {
@@ -186,7 +189,9 @@ class Control extends React.PureComponent {
   }
 
   render() {
-    return <div className={b({ standalone: this.props.standalone })}>{this.renderBody()}</div>;
+    return (
+      <div className={b({ standalone: this.props.standalone })}>{this.renderBody()}</div>
+    );
   }
 }
 

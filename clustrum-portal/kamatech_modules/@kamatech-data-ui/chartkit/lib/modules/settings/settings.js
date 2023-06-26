@@ -28,7 +28,9 @@ async function fetchConfig() {
   if (_settings.config !== false && !Object.keys(_settings.config || {}).length) {
     _settings.config = true;
     try {
-      const { data } = await axiosInstance.get(`${_settings.chartsEndpoint}/api/private/config`);
+      const { data } = await axiosInstance.get(
+        `${_settings.chartsEndpoint}/api/private/config`,
+      );
       _settings.config = data;
     } catch (error) {
       console.error('CONFIG_FETCH_ERROR', error);
@@ -48,7 +50,9 @@ export default {
   requestDecorator(request) {
     if (typeof _settings.requestDecorator === 'function') {
       const originalHeaders = Object.assign({}, request.headers);
-      const { headers: decoratedHeaders } = _settings.requestDecorator({ headers: originalHeaders });
+      const { headers: decoratedHeaders } = _settings.requestDecorator({
+        headers: originalHeaders,
+      });
       request.headers = decoratedHeaders;
     }
     return request;

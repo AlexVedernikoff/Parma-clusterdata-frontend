@@ -27,3 +27,8 @@
   line-height: 16px;
   color: #ff0400;
 }
+
+.range-datepicker-control .ant-picker-clear {
+  right: 29px;
+  opacity: 1;
+}

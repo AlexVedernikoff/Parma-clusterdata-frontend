@@ -24,6 +24,14 @@ class ChartKit extends React.Component {
   constructor(props) {
     super(props);
     this.resetValue = this.resetValue.bind(this);
+    this.state = {
+      forceUpdate: false,
+      runtimeParams: null,
+      paginateInfo: this.props.paginateInfo
+        ? this.props.paginateInfo
+        : { page: 0, pageSize: 150 },
+      orderBy: this.props.orderBy,
+    };
   }
 
   static contextType = SignalContext;
@@ -99,7 +107,9 @@ class ChartKit extends React.Component {
     const sourceURI = new URI(propsSource);
 
     const source = sourceURI.pathname;
-    const params = removeEmptyProperties(Object.assign({}, sourceURI.getParams(), propsParams));
+    const params = removeEmptyProperties(
+      Object.assign({}, sourceURI.getParams(), propsParams),
+    );
 
     // первое условие срабатывает при изменении параметров визуализации в виджете
     // второе условие: fromProps - при пагинации в дашборде, fromState - при пагинации в виджете
@@ -120,7 +130,7 @@ class ChartKit extends React.Component {
       !forceUpdate &&
       id === prevId &&
       source === prevSource &&
-      isEqual(params, prevParams) &&
+      isEqual(getParamsValue(params), getParamsValue(prevParams)) &&
       isEqual(editMode, prevEditMode) &&
       isEqual(paginateInfo, prevPaginateInfo) &&
       isEqual(orderBy, prevOrderBy)
@@ -161,13 +171,6 @@ class ChartKit extends React.Component {
     return { loading: false, error: true, data: error };
   }
 
-  state = {
-    forceUpdate: false,
-    runtimeParams: null,
-    paginateInfo: this.props.paginateInfo ? this.props.paginateInfo : { page: 0, pageSize: 150 },
-    orderBy: this.props.orderBy,
-  };
-
   shouldComponentUpdate(nextProps, nextState) {
     return !isEqual(nextProps, this.props) || !isEqual(nextState, this.state);
   }
@@ -199,7 +202,13 @@ class ChartKit extends React.Component {
 
   get propsData() {
     const { prevId, prevSource, paginateInfo, orderBy } = this.state;
-    return { id: prevId, source: prevSource, params: this.params, paginateInfo: paginateInfo, orderBy: orderBy };
+    return {
+      id: prevId,
+      source: prevSource,
+      params: this.params,
+      paginateInfo: paginateInfo,
+      orderBy: orderBy,
+    };
   }
 
   resetValue() {
@@ -242,10 +251,14 @@ class ChartKit extends React.Component {
       ...state,
     });
 
-  onRetry = retryParams => this.onChange({ params: retryParams, state: { forceUpdate: true } });
+  onRetry = retryParams =>
+    this.onChange({ params: retryParams, state: { forceUpdate: true } });
 
   onPageControlClick = (page, pageSize) => {
-    this.setState({ paginateInfo: { page: page, pageSize: pageSize }, forceUpdate: true });
+    this.setState({
+      paginateInfo: { page: page, pageSize: pageSize },
+      forceUpdate: true,
+    });
   };
 
   onOrderByClickInWizard = (direction, field) => {
@@ -270,7 +283,16 @@ class ChartKit extends React.Component {
   };
 
   render() {
-    const { loading, error, data, forceUpdate, prevId, prevSource, requestId, requestCancelSource } = this.state;
+    const {
+      loading,
+      error,
+      data,
+      forceUpdate,
+      prevId,
+      prevSource,
+      requestId,
+      requestCancelSource,
+    } = this.state;
 
     const {
       silentLoading,
@@ -283,7 +305,9 @@ class ChartKit extends React.Component {
 
     const theme = this.props.theme || settings.theme;
     const menu = this.props.menu || settings.menu;
-    const paginateInfo = this.props.paginateInfo ? this.props.paginateInfo : this.state.paginateInfo;
+    const paginateInfo = this.props.paginateInfo
+      ? this.props.paginateInfo
+      : this.state.paginateInfo;
     const orderBy = this.state.orderBy;
     const widgetType = get(data, 'loadedData.widgetType');
 
@@ -298,8 +322,16 @@ class ChartKit extends React.Component {
           })}
         >
           {error ? (
-            <Error isEditMode={Boolean(editMode)} data={data} retryClick={this.onRetry} requestId={requestId} />
-          ) : this.isDisplayOnlyWithFilterAndFiltersIsEmpty(isDisplayOnlyWithFilter, this.params) ? (
+            <Error
+              isEditMode={Boolean(editMode)}
+              data={data}
+              retryClick={this.onRetry}
+              requestId={requestId}
+            />
+          ) : this.isDisplayOnlyWithFilterAndFiltersIsEmpty(
+              isDisplayOnlyWithFilter,
+              this.params,
+            ) ? (
             this.displayOnlyWithFilter()
           ) : (
             <Charts

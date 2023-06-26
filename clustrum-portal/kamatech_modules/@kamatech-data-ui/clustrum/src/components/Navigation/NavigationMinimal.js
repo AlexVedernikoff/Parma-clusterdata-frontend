@@ -19,8 +19,14 @@ class NavigationMinimalService extends React.PureComponent {
     anchor: PropTypes.any,
     onEntryClick: PropTypes.func,
     clickableScope: PropTypes.string,
-    includeClickableType: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-    excludeClickableType: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+    includeClickableType: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
+    excludeClickableType: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
     placeSelectParameters: PropTypes.shape({
       items: PropTypes.array.isRequired,
       quickItems: PropTypes.array,
@@ -64,7 +70,10 @@ class NavigationMinimalService extends React.PureComponent {
     if (this.preventClose) {
       return;
     }
-    if ((anchor && !anchor.contains(event.target)) || (event instanceof KeyboardEvent && event.code === 'Escape')) {
+    if (
+      (anchor && !anchor.contains(event.target)) ||
+      (event instanceof KeyboardEvent && event.code === 'Escape')
+    ) {
       this.props.onClose(event);
     }
   };
@@ -116,7 +125,12 @@ class NavigationMinimalService extends React.PureComponent {
   }
 
   render() {
-    const { includeClickableType, excludeClickableType, placeSelectParameters, ...props } = this.props;
+    const {
+      includeClickableType,
+      excludeClickableType,
+      placeSelectParameters,
+      ...props
+    } = this.props;
 
     const placeSelectNode = placeSelectParameters ? (
       <PlaceSelect
@@ -132,7 +146,11 @@ class NavigationMinimalService extends React.PureComponent {
       <React.Fragment>
         <NavigationMinimal
           {...props}
-          checkEntryActivity={checkEntryActivity(this.props.clickableScope, includeClickableType, excludeClickableType)}
+          checkEntryActivity={checkEntryActivity(
+            this.props.clickableScope,
+            includeClickableType,
+            excludeClickableType,
+          )}
           onClose={this.onClose}
           path={this.state.path}
           place={this.state.root}

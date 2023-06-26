@@ -6,7 +6,13 @@ const b = block('chartkit-tooltip');
 
 function getTooltipHeaderFormat(format, showColor) {
   return `<div class="${b('header')}">
-        ${showColor ? `<span class="${b('color')}" style="background-color:{point.color};"></span>` : ''}
+        ${
+          showColor
+            ? `<span class="${b(
+                'color',
+              )}" style="background-color:{point.color};"></span>`
+            : ''
+        }
         ${format}
     </div>`;
 }
@@ -16,7 +22,9 @@ function getTooltipPointFormat(cells, showColor) {
         ${
           showColor
             ? `<div class="${b('cell')}">
-                <span class="${b('color')}" style="background-color:{point.color};"></span>
+                <span class="${b(
+                  'color',
+                )}" style="background-color:{point.color};"></span>
             </div>`
             : ''
         }
@@ -133,9 +141,12 @@ export default {
           return this.value;
         }
 
-        if (this.value >= 1000000000) return NumberValue.toLocaleString(this.value / 1000000000) + ' млрд';
-        if (this.value >= 1000000) return NumberValue.toLocaleString(this.value / 1000000) + ' млн';
-        if (this.value >= 1000) return NumberValue.toLocaleString(this.value / 1000) + ' тыс.';
+        if (this.value >= 1000000000)
+          return NumberValue.toLocaleString(this.value / 1000000000) + ' млрд';
+        if (this.value >= 1000000)
+          return NumberValue.toLocaleString(this.value / 1000000) + ' млн';
+        if (this.value >= 1000)
+          return NumberValue.toLocaleString(this.value / 1000) + ' тыс.';
         return NumberValue.toLocaleString(this.value);
       },
     },
@@ -159,7 +170,9 @@ export default {
           color: 'var(--highcharts-data-labels)',
         },
         formatter: function() {
-          return this.point.valueWithFormat ? this.point.valueWithFormat : Highcharts.numberFormat(this.y, -1);
+          return this.point.valueWithFormat
+            ? this.point.valueWithFormat
+            : Highcharts.numberFormat(this.y, -1);
         },
       },
     },
@@ -205,7 +218,10 @@ export default {
       {
         tooltip: {
           // headerFormat: getTooltipHeaderFormat('{point.key}'),
-          pointFormat: getTooltipPointFormat(['{point.low} - {point.high}', '{series.name}'], true),
+          pointFormat: getTooltipPointFormat(
+            ['{point.low} - {point.high}', '{series.name}'],
+            true,
+          ),
         },
       },
       first,
@@ -213,7 +229,9 @@ export default {
     scatter: {
       tooltip: {
         headerFormat: getTooltipHeaderFormat('{series.name}', true),
-        pointFormat: getTooltipPointFormat(['<div>X: {point.x}</div><div>Y: {point.y}<div/>']),
+        pointFormat: getTooltipPointFormat([
+          '<div>X: {point.x}</div><div>Y: {point.y}<div/>',
+        ]),
       },
     },
     bubble: {
@@ -225,7 +243,9 @@ export default {
     sankey: {
       tooltip: {
         headerFormat: getTooltipHeaderFormat('{series.name}', true),
-        pointFormat: getTooltipPointFormat(['{point.fromNode.name} → {point.toNode.name}: <b>{point.weight}</b>']),
+        pointFormat: getTooltipPointFormat([
+          '{point.fromNode.name} → {point.toNode.name}: <b>{point.weight}</b>',
+        ]),
       },
     },
     heatmap: {

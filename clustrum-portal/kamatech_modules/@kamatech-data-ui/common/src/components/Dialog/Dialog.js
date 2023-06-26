@@ -42,10 +42,23 @@ class Dialog extends Component {
   };
 
   render() {
-    const { children, visible, autoclosable, size, className, hasButtonClose, onClose } = this.props;
+    const {
+      children,
+      visible,
+      autoclosable,
+      size,
+      className,
+      hasButtonClose,
+      onClose,
+    } = this.props;
 
     return (
-      <Modal autoclosable={autoclosable} visible={visible} onOutsideClick={this.onOutsideClick} cls={b('modal')}>
+      <Modal
+        autoclosable={autoclosable}
+        visible={visible}
+        onOutsideClick={this.onOutsideClick}
+        cls={b('modal')}
+      >
         <div className={b({ size, 'has-close': hasButtonClose }, className)}>
           {children}
           {hasButtonClose && <ButtonClose onClose={onClose} />}

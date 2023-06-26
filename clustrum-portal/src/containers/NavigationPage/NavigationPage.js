@@ -8,7 +8,7 @@ import { Utils, Navigation } from '@kamatech-data-ui/clustrum';
 import { DL } from '@kamatech-data-ui/clustrum/src/constants/common';
 
 import { Pointerfocus } from 'lego-on-react';
-import { PageContainer } from '../../widgets/page-container/ui/page-container';
+import { PageContainer } from '@widgets/page-container';
 
 const b = block('navigation-page');
 
@@ -46,8 +46,14 @@ class NavigationPage extends React.Component {
           <Route
             path="/:root?/:path*"
             render={({ match, location, history }) => (
-              <PageContainer>
-                <Navigation sdk={sdk} match={match} location={location} history={history} startFrom={startFrom} />
+              <PageContainer withReactRouter>
+                <Navigation
+                  sdk={sdk}
+                  match={match}
+                  location={location}
+                  history={history}
+                  startFrom={startFrom}
+                />
               </PageContainer>
             )}
           />

@@ -139,7 +139,9 @@ export default function DatePickerFactory(moment) {
     }
 
     setDateFormat(props) {
-      this.dateFormat = props.timeFormat ? `${props.dateFormat} ${props.timeFormat}` : props.dateFormat;
+      this.dateFormat = props.timeFormat
+        ? `${props.dateFormat} ${props.timeFormat}`
+        : props.dateFormat;
     }
 
     handleKeyPress = event => {
@@ -185,7 +187,9 @@ export default function DatePickerFactory(moment) {
       const allowedNull = selectedMoment === null && this.props.allowEmptyValue;
       if (!allowedNull) {
         const invalidSelected =
-          !selectedMoment || !selectedMoment.isValid() || !this.checkDateConstraints(selectedMoment);
+          !selectedMoment ||
+          !selectedMoment.isValid() ||
+          !this.checkDateConstraints(selectedMoment);
         if (invalidSelected) {
           validSelectedMoment = this.props.value;
         }
@@ -202,11 +206,15 @@ export default function DatePickerFactory(moment) {
     reportChange(selectedMoment) {
       const valueChanged =
         selectedMoment !== this.props.value || // null
-        (selectedMoment && this.props.value && !this.localMoment(selectedMoment).isSame(this.props.value));
+        (selectedMoment &&
+          this.props.value &&
+          !this.localMoment(selectedMoment).isSame(this.props.value));
 
       if (valueChanged && this.props.onChange) {
         this.props.onChange(
-          this.props.useStringsInCallback ? (selectedMoment && selectedMoment.toISOString()) || null : selectedMoment,
+          this.props.useStringsInCallback
+            ? (selectedMoment && selectedMoment.toISOString()) || null
+            : selectedMoment,
         );
       }
     }
@@ -302,7 +310,8 @@ export default function DatePickerFactory(moment) {
             onFocus={() => this.setState({ opened: true })}
             text={
               this.state.pendingInput ||
-              (this.state.selectedMoment && this.localMoment(this.state.selectedMoment).format(this.dateFormat)) ||
+              (this.state.selectedMoment &&
+                this.localMoment(this.state.selectedMoment).format(this.dateFormat)) ||
               this.props.emptyValueText
             }
             ref={input => {

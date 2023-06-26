@@ -3,7 +3,9 @@ import './KamatechNavigationCrumb.css';
 import { KamatechNavigationCrumbInterface } from './KamatechNavigationCrumb.interface';
 import { ClassHelper } from '../../../helpers';
 
-export class KamatechNavigationCrumb extends React.PureComponent<KamatechNavigationCrumbInterface> {
+export class KamatechNavigationCrumb extends React.PureComponent<
+  KamatechNavigationCrumbInterface
+> {
   onClick = (event: React.SyntheticEvent) => {
     if (this.props.onClick) {
       this.props.onClick(this.props.item, event, this.props.last, this.props.first);

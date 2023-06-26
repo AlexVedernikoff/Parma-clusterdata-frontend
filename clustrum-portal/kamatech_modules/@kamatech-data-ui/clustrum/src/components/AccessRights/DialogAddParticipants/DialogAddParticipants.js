@@ -85,7 +85,10 @@ class DialogAddParticipants extends React.Component {
         break;
       case PERMISSION_ACTION.DELETE:
         this.setState({
-          participants: [...participants.slice(0, index), ...participants.slice(index + 1)],
+          participants: [
+            ...participants.slice(0, index),
+            ...participants.slice(index + 1),
+          ],
         });
         break;
     }
@@ -104,12 +107,18 @@ class DialogAddParticipants extends React.Component {
     return (
       <Dialog visible={this.props.visible} onClose={this.onClose}>
         <div className={b()}>
-          <Dialog.Header caption={mode === 'add' ? 'Добавить участника' : 'Запрос прав доступа'} />
+          <Dialog.Header
+            caption={mode === 'add' ? 'Добавить участника' : 'Запрос прав доступа'}
+          />
           <Dialog.Body className={b('body')}>
             <div className={b('adding-panel')}>
               <div className={b('adding-panel-top-group')}>
                 <div className={b('adding-participant')}>
-                  <AddingParticipant editable onAction={this.onAddParticipant} sdk={this.props.sdk} />
+                  <AddingParticipant
+                    editable
+                    onAction={this.onAddParticipant}
+                    sdk={this.props.sdk}
+                  />
                 </div>
                 <Button
                   theme="light"
@@ -120,7 +129,12 @@ class DialogAddParticipants extends React.Component {
                   onClick={this.onClickBtnAddComment}
                 >
                   <div className={b('btn-add-comment-content')}>
-                    <Icon className={b('btn-add-comment-icon')} data={iconPlus} width="16" height="16" />
+                    <Icon
+                      className={b('btn-add-comment-icon')}
+                      data={iconPlus}
+                      width="16"
+                      height="16"
+                    />
                     Добавить комментарий
                   </div>
                 </Button>

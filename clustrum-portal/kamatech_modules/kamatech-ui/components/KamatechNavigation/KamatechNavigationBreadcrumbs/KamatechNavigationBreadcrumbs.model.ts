@@ -2,7 +2,8 @@ import { CallbackFunctionArgs, CallbackFunctionArgsReturnAny } from '../../../he
 import { KamatechNavigationBreadcrumbsInterface } from './KamatechNavigationBreadcrumbs.interface';
 import { NavigationPlace } from './KamatechNavigationBreadcrumbs.enum';
 
-export class KamatechNavigationBreadcrumbsModel implements KamatechNavigationBreadcrumbsInterface {
+export class KamatechNavigationBreadcrumbsModel
+  implements KamatechNavigationBreadcrumbsInterface {
   constructor(value?: KamatechNavigationBreadcrumbsInterface) {
     const { size, path, place, onClick, linkWrapper, getPlaceParameters } = value || {};
     this.size = size || KamatechNavigationBreadcrumbsModel.size;

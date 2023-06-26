@@ -122,7 +122,10 @@ class PathSelect extends React.PureComponent {
     return (
       <React.Fragment>
         <div className={b()}>
-          <div className={b('button-place', { withInput: this.props.withInput })} ref={this.setBtnRef}>
+          <div
+            className={b('button-place', { withInput: this.props.withInput })}
+            ref={this.setBtnRef}
+          >
             <Button
               theme="flat"
               width="max"

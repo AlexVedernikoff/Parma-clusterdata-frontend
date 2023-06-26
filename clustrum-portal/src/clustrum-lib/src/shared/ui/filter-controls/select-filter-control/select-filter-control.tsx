@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { Select } from 'antd';
-import { Content } from './types/content';
-import { useDebounce } from '../../../lib/hooks/use-debounce/use-debounce';
-import './select-filter-control.css';
+import { SelectFilterControlProps } from './types';
+import { useDebounce } from '@lib-shared/lib/hooks/use-debounce';
+import { SelectAllBtn } from './select-all-btn';
 
-export interface SelectFilterControlProps {
-  label: string;
-  content: Content[];
-  value?: string | string[];
-  multiselect?: boolean;
-  searchable?: boolean;
-  className?: string;
-  onChange: (value: string | string[]) => void;
-}
+import './select-filter-control.css';
 
 export function SelectFilterControl({
   multiselect = false,
@@ -33,13 +25,25 @@ export function SelectFilterControl({
 
   useEffect(() => {
     onChange(debouncedValue);
-  }, [debouncedValue]);
+  }, [debouncedValue, onChange]);
+
+  const handleSelectAll = (): void => {
+    const allValues = content.map(({ value }) => value);
+    const isAllItemsSelected =
+      Array.isArray(currentValue) && allValues.length === currentValue.length;
+    if (isAllItemsSelected) {
+      setCurrentValue([]);
+    } else {
+      setCurrentValue(allValues);
+    }
+  };
 
   return (
-    <div className={cn('select-filter-control', className)}>
+    <div className={classNames('select-filter-control', className)}>
       <label className="select-filter-control__label">
         {`${label}:`}
         <Select
+          placeholder="Все"
           className="select-filter-control__select"
           mode={multiselect ? 'multiple' : undefined}
           maxTagCount="responsive"
@@ -57,6 +61,12 @@ export function SelectFilterControl({
               setCurrentValue([]);
             }
           }}
+          dropdownRender={(menu): React.ReactElement => (
+            <>
+              {multiselect && <SelectAllBtn onClick={handleSelectAll} />}
+              {menu}
+            </>
+          )}
         />
       </label>
     </div>

@@ -56,15 +56,16 @@ export const getAppMetricGroupName = key => _getSelectItemTitle()[key];
 
 // TODO: to think about how to get list of available connectors for creation (yt)
 export const getConnectorsMap = () => {
-  const { features: { dataset: { chOverYtEnabled, oracleEnabled, appMetricaEnabled } = {} } = {} } = window.DL;
+  const {
+    features: {
+      dataset: { chOverYtEnabled, oracleEnabled, appMetricaEnabled } = {},
+    } = {},
+  } = window.DL;
 
   const connectorsList = {
     clickhouse: 'ClickHouse',
     csv: 'CSV',
     postgres: 'PostgreSQL',
-    mysql: 'MySQL',
-    mssql: 'MS SQL Server',
-    oracle: 'Oracle Database',
   };
 
   if (chOverYtEnabled) {
@@ -191,7 +192,15 @@ export const COUNTER_INPUT_METHODS = {
   MANUALLY: 'manually',
 };
 
-export const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+export const DAYS = [
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+  'sunday',
+];
 
 export const TOAST_TIMEOUT_DEFAULT = 60000;
 
@@ -309,7 +318,10 @@ function onPivotTableMeasuresChange({ placeholder, visualization }) {
   const existingPseudoInColumns = columns.find(item => item.type === 'PSEUDO');
   const existingPseudoInRows = rows.find(item => item.type === 'PSEUDO');
 
-  if (placeholder.items.length > 1 && !(existingPseudoInColumns || existingPseudoInRows)) {
+  if (
+    placeholder.items.length > 1 &&
+    !(existingPseudoInColumns || existingPseudoInRows)
+  ) {
     columns.push({
       title: 'Measure Names',
       type: 'PSEUDO',
@@ -403,7 +415,10 @@ const LINE_VISUALIZATION = {
       return false;
     }
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.every(selectedItem => selectedItem.guid !== item.guid);
   },
@@ -485,7 +500,10 @@ const AREA_VISUALIZATION = {
       return false;
     }
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.every(selectedItem => selectedItem.guid !== item.guid);
   },
@@ -708,7 +726,10 @@ const PIE_VISUALIZATION = {
       return true;
     }
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.some(selectedItem => selectedItem.guid === item.guid);
   },
@@ -750,7 +771,10 @@ const TREEMAP_VISUALIZATION = {
       return true;
     }
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.some(selectedItem => selectedItem.guid === item.guid);
   },
@@ -793,7 +817,10 @@ const FLAT_TABLE_VISUALIZATION = {
   allowUniqueRows: true,
   allowTotal: true,
   checkAllowedSort: (item, visualization) => {
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.some(selectedItem => selectedItem.guid === item.guid);
   },
@@ -838,7 +865,10 @@ const PIVOT_TABLE_VISUALIZATION = {
   checkAllowedSort: (item, visualization) => {
     if (item.type === 'MEASURE') return false;
 
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
     return selectedItems.some(selectedItem => selectedItem.guid === item.guid);
   },
@@ -1093,9 +1123,15 @@ const CARD_VISUALIZATION = {
   allowNullAlias: true,
   allowTotal: true,
   checkAllowedSort: (item, visualization) => {
-    const selectedItems = visualization.placeholders.reduce((a, b) => a.concat(b.items), []);
+    const selectedItems = visualization.placeholders.reduce(
+      (a, b) => a.concat(b.items),
+      [],
+    );
 
-    return item.type === 'MEASURE' || selectedItems.some(selectedItem => selectedItem.guid === item.guid);
+    return (
+      item.type === 'MEASURE' ||
+      selectedItems.some(selectedItem => selectedItem.guid === item.guid)
+    );
   },
   checkAllowedColors: item => {
     return item.type === 'MEASURE';

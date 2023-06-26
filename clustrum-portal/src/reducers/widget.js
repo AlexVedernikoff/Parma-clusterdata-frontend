@@ -70,7 +70,9 @@ export const selectWidget = state => {
   return (
     state.widget.widget || {
       fake: true,
-      key: window.DL.user.login ? `/Users/${DL.user.login}/Новая диаграмма` : `/Новая диаграмма`,
+      key: window.DL.user.login
+        ? `/Users/${DL.user.login}/Новый элемент аналитической панели`
+        : `/Новый элемент аналитической панели`,
       entryId: null,
     }
   );

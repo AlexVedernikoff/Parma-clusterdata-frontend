@@ -3,7 +3,9 @@ import isEqual from 'lodash/isEqual';
 import { MODE, ITEM_TYPE } from '../../modules/constants/constants';
 
 const getCurrentPage = state => {
-  const pageIndex = state.dash.data ? state.dash.data.pages.findIndex(({ id }) => id === state.dash.pageId) : -1;
+  const pageIndex = state.dash.data
+    ? state.dash.data.pages.findIndex(({ id }) => id === state.dash.pageId)
+    : -1;
   return pageIndex === -1 ? null : state.dash.data.pages[pageIndex];
 };
 
@@ -17,26 +19,36 @@ export const getCurrentTab = state => {
   const tabIndex = page ? page.tabs.findIndex(({ id }) => id === state.dash.tabId) : -1;
   return tabIndex === -1
     ? null
-    : { ...page.tabs[tabIndex], salt: state.dash.data.salt, counter: state.dash.data.counter };
+    : {
+        ...page.tabs[tabIndex],
+        salt: state.dash.data.salt,
+        counter: state.dash.data.counter,
+      };
 };
 
 export const isEditMode = state => state.dash.mode === MODE.EDIT;
 
-export const canEdit = state => Boolean(state.dash.permissions && state.dash.permissions.edit);
+export const canEdit = state =>
+  Boolean(state.dash.permissions && state.dash.permissions.edit);
 
-export const isDraft = state => Boolean(state.dash.entry) && !isEqual(state.dash.entry.data, state.dash.data);
+export const isDraft = state =>
+  Boolean(state.dash.entry) && !isEqual(state.dash.entry.data, state.dash.data);
 
 export const getEntryId = state => (state.dash.entry ? state.dash.entry.entryId : null);
 
-export const getEntryTitle = state => (state.dash.entry ? state.dash.entry.key.match(/[^/]*$/).toString() : null);
+export const getEntryTitle = state =>
+  state.dash.entry ? state.dash.entry.key.match(/[^/]*$/).toString() : null;
 
 export const getSettings = state => (state.dash.data ? state.dash.data.settings : null);
 
-export const isDialogVisible = (state, dialogType) => state.dash.openedDialog === dialogType;
+export const isDialogVisible = (state, dialogType) =>
+  state.dash.openedDialog === dialogType;
 
 export const getOpenedItem = state => {
   if (state.dash.openedItemId) {
-    const item = getCurrentTab(state).items.find(({ id }) => id === state.dash.openedItemId);
+    const item = getCurrentTab(state).items.find(
+      ({ id }) => id === state.dash.openedItemId,
+    );
 
     return item;
   }
@@ -74,7 +86,9 @@ export const getCurrentTabConnectableItems = state => {
       .reduce(
         (result, { id, data, type, namespace }) =>
           type === ITEM_TYPE.WIDGET
-            ? result.concat(data.map(({ id, data, title }) => ({ id, namespace, type, title })))
+            ? result.concat(
+                data.map(({ id, data, title }) => ({ id, namespace, type, title })),
+              )
             : result.concat([{ id, namespace, type, title: data.title }]),
         [],
       );

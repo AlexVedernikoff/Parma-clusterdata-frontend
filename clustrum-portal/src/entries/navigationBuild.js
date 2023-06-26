@@ -6,9 +6,11 @@ import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
 import NavigationPage from '../containers/NavigationPage/NavigationPage';
 
+import './../css/clustrum/colors.css';
 import './../css/vendors.css';
 import './../css/commons.css';
 import './../css/navigation.css';
+import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
 

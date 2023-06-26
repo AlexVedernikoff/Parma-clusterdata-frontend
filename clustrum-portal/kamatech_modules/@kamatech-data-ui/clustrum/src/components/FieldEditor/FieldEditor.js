@@ -93,7 +93,15 @@ class FieldEditor extends React.Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    const { visible, field: fieldProps, fields, types, sources, initialType, sourceType } = props;
+    const {
+      visible,
+      field: fieldProps,
+      fields,
+      types,
+      sources,
+      initialType,
+      sourceType,
+    } = props;
     const { field: fieldState } = state;
 
     if (visible && !fieldState) {
@@ -400,7 +408,9 @@ class FieldEditor extends React.Component {
     const { sourceType } = this.state;
     return (
       <React.Fragment>
-        {sourceType === type && <div className={b('switchers')}>{this._renderCommonSwitchers()}</div>}
+        {sourceType === type && (
+          <div className={b('switchers')}>{this._renderCommonSwitchers()}</div>
+        )}
       </React.Fragment>
     );
   }
@@ -458,7 +468,13 @@ class FieldEditor extends React.Component {
               </div>
               {this._renderArrayJoinType(field)}
               <div className={b('clear-linked')}>
-                <Button theme="pseudo" tone="default" view="default" size="m" onClick={() => this.clearLinkedDataset()}>
+                <Button
+                  theme="pseudo"
+                  tone="default"
+                  view="default"
+                  size="m"
+                  onClick={() => this.clearLinkedDataset()}
+                >
                   Очистить
                 </Button>
               </div>
@@ -533,7 +549,9 @@ class FieldEditor extends React.Component {
                 this.setState({ settingsSection: e.target.value });
               }}
             >
-              <RadioButton.Radio value={SettingsSectionTypes.Connection}>Связывание</RadioButton.Radio>
+              <RadioButton.Radio value={SettingsSectionTypes.Connection}>
+                Связывание
+              </RadioButton.Radio>
               <RadioButton.Radio value={SettingsSectionTypes.Verification}>
                 Верификация и сопоставление
               </RadioButton.Radio>
@@ -544,7 +562,8 @@ class FieldEditor extends React.Component {
           this._renderConnection({
             type: CONTROL_SOURCE_TYPE.DATASET,
           })}
-        {settingsSection === SettingsSectionTypes.Verification && this._renderVerification()}
+        {settingsSection === SettingsSectionTypes.Verification &&
+          this._renderVerification()}
       </React.Fragment>
     );
   }
@@ -601,7 +620,12 @@ class FieldEditor extends React.Component {
             />
           )}
         </Dialog.Footer>
-        <Tooltip theme="error" visible={showError} anchor={this._btnApplyRef.current} to="bottom">
+        <Tooltip
+          theme="error"
+          visible={showError}
+          anchor={this._btnApplyRef.current}
+          to="bottom"
+        >
           <div className={b('errors')}>
             {errorMessages.map((errorMessage, index) => (
               <div key={`em-${index}`} className={b('error-message')}>

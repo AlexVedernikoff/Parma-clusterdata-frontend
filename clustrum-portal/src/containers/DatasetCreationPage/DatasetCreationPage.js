@@ -56,7 +56,11 @@ class DatasetCreationPage extends React.Component {
     });
 
     try {
-      const { db_type: connectionType, name: connectionName, cluster } = await sdk.bi.getConnection({
+      const {
+        db_type: connectionType,
+        name: connectionName,
+        cluster,
+      } = await sdk.bi.getConnection({
         connectionId,
       });
 
@@ -137,7 +141,14 @@ class DatasetCreationPage extends React.Component {
   };
 
   getModifyDatasetSourceConfig = (datasetId, componentState = {}) => {
-    const { connectionType, connectionId, selectedDatabase, selectedTable, counterSource, ytId } = componentState;
+    const {
+      connectionType,
+      connectionId,
+      selectedDatabase,
+      selectedTable,
+      counterSource,
+      ytId,
+    } = componentState;
     let tableName, dbName;
 
     switch (connectionType) {
@@ -172,7 +183,10 @@ class DatasetCreationPage extends React.Component {
       const { sdk, datasetId } = this.props;
       const { selectedConnection } = this.state;
 
-      const modifyDatasetSourceConfig = this.getModifyDatasetSourceConfig(datasetId, selectedConnection);
+      const modifyDatasetSourceConfig = this.getModifyDatasetSourceConfig(
+        datasetId,
+        selectedConnection,
+      );
 
       await sdk.bi.modifyDatasetSource(modifyDatasetSourceConfig);
 
@@ -312,10 +326,28 @@ class DatasetCreationPage extends React.Component {
   _renderErrorContent() {
     const { sdk } = this.props;
     const { fetchError } = this.state;
-    const { response: { status, data: { data } = {}, headers: { 'x-request-id': reqId } = {} } = {} } = fetchError;
-    const { type, title, description, action } = this._getErrorMessageByCode({ status, data });
+    const {
+      response: {
+        status,
+        data: { data } = {},
+        headers: { 'x-request-id': reqId } = {},
+      } = {},
+    } = fetchError;
+    const { type, title, description, action } = this._getErrorMessageByCode({
+      status,
+      data,
+    });
 
-    return <ErrorContent sdk={sdk} type={type} title={title} description={description} reqId={reqId} action={action} />;
+    return (
+      <ErrorContent
+        sdk={sdk}
+        type={type}
+        title={title}
+        description={description}
+        reqId={reqId}
+        action={action}
+      />
+    );
   }
 
   getFakeEntry = ({ section }) => {
@@ -331,7 +363,9 @@ class DatasetCreationPage extends React.Component {
 
     return {
       fake: true,
-      key: window.DL.user.login ? `/Users/${login}/${sectionType[section]}` : `/${sectionType[section]}`,
+      key: window.DL.user.login
+        ? `/Users/${login}/${sectionType[section]}`
+        : `/${sectionType[section]}`,
       entryId: null,
     };
   };
@@ -385,18 +419,19 @@ class DatasetCreationPage extends React.Component {
                 progress={isActionProgress}
               />
             ) : (
-              <Button
-                disabled={!connectionId}
-                key={'action-btn'}
-                cls={b('action-btn')}
-                theme="action"
-                size="n"
-                view="default"
-                tone="default"
-                text="Создать датасет"
-                onClick={this.createDataset}
-                progress={isActionProgress}
-              />
+              connectionId && (
+                <Button
+                  key={'action-btn'}
+                  cls={b('action-btn')}
+                  theme="action"
+                  size="n"
+                  view="default"
+                  tone="default"
+                  text="Создать набор данных"
+                  onClick={this.createDataset}
+                  progress={isActionProgress}
+                />
+              )
             ),
           ]}
         />

@@ -55,7 +55,10 @@ extend({
 });
 /* eslint-enable max-len */
 
-function goAwayLink({ loadedData, propsData }, { extraParams = {}, urlPostfix = '', idPrefix = '' }) {
+function goAwayLink(
+  { loadedData, propsData },
+  { extraParams = {}, urlPostfix = '', idPrefix = '' },
+) {
   let url = settings.chartsEndpoint + urlPostfix;
 
   const id = (loadedData && loadedData.entryId) || propsData.id;
@@ -70,47 +73,67 @@ function goAwayLink({ loadedData, propsData }, { extraParams = {}, urlPostfix = 
 const HIDE_COMMENTS = {
   title: 'Скрыть комментарии',
   icon: <Icon size="20" name="eye-stroke" />,
-  isVisible: ({ loadedData: { comments, params: { [URL_OPTIONS.HIDE_COMMENTS]: hideComments } = {} } = {} }) =>
-    comments && comments.length && (!hideComments || hideComments[0] != '1'), // eslint-disable-line eqeqeq
+  isVisible: ({
+    loadedData: {
+      comments,
+      params: { [URL_OPTIONS.HIDE_COMMENTS]: hideComments } = {},
+    } = {},
+  }) => comments && comments.length && (!hideComments || hideComments[0] != '1'), // eslint-disable-line eqeqeq
   action: ({ onChange }) => onChange({ params: { [URL_OPTIONS.HIDE_COMMENTS]: 1 } }),
 };
 
 const SHOW_COMMENTS = {
   title: 'Показать комментарии',
   icon: <Icon size="20" name="eye" />,
-  isVisible: ({ loadedData: { comments, params: { [URL_OPTIONS.HIDE_COMMENTS]: hideComments } = {} } = {} }) =>
-    comments && comments.length && hideComments && hideComments[0] == '1', // eslint-disable-line eqeqeq
+  isVisible: ({
+    loadedData: {
+      comments,
+      params: { [URL_OPTIONS.HIDE_COMMENTS]: hideComments } = {},
+    } = {},
+  }) => comments && comments.length && hideComments && hideComments[0] == '1', // eslint-disable-line eqeqeq
   action: ({ onChange }) => onChange({ params: { [URL_OPTIONS.HIDE_COMMENTS]: 0 } }),
 };
 
 function checkMatchCommentsConfig(config, params, feed, checkFeed, checkParams) {
   const { ...rest } = params;
-  const { matchedParams = [], matchType, feeds: configFeeds = [] } = config.comments || {};
+  const { matchedParams = [], matchType, feeds: configFeeds = [] } =
+    config.comments || {};
 
-  const feeds = [{ feed, matchedParams }].concat(configFeeds).map(({ feed, matchedParams = [] }) =>
-    matchedParams.reduce(
-      (result, name) => {
-        const value = rest[name];
-        result.params[name] = Array.isArray(value) ? value : [value];
-        return result;
-      },
-      { feed, params: {} },
-    ),
-  );
+  const feeds = [{ feed, matchedParams }]
+    .concat(configFeeds)
+    .map(({ feed, matchedParams = [] }) =>
+      matchedParams.reduce(
+        (result, name) => {
+          const value = rest[name];
+          result.params[name] = Array.isArray(value) ? value : [value];
+          return result;
+        },
+        { feed, params: {} },
+      ),
+    );
 
   return feeds.some(
     ({ feed, params = {} }) =>
       checkFeed === feed &&
       // если функция сравнения возвращает undefined, то отрабатывает метод по умолчанию
       (matchType === 'contains'
-        ? isMatchWith(params, checkParams || {}, (a, b) => a === '*' || b === '*' || undefined)
-        : isEqualWith(params, checkParams || {}, (a, b) => a === '*' || b === '*' || undefined)),
+        ? isMatchWith(
+            params,
+            checkParams || {},
+            (a, b) => a === '*' || b === '*' || undefined,
+          )
+        : isEqualWith(
+            params,
+            checkParams || {},
+            (a, b) => a === '*' || b === '*' || undefined,
+          )),
   );
 }
 
 function loadComments(widget, config, params, feed, excludeParams) {
   const { ...rest } = params;
-  const { path, matchedParams = [], matchType, feeds: configFeeds = [] } = config.comments || {};
+  const { path, matchedParams = [], matchType, feeds: configFeeds = [] } =
+    config.comments || {};
 
   const seriesIds = widget.series.map(({ userOptions: { id } }) => id);
 
@@ -156,33 +179,40 @@ const COMMENTS = {
     // const graphs = loadedData.data.graphs.filter(({id}) => id)
     //     .map(({id, name, title}) => { return {value: id, text: title}; });
 
-    const graphs = widget.series.map(({ name, userOptions: { id } }) => ({ value: id || name, text: name }));
+    const graphs = widget.series.map(({ name, userOptions: { id } }) => ({
+      value: id || name,
+      text: name,
+    }));
 
     const { dataMax: dateMaxMs, dataMin: dateMinMs } = widget.xAxis[0].getExtremes();
 
-    const scale = widget.userOptions._config.highchartsScale || widget.userOptions._config.scale;
+    const scale =
+      widget.userOptions._config.highchartsScale || widget.userOptions._config.scale;
 
     // const dateMinMs = loadedData.data.categories_ms[0];
     // const dateMaxMs = loadedData.data.categories_ms[loadedData.data.categories_ms.length - 1];
 
     const currentFeed = loadedData.key;
     const params = loadedData.params;
-    const { comments: { matchedParams = [], feeds: configFeeds = [] } = {} } = loadedData.config || {};
+    const { comments: { matchedParams = [], feeds: configFeeds = [] } = {} } =
+      loadedData.config || {};
     const currentParams = matchedParams.reduce((result, key) => {
       result[key] = params[key];
       return result;
     }, {});
 
-    const feeds = [{ feed: currentFeed, matchedParams }].concat(configFeeds).map(({ feed, matchedParams = [] }) =>
-      matchedParams.reduce(
-        (result, name) => {
-          const value = params[name];
-          result.params[name] = Array.isArray(value) ? value : [value];
-          return result;
-        },
-        { feed, params: {} },
-      ),
-    );
+    const feeds = [{ feed: currentFeed, matchedParams }]
+      .concat(configFeeds)
+      .map(({ feed, matchedParams = [] }) =>
+        matchedParams.reduce(
+          (result, name) => {
+            const value = params[name];
+            result.params[name] = Array.isArray(value) ? value : [value];
+            return result;
+          },
+          { feed, params: {} },
+        ),
+      );
 
     // return {
     // currentFeed,
@@ -205,7 +235,13 @@ const COMMENTS = {
         dateMinMs={dateMinMs}
         dateMaxMs={dateMaxMs}
         scale={scale}
-        loadComments={loadComments.bind(null, widget, loadedData.config, loadedData.params, loadedData.key)}
+        loadComments={loadComments.bind(
+          null,
+          widget,
+          loadedData.config,
+          loadedData.params,
+          loadedData.key,
+        )}
         checkMatchCommentsConfig={checkMatchCommentsConfig.bind(
           null,
           loadedData.config,
@@ -231,10 +267,10 @@ const SCREENSHOT = {
     ReactDOM.render(
       <DownloadScreenshot
         element={anchorNode}
-        path={goAwayLink({ loadedData, propsData }, { urlPostfix: '/preview', idPrefix: '/editor/' }).replace(
-          settings.chartsEndpoint,
-          '',
-        )}
+        path={goAwayLink(
+          { loadedData, propsData },
+          { urlPostfix: '/preview', idPrefix: '/editor/' },
+        ).replace(settings.chartsEndpoint, '')}
         filename={'charts'}
         initDownload={event.ctrlKey || event.metaKey}
       />,
@@ -247,18 +283,28 @@ const NEW_WINDOW = {
   icon: <Icon size="20" name="new-window" />,
   isVisible: () => true,
   action: ({ loadedData = {}, propsData }) =>
-    window.open(goAwayLink({ loadedData, propsData }, { urlPostfix: '/preview', idPrefix: '/editor/' })),
+    window.open(
+      goAwayLink(
+        { loadedData, propsData },
+        { urlPostfix: '/preview', idPrefix: '/editor/' },
+      ),
+    ),
 };
 
 const OPEN_AS_TABLE = {
   title: 'Открыть как таблицу',
   icon: <Icon size="20" name="table" />,
-  isVisible: ({ loadedData: { data, widgetType } = {} }) => data && widgetType === WIDGET_TYPE.GRAPH,
+  isVisible: ({ loadedData: { data, widgetType } = {} }) =>
+    data && widgetType === WIDGET_TYPE.GRAPH,
   action: ({ loadedData, propsData }) =>
     window.open(
       goAwayLink(
         { loadedData, propsData },
-        { extraParams: { _editor_type: 'table' }, urlPostfix: '/preview', idPrefix: '/editor/' },
+        {
+          extraParams: { _editor_type: 'table' },
+          urlPostfix: '/preview',
+          idPrefix: '/editor/',
+        },
       ),
     ),
 };
@@ -271,7 +317,10 @@ const GET_LINK = {
     ReactDOM.render(
       <CodeLinkModal
         element={anchorNode}
-        url={goAwayLink({ loadedData, propsData }, { urlPostfix: '/preview', idPrefix: '/editor/' })}
+        url={goAwayLink(
+          { loadedData, propsData },
+          { urlPostfix: '/preview', idPrefix: '/editor/' },
+        )}
         configType={loadedData.widgetType}
       />,
       anchorNode,
@@ -284,7 +333,10 @@ const SOURCES = {
   isVisible: ({ loadedData: { sources } = {} }) => sources && Object.keys(sources).length,
   action: ({ loadedData, anchorNode }) =>
     ReactDOM.render(
-      <ChartSourceModal element={anchorNode} sources={normalizeSources(loadedData.sources)} />,
+      <ChartSourceModal
+        element={anchorNode}
+        sources={normalizeSources(loadedData.sources)}
+      />,
       anchorNode,
     ),
 };
@@ -299,4 +351,14 @@ const EDIT = {
 
 export { default as EXPORT } from './Export/Export';
 
-export { HIDE_COMMENTS, SHOW_COMMENTS, COMMENTS, SCREENSHOT, NEW_WINDOW, OPEN_AS_TABLE, GET_LINK, SOURCES, EDIT };
+export {
+  HIDE_COMMENTS,
+  SHOW_COMMENTS,
+  COMMENTS,
+  SCREENSHOT,
+  NEW_WINDOW,
+  OPEN_AS_TABLE,
+  GET_LINK,
+  SOURCES,
+  EDIT,
+};

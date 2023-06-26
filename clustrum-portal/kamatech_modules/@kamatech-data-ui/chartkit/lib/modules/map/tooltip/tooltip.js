@@ -17,7 +17,9 @@ function formatTooltip(data) {
                   `<tr>
                     <td class="chart-tooltip__bubble-cell">
                         <span class="chart-tooltip__bubble" ${
-                          value.colorBubble ? `style="background-color: ${data.color};"` : ''
+                          value.colorBubble
+                            ? `style="background-color: ${data.color};"`
+                            : ''
                         }></span>
                     </td>
                     <td class="chart-tooltip__value-cell">

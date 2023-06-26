@@ -181,7 +181,8 @@ class Widget extends React.PureComponent {
     });
   };
 
-  closeParamsDialog = () => this.setState({ showParamsDialog: false, paramKey: '', paramValue: '' });
+  closeParamsDialog = () =>
+    this.setState({ showParamsDialog: false, paramKey: '', paramValue: '' });
 
   addParam = () => {
     const { data, tabIndex, paramKey, paramValue } = this.state;
@@ -193,12 +194,17 @@ class Widget extends React.PureComponent {
         [tabIndex]: {
           data: {
             params: {
-              $set: mergeWith({}, params, { [paramKey]: paramValue }, (objValue, srcValue) => {
-                if (objValue) {
-                  return wrapToArray(objValue).concat(wrapToArray(srcValue));
-                }
-                return undefined;
-              }),
+              $set: mergeWith(
+                {},
+                params,
+                { [paramKey]: paramValue },
+                (objValue, srcValue) => {
+                  if (objValue) {
+                    return wrapToArray(objValue).concat(wrapToArray(srcValue));
+                  }
+                  return undefined;
+                },
+              ),
             },
           },
         },
@@ -219,7 +225,9 @@ class Widget extends React.PureComponent {
             params: {
               $set: Object.entries(params).reduce((result, [key, value]) => {
                 if (key === paramKey) {
-                  const newValue = wrapToArray(value).filter(value => value !== paramValue);
+                  const newValue = wrapToArray(value).filter(
+                    value => value !== paramValue,
+                  );
                   if (newValue.length) {
                     result[key] = newValue;
                   }
@@ -243,7 +251,11 @@ class Widget extends React.PureComponent {
     }
 
     return (
-      <Dialog visible={this.state.showParamsDialog} onClose={this.closeParamsDialog} autoclosable={false}>
+      <Dialog
+        visible={this.state.showParamsDialog}
+        onClose={this.closeParamsDialog}
+        autoclosable={false}
+      >
         <Dialog.Header caption="Новый параметр" />
         <Dialog.Body className={b('dialog-params')}>
           <div className={b('dialog-params-row')}>
@@ -307,7 +319,12 @@ class Widget extends React.PureComponent {
           <div className={b('params', { empty: !Object.keys(params).length })}>
             {Object.keys(params).length
               ? Object.entries(params).map(([key, value]) => (
-                  <Param key={key + value} name={key} value={value} onRemove={this.removeParam} />
+                  <Param
+                    key={key + value}
+                    name={key}
+                    value={value}
+                    onRemove={this.removeParam}
+                  />
                 ))
               : 'Список пуст'}
           </div>
@@ -331,11 +348,16 @@ class Widget extends React.PureComponent {
     return (
       <Dialog visible={visible} onClose={closeDialog} autoclosable={false}>
         <div className={b()}>
-          <Dialog.Header caption="Диаграмма" />
+          <Dialog.Header caption="Элемент аналитической панели" />
           <Dialog.Body>
             <div className={b('main')}>
               <div className={b('sidebar')}>
-                <TabMenu items={data} itemChosen={tabIndex} itemDefault={tabDefault} update={this._updateTabMenu} />
+                <TabMenu
+                  items={data}
+                  itemChosen={tabIndex}
+                  itemDefault={tabDefault}
+                  update={this._updateTabMenu}
+                />
               </div>
 
               <div className={b('content')}>
@@ -372,7 +394,9 @@ class Widget extends React.PureComponent {
                     autoclosable
                     visible={this.state.error}
                     anchor={this.navigationInputRef.current}
-                    onOutsideClick={() => setTimeout(() => this.setState({ error: false }), 0)}
+                    onOutsideClick={() =>
+                      setTimeout(() => this.setState({ error: false }), 0)
+                    }
                   >
                     Поле должно быть заполнено
                   </Tooltip>
@@ -404,7 +428,9 @@ class Widget extends React.PureComponent {
                     this.setState(prevState => ({
                       data: update(data, {
                         [tabIndex]: {
-                          isDisplayOnlyWithFilter: { $set: !prevState.data[tabIndex].isDisplayOnlyWithFilter },
+                          isDisplayOnlyWithFilter: {
+                            $set: !prevState.data[tabIndex].isDisplayOnlyWithFilter,
+                          },
                         },
                       }),
                     }));

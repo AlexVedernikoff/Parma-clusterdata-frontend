@@ -1,19 +1,25 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import _intersection from 'lodash/intersection';
 import { ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
-import { Loader, Toaster, YCSelect } from '@kamatech-data-ui/common/src';
+import { Loader, Toaster } from '@kamatech-data-ui/common/src';
 import GeneralConnector from '../../components/Connectors/components/GeneralConnector/GeneralConnector';
 import ChOverYtConnector from '../../components/Connectors/components/ChOverYtConnector/ChOverYtConnector';
 import CsvConnector from '../../components/Connectors/components/CsvConnector/CsvConnector';
 import MetrikaLogsApiConnector from '../../components/Connectors/components/MetrikaLogsApiConnector/MetrikaLogsApiConnector';
 import AppMetricaConnector from '../../components/Connectors/components/AppMetricaAPI/AppMetricaAPI';
-import { TOAST_TYPES, getFakeEntry, getStaticSelectItems } from '../../constants';
+import { TOAST_TYPES, getFakeEntry } from '../../constants';
 import Utils from '../../helpers/utils';
-import { createConnection, modifyConnection, verifyConnection, uploadCsv, saveCsv } from './actions';
+import {
+  createConnection,
+  modifyConnection,
+  verifyConnection,
+  uploadCsv,
+  saveCsv,
+} from './actions';
 import { getEmptyFields } from './validator';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 import { normalizeDestination } from '@kamatech-data-ui/clustrum-core-plugins/utils';
@@ -60,7 +66,9 @@ class ConnectionPage extends React.Component {
         key={'create-dataset-btn'}
         text="Создать датасет"
         onClick={() => {
-          let currentPathParam = currentPath ? `&currentPath=${encodeURIComponent(currentPath)}` : '';
+          let currentPathParam = currentPath
+            ? `&currentPath=${encodeURIComponent(currentPath)}`
+            : '';
           window.open(`/datasets/new?id=${connectionId}${currentPathParam}`, '_self');
         }}
       >
@@ -141,7 +149,10 @@ class ConnectionPage extends React.Component {
     let emptyFields = [];
 
     if (this.state.emptyFields.length) {
-      emptyFields = _intersection(this.state.emptyFields, getEmptyFields(connectionState));
+      emptyFields = _intersection(
+        this.state.emptyFields,
+        getEmptyFields(connectionState),
+      );
     }
 
     this.setState(
@@ -189,7 +200,10 @@ class ConnectionPage extends React.Component {
           type: 'success',
           content: (
             <div className={b('create-dataset-btn-wrap')}>
-              {ConnectionPage.getDatasetCreateButton(connectionId, connectionState.dirPath)}
+              {ConnectionPage.getDatasetCreateButton(
+                connectionId,
+                connectionState.dirPath,
+              )}
             </div>
           ),
         });
@@ -377,7 +391,11 @@ class ConnectionPage extends React.Component {
   _isAutoCreateDashboardNeeded() {
     const { connectionState: { dbType, isAutoCreateDashboard } = {} } = this.state;
 
-    return isAutoCreateDashboard && ['metrika_api', 'metrika_logs_api'].includes(dbType) && !Utils.isInternal();
+    return (
+      isAutoCreateDashboard &&
+      ['metrika_api', 'metrika_logs_api'].includes(dbType) &&
+      !Utils.isInternal()
+    );
   }
 
   _showToast({ name, type, content, allowAutoHiding = false }) {
@@ -472,11 +490,16 @@ class ConnectionPage extends React.Component {
   }
 
   _renderActionPanel() {
-    const { sdk } = this.props;
+    const { sdk, history } = this.props;
     const {
       params: { connectionId },
     } = this.props.match;
-    const { connectionState, permissionsMode, isActionProgress, isStateChanged, isChangesSaved } = this.state;
+    const {
+      connectionState,
+      isActionProgress,
+      isStateChanged,
+      isChangesSaved,
+    } = this.state;
 
     const connectorType = this._getConnectorType();
     const isCsv = connectorType === 'csv';
@@ -499,18 +522,6 @@ class ConnectionPage extends React.Component {
       permissionsSelectVisible = connectionId ? isUnvalidated : false;
     }
 
-    const permissionsSelect = permissionsSelectVisible && (
-      <div key={'permissions-select'} className={b('select-wrap')}>
-        <YCSelect
-          cls={b('select')}
-          items={getStaticSelectItems(['owner_only', 'explicit'])}
-          value={permissionsMode}
-          onChange={val => this.setState({ permissionsMode: val })}
-          showSearch={false}
-        />
-      </div>
-    );
-
     const actionButton = actionButtonVisible && (
       <Button
         key={'action-btn'}
@@ -526,17 +537,27 @@ class ConnectionPage extends React.Component {
       </Button>
     );
 
-    const currentDirPath = connectionState.key && normalizeDestination(getNavigationPathFromKey(connectionState.key));
+    const currentDirPath =
+      connectionState.key &&
+      normalizeDestination(getNavigationPathFromKey(connectionState.key));
 
     const createDatasetButton =
-      connectionId && !permissionsSelectVisible && ConnectionPage.getDatasetCreateButton(connectionId, currentDirPath);
+      connectionId &&
+      !permissionsSelectVisible &&
+      ConnectionPage.getDatasetCreateButton(connectionId, currentDirPath);
+
+    const cancelButton = (
+      <Button key="cancel-btn" type="default" onClick={() => history.goBack()}>
+        {Boolean(this.state.connectionState?.id) ? 'Закрыть' : 'Отменить'}
+      </Button>
+    );
 
     return (
       <ActionPanel
         sdk={sdk}
         entry={entry ? entry : entryId ? null : getFakeEntry('connection')}
         entryId={entryId}
-        rightItems={[permissionsSelect, createDatasetButton, actionButton]}
+        rightItems={[cancelButton, createDatasetButton, actionButton]}
       />
     );
   }
@@ -544,10 +565,28 @@ class ConnectionPage extends React.Component {
   _renderErrorContent() {
     const { sdk } = this.props;
     const { fetchError } = this.state;
-    const { response: { status, data: { data } = {}, headers: { 'x-request-id': reqId } = {} } = {} } = fetchError;
-    const { type, title, description, action } = this._getErrorMessageByCode({ status, data });
+    const {
+      response: {
+        status,
+        data: { data } = {},
+        headers: { 'x-request-id': reqId } = {},
+      } = {},
+    } = fetchError;
+    const { type, title, description, action } = this._getErrorMessageByCode({
+      status,
+      data,
+    });
 
-    return <ErrorContent sdk={sdk} type={type} title={title} description={description} reqId={reqId} action={action} />;
+    return (
+      <ErrorContent
+        sdk={sdk}
+        type={type}
+        title={title}
+        description={description}
+        reqId={reqId}
+        action={action}
+      />
+    );
   }
 
   _renderErrorDialog() {
@@ -570,7 +609,12 @@ class ConnectionPage extends React.Component {
         params: { connectionId },
       },
     } = this.props;
-    const { connectionState = {}, emptyFields, isVerifySuccess, isActionProgress } = this.state;
+    const {
+      connectionState = {},
+      emptyFields,
+      isVerifySuccess,
+      isActionProgress,
+    } = this.state;
 
     const connectorType = this._getConnectorType();
     const Connector = _getConnectorComponent(connectorType);
@@ -629,4 +673,4 @@ class ConnectionPage extends React.Component {
   }
 }
 
-export default ConnectionPage;
+export default withRouter(ConnectionPage);

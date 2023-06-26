@@ -9,7 +9,14 @@ const User = ({ showIcon, participant, role, useRole, onClickLink }) => {
   const iconHref = cloudIcon ? `${cloudIcon}/islands-retina-middle` : icon || undefined;
 
   return showIcon ? (
-    <ParticipantAccount showPic picUrl={iconHref} name={name} title={title} link={link} onClickLink={onClickLink} />
+    <ParticipantAccount
+      showPic
+      picUrl={iconHref}
+      name={name}
+      title={title}
+      link={link}
+      onClickLink={onClickLink}
+    />
   ) : (
     <ParticipantAccount name={name} title={title} link={link} onClickLink={onClickLink} />
   );

@@ -17,9 +17,14 @@ import {
   SortDescendingOutlined,
 } from '@ant-design/icons';
 
-import { CONFLICT_TOOLTIPS, ITEM_TYPES, MEASURE_TYPE, VISUALIZATIONS } from '../../../../../constants';
+import {
+  CONFLICT_TOOLTIPS,
+  ITEM_TYPES,
+  MEASURE_TYPE,
+  VISUALIZATIONS,
+} from '../../../../../constants';
 
-import { DndContainer } from '../../../shared/ui/drag-n-drop/dnd-container';
+import { DndContainer } from '@lib-shared/ui/drag-n-drop';
 import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';
@@ -216,7 +221,9 @@ class SectionVisualization extends Component {
           wrapTo={this.renderDatasetItem}
           disabled={datasetError}
           onItemClick={(e, item) => {
-            if (['flat-table-columns', 'measures', 'dimensions'].includes(placeholder.id)) {
+            if (
+              ['flat-table-columns', 'measures', 'dimensions'].includes(placeholder.id)
+            ) {
               this.setState({
                 dialogItem: item,
                 dialogType: 'column',
@@ -434,7 +441,7 @@ class SectionVisualization extends Component {
                   },
                 });
               }}
-              onUpdate={(items, item, action, onUndoInsert) => {
+              onUpdate={(items, item, action) => {
                 if (action === 'remove') {
                   // Обрабатываем удаление фильтра
                   setFilters({
@@ -490,13 +497,6 @@ class SectionVisualization extends Component {
                           diagramMagnitude,
                           exportLimit,
                         });
-                      } else {
-                        // Модалку с фильтром закенселили
-                        items.splice(items.indexOf(item), 1);
-
-                        if (onUndoInsert) {
-                          onUndoInsert();
-                        }
                       }
                     },
                   });
@@ -558,11 +558,6 @@ class SectionVisualization extends Component {
                             diagramMagnitude,
                             exportLimit,
                           });
-                        } else {
-                          // Модалку с фильтром закенселили
-                          if (onUndoInsert) {
-                            onUndoInsert();
-                          }
                         }
                       },
                     });
@@ -1146,7 +1141,9 @@ class SectionVisualization extends Component {
       ((props.listAllowedTypes && props.listAllowedTypes.has(draggingItem.item.type)) ||
         (props.listCheckAllowed && props.listCheckAllowed(draggingItem.item)));
 
-    const dragHoveredClassName = `drag-hovered ${swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'}`;
+    const dragHoveredClassName = `drag-hovered ${
+      swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
+    }`;
 
     const castIconData = getIconForCast(item.cast);
 
@@ -1172,7 +1169,8 @@ class SectionVisualization extends Component {
           const elementSize = bottom - top;
           const replaceZoneSize = elementSize / 2;
 
-          const inReplaceZone = replaceZoneSize / 2 < y && y < elementSize - replaceZoneSize / 2;
+          const inReplaceZone =
+            replaceZoneSize / 2 < y && y < elementSize - replaceZoneSize / 2;
 
           if (inReplaceZone) {
             let drawReplace;
@@ -1197,7 +1195,11 @@ class SectionVisualization extends Component {
           const related = e.relatedTarget;
 
           // Игнорируем ondragleave на крестик
-          if (related && (typeof related.className !== 'string' || related.className.indexOf('cross-icon') > -1)) {
+          if (
+            related &&
+            (typeof related.className !== 'string' ||
+              related.className.indexOf('cross-icon') > -1)
+          ) {
             return false;
           }
 
@@ -1221,15 +1223,19 @@ class SectionVisualization extends Component {
           props.setTooltipVisible(false);
         }}
         onClick={e => {
-          if (this.props?.onItemClick) {
-            this.props?.onItemClick(e, item);
+          if (props?.onItemClick) {
+            props?.onItemClick(e, item);
           }
         }}
       >
         <HolderOutlined className="item-holder" />
 
         {/* Костыль, как и в SectionDataset */}
-        {!!castIconData ? <div className="item-icon">{castIconData}</div> : <Icon data={castIconData} width="16" />}
+        {!!castIconData ? (
+          <div className="item-icon">{castIconData}</div>
+        ) : (
+          <Icon data={castIconData} width="16" />
+        )}
 
         <div className="item-title" title={item.datasetName + '.' + item.title}>
           {item.title}
@@ -1266,7 +1272,7 @@ class SectionVisualization extends Component {
                 {CONFLICT_TOOLTIPS[item.conflict]}
               </Tooltip>
             ) : null}
-            {this.props?.id === 'sort-container' ? (
+            {props?.listId === 'sort-container' ? (
               <div className="item-right-icon sort-icon">
                 {item.direction === 'ASC' ? (
                   <SortAscendingOutlined width="16" height="16" />
@@ -1308,19 +1314,22 @@ class SectionVisualization extends Component {
     return (
       <div>
         <div className="dropdown-header">
-          <h1>Тип чарта</h1>
+          <h1>Элемент аналитической панели</h1>
         </div>
         <div className="visualizations-content">
           <div className="items-grid">
             {VISUALIZATIONS.filter(item => {
-              return visualizationTypeValue === 'all' || visualizationTypeValue === item.type;
+              return (
+                visualizationTypeValue === 'all' || visualizationTypeValue === item.type
+              );
             }).map(item => {
               return (
                 <div
                   key={`visualization-item-${item.id}`}
-                  className={`visualization-item${visualization && visualization.id === item.id ? ' active' : ''}`}
+                  className={`visualization-item${
+                    visualization && visualization.id === item.id ? ' active' : ''
+                  }`}
                   onClick={() => {
-                    console.log('click');
                     if (visualization.id === item.id) return;
 
                     this.dropdownRef.toggle();
@@ -1351,7 +1360,9 @@ class SectionVisualization extends Component {
                   }}
                 >
                   {item.icon}
-                  {VISUALIZATION_LABELS[item.name] ? VISUALIZATION_LABELS[item.name] : item.name}
+                  {VISUALIZATION_LABELS[item.name]
+                    ? VISUALIZATION_LABELS[item.name]
+                    : item.name}
                 </div>
               );
             })}
@@ -1369,13 +1380,19 @@ class SectionVisualization extends Component {
 
   render() {
     const { visualization, sdk, dataset, updates } = this.props;
-    const buttonText = visualization ? VISUALIZATION_LABELS[visualization.name] : 'Выберите тип чарта';
+    const buttonText = visualization
+      ? VISUALIZATION_LABELS[visualization.name]
+      : 'Выберите тип чарта';
     const iconChooseVisualization = <Icon data={iconVisualization} width="24" />;
 
     return (
       <div className="container visualization-container">
         {this.state && this.state.dialogType === 'column' ? (
-          <DialogFormatTemplate item={this.state.dialogItem} callback={this.state.dialogCallBack} visible={true} />
+          <DialogFormatTemplate
+            item={this.state.dialogItem}
+            callback={this.state.dialogCallBack}
+            visible={true}
+          />
         ) : (
           <DialogFilter
             item={this.state.dialogItem}
@@ -1390,21 +1407,39 @@ class SectionVisualization extends Component {
             ref={this.setDropdownRef}
             buttonText={
               <div>
-                <div className="icon">{visualization ? visualization.icon : iconChooseVisualization}</div>
+                <div className="icon">
+                  {visualization ? visualization.icon : iconChooseVisualization}
+                </div>
                 {buttonText}
               </div>
             }
             content={this.renderVisualizationSelection()}
           />
         </div>
-        <div className="placeholders-wrapper">{this.renderVisualizationPlaceholdersOrBlank()}</div>
+        <div className="placeholders-wrapper">
+          {this.renderVisualizationPlaceholdersOrBlank()}
+        </div>
       </div>
     );
   }
 
-  filterTemplate(dataset, updates, sdk, buttonText, visualization, iconChooseVisualization) {}
+  filterTemplate(
+    dataset,
+    updates,
+    sdk,
+    buttonText,
+    visualization,
+    iconChooseVisualization,
+  ) {}
 
-  columnTemplate(dataset, updates, sdk, buttonText, visualization, iconChooseVisualization) {
+  columnTemplate(
+    dataset,
+    updates,
+    sdk,
+    buttonText,
+    visualization,
+    iconChooseVisualization,
+  ) {
     return (
       <div className="container visualization-container">
         <div className="actions-container visualization-actions-container">
@@ -1412,14 +1447,18 @@ class SectionVisualization extends Component {
             ref={this.setDropdownRef}
             buttonText={
               <div>
-                <div className="icon">{visualization ? visualization.icon : iconChooseVisualization}</div>
+                <div className="icon">
+                  {visualization ? visualization.icon : iconChooseVisualization}
+                </div>
                 {buttonText}
               </div>
             }
             content={this.renderVisualizationSelection()}
           />
         </div>
-        <div className="placeholders-wrapper">{this.renderVisualizationPlaceholdersOrBlank()}</div>
+        <div className="placeholders-wrapper">
+          {this.renderVisualizationPlaceholdersOrBlank()}
+        </div>
       </div>
     );
   }

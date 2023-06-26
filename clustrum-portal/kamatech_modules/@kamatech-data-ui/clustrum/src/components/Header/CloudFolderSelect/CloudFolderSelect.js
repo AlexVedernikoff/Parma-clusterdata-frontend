@@ -44,7 +44,11 @@ class CloudFolderSelectClustrum extends React.PureComponent {
   getCurrentCloud() {
     const { currentCloudFolderId } = window.DL;
     const cachedCloud = Utils.restore(STORE_KEY);
-    if (currentCloudFolderId && cachedCloud && cachedCloud.folders[0].id === currentCloudFolderId) {
+    if (
+      currentCloudFolderId &&
+      cachedCloud &&
+      cachedCloud.folders[0].id === currentCloudFolderId
+    ) {
       this.setState({
         status: STATUS.INIT,
         cloudTree: [cachedCloud],
@@ -113,7 +117,9 @@ class CloudFolderSelectClustrum extends React.PureComponent {
   }
 
   findCloudByFolderId(cloudTree, folderId) {
-    return cloudTree.find(({ folders = {} }) => folders.some(({ id }) => id === folderId));
+    return cloudTree.find(({ folders = {} }) =>
+      folders.some(({ id }) => id === folderId),
+    );
   }
 
   storeCloud(folderId = this.state.folderId) {
@@ -156,7 +162,11 @@ class CloudFolderSelectClustrum extends React.PureComponent {
       return null;
     }
     if (this.state.status === STATUS.NOT_FOUND_AVAILABLE_FOLDERS) {
-      return <div className={b('error-not-active-folders')}>У вас нет ни одного каталога с активным ClusterData</div>;
+      return (
+        <div className={b('error-not-active-folders')}>
+          У вас нет ни одного каталога с активным ClusterData
+        </div>
+      );
     }
     return (
       <CloudFolderSelect

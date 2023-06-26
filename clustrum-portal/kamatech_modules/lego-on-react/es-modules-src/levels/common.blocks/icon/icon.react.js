@@ -27,7 +27,14 @@ export default decl(
         size = _ref.size,
         disabled = _ref.disabled;
 
-      return { type: type, action: action, direction: direction, glyph: glyph, size: size, disabled: disabled };
+      return {
+        type: type,
+        action: action,
+        direction: direction,
+        glyph: glyph,
+        size: size,
+        disabled: disabled,
+      };
     },
     attrs: function attrs(_ref2) {
       var url = _ref2.url,

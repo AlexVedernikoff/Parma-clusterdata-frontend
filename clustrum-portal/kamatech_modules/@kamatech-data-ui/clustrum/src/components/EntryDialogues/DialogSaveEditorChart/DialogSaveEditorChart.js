@@ -38,7 +38,13 @@ class DialogSaveEditorChart extends Component {
       withError: true,
       onNotify: noop,
     };
-    return <DialogCreateEntry {...this.props} onApply={this.onApply} defaultDialogProps={defaultDialogProps} />;
+    return (
+      <DialogCreateEntry
+        {...this.props}
+        onApply={this.onApply}
+        defaultDialogProps={defaultDialogProps}
+      />
+    );
   }
 }
 

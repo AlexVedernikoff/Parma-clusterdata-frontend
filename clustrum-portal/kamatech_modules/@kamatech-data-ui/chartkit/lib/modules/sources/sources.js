@@ -8,7 +8,9 @@ function _getSourceType(url) {
 
 function _getSourceUrl(url) {
   // TODO: попробовать убрать 'api', 'v3'
-  const isStatSource = ['api', 'v2', 'v3'].some(prefix => url.indexOf(`/_${prefix}`) === 0);
+  const isStatSource = ['api', 'v2', 'v3'].some(
+    prefix => url.indexOf(`/_${prefix}`) === 0,
+  );
   // const isStatSource = url.search(/^\/_(api|v2|v3|v4)\//) === 0;
   if (!isStatSource && url.indexOf('/_') === 0) {
     return url;
@@ -33,7 +35,8 @@ function _normalizeSource(source) {
   if (source.data) {
     switch (source.format) {
       case 'text':
-        result.data = typeof source.data === 'string' ? source.data : stringify(source.data);
+        result.data =
+          typeof source.data === 'string' ? source.data : stringify(source.data);
         break;
       case 'json':
       default:

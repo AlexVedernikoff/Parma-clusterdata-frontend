@@ -47,12 +47,17 @@ class Sources extends React.PureComponent {
 
     return Object.keys(sourcesByTypes).reduce((result, key) => {
       const typedSources = sourcesByTypes[key];
-      const sourceName = settings.config[key] ? settings.config[key].description.title : key;
+      const sourceName = settings.config[key]
+        ? settings.config[key].description.title
+        : key;
       if (typedSources.length > 1) {
         result.push({
           title: sourceName,
           key,
-          body: typedSources.reduce((result, { key, body }) => ({ ...result, [key]: body }), {}),
+          body: typedSources.reduce(
+            (result, { key, body }) => ({ ...result, [key]: body }),
+            {},
+          ),
         });
       } else {
         result.push({ title: sourceName, ...typedSources[0] });
@@ -88,7 +93,13 @@ ${JSON.stringify(body, null, 4)}`;
                 </Button>
               )}
             </CopyToClipboard>
-            <Button theme="pseudo" tone="default" view="default" size="m" onClick={this.onClose}>
+            <Button
+              theme="pseudo"
+              tone="default"
+              view="default"
+              size="m"
+              onClick={this.onClose}
+            >
               Закрыть
             </Button>
           </div>
@@ -103,7 +114,11 @@ ${JSON.stringify(body, null, 4)}`;
       return (
         <ul className={b('extra')}>
           {this.sourcesLines.map(({ title, key, body }) => (
-            <li className={b('extra-line')} onClick={() => this.onSourceClick(body)} key={key}>
+            <li
+              className={b('extra-line')}
+              onClick={() => this.onSourceClick(body)}
+              key={key}
+            >
               {title}
             </li>
           ))}
@@ -112,7 +127,11 @@ ${JSON.stringify(body, null, 4)}`;
     }
 
     if (this.props.isEditMode) {
-      return <div className={b('code')}>{JSON.stringify(this.sourcesLines[0].body, null, 4)}</div>;
+      return (
+        <div className={b('code')}>
+          {JSON.stringify(this.sourcesLines[0].body, null, 4)}
+        </div>
+      );
     }
 
     return null;
