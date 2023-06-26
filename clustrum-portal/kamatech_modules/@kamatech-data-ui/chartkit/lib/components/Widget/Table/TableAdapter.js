@@ -30,8 +30,9 @@ const getCellValue = cell => {
   return cell.valueWithoutFormat ? cell.valueWithoutFormat : cell.value;
 };
 
-const handleCellClick = (context, row, field, columnName, prevSelectedCell, callback) => {
-  if (callback) {
+const handleCellClick = (column, row) => {
+  const { context, field, columnName, prevSelectedCell, clickCallback } = column;
+  if (clickCallback) {
     const groupField = findGroupField(row);
     let paramId = field;
     let cell = groupField;
@@ -60,7 +61,7 @@ const handleCellClick = (context, row, field, columnName, prevSelectedCell, call
         }
       }
 
-      callback(callbackParams);
+      clickCallback(callbackParams);
     }
   }
 
@@ -146,15 +147,7 @@ function getAntdColumn(col, index, total) {
       return left > right ? 1 : left < right ? -1 : 0;
     },
     onCell: row => ({
-      onClick: () =>
-        handleCellClick(
-          col.context,
-          row,
-          col.field,
-          col.columnName,
-          col.prevSelectedCell,
-          col.clickCallback,
-        ),
+      onClick: () => handleCellClick(col, row),
     }),
     ...getAntdColumnParams(col, index, total),
   };
