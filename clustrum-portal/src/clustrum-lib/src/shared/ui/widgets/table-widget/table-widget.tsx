@@ -12,7 +12,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       className="table-widget"
       columns={columns}
       dataSource={dataSource}
-      caption={(): string | null => title}
+      title={(): string | null => title}
       size="small"
     />
   );

@@ -112,8 +112,31 @@ function renderCell(item) {
   return cellContent;
 }
 
+function addTotalRow(col, index, total) {
+  return {
+    children: [
+      {
+        title:
+          index === 0
+            ? 'Общий итог'
+            : renderCell(total[0].values?.[index] || total[0].cells[index]),
+        dataIndex: col.dataIndex,
+        key: index,
+        render: item => renderCell(item),
+      },
+    ],
+  };
+}
+
+function getAntdColumnParams(col, index, total) {
+  if (total) {
+    return addTotalRow(col, index, total);
+  }
+  return { render: item => renderCell(item) };
+}
+
 function getAntdColumn(col, index, total) {
-  const currentCol = {
+  return {
     title: col.header,
     key: index,
     dataIndex: col.dataIndex,
@@ -133,27 +156,7 @@ function getAntdColumn(col, index, total) {
           col.clickCallback,
         ),
     }),
-  };
-
-  if (total) {
-    return {
-      ...currentCol,
-      children: [
-        {
-          title:
-            index === 0
-              ? 'Общий итог'
-              : total[0].values?.[index]?.value || total[0].cells[index].value,
-          dataIndex: col.dataIndex,
-          key: index,
-          render: item => renderCell(item),
-        },
-      ],
-    };
-  }
-  return {
-    ...currentCol,
-    render: item => renderCell(item),
+    ...getAntdColumnParams(col, index, total),
   };
 }
 
