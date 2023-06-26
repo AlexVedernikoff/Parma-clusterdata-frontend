@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
-import { DndItemProps } from './types';
+import { DragSourceMonitor, useDrag, useDrop } from 'react-dnd';
+import { DndItemProps, DndDropResult, DndDropedItem } from './types';
 
 //TODO 696922 деконструировать просы
 export function DndItem(props: DndItemProps): JSX.Element {
@@ -15,6 +15,32 @@ export function DndItem(props: DndItemProps): JSX.Element {
       listAllowedTypes: props.listAllowedTypes,
       listNoRemove: props.listNoRemove,
       item: props.item,
+      replace: props.replace,
+    },
+    end: (item, monitor: DragSourceMonitor<DndDropedItem, DndDropResult>): void => {
+      const dropResult: DndDropResult | null = monitor.getDropResult();
+      const hoverIndex = monitor.getItem().hoverIndex;
+
+      if (!dropResult) {
+        return;
+      }
+      if (dropResult.revert) {
+        return;
+      }
+
+      const {
+        targetItem,
+        dropedItem,
+        isNeedReplace,
+        onSetReplaced,
+        replace,
+      } = dropResult;
+
+      if (dropedItem.id !== item.listId && isNeedReplace) {
+        onSetReplaced(false);
+        props.replace(item.index, targetItem);
+        replace(hoverIndex, item.item);
+      }
     },
   }));
 
