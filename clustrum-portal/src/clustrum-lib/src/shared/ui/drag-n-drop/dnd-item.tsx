@@ -36,11 +36,13 @@ export function DndItem(props: DndItemProps): JSX.Element {
         replace,
       } = dropResult;
 
-      if (dropedItem.id !== item.listId && isNeedReplace) {
-        onSetReplaced(false);
-        props.replace(item.index, targetItem);
-        replace(hoverIndex, item.item);
+      if (dropedItem.id === item.listId || !isNeedReplace) {
+        return;
       }
+
+      onSetReplaced(false);
+      props.replace(item.index, targetItem);
+      replace(hoverIndex, item.item);
     },
   }));
 

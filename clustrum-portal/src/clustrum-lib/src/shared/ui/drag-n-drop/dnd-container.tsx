@@ -40,7 +40,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     drop: (itemWrapper: any, monitor: any): any => {
       const { id } = props;
       const itemType = itemWrapper.item.type;
-      const replacedItem = items[itemWrapper.hoverIndex] ?? itemWrapper;
+      const replacedItem = items[itemWrapper.hoverIndex] ?? itemWrapper.item;
 
       if (id !== itemWrapper.listId) {
         // отменяем, если не вмещается (но если не разрешена замена)
