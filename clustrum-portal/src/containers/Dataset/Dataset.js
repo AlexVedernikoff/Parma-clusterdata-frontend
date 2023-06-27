@@ -53,11 +53,12 @@ import { BarChartOutlined, BlockOutlined, SafetyOutlined } from '@ant-design/ico
 const b = block('dataset');
 
 class Dataset extends React.Component {
-  static defaultProps = {};
+  static defaultProps = { initialDatasetName: null };
 
   static propTypes = {
     datasetId: PropTypes.string.isRequired,
     datasetName: PropTypes.string.isRequired,
+    initialDatasetName: PropTypes.string,
     sdk: PropTypes.object.isRequired,
     initialFetchDataset: PropTypes.func.isRequired,
     fetchDataset: PropTypes.func.isRequired,
@@ -236,9 +237,12 @@ class Dataset extends React.Component {
       case 500:
       case Types.ERROR:
       default:
+        const { initialDatasetName } = this.props;
         return {
           type: 'error',
-          title: 'Ошибка: не удалось загрузить датасет',
+          title: initialDatasetName
+            ? `Набор данных с названием ${initialDatasetName} уже существует.`
+            : 'Ошибка: не удалось загрузить датасет.',
           description: '',
         };
     }
