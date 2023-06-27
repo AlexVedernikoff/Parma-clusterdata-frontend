@@ -14,6 +14,10 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       dataSource={dataSource}
       title={(): string | null => title}
       size="small"
+      pagination={{
+        total: dataSource.length,
+        showTotal: (total: number): string => `Всего: ${total}`,
+      }}
     />
   );
 }

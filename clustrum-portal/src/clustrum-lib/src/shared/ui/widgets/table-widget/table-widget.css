@@ -71,3 +71,8 @@
     }
   }
 }
+
+.ant-pagination .ant-pagination-total-text {
+  margin-right: auto;
+  margin-left: 8px;
+}
