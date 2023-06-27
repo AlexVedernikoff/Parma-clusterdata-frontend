@@ -385,7 +385,17 @@ class DatasetCreationPage extends React.Component {
     } = this.state;
 
     if (redirect) {
-      return <Redirect push to={redirect} />;
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: redirect,
+            state: {
+              datasetName: this.state.selectedConnection.datasetTitle,
+            },
+          }}
+        />
+      );
     }
 
     if (fetchError) {

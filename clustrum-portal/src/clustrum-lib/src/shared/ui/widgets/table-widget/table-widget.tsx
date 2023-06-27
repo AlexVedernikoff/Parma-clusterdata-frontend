@@ -29,6 +29,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       pagination={{
         total: Number(totalRowsCount),
         defaultPageSize: 10,
+        showTotal: (total: number): string => `Всего: ${total}`,
         onChange: (page: number, pageSize: number): void => {
           setPage(page - 1);
           setPageSize(pageSize);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { createCell, TableWidget } from '@clustrum-lib';
+import { TableWidget, createCell } from '@lib-shared/ui/widgets/table-widget';
 
 function camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;
@@ -30,8 +30,9 @@ const getCellValue = cell => {
   return cell.valueWithoutFormat ? cell.valueWithoutFormat : cell.value;
 };
 
-const handleCellClick = (context, row, field, columnName, prevSelectedCell, callback) => {
-  if (callback) {
+const handleCellClick = (column, row) => {
+  const { context, field, columnName, prevSelectedCell, clickCallback } = column;
+  if (clickCallback) {
     const groupField = findGroupField(row);
     let paramId = field;
     let cell = groupField;
@@ -60,7 +61,7 @@ const handleCellClick = (context, row, field, columnName, prevSelectedCell, call
         }
       }
 
-      callback(callbackParams);
+      clickCallback(callbackParams);
     }
   }
 
@@ -104,6 +105,52 @@ function getColumnsAndNames({ head, context }, clickCallback, field, prevSelecte
     },
     { columns: [], names: [] },
   );
+}
+
+function renderCell(item) {
+  const { type, ...options } = item;
+  const cellContent = createCell(type, item, options);
+  return cellContent;
+}
+
+function addTotalRow(col, index, total) {
+  return {
+    children: [
+      {
+        title:
+          index === 0
+            ? 'Общий итог'
+            : renderCell(total[0].values?.[index] || total[0].cells[index]),
+        dataIndex: col.dataIndex,
+        key: index,
+        render: item => renderCell(item),
+      },
+    ],
+  };
+}
+
+function getAntdColumnParams(col, index, total) {
+  if (total) {
+    return addTotalRow(col, index, total);
+  }
+  return { render: item => renderCell(item) };
+}
+
+function getAntdColumn(col, index, total) {
+  return {
+    title: col.header,
+    key: index,
+    dataIndex: col.dataIndex,
+    sorter: (row1, row2) => {
+      const left = row1[col.dataIndex].value;
+      const right = row2[col.dataIndex].value;
+      return left > right ? 1 : left < right ? -1 : 0;
+    },
+    onCell: row => ({
+      onClick: () => handleCellClick(col, row),
+    }),
+    ...getAntdColumnParams(col, index, total),
+  };
 }
 
 function getTitle(title) {
@@ -170,7 +217,10 @@ export class TableAdapter extends React.PureComponent {
 
   render() {
     const {
-      data: { data: { head, rows = [], rowsCount } = {}, config: { title } = {} } = {},
+      data: {
+        data: { head, rows = [], total, rowsCount } = {},
+        config: { title } = {},
+      } = {},
     } = this.props;
 
     if (!head || !rows) {
@@ -195,38 +245,9 @@ export class TableAdapter extends React.PureComponent {
       selectedCell,
     );
 
-    const renderCell = item => {
-      const { type, ...options } = item;
-      return createCell(type, item, options);
-    };
-
-    const antdTableColumns = columns.map((col, index) => {
-      return {
-        title: col.header,
-        key: index,
-        dataIndex: col.dataIndex,
-        render: item => renderCell(item),
-        sorter: (row1, row2) => {
-          const left = row1[col.dataIndex].value;
-          const right = row2[col.dataIndex].value;
-          return left > right ? 1 : left < right ? -1 : 0;
-        },
-        onCell: row => {
-          return {
-            onClick: () => {
-              handleCellClick(
-                col.context,
-                row,
-                col.field,
-                col.columnName,
-                col.prevSelectedCell,
-                col.clickCallback,
-              );
-            },
-          };
-        },
-      };
-    });
+    const antdTableColumns = columns.map((col, index) =>
+      getAntdColumn(col, index, total),
+    );
 
     const data = rows.map((row, rowIndex) =>
       row.values
