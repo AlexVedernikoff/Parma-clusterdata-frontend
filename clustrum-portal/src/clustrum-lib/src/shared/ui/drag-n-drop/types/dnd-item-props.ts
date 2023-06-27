@@ -14,4 +14,5 @@ export interface DndItemProps {
   wrapTo(props: DndItemProps, component: HTMLDivElement | null): Element;
   setTooltipVisible(isVisible: boolean): void;
   setDropPlace(index: number): void;
+  dragContainerReplace(index: number, item: DndItem): void;
 }
