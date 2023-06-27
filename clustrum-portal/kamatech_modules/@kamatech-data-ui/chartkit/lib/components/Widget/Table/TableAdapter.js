@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { TableWidget, createCell } from '@clustrum-lib';
+import { createCell, TableWidget } from '@clustrum-lib';
 
 function camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;
@@ -170,7 +170,7 @@ export class TableAdapter extends React.PureComponent {
 
   render() {
     const {
-      data: { data: { head, rows = [] } = {}, config: { title } = {} } = {},
+      data: { data: { head, rows = [], rowsCount } = {}, config: { title } = {} } = {},
     } = this.props;
 
     if (!head || !rows) {
@@ -197,8 +197,7 @@ export class TableAdapter extends React.PureComponent {
 
     const renderCell = item => {
       const { type, ...options } = item;
-      const cellContent = createCell(type, item, options);
-      return cellContent;
+      return createCell(type, item, options);
     };
 
     const antdTableColumns = columns.map((col, index) => {
@@ -255,9 +254,11 @@ export class TableAdapter extends React.PureComponent {
         }}
       >
         <TableWidget
+          totalRowsCount={rowsCount}
           columns={antdTableColumns}
           dataSource={data}
           title={getTitle(title)}
+          onPageControlClicker={this.props.onPageControlClick}
           {...this.props}
         />
       </div>
