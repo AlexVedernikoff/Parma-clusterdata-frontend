@@ -5,6 +5,6 @@ export interface DndDropResult {
   targetItem: DndItem;
   droppedItemId: string;
   isNeedReplace: boolean;
-  onSetReplaced(val: boolean): void;
-  dragContainerReplace(index: number, item: DndItem): void;
+  onReplaced(): void;
+  replace(index: number, item: DndItem): void;
 }

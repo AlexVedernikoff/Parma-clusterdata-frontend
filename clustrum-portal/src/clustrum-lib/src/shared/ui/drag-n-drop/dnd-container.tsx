@@ -77,9 +77,9 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       return {
         targetItem,
         droppedItemId: props.id,
-        dragContainerReplace: replace,
+        replace,
         isNeedReplace,
-        onSetReplaced: setIsNeedReplace,
+        onReplaced: () => setIsNeedReplace(false),
       };
     },
   }));

@@ -15,7 +15,6 @@ export function DndItem(props: DndItemProps): JSX.Element {
       listAllowedTypes: props.listAllowedTypes,
       listNoRemove: props.listNoRemove,
       item: props.item,
-      dragContainerReplace: props.dragContainerReplace,
     },
     end: (
       itemDropWrap,
@@ -35,17 +34,17 @@ export function DndItem(props: DndItemProps): JSX.Element {
         targetItem,
         droppedItemId,
         isNeedReplace,
-        onSetReplaced,
-        dragContainerReplace,
+        onReplaced,
+        replace: dropContainerReplace,
       } = dropResult;
 
       if (droppedItemId === itemDropWrap.listId || !isNeedReplace) {
         return;
       }
 
-      onSetReplaced(false);
+      onReplaced();
       props.dragContainerReplace(itemDropWrap.index, targetItem);
-      dragContainerReplace(hoverIndex, itemDropWrap.item);
+      dropContainerReplace(hoverIndex, itemDropWrap.item);
     },
   }));
 
