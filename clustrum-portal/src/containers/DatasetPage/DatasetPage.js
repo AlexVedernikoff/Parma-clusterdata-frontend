@@ -30,11 +30,12 @@ class DatasetPage extends React.Component {
   render() {
     const { sdk } = this.props;
     const { datasetId } = this.state;
+    const { datasetName } = this.props.location.state;
 
     return (
       <div className={b()}>
         <DatasetPageProvider value={{ sdk }}>
-          <Dataset sdk={sdk} datasetId={datasetId} />
+          <Dataset sdk={sdk} datasetId={datasetId} initialDatasetName={datasetName} />
         </DatasetPageProvider>
       </div>
     );
