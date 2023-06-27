@@ -29,6 +29,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
   }, [items]);
 
   useEffect(() => {
+    // Сброс флага в дефолтное значение, когда флаг в дочернем компоненте меняется на false
     if (!isNeedReplace) {
       setIsNeedReplace(true);
     }
@@ -77,7 +78,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       return {
         targetItem,
         droppedItemId: props.id,
-        replace,
+        dropContainerReplace: replace,
         isNeedReplace,
         onReplaced: () => setIsNeedReplace(false),
       };
