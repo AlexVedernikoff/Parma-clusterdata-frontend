@@ -40,7 +40,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     drop: (itemWrapper: any, monitor: any): any => {
       const { id } = props;
       const itemType = itemWrapper.item.type;
-      const replacedItem = items[itemWrapper.hoverIndex] ?? itemWrapper.item;
+      const targetItem = items[itemWrapper.hoverIndex] ?? itemWrapper.item;
 
       if (id !== itemWrapper.listId) {
         // отменяем, если не вмещается (но если не разрешена замена)
@@ -75,9 +75,9 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       insert(itemWrapper.item, targetIndex);
 
       return {
-        targetItem: replacedItem,
-        dropedItem: props,
-        replace,
+        targetItem,
+        droppedItemId: props.id,
+        dragContainerReplace: replace,
         isNeedReplace,
         onSetReplaced: setIsNeedReplace,
       };
@@ -166,7 +166,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
               setTooltipVisible={setTooltipVisible}
               tooltipVisible={tooltipVisible}
               remove={remove}
-              replace={replace}
+              dragContainerReplace={replace}
               setDropPlace={setDropPlace}
             />
           );

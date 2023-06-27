@@ -3,8 +3,8 @@ import { DndItem } from './dnd-item';
 export interface DndDropResult {
   revert: boolean;
   targetItem: DndItem;
-  dropedItem: DndItem;
+  droppedItemId: string;
   isNeedReplace: boolean;
   onSetReplaced(val: boolean): void;
-  replace(index: number, item: DndItem): void;
+  dragContainerReplace(index: number, item: DndItem): void;
 }

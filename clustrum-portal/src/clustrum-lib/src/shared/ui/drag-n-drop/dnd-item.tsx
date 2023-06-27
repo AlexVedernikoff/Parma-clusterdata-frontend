@@ -15,9 +15,12 @@ export function DndItem(props: DndItemProps): JSX.Element {
       listAllowedTypes: props.listAllowedTypes,
       listNoRemove: props.listNoRemove,
       item: props.item,
-      replace: props.replace,
+      dragContainerReplace: props.dragContainerReplace,
     },
-    end: (item, monitor: DragSourceMonitor<DndDropedItem, DndDropResult>): void => {
+    end: (
+      itemDropWrap,
+      monitor: DragSourceMonitor<DndDropedItem, DndDropResult>,
+    ): void => {
       const dropResult: DndDropResult | null = monitor.getDropResult();
       const hoverIndex = monitor.getItem().hoverIndex;
 
@@ -30,19 +33,19 @@ export function DndItem(props: DndItemProps): JSX.Element {
 
       const {
         targetItem,
-        dropedItem,
+        droppedItemId,
         isNeedReplace,
         onSetReplaced,
-        replace,
+        dragContainerReplace,
       } = dropResult;
 
-      if (dropedItem.id === item.listId || !isNeedReplace) {
+      if (droppedItemId === itemDropWrap.listId || !isNeedReplace) {
         return;
       }
 
       onSetReplaced(false);
-      props.replace(item.index, targetItem);
-      replace(hoverIndex, item.item);
+      props.dragContainerReplace(itemDropWrap.index, targetItem);
+      dragContainerReplace(hoverIndex, itemDropWrap.item);
     },
   }));
 
