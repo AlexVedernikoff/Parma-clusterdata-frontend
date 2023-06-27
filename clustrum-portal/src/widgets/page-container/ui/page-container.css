@@ -7,5 +7,5 @@
 .page-container__content {
   flex-grow: 1;
   overflow-y: auto;
-  background-color: #f5f5f5;
+  background-color: var(--color-base);
 }
