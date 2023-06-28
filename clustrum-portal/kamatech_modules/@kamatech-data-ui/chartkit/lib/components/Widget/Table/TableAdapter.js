@@ -217,7 +217,10 @@ export class TableAdapter extends React.PureComponent {
 
   render() {
     const {
-      data: { data: { head, rows = [], total } = {}, config: { title } = {} } = {},
+      data: {
+        data: { head, rows = [], total, rowsCount } = {},
+        config: { title } = {},
+      } = {},
     } = this.props;
 
     if (!head || !rows) {
@@ -272,9 +275,11 @@ export class TableAdapter extends React.PureComponent {
         }}
       >
         <TableWidget
+          totalRowsCount={rowsCount}
           columns={antdTableColumns}
           dataSource={data}
           title={getTitle(title)}
+          onPageControlClicker={this.props.onPageControlClick}
           {...this.props}
         />
       </div>
