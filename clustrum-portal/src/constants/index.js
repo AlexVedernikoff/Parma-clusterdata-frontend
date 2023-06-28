@@ -1397,4 +1397,5 @@ export const PREFIX = '/wizard';
 export const MEASURE_TYPE = {
   ABSOLUTE: 'absolute',
   RELATIVE: 'relative',
+  EMPTY: 'empty',
 };
