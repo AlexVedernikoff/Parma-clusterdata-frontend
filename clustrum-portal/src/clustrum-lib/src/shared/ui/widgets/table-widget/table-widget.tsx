@@ -9,21 +9,16 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
 
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  const [data, setData] = useState(dataSource);
 
   useEffect(() => {
     onPageControlClicker(page, pageSize);
-  }, [page, pageSize]);
-
-  useEffect(() => {
-    setData(dataSource);
-  }, [dataSource]);
+  }, [page, pageSize, onPageControlClicker]);
 
   return (
     <Table
       className="table-widget"
       columns={columns}
-      dataSource={data}
+      dataSource={dataSource}
       title={(): string | null => title}
       size="small"
       pagination={{
