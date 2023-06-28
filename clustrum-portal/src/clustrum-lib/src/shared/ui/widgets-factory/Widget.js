@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ChartWidget } from '@lib-shared/ui/widgets/chart-widget';
-import OLMap from './OLMap/OLMap';
-import SideHtml from './SideHtml/SideHtml';
-import Card from './Card/Card';
-import Indicator from './Indicator/Indicator';
-import { TableAdapter as Table } from './Table/TableAdapter';
-import YandexMap from './YandexMap/YandexMap';
-import Text from './WikiText/WikiText';
-import Metric from './Metric/Metric';
-import Control from './Control/Control';
+import OLMap from '@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/OLMap';
+import SideHtml from '@kamatech-data-ui/chartkit/lib/components/Widget/SideHtml/SideHtml';
+import Card from '@kamatech-data-ui/chartkit/lib/components/Widget/Card/Card';
+import Indicator from '@kamatech-data-ui/chartkit/lib/components/Widget/Indicator/Indicator';
+import { TableAdapter as Table } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/TableAdapter';
+import YandexMap from '@kamatech-data-ui/chartkit/lib/components/Widget/YandexMap/YandexMap';
+import Text from '@kamatech-data-ui/chartkit/lib/components/Widget/WikiText/WikiText';
+import Metric from '@kamatech-data-ui/chartkit/lib/components/Widget/Metric/Metric';
+import Control from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
 import { WIDGET_TYPE as WIDGET_TYPE_CONST } from './WidgetType';
 
