@@ -8,5 +8,8 @@ export { InputFilterControl } from '@lib-shared/ui/filter-controls/input-filter-
 export { SelectFilterControl } from '@lib-shared/ui/filter-controls/select-filter-control';
 export { DatepickerFilterControl } from '@lib-shared/ui/filter-controls/datepicker-filter-control';
 export { RangeDatepickerFilterControl } from '@lib-shared/ui/filter-controls/range-datepicker-filter-control';
-export { TableWidget, createCell } from '@lib-shared/ui/widgets/table-widget';
-export { ChartWidget } from '@lib-shared/ui/widgets/chart-widget';
+export {
+  TableWidget,
+  createCell,
+} from '@lib-shared/ui/widgets-factory/widgets/table-widget';
+export { ChartWidget } from '@lib-shared/ui/widgets-factory/widgets/chart-widget';

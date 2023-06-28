@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ChartWidget } from '@lib-shared/ui/widgets/chart-widget';
+import { ChartWidget } from '@lib-shared/ui/widgets-factory/widgets/chart-widget';
 import OLMap from '@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/OLMap';
 import SideHtml from '@kamatech-data-ui/chartkit/lib/components/Widget/SideHtml/SideHtml';
 import Card from '@kamatech-data-ui/chartkit/lib/components/Widget/Card/Card';
