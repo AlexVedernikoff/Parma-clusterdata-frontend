@@ -46,7 +46,7 @@ function renderArray(cell: Cell, options: Options): JSX.Element {
   );
 }
 
-function getResultValue(cell: Cell, options: Options): JSX.Element {
+function getResultValue(cell: Cell, options: Options): JSX.Element | string {
   if (cell.hasArray) {
     return renderArray(cell, options);
   }
@@ -55,6 +55,7 @@ function getResultValue(cell: Cell, options: Options): JSX.Element {
     case 'grid':
       return renderGrid(cell.grid, options);
     case 'string':
+      return String(cell.value);
     case 'text':
       return renderText(cell);
     case 'datetime':
