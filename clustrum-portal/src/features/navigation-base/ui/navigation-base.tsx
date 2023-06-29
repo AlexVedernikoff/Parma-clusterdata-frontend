@@ -69,25 +69,25 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     action,
   }: NavItemContextMenuClickParams): Promise<void> | boolean => {
     switch (action) {
-      case ContextMenuActions.rename: {
+      case ContextMenuActions.Rename: {
         return renameEntry(entry);
       }
-      case ContextMenuActions.describe: {
+      case ContextMenuActions.Describe: {
         return describeEntry(entry);
       }
-      case ContextMenuActions.move: {
+      case ContextMenuActions.Move: {
         return moveEntry(entry);
       }
-      case ContextMenuActions.copy: {
+      case ContextMenuActions.Copy: {
         return copyEntry(entry);
       }
-      case ContextMenuActions.delete: {
+      case ContextMenuActions.Delete: {
         return deleteEntry(entry);
       }
-      case ContextMenuActions.access: {
+      case ContextMenuActions.Access: {
         return accessEntry(entry);
       }
-      case ContextMenuActions.copyLink: {
+      case ContextMenuActions.CopyLink: {
         return false;
       }
       default:
@@ -95,6 +95,7 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     }
   };
 
+  // TODO: поправить функцию после режактирвоания модальных окон (возможно, она будет не нужна)
   function update(response: { status: string }, entryDialog: any, entry?: any): void {
     if (response.status === 'success') {
       if (onUpdate) {
@@ -148,18 +149,17 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     updateEffector(response);
   }
 
-  const ENTRY_DIALOG_DESCRIBE = 'ENTRY_DIALOG.DESCRIBE';
   async function describeEntry(entry: NavigationItem): Promise<void> {
     const response = await refDialogues?.current?.openDialog({
-      dialog: ENTRY_DIALOG_DESCRIBE,
+      dialog: ENTRY_DIALOG.DESCRIBE,
       dialogProps: {
         entryId: entry.entryId,
         description: entry.description,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG_DESCRIBE, refErrorDialog),
+        onNotify: entryDialoguesNotify(ENTRY_DIALOG.DESCRIBE, refErrorDialog),
       },
     });
-    update(response, ENTRY_DIALOG_DESCRIBE, entry);
+    update(response, ENTRY_DIALOG.DESCRIBE, entry);
     updateEffector(response);
   }
 

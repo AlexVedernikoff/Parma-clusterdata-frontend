@@ -29,7 +29,7 @@ export const $pathInFolder = createStore<string>('')
   .on(changePathInFolderEvent, (state, path) => path);
 
 export const changePlaceEvent = createEvent();
-export const $place = createStore<Places>(Places.root).on(
+export const $place = createStore<Places>(Places.Root).on(
   changePlaceEvent,
   (state, place) => place,
 );

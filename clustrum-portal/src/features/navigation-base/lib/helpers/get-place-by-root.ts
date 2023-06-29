@@ -3,24 +3,23 @@ import { Roots } from '../constants/roots';
 
 export const getPlaceByRoot = (root?: string): Places => {
   switch (root) {
-    case Roots.connections:
-    case Roots.connections_in_folder:
-      return Places.connections;
-    case Roots.dashboards:
-    case Roots.dashboards_in_folder:
-      return Places.dashboards;
-    case Roots.datasets:
-    case Roots.datasets_in_folder:
-      return Places.datasets;
-    case Roots.favorites:
-      return Places.favorites;
-    case Roots.navigation:
-    case undefined:
-      return Places.root;
-    case Roots.widgets:
-    case Roots.widgets_in_folder:
-      return Places.widgets;
+    case Roots.Connections:
+    case Roots.ConnectionsInFolder:
+      return Places.Connections;
+    case Roots.Dashboards:
+    case Roots.DashboardsInFolder:
+      return Places.Dashboards;
+    case Roots.Datasets:
+    case Roots.DatasetsInFolder:
+      return Places.Datasets;
+    case Roots.Favorites:
+      return Places.Favorites;
+    case Roots.Navigation:
+      return Places.Root;
+    case Roots.Widgets:
+    case Roots.WidgetsInFolder:
+      return Places.Widgets;
     default:
-      return Places.root;
+      return Places.Root;
   }
 };

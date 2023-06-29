@@ -18,13 +18,13 @@ import {
   $place,
   changePlaceEvent,
   changePathInFolderEvent,
-} from '../../../../shared/model/navigation-base-model';
+} from '@shared/model/navigation-base-model';
 import { MAP_PLACE_TO_PATH_IN_FOLDER } from '../../lib/constants/map-place-to-path-in-folder';
-import { Places } from '../../../../shared/lib/constants/places';
+import { Places } from '@shared/lib/constants/places';
 import { ToggleFavoriteParams } from '../../types/toggle-favorite-params';
-import { MAP_NAVIGATION_SCOPE_TO_PATH } from '../../../../shared/lib/constants/map-navigation-scope-to-path';
-import { NavigationItem } from '../../../../shared/types/navigation-item';
-import { NavigationScope } from '../../../../shared/lib/constants/navigation-scope';
+import { MAP_NAVIGATION_SCOPE_TO_PATH } from '@shared/lib/constants/map-navigation-scope-to-path';
+import { NavigationItem } from '@shared/types/navigation-item';
+import { NavigationScope } from '@shared/lib/constants/navigation-scope';
 import { NavigationError } from '../navigation-error/navigation-error';
 import { NavigationHeader } from '../navigation-header/navigation-header';
 import { CreateMenuActionType } from '../../lib/constants/create-menu-action-type';
@@ -151,7 +151,7 @@ export function NavigationEntries(props: NavigationProps): ReactElement {
         if (!place) {
           return;
         }
-        if (rowData.scope === NavigationScope.folder) {
+        if (rowData.scope === NavigationScope.Folder) {
           if (isModalView) {
             changePathInFolder(rowData.key);
             getNavigationList();

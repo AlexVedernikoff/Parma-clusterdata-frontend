@@ -8,7 +8,7 @@
 .navigation-entries__table {
   flex-grow: 1;
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--color-base);
   padding: 24px;
 }
 

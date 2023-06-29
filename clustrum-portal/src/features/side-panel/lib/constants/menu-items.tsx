@@ -12,32 +12,32 @@ import { Places } from '@shared/lib/constants/places';
 
 export const MENU_ITEMS: NonNullable<MenuProps['items']> = [
   {
-    key: Places.root,
+    key: Places.Root,
     icon: <FolderOutlined />,
     label: 'Все объекты',
   },
   {
-    key: Places.favorites,
+    key: Places.Favorites,
     icon: <LikeOutlined />,
     label: 'Избранное',
   },
   {
-    key: Places.connections,
+    key: Places.Connections,
     icon: <ForkOutlined />,
     label: 'Подключения',
   },
   {
-    key: Places.datasets,
+    key: Places.Datasets,
     icon: <DatabaseOutlined />,
     label: 'Наборы данных',
   },
   {
-    key: Places.widgets,
+    key: Places.Widgets,
     icon: <LineChartOutlined />,
     label: 'Диаграммы',
   },
   {
-    key: Places.dashboards,
+    key: Places.Dashboards,
     icon: <DashboardOutlined />,
     label: 'Аналитические панели',
   },

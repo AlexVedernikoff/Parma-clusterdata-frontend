@@ -22,7 +22,6 @@
 .base-navigation-modal__navigation {
   overflow: hidden;
   display: flex;
-  background-color: rgba(245, 245, 245, 1);
 }
 
 .base-navigation-modal__navigation .base-navigation-modal__navigation {

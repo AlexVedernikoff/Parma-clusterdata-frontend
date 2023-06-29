@@ -3,11 +3,11 @@ import { CreateMenuActionType } from './create-menu-action-type';
 
 export const CREATE_MENU_ITEMS: MenuItemType[] = [
   {
-    key: CreateMenuActionType.folder,
+    key: CreateMenuActionType.Folder,
     label: 'Папку',
   },
-  { key: CreateMenuActionType.connection, label: 'Соединение' },
-  { key: CreateMenuActionType.dataset, label: 'Набор данных' },
-  { key: CreateMenuActionType.widget, label: 'Диаграмму' },
-  { key: CreateMenuActionType.dashboard, label: 'Аналитическую панель' },
+  { key: CreateMenuActionType.Connection, label: 'Соединение' },
+  { key: CreateMenuActionType.Dataset, label: 'Набор данных' },
+  { key: CreateMenuActionType.Widget, label: 'Диаграмму' },
+  { key: CreateMenuActionType.Dashboard, label: 'Аналитическую панель' },
 ];
