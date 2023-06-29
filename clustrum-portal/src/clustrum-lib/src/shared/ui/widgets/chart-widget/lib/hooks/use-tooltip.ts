@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { TooltipComponentOption } from 'echarts';
+import { TooltipComponentOption, TooltipComponentFormatterCallbackParams } from 'echarts';
 
 import { EchartsOptions } from '../../types';
 
@@ -15,6 +15,12 @@ export const useTooltip = (echartsOptions: EchartsOptions): TooltipComponentOpti
       case 'pie':
         tooltip.trigger = 'item';
         tooltip.position = 'inside';
+        tooltip.formatter = (params: TooltipComponentFormatterCallbackParams): string => {
+          const { percent, value, name } = Array.isArray(params) ? params[0] : params;
+          return `${percent}% ${value} ${name}`;
+        };
+        tooltip.textStyle = { color: '#FFF' };
+        tooltip.backgroundColor = '#000';
         return tooltip;
       case 'column':
       case 'line':

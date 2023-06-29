@@ -22,7 +22,7 @@ export const useSeries = (
               type: 'bar',
               name,
               label: {
-                show: config?.highcharts?.plotOptions?.series?.dataLabels?.enabled,
+                show: config?.plotOptions?.series?.dataLabels?.enabled,
                 position: 'top',
                 fontWeight: 700,
               },
@@ -45,7 +45,16 @@ export const useSeries = (
                 show: false,
               },
               label: {
-                show: false,
+                show: config.plotOptions.diagramMagnitude !== 'empty',
+                position: 'inner',
+                formatter: (params): string => {
+                  const measureType = config.plotOptions.diagramMagnitude;
+                  const { percent, value } = params;
+                  if (measureType === 'relative') {
+                    return `${percent}%`;
+                  }
+                  return String(value);
+                },
               },
             };
 
@@ -70,10 +79,10 @@ export const useSeries = (
       }),
     [
       echartsOptions?.series,
-      echartsOptions?.chart?.type,
+      echartsOptions.chart.type,
       echartsOptions?.plotOptions?.line?.marker?.enabled,
       echartsOptions?.plotOptions?.line?.marker?.radius,
-      config?.highcharts?.plotOptions?.series?.dataLabels?.enabled,
+      config,
     ],
   );
 };
