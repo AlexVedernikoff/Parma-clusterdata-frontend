@@ -61,6 +61,7 @@
           .ant-table-content {
             flex: auto;
             overflow: scroll;
+            margin-bottom: 20px;
           }
         }
       }
