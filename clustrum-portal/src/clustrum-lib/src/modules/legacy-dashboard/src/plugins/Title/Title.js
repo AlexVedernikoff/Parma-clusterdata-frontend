@@ -1,6 +1,6 @@
 import React from 'react';
 import block from 'bem-cn-lite';
-import { TitleInfoElement } from '@clustrum-lib';
+import { TitleInfoElement } from '@lib-shared/ui/info-elements';
 
 const b = block('dashkit-plugin-title');
 

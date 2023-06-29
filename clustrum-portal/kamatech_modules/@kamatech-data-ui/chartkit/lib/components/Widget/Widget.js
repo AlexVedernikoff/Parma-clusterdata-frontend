@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ChartWidget } from '@lib-shared/ui/widgets/chart-widget';
+// Импорт сделан через alias @lib-shared,
+// так как через @clustrum-lib в этом файле импорт не работает
+// (предположительно, циклический импорт)
+import { ChartWidget } from '@lib-shared/ui/widgets';
 import OLMap from './OLMap/OLMap';
 import SideHtml from './SideHtml/SideHtml';
 import Card from './Card/Card';

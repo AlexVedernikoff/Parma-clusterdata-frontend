@@ -59,8 +59,6 @@ import PageHead from '../../../../components/PageHeader/PageHeader';
 import { FullscreenOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Space } from 'antd';
 
-// import './Wizard.scss';
-
 const b = block('wizard');
 
 class Wizard extends Component {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Select } from 'antd';
 import { SelectFilterControlProps } from './types';
-import { useDebounce } from '@lib-shared/lib/hooks/use-debounce';
+import { useDebounce } from '@lib-shared/lib/hooks';
 import { SelectionAllBtn } from './selection-all-btn';
 import { CheckOutlined } from '@ant-design/icons';
 

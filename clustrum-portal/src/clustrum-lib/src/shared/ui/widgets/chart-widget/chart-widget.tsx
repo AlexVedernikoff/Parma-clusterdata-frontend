@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import ReactECharts from 'echarts-for-react';
 
-import { getEchartsConfig } from './lib/helpers';
-import { useCreateOptions } from './lib/hooks/use-create-options';
+import { getEchartsConfig, clickHouseDateFormat } from './lib/helpers';
+import { useCreateOptions } from './lib/hooks';
 import { ChartWidgetProps } from './types';
-import { clickHouseDateFormat } from './lib/helpers';
 
 const FILTER_CONDITION_TYPE = {
   IS_NULL: '__is_null',
