@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Импорт сделан через alias @lib-shared,
-// так как через @clustrum-lib в этом файле импорт не работает
-// (предположительно, циклический импорт)
-import { TableWidget, createCell } from '@lib-shared/ui/widgets';
+import { TableWidget, createCell } from '@clustrum-lib';
 
 function camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;

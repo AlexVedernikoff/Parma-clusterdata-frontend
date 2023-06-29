@@ -1,4 +1,4 @@
-import { DashKit, pluginTitle, pluginWidget } from '@clustrum-lib';
+import { DashKit, pluginTitle, pluginWidget } from '@clustrum-lib-legacy';
 import pluginControl from './plugins/Control/Control';
 import ChartKit from '@kamatech-data-ui/clustrum/src/components/ChartKit/ChartKit';
 

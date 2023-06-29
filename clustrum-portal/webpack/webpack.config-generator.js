@@ -56,6 +56,7 @@ exports.generateConfig = (
         '@entities': path.resolve('./src/entities/'),
         '@shared': path.resolve('./src/shared/'),
         '@clustrum-lib': path.resolve('./src/clustrum-lib/src/'),
+        '@clustrum-lib-legacy': path.resolve('./src/clustrum-lib/src/legacy-index'),
         '@lib-modules': path.resolve('./src/clustrum-lib/src/modules/'),
         '@lib-widgets': path.resolve('./src/clustrum-lib/src/widgets/'),
         '@lib-features': path.resolve('./src/clustrum-lib/src/features/'),
