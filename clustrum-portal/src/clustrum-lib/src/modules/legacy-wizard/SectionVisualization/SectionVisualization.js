@@ -354,6 +354,10 @@ class SectionVisualization extends Component {
         label: 'Проценты',
         value: MEASURE_TYPE.RELATIVE,
       },
+      {
+        label: 'Не отображать',
+        value: MEASURE_TYPE.EMPTY,
+      },
     ];
 
     let clusterPrecisionItem = 0;

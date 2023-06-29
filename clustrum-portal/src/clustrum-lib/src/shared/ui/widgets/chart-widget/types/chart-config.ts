@@ -1,31 +1,24 @@
 import { ChartType } from './chart-type';
+import { DiagramMagnitude } from './diagram-magnitude';
 
 export interface ChartConfig {
-  highcharts: {
-    chart: {
-      type: ChartType;
-    };
-    legend: object;
-    xAxis: {
-      endOnTick: boolean;
-    };
-    yAxis: {
-      endOnTick: boolean;
-    };
-    tooltip: object;
-    plotOptions?: {
-      series?: {
-        dataLabels?: {
-          enabled?: boolean;
-        };
+  chart: {
+    type: ChartType;
+  };
+  legend: object;
+  xAxis: {
+    endOnTick: boolean;
+  };
+  yAxis: {
+    endOnTick: boolean;
+  };
+  tooltip: object;
+  plotOptions: {
+    diagramMagnitude?: DiagramMagnitude;
+    series?: {
+      dataLabels?: {
+        enabled?: boolean;
       };
     };
   };
-  withoutLineLimit: boolean;
-  removeShowHideAll: boolean;
-  hideComments: boolean;
-  hideHolidays: boolean;
-  normalizeDiv: boolean;
-  normalizeSub: boolean;
-  isPercent: boolean;
 }
