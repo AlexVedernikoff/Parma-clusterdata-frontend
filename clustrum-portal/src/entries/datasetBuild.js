@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
-import moment from 'moment';
 import configureStore from 'store/configureStore';
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import { SDK, Utils } from '@kamatech-data-ui/clustrum';
