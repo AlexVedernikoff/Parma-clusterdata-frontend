@@ -113,14 +113,11 @@ function renderCell(item) {
   return cellContent;
 }
 
-function addTotalRow(col, index, total) {
+function addTotalRow(col, index, totalValue) {
   return {
     children: [
       {
-        title:
-          index === 0
-            ? 'Общий итог'
-            : renderCell(total[0].values?.[index] || total[0].cells[index]),
+        title: index === 0 ? 'Общий итог' : totalValue.value && renderCell(totalValue),
         dataIndex: col.dataIndex,
         key: index,
         render: item => renderCell(item),
@@ -131,7 +128,7 @@ function addTotalRow(col, index, total) {
 
 function getAntdColumnParams(col, index, total) {
   if (total) {
-    return addTotalRow(col, index, total);
+    return addTotalRow(col, index, total[0].values?.[index] || total[0].cells[index]);
   }
   return { render: item => renderCell(item) };
 }
