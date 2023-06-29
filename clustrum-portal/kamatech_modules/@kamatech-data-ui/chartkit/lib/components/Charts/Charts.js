@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 
-import Widget from '@lib-shared/ui/widgets-factory/Widget';
+import Widget from '@clustrum-lib/shared/ui/widgets-factory/Widget';
 
 import ChartsModule from '../../modules/charts/charts';
 import ErrorDispatcher from '../../modules/error-dispatcher/error-dispatcher';

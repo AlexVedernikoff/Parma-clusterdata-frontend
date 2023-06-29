@@ -5,7 +5,7 @@ import settings from '../settings/settings';
 import ErrorDispatcher, { ERROR_TYPE } from '../error-dispatcher/error-dispatcher';
 
 import { URL_OPTIONS } from '../constants/constants';
-import { WIDGET_TYPE } from '@lib-shared/ui/widgets-factory/WidgetType';
+import { WIDGET_TYPE } from '@clustrum-lib/shared/ui/widgets-factory/WidgetType';
 
 import runNode from './engines/node';
 import runWizard from './engines/wizard';
