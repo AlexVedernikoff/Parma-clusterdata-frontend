@@ -6,17 +6,13 @@ import { generatePath, useHistory } from 'react-router';
 import './navigation-entries.css';
 import {
   $error,
-  $navigationParams,
   $pending,
   addFavoritesEvent,
-  changeParamsEvent,
-  getNavigationDataByEntryIdEvent,
   getNavigationListEvent,
   removeFavoritesEvent,
   $navigationListStore,
   $pathInFolder,
   $place,
-  changePlaceEvent,
   changePathInFolderEvent,
 } from '@shared/model/navigation-base-model';
 import { MAP_PLACE_TO_PATH_IN_FOLDER } from '../../lib/constants/map-place-to-path-in-folder';
@@ -67,29 +63,21 @@ export function NavigationEntries(props: NavigationProps): ReactElement {
     navigationList,
     pending,
     getNavigationList,
-    changeParams,
-    getNavigationDataByEntryId,
-    navigationParams,
     error,
     addFavorites,
     removeFavorites,
     pathInFolder,
     place,
-    changePlace,
     changePathInFolder,
   ] = useUnit([
     $navigationListStore,
     $pending,
     getNavigationListEvent,
-    changeParamsEvent,
-    getNavigationDataByEntryIdEvent,
-    $navigationParams,
     $error,
     addFavoritesEvent,
     removeFavoritesEvent,
     $pathInFolder,
     $place,
-    changePlaceEvent,
     changePathInFolderEvent,
   ]);
 
@@ -146,8 +134,8 @@ export function NavigationEntries(props: NavigationProps): ReactElement {
   // };
 
   const handleActionOnRow = useCallback(
-    (rowData: NavigationItem, rowIndex?: number) => ({
-      onClick: (event: React.MouseEvent<HTMLElement>): void => {
+    (rowData: NavigationItem) => ({
+      onClick: (): void => {
         if (!place) {
           return;
         }
@@ -161,12 +149,12 @@ export function NavigationEntries(props: NavigationProps): ReactElement {
             id: rowData.entryId,
           });
           history.push(path);
-        } else {
-          const path = generatePath(MAP_NAVIGATION_SCOPE_TO_PATH[rowData.scope], {
-            id: rowData.entryId,
-          });
-          window.location.pathname = path;
+          return;
         }
+        const path = generatePath(MAP_NAVIGATION_SCOPE_TO_PATH[rowData.scope], {
+          id: rowData.entryId,
+        });
+        window.location.pathname = path;
       },
     }),
     [changePathInFolder, getNavigationList, history, isModalView, place],
