@@ -369,7 +369,7 @@ class DialogFilter extends PureComponent {
           });
       }
 
-      dimensions = [...dimensions].concat(value).sort(collator.compare);
+      dimensions = [...dimensions, ...value].sort(collator.compare);
       value = [];
     } else {
       if (operation.noOperands) {
