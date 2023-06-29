@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Sidebar from './Sidebar/Sidebar';
-import NavigationEntries from './NavigationEntries';
 import Dialog from '../Dialog/Dialog';
 import { BaseNavigationModal } from '@widgets/base-navigation-modal/ui/base-navigation-modal';
 
-import cn from 'bem-cn-lite';
 import noop from 'lodash/noop';
 
 class NavigationModal extends React.Component {

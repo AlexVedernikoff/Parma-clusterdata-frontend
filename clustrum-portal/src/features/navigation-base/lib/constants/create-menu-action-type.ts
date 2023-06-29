@@ -1,7 +1,7 @@
 export enum CreateMenuActionType {
-  folder = 'folder',
-  connection = 'connection',
-  dataset = 'dataset',
-  widget = 'widget',
-  dashboard = 'dashboard',
+  Folder = 'folder',
+  Connection = 'connection',
+  Dataset = 'dataset',
+  Widget = 'widget',
+  Dashboard = 'dashboard',
 }

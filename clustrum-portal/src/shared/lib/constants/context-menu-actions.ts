@@ -1,9 +1,9 @@
 export enum ContextMenuActions {
-  rename = 'rename',
-  describe = 'describe',
-  delete = 'delete',
-  move = 'move',
-  copy = 'copy',
-  access = 'access',
-  copyLink = 'copyLink',
+  Rename = 'rename',
+  Describe = 'describe',
+  Delete = 'delete',
+  Move = 'move',
+  Copy = 'copy',
+  Access = 'access',
+  CopyLink = 'copyLink',
 }

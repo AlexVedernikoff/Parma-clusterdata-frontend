@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useMemo } from 'react';
+import React, { ReactElement } from 'react';
 import { Button, Dropdown, Input, Space } from 'antd';
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
 import { Header } from '../../../../entities/header/ui/header';
@@ -30,26 +30,18 @@ export function NavigationHeader(props: NavigationHeaderProps): ReactElement {
     onCreateMenuClick,
   } = props;
 
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      onChangeFilter(event.target.value);
-    },
-    [onChangeFilter],
-  );
+  const formatPlace = place || '';
 
-  const formatPlace = useMemo(() => place || '', [place]);
-
-  const inputSearch = useMemo(
-    () => (
-      <Input
-        className="ant-d-input-search"
-        placeholder="Найти"
-        prefix={<SearchOutlined />}
-        onChange={handleChange}
-        value={searchValue}
-      />
-    ),
-    [handleChange, searchValue],
+  const inputSearch = (
+    <Input
+      className="ant-d-input-search"
+      placeholder="Найти"
+      prefix={<SearchOutlined />}
+      onChange={(event): void => {
+        onChangeFilter(event.target.value);
+      }}
+      value={searchValue}
+    />
   );
 
   const createButton = (

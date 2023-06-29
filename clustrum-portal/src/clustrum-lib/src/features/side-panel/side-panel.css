@@ -11,10 +11,6 @@
   gap: 9px;
   padding: 20px 0 20px 24px;
   transition: padding 0.3s;
-  -webkit-transition: padding 0.3s;
-  -moz-transition: padding 0.3s;
-  -ms-transition: padding 0.3s;
-  -o-transition: padding 0.3s;
 }
 
 .side-panel-header_collapsed {
@@ -62,8 +58,4 @@
 .side-panel .side-panel-content .ant-menu {
   border-inline-end: none;
   transition: width 0s;
-  -webkit-transition: width 0s;
-  -moz-transition: width 0s;
-  -ms-transition: width 0s;
-  -o-transition: width 0s;
 }

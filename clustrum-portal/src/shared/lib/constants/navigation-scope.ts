@@ -1,7 +1,7 @@
 export enum NavigationScope {
-  folder = 'folder',
-  dataset = 'dataset',
-  dash = 'dash',
-  connection = 'connection',
-  widget = 'widget',
+  Folder = 'folder',
+  Dataset = 'dataset',
+  Dash = 'dash',
+  Connection = 'connection',
+  Widget = 'widget',
 }

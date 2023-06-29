@@ -6,19 +6,19 @@ import {
   ForkOutlined,
   LineChartOutlined,
 } from '@ant-design/icons';
-import { NavigationScope } from '../../../../shared/lib/constants/navigation-scope';
+import { NavigationScope } from '@shared/lib/constants/navigation-scope';
 
 export const getIconByScope = (scopeType: NavigationScope): ReactNode => {
   switch (scopeType) {
-    case NavigationScope.connection:
+    case NavigationScope.Connection:
       return <ForkOutlined />;
-    case NavigationScope.dash:
+    case NavigationScope.Dash:
       return <DashboardOutlined />;
-    case NavigationScope.dataset:
+    case NavigationScope.Dataset:
       return <DatabaseOutlined />;
-    case NavigationScope.folder:
+    case NavigationScope.Folder:
       return <FolderOutlined />;
-    case NavigationScope.widget:
+    case NavigationScope.Widget:
       return <LineChartOutlined />;
     default:
       return null;

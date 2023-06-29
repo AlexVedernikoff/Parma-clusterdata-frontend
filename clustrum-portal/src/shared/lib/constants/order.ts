@@ -3,6 +3,6 @@
  * удалить или использовать, когда прояснится работа api
  */
 export enum Order {
-  desc = 'desc',
-  asc = 'asc',
+  Desc = 'desc',
+  Asc = 'asc',
 }

@@ -1,23 +1,23 @@
 import { ROUTES } from './routes';
 
 export enum Places {
-  root = 'root',
-  favorites = 'favorites',
-  dashboards = 'dashboards',
-  datasets = 'datasets',
-  widgets = 'widgets',
-  connections = 'connections',
+  Root = 'root',
+  Favorites = 'favorites',
+  Dashboards = 'dashboards',
+  Datasets = 'datasets',
+  Widgets = 'widgets',
+  Connections = 'connections',
 }
 
 export const MAP_PLACE_TO_PATH = {
-  [Places.root]: [ROUTES.navigation, ROUTES.navigationId, ROUTES.root],
-  [Places.favorites]: [ROUTES.favorites, ROUTES.favoritesId],
-  [Places.dashboards]: [
+  [Places.Root]: [ROUTES.navigation, ROUTES.navigationId, ROUTES.root],
+  [Places.Favorites]: [ROUTES.favorites, ROUTES.favoritesId],
+  [Places.Dashboards]: [
     ROUTES.dashboards,
     ROUTES.dashboardsInFolder,
     ROUTES.dashboardsId,
   ],
-  [Places.datasets]: [ROUTES.datasets, ROUTES.datasetsInFolder, ROUTES.datasetsId],
-  [Places.widgets]: [ROUTES.widgets, ROUTES.widgetsInFolder, ROUTES.wizard],
-  [Places.connections]: [ROUTES.connections, ROUTES.connectionsInFolder],
+  [Places.Datasets]: [ROUTES.datasets, ROUTES.datasetsInFolder, ROUTES.datasetsId],
+  [Places.Widgets]: [ROUTES.widgets, ROUTES.widgetsInFolder, ROUTES.wizard],
+  [Places.Connections]: [ROUTES.connections, ROUTES.connectionsInFolder],
 };
