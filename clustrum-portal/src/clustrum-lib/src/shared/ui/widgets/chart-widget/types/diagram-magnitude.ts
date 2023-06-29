@@ -1,5 +1,5 @@
 export enum DiagramMagnitude {
-  ABSOLUTE = 'absolute',
-  RELATIVE = 'relative',
-  EMPTY = 'empty',
+  Absolute = 'absolute',
+  Relative = 'relative',
+  Empty = 'empty',
 }
