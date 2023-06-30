@@ -369,6 +369,7 @@ class DialogFilter extends PureComponent {
           });
       }
 
+      dimensions = [...dimensions, ...value].sort(collator.compare);
       value = [];
     } else {
       if (operation.noOperands) {
@@ -381,6 +382,7 @@ class DialogFilter extends PureComponent {
     this.setState({
       operation,
       value,
+      dimensions,
     });
   }
 

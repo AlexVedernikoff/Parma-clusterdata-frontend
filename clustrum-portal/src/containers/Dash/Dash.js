@@ -19,7 +19,7 @@ import {
 import { setWidgetEditorUUID, setWidgetForReloadUUID } from '../../store/actions/dash';
 
 import { SDK } from '@kamatech-data-ui/clustrum';
-import { Wizard } from '@clustrum-lib';
+import { Wizard } from '@clustrum-lib-legacy';
 import SideSlidingPanel from '../../components/SideSlidingPanel/SideSlidingPanel';
 import ExpandedFilter from '../ExpandedFilter/ExpandedFilter';
 

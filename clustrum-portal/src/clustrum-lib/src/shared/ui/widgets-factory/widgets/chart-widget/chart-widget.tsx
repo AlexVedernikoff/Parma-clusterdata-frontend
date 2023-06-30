@@ -1,20 +1,17 @@
 import React, { useEffect } from 'react';
 import ReactECharts from 'echarts-for-react';
 
-import { getEchartsConfig } from './lib/helpers';
-import { useCreateOptions } from './lib/hooks/use-create-options';
+import { getEchartsConfig, clickHouseDateFormat } from './lib/helpers';
+import { useCreateOptions } from './lib/hooks';
 import { ChartWidgetProps } from './types';
-import { clickHouseDateFormat } from './lib/helpers';
 
 const FILTER_CONDITION_TYPE = {
   IS_NULL: '__is_null',
 };
 
 export function ChartWidget(props: ChartWidgetProps): JSX.Element {
-  const { data: propsData } = props;
-  const data = propsData.data;
-  const conf = propsData.config;
-  const libraryConfig = propsData.libraryConfig;
+  const { data: propsData, onStateAndParamsChange, onLoad } = props;
+  const { data, config: conf, libraryConfig } = propsData;
   const { config: graphOptions } = getEchartsConfig(
     Object.assign({ echart: libraryConfig }, conf),
     data,
@@ -48,7 +45,7 @@ export function ChartWidget(props: ChartWidgetProps): JSX.Element {
     const groupField = propsData.data.groupField;
     const originalCategory = data.point.originalCategory;
     if (groupField) {
-      props.onStateAndParamsChange({
+      onStateAndParamsChange({
         params: {
           [groupField]: convertCategoryName(
             originalCategory,
@@ -68,8 +65,8 @@ export function ChartWidget(props: ChartWidgetProps): JSX.Element {
   };
 
   useEffect(() => {
-    props.onLoad();
-  }, [props]);
+    onLoad();
+  }, [propsData, onLoad]);
 
   return (
     <ReactECharts

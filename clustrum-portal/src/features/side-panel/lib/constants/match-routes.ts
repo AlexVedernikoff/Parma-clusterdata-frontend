@@ -1,4 +1,4 @@
-import { ROUTES } from '@shared/lib/constants/routes';
+import { ROUTES } from '@shared/lib/constants';
 
 export const MATCH_ROUTES = {
   [ROUTES.connections]: [ROUTES.connections, ROUTES.connectionsInFolder],

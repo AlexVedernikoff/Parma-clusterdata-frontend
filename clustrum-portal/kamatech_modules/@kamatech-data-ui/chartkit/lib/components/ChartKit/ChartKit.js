@@ -29,7 +29,7 @@ class ChartKit extends React.Component {
       runtimeParams: null,
       paginateInfo: this.props.paginateInfo
         ? this.props.paginateInfo
-        : { page: 0, pageSize: 150 },
+        : { page: 0, pageSize: 10 },
       orderBy: this.props.orderBy,
     };
   }

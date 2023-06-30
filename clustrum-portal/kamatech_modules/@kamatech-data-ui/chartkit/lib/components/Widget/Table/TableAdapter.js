@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  TableWidget,
-  createCell,
-} from '@clustrum-lib/shared/ui/widgets-factory/widgets/table-widget';
+import { TableWidget, createCell } from '@clustrum-lib';
 
 function camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;
@@ -116,14 +113,11 @@ function renderCell(item) {
   return cellContent;
 }
 
-function addTotalRow(col, index, total) {
+function addTotalRow(col, index, totalValue) {
   return {
     children: [
       {
-        title:
-          index === 0
-            ? 'Общий итог'
-            : renderCell(total[0].values?.[index] || total[0].cells[index]),
+        title: index === 0 ? 'Общий итог' : totalValue.value && renderCell(totalValue),
         dataIndex: col.dataIndex,
         key: index,
         render: item => renderCell(item),
@@ -134,7 +128,7 @@ function addTotalRow(col, index, total) {
 
 function getAntdColumnParams(col, index, total) {
   if (total) {
-    return addTotalRow(col, index, total);
+    return addTotalRow(col, index, total[0].values?.[index] || total[0].cells[index]);
   }
   return { render: item => renderCell(item) };
 }
@@ -220,7 +214,10 @@ export class TableAdapter extends React.PureComponent {
 
   render() {
     const {
-      data: { data: { head, rows = [], total } = {}, config: { title } = {} } = {},
+      data: {
+        data: { head, rows = [], total, rowsCount } = {},
+        config: { title } = {},
+      } = {},
     } = this.props;
 
     if (!head || !rows) {
@@ -275,9 +272,11 @@ export class TableAdapter extends React.PureComponent {
         }}
       >
         <TableWidget
+          totalRowsCount={rowsCount}
           columns={antdTableColumns}
           dataSource={data}
           title={getTitle(title)}
+          onPageControlClicker={this.props.onPageControlClick}
           {...this.props}
         />
       </div>
