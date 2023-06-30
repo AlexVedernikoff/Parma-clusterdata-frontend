@@ -5,8 +5,9 @@ import { useDrop } from 'react-dnd';
 import { DndItem } from './dnd-item';
 import { DndItem as IDndItem, DndContainerProps } from './types';
 
-//TODO 696922 деконструировать просы и вынести функции
+// TODO 696922 деконструировать просы и вынести функции
 // eslint-disable-next-line max-lines-per-function
+/* eslint-disable react/destructuring-assignment */
 export function DndContainer(props: DndContainerProps): JSX.Element {
   const [items, setItems] = useState<IDndItem[]>(props.items || []);
   const [dropPlace, setDropPlace] = useState<number | null>();

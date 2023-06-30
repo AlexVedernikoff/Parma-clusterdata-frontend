@@ -10,7 +10,7 @@ const FILTER_CONDITION_TYPE = {
 };
 
 export function ChartWidget(props: ChartWidgetProps): JSX.Element {
-  const { data: propsData } = props;
+  const { data: propsData, onStateAndParamsChange, onLoad } = props;
   const data = propsData.data;
   const conf = propsData.config;
   const libraryConfig = propsData.libraryConfig;
@@ -47,7 +47,7 @@ export function ChartWidget(props: ChartWidgetProps): JSX.Element {
     const groupField = propsData.data.groupField;
     const originalCategory = data.point.originalCategory;
     if (groupField) {
-      props.onStateAndParamsChange({
+      onStateAndParamsChange({
         params: {
           [groupField]: convertCategoryName(
             originalCategory,
@@ -67,8 +67,8 @@ export function ChartWidget(props: ChartWidgetProps): JSX.Element {
   };
 
   useEffect(() => {
-    props.onLoad();
-  }, [props]);
+    onLoad();
+  }, [onLoad]);
 
   return (
     <ReactECharts
