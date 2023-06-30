@@ -11,9 +11,7 @@ const FILTER_CONDITION_TYPE = {
 
 export function ChartWidget(props: ChartWidgetProps): JSX.Element {
   const { data: propsData, onStateAndParamsChange, onLoad } = props;
-  const data = propsData.data;
-  const conf = propsData.config;
-  const libraryConfig = propsData.libraryConfig;
+  const { data, config: conf, libraryConfig } = propsData;
   const { config: graphOptions } = getEchartsConfig(
     Object.assign({ echart: libraryConfig }, conf),
     data,
@@ -68,7 +66,7 @@ export function ChartWidget(props: ChartWidgetProps): JSX.Element {
 
   useEffect(() => {
     onLoad();
-  }, [onLoad]);
+  }, [propsData, onLoad]);
 
   return (
     <ReactECharts
