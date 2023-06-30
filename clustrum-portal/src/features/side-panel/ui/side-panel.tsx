@@ -5,8 +5,8 @@ import { MenuItemType } from 'antd/es/menu/hooks/useItems';
 import Icons, { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Menu, theme } from 'antd';
 
-import { useActiveMenuItemKey } from '../lib/hooks/use-active-menu-item-key';
-import { MENU_ITEMS } from '../lib/constants/menu-items';
+import { useActiveMenuItemKey } from '../lib/hooks';
+import { MENU_ITEMS } from '../lib/constants';
 import { RedLogo } from './red-logo';
 import { SidePanelProps } from '../types';
 

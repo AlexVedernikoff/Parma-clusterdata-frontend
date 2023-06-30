@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ChartWidget } from '@lib-shared/ui/widgets/chart-widget';
+import { ChartWidget } from '@clustrum-lib';
 import OLMap from './OLMap/OLMap';
 import SideHtml from './SideHtml/SideHtml';
 import Card from './Card/Card';

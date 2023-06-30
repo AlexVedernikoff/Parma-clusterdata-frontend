@@ -4,7 +4,7 @@ import { DatePicker } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
-import { shouldMoveDropdown } from '../../../lib/utils/should-move-dropdown';
+import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { Range, RangeDatepickerFilterControlProps } from './types';
 
 import './range-datepicker-filter-control.css';

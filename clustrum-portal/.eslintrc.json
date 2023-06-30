@@ -34,9 +34,10 @@
       "error",
       {
         "selector": "enumMember",
-        "format": ["PascalCase"]
+        "format": ["StrictPascalCase"]
       }
     ],
-    "curly": ["error", "all"]
+    "curly": ["error", "all"],
+    "react/destructuring-assignment": ["error", "always"]
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { TableWidget, createCell } from '@lib-shared/ui/widgets/table-widget';
+import { TableWidget, createCell } from '@clustrum-lib';
 
 function camelCaseCss(_style) {
   const style = typeof _style !== 'object' || _style === null ? {} : _style;
