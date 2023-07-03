@@ -6,7 +6,7 @@ export interface DndDropResult {
   droppedItemId: string;
   isNeedReplace: boolean;
   dropPlace: number;
-  noSwap: boolean;
+  isNeedSwap: boolean;
   dropContainerItems(items: DndItem[]): void;
   dropContainerReplace(index: number, item: DndItem): void;
   dropContainerInsert(item: DndItem, index: number): void;

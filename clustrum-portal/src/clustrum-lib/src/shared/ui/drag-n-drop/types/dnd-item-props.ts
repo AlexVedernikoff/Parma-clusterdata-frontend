@@ -5,7 +5,7 @@ export interface DndItemProps {
   className: string;
   disabled?: boolean;
   listAllowedTypes?: Set<string>;
-  listNoRemove?: boolean;
+  listIsNeedRemove?: boolean;
   listId: string;
   index: number;
   item: DndItem;
@@ -18,5 +18,5 @@ export interface DndItemProps {
   setDropPlace(index: number | null): void;
   dragContainerReplace(index: number, item: DndItem): void;
   setDraggingItem(item: DndDropedItem): void;
-  setIsNeedReplace(isNeed: boolean): void;
+  setIsNeedReplace(isNeedReplace: boolean): void;
 }

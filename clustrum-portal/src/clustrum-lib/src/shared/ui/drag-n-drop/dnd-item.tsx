@@ -14,7 +14,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
       index: props.index,
       listId: props.listId,
       listAllowedTypes: props.listAllowedTypes,
-      listNoRemove: props.listNoRemove,
+      listIsNeedRemove: props.listIsNeedRemove,
       item: props.item,
     },
     end: (
@@ -41,10 +41,10 @@ export function DndItem(props: DndItemProps): JSX.Element {
         dropContainerSwap,
         setIsNeedReplace,
         isNeedReplace,
-        noSwap,
+        isNeedSwap,
       } = dropResult;
 
-      if (droppedItemId === itemWrapper.listId && noSwap) {
+      if (droppedItemId === itemWrapper.listId && isNeedSwap === false) {
         return;
       }
 

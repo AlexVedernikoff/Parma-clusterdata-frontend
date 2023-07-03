@@ -43,11 +43,8 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
       if (id !== itemWrapper.listId) {
         // отменяем, если не вмещается (но если не разрешена замена)
-        if (
-          props.capacity &&
-          props.capacity <= items.length &&
-          !isNeedReplaceRef.current
-        ) {
+        const isContainerFull = props.capacity && props.capacity <= items.length;
+        if (isContainerFull && !isNeedReplaceRef.current) {
           return { revert: true };
         }
 
@@ -73,7 +70,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
         dropPlace: dropPlace,
         isNeedReplace: isNeedReplaceRef.current,
         setIsNeedReplace,
-        noSwap: props.noSwap,
+        isNeedSwap: props.isNeedSwap,
       };
     },
   }));
@@ -87,17 +84,17 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
   }
 
   function swap(targetIndex: number, sourceIndex: number): void {
-    if (props.noSwap) {
+    if (props.isNeedSwap === false) {
       return;
     }
 
     setItems(prev => {
       setIsNeedToUpdate(true);
-      const temp = [...prev];
-      const targetItem = temp[targetIndex];
-      temp[targetIndex] = temp[sourceIndex];
-      temp[sourceIndex] = targetItem;
-      return temp;
+      const newItems = [...prev];
+      const targetItem = newItems[targetIndex];
+      newItems[targetIndex] = newItems[sourceIndex];
+      newItems[sourceIndex] = targetItem;
+      return newItems;
     });
   }
 
@@ -106,7 +103,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     let insert = true;
 
     // если контейнер работает в режиме с копированиями из себя, то не добавляем
-    if (props.noRemove) {
+    if (props.isNeedRemove === false) {
       insert = items.indexOf(item) === -1;
     }
 
@@ -127,7 +124,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
   function remove(index: number): void {
     // если контейнер работает в режиме с копированиями из себя, то не удаляем
-    if (props.noRemove) {
+    if (props.isNeedRemove === false) {
       return;
     }
 
@@ -142,7 +139,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
   }
 
   function replace(index: number, item: IDndItem): void {
-    if (props.noRemove) {
+    if (props.isNeedRemove === false) {
       return;
     }
 
@@ -157,18 +154,18 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
   }
 
   let canDrop = false;
-  let dropPlaceExists = false;
+  let isDropPlaceExists = false;
 
-  if (draggingItem && draggingItem.item) {
-    dropPlaceExists = typeof dropPlace === 'number';
+  if (draggingItem?.item) {
+    isDropPlaceExists = typeof dropPlace === 'number';
 
     if (isOver) {
-      if (!dropPlaceExists && items.length === 0) {
-        dropPlaceExists = true;
+      if (!isDropPlaceExists && items.length === 0) {
+        isDropPlaceExists = true;
         setDropPlace(0);
       }
     } else {
-      dropPlaceExists = false;
+      isDropPlaceExists = false;
     }
 
     if (props.allowedTypes) {
@@ -179,12 +176,8 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       canDrop = true;
     }
 
-    if (props.capacity && props.capacity <= items.length) {
-      dropPlaceExists = false;
-    }
-
-    if (!canDrop) {
-      dropPlaceExists = false;
+    if ((props.capacity && props.capacity <= items.length) || !canDrop) {
+      isDropPlaceExists = false;
     }
   }
 
@@ -210,8 +203,8 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
             className="drop-place"
             style={{
               background: 'red',
-              display: dropPlaceExists ? 'block' : 'none',
-              top: dropPlaceExists
+              display: isDropPlaceExists ? 'block' : 'none',
+              top: isDropPlaceExists
                 ? dropPlace === 0
                   ? -4
                   : dropPlace * 32 + 4 * (dropPlace - 1) + 1
@@ -229,7 +222,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
               index={index}
               listId={props.id}
               listAllowedTypes={props.allowedTypes}
-              listNoRemove={props.noRemove}
+              listIsNeedRemove={props.isNeedRemove}
               wrapTo={props.wrapTo}
               disabled={props.disabled}
               setTooltipVisible={setTooltipVisible}

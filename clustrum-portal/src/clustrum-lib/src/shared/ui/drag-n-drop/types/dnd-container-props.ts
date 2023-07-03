@@ -8,8 +8,8 @@ export interface DndContainerProps {
   id: string;
   items: DndItem[];
   itemsClassName?: string;
-  noRemove?: boolean;
-  noSwap?: boolean;
+  isNeedRemove?: boolean;
+  isNeedSwap?: boolean;
   title?: string;
   listId?: string;
   onItemClick(e: Event, item: DndItem): void;

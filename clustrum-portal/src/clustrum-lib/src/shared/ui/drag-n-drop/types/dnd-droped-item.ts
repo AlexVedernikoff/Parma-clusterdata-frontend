@@ -7,6 +7,6 @@ export type DndDropedItem = {
   item: DndItem;
   listAllowedTypes: Set<string> | undefined;
   listId: string;
-  listNoRemove: boolean | undefined;
+  listIsNeedRemove: boolean | undefined;
   replace(index: number, item: DndItem): void;
 };

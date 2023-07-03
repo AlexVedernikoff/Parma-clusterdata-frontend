@@ -410,7 +410,7 @@ class SectionVisualization extends Component {
             </div>
             <DndContainer
               id="filter-container"
-              noSwap={true}
+              isNeedSwap={false}
               items={[...filters]}
               allowedTypes={ITEM_TYPES.ALL}
               itemsClassName="placeholder-item"
@@ -1139,7 +1139,7 @@ class SectionVisualization extends Component {
 
     const swapIsAllowed =
       draggingItem &&
-      !draggingItem.listNoRemove &&
+      !(draggingItem.listIsNeedRemove === false) &&
       ((draggingItem.listAllowedTypes && draggingItem.listAllowedTypes.has(item.type)) ||
         (draggingItem.listCheckAllowed && draggingItem.listCheckAllowed(item))) &&
       ((props.listAllowedTypes && props.listAllowedTypes.has(draggingItem.item.type)) ||
