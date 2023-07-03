@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ChartWidget } from '@lib-shared/ui/widgets-factory/widgets/chart-widget';
-import { ChartWidgetProps } from './widgets/chart-widget/types';
+import { ChartWidgetProps, ChartWidgetData } from './widgets/chart-widget/types';
 import OLMap from '@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/OLMap';
 import SideHtml from '@kamatech-data-ui/chartkit/lib/components/Widget/SideHtml/SideHtml';
 import Card from '@kamatech-data-ui/chartkit/lib/components/Widget/Card/Card';
@@ -39,9 +39,35 @@ class Unknown extends React.PureComponent<UnknownProps> {
   }
 }
 
+interface ConfigType {
+  hideComments: boolean;
+  showSideHtml: boolean;
+}
+
+// TODO: Взято из `Control.js`, после типизации `Control`-а импортировать типы оттуда
+interface SchemeItem {
+  type: 'select' | 'button' | 'input' | 'checkbox' | 'datepicker' | 'range-datepicker';
+  param: string;
+  label: string;
+  updateOnChange: boolean;
+  updateControlsOnChange: boolean;
+}
+
+interface WidgetData {
+  widgetType: WIDGET_TYPE;
+  // Следующие два нужны только для `SideHtml`
+  config: ConfigType;
+  sideHtml: string;
+  // Всё что ниже, нужно только для проброса в `Control`
+  entryId: string;
+  // Тип `object` в `Control.js`
+  // TODO: Типизировать `params` после типизации `Control`
+  params: object;
+  uiScheme: SchemeItem[];
+}
+
 interface WidgetProps extends UnknownProps, ChartWidgetProps {
-  // UNDONE: any
-  data: any;
+  data: ChartWidgetData & WidgetData;
   onChange(): void;
 }
 
@@ -60,7 +86,7 @@ export class Widget extends React.PureComponent<WidgetProps> {
     const { data } = this.props;
     const { widgetType } = data;
 
-    if (widgetType === WIDGET_TYPE.CONTROL) {
+    if (widgetType === WIDGET_TYPE.Control) {
       const { onLoad } = this.props;
       onLoad();
     }
@@ -71,23 +97,23 @@ export class Widget extends React.PureComponent<WidgetProps> {
     const { widgetType } = data;
 
     switch (widgetType) {
-      case WIDGET_TYPE.GRAPH:
+      case WIDGET_TYPE.Graph:
         return <ChartWidget {...this.props} />;
-      case WIDGET_TYPE.MAP:
+      case WIDGET_TYPE.Map:
         return <OLMap {...this.props} />;
-      case WIDGET_TYPE.CARD:
+      case WIDGET_TYPE.Card:
         return <Card {...this.props} />;
-      case WIDGET_TYPE.INDICATOR:
+      case WIDGET_TYPE.Indicator:
         return <Indicator {...this.props} />;
-      case WIDGET_TYPE.TABLE:
+      case WIDGET_TYPE.Table:
         return <Table {...this.props} />;
-      case WIDGET_TYPE.YMAP:
+      case WIDGET_TYPE.Ymap:
         return <YandexMap {...this.props} />;
-      case WIDGET_TYPE.TEXT:
+      case WIDGET_TYPE.Text:
         return <Text {...this.props} />;
-      case WIDGET_TYPE.METRIC:
+      case WIDGET_TYPE.Metric:
         return <Metric {...this.props} />;
-      case WIDGET_TYPE.CONTROL:
+      case WIDGET_TYPE.Control:
         return null;
       default:
         return <Unknown {...this.props} />;
@@ -117,7 +143,7 @@ export class Widget extends React.PureComponent<WidgetProps> {
           params={params}
           entryId={entryId}
           onChange={onChange}
-          standalone={widgetType === WIDGET_TYPE.CONTROL}
+          standalone={widgetType === WIDGET_TYPE.Control}
         />
       );
     }

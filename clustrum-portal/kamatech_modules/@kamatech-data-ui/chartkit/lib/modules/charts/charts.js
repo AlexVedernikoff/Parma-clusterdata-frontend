@@ -131,8 +131,8 @@ function postRun(loaded) {
   const converted = { config: {} };
   const editorType = denormalizedParams['_editor_type'];
   if (editorType) {
-    if (widgetType === WIDGET_TYPE.GRAPH && editorType === WIDGET_TYPE.TABLE) {
-      converted.widgetType = WIDGET_TYPE.TABLE;
+    if (widgetType === WIDGET_TYPE.Graph && editorType === WIDGET_TYPE.Table) {
+      converted.widgetType = WIDGET_TYPE.Table;
       const { data: convertedData, config: convertedConfig } = graphToTable(data, config);
       converted.data = convertedData;
       converted.config = convertedConfig;

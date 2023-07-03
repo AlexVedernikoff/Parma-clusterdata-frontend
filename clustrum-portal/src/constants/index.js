@@ -1152,8 +1152,8 @@ const CARD_VISUALIZATION = {
 };
 
 const INDICATOR_VISUALIZATION = {
-  id: WIDGET_TYPE.INDICATOR,
-  type: WIDGET_TYPE.INDICATOR,
+  id: WIDGET_TYPE.Indicator,
+  type: WIDGET_TYPE.Indicator,
   name: 'label_visualization_indicator',
   wizardNodeType: WIZARD_NODE_TYPE.INDICATOR,
   icon: <Icon data={iconIndicator} width="24" />,

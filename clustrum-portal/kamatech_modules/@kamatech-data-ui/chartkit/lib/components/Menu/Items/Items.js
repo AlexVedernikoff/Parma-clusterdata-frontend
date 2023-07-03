@@ -171,7 +171,7 @@ const COMMENTS = {
   icon: <Icon size="20" name="comment" />,
   isVisible: ({ loadedData: { data, widgetType, isNewWizard } = {}, widget }) =>
     widget &&
-    widgetType === WIDGET_TYPE.GRAPH &&
+    widgetType === WIDGET_TYPE.Graph &&
     !isNewWizard &&
     widget.xAxis[0].isDatetimeAxis &&
     widget.xAxis[0].closestPointRange <= 86400000,
@@ -295,7 +295,7 @@ const OPEN_AS_TABLE = {
   title: 'Открыть как таблицу',
   icon: <Icon size="20" name="table" />,
   isVisible: ({ loadedData: { data, widgetType } = {} }) =>
-    data && widgetType === WIDGET_TYPE.GRAPH,
+    data && widgetType === WIDGET_TYPE.Graph,
   action: ({ loadedData, propsData }) =>
     window.open(
       goAwayLink(
