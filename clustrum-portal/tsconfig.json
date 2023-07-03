@@ -27,7 +27,8 @@
       "@lib-widgets/*": ["./src/clustrum-lib/src/widgets/*"],
       "@lib-features/*": ["./src/clustrum-lib/src/features/*"],
       "@lib-entities/*": ["./src/clustrum-lib/src/entities/*"],
-      "@lib-shared/*": ["./src/clustrum-lib/src/shared/*"]
+      "@lib-shared/*": ["./src/clustrum-lib/src/shared/*"],
+      "@kamatech-data-ui/*": ["./kamatech_modules/@kamatech-data-ui/*"]
     }
   },
   "include": ["./src/**/*"],

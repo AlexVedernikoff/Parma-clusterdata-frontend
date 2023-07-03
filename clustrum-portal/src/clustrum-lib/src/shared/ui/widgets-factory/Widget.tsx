@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ChartWidget } from '@lib-shared/ui/widgets-factory/widgets/chart-widget';
+import { ChartWidgetProps } from './widgets/chart-widget/types';
 import OLMap from '@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/OLMap';
 import SideHtml from '@kamatech-data-ui/chartkit/lib/components/Widget/SideHtml/SideHtml';
 import Card from '@kamatech-data-ui/chartkit/lib/components/Widget/Card/Card';
@@ -12,27 +13,39 @@ import Text from '@kamatech-data-ui/chartkit/lib/components/Widget/WikiText/Wiki
 import Metric from '@kamatech-data-ui/chartkit/lib/components/Widget/Metric/Metric';
 import Control from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
-import { WIDGET_TYPE as WIDGET_TYPE_CONST } from './WidgetType';
+import { WIDGET_TYPE } from './WidgetType';
 
-class Unknown extends React.PureComponent {
+interface UnknownProps {
+  onLoad(): void;
+}
+
+class Unknown extends React.PureComponent<UnknownProps> {
   static propTypes = {
     onLoad: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
-    this.props.onLoad();
+  componentDidMount(): void {
+    const { onLoad } = this.props;
+    onLoad();
   }
 
-  componentDidUpdate() {
-    this.props.onLoad();
+  componentDidUpdate(): void {
+    const { onLoad } = this.props;
+    onLoad();
   }
 
-  render() {
+  render(): JSX.Element {
     return <div>Unknown widget type</div>;
   }
 }
 
-class Widget extends React.PureComponent {
+interface WidgetProps extends UnknownProps, ChartWidgetProps {
+  // UNDONE: any
+  data: any;
+  onChange(): void;
+}
+
+export class Widget extends React.PureComponent<WidgetProps> {
   static propTypes = {
     data: PropTypes.object.isRequired,
     onLoad: PropTypes.func.isRequired,
@@ -43,16 +56,19 @@ class Widget extends React.PureComponent {
     onOrderByClickInWizard: PropTypes.func,
   };
 
-  componentDidMount() {
-    const { widgetType } = this.props.data;
+  componentDidMount(): void {
+    const { data } = this.props;
+    const { widgetType } = data;
 
     if (widgetType === WIDGET_TYPE.CONTROL) {
-      this.props.onLoad();
+      const { onLoad } = this.props;
+      onLoad();
     }
   }
 
-  renderWidget() {
-    const { widgetType } = this.props.data;
+  renderWidget(): JSX.Element | null {
+    const { data } = this.props;
+    const { widgetType } = data;
 
     switch (widgetType) {
       case WIDGET_TYPE.GRAPH:
@@ -78,8 +94,9 @@ class Widget extends React.PureComponent {
     }
   }
 
-  renderSideHtml() {
-    const { sideHtml, config } = this.props.data;
+  renderSideHtml(): JSX.Element | null {
+    const { data } = this.props;
+    const { sideHtml, config } = data;
     return sideHtml ? (
       <SideHtml
         html={sideHtml}
@@ -89,8 +106,9 @@ class Widget extends React.PureComponent {
     ) : null;
   }
 
-  renderControl() {
-    const { uiScheme, params, entryId, widgetType } = this.props.data;
+  renderControl(): JSX.Element | null {
+    const { data, onChange } = this.props;
+    const { uiScheme, params, entryId, widgetType } = data;
 
     if (uiScheme) {
       return (
@@ -98,7 +116,7 @@ class Widget extends React.PureComponent {
           scheme={uiScheme}
           params={params}
           entryId={entryId}
-          onChange={this.props.onChange}
+          onChange={onChange}
           standalone={widgetType === WIDGET_TYPE.CONTROL}
         />
       );
@@ -107,8 +125,9 @@ class Widget extends React.PureComponent {
     return null;
   }
 
-  render() {
-    return this.props.data ? (
+  render(): JSX.Element | null {
+    const { data } = this.props;
+    return data ? (
       <React.Fragment>
         {this.renderSideHtml()}
         {this.renderControl()}
@@ -117,7 +136,3 @@ class Widget extends React.PureComponent {
     ) : null;
   }
 }
-
-export default Widget;
-
-export const WIDGET_TYPE = WIDGET_TYPE_CONST;
