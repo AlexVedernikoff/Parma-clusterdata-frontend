@@ -328,9 +328,9 @@ class DialogFilter extends PureComponent {
   onSelectChange(newValue) {
     const { sdk } = this.props;
     let { value, dimensions, item, updates } = this.state;
+    console.debug({ dimensions, value });
 
     const operation = newValue[0];
-
     if (operation.selectable) {
       if (!dimensions) {
         const requestParams = {
@@ -369,13 +369,14 @@ class DialogFilter extends PureComponent {
           });
       }
 
-      dimensions = [...dimensions, ...value].sort(collator.compare);
-      value = [];
+      reset();
     } else {
       if (operation.noOperands) {
-        value = [];
+        reset();
       } else {
-        value = value && value.length ? value.slice(0, 1) : [''];
+        const [first, ...rest] = value ?? [];
+        value = first ? [first] : [];
+        dimensions = [...dimensions, ...rest].sort(collator.compare);
       }
     }
 
@@ -384,6 +385,11 @@ class DialogFilter extends PureComponent {
       value,
       dimensions,
     });
+
+    function reset() {
+      dimensions = [...dimensions, ...value].sort(collator.compare);
+      value = [];
+    }
   }
 
   onFilterInputChange(field) {
