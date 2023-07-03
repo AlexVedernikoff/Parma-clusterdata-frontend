@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { DragSourceMonitor, useDrag, useDrop } from 'react-dnd';
+import { DragSourceMonitor, DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
 import { DndItemProps, DndDropResult, DndDropedItem } from './types';
 
 // TODO 696922 деконструировать просы
@@ -33,26 +33,55 @@ export function DndItem(props: DndItemProps): JSX.Element {
 
       const {
         targetItem,
+        dropPlace,
         droppedItemId,
-        isNeedReplace,
-        onReplaced,
+        dropContainerItems,
+        dropContainerInsert,
         dropContainerReplace,
+        dropContainerSwap,
+        setIsNeedReplace,
+        isNeedReplace,
+        noSwap,
       } = dropResult;
 
-      if (droppedItemId === itemWrapper.listId || !isNeedReplace) {
+      if (droppedItemId === itemWrapper.listId && noSwap) {
         return;
       }
 
-      onReplaced();
-      props.dragContainerReplace(itemWrapper.index, targetItem);
-      dropContainerReplace(hoverIndex, itemWrapper.item);
+      if (isNeedReplace) {
+        if (droppedItemId !== itemWrapper.listId) {
+          props.dragContainerReplace(itemWrapper.index, targetItem);
+          dropContainerReplace(hoverIndex, itemWrapper.item);
+          setIsNeedReplace(false);
+        } else {
+          dropContainerSwap(hoverIndex, itemWrapper.index);
+        }
+      } else {
+        const targetIndex =
+          dropPlace !== null
+            ? dropPlace
+            : typeof hoverIndex === 'number'
+            ? hoverIndex
+            : dropContainerItems.length;
+
+        if (droppedItemId === itemWrapper.listId) {
+          props.remove(itemWrapper.index);
+        }
+
+        // добавляем в целевой контейнер
+        dropContainerInsert(itemWrapper.item, targetIndex);
+      }
     },
   }));
 
   const [, drop] = useDrop(() => ({
     accept: 'ITEM',
     //TODO 696922 вынести в отдельный метод и типизировать
-    hover: (itemWrapper: any, monitor: any): any => {
+    hover: (
+      itemWrapper: DndDropedItem,
+      monitor: DropTargetMonitor<DndDropedItem>,
+    ): void => {
+      props.setDraggingItem(itemWrapper);
       const sourceItem = monitor.getItem();
       const dragIndex = sourceItem.index;
       const sourceListId = sourceItem.listId;
@@ -67,6 +96,9 @@ export function DndItem(props: DndItemProps): JSX.Element {
       }
       const hoverBoundingRect = domNode.getBoundingClientRect();
       const clientOffset = monitor.getClientOffset();
+      if (clientOffset === null) {
+        return;
+      }
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
       // Представьте себе систему координат в евклидовом пространстве, где ось y направлена вниз (ось х не важна):
@@ -78,7 +110,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
         hoverBoundingRect.bottom - replaceZoneSize / 2 - hoverBoundingRect.top;
       const replaceZoneTop = replaceZoneSize / 2;
 
-      const isContainerTypeMatch = itemWrapper.listId === sourceListId;
+      const isContainerTypeMatch = props.listId === sourceListId;
       const isUnderTarget = dragIndex === hoverIndex || dragIndex === hoverIndex - 1;
       const isOnTarget = dragIndex === hoverIndex + 1 || dragIndex === hoverIndex;
 
@@ -88,7 +120,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
         if (replaceZoneBottom < hoverClientY && !(isContainerTypeMatch && isOnTarget)) {
           props.setDropPlace(hoverIndex + 1);
         } else {
-          props.setDropPlace(-1);
+          props.setDropPlace(null);
         }
       }
     },

@@ -3,20 +3,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import { getUniqueId } from '../../../../../utils/helpers';
 import { useDrop } from 'react-dnd';
 import { DndItem } from './dnd-item';
-import { DndItem as IDndItem, DndContainerProps } from './types';
+import { DndItem as IDndItem, DndContainerProps, DndDropedItem } from './types';
 
 // TODO 696922 деконструировать просы и вынести функции
 // eslint-disable-next-line max-lines-per-function
 /* eslint-disable react/destructuring-assignment */
 export function DndContainer(props: DndContainerProps): JSX.Element {
   const [items, setItems] = useState<IDndItem[]>(props.items || []);
-  const [dropPlace, setDropPlace] = useState<number | null>();
+  const [dropPlace, setDropPlace] = useState<number | null>(null);
   const [tooltipVisible, setTooltipVisibleState] = useState<boolean>(false);
   const [usedItem, setUsedItem] = useState<IDndItem>();
   const [action, setAction] = useState<string>();
   const [isNeedToUpdate, setIsNeedToUpdate] = useState<boolean>(false);
-  const [isNeedReplace, setIsNeedReplace] = useState<boolean>(true);
   const ref = useRef(null);
+  const isNeedReplaceRef = useRef(false);
+  const [draggingItem, setDraggingItem] = useState<DndDropedItem | null>(null);
 
   useEffect(() => {
     setItems(props.items);
@@ -29,24 +30,24 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     }
   }, [items]);
 
-  useEffect(() => {
-    // Сброс флага в дефолтное значение, когда флаг в дочернем компоненте меняется на false
-    if (!isNeedReplace) {
-      setIsNeedReplace(true);
-    }
-  }, [isNeedReplace]);
-
-  const [, drop] = useDrop(() => ({
+  const [{ isOver }, drop] = useDrop(() => ({
     accept: 'ITEM',
+    collect: (monitor: any) => ({
+      isOver: monitor.isOver(),
+    }),
     //TODO 696922 вынести в отдельный метод и типизировать
-    drop: (itemWrapper: any, monitor: any): any => {
+    drop: (itemWrapper: DndDropedItem, monitor: any): any => {
       const { id } = props;
       const itemType = itemWrapper.item.type;
       const targetItem = items[itemWrapper.hoverIndex] ?? itemWrapper.item;
 
       if (id !== itemWrapper.listId) {
         // отменяем, если не вмещается (но если не разрешена замена)
-        if (props.capacity && props.capacity <= items.length && !isNeedReplace) {
+        if (
+          props.capacity &&
+          props.capacity <= items.length &&
+          !isNeedReplaceRef.current
+        ) {
           return { revert: true };
         }
 
@@ -62,32 +63,42 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
         }
       }
 
-      const targetIndex =
-        typeof dropPlace === 'number'
-          ? dropPlace
-          : typeof itemWrapper.hoverIndex === 'number'
-          ? itemWrapper.hoverIndex
-          : items.length;
-
-      if (props.id === itemWrapper.listId) {
-        remove(itemWrapper.index);
-      }
-
-      // добавляем в целевой контейнер
-      insert(itemWrapper.item, targetIndex);
-
       return {
         targetItem,
         droppedItemId: props.id,
+        dropContainerItems: items,
         dropContainerReplace: replace,
-        isNeedReplace,
-        onReplaced: () => setIsNeedReplace(false),
+        dropContainerInsert: insert,
+        dropContainerSwap: swap,
+        dropPlace: dropPlace,
+        isNeedReplace: isNeedReplaceRef.current,
+        setIsNeedReplace,
+        noSwap: props.noSwap,
       };
     },
   }));
 
   function setTooltipVisible(visibility: boolean): void {
     setTooltipVisibleState(visibility);
+  }
+
+  function setIsNeedReplace(isNeedReplace: boolean): void {
+    isNeedReplaceRef.current = isNeedReplace;
+  }
+
+  function swap(targetIndex: number, sourceIndex: number): void {
+    if (props.noSwap) {
+      return;
+    }
+
+    setItems(prev => {
+      setIsNeedToUpdate(true);
+      const temp = [...prev];
+      const targetItem = temp[targetIndex];
+      temp[targetIndex] = temp[sourceIndex];
+      temp[sourceIndex] = targetItem;
+      return temp;
+    });
   }
 
   function insert(item: IDndItem, index: number): void {
@@ -131,13 +142,50 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
   }
 
   function replace(index: number, item: IDndItem): void {
+    if (props.noRemove) {
+      return;
+    }
+
     setUsedItem(item);
     setAction('replace');
-    setItems(() => {
-      items.splice(index, 1, item);
+    setItems(prev => {
       setIsNeedToUpdate(true);
-      return items;
+      const updatedItems = [...prev];
+      updatedItems.splice(index, 1, item);
+      return updatedItems;
     });
+  }
+
+  let canDrop = false;
+  let dropPlaceExists = false;
+
+  if (draggingItem && draggingItem.item) {
+    dropPlaceExists = typeof dropPlace === 'number';
+
+    if (isOver) {
+      if (!dropPlaceExists && items.length === 0) {
+        dropPlaceExists = true;
+        setDropPlace(0);
+      }
+    } else {
+      dropPlaceExists = false;
+    }
+
+    if (props.allowedTypes) {
+      canDrop = props.allowedTypes.has(draggingItem.item.type);
+    } else if (props.checkAllowed) {
+      canDrop = props.checkAllowed(draggingItem.item);
+    } else {
+      canDrop = true;
+    }
+
+    if (props.capacity && props.capacity <= items.length) {
+      dropPlaceExists = false;
+    }
+
+    if (!canDrop) {
+      dropPlaceExists = false;
+    }
   }
 
   let title;
@@ -151,7 +199,26 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
   return (
     <div ref={ref}>
-      <div ref={drop} className={`dnd-container`}>
+      <div
+        ref={drop}
+        className={`dnd-container${canDrop ? ' can-drop' : ''}${
+          isOver ? ' is-over' : ''
+        }`}
+      >
+        {dropPlace !== null && (
+          <div
+            className="drop-place"
+            style={{
+              background: 'red',
+              display: dropPlaceExists ? 'block' : 'none',
+              top: dropPlaceExists
+                ? dropPlace === 0
+                  ? -4
+                  : dropPlace * 32 + 4 * (dropPlace - 1) + 1
+                : 'auto',
+            }}
+          ></div>
+        )}
         {title}
         {items.map((item: any, index: any) => {
           return (
@@ -171,6 +238,9 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
               dragContainerReplace={replace}
               setDropPlace={setDropPlace}
               onItemClick={props.onItemClick}
+              draggingItem={draggingItem}
+              setDraggingItem={setDraggingItem}
+              setIsNeedReplace={setIsNeedReplace}
             />
           );
         })}

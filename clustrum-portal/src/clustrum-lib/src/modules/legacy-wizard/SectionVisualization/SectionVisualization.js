@@ -5,7 +5,6 @@ import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import { CheckBox, Tooltip } from 'lego-on-react';
 
 import iconVisualization from 'icons/visualization.svg';
-import iconSwap from 'icons/swap.svg';
 import iconError from 'icons/error.svg';
 
 import {
@@ -15,6 +14,7 @@ import {
   FilterOutlined,
   SortAscendingOutlined,
   SortDescendingOutlined,
+  SwapOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -1179,10 +1179,10 @@ class SectionVisualization extends Component {
           if (inReplaceZone) {
             let drawReplace;
 
-            if (this.props?.allowedTypes) {
-              drawReplace = this.props?.allowedTypes.has(draggingItem.item.type);
-            } else if (this.props?.checkAllowed) {
-              drawReplace = this.props?.checkAllowed(draggingItem.item);
+            if (props?.listAllowedTypes) {
+              drawReplace = props?.listAllowedTypes.has(draggingItem.item.type);
+            } else if (props?.checkAllowed) {
+              drawReplace = props?.checkAllowed(draggingItem.item);
             } else {
               drawReplace = false;
             }
@@ -1217,7 +1217,7 @@ class SectionVisualization extends Component {
           // Если есть нужный класс - триггерим реплейс
           if (element.className.indexOf(dragHoveredClassName) > -1) {
             element.className = element.className.replace(` ${dragHoveredClassName}`, '');
-            this.doingReplace = true;
+            props.setIsNeedReplace(true);
           }
         }}
         onMouseOver={() => {
@@ -1247,7 +1247,7 @@ class SectionVisualization extends Component {
         {item.type === 'PSEUDO' ? null : (
           <div className="item-right-icons-container">
             <div className="item-right-icon swap-icon">
-              <Icon data={iconSwap} width="16" />
+              <SwapOutlined width="16" />
             </div>
             <div
               className="item-right-icon cross-icon"

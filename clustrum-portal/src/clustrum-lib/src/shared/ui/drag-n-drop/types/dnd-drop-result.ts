@@ -5,6 +5,11 @@ export interface DndDropResult {
   targetItem: DndItem;
   droppedItemId: string;
   isNeedReplace: boolean;
-  onReplaced(): void;
+  dropPlace: number;
+  noSwap: boolean;
+  dropContainerItems(items: DndItem[]): void;
   dropContainerReplace(index: number, item: DndItem): void;
+  dropContainerInsert(item: DndItem, index: number): void;
+  dropContainerSwap(targetIndex: number, sourceIndex: number): void;
+  setIsNeedReplace(isNeedReplace: boolean): void;
 }
