@@ -1,6 +1,6 @@
 @media print {
   @page {
-    size: A4 landscape;
+    size: a4 landscape;
   }
 
   * {
@@ -17,20 +17,16 @@
   }
 
   .react-grid-item {
-    display: inline-block !important;
-    vertical-align: top;
-
-    margin: 10px;
-    max-width: calc(100% - 20px) !important;
-
     position: relative !important;
-    transform: unset !important;
-
+    display: inline-block !important;
+    max-width: calc(100% - 20px) !important;
+    margin: 10px;
+    vertical-align: top;
+    page-break-inside: avoid;
     border: 1px solid #e7e9ed !important;
     border-radius: 4px;
     box-shadow: none !important;
-
-    page-break-inside: avoid;
+    transform: unset !important;
   }
 
   .chartkit-menu__button {
