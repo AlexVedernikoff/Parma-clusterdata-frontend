@@ -36,7 +36,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       isOver: monitor.isOver(),
     }),
     //TODO 696922 вынести в отдельный метод и типизировать
-    drop: (itemWrapper: DndDropedItem, monitor: any): any => {
+    drop: (itemWrapper: DndDropedItem): any => {
       const { id } = props;
       const itemType = itemWrapper.item.type;
       const targetItem = items[itemWrapper.hoverIndex] ?? itemWrapper.item;
