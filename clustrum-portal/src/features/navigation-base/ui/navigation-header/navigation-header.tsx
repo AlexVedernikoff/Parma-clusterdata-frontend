@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Button, Dropdown, Input, Space } from 'antd';
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
+import { MenuInfo } from 'rc-menu/lib/interface';
 import { Header } from '../../../../entities/header/ui/header';
 import {
   formatPath,
@@ -48,7 +49,7 @@ export function NavigationHeader(props: NavigationHeaderProps): ReactElement {
     <Dropdown
       menu={{
         items: CREATE_MENU_ITEMS,
-        onClick: (menuInfo): void => {
+        onClick: (menuInfo: MenuInfo): void => {
           onCreateMenuClick(menuInfo.key as CreateMenuActionType);
         },
       }}
