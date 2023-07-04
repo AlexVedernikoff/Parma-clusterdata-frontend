@@ -1691,10 +1691,6 @@
   display: block;
 }
 
-.visualization-container .subcontainer .item:hover .item-right-icon.cross-icon:hover {
-  /*background-color: rgba(0, 0, 0, 0.05);*/
-}
-
 .visualization-container .subcontainer .item.is-dragging .item-right-icon.cross-icon,
 .visualization-container .subcontainer .item.is-dragging .item-right-icon.swap-icon {
   display: none !important;
@@ -1703,7 +1699,6 @@
 .visualization-container .subcontainer .item.is-dragging,
 .visualization-container .subcontainer .item:active,
 .visualization-container .subcontainer .item:focus {
-  padding: 4px 11px 3px;
   cursor: -webkit-grabbing;
   cursor: grabbing;
 }
@@ -4293,8 +4288,7 @@ hr {
 
 .dnd-container .item-icon {
   display: flex;
-  padding: 8px;
-  margin-left: -8px;
+  padding: 8px 8px 8px 0;
 }
 
 .dataset-icon {
