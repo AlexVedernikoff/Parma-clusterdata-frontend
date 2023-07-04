@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 
+// TODO: изменить импорт на `@clustrum-lib`
 import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/Widget';
 
 import ChartsModule from '../../modules/charts/charts';
