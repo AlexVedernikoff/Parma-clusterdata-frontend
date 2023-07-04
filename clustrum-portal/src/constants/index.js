@@ -27,7 +27,8 @@ import iconColumns from 'icons/columns.svg';
 import iconPoints from 'icons/points.svg';
 import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
-import { WIDGET_TYPE } from '@kamatech-data-ui/chartkit/lib/components/Widget/WidgetType';
+// TODO: изменить импорт на `@clustrum-lib`
+import { WIDGET_TYPE } from '@clustrum-lib/shared/ui/widgets-factory/WidgetType';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',

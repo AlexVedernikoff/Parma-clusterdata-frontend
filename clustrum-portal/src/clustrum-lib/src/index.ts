@@ -7,4 +7,8 @@ export {
   InputFilterControl,
   SelectFilterControl,
 } from '@lib-shared/ui/filter-controls';
-export { TableWidget, createCell, ChartWidget } from '@lib-shared/ui/widgets';
+export {
+  TableWidget,
+  createCell,
+  ChartWidget,
+} from '@lib-shared/ui/widgets-factory/widgets';

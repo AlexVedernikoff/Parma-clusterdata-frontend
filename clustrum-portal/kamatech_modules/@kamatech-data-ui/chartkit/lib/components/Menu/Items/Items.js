@@ -17,7 +17,8 @@ import CommentsModal from './CommentsModal/CommentsModal';
 import URI from '../../../modules/uri/uri';
 import settings from '../../../modules/settings/settings';
 import { normalizeSources } from '../../../modules/sources/sources';
-import { WIDGET_TYPE } from '../../Widget/Widget';
+// TODO: изменить импорт на `@clustrum-lib`
+import { WIDGET_TYPE } from '@clustrum-lib/shared/ui/widgets-factory/WidgetType';
 import { URL_OPTIONS } from '../../../modules/constants/constants';
 import { readComments } from '../../../modules/comments/comments';
 import { drawComments, hideComments } from '../../../modules/comments/drawing';
