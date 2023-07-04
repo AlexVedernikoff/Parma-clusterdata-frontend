@@ -328,7 +328,6 @@ class DialogFilter extends PureComponent {
   onSelectChange(newValue) {
     const { sdk } = this.props;
     let { value, dimensions, item, updates } = this.state;
-    console.debug({ dimensions, value });
 
     const operation = newValue[0];
     if (operation.selectable) {
