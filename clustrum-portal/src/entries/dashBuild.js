@@ -6,6 +6,9 @@ import { Utils } from '@kamatech-data-ui/clustrum';
 import App from '../components/App/App';
 import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
+import { ConfigProvider } from 'antd';
+import ruRU from 'antd/locale/ru_RU';
+import { ANT_TOKEN } from '@shared/config/theme';
 
 import './../css/clustrum/colors.css';
 import './../css/app.css';
@@ -30,10 +33,12 @@ logVersion();
 
 export function DashBuild() {
   return (
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <App />
-      </ConnectedRouter>
-    </Provider>
+    <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
+      </Provider>
+    </ConfigProvider>
   );
 }

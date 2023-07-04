@@ -1,15 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { AppContainer } from 'react-hot-loader';
 import configureStore from 'store/configureStore';
+import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
-import NavigationPage from '../containers/NavigationPage/NavigationPage';
+import DatasetRouter from '../components/DatasetRouter/DatasetRouter';
 
 import './../css/clustrum/colors.css';
 import './../css/vendors.css';
 import './../css/commons.css';
-import './../css/navigation.css';
+import './../css/dataset.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
@@ -22,19 +24,23 @@ const sdk = new SDK({
   currentCloudId: window.DL.currentCloudId,
   currentCloudFolderId: window.DL.currentCloudFolderId,
 });
-const store = configureStore();
+
+const toaster = new Toaster();
+
+const store = configureStore({
+  sdk,
+  toaster,
+});
 
 Utils.setBodyFeatures();
 
 logVersion();
 
-export function NavigationBuild() {
+export function DatasetBuild() {
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
-        <Router>
-          <NavigationPage sdk={sdk} />
-        </Router>
+        <DatasetRouter sdk={sdk} />
       </Provider>
     </ConfigProvider>
   );

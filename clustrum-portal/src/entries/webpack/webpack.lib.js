@@ -16,8 +16,6 @@ module.exports = {
   },
   externals: {
     react: 'react',
-    'react-redux': 'react-redux',
-    redux: 'redux',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
