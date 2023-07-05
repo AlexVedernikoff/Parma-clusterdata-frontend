@@ -1276,17 +1276,17 @@ class SectionVisualization extends Component {
                 {CONFLICT_TOOLTIPS[item.conflict]}
               </Tooltip>
             ) : null}
-            {props?.listId === 'sort-container' ? (
-              <div className="item-right-icon sort-icon">
-                {item.direction === 'ASC' ? (
-                  <SortAscendingOutlined width="16" height="16" />
-                ) : (
-                  <SortDescendingOutlined width="16" height="16" />
-                )}
-              </div>
-            ) : null}
           </div>
         )}
+        {props?.listId === 'sort-container' ? (
+          <div className="item-sort">
+            {item.direction === 'ASC' ? (
+              <SortAscendingOutlined width="16" height="16" />
+            ) : (
+              <SortDescendingOutlined width="16" height="16" />
+            )}
+          </div>
+        ) : null}
       </div>
     );
   }
