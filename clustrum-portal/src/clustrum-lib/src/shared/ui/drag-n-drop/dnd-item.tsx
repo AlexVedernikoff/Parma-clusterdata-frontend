@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { DragSourceMonitor, DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
 import { DndItemProps, DndDropResult, DndDropedItem } from './types';
 
-// TODO 696922 деконструировать просы
+// TODO 696922 деконструировать просы, вынести функции и уменьшить размер компонента
 /* eslint-disable react/destructuring-assignment */
 export function DndItem(props: DndItemProps): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
