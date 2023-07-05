@@ -40,8 +40,8 @@ class Unknown extends React.PureComponent<UnknownProps> {
 }
 
 interface ConfigType {
-  hideComments: boolean;
-  showSideHtml: boolean;
+  shouldHideComments: boolean;
+  shouldShowSideHtml: boolean;
 }
 
 // TODO: Взято из `Control.js`, после типизации `Control`-а импортировать типы оттуда
@@ -126,7 +126,7 @@ export class Widget extends React.PureComponent<WidgetProps> {
     return sideHtml ? (
       <SideHtml
         html={sideHtml}
-        visible={!config.hideComments && config.showSideHtml}
+        visible={!config.shouldHideComments && config.shouldShowSideHtml}
         key="side"
       />
     ) : null;
