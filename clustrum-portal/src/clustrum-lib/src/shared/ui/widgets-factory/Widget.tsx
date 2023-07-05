@@ -123,42 +123,51 @@ export class Widget extends React.PureComponent<WidgetProps> {
   renderSideHtml(): JSX.Element | null {
     const { data } = this.props;
     const { sideHtml, config } = data;
-    return sideHtml ? (
+
+    if (!sideHtml) {
+      return null;
+    }
+
+    return (
       <SideHtml
         html={sideHtml}
         visible={!config.shouldHideComments && config.shouldShowSideHtml}
         key="side"
       />
-    ) : null;
+    );
   }
 
   renderControl(): JSX.Element | null {
     const { data, onChange } = this.props;
     const { uiScheme, params, entryId, widgetType } = data;
 
-    if (uiScheme) {
-      return (
-        <Control
-          scheme={uiScheme}
-          params={params}
-          entryId={entryId}
-          onChange={onChange}
-          standalone={widgetType === WIDGET_TYPE.Control}
-        />
-      );
+    if (!uiScheme) {
+      return null;
     }
 
-    return null;
+    return (
+      <Control
+        scheme={uiScheme}
+        params={params}
+        entryId={entryId}
+        onChange={onChange}
+        standalone={widgetType === WIDGET_TYPE.Control}
+      />
+    );
   }
 
   render(): JSX.Element | null {
     const { data } = this.props;
-    return data ? (
+
+    if (!data) {
+      return null;
+    }
+    return (
       <React.Fragment>
         {this.renderSideHtml()}
         {this.renderControl()}
         {this.renderWidget()}
       </React.Fragment>
-    ) : null;
+    );
   }
 }
