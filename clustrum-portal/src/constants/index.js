@@ -1196,6 +1196,8 @@ export const VISUALIZATIONS = [
   // INDICATOR_VISUALIZATION,
   // MULTILINE_VISUALIZATION,
   // COLUMN_PLAN_FACT_VISUALIZATION,
+
+  // Скрыты неиспользуемые чарты по просьбе аналитика Кластрум
 ];
 
 export const DIMENSION_NUMBER_OPERATIONS = [
