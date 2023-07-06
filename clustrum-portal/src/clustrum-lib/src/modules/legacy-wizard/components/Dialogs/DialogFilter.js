@@ -23,7 +23,7 @@ import {
   DATE_OPERATIONS,
 } from '../../../../../../constants';
 
-import { getIconForCast } from '../../../../../../utils/helpers';
+import { CastIconsFactory } from '@lib-shared/ui/cast-icons-factory';
 
 const b = block('dialog-filter');
 
@@ -877,7 +877,6 @@ class DialogFilter extends PureComponent {
       const { cast } = item;
       const itemType = item.type.toLowerCase();
       const isDate = cast === 'date' || cast === 'datetime';
-      const castIconData = getIconForCast(cast);
 
       // По умолчанию все валидно
       let valid = true;
@@ -897,7 +896,7 @@ class DialogFilter extends PureComponent {
           >
             <Dialog.Header
               caption={item.title}
-              insertBefore={<Icon data={castIconData} width="16" />}
+              insertBefore={<CastIconsFactory iconType={cast} />}
             />
             <Dialog.Body>{this.renderModalBody()}</Dialog.Body>
             <Dialog.Footer

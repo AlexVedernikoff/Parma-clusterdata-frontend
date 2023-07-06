@@ -3,8 +3,7 @@ import React, { PureComponent } from 'react';
 import block from 'bem-cn-lite';
 import { TextInput } from 'lego-on-react';
 
-import { getIconForCast } from '../../../../../../utils/helpers';
-import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
+import { CastIconsFactory } from '@lib-shared/ui/cast-icons-factory';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 import Select from '../../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import TextArea from '../../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/textarea/textarea.react';
@@ -214,7 +213,6 @@ class DialogFormatTemplate extends PureComponent {
       const { cast } = item;
       const itemType = item.type.toLowerCase();
       const isDate = cast === 'date' || cast === 'datetime';
-      const castIconData = getIconForCast(cast);
 
       // По умолчанию все валидно
       let valid = true;
@@ -228,7 +226,7 @@ class DialogFormatTemplate extends PureComponent {
           >
             <Dialog.Header
               caption={item.title}
-              insertBefore={<Icon data={castIconData} width="16" />}
+              insertBefore={<CastIconsFactory iconType={cast} />}
             />
             <Dialog.Body>{this.renderBody()}</Dialog.Body>
             <Dialog.Footer
