@@ -13,7 +13,7 @@ import Text from '@kamatech-data-ui/chartkit/lib/components/Widget/WikiText/Wiki
 import Metric from '@kamatech-data-ui/chartkit/lib/components/Widget/Metric/Metric';
 import Control from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
-import { WIDGET_TYPE } from './WidgetType';
+import { WidgetType } from './WidgetType';
 
 interface UnknownProps {
   onLoad(): void;
@@ -54,7 +54,7 @@ interface SchemeItem {
 }
 
 interface WidgetData {
-  widgetType: WIDGET_TYPE;
+  widgetType: WidgetType;
   // Следующие два нужны только для `SideHtml`
   config: ConfigType;
   sideHtml: string;
@@ -86,7 +86,7 @@ export class Widget extends React.PureComponent<WidgetProps> {
     const { data } = this.props;
     const { widgetType } = data;
 
-    if (widgetType === WIDGET_TYPE.Control) {
+    if (widgetType === WidgetType.Control) {
       const { onLoad } = this.props;
       onLoad();
     }
@@ -97,23 +97,23 @@ export class Widget extends React.PureComponent<WidgetProps> {
     const { widgetType } = data;
 
     switch (widgetType) {
-      case WIDGET_TYPE.Graph:
+      case WidgetType.Graph:
         return <ChartWidget {...this.props} />;
-      case WIDGET_TYPE.Map:
+      case WidgetType.Map:
         return <OLMap {...this.props} />;
-      case WIDGET_TYPE.Card:
+      case WidgetType.Card:
         return <Card {...this.props} />;
-      case WIDGET_TYPE.Indicator:
+      case WidgetType.Indicator:
         return <Indicator {...this.props} />;
-      case WIDGET_TYPE.Table:
+      case WidgetType.Table:
         return <Table {...this.props} />;
-      case WIDGET_TYPE.Ymap:
+      case WidgetType.Ymap:
         return <YandexMap {...this.props} />;
-      case WIDGET_TYPE.Text:
+      case WidgetType.Text:
         return <Text {...this.props} />;
-      case WIDGET_TYPE.Metric:
+      case WidgetType.Metric:
         return <Metric {...this.props} />;
-      case WIDGET_TYPE.Control:
+      case WidgetType.Control:
         return null;
       default:
         return <Unknown {...this.props} />;
@@ -151,7 +151,7 @@ export class Widget extends React.PureComponent<WidgetProps> {
         params={params}
         entryId={entryId}
         onChange={onChange}
-        standalone={widgetType === WIDGET_TYPE.Control}
+        standalone={widgetType === WidgetType.Control}
       />
     );
   }

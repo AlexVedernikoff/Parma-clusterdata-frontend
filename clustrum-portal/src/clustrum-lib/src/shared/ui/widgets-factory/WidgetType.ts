@@ -1,4 +1,4 @@
-export enum WIDGET_TYPE {
+export enum WidgetType {
   Graph = 'graph',
   Table = 'table',
   Map = 'map',
