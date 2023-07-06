@@ -158,7 +158,7 @@ class SectionVisualization extends Component {
     const { items } = placeholder;
 
     const placeholderTitleLabels = {
-      section_colors: 'Цвета',
+      // section_colors: 'Цвета', Скрыто по просьбе аналитика Кластрум
       section_columns: 'Столбцы',
       section_dimensions: 'Измерения',
       section_filters: 'Фильтры',
@@ -166,14 +166,14 @@ class SectionVisualization extends Component {
       section_measure: 'Показатель',
       additional_measure: 'Дополнительные показатели',
       signatures: 'Подписи',
-      additional_data: 'Сопроводительные данные',
+      // additional_data: 'Сопроводительные данные', Скрыто по просьбе аналитика Кластрум
       map_color: 'Цвет',
       focus_count: 'Количественные показатели',
       array_join: 'Связываение по полю-массив',
       array_last_item_join: 'Связываение по последнему полю массива',
       map_size: 'Размер',
       tooltip_measure: 'Подписи',
-      drill_down_measure: 'Поле DrillDown',
+      // drill_down_measure: 'Поле DrillDown', Скрыто по просьбе аналитика Кластрум
       drill_down_filter: 'Фильтр для детализации',
       section_measures_map_cluster: 'Измерение',
       administrative_divisions: 'Административные деления',
@@ -571,6 +571,7 @@ class SectionVisualization extends Component {
             />
           </div>
         )}
+        {/* Скрыто по просьбе аналитика Кластрум
         {visualization.allowColors && (
           <div className="subcontainer">
             <div className="subheader">
@@ -616,7 +617,7 @@ class SectionVisualization extends Component {
               }}
             />
           </div>
-        )}
+        )} */}
         {visualization.allowSort && (
           <div className="subcontainer">
             <div className="subheader">

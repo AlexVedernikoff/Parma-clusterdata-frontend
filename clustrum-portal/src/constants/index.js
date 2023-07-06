@@ -586,15 +586,16 @@ const COLUMN_VISUALIZATION = {
       capacity: Infinity,
       onChange: onYAxisChange,
     },
-    {
-      allowedTypes: ITEM_TYPES.ALL,
-      id: 'additional_measure',
-      type: 'additional_measure',
-      title: 'additional_data',
-      icon: <DatabaseOutlined width="16" />,
-      items: [],
-      capacity: Infinity,
-    },
+    // Скрыто по просьбе аналитика Кластрум
+    // {
+    //   allowedTypes: ITEM_TYPES.ALL,
+    //   id: 'additional_measure',
+    //   type: 'additional_measure',
+    //   title: 'additional_data',
+    //   icon: <DatabaseOutlined width="16" />,
+    //   items: [],
+    //   capacity: Infinity,
+    // },
     {
       allowedTypes: ITEM_TYPES.ALL,
       id: 'signatures',
@@ -840,14 +841,15 @@ const FLAT_TABLE_VISUALIZATION = {
       required: true,
       capacity: Infinity,
     },
-    {
-      allowedTypes: ITEM_TYPES.ALL,
-      id: 'drill_down_measure',
-      type: 'drill_down_measure',
-      title: 'drill_down_measure',
-      items: [],
-      capacity: 1,
-    },
+    // Скрыто по просьбе аналитика Кластрум
+    // {
+    //   allowedTypes: ITEM_TYPES.ALL,
+    //   id: 'drill_down_measure',
+    //   type: 'drill_down_measure',
+    //   title: 'drill_down_measure',
+    //   items: [],
+    //   capacity: 1,
+    // },
   ],
 };
 
