@@ -150,7 +150,7 @@ export const getCreateMenuItemsExternal = memoize(() => [
   {
     value: 'widget',
     icon: iconFilesWidget,
-    text: 'Диаграмму',
+    text: 'Элемент аналитической панели',
   },
   {
     value: 'dashboard',
