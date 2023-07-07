@@ -19,11 +19,12 @@ export function SectionDatasetGroup(props) {
       </div>
       {datasetNames.map(value => {
         {
-          let items = indicators.filter(d => d.datasetName === value);
+          let items = indicators.filter(indicator => indicator.datasetName === value);
           if (
             items.length > 0 ||
             (filteredIndicators &&
-              filteredIndicators.filter(d => d.datasetName === value).length > 0)
+              filteredIndicators.filter(indicator => indicator.datasetName === value)
+                .length > 0)
           ) {
             return (
               <DndContainer
@@ -33,7 +34,9 @@ export function SectionDatasetGroup(props) {
                 items={
                   (filteredIndicators &&
                     filteredIndicators.length &&
-                    filteredIndicators.filter(d => d.datasetName === value)) ||
+                    filteredIndicators.filter(
+                      indicator => indicator.datasetName === value,
+                    )) ||
                   items
                 }
                 allowedTypes={ITEM_TYPES.DIMENSIONS}
