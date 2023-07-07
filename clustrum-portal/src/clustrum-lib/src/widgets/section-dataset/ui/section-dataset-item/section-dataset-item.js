@@ -13,6 +13,7 @@ function removeIgnoreDrag(element) {
   element.className = element.className.replace(' ignore-drag', '');
 }
 
+// TODO уменьшить количество строк в компоненте (#679656)
 export function SectionDatasetItem(props) {
   const { item, className, isDragging, updateDatasetByValidation, setState } = props;
 
