@@ -42,7 +42,9 @@ export function SectionDatasetItem(props) {
   };
 
   const onClickRemoveDatasetItem = item => {
-    if (!item.local) return;
+    if (!item.local) {
+      return;
+    }
 
     removeField({ field: item });
   };
@@ -69,16 +71,17 @@ export function SectionDatasetItem(props) {
         currentTitle = row.field.title;
       }
 
-      if (title === currentTitle) {
-        const match = title.match(/\((\d+)\)$/);
+      if (title !== currentTitle) {
+        return;
+      }
 
-        if (match) {
-          const i = Number(match[1]);
+      const match = title.match(/\((\d+)\)$/);
 
-          title = title.replace(/\((\d+)\)$/, `(${i + 1})`);
-        } else {
-          title = `${title} (1)`;
-        }
+      if (match) {
+        const i = Number(match[1]);
+        title = title.replace(/\((\d+)\)$/, `(${i + 1})`);
+      } else {
+        title = `${title} (1)`;
       }
     });
 
@@ -97,7 +100,9 @@ export function SectionDatasetItem(props) {
   };
 
   const onClickEditDatasetItem = item => {
-    if (!item.local) return;
+    if (!item.local) {
+      return;
+    }
 
     setState({
       isFieldEditorVisible: true,

@@ -161,18 +161,16 @@ class SectionDataset extends Component {
     };
   }
 
-  renderDatasetItem = props => {
-    return (
-      <SectionDatasetItem
-        {...props}
-        sdk={this.props.sdk}
-        dataset={this.props.dataset}
-        updates={this.props.updates}
-        setState={this.setState}
-        updateDatasetByValidation={this.props.updateDatasetByValidation}
-      />
-    );
-  };
+  renderDatasetItem = props => (
+    <SectionDatasetItem
+      {...props}
+      sdk={this.props.sdk}
+      dataset={this.props.dataset}
+      updates={this.props.updates}
+      setState={this.setState}
+      updateDatasetByValidation={this.props.updateDatasetByValidation}
+    />
+  );
 
   renderSectionsOrBlank = () => {
     const { isDatasetLoading, isDatasetLoaded, datasetError } = this.props;

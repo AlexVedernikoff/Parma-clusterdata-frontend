@@ -1,4 +1,2 @@
-import { CastIconType } from './cast-icon-type';
-import { CastIconsFactoryProps } from './cast-icons-factory-props';
-
-export { CastIconType, CastIconsFactoryProps };
+export { CastIconType } from './cast-icon-type';
+export { CastIconsFactoryProps } from './cast-icons-factory-props';
