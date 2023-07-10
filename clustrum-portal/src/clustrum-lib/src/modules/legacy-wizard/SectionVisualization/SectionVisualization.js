@@ -79,7 +79,7 @@ import {
   selectUpdates,
 } from '../../../../../reducers/dataset';
 
-import { getIconForCast } from '../../../../../utils/helpers';
+import { CastIconsFactory } from '@lib-shared/ui/cast-icons-factory';
 
 import Select from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import TextInput from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
@@ -1150,8 +1150,6 @@ class SectionVisualization extends Component {
       swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
     }`;
 
-    const castIconData = getIconForCast(item.cast);
-
     return (
       <div
         key={item.id}
@@ -1235,12 +1233,7 @@ class SectionVisualization extends Component {
       >
         <HolderOutlined className="item-holder" />
 
-        {/* Костыль, как и в SectionDataset */}
-        {!!castIconData ? (
-          <div className="item-icon">{castIconData}</div>
-        ) : (
-          <Icon data={castIconData} width="16" />
-        )}
+        <CastIconsFactory iconType={item.cast} />
 
         <div className="item-title" title={item.datasetName + '.' + item.title}>
           {item.title}
