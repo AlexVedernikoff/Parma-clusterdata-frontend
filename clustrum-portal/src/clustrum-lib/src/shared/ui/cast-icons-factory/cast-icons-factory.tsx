@@ -4,8 +4,7 @@ import Icon, {
   CalendarOutlined,
   NumberOutlined,
 } from '@ant-design/icons';
-import { GeoIcon } from './icons/geo-icon';
-import { BooleanIcon } from './icons/boolean-icon';
+import { GeoIcon, BooleanIcon } from './icons';
 import { CastIconType, CastIconsFactoryProps } from './types';
 
 export function CastIconsFactory(props: CastIconsFactoryProps): JSX.Element {

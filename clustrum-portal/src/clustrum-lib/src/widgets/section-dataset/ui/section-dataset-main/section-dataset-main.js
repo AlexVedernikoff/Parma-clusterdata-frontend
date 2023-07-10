@@ -3,9 +3,9 @@ import { Button } from 'lego-on-react';
 import SearchInput from '@lib-modules/legacy-wizard/components/SearchInput/SearchInput';
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import iconPlus from 'icons/plus.svg';
-import { SectionDatasetGroup } from '../section-dataset-group/section-dataset-group';
+import { SectionDatasetGroup } from '../section-dataset-group';
 
-export function Sections(props) {
+export function SectionDatasetMain(props) {
   const {
     filteredMeasures,
     filteredDimensions,

@@ -37,7 +37,9 @@ import {
   selectFields,
   selectAceModeUrl,
 } from '../../../../reducers/dataset';
-import { SectionDatasetItem, SectionDatasetError, Sections } from './ui';
+import { SectionDatasetItem } from './ui/section-dataset-item';
+import { SectionDatasetError } from './ui/section-dataset-error';
+import { SectionDatasetMain } from './ui/section-dataset-main';
 
 class SectionDataset extends Component {
   static propTypes = {
@@ -190,7 +192,7 @@ class SectionDataset extends Component {
     }
 
     return isDatasetLoaded ? (
-      <Sections
+      <SectionDatasetMain
         {...this.props}
         onChangeSearchInputField={this.onChangeSearchInputField}
         onButtonAddParamClick={this.openFieldEditor}
