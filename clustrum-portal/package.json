@@ -17,16 +17,20 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "prepare": "cd .. && husky install",
-    "prettier:src": "prettier --write src/**/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
-    "prettier:kamatech_modules": "prettier --write kamatech_modules/**/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
+    "prettier": "prettier **/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
+    "prettier:fix": "prettier --write **/*.{css,js,jsx,ts,tsx,md,json} --config .prettierrc",
     "prettier:pre-commit": "prettier --write --config .prettierrc",
     "eslint": "eslint src/**/*.{ts,tsx,json}",
     "eslint:fix": "eslint src/**/*.{ts,tsx,json} --fix",
-    "eslint:pre-commit": "eslint --fix"
+    "eslint:pre-commit": "eslint --fix",
+    "stylelint": "stylelint **/*.css",
+    "stylelint:fix": "stylelint **/*.css --fix",
+    "stylelint:pre-commit": "stylelint --fix"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json}": "npm run eslint:pre-commit",
-    "(src|kamatech_modules)/**/*.{css,js,jsx,ts,tsx,md,json}": "npm run prettier:pre-commit"
+    "**/*.{css,scss}": "npm run stylelint:pre-commit",
+    "**/*.{css,scss,js,jsx,ts,tsx,md,json}": "npm run prettier:pre-commit"
   },
   "dependencies": {
     "@ant-design/icons": "5.0.0",
@@ -114,6 +118,7 @@
     "tiny-invariant": "1.0.6",
     "toggle-selection": "1.0.6",
     "type": "1.2.0",
+    "typescript-plugin-css-modules": "5.0.1",
     "uuid": "3.3.3",
     "value-equal": "1.0.1",
     "warning": "4.0.3"
@@ -160,6 +165,12 @@
     "prettier": "1.19.1",
     "react-hot-loader": "4.12.18",
     "style-loader": "0.23.1",
+    "stylelint": "13.13.1",
+    "stylelint-config-rational-order": "0.1.2",
+    "stylelint-config-recommended-scss": "4.2.0",
+    "stylelint-config-standard": "20.0.0",
+    "stylelint-order": "4.1.0",
+    "stylelint-scss": "3.19.0",
     "ts-jest": "27.1.2",
     "ts-loader": "6.2.1",
     "typescript": "5.0.3",

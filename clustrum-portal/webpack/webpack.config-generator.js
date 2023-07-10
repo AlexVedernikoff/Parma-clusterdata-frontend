@@ -101,6 +101,21 @@ exports.generateConfig = (
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
+          exclude: /\.module\.css$/,
+        },
+        {
+          test: /\.module\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[name]__[local]--[hash:base64:5]',
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,

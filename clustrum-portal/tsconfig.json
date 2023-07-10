@@ -28,7 +28,8 @@
       "@lib-features/*": ["./src/clustrum-lib/src/features/*"],
       "@lib-entities/*": ["./src/clustrum-lib/src/entities/*"],
       "@lib-shared/*": ["./src/clustrum-lib/src/shared/*"]
-    }
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules", "./src/tests/**/*"]
