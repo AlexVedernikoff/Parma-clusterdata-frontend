@@ -178,7 +178,7 @@ class Dataset extends React.Component {
         case REPLACE_SOURCE_MODE_ID: {
           const { id: connectionId } = connection;
 
-          window.open(`/datasets/${datasetId}/source?id=${connectionId}`, '_blank');
+          window.open(`/datasets/source?id=${connectionId}`, '_blank');
 
           break;
         }
