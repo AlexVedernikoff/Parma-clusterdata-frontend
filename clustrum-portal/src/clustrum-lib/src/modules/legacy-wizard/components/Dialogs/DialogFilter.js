@@ -277,6 +277,7 @@ class DialogFilter extends PureComponent {
 
                 this.setState({
                   dimensions,
+                  originalDimensions: dimensions,
                   value,
                 });
               }
@@ -327,7 +328,7 @@ class DialogFilter extends PureComponent {
 
   onSelectChange(newValue) {
     const { sdk } = this.props;
-    let { value, dimensions, item, updates } = this.state;
+    let { value, dimensions, originalDimensions, item, updates } = this.state;
 
     const operation = newValue[0];
     if (operation.selectable) {
@@ -357,6 +358,7 @@ class DialogFilter extends PureComponent {
 
               this.setState({
                 dimensions,
+                originalDimensions: dimensions,
                 value,
               });
             }
@@ -374,7 +376,7 @@ class DialogFilter extends PureComponent {
         reset();
       } else {
         const [first, ...rest] = value ?? [];
-        value = first ? [first] : [];
+        value = first ? [first] : [''];
         dimensions = [...dimensions, ...rest].sort(collator.compare);
       }
     }
@@ -386,7 +388,7 @@ class DialogFilter extends PureComponent {
     });
 
     function reset() {
-      dimensions = [...dimensions, ...value].sort(collator.compare);
+      dimensions = [...originalDimensions].sort(collator.compare);
       value = [];
     }
   }

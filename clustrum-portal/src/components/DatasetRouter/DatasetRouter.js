@@ -46,7 +46,7 @@ class DatasetRouter extends PureComponent {
               )}
             />
             <Route
-              path={'/datasets/:datasetId/source'}
+              path="/datasets/source"
               render={props => {
                 const { match: { params: { datasetId } = {} } = {} } = props;
 
