@@ -29,7 +29,7 @@ export function SectionDatasetGroup(props) {
             return (
               <DndContainer
                 id="dimensions-container"
-                noRemove={true}
+                isNeedSwap
                 title={value}
                 items={
                   (filteredIndicators &&

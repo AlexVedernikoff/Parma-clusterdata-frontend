@@ -216,6 +216,8 @@ class SectionVisualization extends Component {
           id={`placeholder-container-${placeholder.id}`}
           capacity={placeholder.capacity}
           allowedTypes={placeholder.allowedTypes}
+          isNeedRemove
+          isNeedSwap
           items={items}
           itemsClassName="placeholder-item"
           wrapTo={this.renderDatasetItem}
@@ -410,7 +412,7 @@ class SectionVisualization extends Component {
             </div>
             <DndContainer
               id="filter-container"
-              isNeedSwap={false}
+              isNeedRemove
               items={[...filters]}
               allowedTypes={ITEM_TYPES.ALL}
               itemsClassName="placeholder-item"
@@ -582,6 +584,8 @@ class SectionVisualization extends Component {
             </div>
             <DndContainer
               id="colors-container"
+              isNeedRemove
+              isNeedSwap
               items={colors}
               capacity={visualization.colorsCapacity || 1}
               checkAllowed={item => {
@@ -628,6 +632,8 @@ class SectionVisualization extends Component {
             </div>
             <DndContainer
               id="sort-container"
+              isNeedRemove
+              isNeedSwap
               items={sort}
               capacity={10}
               checkAllowed={item => {
@@ -1125,7 +1131,7 @@ class SectionVisualization extends Component {
   }
 
   renderDatasetItem(props, itemComponent) {
-    const { item, draggingItem, className, isDragging } = props;
+    const { item, draggedItem, className, isDragging } = props;
 
     let resultClassName = '';
 
@@ -1139,12 +1145,12 @@ class SectionVisualization extends Component {
     }
 
     const swapIsAllowed =
-      draggingItem &&
-      !(draggingItem.listIsNeedRemove === false) &&
-      ((draggingItem.listAllowedTypes && draggingItem.listAllowedTypes.has(item.type)) ||
-        (draggingItem.listCheckAllowed && draggingItem.listCheckAllowed(item))) &&
-      ((props.listAllowedTypes && props.listAllowedTypes.has(draggingItem.item.type)) ||
-        (props.listCheckAllowed && props.listCheckAllowed(draggingItem.item)));
+      draggedItem &&
+      !(draggedItem.listIsNeedRemove === false) &&
+      ((draggedItem.listAllowedTypes && draggedItem.listAllowedTypes.has(item.type)) ||
+        (draggedItem.listCheckAllowed && draggedItem.listCheckAllowed(item))) &&
+      ((props.listAllowedTypes && props.listAllowedTypes.has(draggedItem.item.type)) ||
+        (props.listCheckAllowed && props.listCheckAllowed(draggedItem.item)));
 
     const dragHoveredClassName = `drag-hovered ${
       swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
@@ -1179,9 +1185,9 @@ class SectionVisualization extends Component {
             let drawReplace;
 
             if (props?.listAllowedTypes) {
-              drawReplace = props?.listAllowedTypes.has(draggingItem.item.type);
+              drawReplace = props?.listAllowedTypes.has(draggedItem.item.type);
             } else if (props?.checkAllowed) {
-              drawReplace = props?.checkAllowed(draggingItem.item);
+              drawReplace = props?.checkAllowed(draggedItem.item);
             } else {
               drawReplace = false;
             }

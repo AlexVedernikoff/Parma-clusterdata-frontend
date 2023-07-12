@@ -1,4 +1,4 @@
-import { DndItem } from './dnd-item';
+import { DndItemData } from './dnd-item-data';
 import { DndItemProps } from './dnd-item-props';
 
 export interface DndContainerProps {
@@ -6,14 +6,14 @@ export interface DndContainerProps {
   capacity?: number;
   disabled?: boolean;
   id: string;
-  items: DndItem[];
+  items: DndItemData[];
   itemsClassName?: string;
   isNeedRemove?: boolean;
   isNeedSwap?: boolean;
   title?: string;
   listId?: string;
-  onItemClick(e: Event, item: DndItem): void;
-  onUpdate(items: DndItem[], insertItem?: DndItem, action?: string): void;
+  onItemClick(e: Event, item: DndItemData): void;
+  onUpdate(items: DndItemData[], insertItem?: DndItemData, action?: string): void;
   wrapTo(props: DndItemProps, component: HTMLDivElement | null): Element;
-  checkAllowed?(item: DndItem): boolean;
+  checkAllowed?(item: DndItemData): boolean;
 }

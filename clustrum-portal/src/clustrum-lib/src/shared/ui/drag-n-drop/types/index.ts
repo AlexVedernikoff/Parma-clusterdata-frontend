@@ -1,5 +1,5 @@
-export { DndItem } from './dnd-item';
+export { DndItemData } from './dnd-item-data';
 export { DndItemProps } from './dnd-item-props';
 export { DndContainerProps } from './dnd-container-props';
 export { DndDropResult } from './dnd-drop-result';
-export { DndDropedItem } from './dnd-droped-item';
+export { DndDraggedItem } from './dnd-dragged-item';

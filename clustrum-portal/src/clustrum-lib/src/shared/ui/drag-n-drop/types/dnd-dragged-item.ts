@@ -1,12 +1,12 @@
-import { DndItem } from './dnd-item';
+import { DndItemData } from './dnd-item-data';
 
-export type DndDropedItem = {
+export type DndDraggedItem = {
   className: string;
   hoverIndex: number;
   index: number;
-  item: DndItem;
+  item: DndItemData;
   listAllowedTypes: Set<string> | undefined;
   listId: string;
   listIsNeedRemove: boolean | undefined;
-  replace(index: number, item: DndItem): void;
+  replace(index: number, item: DndItemData): void;
 };

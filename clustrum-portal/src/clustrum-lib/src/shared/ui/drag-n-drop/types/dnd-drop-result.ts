@@ -1,15 +1,15 @@
-import { DndItem } from './dnd-item';
+import { DndItemData } from './dnd-item-data';
 
 export interface DndDropResult {
   revert: boolean;
-  targetItem: DndItem;
+  targetItem: DndItemData;
   droppedItemId: string;
   isNeedReplace: boolean;
   dropPlace: number;
   isNeedSwap: boolean;
-  dropContainerItems(items: DndItem[]): void;
-  dropContainerReplace(index: number, item: DndItem): void;
-  dropContainerInsert(item: DndItem, index: number): void;
+  dropContainerItems(items: DndItemData[]): void;
+  dropContainerReplace(index: number, item: DndItemData): void;
+  dropContainerInsert(index: number, item: DndItemData): void;
   dropContainerSwap(targetIndex: number, sourceIndex: number): void;
   setIsNeedReplace(isNeedReplace: boolean): void;
 }

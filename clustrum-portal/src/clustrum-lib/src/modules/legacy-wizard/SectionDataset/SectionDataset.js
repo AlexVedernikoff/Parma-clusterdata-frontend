@@ -525,7 +525,7 @@ class SectionDataset extends Component {
                 return (
                   <DndContainer
                     id="dimensions-container"
-                    isNeedRemove={false}
+                    isNeedSwap
                     title={value}
                     items={
                       (filteredDimensions &&
@@ -556,7 +556,7 @@ class SectionDataset extends Component {
                 return (
                   <DndContainer
                     id="measures-container"
-                    isNeedRemove={false}
+                    isNeedSwap
                     title={value}
                     allowedTypes={ITEM_TYPES.MEASURES}
                     items={
