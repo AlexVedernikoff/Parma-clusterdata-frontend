@@ -983,7 +983,7 @@
 
 .preview-resizer__history,
 .preview-resizer__preview {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
@@ -1396,6 +1396,7 @@
 }
 
 .dataset {
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
