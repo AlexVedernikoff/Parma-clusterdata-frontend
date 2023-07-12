@@ -4,9 +4,8 @@ export type DndDraggedItem = {
   className: string;
   hoverIndex: number;
   index: number;
-  item: DndItemData;
-  listAllowedTypes: Set<string> | undefined;
+  data: DndItemData;
   listId: string;
+  listAllowedTypes: Set<string> | undefined;
   listIsNeedRemove: boolean | undefined;
-  replace(index: number, item: DndItemData): void;
 };

@@ -340,17 +340,17 @@ class SectionDataset extends Component {
   }
 
   renderDatasetItem = props => {
-    const { item, className, isDragging } = props;
+    const { itemData, className, isDragging } = props;
 
     let resultClassName = '';
 
     resultClassName += className || '';
-    resultClassName += item.className ? ` ${item.className}` : '';
+    resultClassName += itemData.className ? ` ${itemData.className}` : '';
     resultClassName += isDragging ? ' is-dragging' : '';
-    resultClassName += item.local ? ' local-item' : '';
+    resultClassName += itemData.local ? ' local-item' : '';
 
     let castIconData;
-    switch (item.cast) {
+    switch (itemData.cast) {
       case 'integer':
       case 'uinteger':
       case 'float':
@@ -378,7 +378,7 @@ class SectionDataset extends Component {
     }
 
     return (
-      <div className={resultClassName} title={item.title}>
+      <div className={resultClassName} title={itemData.title}>
         <HolderOutlined className="item-holder" />
 
         {/* Не нашел подходящих иконок, поэтому пришлось оставить так */}
@@ -388,8 +388,8 @@ class SectionDataset extends Component {
           <Icon className="item-icon" data={castIconData} width="16" />
         )}
 
-        <div className="item-title" title={item.title}>
-          {item.title}
+        <div className="item-title" title={itemData.title}>
+          {itemData.title}
         </div>
         <div
           className="item-right-icon item-more-icon"
@@ -413,7 +413,7 @@ class SectionDataset extends Component {
             }
             popup={
               <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
-                {item.local ? (
+                {itemData.local ? (
                   <Menu
                     theme="normal"
                     view="default"
@@ -425,7 +425,7 @@ class SectionDataset extends Component {
                       type="option"
                       val="access"
                       onClick={() => {
-                        this.onClickRemoveDatasetItem(item);
+                        this.onClickRemoveDatasetItem(itemData);
                       }}
                     >
                       Удалить
@@ -434,7 +434,7 @@ class SectionDataset extends Component {
                       type="option"
                       val="access"
                       onClick={() => {
-                        this.onClickEditDatasetItem(item);
+                        this.onClickEditDatasetItem(itemData);
                       }}
                     >
                       Редактировать
@@ -452,7 +452,7 @@ class SectionDataset extends Component {
                       type="option"
                       val="access"
                       onClick={() => {
-                        this.onClickDuplicateDatasetItem(item);
+                        this.onClickDuplicateDatasetItem(itemData);
                       }}
                     >
                       Дублировать

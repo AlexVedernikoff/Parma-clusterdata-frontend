@@ -8,7 +8,7 @@ export interface DndItemProps {
   listIsNeedRemove?: boolean;
   listId: string;
   index: number;
-  item: DndItemData;
+  itemData: DndItemData;
   tooltipVisible: boolean;
   draggedItem: DndDraggedItem | null;
   onItemClick(e: Event, item: DndItemData): void;

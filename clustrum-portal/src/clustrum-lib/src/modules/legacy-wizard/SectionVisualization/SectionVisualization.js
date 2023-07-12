@@ -1131,26 +1131,27 @@ class SectionVisualization extends Component {
   }
 
   renderDatasetItem(props, itemComponent) {
-    const { item, draggedItem, className, isDragging } = props;
+    const { itemData, draggedItem, className, isDragging } = props;
 
     let resultClassName = '';
 
     resultClassName += className || '';
-    resultClassName += item.className ? ` ${item.className}` : '';
-    resultClassName += item.local ? ' local-item' : '';
-    resultClassName += item.conflict ? ' conflict' : '';
+    resultClassName += itemData.className ? ` ${itemData.className}` : '';
+    resultClassName += itemData.local ? ' local-item' : '';
+    resultClassName += itemData.conflict ? ' conflict' : '';
 
-    if (!item.undragable) {
+    if (!itemData.undragable) {
       resultClassName += isDragging ? ' is-dragging' : '';
     }
 
     const swapIsAllowed =
       draggedItem &&
       !(draggedItem.listIsNeedRemove === false) &&
-      ((draggedItem.listAllowedTypes && draggedItem.listAllowedTypes.has(item.type)) ||
-        (draggedItem.listCheckAllowed && draggedItem.listCheckAllowed(item))) &&
-      ((props.listAllowedTypes && props.listAllowedTypes.has(draggedItem.item.type)) ||
-        (props.listCheckAllowed && props.listCheckAllowed(draggedItem.item)));
+      ((draggedItem.listAllowedTypes &&
+        draggedItem.listAllowedTypes.has(itemData.type)) ||
+        (draggedItem.listCheckAllowed && draggedItem.listCheckAllowed(itemData))) &&
+      ((props.listAllowedTypes && props.listAllowedTypes.has(draggedItem.data.type)) ||
+        (props.listCheckAllowed && props.listCheckAllowed(draggedItem.data)));
 
     const dragHoveredClassName = `drag-hovered ${
       swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
@@ -1158,13 +1159,13 @@ class SectionVisualization extends Component {
 
     return (
       <div
-        key={item.id}
+        key={itemData.id}
         className={resultClassName}
-        title={item.title}
+        title={itemData.title}
         onDragOver={e => {
           const element = e.currentTarget;
 
-          if (item.type === 'PSEUDO') return;
+          if (itemData.type === 'PSEUDO') return;
 
           const { top, bottom } = e.currentTarget.getBoundingClientRect();
           const y = e.clientY - top;
@@ -1185,9 +1186,9 @@ class SectionVisualization extends Component {
             let drawReplace;
 
             if (props?.listAllowedTypes) {
-              drawReplace = props?.listAllowedTypes.has(draggedItem.item.type);
+              drawReplace = props?.listAllowedTypes.has(draggedItem.data.type);
             } else if (props?.checkAllowed) {
-              drawReplace = props?.checkAllowed(draggedItem.item);
+              drawReplace = props?.checkAllowed(draggedItem.data);
             } else {
               drawReplace = false;
             }
@@ -1233,18 +1234,18 @@ class SectionVisualization extends Component {
         }}
         onClick={e => {
           if (props?.onItemClick) {
-            props?.onItemClick(e, item);
+            props?.onItemClick(e, itemData);
           }
         }}
       >
         <HolderOutlined className="item-holder" />
 
-        <CastIconsFactory iconType={item.cast} />
+        <CastIconsFactory iconType={itemData.cast} />
 
-        <div className="item-title" title={item.datasetName + '.' + item.title}>
-          {item.title}
+        <div className="item-title" title={itemData.datasetName + '.' + itemData.title}>
+          {itemData.title}
         </div>
-        {item.type === 'PSEUDO' ? null : (
+        {itemData.type === 'PSEUDO' ? null : (
           <div className="item-right-icons-container">
             <div className="item-right-icon swap-icon">
               <SwapOutlined width="16" />
@@ -1262,7 +1263,7 @@ class SectionVisualization extends Component {
             <div className="item-right-icon error-icon">
               <Icon data={iconError} width="16" />
             </div>
-            {item.conflict ? (
+            {itemData.conflict ? (
               <Tooltip
                 anchor={itemComponent}
                 visible={props.tooltipVisible}
@@ -1273,14 +1274,14 @@ class SectionVisualization extends Component {
                 size="xs"
                 tail={false}
               >
-                {CONFLICT_TOOLTIPS[item.conflict]}
+                {CONFLICT_TOOLTIPS[itemData.conflict]}
               </Tooltip>
             ) : null}
           </div>
         )}
         {props?.listId === 'sort-container' ? (
           <div className="item-sort">
-            {item.direction === 'ASC' ? (
+            {itemData.direction === 'ASC' ? (
               <SortAscendingOutlined width="16" height="16" />
             ) : (
               <SortDescendingOutlined width="16" height="16" />
