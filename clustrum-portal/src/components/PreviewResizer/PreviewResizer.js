@@ -44,9 +44,9 @@ class PreviewResizer extends React.Component {
   RIGHT_VIEW = 'right';
   BOTTOM_VIEW = 'bottom';
 
-  headerHeight = 70;
+  headerHeight = 118;
   headerPreviewHeight = 48;
-  actionPanelHeight = 56;
+  actionPanelHeight = 0;
   datasetActionPanelHeight = 56;
   minWidth = 485;
   PREVIEW_HEIGHT_LS = 'previewHeight';
