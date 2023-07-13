@@ -1,3 +1,4 @@
+import { DateParams } from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
 import { PickerValue } from './picker-value';
 
 export interface RangeDatepickerFilterControlProps {
@@ -6,6 +7,6 @@ export interface RangeDatepickerFilterControlProps {
   label: string;
   maxDate?: string;
   minDate?: string;
-  value?: PickerValue;
-  onChange(value: PickerValue): void;
+  defaultValue?: DateParams;
+  onChange: ((value: PickerValue) => void) | null;
 }

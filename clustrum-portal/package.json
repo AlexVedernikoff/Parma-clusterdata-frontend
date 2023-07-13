@@ -25,7 +25,7 @@
     "eslint:pre-commit": "eslint --fix",
     "stylelint": "stylelint **/*.css",
     "stylelint:fix": "stylelint **/*.css --fix",
-    "stylelint:pre-commit": "stylelint --fix"
+    "stylelint:pre-commit": "stylelint --fix --allow-empty-input"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json}": "npm run eslint:pre-commit",

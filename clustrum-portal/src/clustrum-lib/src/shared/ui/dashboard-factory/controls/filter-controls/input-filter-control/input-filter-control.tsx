@@ -6,14 +6,9 @@ import { InputFilterControlProps } from './types';
 
 import './input-filter-control.css';
 
-export function InputFilterControl({
-  label,
-  placeholder,
-  defaultValue = '',
-  onChange,
-  className,
-}: InputFilterControlProps): JSX.Element {
-  const [value, setValue] = useState(defaultValue);
+export function InputFilterControl(props: InputFilterControlProps): JSX.Element | null {
+  const { label, placeholder, defaultValue = '', onChange, className } = props;
+  const [value, setValue] = useState<string>(defaultValue);
   const debouncedValue = useDebounce(value, 500);
 
   useEffect(() => {
@@ -21,8 +16,22 @@ export function InputFilterControl({
   }, [defaultValue]);
 
   useEffect(() => {
-    onChange(debouncedValue);
+    if (onChange) {
+      onChange(debouncedValue);
+    }
   }, [debouncedValue, onChange]);
+
+  if (!onChange) {
+    return null;
+  }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setValue(event.currentTarget.value);
+  };
+
+  const handlePress = (): void => {
+    onChange(value);
+  };
 
   return (
     <div className={classNames('input-filter-control', className)}>
@@ -31,8 +40,8 @@ export function InputFilterControl({
         <Input
           placeholder={placeholder}
           value={value}
-          onChange={({ currentTarget }): void => setValue(currentTarget.value)}
-          onPressEnter={(): void => onChange(value)}
+          onChange={handleChange}
+          onPressEnter={handlePress}
           className="input-filter-control__input"
         />
       </label>

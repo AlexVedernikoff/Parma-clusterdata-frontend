@@ -3,5 +3,5 @@ export interface InputFilterControlProps {
   className?: string;
   placeholder?: string;
   defaultValue?: string;
-  onChange(str: string): void;
+  onChange: ((str: string) => void) | null;
 }

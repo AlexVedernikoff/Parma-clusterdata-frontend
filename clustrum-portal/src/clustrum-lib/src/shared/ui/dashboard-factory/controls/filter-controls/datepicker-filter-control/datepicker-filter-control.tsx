@@ -6,38 +6,66 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { DatepickerFilterControlProps } from './types';
+import { DefaultValueType } from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
 
 import './datepicker-filter-control.css';
 
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 const POPUP_WIDTH = 288;
 
-export function DatepickerFilterControl({
-  className,
-  label,
-  maxDate,
-  minDate,
-  value,
-  dateFormat = DEFAULT_DATE_FORMAT,
-  onChange,
-}: DatepickerFilterControlProps): JSX.Element {
+export function DatepickerFilterControl(
+  props: DatepickerFilterControlProps,
+): JSX.Element {
+  const {
+    className,
+    label,
+    maxDate,
+    minDate,
+    defaultValue,
+    dateFormat = DEFAULT_DATE_FORMAT,
+    onChange,
+  } = props;
   const [date, setDate] = useState<Dayjs | null>(null);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const currentValue = dayjs(value);
-    if (currentValue.isValid()) {
+    let currentValue;
+
+    switch (defaultValue?.type) {
+      case DefaultValueType.Date:
+        currentValue = dayjs(defaultValue.value.from);
+        break;
+
+      case DefaultValueType.Relative:
+        currentValue = dayjs().subtract(parseInt(defaultValue.value.from), 'day');
+        break;
+
+      default:
+        currentValue = null;
+    }
+
+    if (!currentValue) {
+      return;
+    }
+
+    if (currentValue.isValid() && onChange) {
       setDate(currentValue);
+      onChange(currentValue.format(DEFAULT_DATE_FORMAT));
     } else {
       setDate(null);
     }
-  }, [value]);
+  }, [defaultValue]);
 
   const handleChange = (dateValue: Dayjs | null): void => {
+    if (!onChange) {
+      return;
+    }
     if (dateValue) {
+      setDate(dateValue);
       onChange(dateValue.format(DEFAULT_DATE_FORMAT));
     } else {
+      setDate(null);
       onChange('');
     }
   };
@@ -48,20 +76,26 @@ export function DatepickerFilterControl({
     }
   };
 
+  const hasDisabled = (current: Dayjs): boolean => {
+    return (
+      (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
+      (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
+    );
+  };
+
+  const placementPosition = shouldMoveCalendar ? 'bottomRight' : 'bottomLeft';
+
   return (
     <div className={classNames('datepicker-control', className)}>
       <label className="datepicker-control__label">
         {`${label}:`}
         <div ref={pickerRef} className="datepicker-control__picker">
           <DatePicker
-            disabledDate={(current): boolean =>
-              (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
-              (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
-            }
+            disabledDate={hasDisabled}
             format={dateFormat}
             locale={ruRU.DatePicker}
             picker="date"
-            placement={shouldMoveCalendar ? 'bottomRight' : 'bottomLeft'}
+            placement={placementPosition}
             value={date}
             onChange={handleChange}
             onOpenChange={handleCalendarPosition}

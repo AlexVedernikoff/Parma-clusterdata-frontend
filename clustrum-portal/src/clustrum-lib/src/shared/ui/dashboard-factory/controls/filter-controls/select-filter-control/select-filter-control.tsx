@@ -8,17 +8,23 @@ import { CheckOutlined } from '@ant-design/icons';
 
 import './select-filter-control.css';
 
+interface OptionsTypes {
+  value: string;
+  title: string;
+  key: string;
+}
+
 export function SelectFilterControl(props: SelectFilterControlProps): JSX.Element {
   const {
     multiselect = false,
     searchable = true,
-    value = [],
+    defaultValue = [],
     content,
     onChange,
     label,
     className,
   } = props;
-  const [currentValue, setCurrentValue] = useState<string | string[]>(value);
+  const [currentValue, setCurrentValue] = useState<string | string[]>(defaultValue);
   const debouncedValue = useDebounce(currentValue, 500);
 
   const allValues = content.map(({ value }) => value);
@@ -26,12 +32,47 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
     Array.isArray(currentValue) && allValues.length === currentValue.length;
 
   useEffect(() => {
-    setCurrentValue(value);
-  }, [value]);
+    setCurrentValue(defaultValue);
+  }, [defaultValue]);
 
   useEffect(() => {
-    onChange(debouncedValue);
+    if (onChange) {
+      onChange(debouncedValue);
+    }
   }, [debouncedValue, onChange]);
+
+  const handleSelect = (newValue: string): void => {
+    if (!multiselect && newValue === currentValue) {
+      setCurrentValue([]);
+    }
+  };
+
+  const getOptions = (): OptionsTypes[] => {
+    return content.map(({ title, value }) => ({
+      value,
+      title,
+      key: value,
+    }));
+  };
+
+  const getDropdown = (menu: JSX.Element): JSX.Element => {
+    return (
+      <>
+        {multiselect && isClearBtnVisible ? (
+          <SelectionAllBtn onClick={(): void => setCurrentValue([])} label="Очистить" />
+        ) : (
+          <SelectionAllBtn
+            onClick={(): void => setCurrentValue(allValues)}
+            label="Выбрать все"
+            icon={<CheckOutlined />}
+          />
+        )}
+        {menu}
+      </>
+    );
+  };
+
+  const getMode = multiselect ? 'multiple' : undefined;
 
   return (
     <div className={classNames('select-filter-control', className)}>
@@ -40,39 +81,15 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
         <Select
           placeholder="Все"
           className="select-filter-control__select"
-          mode={multiselect ? 'multiple' : undefined}
+          mode={getMode}
           maxTagCount="responsive"
           allowClear={multiselect}
           showSearch={searchable}
           value={currentValue}
-          options={content.map(({ title, value }) => ({
-            value,
-            title,
-            key: value,
-          }))}
+          options={getOptions()}
           onChange={setCurrentValue}
-          onSelect={(newValue: string): void => {
-            if (!multiselect && newValue === currentValue) {
-              setCurrentValue([]);
-            }
-          }}
-          dropdownRender={(menu): React.ReactElement => (
-            <>
-              {multiselect && isClearBtnVisible ? (
-                <SelectionAllBtn
-                  onClick={(): void => setCurrentValue([])}
-                  label="Очистить"
-                />
-              ) : (
-                <SelectionAllBtn
-                  onClick={(): void => setCurrentValue(allValues)}
-                  label="Выбрать все"
-                  icon={<CheckOutlined />}
-                />
-              )}
-              {menu}
-            </>
-          )}
+          onSelect={handleSelect}
+          dropdownRender={getDropdown}
         />
       </label>
     </div>

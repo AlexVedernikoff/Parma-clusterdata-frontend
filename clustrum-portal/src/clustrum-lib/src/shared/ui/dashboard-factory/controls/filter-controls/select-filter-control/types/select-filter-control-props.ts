@@ -3,9 +3,9 @@ import { Content } from './content';
 export interface SelectFilterControlProps {
   label: string;
   content: Content[];
-  value?: string | string[];
+  defaultValue?: string | string[];
   multiselect?: boolean;
   searchable?: boolean;
   className?: string;
-  onChange: (value: string | string[]) => void;
+  onChange: ((value: string | string[]) => void) | null;
 }

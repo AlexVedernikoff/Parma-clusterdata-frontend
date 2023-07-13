@@ -1,0 +1,23 @@
+.dashkit-plugin-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+}
+
+.dashkit-plugin-control__external {
+  align-items: normal;
+}
+
+.dashkit-plugin-control__item {
+  flex: 1;
+  overflow: hidden;
+}
+
+.dashkit-plugin-control__error {
+  color: var(--yc-color-scarlet);
+}
