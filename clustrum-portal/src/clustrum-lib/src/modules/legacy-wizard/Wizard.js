@@ -12,7 +12,7 @@ import { ErrorContent, EntryDialogues, ActionPanel } from '@kamatech-data-ui/clu
 
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
-import SectionDataset from './SectionDataset/SectionDataset';
+import { SectionDataset } from '@lib-widgets/section-dataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
 import SectionPreview from './SectionPreview/SectionPreview';
 

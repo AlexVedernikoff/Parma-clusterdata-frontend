@@ -23,8 +23,8 @@
     "eslint": "eslint src/**/*.{ts,tsx,json}",
     "eslint:fix": "eslint src/**/*.{ts,tsx,json} --fix",
     "eslint:pre-commit": "eslint --fix",
-    "stylelint": "stylelint **/*.css",
-    "stylelint:fix": "stylelint **/*.css --fix",
+    "stylelint": "stylelint **/*.{css,scss}",
+    "stylelint:fix": "stylelint **/*.{css,scss} --fix",
     "stylelint:pre-commit": "stylelint --fix --allow-empty-input"
   },
   "lint-staged": {
@@ -118,6 +118,7 @@
     "tiny-invariant": "1.0.6",
     "toggle-selection": "1.0.6",
     "type": "1.2.0",
+    "typescript-plugin-css-modules": "5.0.1",
     "uuid": "3.3.3",
     "value-equal": "1.0.1",
     "warning": "4.0.3"

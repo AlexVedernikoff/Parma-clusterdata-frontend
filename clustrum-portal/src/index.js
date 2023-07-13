@@ -104,3 +104,8 @@ app.listen(PORT, () => {
   console.info(`App listening to http://localhost:${PORT}`);
   console.info('Press Ctrl+C to quit');
 });
+
+apiProxy.on('error', error => {
+  console.info('ERROR', error);
+  console.error(error);
+});

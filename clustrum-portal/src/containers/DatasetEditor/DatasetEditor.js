@@ -26,9 +26,6 @@ import {
   updateRLS,
 } from '../../store/reducers/dataset';
 import { load as loadDash, openDialog } from 'store/actions/dash';
-import { canEdit, getEntryTitle, isDraft, isEditMode } from 'store/selectors/dash';
-
-// import './DatasetEditor.scss';
 
 const b = block('dataset-editor');
 
@@ -48,6 +45,7 @@ class DatasetEditor extends React.Component {
     loadDash: PropTypes.func.isRequired,
     updateRLS: PropTypes.func.isRequired,
     searchKeyword: PropTypes.string,
+    isVerification: PropTypes.bool,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -97,10 +95,11 @@ class DatasetEditor extends React.Component {
     });
   };
 
-  openFieldEditor = ({ field } = {}) => {
+  openFieldEditor = ({ field, isVerification } = {}) => {
     this.setState({
       isFieldEditorVisible: true,
       field,
+      isVerification,
     });
   };
 
@@ -276,9 +275,10 @@ class DatasetEditor extends React.Component {
       fields,
       visibleRLSDialog,
       currentRLSField,
+      isVerification,
     } = this.state;
-    let modePath;
 
+    let modePath;
     if (Utils.isInternal()) {
       modePath = '/build/static/ace/';
     }
@@ -311,6 +311,7 @@ class DatasetEditor extends React.Component {
           onClose={this.closeFieldEditor}
           onSave={this.modifyField}
           onCreate={this.createField}
+          isVerification={isVerification}
         />
         <RLSDialog
           visible={visibleRLSDialog}

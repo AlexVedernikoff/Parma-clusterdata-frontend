@@ -328,10 +328,9 @@ class DatasetTable extends React.Component {
     });
   };
 
-  openFieldEditor = ({ field }) => {
+  openFieldEditor = ({ field, isVerification }) => {
     const { datasetId, onClickRow } = this.props;
-
-    onClickRow({ datasetId, field });
+    onClickRow({ datasetId, field, isVerification });
   };
 
   onRowClick = (row, index, e) => {
@@ -578,7 +577,7 @@ class DatasetTable extends React.Component {
           view="default"
           tone="default"
           title="Имеются правила верификации и/или сопоставления"
-          onClick={() => this.openFieldEditor({ field: row })}
+          onClick={() => this.openFieldEditor({ field: row, isVerification: true })}
         >
           <Icon
             className={b('verification_rules')}
