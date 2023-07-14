@@ -1,4 +1,4 @@
-import { getLastDropIndex } from './last-drop-index';
+import { getLastDropIndex } from '../dnd-state';
 
 export const calcInsertionIndex = (
   sourceIndex: number,

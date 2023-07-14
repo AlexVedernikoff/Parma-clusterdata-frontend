@@ -12,6 +12,11 @@ export function SectionDatasetGroup(props) {
     renderDatasetItem,
   } = props;
 
+  const itemSize = {
+    height: 30,
+    margin: 5,
+  };
+
   return (
     <div className="subcontainer">
       <div className="subheader">
@@ -39,6 +44,7 @@ export function SectionDatasetGroup(props) {
                     )) ||
                   items
                 }
+                itemSize={itemSize}
                 allowedTypes={ITEM_TYPES.DIMENSIONS}
                 wrapTo={renderDatasetItem}
               />

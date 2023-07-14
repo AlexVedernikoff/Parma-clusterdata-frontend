@@ -5,6 +5,7 @@ import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { DndItem } from './dnd-item';
 import { DndItemData, DndContainerProps, DndDraggedItem, DndDropResult } from './types';
 import { DndContainerTitle } from './dnd-container-title';
+import { DropPlace, checkDropAvailability } from './drop-place';
 
 // TODO 696922 деконструировать просы, вынести функции и уменьшить размер компонента
 /* eslint-disable max-lines-per-function */
@@ -15,11 +16,16 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     title,
     items: propItems,
     itemsClassName,
+    itemSize = {
+      height: 40,
+      margin: 12,
+    },
     capacity,
     allowedTypes,
     disabled,
     isNeedRemove = false,
     isNeedSwap = false,
+    highlightDropPlace = false,
     checkAllowed,
     wrapTo,
     onUpdate,
@@ -91,15 +97,11 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     },
   }));
 
-  function setTooltipVisible(visibility: boolean): void {
-    setTooltipVisibleState(visibility);
-  }
-
-  function setIsNeedReplace(isNeedReplace: boolean): void {
+  const setIsNeedReplace = (isNeedReplace: boolean): void => {
     isNeedReplaceRef.current = isNeedReplace;
-  }
+  };
 
-  function swap(targetIndex: number, sourceIndex: number): void {
+  const swap = (targetIndex: number, sourceIndex: number): void => {
     if (!isNeedSwap) {
       return;
     }
@@ -112,11 +114,11 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       newItems[sourceIndex] = targetItem;
       return newItems;
     });
-  }
+  };
 
   const insert = (index: number, item: DndItemData): void => {
     // если контейнер работает в режиме с копированиями из себя, то не добавляем
-    if (!isNeedRemove && !items.includes(item)) {
+    if (!isNeedRemove) {
       return;
     }
 
@@ -133,7 +135,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     });
   };
 
-  function remove(index: number): void {
+  const remove = (index: number): void => {
     // если контейнер работает в режиме с копированиями из себя, то не удаляем
     if (!isNeedRemove) {
       return;
@@ -147,9 +149,9 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       const filtredItems = prev.filter((_, i) => i !== index);
       return filtredItems;
     });
-  }
+  };
 
-  function replace(index: number, item: DndItemData): void {
+  const replace = (index: number, item: DndItemData): void => {
     if (!isNeedRemove) {
       return;
     }
@@ -162,34 +164,15 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       updatedItems.splice(index, 1, item);
       return updatedItems;
     });
-  }
+  };
 
-  let canDrop = false;
-  let isDropPlaceExists = false;
+  const canDrop = checkDropAvailability(draggedItem?.data, allowedTypes, checkAllowed);
+  const isDraggedItemHasData = !!draggedItem?.data;
+  const isOverEmptyContainer =
+    isDraggedItemHasData && isOver && dropPlace === null && items.length === 0;
 
-  if (draggedItem?.data) {
-    isDropPlaceExists = typeof dropPlace === 'number';
-
-    if (isOver) {
-      if (!isDropPlaceExists && items.length === 0) {
-        isDropPlaceExists = true;
-        setDropPlace(0);
-      }
-    } else {
-      isDropPlaceExists = false;
-    }
-
-    if (allowedTypes) {
-      canDrop = allowedTypes.has(draggedItem.data.type);
-    } else if (checkAllowed) {
-      canDrop = checkAllowed(draggedItem.data);
-    } else {
-      canDrop = true;
-    }
-
-    if ((capacity && capacity <= items.length) || !canDrop) {
-      isDropPlaceExists = false;
-    }
+  if (isOverEmptyContainer) {
+    setDropPlace(0);
   }
 
   return (
@@ -200,19 +183,16 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
           isOver ? ' is-over' : ''
         }`}
       >
-        {dropPlace !== null && (
-          <div
-            className="drop-place"
-            style={{
-              background: 'red',
-              display: isDropPlaceExists ? 'block' : 'none',
-              top: isDropPlaceExists
-                ? dropPlace === 0
-                  ? -12
-                  : dropPlace * 40 + 12 * dropPlace
-                : 'auto',
-            }}
-          ></div>
+        {highlightDropPlace && (
+          <DropPlace
+            isDraggedItemHasData={isDraggedItemHasData}
+            isOver={isOver}
+            canDrop={canDrop}
+            itemSize={itemSize}
+            itemsCount={items.length}
+            capacity={capacity}
+            dropPlace={dropPlace}
+          />
         )}
         <DndContainerTitle title={title} />
         {items.map(
@@ -221,6 +201,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
               <DndItem
                 key={`${item.id}-${index}`}
                 className={itemsClassName || ''}
+                size={itemSize}
                 itemData={item}
                 index={index}
                 listId={id}
@@ -228,7 +209,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
                 listIsNeedRemove={isNeedRemove}
                 wrapTo={wrapTo}
                 disabled={disabled}
-                setTooltipVisible={setTooltipVisible}
+                setTooltipVisible={setTooltipVisibleState}
                 tooltipVisible={tooltipVisible}
                 remove={remove}
                 dragContainerReplace={replace}

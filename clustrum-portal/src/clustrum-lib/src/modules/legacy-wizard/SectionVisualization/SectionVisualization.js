@@ -218,6 +218,7 @@ class SectionVisualization extends Component {
           allowedTypes={placeholder.allowedTypes}
           isNeedRemove
           isNeedSwap
+          highlightDropPlace
           items={items}
           itemsClassName="placeholder-item"
           wrapTo={this.renderDatasetItem}
@@ -413,6 +414,7 @@ class SectionVisualization extends Component {
             <DndContainer
               id="filter-container"
               isNeedRemove
+              highlightDropPlace
               items={[...filters]}
               allowedTypes={ITEM_TYPES.ALL}
               itemsClassName="placeholder-item"
@@ -586,6 +588,7 @@ class SectionVisualization extends Component {
               id="colors-container"
               isNeedRemove
               isNeedSwap
+              highlightDropPlace
               items={colors}
               capacity={visualization.colorsCapacity || 1}
               checkAllowed={item => {
@@ -634,6 +637,7 @@ class SectionVisualization extends Component {
               id="sort-container"
               isNeedRemove
               isNeedSwap
+              highlightDropPlace
               items={sort}
               capacity={10}
               checkAllowed={item => {

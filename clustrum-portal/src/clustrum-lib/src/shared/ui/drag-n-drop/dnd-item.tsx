@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { DragSourceMonitor, DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
-import { DndItemProps, DndDropResult, DndDraggedItem } from './types';
-import { calcInsertionIndex, setLastDropIndex } from './dnd-indexes';
+import { DndItemProps, DndDropResult, DndDraggedItem, DndItemData } from './types';
+import { calcInsertionIndex } from './insertion-index';
+import { getTargetItemData, setLastDropIndex, setTargetItemData } from './dnd-state';
 
 // TODO 696922 деконструировать просы, вынести функции и уменьшить размер компонента
 /* eslint-disable max-lines-per-function */
@@ -13,6 +14,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
     listAllowedTypes,
     listIsNeedRemove,
     itemData,
+    size,
     dragContainerReplace,
     remove,
     setDraggedItem,
@@ -44,7 +46,6 @@ export function DndItem(props: DndItemProps): JSX.Element {
       }
 
       const {
-        targetItem,
         droppedItemId,
         dropContainerItems,
         dropContainerInsert,
@@ -55,22 +56,27 @@ export function DndItem(props: DndItemProps): JSX.Element {
         isNeedSwap,
       } = dropResult;
 
-      if (droppedItemId === draggedItem.listId && !isNeedSwap) {
+      const inSameContainer = droppedItemId === draggedItem.listId;
+
+      if (inSameContainer && !isNeedSwap) {
         return;
       }
 
       if (isNeedReplace) {
-        if (droppedItemId === draggedItem.listId) {
+        if (inSameContainer) {
           dropContainerSwap(hoverIndex, draggedItem.index);
-        } else {
-          dragContainerReplace(draggedItem.index, targetItem);
-          dropContainerReplace(hoverIndex, draggedItem.data);
           setIsNeedReplace(false);
+        } else {
+          const targetItemData = getTargetItemData();
+
+          if (targetItemData) {
+            dragContainerReplace(draggedItem.index, targetItemData);
+            dropContainerReplace(hoverIndex, draggedItem.data);
+            setIsNeedReplace(false);
+          }
         }
       } else {
-        const inSameContainer = droppedItemId === draggedItem.listId;
-
-        if (inSameContainer) {
+        if (listIsNeedRemove || inSameContainer) {
           remove(draggedItem.index);
         }
 
@@ -98,19 +104,22 @@ export function DndItem(props: DndItemProps): JSX.Element {
       const dragIndex = sourceItem.index;
       const sourceListId = sourceItem.listId;
       const hoverIndex = index;
+      const domNode = ref.current;
 
       // сохраним индекс положения куда мы захуверились
       dropMonitor.getItem().hoverIndex = hoverIndex;
 
-      const domNode = ref.current;
       if (!domNode) {
         return;
       }
+
       const hoverBoundingRect = domNode.getBoundingClientRect();
       const clientOffset = dropMonitor.getClientOffset();
+
       if (clientOffset === null) {
         return;
       }
+
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
       // Представьте себе систему координат в евклидовом пространстве, где ось y направлена вниз (ось х не важна):
@@ -126,25 +135,39 @@ export function DndItem(props: DndItemProps): JSX.Element {
       const isUnderTarget = dragIndex === hoverIndex || dragIndex === hoverIndex - 1;
       const isOnTarget = dragIndex === hoverIndex + 1 || dragIndex === hoverIndex;
 
+      setTargetItemData(itemData);
+
       if (hoverClientY < replaceZoneTop && !(isContainerTypeMatch && isUnderTarget)) {
         setDropPlace(hoverIndex);
         setLastDropIndex(hoverIndex);
-      } else {
-        if (replaceZoneBottom < hoverClientY && !(isContainerTypeMatch && isOnTarget)) {
-          setDropPlace(hoverIndex + 1);
-          setLastDropIndex(hoverIndex + 1);
-        } else {
-          setDropPlace(null);
-          setLastDropIndex(null);
-        }
+
+        return;
       }
+
+      if (replaceZoneBottom < hoverClientY && !(isContainerTypeMatch && isOnTarget)) {
+        setDropPlace(hoverIndex + 1);
+        setLastDropIndex(hoverIndex + 1);
+
+        return;
+      }
+
+      setDropPlace(null);
+      setLastDropIndex(null);
     },
   }));
+
+  const style = {
+    height: size.height,
+    marginTop: size.margin,
+    marginBottom: size.margin,
+  };
 
   return (
     <div ref={drop}>
       <div ref={drag}>
-        <div ref={ref}>{wrapTo(props, ref.current)}</div>
+        <div style={style} ref={ref}>
+          {wrapTo(props, ref.current)}
+        </div>
       </div>
     </div>
   );

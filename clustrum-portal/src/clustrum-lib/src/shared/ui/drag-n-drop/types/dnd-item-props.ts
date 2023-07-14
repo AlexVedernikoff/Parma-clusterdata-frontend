@@ -1,8 +1,10 @@
 import { DndDraggedItem } from './dnd-dragged-item';
 import { DndItemData } from './dnd-item-data';
+import { ItemSize } from './item-size';
 
 export interface DndItemProps {
   className: string;
+  size: ItemSize;
   disabled?: boolean;
   listAllowedTypes?: Set<string>;
   listIsNeedRemove?: boolean;

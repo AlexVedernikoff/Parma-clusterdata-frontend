@@ -1,0 +1,7 @@
+.drop-place {
+  position: relative;
+  height: 2px;
+  margin: 0 0 -2px;
+  background-color: var(--antd-color-primary);
+  border-radius: 2px;
+}

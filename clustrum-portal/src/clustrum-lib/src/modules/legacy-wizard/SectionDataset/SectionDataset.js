@@ -485,6 +485,11 @@ class SectionDataset extends Component {
 
     const datasetNames = [...new Set(dimensions.map(d => d.datasetName))];
 
+    const itemSize = {
+      height: 30,
+      margin: 5,
+    };
+
     return (
       <div className="dataset-wrapper">
         <div className="subcontainer actions-subcontainer">
@@ -533,6 +538,7 @@ class SectionDataset extends Component {
                         filteredDimensions.filter(d => d.datasetName === value)) ||
                       items
                     }
+                    itemSize={itemSize}
                     allowedTypes={ITEM_TYPES.DIMENSIONS}
                     wrapTo={this.renderDatasetItem}
                   />
@@ -565,6 +571,7 @@ class SectionDataset extends Component {
                         filteredMeasures.filter(d => d.datasetName === value)) ||
                       items
                     }
+                    itemSize={itemSize}
                     wrapTo={this.renderDatasetItem}
                   />
                 );
