@@ -3,7 +3,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { getUniqueId } from '../../../../../utils/helpers';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { DndItem } from './dnd-item';
-import { DndItemData, DndContainerProps, DndDraggedItem, DndDropResult } from './types';
+import {
+  DndItemData,
+  DndContainerProps,
+  DndDraggedItem,
+  DndDropResult,
+  DndEmptyDropResult,
+} from './types';
 import { DndContainerTitle } from './dnd-container-title';
 import { DropPlace, checkDropAvailability } from './drop-place';
 
@@ -55,11 +61,16 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'ITEM',
-    collect: (monitor: DropTargetMonitor<DndDraggedItem, DndDropResult>) => ({
+    collect: (
+      monitor: DropTargetMonitor<
+        DndDraggedItem,
+        DndDropResult | DndEmptyDropResult | null
+      >,
+    ) => ({
       isOver: monitor.isOver(),
     }),
     //TODO 696922 вынести в отдельный метод и типизировать
-    drop: (draggedItem: DndDraggedItem): DndDropResult | null => {
+    drop: (draggedItem: DndDraggedItem): DndDropResult | DndEmptyDropResult | null => {
       const itemType = draggedItem.data.type;
       const targetItem = items[draggedItem.hoverIndex] ?? draggedItem.data;
 
@@ -67,22 +78,23 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
         // отменяем, если не вмещается (но если не разрешена замена)
         const isContainerFull = capacity && capacity <= items.length;
         if (isContainerFull && !isNeedReplaceRef.current) {
-          return null;
+          return { revert: true };
         }
 
         // отменяем, если не подходит по типу
         if (allowedTypes) {
           if (!allowedTypes.has(itemType)) {
-            return null;
+            return { revert: true };
           }
         } else if (checkAllowed) {
           if (!checkAllowed(draggedItem.data)) {
-            return null;
+            return { revert: true };
           }
         }
       }
 
       return {
+        revert: false,
         targetItem,
         droppedItemId: id,
         dropContainerItems: items,

@@ -1,6 +1,12 @@
 import React, { useRef } from 'react';
 import { DragSourceMonitor, DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
-import { DndItemProps, DndDropResult, DndDraggedItem, DndItemData } from './types';
+import {
+  DndItemProps,
+  DndDropResult,
+  DndDraggedItem,
+  DndEmptyDropResult,
+  notEmptyDndDropResult,
+} from './types';
 import { calcInsertionIndex } from './insertion-index';
 import { getTargetItemData, setLastDropIndex, setTargetItemData } from './dnd-state';
 
@@ -38,10 +44,19 @@ export function DndItem(props: DndItemProps): JSX.Element {
       draggedItem: DndDraggedItem,
       dragMonitor: DragSourceMonitor<DndDraggedItem, DndDropResult>,
     ): void => {
-      const dropResult: DndDropResult | null = dragMonitor.getDropResult();
+      const dropResult:
+        | DndDropResult
+        | DndEmptyDropResult
+        | null = dragMonitor.getDropResult();
       const hoverIndex = dragMonitor.getItem().hoverIndex;
 
       if (!dropResult) {
+        return;
+      }
+
+      const dropResultIsEmpty = !notEmptyDndDropResult(dropResult);
+
+      if (dropResult.revert || dropResultIsEmpty) {
         return;
       }
 
