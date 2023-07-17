@@ -137,13 +137,16 @@ class Control extends React.PureComponent {
     }
 
     handler.param = param;
-    handler.memoizedHandleFn = ({ from, to }) =>
-      this.onChange(
-        handler.param,
-        `__interval_${moment(from).format(DATE_FORMAT_DAY)}_${moment(to).format(
-          DATE_FORMAT_DAY,
-        )}`,
-      );
+    handler.memoizedHandleFn = ({ from, to }) => {
+      // TODO убрать отсюда momentjs, т.к. from и to - строки и уже приведены к нужному формату в датапикере
+      const newValue =
+        from && to
+          ? `__interval_${moment(from).format(DATE_FORMAT_DAY)}_${moment(to).format(
+              DATE_FORMAT_DAY,
+            )}`
+          : '';
+      this.onChange(handler.param, newValue);
+    };
 
     return handler.memoizedHandleFn;
   }
@@ -328,8 +331,8 @@ class Control extends React.PureComponent {
                   /__interval_(\d*)-(\d*)-(\d*)_(\d*)-(\d*)-(\d*)/,
                 ) || [];
 
-              from = `${y1}-${m1}-${d1}`;
-              to = `${y2}-${m2}-${d2}`;
+              from = y1 && m1 && d1 && `${y1}-${m1}-${d1}`;
+              to = y2 && m2 && d2 && `${y2}-${m2}-${d2}`;
 
               props.value = { from, to };
               props.onChange = this._createRangeDatepickerChangeHandler(param);

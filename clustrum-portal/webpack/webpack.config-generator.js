@@ -50,10 +50,18 @@ exports.generateConfig = (
       extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
       preferRelative: false,
       alias: {
-        '@entities': path.resolve('./src/entities/'),
-        '@features': path.resolve('./src/features/'),
+        '@pages': path.resolve('./src/pages/'),
         '@widgets': path.resolve('./src/widgets/'),
+        '@features': path.resolve('./src/features/'),
+        '@entities': path.resolve('./src/entities/'),
+        '@shared': path.resolve('./src/shared/'),
         '@clustrum-lib': path.resolve('./src/clustrum-lib/src/'),
+        '@clustrum-lib-legacy': path.resolve('./src/clustrum-lib/src/legacy-index'),
+        '@lib-modules': path.resolve('./src/clustrum-lib/src/modules/'),
+        '@lib-widgets': path.resolve('./src/clustrum-lib/src/widgets/'),
+        '@lib-features': path.resolve('./src/clustrum-lib/src/features/'),
+        '@lib-entities': path.resolve('./src/clustrum-lib/src/entities/'),
+        '@lib-shared': path.resolve('./src/clustrum-lib/src/shared/'),
         '@kamatech-ui': path.resolve('./kamatech_modules/kamatech-ui'),
         '@kamatech-data-ui': path.resolve('./kamatech_modules/@kamatech-data-ui/'),
         '@kamatech-lego': path.resolve('./kamatech_modules/@kamatech-lego/'),
@@ -93,6 +101,21 @@ exports.generateConfig = (
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
+          exclude: /\.module\.css$/,
+        },
+        {
+          test: /\.module\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[name]__[local]--[hash:base64:5]',
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,

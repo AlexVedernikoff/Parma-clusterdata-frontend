@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
-import { DndItemProps } from './types';
+import { DragSourceMonitor, useDrag, useDrop } from 'react-dnd';
+import { DndItemProps, DndDropResult, DndDropedItem } from './types';
 
-//TODO 696922 деконструировать просы
+// TODO 696922 деконструировать просы
+/* eslint-disable react/destructuring-assignment */
 export function DndItem(props: DndItemProps): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -15,6 +16,36 @@ export function DndItem(props: DndItemProps): JSX.Element {
       listAllowedTypes: props.listAllowedTypes,
       listNoRemove: props.listNoRemove,
       item: props.item,
+    },
+    end: (
+      itemWrapper,
+      monitor: DragSourceMonitor<DndDropedItem, DndDropResult>,
+    ): void => {
+      const dropResult: DndDropResult | null = monitor.getDropResult();
+      const hoverIndex = monitor.getItem().hoverIndex;
+
+      if (!dropResult) {
+        return;
+      }
+      if (dropResult.revert) {
+        return;
+      }
+
+      const {
+        targetItem,
+        droppedItemId,
+        isNeedReplace,
+        onReplaced,
+        dropContainerReplace,
+      } = dropResult;
+
+      if (droppedItemId === itemWrapper.listId || !isNeedReplace) {
+        return;
+      }
+
+      onReplaced();
+      props.dragContainerReplace(itemWrapper.index, targetItem);
+      dropContainerReplace(hoverIndex, itemWrapper.item);
     },
   }));
 

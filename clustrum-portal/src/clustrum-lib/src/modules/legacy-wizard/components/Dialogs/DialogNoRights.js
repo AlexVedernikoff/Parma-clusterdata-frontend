@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 
-// import './Dialogs.scss';
-
 import { Button } from 'lego-on-react';
 
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';

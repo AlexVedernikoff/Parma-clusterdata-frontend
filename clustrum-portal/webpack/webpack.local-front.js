@@ -16,4 +16,10 @@ const env = {
   toType: 'file',
 };
 
-module.exports = generateConfig({ biHost, portalHost, exportHost }, 'development', devServer, 'inline-source-map', env);
+module.exports = generateConfig(
+  { biHost, portalHost, exportHost },
+  'development',
+  devServer,
+  'inline-source-map',
+  env,
+);

@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 import block from 'bem-cn-lite';
 import { TextInput } from 'lego-on-react';
 
-// import './SearchInput.scss';
-
 const b = block('custom-text-input');
 
 class SearchInput extends PureComponent {

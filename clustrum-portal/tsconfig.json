@@ -15,27 +15,21 @@
     "jsx": "react",
     "allowJs": true,
     "checkJs": false,
-    "baseUrl": "./",
     "paths": {
-      "@kamatech-data-ui/*": ["./kamatech_modules/@kamatech-data-ui/*"],
-      "@kamatech-ui/*":["./kamatech_modules/kamatech-ui/*"],
-      "@kamatech-lego/*": ["./kamatech_modules/@kamatech-lego/*"],
-      "@clustrum-lib/*": ["./src/clustrum-lib/src/*"],
-      "lego-on-react/*": ["./kamatech_modules/lego-on-react/*"],
-      "components/*": ["./kamatech_modules/@kamatech-data-ui/clustrum/src/components/*"],
-      "constants/*": ["./kamatech_modules/@kamatech-data-ui/clustrum/src/constants/*"],
-      "hoc/*": ["./kamatech_modules/@kamatech-data-ui/clustrum/src/hoc/*"],
-      "libs/*": ["./kamatech_modules/@kamatech-data-ui/clustrum/src/libs/*"],
-      "utils/*": ["./kamatech_modules/@kamatech-data-ui/clustrum/src/utils/*"],
-      "store/*": ["./src/store/*"],
-      "components/ContainerLoader/ContainerLoader": ["./src/components/ContainerLoader/ContainerLoader/*"],
-
-      //ts не хочет напрямую работать с js внутри svg файла.
-      //Если понадобятся - можно создать js прослойку с реэкспортом svg
-      "icons/*": ["./kamatech_modules/@kamatech-data-ui/clustrum/src/icons/"],
-      "assets/*": ["./kamatech_modules/@kamatech-data-ui/clustrum/src/assets/*"],
-      
-    }
+      "@pages/*": ["./src/pages/*"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@features/*": ["./src/features/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@clustrum-lib": ["./src/clustrum-lib/src"],
+      "@clustrum-lib-legacy": ["./src/clustrum-lib/src/legacy-index"],
+      "@lib-modules/*": ["./src/clustrum-lib/src/modules/*"],
+      "@lib-widgets/*": ["./src/clustrum-lib/src/widgets/*"],
+      "@lib-features/*": ["./src/clustrum-lib/src/features/*"],
+      "@lib-entities/*": ["./src/clustrum-lib/src/entities/*"],
+      "@lib-shared/*": ["./src/clustrum-lib/src/shared/*"]
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules", "./src/tests/**/*"]

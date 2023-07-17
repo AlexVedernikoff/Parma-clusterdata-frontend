@@ -30,8 +30,9 @@ const getCellValue = cell => {
   return cell.valueWithoutFormat ? cell.valueWithoutFormat : cell.value;
 };
 
-const handleCellClick = (context, row, field, columnName, prevSelectedCell, callback) => {
-  if (callback) {
+const handleCellClick = (column, row) => {
+  const { context, field, columnName, prevSelectedCell, clickCallback } = column;
+  if (clickCallback) {
     const groupField = findGroupField(row);
     let paramId = field;
     let cell = groupField;
@@ -60,7 +61,7 @@ const handleCellClick = (context, row, field, columnName, prevSelectedCell, call
         }
       }
 
-      callback(callbackParams);
+      clickCallback(callbackParams);
     }
   }
 
@@ -104,6 +105,49 @@ function getColumnsAndNames({ head, context }, clickCallback, field, prevSelecte
     },
     { columns: [], names: [] },
   );
+}
+
+function renderCell(item) {
+  const { type, ...options } = item;
+  const cellContent = createCell(type, item, options);
+  return cellContent;
+}
+
+function addTotalRow(col, index, totalValue) {
+  return {
+    children: [
+      {
+        title: index === 0 ? 'Общий итог' : totalValue.value && renderCell(totalValue),
+        dataIndex: col.dataIndex,
+        key: index,
+        render: item => renderCell(item),
+      },
+    ],
+  };
+}
+
+function getAntdColumnParams(col, index, total) {
+  if (total) {
+    return addTotalRow(col, index, total[0].values?.[index] || total[0].cells[index]);
+  }
+  return { render: item => renderCell(item) };
+}
+
+function getAntdColumn(col, index, total) {
+  return {
+    title: col.header,
+    key: index,
+    dataIndex: col.dataIndex,
+    sorter: (row1, row2) => {
+      const left = row1[col.dataIndex].value;
+      const right = row2[col.dataIndex].value;
+      return left > right ? 1 : left < right ? -1 : 0;
+    },
+    onCell: row => ({
+      onClick: () => handleCellClick(col, row),
+    }),
+    ...getAntdColumnParams(col, index, total),
+  };
 }
 
 function getTitle(title) {
@@ -170,7 +214,10 @@ export class TableAdapter extends React.PureComponent {
 
   render() {
     const {
-      data: { data: { head, rows = [] } = {}, config: { title } = {} } = {},
+      data: {
+        data: { head, rows = [], total, rowsCount } = {},
+        config: { title } = {},
+      } = {},
     } = this.props;
 
     if (!head || !rows) {
@@ -195,39 +242,9 @@ export class TableAdapter extends React.PureComponent {
       selectedCell,
     );
 
-    const renderCell = item => {
-      const { type, ...options } = item;
-      const cellContent = createCell(type, item, options);
-      return cellContent;
-    };
-
-    const antdTableColumns = columns.map((col, index) => {
-      return {
-        title: col.header,
-        key: index,
-        dataIndex: col.dataIndex,
-        render: item => renderCell(item),
-        sorter: (row1, row2) => {
-          const left = row1[col.dataIndex].value;
-          const right = row2[col.dataIndex].value;
-          return left > right ? 1 : left < right ? -1 : 0;
-        },
-        onCell: row => {
-          return {
-            onClick: () => {
-              handleCellClick(
-                col.context,
-                row,
-                col.field,
-                col.columnName,
-                col.prevSelectedCell,
-                col.clickCallback,
-              );
-            },
-          };
-        },
-      };
-    });
+    const antdTableColumns = columns.map((col, index) =>
+      getAntdColumn(col, index, total),
+    );
 
     const data = rows.map((row, rowIndex) =>
       row.values
@@ -255,9 +272,11 @@ export class TableAdapter extends React.PureComponent {
         }}
       >
         <TableWidget
+          totalRowsCount={rowsCount}
           columns={antdTableColumns}
           dataSource={data}
           title={getTitle(title)}
+          onPageControlClicker={this.props.onPageControlClick}
           {...this.props}
         />
       </div>

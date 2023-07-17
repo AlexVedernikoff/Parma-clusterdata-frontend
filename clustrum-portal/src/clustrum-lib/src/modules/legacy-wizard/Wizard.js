@@ -12,7 +12,7 @@ import { ErrorContent, EntryDialogues, ActionPanel } from '@kamatech-data-ui/clu
 
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
-import SectionDataset from './SectionDataset/SectionDataset';
+import { SectionDataset } from '@lib-widgets/section-dataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
 import { ConnectedSectionPreview } from '../wizard/widgets/section-preview/ui/section-preview';
 
@@ -58,8 +58,6 @@ import { getNavigationPathFromKey } from '../../../../helpers/utils-dash';
 import PageHead from '../../../../components/PageHeader/PageHeader';
 import { FullscreenOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Space } from 'antd';
-
-// import './Wizard.scss';
 
 const b = block('wizard');
 

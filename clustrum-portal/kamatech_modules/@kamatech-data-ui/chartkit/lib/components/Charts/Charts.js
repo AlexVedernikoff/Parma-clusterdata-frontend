@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 
-import Widget from '../Widget/Widget';
+// TODO: изменить импорт на `@clustrum-lib`
+import Widget from '@clustrum-lib/shared/ui/widgets-factory/Widget';
 
 import ChartsModule from '../../modules/charts/charts';
 import ErrorDispatcher from '../../modules/error-dispatcher/error-dispatcher';
@@ -39,10 +40,15 @@ class Charts extends React.PureComponent {
     this.run();
   }
 
-  componentDidUpdate(
-    { id, source, params, forceUpdate, editMode, paginateInfo, orderBy },
-    prevState,
-  ) {
+  componentDidUpdate({
+    id,
+    source,
+    params,
+    forceUpdate,
+    editMode,
+    paginateInfo,
+    orderBy,
+  }) {
     /**
      * todo в родительском компоненте уже происходит проверка на обновление
      * это сделано потому что размазали логику по нескольким компонентам (Charts и Charkit) - хорошо бы структурировать
@@ -52,7 +58,7 @@ class Charts extends React.PureComponent {
       (!this.props.forceUpdate || this.props.forceUpdate === forceUpdate) &&
       id === this.props.id &&
       source === this.props.source &&
-      isEqual(params, this.props.params) &&
+      isEqual(getParamsValue(params), getParamsValue(this.props.params)) &&
       isEqual(editMode, this.props.editMode) &&
       isEqual(paginateInfo, this.props.paginateInfo) &&
       isEqual(orderBy, this.props.orderBy)

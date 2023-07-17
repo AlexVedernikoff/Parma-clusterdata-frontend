@@ -3877,7 +3877,6 @@ td.rdtYear:hover {
 .dash-body__content {
   width: 100%;
   transition: width 0.1s;
-  background-color: var(--color-base);
   padding: 20px 24px 48px;
   overflow: auto;
 }

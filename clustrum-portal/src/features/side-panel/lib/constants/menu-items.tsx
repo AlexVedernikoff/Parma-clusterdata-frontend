@@ -8,7 +8,7 @@ import {
   DashboardOutlined,
 } from '@ant-design/icons';
 import { MenuProps } from 'antd';
-import { ROUTES } from '../../../../shared/lib/constants/routes';
+import { ROUTES } from '@shared/lib/constants';
 
 export const MENU_ITEMS: NonNullable<MenuProps['items']> = [
   {
@@ -34,7 +34,7 @@ export const MENU_ITEMS: NonNullable<MenuProps['items']> = [
   {
     key: ROUTES.widgets,
     icon: <LineChartOutlined />,
-    label: 'Диаграммы',
+    label: 'Элементы аналитических панелей',
   },
   {
     key: ROUTES.dashboards,

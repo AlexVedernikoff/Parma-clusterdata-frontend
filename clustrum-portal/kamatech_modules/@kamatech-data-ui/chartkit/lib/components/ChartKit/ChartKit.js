@@ -24,6 +24,14 @@ class ChartKit extends React.Component {
   constructor(props) {
     super(props);
     this.resetValue = this.resetValue.bind(this);
+    this.state = {
+      forceUpdate: false,
+      runtimeParams: null,
+      paginateInfo: this.props.paginateInfo
+        ? this.props.paginateInfo
+        : { page: 0, pageSize: 10 },
+      orderBy: this.props.orderBy,
+    };
   }
 
   static contextType = SignalContext;
@@ -122,7 +130,7 @@ class ChartKit extends React.Component {
       !forceUpdate &&
       id === prevId &&
       source === prevSource &&
-      isEqual(params, prevParams) &&
+      isEqual(getParamsValue(params), getParamsValue(prevParams)) &&
       isEqual(editMode, prevEditMode) &&
       isEqual(paginateInfo, prevPaginateInfo) &&
       isEqual(orderBy, prevOrderBy)
@@ -162,15 +170,6 @@ class ChartKit extends React.Component {
   static getDerivedStateFromError(error) {
     return { loading: false, error: true, data: error };
   }
-
-  state = {
-    forceUpdate: false,
-    runtimeParams: null,
-    paginateInfo: this.props.paginateInfo
-      ? this.props.paginateInfo
-      : { page: 0, pageSize: 150 },
-    orderBy: this.props.orderBy,
-  };
 
   shouldComponentUpdate(nextProps, nextState) {
     return !isEqual(nextProps, this.props) || !isEqual(nextState, this.state);

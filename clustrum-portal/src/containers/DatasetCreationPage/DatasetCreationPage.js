@@ -248,7 +248,7 @@ class DatasetCreationPage extends React.Component {
     const search = searchParams.toString();
 
     if (modeId === REPLACE_SOURCE_MODE_ID && scope === 'connection') {
-      history.push(`/datasets/${datasetId}/source?${search}`);
+      history.push(`/datasets/source?${search}`);
       closeNavModal();
       await this._fetchConnection(entryId);
     } else if (scope === 'connection') {
@@ -385,7 +385,17 @@ class DatasetCreationPage extends React.Component {
     } = this.state;
 
     if (redirect) {
-      return <Redirect push to={redirect} />;
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: redirect,
+            state: {
+              datasetName: this.state.selectedConnection.datasetTitle,
+            },
+          }}
+        />
+      );
     }
 
     if (fetchError) {

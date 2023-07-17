@@ -1,0 +1,92 @@
+.table-widget__link {
+  display: block;
+  height: 100%;
+}
+
+.table-widget__diff {
+  font-size: 8pt;
+}
+
+.table-widget__diff--pos {
+  color: green;
+}
+
+.table-widget__diff--neg {
+  color: red;
+}
+
+.table-widget__content {
+  background-clip: padding-box;
+}
+
+.table-widget__content.is_null {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.table-widget__content--number {
+  text-align: right;
+}
+
+.table-widget__content.table-widget__content--string {
+  color: #020202;
+  font-size: var(--table-body-font-size);
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+/* buil-in Ant Design classes */
+.ant-table-wrapper {
+  height: 100%;
+
+  .ant-spin-nested-loading {
+    height: 100%;
+
+    .ant-spin-container {
+      display: flex;
+      flex-flow: column nowrap;
+      height: 100%;
+
+      .ant-table {
+        flex: auto;
+        overflow: hidden;
+
+        .ant-table-container {
+          display: flex;
+          flex-flow: column nowrap;
+          height: 100%;
+
+          .ant-table-content {
+            flex: auto;
+            margin-bottom: 20px;
+            overflow: scroll;
+          }
+        }
+      }
+
+      .ant-table-pagination {
+        flex: none;
+      }
+    }
+  }
+}
+
+.table-widget .ant-table-thead > tr:nth-of-type(2) > .ant-table-cell {
+  background-color: #fff;
+  border-right: 1px solid transparent;
+}
+
+.table-widget .ant-table-thead > tr:nth-of-type(2):hover > .ant-table-cell {
+  background-color: #fafafa;
+}
+
+.table-widget .ant-table-thead > tr:nth-of-type(2) > .ant-table-cell::before {
+  display: none;
+}
+
+.ant-pagination .ant-pagination-total-text {
+  margin-right: auto;
+  margin-left: 8px;
+}
