@@ -6,7 +6,10 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { DatepickerFilterControlProps } from './types';
-import { DefaultValueType } from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
+import {
+  DefaultValueType,
+  PlacementPosition,
+} from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
 
 import styles from './datepicker-filter-control.module.css';
 
@@ -83,7 +86,9 @@ export function DatepickerFilterControl(
     );
   };
 
-  const placementPosition = shouldMoveCalendar ? 'bottomRight' : 'bottomLeft';
+  const placementPosition = shouldMoveCalendar
+    ? PlacementPosition.BottomRight
+    : PlacementPosition.BottomLeft;
 
   return (
     <div className={classNames(styles['datepicker-control'], className)}>

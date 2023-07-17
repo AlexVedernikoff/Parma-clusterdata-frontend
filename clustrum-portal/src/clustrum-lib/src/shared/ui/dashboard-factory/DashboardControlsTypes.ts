@@ -11,17 +11,35 @@ export enum DefaultValueType {
   DefaultRanges = 'defaultRanges',
 }
 
+interface DateParamsValue {
+  from: string;
+  to: string;
+}
+
 export interface DateParams {
   type: DefaultValueType;
-  value: { from: string; to: string };
+  value: DateParamsValue;
+}
+
+interface DashboardControlsDataDataset {
+  id: string;
+  fieldId: string;
+}
+
+interface DashboardControlsDataExternal {
+  entryId: string;
+}
+
+interface DashboardControlsDataControl {
+  elementType: string;
+  multiselectable: boolean;
+  isRange: boolean;
 }
 
 export interface DashboardControlsData {
-  control: { elementType: string; multiselectable: boolean; isRange: boolean };
-  dataset: { id: string; fieldId: string };
-  external: {
-    entryId: string;
-  } | null;
+  control: DashboardControlsDataControl;
+  dataset: DashboardControlsDataDataset;
+  external: DashboardControlsDataExternal | null;
   id: string;
   itemId: string;
   showTitle: false;
@@ -29,33 +47,52 @@ export interface DashboardControlsData {
   title: string;
 }
 
+interface ParamsKeyAvailableItems {
+  [key: string]: string;
+}
+
+interface DefaultsParams {
+  [key: string]: string;
+}
+
+interface ParamsKeyInitiatorItem {
+  availableItems: ParamsKeyAvailableItems;
+  data: DashboardControlsData;
+  id: string;
+  namespace: string;
+  type: string;
+  defaults: DefaultsParams;
+}
+
+interface ParamsKey {
+  initiatorItem: ParamsKeyInitiatorItem;
+  value: string | string[];
+}
+
 export interface ParamsProps {
-  [key: string]: {
-    initiatorItem: {
-      availableItems: { [key: string]: string };
-      data: DashboardControlsData;
-      id: string;
-      namespace: string;
-      type: string;
-      defaults: { [key: string]: string };
-    };
-    value: string | string[];
-  };
+  [key: string]: ParamsKey;
+}
+
+interface PaginateInfo {
+  page: number;
+  pageSize: number;
+}
+
+interface OnChangeParams {
+  [key: string]: string | string[];
 }
 
 export interface DashboardControlsProps {
   context: undefined;
   data: DashboardControlsData;
-  defaults: { [key: string]: string };
+  defaults: DefaultsParams;
   height: number;
   id: string;
   namespace: string;
-  onStateAndParamsChange(stateAndParams: {
-    params: { [key: string]: string | string[] } | string;
-  }): void;
+  onStateAndParamsChange(stateAndParams: { params: OnChangeParams | string }): void;
   orderBy: null | string;
   ownWidgetParams: Map<string, string[]>;
-  paginateInfo: { page: number; pageSize: number };
+  paginateInfo: PaginateInfo;
   params: ParamsProps;
   width: number;
 }
@@ -68,11 +105,13 @@ export enum FieldDataType {
   String = 'STRING',
 }
 
+interface LoadedDataSchemeContent {
+  title: string;
+  value: string;
+}
+
 export interface LoadedDataScheme {
-  content: {
-    title: string;
-    value: string;
-  }[];
+  content: LoadedDataSchemeContent[];
   dateFormat: string;
   fieldDataType: FieldDataType;
   label: string;
@@ -81,11 +120,13 @@ export interface LoadedDataScheme {
   type: string;
 }
 
+interface LoadedDataUsedParams {
+  [key: string]: string[];
+}
+
 export interface LoadedData {
   uiScheme: LoadedDataScheme[];
-  usedParams: {
-    [key: string]: string[];
-  };
+  usedParams: LoadedDataUsedParams;
 }
 
 export enum ControlType {
@@ -93,4 +134,9 @@ export enum ControlType {
   Input = 'input',
   Datepicker = 'datepicker',
   RangeDatepicker = 'range-datepicker',
+}
+
+export enum PlacementPosition {
+  BottomRight = 'bottomRight',
+  BottomLeft = 'bottomLeft',
 }

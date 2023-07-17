@@ -9,3 +9,9 @@ export interface SelectFilterControlProps {
   className?: string;
   onChange: ((value: string | string[]) => void) | null;
 }
+
+export interface OptionsTypes {
+  value: string;
+  title: string;
+  key: string;
+}

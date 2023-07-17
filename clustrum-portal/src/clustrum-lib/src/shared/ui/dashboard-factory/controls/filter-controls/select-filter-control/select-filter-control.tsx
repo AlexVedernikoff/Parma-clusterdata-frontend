@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { Select } from 'antd';
-import { SelectFilterControlProps } from './types';
+import { Select, SelectProps } from 'antd';
+import { OptionsTypes, SelectFilterControlProps } from './types';
 import { useDebounce } from '@lib-shared/lib/hooks';
 import { SelectionAllBtn } from './selection-all-btn';
 import { CheckOutlined } from '@ant-design/icons';
 
 import styles from './select-filter-control.module.css';
-
-interface OptionsTypes {
-  value: string;
-  title: string;
-  key: string;
-}
 
 export function SelectFilterControl(props: SelectFilterControlProps): JSX.Element {
   const {
@@ -47,13 +41,12 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
     }
   };
 
-  const getOptions = (): OptionsTypes[] => {
-    return content.map(({ title, value }) => ({
+  const getOptions = (): OptionsTypes[] =>
+    content.map(({ title, value }) => ({
       value,
       title,
       key: value,
     }));
-  };
 
   const getDropdown = (menu: JSX.Element): JSX.Element => {
     return (
@@ -72,7 +65,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
     );
   };
 
-  const getMode = multiselect ? 'multiple' : undefined;
+  const mode: SelectProps['mode'] = multiselect ? 'multiple' : undefined;
 
   return (
     <div className={classNames(styles['select-filter-control'], className)}>
@@ -81,7 +74,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
         <Select
           placeholder="Все"
           className={styles['select-filter-control__select']}
-          mode={getMode}
+          mode={mode}
           maxTagCount="responsive"
           allowClear={multiselect}
           showSearch={searchable}

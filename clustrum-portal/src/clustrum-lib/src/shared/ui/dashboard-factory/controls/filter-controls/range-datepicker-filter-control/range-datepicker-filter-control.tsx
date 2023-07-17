@@ -8,12 +8,16 @@ import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { Range, RangeDatepickerFilterControlProps } from './types';
 
 import styles from './range-datepicker-filter-control.module.css';
-import { DefaultValueType } from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
+import {
+  DefaultValueType,
+  PlacementPosition,
+} from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
 
 const { RangePicker } = DatePicker;
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 const POPUP_WIDTH = 576;
 
+// eslint-disable-next-line max-lines-per-function
 export function RangeDatepickerFilterControl(
   props: RangeDatepickerFilterControlProps,
 ): JSX.Element {
@@ -91,7 +95,9 @@ export function RangeDatepickerFilterControl(
     );
   };
 
-  const placementPosition = shouldMoveCalendar ? 'bottomRight' : 'bottomLeft';
+  const placementPosition = shouldMoveCalendar
+    ? PlacementPosition.BottomRight
+    : PlacementPosition.BottomLeft;
 
   return (
     <div className={classNames(styles['range-datepicker-control'], className)}>
