@@ -1,0 +1,13 @@
+.wrapper {
+  height: calc(100% - 47px);
+  overflow-y: auto;
+  background: #fff;
+}
+
+.search_block {
+  padding: 24px 24px 0 24px;
+}
+
+.search_input {
+  width: 100% !important;
+}

@@ -1,0 +1,41 @@
+.container {
+  height: 100%;
+}
+
+.action_container {
+  padding: 0 8px;
+  background: #fff;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.icon {
+  float: left;
+}
+
+.dataset_selector {
+  display: flex;
+  padding: 4px 16px;
+}
+
+.dataset_selector__button {
+  flex: 1 1;
+  padding: 0;
+  color: #000;
+  font-size: 14px;
+  text-align: left;
+  border: none;
+  outline: none;
+}
+
+.dataset_selector__button:not(:disabled):focus-visible {
+  outline: none;
+}
+
+.dataset_selector__button:not(:disabled):hover {
+  color: #000;
+}
+
+.dataset_selector__button > span {
+  /* width: 100%; */
+  text-align: left;
+}

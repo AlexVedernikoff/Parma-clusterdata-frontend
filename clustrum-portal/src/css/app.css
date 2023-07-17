@@ -1584,7 +1584,7 @@
   flex: 1 0 0;
   height: 40px;
   line-height: 22px;
-  margin: 12px 0;
+  margin: 4px 0;
   padding: 9px 24px 9px 0;
   border-radius: 8px;
   cursor: pointer;
@@ -1603,7 +1603,7 @@
   display: flex;
   width: 24px;
   height: 24px;
-  padding: 0 4px;
+  padding-left: 4px;
   justify-content: center;
   align-items: center;
 }
