@@ -4,7 +4,7 @@ import { useDebounce } from '@lib-shared/lib/hooks';
 import classNames from 'classnames';
 import { InputFilterControlProps } from './types';
 
-import './input-filter-control.css';
+import styles from './input-filter-control.module.css';
 
 export function InputFilterControl(props: InputFilterControlProps): JSX.Element | null {
   const { label, placeholder, defaultValue = '', onChange, className } = props;
@@ -34,15 +34,15 @@ export function InputFilterControl(props: InputFilterControlProps): JSX.Element 
   };
 
   return (
-    <div className={classNames('input-filter-control', className)}>
-      <label className="input-filter-control__label">
+    <div className={classNames(styles['input-filter-control'], className)}>
+      <label className={styles['input-filter-control__label']}>
         {`${label}:`}
         <Input
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
           onPressEnter={handlePress}
-          className="input-filter-control__input"
+          className={styles['input-filter-control__input']}
         />
       </label>
     </div>

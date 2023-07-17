@@ -7,7 +7,7 @@ import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { Range, RangeDatepickerFilterControlProps } from './types';
 
-import './range-datepicker-filter-control.css';
+import styles from './range-datepicker-filter-control.module.css';
 import { DefaultValueType } from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
 
 const { RangePicker } = DatePicker;
@@ -94,10 +94,10 @@ export function RangeDatepickerFilterControl(
   const placementPosition = shouldMoveCalendar ? 'bottomRight' : 'bottomLeft';
 
   return (
-    <div className={classNames('range-datepicker-control', className)}>
-      <label className="range-datepicker-control__label">
+    <div className={classNames(styles['range-datepicker-control'], className)}>
+      <label className={styles['range-datepicker-control__label']}>
         {`${label}:`}
-        <div ref={pickerRef} className="range-datepicker-control__picker">
+        <div ref={pickerRef} className={styles['range-datepicker-control__picker']}>
           <RangePicker
             disabledDate={hasDisabled}
             format={dateFormat}

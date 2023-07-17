@@ -27,7 +27,7 @@ import {
 } from '../DashboardControlsTypes';
 import { PickerValue } from '@lib-shared/ui/dashboard-factory/controls/filter-controls/range-datepicker-filter-control/types';
 import { convertToPartialMatchValue, convertToPlainValue } from '../lib/helpers';
-import './style.css';
+import styles from './style.module.css';
 
 interface ActualParamsReturnType {
   [key: string]: string | string[] | DateParams;
@@ -267,14 +267,16 @@ export class FactoryControls extends React.PureComponent<DashboardControlsProps>
     switch (status) {
       case LoadStatus.Pending:
         return (
-          <div className="dashkit-plugin-control">
+          <div className={styles['dashkit-plugin-control']}>
             <Spin />
           </div>
         );
       case LoadStatus.Fail:
         return (
-          <div className="dashkit-plugin-control">
-            <span className="dashkit-plugin-control__error">Произошла ошибка</span>
+          <div className={styles['dashkit-plugin-control']}>
+            <span className={styles['dashkit-plugin-control__error']}>
+              Произошла ошибка
+            </span>
           </div>
         );
 
@@ -295,7 +297,7 @@ export class FactoryControls extends React.PureComponent<DashboardControlsProps>
     }
 
     return (
-      <div className={classNames(external && 'dashkit-plugin-control__external')}>
+      <div className={classNames(external && styles['dashkit-plugin-control__external'])}>
         <ChartKitControl
           scheme={scheme}
           params={this.actualParams}
@@ -328,7 +330,7 @@ export class FactoryControls extends React.PureComponent<DashboardControlsProps>
     }
 
     return (
-      <div className="dashkit-plugin-control">
+      <div className={styles['dashkit-plugin-control']}>
         {scheme.map(control => {
           const { param, type, fieldDataType } = control;
 
@@ -339,7 +341,7 @@ export class FactoryControls extends React.PureComponent<DashboardControlsProps>
           const props = {
             ...control,
             fieldDataType,
-            className: 'dashkit-plugin-control__item',
+            className: styles['dashkit-plugin-control__item'],
             key: param,
           };
 

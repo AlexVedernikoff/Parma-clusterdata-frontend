@@ -8,7 +8,7 @@ import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { DatepickerFilterControlProps } from './types';
 import { DefaultValueType } from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
 
-import './datepicker-filter-control.css';
+import styles from './datepicker-filter-control.module.css';
 
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 const POPUP_WIDTH = 288;
@@ -86,10 +86,10 @@ export function DatepickerFilterControl(
   const placementPosition = shouldMoveCalendar ? 'bottomRight' : 'bottomLeft';
 
   return (
-    <div className={classNames('datepicker-control', className)}>
-      <label className="datepicker-control__label">
+    <div className={classNames(styles['datepicker-control'], className)}>
+      <label className={styles['datepicker-control__label']}>
         {`${label}:`}
-        <div ref={pickerRef} className="datepicker-control__picker">
+        <div ref={pickerRef} className={styles['datepicker-control__picker']}>
           <DatePicker
             disabledDate={hasDisabled}
             format={dateFormat}

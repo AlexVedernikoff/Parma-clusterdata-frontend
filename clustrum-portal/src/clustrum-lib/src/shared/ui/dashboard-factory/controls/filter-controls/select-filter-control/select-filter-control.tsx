@@ -6,7 +6,7 @@ import { useDebounce } from '@lib-shared/lib/hooks';
 import { SelectionAllBtn } from './selection-all-btn';
 import { CheckOutlined } from '@ant-design/icons';
 
-import './select-filter-control.css';
+import styles from './select-filter-control.module.css';
 
 interface OptionsTypes {
   value: string;
@@ -75,12 +75,12 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
   const getMode = multiselect ? 'multiple' : undefined;
 
   return (
-    <div className={classNames('select-filter-control', className)}>
-      <label className="select-filter-control__label">
+    <div className={classNames(styles['select-filter-control'], className)}>
+      <label className={styles['select-filter-control__label']}>
         {`${label}:`}
         <Select
           placeholder="Все"
-          className="select-filter-control__select"
+          className={styles['select-filter-control__select']}
           mode={getMode}
           maxTagCount="responsive"
           allowClear={multiselect}
