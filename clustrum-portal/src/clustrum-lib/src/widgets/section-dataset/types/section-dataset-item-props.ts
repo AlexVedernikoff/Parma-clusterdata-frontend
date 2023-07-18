@@ -1,13 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// TODO определить типы
+import { DndItem } from '@lib-shared/ui/drag-n-drop/types';
+
 export interface SectionDatasetItemProps {
-  item: any;
+  item: DndItem;
   className: string;
-  // TODO
-  isDragging?: boolean;
-  updateDatasetByValidation(params: { fields: any; updates: any; sdk: any }): void;
-  setState(isOpening: boolean, field: any): void;
-  sdk: any;
-  dataset: any;
-  updates: any[];
 }

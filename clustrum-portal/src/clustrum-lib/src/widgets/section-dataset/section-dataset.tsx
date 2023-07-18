@@ -1,10 +1,11 @@
-/* eslint-disable max-lines-per-function, @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, import/no-default-export */
+/* eslint-disable max-lines-per-function */
+// TODO в функции 142 строки, по новому код стайлу подходит
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Dropdown } from 'antd';
 import { createStructuredSelector } from 'reselect';
 
-// TODO: убрать зависимость после её переписывания
+// TODO: поменять импорт после переписывания компонента
 // eslint-disable-next-line
 // @ts-ignore
 import { NavigationMinimal } from '@kamatech-data-ui/clustrum';
@@ -15,7 +16,6 @@ import {
   toggleNavigation,
   applyTextFilter,
   setSearchPhrase,
-  updateDatasetByValidation,
 } from '../../../../actions';
 import {
   selectIsNavigationVisible,
@@ -25,33 +25,29 @@ import {
 } from '../../../../reducers/settings';
 import {
   selectDataset,
-  selectUpdates,
   selectMeasures,
   selectDimensions,
   selectIsDatasetLoading,
   selectIsDatasetLoaded,
   selectDatasetError,
-  selectFields,
 } from '../../../../reducers/dataset';
-import { SectionDatasetItem } from './ui/section-dataset-item';
-import styles from './section-dataset.module.css';
-import { SectionDatasetProps, SectionDatasetState, SectionDatasetActions } from './types';
+import {
+  SectionDatasetProps,
+  SectionDatasetState,
+  SectionDatasetActions,
+  NavigationEntry,
+} from './types';
 import { SectionDatasetMain } from './ui/section-dataset-main';
-import { DndItemProps } from '@lib-shared/ui/drag-n-drop/types';
 import { useDebounce } from '@lib-shared/lib/hooks';
+import styles from './section-dataset.module.css';
 
 function SectionDataset(props: SectionDatasetProps): ReactElement {
   const {
     dataset,
-    fetchDataset,
-    toggleNavigation,
     sdk,
     entryDialoguesRef,
-    applyTextFilter,
-    setSearchPhrase,
     measures,
     dimensions,
-    updates,
     isNavigationVisible,
     defaultPath,
     filteredDimensions,
@@ -59,15 +55,17 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
     isDatasetLoaded,
     isDatasetLoading,
     datasetError,
-    updateDatasetByValidation,
+    fetchDataset,
+    toggleNavigation,
+    applyTextFilter,
+    setSearchPhrase,
   } = props;
 
-  const [isFieldEditorVisible, setIsFieldEditorVisible] = useState(false);
-  const [editingField, setEditingField] = useState(null);
   const [searchValue, setSearchValue] = useState<string>('');
   const navigationButtonRef = useRef<HTMLDivElement | null>(null);
 
   const debouncedValue = useDebounce(searchValue, 300);
+
   useEffect(() => {
     const searchPhrase = debouncedValue.toLowerCase();
     setSearchPhrase({
@@ -80,17 +78,26 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
     });
   }, [debouncedValue, dimensions, measures, applyTextFilter, setSearchPhrase]);
 
-  const onNavigationClick = (data: any): void => {
+  const onChangeSearchField = (value: string): void => setSearchValue(value);
+
+  const onNavigationClick = ({ entryId }: NavigationEntry): void => {
     fetchDataset({
-      datasetId: data.entryId,
+      datasetId: entryId,
       sdk,
     });
-
     toggleNavigation();
   };
 
-  const onOpenDatasetClick = (): void => {
-    window.open(`/datasets/${dataset.id}`);
+  const onNavigationClose = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ): void => {
+    if (
+      (navigationButtonRef?.current &&
+        !navigationButtonRef.current.contains(event.target as Node)) ||
+      (event instanceof KeyboardEvent && event.code === 'Escape')
+    ) {
+      toggleNavigation();
+    }
   };
 
   const onButtonDatasetTryAgainClick = (): void => {
@@ -112,37 +119,13 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
     });
   };
 
-  const onNavigationClose = (event: any): void => {
-    if (
-      (navigationButtonRef?.current &&
-        !navigationButtonRef.current.contains(event.target)) ||
-      (event instanceof KeyboardEvent && event.code === 'Escape')
-    ) {
-      toggleNavigation();
-    }
+  const onOpenDatasetClick = (): void => {
+    window.open(`/datasets/${dataset.id}`);
   };
 
-  const onOpenFieldEditor = (isOpening: boolean, field: any): void => {
-    setIsFieldEditorVisible(isOpening);
-    setEditingField(field);
-  };
-
-  const onChangeSearchField = (value: string): void => setSearchValue(value);
-
-  const renderDatasetItem = (datasetItemProps: DndItemProps): any => (
-    <SectionDatasetItem
-      {...datasetItemProps}
-      sdk={sdk}
-      dataset={dataset}
-      updates={updates}
-      setState={onOpenFieldEditor}
-      updateDatasetByValidation={updateDatasetByValidation}
-    />
-  );
-
-  const goToDatasetDropdownItem = [
+  const openDatasetDropdownItem = [
     {
-      key: 'goTo',
+      key: 'openDataset',
       label: <div onClick={onOpenDatasetClick}>Перейти к датасету</div>,
     },
   ];
@@ -162,7 +145,7 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
           {dataset.realName && (
             <Dropdown
               className="dataset-more-btn"
-              menu={{ items: goToDatasetDropdownItem }}
+              menu={{ items: openDatasetDropdownItem }}
               trigger={['click']}
             >
               <DownOutlined style={{ width: 12 }} />
@@ -196,24 +179,22 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
         onRequestDatasetRights={onButtonDatasetRequestRightsClick}
         onLoadDatasetAgain={onButtonDatasetTryAgainClick}
         onChangeSearchInputField={onChangeSearchField}
-        renderDatasetItem={renderDatasetItem}
       />
     </div>
   );
 }
 
-const mapStateToProps = createStructuredSelector<any, SectionDatasetState>({
+// TODO будет изменено при переходе на effector, поэтому тип unknown
+const mapStateToProps = createStructuredSelector<unknown, SectionDatasetState>({
   isDatasetLoading: selectIsDatasetLoading,
   isDatasetLoaded: selectIsDatasetLoaded,
   isNavigationVisible: selectIsNavigationVisible,
-  filteredDimensions: selectFilteredDimensions,
-  filteredMeasures: selectFilteredMeasures,
-  fields: selectFields,
   dataset: selectDataset,
-  updates: selectUpdates,
   datasetError: selectDatasetError,
   measures: selectMeasures,
   dimensions: selectDimensions,
+  filteredDimensions: selectFilteredDimensions,
+  filteredMeasures: selectFilteredMeasures,
   defaultPath: selectDefaultPath,
 });
 
@@ -222,8 +203,9 @@ const mapDispatchToProps: SectionDatasetActions = {
   toggleNavigation,
   applyTextFilter,
   setSearchPhrase,
-  updateDatasetByValidation,
 };
 
-// TODO изменить на именнованный импорт после переписывания на effector
-export default connect(mapStateToProps, mapDispatchToProps)(SectionDataset);
+export const SectionDatasetComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SectionDataset);

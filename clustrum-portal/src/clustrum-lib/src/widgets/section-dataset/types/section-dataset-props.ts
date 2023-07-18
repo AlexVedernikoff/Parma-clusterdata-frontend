@@ -1,34 +1,38 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// TODO определить типы
+import { AxiosError } from 'axios';
+import { DndItem } from '@lib-shared/ui/drag-n-drop/types';
+import { Wizard } from '@clustrum-lib-legacy';
+import { Dataset } from './dataset';
+
+type EntryDialoguesType = typeof Wizard & {
+  openDialog(): void;
+};
+
 export type SectionDatasetProps = SectionDatasetState &
   SectionDatasetActions & {
-    sdk: any;
-    entryDialoguesRef: any;
+    sdk: object;
+    entryDialoguesRef: React.RefObject<EntryDialoguesType>;
   };
 
 export interface SectionDatasetState {
   isDatasetLoading: boolean;
   isDatasetLoaded: boolean;
   isNavigationVisible: boolean;
-  filteredDimensions: any[];
-  filteredMeasures: any[];
-  fields: any[];
-  dataset: any;
-  updates: any[];
-  datasetError: any;
-  measures: any[];
-  dimensions: any[];
+  measures: DndItem[];
+  dimensions: DndItem[];
+  filteredDimensions: DndItem[];
+  filteredMeasures: DndItem[];
+  dataset: Dataset;
+  datasetError: null | AxiosError;
   defaultPath: string;
 }
 
 export interface SectionDatasetActions {
-  fetchDataset(params: { datasetId: string; sdk: any }): void;
+  fetchDataset(params: { datasetId: string; sdk: object }): void;
   toggleNavigation(): void;
   applyTextFilter(params: {
     searchPhrase: string;
-    measures: any[];
-    dimensions: any[];
+    measures: DndItem[];
+    dimensions: DndItem[];
   }): void;
-  setSearchPhrase(params: { searchPhrase: string }): any;
-  updateDatasetByValidation(params: { fields: any; updates: any; sdk: any }): void;
+  setSearchPhrase(params: { searchPhrase: string }): void;
 }

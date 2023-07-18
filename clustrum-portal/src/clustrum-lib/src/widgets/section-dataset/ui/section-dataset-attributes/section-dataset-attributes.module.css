@@ -1,5 +1,5 @@
 .wrapper {
-  height: calc(100% - 47px);
+  height: calc(100% - 41px);
   overflow-y: auto;
   background: #fff;
 }

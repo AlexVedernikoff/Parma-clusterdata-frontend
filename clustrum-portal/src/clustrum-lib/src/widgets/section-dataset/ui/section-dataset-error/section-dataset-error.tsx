@@ -8,7 +8,8 @@ export function SectionDatasetError(props: SectionDatasetErrorProps): ReactEleme
   const { errorStatus, onRequestDatasetRights, onLoadDatasetAgain } = props;
 
   const datasetErrorText =
-    (errorStatus && DATASET_ERRORS[errorStatus]) || DATASET_ERRORS.UNKNOWN;
+    (errorStatus && DATASET_ERRORS[errorStatus as keyof typeof DATASET_ERRORS]) ||
+    DATASET_ERRORS.UNKNOWN;
 
   return (
     <div className={styles.error_block}>

@@ -15,7 +15,6 @@
 
 .holder {
   justify-content: center;
-  width: 24px;
   height: 24px;
   padding-left: 4px;
   visibility: hidden;
@@ -27,10 +26,6 @@
 
 .more_icon {
   display: none;
-}
-
-.item:hover .more_icon {
-  display: block;
 }
 
 .title {

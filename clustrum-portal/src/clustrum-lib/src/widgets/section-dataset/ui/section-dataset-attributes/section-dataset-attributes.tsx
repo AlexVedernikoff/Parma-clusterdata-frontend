@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-// TODO поменять импорт после переписывания SearchInput
-import SearchInput from '@lib-modules/legacy-wizard/components/SearchInput/SearchInput';
+import { Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 import { SectionDatasetGroup } from '../section-dataset-group';
 import { SectionDatasetAttributesProps } from '../../types';
 import styles from './section-dataset-attributes.module.css';
@@ -15,7 +15,6 @@ export function SectionDatasetAttributes(
     dimensions,
     measures,
     onChangeSearchInputField,
-    renderDatasetItem,
   } = props;
 
   const datasetNames = [
@@ -26,17 +25,19 @@ export function SectionDatasetAttributes(
     ),
   ];
 
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    onChangeSearchInputField(e.currentTarget.value);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.search_block}>
-        <SearchInput
-          hasClear
-          borderDisabled
+        <Input
           className={styles.search_input}
-          text={searchPhrase}
           placeholder="Поиск"
-          size="s"
-          onChange={onChangeSearchInputField}
+          prefix={<SearchOutlined style={{ width: 16 }} />}
+          value={searchPhrase}
+          onChange={onInputChange}
         />
       </div>
       <SectionDatasetGroup
@@ -44,14 +45,12 @@ export function SectionDatasetAttributes(
         title="Измерения"
         datasetNames={datasetNames}
         indicators={filteredDimensions || dimensions}
-        renderDatasetItem={renderDatasetItem}
       />
       <SectionDatasetGroup
         id="measures-container"
         title="Показатели"
         datasetNames={datasetNames}
         indicators={filteredMeasures || measures}
-        renderDatasetItem={renderDatasetItem}
       />
     </div>
   );

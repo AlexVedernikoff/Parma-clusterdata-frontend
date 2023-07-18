@@ -1,7 +1,5 @@
-import { DATASET_ERRORS } from '../../../../../constants';
-
 export interface SectionDatasetErrorProps {
-  errorStatus?: keyof typeof DATASET_ERRORS;
+  errorStatus?: number;
   onRequestDatasetRights(): void;
   onLoadDatasetAgain(): void;
 }

@@ -29,3 +29,7 @@
   line-height: 22px;
   text-align: left;
 }
+
+.dnd_group:not(:last-of-type) {
+  margin-bottom: 12px;
+}

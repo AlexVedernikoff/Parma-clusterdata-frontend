@@ -1,1 +1,1 @@
-export { default as SectionDataset } from './section-dataset';
+export { SectionDatasetComponent as SectionDataset } from './section-dataset';

@@ -19,7 +19,11 @@ export function SectionDatasetMain(props: SectionDatasetMainProps): ReactElement
   } = props;
 
   if (isDatasetLoading) {
-    return <Loader size={'l'} />;
+    return (
+      <div className={styles.loader_container}>
+        <Loader size={'l'} />
+      </div>
+    );
   }
 
   if (datasetError) {

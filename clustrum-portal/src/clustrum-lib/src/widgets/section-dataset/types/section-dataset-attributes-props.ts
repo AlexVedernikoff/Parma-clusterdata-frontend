@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { DndItemProps } from '@lib-shared/ui/drag-n-drop/types';
+import { DndItem } from '@lib-shared/ui/drag-n-drop/types';
 
-// TODO определить типы
 export interface SectionDatasetAttributesProps {
-  filteredMeasures: any[];
-  filteredDimensions: any[];
+  dimensions: DndItem[];
+  measures: DndItem[];
+  filteredMeasures: DndItem[];
+  filteredDimensions: DndItem[];
   searchPhrase: string;
-  dimensions: any[];
-  measures: any[];
   onChangeSearchInputField(value: string): void;
-  renderDatasetItem(props: DndItemProps, component: HTMLDivElement | null): Element;
 }
