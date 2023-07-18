@@ -1150,12 +1150,14 @@ class SectionVisualization extends Component {
 
     const swapIsAllowed =
       draggedItem &&
-      !(draggedItem.listIsNeedRemove === false) &&
-      ((draggedItem.listAllowedTypes &&
-        draggedItem.listAllowedTypes.has(itemData.type)) ||
-        (draggedItem.listCheckAllowed && draggedItem.listCheckAllowed(itemData))) &&
-      ((props.listAllowedTypes && props.listAllowedTypes.has(draggedItem.data.type)) ||
-        (props.listCheckAllowed && props.listCheckAllowed(draggedItem.data)));
+      !(draggedItem.containerIsNeedRemove === false) &&
+      ((draggedItem.containerAllowedTypes &&
+        draggedItem.containerAllowedTypes.has(itemData.type)) ||
+        (draggedItem.containerAllowedTypes &&
+          draggedItem.containerCheckAllowed(itemData))) &&
+      ((props.containerAllowedTypes &&
+        props.containerAllowedTypes.has(draggedItem.data.type)) ||
+        (props.containerAllowedTypes && props.containerCheckAllowed(draggedItem.data)));
 
     const dragHoveredClassName = `drag-hovered ${
       swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
@@ -1189,8 +1191,8 @@ class SectionVisualization extends Component {
           if (inReplaceZone) {
             let drawReplace;
 
-            if (props?.listAllowedTypes) {
-              drawReplace = props?.listAllowedTypes.has(draggedItem.data.type);
+            if (props?.containerAllowedTypes) {
+              drawReplace = props?.containerAllowedTypes.has(draggedItem.data.type);
             } else if (props?.checkAllowed) {
               drawReplace = props?.checkAllowed(draggedItem.data);
             } else {
@@ -1270,7 +1272,7 @@ class SectionVisualization extends Component {
             {itemData.conflict ? (
               <Tooltip
                 anchor={itemComponent}
-                visible={props.tooltipVisible}
+                visible={props.tooltipVisibility}
                 theme="error"
                 view="classic"
                 tone="default"
@@ -1283,7 +1285,7 @@ class SectionVisualization extends Component {
             ) : null}
           </div>
         )}
-        {props?.listId === 'sort-container' ? (
+        {props?.containerId === 'sort-container' ? (
           <div className="item-sort">
             {itemData.direction === 'ASC' ? (
               <SortAscendingOutlined width="16" height="16" />

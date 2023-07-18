@@ -5,7 +5,7 @@ export type DndDraggedItem = {
   hoverIndex: number;
   index: number;
   data: DndItemData;
-  listId: string;
-  listAllowedTypes: Set<string> | undefined;
-  listIsNeedRemove: boolean | undefined;
+  containerId: string;
+  containerAllowedTypes: Set<string> | undefined;
+  containerIsNeedRemove: boolean | undefined;
 };

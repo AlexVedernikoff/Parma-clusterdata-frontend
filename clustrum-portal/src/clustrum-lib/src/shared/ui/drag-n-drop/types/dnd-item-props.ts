@@ -6,12 +6,12 @@ export interface DndItemProps {
   className: string;
   size: ItemSize;
   disabled?: boolean;
-  listAllowedTypes?: Set<string>;
-  listIsNeedRemove?: boolean;
-  listId: string;
+  containerAllowedTypes?: Set<string>;
+  containerIsNeedRemove?: boolean;
+  containerId: string;
   index: number;
   itemData: DndItemData;
-  tooltipVisible: boolean;
+  tooltipVisibility: boolean;
   draggedItem: DndDraggedItem | null;
   onItemClick(e: Event, item: DndItemData): void;
   remove(index: number): void;

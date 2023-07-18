@@ -4,20 +4,19 @@ import { DndItemProps } from './dnd-item-props';
 import { ItemSize } from './item-size';
 
 export interface DndContainerProps {
+  id: string;
+  title?: string;
   allowedTypes?: AllowedTypes;
   capacity?: number;
   disabled?: boolean;
-  id: string;
   items: DndItemData[];
   itemSize: ItemSize;
   itemsClassName?: string;
   isNeedRemove?: boolean;
   isNeedSwap?: boolean;
   highlightDropPlace?: boolean;
-  title?: string;
-  listId?: string;
+  checkAllowed?: CheckAllowed;
+  wrapTo(props: DndItemProps, component: HTMLDivElement | null): Element;
   onItemClick(e: Event, item: DndItemData): void;
   onUpdate(items: DndItemData[], insertItem?: DndItemData, action?: string): void;
-  wrapTo(props: DndItemProps, component: HTMLDivElement | null): Element;
-  checkAllowed?: CheckAllowed;
 }

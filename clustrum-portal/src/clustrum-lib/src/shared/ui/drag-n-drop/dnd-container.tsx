@@ -13,9 +13,8 @@ import {
 import { DndContainerTitle } from './dnd-container-title';
 import { DropPlace, checkDropAvailability } from './drop-place';
 
-// TODO 696922 деконструировать просы, вынести функции и уменьшить размер компонента
+// TODO 696922 вынести функции и уменьшить размер компонента
 /* eslint-disable max-lines-per-function */
-/* eslint-disable react/destructuring-assignment */
 export function DndContainer(props: DndContainerProps): JSX.Element {
   const {
     id,
@@ -40,7 +39,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
   const [items, setItems] = useState<DndItemData[]>(propItems || []);
   const [dropPlace, setDropPlace] = useState<number | null>(null);
-  const [tooltipVisible, setTooltipVisibleState] = useState<boolean>(false);
+  const [tooltipVisibility, setTooltipVisibility] = useState<boolean>(false);
   const [usedItem, setUsedItem] = useState<DndItemData>();
   const [action, setAction] = useState<string>();
   const [isNeedToUpdate, setIsNeedToUpdate] = useState<boolean>(false);
@@ -74,7 +73,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       const itemType = draggedItem.data.type;
       const targetItem = items[draggedItem.hoverIndex] ?? draggedItem.data;
 
-      if (id !== draggedItem.listId) {
+      if (id !== draggedItem.containerId) {
         // отменяем, если не вмещается (но если не разрешена замена)
         const isContainerFull = capacity && capacity <= items.length;
         if (isContainerFull && !isNeedReplaceRef.current) {
@@ -216,13 +215,13 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
                 size={itemSize}
                 itemData={item}
                 index={index}
-                listId={id}
-                listAllowedTypes={allowedTypes}
-                listIsNeedRemove={isNeedRemove}
+                containerId={id}
+                containerAllowedTypes={allowedTypes}
+                containerIsNeedRemove={isNeedRemove}
                 wrapTo={wrapTo}
                 disabled={disabled}
-                setTooltipVisible={setTooltipVisibleState}
-                tooltipVisible={tooltipVisible}
+                setTooltipVisible={setTooltipVisibility}
+                tooltipVisibility={tooltipVisibility}
                 remove={remove}
                 dragContainerReplace={replace}
                 setDropPlace={setDropPlace}

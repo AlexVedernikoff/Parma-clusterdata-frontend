@@ -16,9 +16,9 @@ import { getTargetItemData, setLastDropIndex, setTargetItemData } from './dnd-st
 export function DndItem(props: DndItemProps): JSX.Element {
   const {
     index,
-    listId,
-    listAllowedTypes,
-    listIsNeedRemove,
+    containerId,
+    containerAllowedTypes,
+    containerIsNeedRemove,
     itemData,
     size,
     dragContainerReplace,
@@ -35,9 +35,9 @@ export function DndItem(props: DndItemProps): JSX.Element {
       className: 'is-dragging',
       hoverIndex: 0,
       index,
-      listId,
-      listAllowedTypes,
-      listIsNeedRemove,
+      containerId,
+      containerAllowedTypes,
+      containerIsNeedRemove,
       data: itemData,
     },
     end: (
@@ -71,7 +71,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
         isNeedSwap,
       } = dropResult;
 
-      const inSameContainer = droppedItemId === draggedItem.listId;
+      const inSameContainer = droppedItemId === draggedItem.containerId;
 
       if (inSameContainer && !isNeedSwap) {
         return;
@@ -91,7 +91,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
           }
         }
       } else {
-        if (listIsNeedRemove || inSameContainer) {
+        if (containerIsNeedRemove || inSameContainer) {
           remove(draggedItem.index);
         }
 
@@ -117,7 +117,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
       setDraggedItem(draggedItem);
       const sourceItem = dropMonitor.getItem();
       const dragIndex = sourceItem.index;
-      const sourceListId = sourceItem.listId;
+      const sourceContainerId = sourceItem.containerId;
       const hoverIndex = index;
       const domNode = ref.current;
 
@@ -146,7 +146,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
         hoverBoundingRect.bottom - replaceZoneSize / 2 - hoverBoundingRect.top;
       const replaceZoneTop = replaceZoneSize / 2;
 
-      const isContainerTypeMatch = listId === sourceListId;
+      const isContainerTypeMatch = containerId === sourceContainerId;
       const isUnderTarget = dragIndex === hoverIndex || dragIndex === hoverIndex - 1;
       const isOnTarget = dragIndex === hoverIndex + 1 || dragIndex === hoverIndex;
 
