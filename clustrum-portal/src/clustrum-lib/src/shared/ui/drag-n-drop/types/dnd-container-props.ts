@@ -1,7 +1,7 @@
 import { AllowedTypes, CheckAllowed } from './allowed-types';
 import { DndItemData } from './dnd-item-data';
 import { DndItemProps } from './dnd-item-props';
-import { ItemSize } from './item-size';
+import { DndItemSize } from './dnd-item-size';
 
 export interface DndContainerProps {
   id: string;
@@ -10,7 +10,7 @@ export interface DndContainerProps {
   capacity?: number;
   disabled?: boolean;
   items: DndItemData[];
-  itemSize: ItemSize;
+  itemSize: DndItemSize;
   itemsClassName?: string;
   isNeedRemove?: boolean;
   isNeedSwap?: boolean;

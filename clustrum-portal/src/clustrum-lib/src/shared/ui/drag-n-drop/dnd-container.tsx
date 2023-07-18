@@ -40,7 +40,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
   const [items, setItems] = useState<DndItemData[]>(propItems || []);
   const [dropPlace, setDropPlace] = useState<number | null>(null);
   const [tooltipVisibility, setTooltipVisibility] = useState<boolean>(false);
-  const [usedItem, setUsedItem] = useState<DndItemData>();
+  const [usedItemData, setUsedItemData] = useState<DndItemData>();
   const [action, setAction] = useState<string>();
   const [isNeedToUpdate, setIsNeedToUpdate] = useState<boolean>(false);
   const ref = useRef(null);
@@ -53,7 +53,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
   useEffect(() => {
     if (onUpdate && isNeedToUpdate) {
-      onUpdate(items, usedItem, action);
+      onUpdate(items, usedItemData, action);
       setIsNeedToUpdate(false);
     }
   }, [items]);
@@ -70,19 +70,20 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     }),
     //TODO 696922 вынести в отдельный метод и типизировать
     drop: (draggedItem: DndDraggedItem): DndDropResult | DndEmptyDropResult | null => {
-      const itemType = draggedItem.data.type;
-      const targetItem = items[draggedItem.hoverIndex] ?? draggedItem.data;
+      const draggedItemType = draggedItem.data.type;
+      const targetItemData = items[draggedItem.hoverIndex] ?? draggedItem.data;
 
       if (id !== draggedItem.containerId) {
         // отменяем, если не вмещается (но если не разрешена замена)
         const isContainerFull = capacity && capacity <= items.length;
+
         if (isContainerFull && !isNeedReplaceRef.current) {
           return { revert: true };
         }
 
         // отменяем, если не подходит по типу
         if (allowedTypes) {
-          if (!allowedTypes.has(itemType)) {
+          if (!allowedTypes.has(draggedItemType)) {
             return { revert: true };
           }
         } else if (checkAllowed) {
@@ -94,12 +95,12 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
       return {
         revert: false,
-        targetItem,
-        droppedItemId: id,
-        dropContainerItems: items,
-        dropContainerReplace: replace,
-        dropContainerInsert: insert,
-        dropContainerSwap: swap,
+        itemData: targetItemData,
+        containerId: id,
+        items,
+        replace,
+        insert,
+        swap,
         dropPlace,
         isNeedReplace: isNeedReplaceRef.current,
         setIsNeedReplace,
@@ -119,10 +120,12 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
     setItems(prev => {
       setIsNeedToUpdate(true);
+
       const newItems = [...prev];
-      const targetItem = newItems[targetIndex];
+      const targetItemData = newItems[targetIndex];
       newItems[targetIndex] = newItems[sourceIndex];
-      newItems[sourceIndex] = targetItem;
+      newItems[sourceIndex] = targetItemData;
+
       return newItems;
     });
   };
@@ -136,12 +139,14 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     const insertionItem = { ...item };
     insertionItem.id = getUniqueId('inserted');
 
-    setUsedItem(insertionItem);
+    setUsedItemData(insertionItem);
     setAction('insert');
     setItems(prevItems => {
       setIsNeedToUpdate(true);
+
       const updatedItems = [...prevItems];
       updatedItems.splice(index, 0, insertionItem);
+
       return updatedItems;
     });
   };
@@ -153,12 +158,15 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     }
 
     const removedItem = items[index];
-    setUsedItem(removedItem);
+
+    setUsedItemData(removedItem);
     setAction('remove');
     setItems(prev => {
       setIsNeedToUpdate(true);
-      const filtredItems = prev.filter((_, i) => i !== index);
-      return filtredItems;
+
+      const filteredItems = prev.filter((_, i) => i !== index);
+
+      return filteredItems;
     });
   };
 
@@ -167,12 +175,14 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
       return;
     }
 
-    setUsedItem(item);
+    setUsedItemData(item);
     setAction('replace');
     setItems(prev => {
       setIsNeedToUpdate(true);
+
       const updatedItems = [...prev];
       updatedItems.splice(index, 1, item);
+
       return updatedItems;
     });
   };
@@ -186,14 +196,13 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     setDropPlace(0);
   }
 
+  const containerClassName = `dnd-container${canDrop ? ' can-drop' : ''}${
+    isOver ? ' is-over' : ''
+  }`;
+
   return (
     <div ref={ref}>
-      <div
-        ref={drop}
-        className={`dnd-container${canDrop ? ' can-drop' : ''}${
-          isOver ? ' is-over' : ''
-        }`}
-      >
+      <div ref={drop} className={containerClassName}>
         {highlightDropPlace && (
           <DropPlace
             isDraggedItemHasData={isDraggedItemHasData}
@@ -220,10 +229,10 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
                 containerIsNeedRemove={isNeedRemove}
                 wrapTo={wrapTo}
                 disabled={disabled}
-                setTooltipVisible={setTooltipVisibility}
+                setTooltipVisibility={setTooltipVisibility}
                 tooltipVisibility={tooltipVisibility}
                 remove={remove}
-                dragContainerReplace={replace}
+                replace={replace}
                 setDropPlace={setDropPlace}
                 onItemClick={onItemClick}
                 draggedItem={draggedItem}

@@ -1,4 +1,4 @@
-export interface ItemSize {
+export interface DndItemSize {
   height: number;
   margin: number;
 }

@@ -10,9 +10,8 @@ import {
 import { calcInsertionIndex } from './insertion-index';
 import { getTargetItemData, setLastDropIndex, setTargetItemData } from './dnd-state';
 
-// TODO 696922 деконструировать просы, вынести функции и уменьшить размер компонента
+// TODO 696922 вынести функции и уменьшить размер компонента
 /* eslint-disable max-lines-per-function */
-/* eslint-disable react/destructuring-assignment */
 export function DndItem(props: DndItemProps): JSX.Element {
   const {
     index,
@@ -21,7 +20,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
     containerIsNeedRemove,
     itemData,
     size,
-    dragContainerReplace,
+    replace: sourceContainerReplace,
     remove,
     setDraggedItem,
     setDropPlace,
@@ -42,13 +41,13 @@ export function DndItem(props: DndItemProps): JSX.Element {
     },
     end: (
       draggedItem: DndDraggedItem,
-      dragMonitor: DragSourceMonitor<DndDraggedItem, DndDropResult>,
+      sourceMonitor: DragSourceMonitor<DndDraggedItem, DndDropResult>,
     ): void => {
       const dropResult:
         | DndDropResult
         | DndEmptyDropResult
-        | null = dragMonitor.getDropResult();
-      const hoverIndex = dragMonitor.getItem().hoverIndex;
+        | null = sourceMonitor.getDropResult();
+      const hoverIndex = draggedItem.hoverIndex;
 
       if (!dropResult) {
         return;
@@ -61,17 +60,17 @@ export function DndItem(props: DndItemProps): JSX.Element {
       }
 
       const {
-        droppedItemId,
-        dropContainerItems,
-        dropContainerInsert,
-        dropContainerReplace,
-        dropContainerSwap,
+        containerId: targetContainerId,
+        items: targetContainerItems,
+        insert: targetContainerInsert,
+        replace: targetContainerReplace,
+        swap: targetContainerSwap,
         setIsNeedReplace,
         isNeedReplace,
         isNeedSwap,
       } = dropResult;
 
-      const inSameContainer = droppedItemId === draggedItem.containerId;
+      const inSameContainer = targetContainerId === draggedItem.containerId;
 
       if (inSameContainer && !isNeedSwap) {
         return;
@@ -79,14 +78,16 @@ export function DndItem(props: DndItemProps): JSX.Element {
 
       if (isNeedReplace) {
         if (inSameContainer) {
-          dropContainerSwap(hoverIndex, draggedItem.index);
+          targetContainerSwap(hoverIndex, draggedItem.index);
+
           setIsNeedReplace(false);
         } else {
           const targetItemData = getTargetItemData();
 
           if (targetItemData) {
-            dragContainerReplace(draggedItem.index, targetItemData);
-            dropContainerReplace(hoverIndex, draggedItem.data);
+            sourceContainerReplace(draggedItem.index, targetItemData);
+            targetContainerReplace(hoverIndex, draggedItem.data);
+
             setIsNeedReplace(false);
           }
         }
@@ -97,12 +98,12 @@ export function DndItem(props: DndItemProps): JSX.Element {
 
         const insertionIndex = calcInsertionIndex(
           index,
-          typeof hoverIndex === 'number' ? hoverIndex : dropContainerItems.length,
+          typeof hoverIndex === 'number' ? hoverIndex : targetContainerItems.length,
           inSameContainer,
         );
 
         // добавляем в целевой контейнер
-        dropContainerInsert(insertionIndex, draggedItem.data);
+        targetContainerInsert(insertionIndex, draggedItem.data);
       }
     },
   }));
@@ -112,24 +113,24 @@ export function DndItem(props: DndItemProps): JSX.Element {
     //TODO 696922 вынести в отдельный метод и типизировать
     hover: (
       draggedItem: DndDraggedItem,
-      dropMonitor: DropTargetMonitor<DndDraggedItem>,
+      targetMonitor: DropTargetMonitor<DndDraggedItem>,
     ): void => {
       setDraggedItem(draggedItem);
-      const sourceItem = dropMonitor.getItem();
-      const dragIndex = sourceItem.index;
-      const sourceContainerId = sourceItem.containerId;
+
+      const sourceIndex = draggedItem.index;
+      const sourceContainerId = draggedItem.containerId;
       const hoverIndex = index;
       const domNode = ref.current;
 
-      // сохраним индекс положения куда мы захуверились
-      dropMonitor.getItem().hoverIndex = hoverIndex;
+      // сохраним индекс положения, куда мы навелись курсором
+      draggedItem.hoverIndex = hoverIndex;
 
       if (!domNode) {
         return;
       }
 
       const hoverBoundingRect = domNode.getBoundingClientRect();
-      const clientOffset = dropMonitor.getClientOffset();
+      const clientOffset = targetMonitor.getClientOffset();
 
       if (clientOffset === null) {
         return;
@@ -147,8 +148,8 @@ export function DndItem(props: DndItemProps): JSX.Element {
       const replaceZoneTop = replaceZoneSize / 2;
 
       const isContainerTypeMatch = containerId === sourceContainerId;
-      const isUnderTarget = dragIndex === hoverIndex || dragIndex === hoverIndex - 1;
-      const isOnTarget = dragIndex === hoverIndex + 1 || dragIndex === hoverIndex;
+      const isUnderTarget = sourceIndex === hoverIndex || sourceIndex === hoverIndex - 1;
+      const isOnTarget = sourceIndex === hoverIndex + 1 || sourceIndex === hoverIndex;
 
       setTargetItemData(itemData);
 

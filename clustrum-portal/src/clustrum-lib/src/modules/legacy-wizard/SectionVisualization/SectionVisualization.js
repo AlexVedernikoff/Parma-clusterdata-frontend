@@ -1233,10 +1233,10 @@ class SectionVisualization extends Component {
           }
         }}
         onMouseOver={() => {
-          props.setTooltipVisible(true);
+          props.setTooltipVisibility(true);
         }}
         onMouseOut={() => {
-          props.setTooltipVisible(false);
+          props.setTooltipVisibility(false);
         }}
         onClick={e => {
           if (props?.onItemClick) {

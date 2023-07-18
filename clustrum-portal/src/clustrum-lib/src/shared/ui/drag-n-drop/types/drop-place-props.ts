@@ -1,11 +1,11 @@
-import { ItemSize } from './item-size';
+import { DndItemSize } from './dnd-item-size';
 
 export interface DropPlaceProps {
   isDraggedItemHasData: boolean;
   canDrop: boolean;
   isOver: boolean;
-  itemSize: ItemSize;
+  itemSize: DndItemSize;
   itemsCount: number;
-  capacity?: number;
   dropPlace: number | null;
+  capacity?: number;
 }
