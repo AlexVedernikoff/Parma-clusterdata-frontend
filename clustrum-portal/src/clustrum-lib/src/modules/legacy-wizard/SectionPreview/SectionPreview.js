@@ -87,26 +87,6 @@ class SectionPreview extends Component {
     }
 
     if (previewEntryId || (config && configType)) {
-      // Скрыл кнопку "Открыть в новой вкладке" входе задачи #705476
-      // let LINK_NEW_WINDOW;
-      //
-      // if (DL.installationType === 'external') {
-      //   LINK_NEW_WINDOW = {
-      //     title: 'Открыть в новой вкладке',
-      //     icon: <Icon width="20" data={iconFullscreen} />,
-      //     isVisible: () => true,
-      //     action: ({ loadedData, propsData }) =>
-      //       window.open(
-      //         goAwayLink(
-      //           { loadedData, propsData },
-      //           { urlPostfix: '/preview', idPrefix: '/' },
-      //         ),
-      //       ),
-      //   };
-      // } else {
-      //   LINK_NEW_WINDOW = NEW_WINDOW;
-      // }
-
       let editMode;
       if (config && configType) {
         editMode = {
@@ -115,10 +95,7 @@ class SectionPreview extends Component {
         };
       }
 
-      const menuItems = [
-        EXPORT,
-        // LINK_NEW_WINDOW //Скрыл кнопку "Открыть в новой вкладке" входе задачи #705476
-      ];
+      const menuItems = [EXPORT];
 
       if (previewEntryId) {
         menuItems.push(EDIT);
