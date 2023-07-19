@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // TODO: убрать зависимость из старого кода
 import { getUniqueId } from '../../../../../utils/helpers';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
+import classNames from 'classnames';
 import { DndItem } from './dnd-item';
 import {
   DndItemData,
@@ -71,8 +72,9 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     }),
     //TODO 696922 вынести в отдельный метод и типизировать
     drop: (draggedItem: DndDraggedItem): DndDropResult | DndEmptyDropResult | null => {
-      const draggedItemType = draggedItem.data.type;
-      const targetItemData = items[draggedItem.hoverIndex] ?? draggedItem.data;
+      const draggedItemData = draggedItem.data;
+      const draggedItemDataType = draggedItemData.type;
+      const targetItemData = items[draggedItem.hoverIndex] ?? draggedItemData;
 
       if (id !== draggedItem.containerId) {
         // отменяем, если не вмещается (но если не разрешена замена)
@@ -83,14 +85,13 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
         }
 
         // отменяем, если не подходит по типу
-        if (allowedTypes) {
-          if (!allowedTypes.has(draggedItemType)) {
-            return { revert: true };
-          }
-        } else if (checkAllowed) {
-          if (!checkAllowed(draggedItem.data)) {
-            return { revert: true };
-          }
+        if (allowedTypes && !allowedTypes.has(draggedItemDataType)) {
+          return { revert: true };
+        }
+
+        // отменяем, если не подходит по типу
+        if (!allowedTypes && checkAllowed && !checkAllowed(draggedItemData)) {
+          return { revert: true };
         }
       }
 
@@ -201,9 +202,10 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     setDropPlace(0);
   }
 
-  const containerClassName = `dnd-container${canDrop ? ' can-drop' : ''}${
-    isOver ? ' is-over' : ''
-  }`;
+  const containerClassName = classNames('dnd-container', {
+    'can-drop': canDrop,
+    'is-over': isOver,
+  });
 
   return (
     <div ref={ref}>

@@ -15,8 +15,8 @@ export interface DndContainerProps {
   isNeedRemove?: boolean;
   isNeedSwap?: boolean;
   highlightDropPlace?: boolean;
-  checkAllowed?: CheckAllowed;
   wrapTo(props: DndItemProps, component: HTMLDivElement | null): JSX.Element;
-  onItemClick(e: Event, item: DndItemData): void;
-  onUpdate(items: DndItemData[], insertItem?: DndItemData, action?: string): void;
+  checkAllowed?: CheckAllowed;
+  onItemClick?(e: Event, item: DndItemData): void;
+  onUpdate?(items: DndItemData[], insertItem?: DndItemData, action?: string): void;
 }

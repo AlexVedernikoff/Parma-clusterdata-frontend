@@ -21,6 +21,6 @@ export interface DndItemProps {
   setDropPlace(index: number | null): void;
   setDraggedItem(item: DndDraggedItem): void;
   setIsNeedReplace(isNeedReplace: boolean): void;
-  onItemClick(e: Event, item: DndItemData): void;
   containerCheckAllowed?: CheckAllowed;
+  onItemClick?(e: Event, item: DndItemData): void;
 }
