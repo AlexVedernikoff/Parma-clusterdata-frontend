@@ -1,72 +1,143 @@
 import React, { useRef } from 'react';
-import { DragSourceMonitor, useDrag, useDrop } from 'react-dnd';
-import { DndItemProps, DndDropResult, DndDropedItem } from './types';
+import { DragSourceMonitor, DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
+import {
+  DndItemProps,
+  DndDropResult,
+  DndDraggedItem,
+  DndEmptyDropResult,
+  notEmptyDndDropResult,
+} from './types';
+import { calcInsertionIndex } from './insertion-index';
+import { getTargetItemData, setLastDropIndex, setTargetItemData } from './dnd-state';
 
-// TODO 696922 деконструировать просы
-/* eslint-disable react/destructuring-assignment */
+// TODO 696922 вынести функции и уменьшить размер компонента
+/* eslint-disable max-lines-per-function */
 export function DndItem(props: DndItemProps): JSX.Element {
+  const {
+    index,
+    containerId,
+    containerAllowedTypes,
+    containerIsNeedRemove,
+    itemData,
+    size,
+    containerCheckAllowed,
+    replace: sourceContainerReplace,
+    remove,
+    setDraggedItem,
+    setDropPlace,
+    wrapTo,
+  } = props;
   const ref = useRef<HTMLDivElement>(null);
 
   const [, drag] = useDrag(() => ({
     type: 'ITEM',
     item: {
       className: 'is-dragging',
-      index: props.index,
-      listId: props.listId,
-      listAllowedTypes: props.listAllowedTypes,
-      listNoRemove: props.listNoRemove,
-      item: props.item,
-    },
+      hoverIndex: 0,
+      index,
+      data: itemData,
+      containerId,
+      containerAllowedTypes,
+      containerIsNeedRemove,
+      containerCheckAllowed,
+    } as DndDraggedItem,
     end: (
-      itemWrapper,
-      monitor: DragSourceMonitor<DndDropedItem, DndDropResult>,
+      draggedItem: DndDraggedItem,
+      sourceMonitor: DragSourceMonitor<DndDraggedItem, DndDropResult>,
     ): void => {
-      const dropResult: DndDropResult | null = monitor.getDropResult();
-      const hoverIndex = monitor.getItem().hoverIndex;
+      const dropResult:
+        | DndDropResult
+        | DndEmptyDropResult
+        | null = sourceMonitor.getDropResult();
+      const hoverIndex = draggedItem.hoverIndex;
 
       if (!dropResult) {
         return;
       }
-      if (dropResult.revert) {
+
+      const dropResultIsEmpty = !notEmptyDndDropResult(dropResult);
+
+      if (dropResult.revert || dropResultIsEmpty) {
         return;
       }
 
       const {
-        targetItem,
-        droppedItemId,
+        containerId: targetContainerId,
+        items: targetContainerItems,
+        insert: targetContainerInsert,
+        replace: targetContainerReplace,
+        swap: targetContainerSwap,
+        setIsNeedReplace,
         isNeedReplace,
-        onReplaced,
-        dropContainerReplace,
+        isNeedSwap,
       } = dropResult;
 
-      if (droppedItemId === itemWrapper.listId || !isNeedReplace) {
+      const inSameContainer = targetContainerId === draggedItem.containerId;
+
+      if (inSameContainer && !isNeedSwap) {
         return;
       }
 
-      onReplaced();
-      props.dragContainerReplace(itemWrapper.index, targetItem);
-      dropContainerReplace(hoverIndex, itemWrapper.item);
+      if (isNeedReplace) {
+        if (inSameContainer) {
+          targetContainerSwap(hoverIndex, draggedItem.index);
+
+          setIsNeedReplace(false);
+        } else {
+          const targetItemData = getTargetItemData();
+
+          if (targetItemData) {
+            sourceContainerReplace(draggedItem.index, targetItemData);
+            targetContainerReplace(hoverIndex, draggedItem.data);
+
+            setIsNeedReplace(false);
+          }
+        }
+      } else {
+        if (containerIsNeedRemove || inSameContainer) {
+          remove(draggedItem.index);
+        }
+
+        const insertionIndex = calcInsertionIndex(
+          index,
+          typeof hoverIndex === 'number' ? hoverIndex : targetContainerItems.length,
+          inSameContainer,
+        );
+
+        // добавляем в целевой контейнер
+        targetContainerInsert(insertionIndex, draggedItem.data);
+      }
     },
   }));
 
   const [, drop] = useDrop(() => ({
     accept: 'ITEM',
     //TODO 696922 вынести в отдельный метод и типизировать
-    hover: (itemWrapper: any, monitor: any): any => {
-      const sourceItem = monitor.getItem();
-      const dragIndex = sourceItem.index;
-      const sourceListId = sourceItem.listId;
-      const hoverIndex = props.index;
+    hover: (
+      draggedItem: DndDraggedItem,
+      targetMonitor: DropTargetMonitor<DndDraggedItem>,
+    ): void => {
+      setDraggedItem(draggedItem);
 
-      // сохраним индекс положения куда мы захуверились
-      monitor.getItem().hoverIndex = hoverIndex;
-
+      const sourceIndex = draggedItem.index;
+      const sourceContainerId = draggedItem.containerId;
+      const hoverIndex = index;
       const domNode = ref.current;
+
+      // сохраним индекс положения, куда мы навелись курсором
+      draggedItem.hoverIndex = hoverIndex;
+
       if (!domNode) {
         return;
       }
+
       const hoverBoundingRect = domNode.getBoundingClientRect();
-      const clientOffset = monitor.getClientOffset();
+      const clientOffset = targetMonitor.getClientOffset();
+
+      if (clientOffset === null) {
+        return;
+      }
+
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
       // Представьте себе систему координат в евклидовом пространстве, где ось y направлена вниз (ось х не важна):
@@ -78,26 +149,43 @@ export function DndItem(props: DndItemProps): JSX.Element {
         hoverBoundingRect.bottom - replaceZoneSize / 2 - hoverBoundingRect.top;
       const replaceZoneTop = replaceZoneSize / 2;
 
-      const isContainerTypeMatch = itemWrapper.listId === sourceListId;
-      const isUnderTarget = dragIndex === hoverIndex || dragIndex === hoverIndex - 1;
-      const isOnTarget = dragIndex === hoverIndex + 1 || dragIndex === hoverIndex;
+      const isContainerTypeMatch = containerId === sourceContainerId;
+      const isUnderTarget = sourceIndex === hoverIndex || sourceIndex === hoverIndex - 1;
+      const isOnTarget = sourceIndex === hoverIndex + 1 || sourceIndex === hoverIndex;
+
+      setTargetItemData(itemData);
 
       if (hoverClientY < replaceZoneTop && !(isContainerTypeMatch && isUnderTarget)) {
-        props.setDropPlace(hoverIndex);
-      } else {
-        if (replaceZoneBottom < hoverClientY && !(isContainerTypeMatch && isOnTarget)) {
-          props.setDropPlace(hoverIndex + 1);
-        } else {
-          props.setDropPlace(-1);
-        }
+        setDropPlace(hoverIndex);
+        setLastDropIndex(hoverIndex);
+
+        return;
       }
+
+      if (replaceZoneBottom < hoverClientY && !(isContainerTypeMatch && isOnTarget)) {
+        setDropPlace(hoverIndex + 1);
+        setLastDropIndex(hoverIndex + 1);
+
+        return;
+      }
+
+      setDropPlace(null);
+      setLastDropIndex(null);
     },
   }));
+
+  const style = {
+    height: size.height,
+    marginTop: size.margin,
+    marginBottom: size.margin,
+  };
 
   return (
     <div ref={drop}>
       <div ref={drag}>
-        <div ref={ref}>{props.wrapTo(props, ref.current)}</div>
+        <div style={style} ref={ref}>
+          {wrapTo(props, ref.current)}
+        </div>
       </div>
     </div>
   );

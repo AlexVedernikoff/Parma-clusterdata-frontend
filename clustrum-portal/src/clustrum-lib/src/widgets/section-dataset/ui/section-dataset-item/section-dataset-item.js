@@ -15,14 +15,14 @@ function removeIgnoreDrag(element) {
 
 // TODO уменьшить количество строк в компоненте (#679656)
 export function SectionDatasetItem(props) {
-  const { item, className, isDragging, updateDatasetByValidation, setState } = props;
+  const { itemData, className, isDragging, updateDatasetByValidation, setState } = props;
 
   let resultClassName = '';
 
   resultClassName += className || '';
-  resultClassName += item.className ? ` ${item.className}` : '';
+  resultClassName += itemData.className ? ` ${itemData.className}` : '';
   resultClassName += isDragging ? ' is-dragging' : '';
-  resultClassName += item.local ? ' local-item' : '';
+  resultClassName += itemData.local ? ' local-item' : '';
 
   const removeField = ({ field }) => {
     const {
@@ -112,12 +112,12 @@ export function SectionDatasetItem(props) {
   };
 
   return (
-    <div className={resultClassName} title={item.title}>
+    <div className={resultClassName} title={itemData.title}>
       <HolderOutlined className="item-holder" />
-      <CastIconsFactory iconType={item.cast} />
+      <CastIconsFactory iconType={itemData.cast} />
 
-      <div className="item-title" title={item.title}>
-        {item.title}
+      <div className="item-title" title={itemData.title}>
+        {itemData.title}
       </div>
       <div
         className="item-right-icon item-more-icon"
@@ -141,7 +141,7 @@ export function SectionDatasetItem(props) {
           }
           popup={
             <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
-              {item.local ? (
+              {itemData.local ? (
                 <Menu
                   theme="normal"
                   view="default"
@@ -153,7 +153,7 @@ export function SectionDatasetItem(props) {
                     type="option"
                     val="access"
                     onClick={() => {
-                      onClickRemoveDatasetItem(item);
+                      onClickRemoveDatasetItem(itemData);
                     }}
                   >
                     Удалить
@@ -162,7 +162,7 @@ export function SectionDatasetItem(props) {
                     type="option"
                     val="access"
                     onClick={() => {
-                      onClickEditDatasetItem(item);
+                      onClickEditDatasetItem(itemData);
                     }}
                   >
                     Редактировать
@@ -180,7 +180,7 @@ export function SectionDatasetItem(props) {
                     type="option"
                     val="access"
                     onClick={() => {
-                      onClickDuplicateDatasetItem(item);
+                      onClickDuplicateDatasetItem(itemData);
                     }}
                   >
                     Дублировать

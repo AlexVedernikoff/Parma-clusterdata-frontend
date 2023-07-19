@@ -3,6 +3,11 @@ import { DndContainer } from '@lib-shared/ui/drag-n-drop';
 import { ITEM_TYPES } from '../../../../../../constants';
 import './section-dataset-group.css';
 
+const ITEM_SIZE = {
+  height: 30,
+  margin: 5,
+};
+
 export function SectionDatasetGroup(props) {
   const {
     title,
@@ -29,7 +34,7 @@ export function SectionDatasetGroup(props) {
             return (
               <DndContainer
                 id="dimensions-container"
-                noRemove={true}
+                isNeedSwap
                 title={value}
                 items={
                   (filteredIndicators &&
@@ -39,6 +44,7 @@ export function SectionDatasetGroup(props) {
                     )) ||
                   items
                 }
+                itemSize={ITEM_SIZE}
                 allowedTypes={ITEM_TYPES.DIMENSIONS}
                 wrapTo={renderDatasetItem}
               />
