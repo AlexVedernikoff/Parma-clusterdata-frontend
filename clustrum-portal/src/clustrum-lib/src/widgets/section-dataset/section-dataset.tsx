@@ -1,5 +1,3 @@
-/* eslint-disable max-lines-per-function */
-// TODO в функции 142 строки, по новому код стайлу подходит
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Dropdown } from 'antd';
@@ -35,7 +33,7 @@ import {
   SectionDatasetProps,
   SectionDatasetState,
   SectionDatasetActions,
-  NavigationEntry,
+  NavigationEntryData,
 } from './types';
 import { SectionDatasetMain } from './ui/section-dataset-main';
 import { useDebounce } from '@lib-shared/lib/hooks';
@@ -80,7 +78,7 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
 
   const onChangeSearchField = (value: string): void => setSearchValue(value);
 
-  const onNavigationClick = ({ entryId }: NavigationEntry): void => {
+  const onNavigationClick = ({ entryId }: NavigationEntryData): void => {
     fetchDataset({
       datasetId: entryId,
       sdk,

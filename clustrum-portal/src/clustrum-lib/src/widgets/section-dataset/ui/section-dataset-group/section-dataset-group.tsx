@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { ReactElement } from 'react';
 import { DndContainer } from '@lib-shared/ui/drag-n-drop';
 import { DndItemProps } from '@lib-shared/ui/drag-n-drop/types';
@@ -7,15 +6,18 @@ import { SectionDatasetGroupProps } from '../../types';
 import { SectionDatasetItem } from '../section-dataset-item';
 import styles from './section-dataset-group.module.css';
 
+const ITEM_SIZE = {
+  height: 40,
+  margin: 4,
+};
+
 export function SectionDatasetGroup(props: SectionDatasetGroupProps): ReactElement {
   const { id, title, datasetNames, indicators } = props;
 
-  // TODO исправить тип, когда он будет исправлен в dnd
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const renderDatasetItem = (datasetItemProps: DndItemProps): any => (
+  const renderDatasetItem = (datasetItemProps: DndItemProps): JSX.Element => (
     <SectionDatasetItem
       className={datasetItemProps.className}
-      item={datasetItemProps.item}
+      itemData={datasetItemProps.itemData}
     />
   );
 
@@ -32,14 +34,12 @@ export function SectionDatasetGroup(props: SectionDatasetGroupProps): ReactEleme
               <div className={styles.dnd_group}>
                 <div className={styles.subheader}>{datasetName}</div>
                 <DndContainer
-                  noRemove
+                  isNeedSwap
                   id={id}
                   items={items}
                   allowedTypes={ITEM_TYPES.DIMENSIONS}
+                  itemSize={ITEM_SIZE}
                   wrapTo={renderDatasetItem}
-                  // TODO
-                  onItemClick={(): void => {}}
-                  onUpdate={(): void => {}}
                 />
               </div>
             )

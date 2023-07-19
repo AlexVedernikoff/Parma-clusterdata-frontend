@@ -1,6 +1,6 @@
-import { DndItem } from '@lib-shared/ui/drag-n-drop/types';
+import { DndItemData } from '@lib-shared/ui/drag-n-drop/types';
 
 export interface SectionDatasetItemProps {
-  item: DndItem;
+  itemData: DndItemData;
   className: string;
 }

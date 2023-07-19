@@ -8,5 +8,5 @@ export {
   SectionDatasetState,
   SectionDatasetActions,
 } from './section-dataset-props';
-export { NavigationEntry } from './navigation-entry';
-export { Dataset } from './dataset';
+export { NavigationEntryData } from './navigation-entry-data';
+export { DatasetData } from './dataset-data';

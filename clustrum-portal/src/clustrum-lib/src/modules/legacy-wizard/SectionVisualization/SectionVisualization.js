@@ -5,16 +5,15 @@ import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 import { CheckBox, Tooltip } from 'lego-on-react';
 
 import iconVisualization from 'icons/visualization.svg';
-import iconSwap from 'icons/swap.svg';
 import iconError from 'icons/error.svg';
 
 import {
-  BgColorsOutlined,
   CloseOutlined,
   HolderOutlined,
   FilterOutlined,
   SortAscendingOutlined,
   SortDescendingOutlined,
+  SwapOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -24,7 +23,7 @@ import {
   VISUALIZATIONS,
 } from '../../../../../constants';
 
-import { DndContainer } from '@lib-shared/ui/drag-n-drop';
+import { DndContainer, checkDndActionAvailability } from '@lib-shared/ui/drag-n-drop';
 import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';
@@ -216,6 +215,9 @@ class SectionVisualization extends Component {
           id={`placeholder-container-${placeholder.id}`}
           capacity={placeholder.capacity}
           allowedTypes={placeholder.allowedTypes}
+          isNeedRemove
+          isNeedSwap
+          highlightDropPlace
           items={items}
           itemsClassName="placeholder-item"
           wrapTo={this.renderDatasetItem}
@@ -410,7 +412,8 @@ class SectionVisualization extends Component {
             </div>
             <DndContainer
               id="filter-container"
-              noSwap={true}
+              isNeedRemove
+              highlightDropPlace
               items={[...filters]}
               allowedTypes={ITEM_TYPES.ALL}
               itemsClassName="placeholder-item"
@@ -582,6 +585,9 @@ class SectionVisualization extends Component {
             </div>
             <DndContainer
               id="colors-container"
+              isNeedRemove
+              isNeedSwap
+              highlightDropPlace
               items={colors}
               capacity={visualization.colorsCapacity || 1}
               checkAllowed={item => {
@@ -628,6 +634,9 @@ class SectionVisualization extends Component {
             </div>
             <DndContainer
               id="sort-container"
+              isNeedRemove
+              isNeedSwap
+              highlightDropPlace
               items={sort}
               capacity={10}
               checkAllowed={item => {
@@ -1125,26 +1134,24 @@ class SectionVisualization extends Component {
   }
 
   renderDatasetItem(props, itemComponent) {
-    const { item, draggingItem, className, isDragging } = props;
+    const { itemData, draggedItem, className, isDragging } = props;
 
     let resultClassName = '';
 
     resultClassName += className || '';
-    resultClassName += item.className ? ` ${item.className}` : '';
-    resultClassName += item.local ? ' local-item' : '';
-    resultClassName += item.conflict ? ' conflict' : '';
+    resultClassName += itemData.className ? ` ${itemData.className}` : '';
+    resultClassName += itemData.local ? ' local-item' : '';
+    resultClassName += itemData.conflict ? ' conflict' : '';
 
-    if (!item.undragable) {
+    if (!itemData.undragable) {
       resultClassName += isDragging ? ' is-dragging' : '';
     }
 
     const swapIsAllowed =
-      draggingItem &&
-      !draggingItem.listNoRemove &&
-      ((draggingItem.listAllowedTypes && draggingItem.listAllowedTypes.has(item.type)) ||
-        (draggingItem.listCheckAllowed && draggingItem.listCheckAllowed(item))) &&
-      ((props.listAllowedTypes && props.listAllowedTypes.has(draggingItem.item.type)) ||
-        (props.listCheckAllowed && props.listCheckAllowed(draggingItem.item)));
+      draggedItem &&
+      draggedItem.containerIsNeedRemove &&
+      checkDndActionAvailability({ draggedItem }) &&
+      checkDndActionAvailability(props);
 
     const dragHoveredClassName = `drag-hovered ${
       swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
@@ -1152,13 +1159,13 @@ class SectionVisualization extends Component {
 
     return (
       <div
-        key={item.id}
+        key={itemData.id}
         className={resultClassName}
-        title={item.title}
+        title={itemData.title}
         onDragOver={e => {
           const element = e.currentTarget;
 
-          if (item.type === 'PSEUDO') return;
+          if (itemData.type === 'PSEUDO') return;
 
           const { top, bottom } = e.currentTarget.getBoundingClientRect();
           const y = e.clientY - top;
@@ -1178,10 +1185,10 @@ class SectionVisualization extends Component {
           if (inReplaceZone) {
             let drawReplace;
 
-            if (this.props?.allowedTypes) {
-              drawReplace = this.props?.allowedTypes.has(draggingItem.item.type);
-            } else if (this.props?.checkAllowed) {
-              drawReplace = this.props?.checkAllowed(draggingItem.item);
+            if (props?.containerAllowedTypes) {
+              drawReplace = props?.containerAllowedTypes.has(draggedItem.data.type);
+            } else if (props?.checkAllowed) {
+              drawReplace = props?.checkAllowed(draggedItem.data);
             } else {
               drawReplace = false;
             }
@@ -1216,32 +1223,32 @@ class SectionVisualization extends Component {
           // Если есть нужный класс - триггерим реплейс
           if (element.className.indexOf(dragHoveredClassName) > -1) {
             element.className = element.className.replace(` ${dragHoveredClassName}`, '');
-            this.doingReplace = true;
+            props.setIsNeedReplace(true);
           }
         }}
         onMouseOver={() => {
-          props.setTooltipVisible(true);
+          props.setTooltipVisibility(true);
         }}
         onMouseOut={() => {
-          props.setTooltipVisible(false);
+          props.setTooltipVisibility(false);
         }}
         onClick={e => {
           if (props?.onItemClick) {
-            props?.onItemClick(e, item);
+            props?.onItemClick(e, itemData);
           }
         }}
       >
         <HolderOutlined className="item-holder" />
 
-        <CastIconsFactory iconType={item.cast} />
+        <CastIconsFactory iconType={itemData.cast} />
 
-        <div className="item-title" title={item.datasetName + '.' + item.title}>
-          {item.title}
+        <div className="item-title" title={itemData.datasetName + '.' + itemData.title}>
+          {itemData.title}
         </div>
-        {item.type === 'PSEUDO' ? null : (
+        {itemData.type === 'PSEUDO' ? null : (
           <div className="item-right-icons-container">
             <div className="item-right-icon swap-icon">
-              <Icon data={iconSwap} width="16" />
+              <SwapOutlined width="16" />
             </div>
             <div
               className="item-right-icon cross-icon"
@@ -1256,10 +1263,10 @@ class SectionVisualization extends Component {
             <div className="item-right-icon error-icon">
               <Icon data={iconError} width="16" />
             </div>
-            {item.conflict ? (
+            {itemData.conflict ? (
               <Tooltip
                 anchor={itemComponent}
-                visible={props.tooltipVisible}
+                visible={props.tooltipVisibility}
                 theme="error"
                 view="classic"
                 tone="default"
@@ -1267,14 +1274,14 @@ class SectionVisualization extends Component {
                 size="xs"
                 tail={false}
               >
-                {CONFLICT_TOOLTIPS[item.conflict]}
+                {CONFLICT_TOOLTIPS[itemData.conflict]}
               </Tooltip>
             ) : null}
           </div>
         )}
-        {props?.listId === 'sort-container' ? (
+        {props?.containerId === 'sort-container' ? (
           <div className="item-sort">
-            {item.direction === 'ASC' ? (
+            {itemData.direction === 'ASC' ? (
               <SortAscendingOutlined width="16" height="16" />
             ) : (
               <SortDescendingOutlined width="16" height="16" />

@@ -1,4 +1,4 @@
-export interface NavigationEntry {
+export interface NavigationEntryData {
   entryId: string;
   key: string;
   scope: string;

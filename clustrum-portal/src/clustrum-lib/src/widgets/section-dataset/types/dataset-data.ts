@@ -1,4 +1,4 @@
-import { DndItem } from '@lib-shared/ui/drag-n-drop/types';
+import { DndItemData } from '@lib-shared/ui/drag-n-drop/types';
 
 interface RawSchema {
   title: string;
@@ -20,14 +20,14 @@ interface Source {
   connection_id: string;
 }
 
-export interface Dataset {
-  // TODO добавить тип
+export interface DatasetData {
+  // TODO определить тип
   tasks: {
     materialization: [];
     preview: [];
   };
   is_favorite: false;
-  result_schema: DndItem[];
+  result_schema: DndItemData[];
   ace_url: string;
   preview_enabled: boolean;
   ds_mode: string;

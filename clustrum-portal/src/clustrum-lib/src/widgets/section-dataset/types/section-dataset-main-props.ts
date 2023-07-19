@@ -1,12 +1,12 @@
 import { AxiosError } from 'axios';
-import { DndItem } from '@lib-shared/ui/drag-n-drop/types';
+import { DndItemData } from '@lib-shared/ui/drag-n-drop/types';
 
 export interface SectionDatasetMainProps {
-  filteredMeasures: DndItem[];
-  filteredDimensions: DndItem[];
+  filteredMeasures: DndItemData[];
+  filteredDimensions: DndItemData[];
   searchPhrase: string;
-  dimensions: DndItem[];
-  measures: DndItem[];
+  dimensions: DndItemData[];
+  measures: DndItemData[];
   isDatasetLoading: boolean;
   isDatasetLoaded: boolean;
   datasetError: null | AxiosError;

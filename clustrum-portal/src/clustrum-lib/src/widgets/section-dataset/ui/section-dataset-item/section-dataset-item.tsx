@@ -24,24 +24,24 @@ const removeIgnoreDrag = (
 };
 
 export function SectionDatasetItem(props: SectionDatasetItemProps): ReactElement {
-  const { item, className } = props;
-  const castIconClassName = item.className?.includes('measure')
+  const { itemData, className } = props;
+  const castIconClassName = itemData.className?.includes('measure')
     ? styles.measure_icon
     : undefined;
 
   return (
     <div
-      className={classNames(styles.item, className, item.className)}
-      title={item.title}
+      className={classNames(styles.item, className, itemData.className)}
+      title={itemData.title}
     >
       <HolderOutlined className={styles.holder} />
       <CastIconsFactory
-        iconType={item.cast as CastIconType}
+        iconType={itemData.cast as CastIconType}
         className={castIconClassName}
       />
 
-      <div className={styles.title} title={item.title}>
-        {item.title}
+      <div className={styles.title} title={itemData.title}>
+        {itemData.title}
       </div>
       <div
         className={styles.more_icon}
