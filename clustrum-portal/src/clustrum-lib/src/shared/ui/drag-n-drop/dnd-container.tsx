@@ -11,7 +11,8 @@ import {
   DndEmptyDropResult,
 } from './types';
 import { DndContainerTitle } from './dnd-container-title';
-import { DropPlace, checkDropAvailability } from './drop-place';
+import { DropPlace } from './drop-place';
+import { checkDndActionAvailability } from './check-action-availability';
 
 // TODO 696922 вынести функции и уменьшить размер компонента
 /* eslint-disable max-lines-per-function */
@@ -187,7 +188,11 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     });
   };
 
-  const canDrop = checkDropAvailability(draggedItem?.data, allowedTypes, checkAllowed);
+  const canDrop = checkDndActionAvailability({
+    itemData: draggedItem?.data,
+    allowedTypes,
+    checkAllowed,
+  });
   const isDraggedItemHasData = !!draggedItem?.data;
   const isOverEmptyContainer =
     isDraggedItemHasData && isOver && dropPlace === null && items.length === 0;
@@ -229,6 +234,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
                 containerIsNeedRemove={isNeedRemove}
                 wrapTo={wrapTo}
                 disabled={disabled}
+                containerCheckAllowed={checkAllowed}
                 setTooltipVisibility={setTooltipVisibility}
                 tooltipVisibility={tooltipVisibility}
                 remove={remove}

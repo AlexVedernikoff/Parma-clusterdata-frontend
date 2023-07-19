@@ -11,3 +11,9 @@ export { DndTitleProps } from './dnd-title-props';
 export { DropPlaceProps } from './drop-place-props';
 export { AllowedTypes, CheckAllowed } from './allowed-types';
 export { DndItemSize } from './dnd-item-size';
+export {
+  CheckDndActionAvailabilityCustomParams,
+  CheckActionAvailabilityForDraggedItemParams,
+  CheckDndActionAvailabilityParams,
+  isCheckDndActionAvailabilityForDraggedItemParams,
+} from './dnd-action-availability';

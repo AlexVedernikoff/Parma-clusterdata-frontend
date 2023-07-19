@@ -8,7 +8,6 @@ import iconVisualization from 'icons/visualization.svg';
 import iconError from 'icons/error.svg';
 
 import {
-  BgColorsOutlined,
   CloseOutlined,
   HolderOutlined,
   FilterOutlined,
@@ -24,7 +23,7 @@ import {
   VISUALIZATIONS,
 } from '../../../../../constants';
 
-import { DndContainer } from '@lib-shared/ui/drag-n-drop';
+import { DndContainer, checkDndActionAvailability } from '@lib-shared/ui/drag-n-drop';
 import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';
@@ -1150,14 +1149,9 @@ class SectionVisualization extends Component {
 
     const swapIsAllowed =
       draggedItem &&
-      !(draggedItem.containerIsNeedRemove === false) &&
-      ((draggedItem.containerAllowedTypes &&
-        draggedItem.containerAllowedTypes.has(itemData.type)) ||
-        (draggedItem.containerAllowedTypes &&
-          draggedItem.containerCheckAllowed(itemData))) &&
-      ((props.containerAllowedTypes &&
-        props.containerAllowedTypes.has(draggedItem.data.type)) ||
-        (props.containerAllowedTypes && props.containerCheckAllowed(draggedItem.data)));
+      draggedItem.containerIsNeedRemove &&
+      checkDndActionAvailability({ draggedItem }) &&
+      checkDndActionAvailability(props);
 
     const dragHoveredClassName = `drag-hovered ${
       swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
