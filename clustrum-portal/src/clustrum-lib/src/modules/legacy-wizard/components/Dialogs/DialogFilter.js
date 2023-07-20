@@ -501,8 +501,6 @@ class DialogFilter extends PureComponent {
   renderManualInput() {
     const { state } = this;
 
-    console.log(state);
-
     const { operation } = state;
 
     return (
