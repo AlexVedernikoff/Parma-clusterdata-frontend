@@ -2,7 +2,7 @@
   height: 100%;
 }
 
-.action_container {
+.action-container {
   padding: 0 8px;
   background: #fff;
   border-bottom: 1px solid var(--color-divider);
@@ -12,12 +12,12 @@
   float: left;
 }
 
-.dataset_selector {
+.dataset-selector {
   display: flex;
   padding: 4px 16px;
 }
 
-.dataset_selector__button {
+.dataset-selector__button {
   flex: 1 1;
   padding: 0;
   color: #000;
@@ -28,18 +28,18 @@
   outline: none;
 }
 
-.dataset_selector__button:not(:disabled):focus-visible {
+.dataset-selector__button:not(:disabled):focus-visible {
   outline: none;
 }
 
-.dataset_selector__button:not(:disabled):hover {
+.dataset-selector__button:not(:disabled):hover {
   color: #000;
 }
 
-.dataset_selector__button span {
+.dataset-selector__button span {
   font-size: 14px;
 }
 
-.dataset_selector__button > span {
+.dataset-selector__button > span {
   text-align: left;
 }

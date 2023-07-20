@@ -8,7 +8,7 @@ import styles from './section-dataset-item.module.css';
 
 const addIgnoreDrag = (element: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
   if (element?.currentTarget?.parentElement) {
-    element.currentTarget.parentElement.className += ' ignore-drag';
+    element.currentTarget.parentElement.classList.add(styles['ignore-drag']);
   }
 };
 
@@ -16,17 +16,14 @@ const removeIgnoreDrag = (
   element: React.MouseEvent<HTMLDivElement, MouseEvent>,
 ): void => {
   if (element?.currentTarget?.parentElement) {
-    element.currentTarget.parentElement.className = element.currentTarget.parentElement.className.replace(
-      ' ignore-drag',
-      '',
-    );
+    element.currentTarget.parentElement.classList.remove(styles['ignore-drag']);
   }
 };
 
 export function SectionDatasetItem(props: SectionDatasetItemProps): ReactElement {
   const { itemData, className } = props;
   const castIconClassName = itemData.className?.includes('measure')
-    ? styles.measure_icon
+    ? styles['measure-icon']
     : undefined;
 
   return (
@@ -44,7 +41,7 @@ export function SectionDatasetItem(props: SectionDatasetItemProps): ReactElement
         {itemData.title}
       </div>
       <div
-        className={styles.more_icon}
+        className={styles['more-icon']}
         onMouseEnter={addIgnoreDrag}
         onMouseLeave={removeIgnoreDrag}
       >

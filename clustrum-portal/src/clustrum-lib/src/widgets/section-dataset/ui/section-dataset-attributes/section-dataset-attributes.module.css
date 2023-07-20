@@ -4,10 +4,10 @@
   background: #fff;
 }
 
-.search_block {
+.search-block {
   padding: 24px 24px 0 24px;
 }
 
-.search_input {
+.search-block__input {
   width: 100% !important;
 }

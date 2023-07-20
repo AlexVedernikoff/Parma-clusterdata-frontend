@@ -31,9 +31,9 @@ export function SectionDatasetAttributes(
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.search_block}>
+      <div className={styles['search-block']}>
         <Input
-          className={styles.search_input}
+          className={styles['search-block__input']}
           placeholder="Поиск"
           prefix={<SearchOutlined style={{ width: 16 }} />}
           value={searchPhrase}

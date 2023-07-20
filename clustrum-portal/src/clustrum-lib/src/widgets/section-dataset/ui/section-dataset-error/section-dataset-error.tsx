@@ -12,8 +12,8 @@ export function SectionDatasetError(props: SectionDatasetErrorProps): ReactEleme
     DATASET_ERRORS.UNKNOWN;
 
   return (
-    <div className={styles.error_block}>
-      <div className={styles.error_text}>{datasetErrorText}</div>
+    <div className={styles['error-block']}>
+      <div className={styles['error-block__text']}>{datasetErrorText}</div>
       {errorStatus === 403 && (
         <Button onClick={onRequestDatasetRights}>Запросить права</Button>
       )}

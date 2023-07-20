@@ -20,7 +20,7 @@ export function SectionDatasetMain(props: SectionDatasetMainProps): ReactElement
 
   if (isDatasetLoading) {
     return (
-      <div className={styles.loader_container}>
+      <div className={styles['loader-container']}>
         <Loader size={'l'} />
       </div>
     );

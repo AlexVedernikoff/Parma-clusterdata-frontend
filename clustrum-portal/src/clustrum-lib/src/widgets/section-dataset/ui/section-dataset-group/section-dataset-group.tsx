@@ -22,7 +22,7 @@ export function SectionDatasetGroup(props: SectionDatasetGroupProps): ReactEleme
   );
 
   return (
-    <div className={styles.group_block}>
+    <div className={styles['group-block']}>
       <div className={styles.header}>{title}</div>
       {datasetNames.map(datasetName => {
         {
@@ -31,7 +31,7 @@ export function SectionDatasetGroup(props: SectionDatasetGroupProps): ReactEleme
           );
           return (
             items.length > 0 && (
-              <div className={styles.dnd_group}>
+              <div className={styles['dnd-group']}>
                 <div className={styles.subheader}>{datasetName}</div>
                 <DndContainer
                   isNeedSwap

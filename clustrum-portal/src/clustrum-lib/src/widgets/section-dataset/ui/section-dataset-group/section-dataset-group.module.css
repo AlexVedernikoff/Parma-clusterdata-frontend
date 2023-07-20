@@ -1,13 +1,9 @@
-.datasets-container .subcontainer:nth-of-type(2) {
-  border-top: none;
-}
-
-.group_block {
+.group-block {
   min-height: 115px;
   padding: 24px 24px 12px 24px;
 }
 
-.group_block + .group_block {
+.group-block + .group-block {
   border-top: 1px solid #00000012;
 }
 
@@ -30,6 +26,6 @@
   text-align: left;
 }
 
-.dnd_group:not(:last-of-type) {
+.dnd-group:not(:last-of-type) {
   margin-bottom: 12px;
 }

@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-.item:hover {
+div[draggable='true'] .item:hover {
   background-color: #f5f5f5;
 }
 
@@ -23,12 +23,13 @@
   visibility: hidden;
 }
 
-.item:hover .holder {
+div[draggable='true'] .item:hover .holder {
   visibility: visible;
 }
 
-.more_icon {
+.more-icon {
   display: none;
+  margin-left: 4px;
 }
 
 .title {
@@ -39,16 +40,11 @@
   text-overflow: ellipsis;
 }
 
-.ignore-drag {
-  background-color: var(--color-contrast-4) !important;
-}
-
-.item.is-dragging.ignore-drag,
 .item:focus.ignore-drag,
 .item:active:hover.ignore-drag {
   cursor: pointer;
 }
 
-.measure_icon {
+.measure-icon {
   color: var(--antd-color-primary);
 }

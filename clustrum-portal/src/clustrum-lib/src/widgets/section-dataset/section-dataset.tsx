@@ -130,11 +130,11 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
 
   return (
     <div className={styles.container}>
-      <div className={styles.action_container}>
-        <div className={styles.dataset_selector} ref={navigationButtonRef}>
+      <div className={styles['action-container']}>
+        <div className={styles['dataset-selector']} ref={navigationButtonRef}>
           <Button
             type="link"
-            className={styles.dataset_selector__button}
+            className={styles['dataset-selector__button']}
             onClick={toggleNavigation}
           >
             <DatabaseOutlined width="24" />
