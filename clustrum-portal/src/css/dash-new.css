@@ -195,45 +195,6 @@
   visibility: visible;
 }
 
-.data-table__row {
-  background: #fff;
-}
-
-.data-table__row.selected {
-  background-color: rgba(2, 123, 243, 0.2) !important;
-}
-
-.data-table__row:hover {
-  background-color: rgba(2, 123, 243, 0.1) !important;
-}
-
-.data-table__row_odd {
-  background: #f2f9fd;
-}
-
-.data-table__td {
-  vertical-align: middle;
-  border-right: 1px solid rgba(53, 130, 202, 0.15);
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.data-table__td.selected {
-  background-color: rgba(2, 123, 243, 0.2) !important;
-}
-
-.data-table__th {
-  position: sticky;
-  top: 0;
-  background: rgb(181, 209, 235);
-}
-
-.data-table__foot tr td {
-  position: sticky;
-  top: 46px;
-  background: #fff;
-}
-
 .ol-zoom-in,
 .ol-zoom-out {
   font-size: var(--map-zoom-button-font-size);
@@ -274,11 +235,6 @@
   top: -38px;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
 .chartkit-table {
   overflow: hidden;
 }
@@ -287,21 +243,8 @@
   overflow: overlay;
 }
 
-::-webkit-scrollbar-thumb {
-  height: 50px;
-  background-color: rgba(56, 100, 140, 0.5);
-  border-radius: 3px;
-}
-
 .chartkit-table__cell {
   line-height: 16px;
-}
-
-.data-table__head-cell {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 36px;
 }
 
 .chartkit-table .data-table__sort-icon_shadow {
