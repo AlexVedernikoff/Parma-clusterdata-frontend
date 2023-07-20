@@ -41,7 +41,6 @@ import {
   DownOutlined,
   EditOutlined,
   FilterOutlined,
-  SettingOutlined,
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 
@@ -73,7 +72,6 @@ class Header extends React.PureComponent {
     showRightsDialog: false,
   };
 
-  addRef = React.createRef();
   saveRef = React.createRef();
 
   componentDidUpdate(prevProps) {
@@ -150,8 +148,6 @@ class Header extends React.PureComponent {
   openDialog(dialogType) {
     return () => {
       this.props.openDialog(dialogType);
-      // legohack: закрываем открытый dropdown, т.к. иначе он открыт до момента клика снаружи
-      this.addRef.current._onOutsideClick();
     };
   }
 
