@@ -14,7 +14,7 @@ import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { SectionDataset } from '@lib-widgets/section-dataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
-import { ConnectedSectionPreview } from '../wizard/widgets/section-preview/ui/section-preview';
+import { ConnectedSectionPreview } from '../../widgets/section-preview/ui/section-preview';
 
 import DialogNoRights from './components/Dialogs/DialogNoRights';
 

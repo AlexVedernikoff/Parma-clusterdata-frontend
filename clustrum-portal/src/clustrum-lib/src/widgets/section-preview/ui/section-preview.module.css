@@ -6,13 +6,13 @@
 
 .preview-chartkit__dataset-error-container {
   display: flex;
-  height: 100%;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .preview-chartkit__dataset-error-container span {
   display: block;
-  font-size: 15px;
   margin-top: 20px;
+  font-size: 15px;
 }
