@@ -15,7 +15,7 @@ export const cancelEditMode = () => ({
   payload: { mode: MODE.VIEW },
 });
 
-export const load = () => {
+export const load = defaultEntryId => {
   return async function(dispatch, getState, { sdk }) {
     try {
       dispatch({ type: actionTypes.LOAD_DASH, payload: { mode: MODE.LOADING } });
@@ -25,7 +25,7 @@ export const load = () => {
       } = getState();
       const { pathname, search } = location;
 
-      const entryId = pathname.match(/[^\/]*$/)[0];
+      const entryId = defaultEntryId ? defaultEntryId : pathname.match(/[^\/]*$/)[0];
 
       if (entryId === 'new') {
         return;

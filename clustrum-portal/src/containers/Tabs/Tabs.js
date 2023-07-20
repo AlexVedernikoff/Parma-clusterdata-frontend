@@ -12,11 +12,14 @@ import { getSearchParam } from '../../helpers/QueryParams';
 
 import './tabs.css';
 
-function Tabs({ isEditMode, tabs, setPageTab, openDialog }) {
+function Tabs(props) {
+  const { isEditMode, tabs, setPageTab, openDialog, isBuild } = props;
   const antdTabs = tabs.map(({ id, title }) => ({ key: id, label: title }));
 
   function changeTabHandler(tabId) {
-    addTabIdToUrl(tabId);
+    if (!isBuild) {
+      addTabIdToUrl(tabId);
+    }
     return setPageTab(tabId);
   }
 

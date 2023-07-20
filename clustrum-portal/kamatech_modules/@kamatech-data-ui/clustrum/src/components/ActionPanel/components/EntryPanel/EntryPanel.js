@@ -34,6 +34,7 @@ class EntryPanel extends React.Component {
     onCreateAction: PropTypes.func,
     onCloseNavigation: PropTypes.func,
     rightItems: PropTypes.array,
+    isBuild: PropTypes.bool,
   };
 
   state = {
@@ -126,7 +127,7 @@ class EntryPanel extends React.Component {
     this.setState({ visibleEntryContextMenu: !this.state.visibleEntryContextMenu });
 
   render() {
-    const { sdk, additionalEntryItems } = this.props;
+    const { sdk, additionalEntryItems, isBuild } = this.props;
     const { entry: { isFavorite } = {}, entry, isNavigationVisible } = this.state;
 
     const disabled = Boolean(entry.fake);
@@ -175,15 +176,17 @@ class EntryPanel extends React.Component {
         key="navigation-modal"
       />,
     ];
-    const actionBtns = [...standardBtns, additionalEntryItems];
+    const actionBtns = !isBuild && [...standardBtns, additionalEntryItems];
+    const breadcrumbs = !isBuild && navigationItems(entry.scope, entry.key);
+    const title = !isBuild && formatPath(entry.key === '' ? entry.scope : entry.key);
 
     return (
       <div className={b()}>
         <Header
           leftSideContent={actionBtns}
           rightSideContent={this.props.rightItems}
-          path={navigationItems(entry.scope, entry.key)}
-          title={formatPath(entry.key === '' ? entry.scope : entry.key)}
+          path={breadcrumbs}
+          title={title}
         />
       </div>
     );
