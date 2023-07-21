@@ -4,7 +4,6 @@ import { ConnectedRouter } from 'connected-react-router';
 import moment from 'moment';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import { Switch, Route } from 'react-router-dom';
-import App from '../components/App/App';
 import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
 import { ConfigProvider } from 'antd';
