@@ -9,7 +9,7 @@ import { DatepickerFilterControlProps } from './types';
 import {
   DefaultValueType,
   PlacementPosition,
-} from '@lib-shared/ui/dashboard-factory/types';
+} from '@lib-shared/ui/filter-controls-factory/types';
 
 import styles from './datepicker-filter-control.module.css';
 

@@ -7,9 +7,9 @@ import {
   RangeDatepickerFilterControl,
 } from './filter-controls';
 
-import { PickerValue } from '@lib-shared/ui/dashboard-factory/filter-controls/range-datepicker-filter-control/types';
+import { PickerValue } from '@lib-shared/ui/filter-controls-factory/filter-controls/range-datepicker-filter-control/types';
 import { convertToPartialMatchValue, convertToPlainValue } from './lib/helpers';
-import styles from './style.module.css';
+import styles from './filter-factory-controls.module.css';
 import {
   FilterFactoryControlsProps,
   ControlType,

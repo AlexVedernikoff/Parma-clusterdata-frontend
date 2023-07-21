@@ -1,8 +1,4 @@
-import {
-  LoadStatus,
-  LoadedData,
-  LoadedDataScheme,
-} from '@lib-shared/ui/dashboard-factory/types';
+import { LoadStatus, LoadedData, LoadedDataScheme } from '../types';
 
 export interface ControlState {
   status: LoadStatus;

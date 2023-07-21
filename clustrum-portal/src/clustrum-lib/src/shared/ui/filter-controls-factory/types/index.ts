@@ -1,4 +1,7 @@
-export { FilterFactoryControlsProps } from './filter-factory-controls-props';
+export {
+  FilterFactoryControlsProps,
+  DashboardControlsData,
+} from './filter-factory-controls-props';
 export { ControlType } from './control-type';
 export { PlacementPosition } from './placement-position';
 export { FieldDataType } from './filed-data-type';

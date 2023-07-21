@@ -1,4 +1,4 @@
-import { DateParams } from '@lib-shared/ui/dashboard-factory/types';
+import { DateParams } from '@lib-shared/ui/filter-controls-factory/types';
 
 export interface DatepickerFilterControlProps {
   className?: string;

@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { CancelToken } from 'axios';
 import pick from 'lodash/pick';
 import { Spin } from 'antd';
-import { ITEM_TYPE } from '../../modules/constants/constants';
+import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import {
   ActualParamsReturnType,
   FilterFactoryControlsProps,
   LoadStatus,
   LoadedData,
   LoadedDataScheme,
-} from '@lib-shared/ui/dashboard-factory/types';
-import { FilterFactoryControls } from '@lib-shared/ui/dashboard-factory';
+} from '@lib-shared/ui/filter-controls-factory/types';
+import { FilterFactoryControls } from '@lib-shared/ui/filter-controls-factory';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
-import { SDK } from '../../modules/sdk';
-import { CONTROL_SOURCE_TYPE } from '../../constants/constants';
-import styles from './style.module.css';
+import { SDK } from '../../../../modules/sdk';
+import { CONTROL_SOURCE_TYPE } from '../../../../constants/constants';
+import styles from './filter-controls-container.module.css';
 
 function FilterControlsContainer(props: FilterFactoryControlsProps): JSX.Element {
   const [status, setStatus] = useState<LoadStatus>(LoadStatus.Pending);

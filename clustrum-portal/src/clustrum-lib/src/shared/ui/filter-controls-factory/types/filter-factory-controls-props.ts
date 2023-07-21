@@ -1,7 +1,4 @@
-import {
-  ActualParamsReturnType,
-  LoadedDataScheme,
-} from '@lib-shared/ui/dashboard-factory/types';
+import { ActualParamsReturnType, LoadedDataScheme } from '../types';
 
 export interface DashboardControlsDataDataset {
   id: string;

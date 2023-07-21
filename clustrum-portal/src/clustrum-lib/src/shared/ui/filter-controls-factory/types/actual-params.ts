@@ -1,4 +1,4 @@
-import { DateParams } from '@lib-shared/ui/dashboard-factory/types';
+import { DateParams } from '../types';
 
 export interface ActualParamsReturnType {
   [key: string]: string | string[] | DateParams;

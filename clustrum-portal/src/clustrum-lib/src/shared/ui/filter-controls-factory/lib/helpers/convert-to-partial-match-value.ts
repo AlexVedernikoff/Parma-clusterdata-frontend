@@ -1,5 +1,5 @@
-import { FieldDataType } from '@lib-shared/ui/dashboard-factory/types';
-import { PARTIAL_MATCH_POSTFIX } from '../../constants';
+import { FieldDataType } from '../../types';
+import { PARTIAL_MATCH_POSTFIX } from '../constants';
 
 export const convertToPartialMatchValue = (
   valueInput: string,
