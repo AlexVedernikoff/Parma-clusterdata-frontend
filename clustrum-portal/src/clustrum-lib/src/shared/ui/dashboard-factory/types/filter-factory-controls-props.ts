@@ -1,3 +1,8 @@
+import {
+  ActualParamsReturnType,
+  LoadedDataScheme,
+} from '@lib-shared/ui/dashboard-factory/types';
+
 export interface DashboardControlsDataDataset {
   id: string;
   fieldId: string;
@@ -72,4 +77,6 @@ export interface FilterFactoryControlsProps {
   paginateInfo: PaginateInfo;
   params: ParamsProps;
   width: number;
+  scheme: LoadedDataScheme[] | null;
+  getActualParams(): ActualParamsReturnType;
 }

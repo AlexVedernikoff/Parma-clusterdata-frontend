@@ -9,7 +9,6 @@
   border-radius: 6px;
 }
 
-.dashkit-plugin-control__item {
-  flex: 1;
-  overflow: hidden;
+.dashkit-plugin-control__error {
+  color: var(--antd-text-color-selection);
 }
