@@ -1,1 +1,1 @@
-export { filterControlsContainerPlugin } from './filter-controls-cotainer';
+export { filterControlsPlugin } from './filter-controls-cotainer';

@@ -106,10 +106,9 @@ function FilterControlsContainer(props: FilterFactoryControlsProps): JSX.Element
   );
 }
 
-export const filterControlsContainerPlugin = {
+export const filterControlsPlugin = {
   type: ITEM_TYPE.CONTROL,
   defaultLayout: { w: 8, h: 4 },
-  renderer(props: FilterFactoryControlsProps): JSX.Element {
-    return FilterControlsContainer(props);
-  },
+  renderer: (props: FilterFactoryControlsProps): JSX.Element =>
+    FilterControlsContainer(props),
 };
