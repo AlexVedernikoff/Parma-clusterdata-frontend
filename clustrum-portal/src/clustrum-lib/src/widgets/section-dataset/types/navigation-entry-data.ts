@@ -1,30 +1,43 @@
+export enum NavigationScope {
+  Folder = 'folder',
+  Dataset = 'dataset',
+  Dash = 'dash',
+  Connection = 'connection',
+  Widget = 'widget',
+}
+
+interface Permissions {
+  admin: boolean;
+  edit: boolean;
+  execute: boolean;
+  permissionId: string;
+  read: boolean;
+}
+
 export interface NavigationEntryData {
-  entryId: string;
-  key: string;
-  scope: string;
-  type: string;
-  // TODO определить тип
-  data: null;
-  // TODO определить тип
-  meta: object;
   createdAt: string;
   createdBy: string;
-  updatedAt: string;
-  updatedBy: string;
-  savedId: string;
-  publishedId: null | string;
+  data: string | null;
+  description: string | null;
+  entryId: string;
   hidden: boolean;
-  mirrored: boolean;
   isFavorite: boolean;
   isLocked: boolean;
-  permissions: {
-    permissionId: string;
-    execute: boolean;
-    read: boolean;
-    edit: boolean;
-    admin: boolean;
-  };
+  key: string;
+  meta: any;
+  mirrored: boolean;
   name: string;
-  templateEntryId: null | string;
-  description: null | string;
+  permissions: Permissions;
+  admin: boolean;
+  edit: boolean;
+  execute: boolean;
+  permissionId: string;
+  read: boolean;
+  publishedId: string | null;
+  savedId: string;
+  scope: NavigationScope;
+  templateEntryId: string | null;
+  type: string;
+  updatedAt: string;
+  updatedBy: string;
 }

@@ -22,7 +22,7 @@ export interface SectionDatasetState {
   filteredDimensions: DndItemData[];
   filteredMeasures: DndItemData[];
   dataset: DatasetData;
-  datasetError: null | AxiosError;
+  datasetError: AxiosError | null;
   defaultPath: string;
 }
 

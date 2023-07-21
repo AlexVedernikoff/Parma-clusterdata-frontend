@@ -9,7 +9,7 @@ export interface SectionDatasetMainProps {
   measures: DndItemData[];
   isDatasetLoading: boolean;
   isDatasetLoaded: boolean;
-  datasetError: null | AxiosError;
+  datasetError: AxiosError | null;
   onRequestDatasetRights(): void;
   onLoadDatasetAgain(): void;
   onChangeSearchInputField(value: string): void;
