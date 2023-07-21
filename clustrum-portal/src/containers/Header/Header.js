@@ -60,6 +60,7 @@ class Header extends React.PureComponent {
     resetAllFilters: PropTypes.func.isRequired,
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
+    isBuild: PropTypes.bool,
   };
 
   static contextType = SignalContext;
@@ -327,6 +328,8 @@ class Header extends React.PureComponent {
   }
 
   render() {
+    const { isBuild } = this.props;
+
     return (
       <>
         <BrowserPrint />
@@ -342,6 +345,7 @@ class Header extends React.PureComponent {
               'is-edit': this.props.isEditMode,
               'is-view': !this.props.isEditMode,
             })}
+            isBuild={isBuild}
           />
         )}
       </>
