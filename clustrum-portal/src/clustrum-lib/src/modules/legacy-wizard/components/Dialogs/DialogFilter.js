@@ -131,6 +131,10 @@ class DialogFilter extends PureComponent {
         break;
     }
 
+    if (!availableOperations) {
+      return;
+    }
+
     let operation = filter
       ? availableOperations.find(operation => {
           return operation.code === filter.operation.code;
@@ -873,7 +877,11 @@ class DialogFilter extends PureComponent {
 
   render() {
     const { item } = this.props;
-    const { value, operation } = this.state;
+    const { value, operation, availableOperations } = this.state;
+
+    if (!availableOperations) {
+      return;
+    }
 
     if (item) {
       const { cast } = item;
