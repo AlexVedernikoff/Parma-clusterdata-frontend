@@ -377,7 +377,13 @@ class DialogFilter extends PureComponent {
       } else {
         const [first, ...rest] = value ?? [];
         value = first ? [first] : [''];
-        dimensions = [...dimensions, ...rest].sort(collator.compare);
+        if (Array.isArray(dimensions) && Array.isArray(rest)) {
+          dimensions = [...dimensions, ...rest].sort(collator.compare);
+        } else if (Array.isArray(dimensions)) {
+          dimensions.sort(collator.compare);
+        } else {
+          dimensions = [];
+        }
       }
     }
 
