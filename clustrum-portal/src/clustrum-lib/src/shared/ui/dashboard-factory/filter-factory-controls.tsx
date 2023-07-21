@@ -2,13 +2,11 @@ import React from 'react';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import { Spin } from 'antd';
-import classNames from 'classnames';
 import { CancelToken, CancelTokenSource } from 'axios';
-import ChartKitControl from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
-import { CONTROL_SOURCE_TYPE } from '../../../../../../constants/constants';
+import { CONTROL_SOURCE_TYPE } from '../../../../../constants/constants';
 
-import { SDK } from '../../../../../../modules/sdk';
+import { SDK } from '../../../../../modules/sdk';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
 import {
   InputFilterControl,
@@ -17,50 +15,24 @@ import {
   RangeDatepickerFilterControl,
 } from './filter-controls';
 
+import { PickerValue } from '@lib-shared/ui/dashboard-factory/filter-controls/range-datepicker-filter-control/types';
+import { convertToPartialMatchValue, convertToPlainValue } from './lib/helpers';
+import styles from './style.module.css';
 import {
-  DashboardControlsProps,
+  FilterFactoryControlsProps,
   LoadStatus,
-  LoadedData,
-  LoadedDataScheme,
   ControlType,
   DateParams,
-} from '../DashboardControlsTypes';
-import { PickerValue } from '@lib-shared/ui/dashboard-factory/controls/filter-controls/range-datepicker-filter-control/types';
-import { convertToPartialMatchValue, convertToPlainValue } from '../lib/helpers';
-import styles from './style.module.css';
+  LoadedDataScheme,
+  LoadedData,
+  ActualParamsReturnType,
+  ControlState,
+  MemoizedHandlers,
+} from './types';
 
-interface ActualParamsReturnType {
-  [key: string]: string | string[] | DateParams;
-}
-
-interface MemoizedHandlers {
-  defaultChangeHandler: {
-    param: string;
-    memoizedHandleFn: ((value: string) => void) | null;
-  };
-  selectChangeHandler: {
-    param: string;
-    memoizedHandleFn: ((value: string | string[]) => void) | null;
-  };
-  inputChangeHandler: {
-    param: string;
-    fieldDataType: string;
-    memoizedHandleFn: ((value: string) => void) | null;
-  };
-  rangeDatepickerChangeHandler: {
-    param: string;
-    memoizedHandleFn: ((value: PickerValue) => void) | null;
-  };
-}
-
-interface ControlState {
-  status: LoadStatus;
-  scheme: LoadedDataScheme[] | null;
-  loadedData: LoadedData | null;
-  usedParams: { [key: string]: string[] } | null;
-}
-
-export class FactoryControls extends React.PureComponent<DashboardControlsProps> {
+export class FilterFactoryControls extends React.PureComponent<
+  FilterFactoryControlsProps
+> {
   state: ControlState = {
     status: LoadStatus.Pending,
     scheme: null,
@@ -72,7 +44,7 @@ export class FactoryControls extends React.PureComponent<DashboardControlsProps>
     this.init();
   }
 
-  componentDidUpdate(prevProps: DashboardControlsProps): void {
+  componentDidUpdate(prevProps: FilterFactoryControlsProps): void {
     const { data } = this.props;
 
     if (!isEqual(data, prevProps.data)) {
@@ -285,44 +257,10 @@ export class FactoryControls extends React.PureComponent<DashboardControlsProps>
     }
   }
 
-  renderExternal(): JSX.Element | null {
-    const { scheme } = this.state;
-    const {
-      data: { external },
-      onStateAndParamsChange,
-    } = this.props;
-
-    if (!external) {
-      return null;
-    }
-
-    return (
-      <div className={classNames(external && styles['dashkit-plugin-control__external'])}>
-        <ChartKitControl
-          scheme={scheme}
-          params={this.actualParams}
-          entryId={external.entryId}
-          standalone={true}
-          onChange={({ params }: { params: string }): void =>
-            onStateAndParamsChange({ params })
-          }
-        />
-      </div>
-    );
-  }
-
   render(): JSX.Element | null {
     const { status, scheme } = this.state;
-    const {
-      data: { sourceType },
-    } = this.props;
-
     if ([LoadStatus.Pending, LoadStatus.Fail].includes(status)) {
       return this.renderStateProccesing();
-    }
-
-    if (sourceType === CONTROL_SOURCE_TYPE.EXTERNAL) {
-      return this.renderExternal();
     }
 
     if (!scheme) {

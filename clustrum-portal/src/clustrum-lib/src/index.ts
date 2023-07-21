@@ -1,7 +1,7 @@
 export { useDebounce } from '@lib-shared/lib/hooks';
 
 export { TitleInfoElement } from '@lib-shared/ui/info-elements';
-export { DashboardControls } from '@lib-shared/ui/dashboard-factory/DashboardControls';
+export { FilterFactoryControls } from '@lib-shared/ui/dashboard-factory/filter-factory-controls';
 export {
   TableWidget,
   createCell,

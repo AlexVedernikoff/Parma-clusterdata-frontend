@@ -1,5 +1,5 @@
 import { DashKit, pluginTitle, pluginWidget } from '@clustrum-lib-legacy';
-import { DashboardControls as pluginControl } from '@clustrum-lib';
+import { filterControlsContainer as pluginControl } from '@entities/filter-controls-container';
 import ChartKit from '@kamatech-data-ui/clustrum/src/components/ChartKit/ChartKit';
 
 DashKit.registerPlugins(pluginTitle, pluginControl, pluginWidget.bindChartKit(ChartKit));

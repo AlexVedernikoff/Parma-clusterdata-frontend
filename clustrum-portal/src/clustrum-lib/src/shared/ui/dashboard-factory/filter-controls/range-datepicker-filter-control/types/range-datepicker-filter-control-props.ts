@@ -1,4 +1,4 @@
-import { DateParams } from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
+import { DateParams } from '@lib-shared/ui/dashboard-factory/types';
 import { PickerValue } from './picker-value';
 
 export interface RangeDatepickerFilterControlProps {

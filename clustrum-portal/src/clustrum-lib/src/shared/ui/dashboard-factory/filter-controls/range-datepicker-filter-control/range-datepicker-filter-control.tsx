@@ -6,12 +6,12 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { Range, RangeDatepickerFilterControlProps } from './types';
-
-import styles from './range-datepicker-filter-control.module.css';
 import {
   DefaultValueType,
   PlacementPosition,
-} from '@lib-shared/ui/dashboard-factory/DashboardControlsTypes';
+} from '@lib-shared/ui/dashboard-factory/types';
+
+import styles from './range-datepicker-filter-control.module.css';
 
 const { RangePicker } = DatePicker;
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';

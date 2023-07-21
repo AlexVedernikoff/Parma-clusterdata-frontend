@@ -3,7 +3,7 @@ import {
   DashboardControlsData,
   LoadedData,
   DateParams,
-} from '../../clustrum-lib/src/shared/ui/dashboard-factory/DashboardControlsTypes';
+} from '../../clustrum-lib/src/shared/ui/dashboard-factory/types/filter-factory-controls-props';
 
 interface Params {
   [key: string]: string | string[] | DateParams;
