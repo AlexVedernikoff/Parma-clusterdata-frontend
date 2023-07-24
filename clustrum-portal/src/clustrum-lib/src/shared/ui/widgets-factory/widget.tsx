@@ -13,7 +13,7 @@ import Text from '@kamatech-data-ui/chartkit/lib/components/Widget/WikiText/Wiki
 import Metric from '@kamatech-data-ui/chartkit/lib/components/Widget/Metric/Metric';
 import Control from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
-import { WidgetType } from './widget-type';
+import { WidgetType } from './types/widget-type';
 
 interface UnknownProps {
   onLoad(): void;

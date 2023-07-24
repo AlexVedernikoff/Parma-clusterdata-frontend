@@ -28,7 +28,7 @@ import iconPoints from 'icons/points.svg';
 import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
 // TODO: изменить импорт на `@clustrum-lib`
-import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/widget-type';
+import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types/widget-type';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',
