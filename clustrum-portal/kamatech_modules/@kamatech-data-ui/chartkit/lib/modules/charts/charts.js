@@ -6,7 +6,7 @@ import ErrorDispatcher, { ERROR_TYPE } from '../error-dispatcher/error-dispatche
 
 import { URL_OPTIONS } from '../constants/constants';
 // TODO: изменить импорт на `@clustrum-lib`
-import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types/widget-type';
+import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 
 import runNode from './engines/node';
 import runWizard from './engines/wizard';
