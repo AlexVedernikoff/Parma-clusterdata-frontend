@@ -54,6 +54,7 @@ class Body extends React.PureComponent {
     widgetForReloadUUID: PropTypes.string.isRequired,
     setWidgetForReloadUUID: PropTypes.func.isRequired,
     toggleWidgetVisibility: PropTypes.func.isRequired,
+    isBuild: PropTypes.bool,
     // router
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -115,6 +116,7 @@ class Body extends React.PureComponent {
       settings,
       widgetForReloadUUID,
       setWidgetForReloadUUID,
+      isBuild,
     } = this.props;
 
     switch (mode) {
@@ -130,7 +132,7 @@ class Body extends React.PureComponent {
       <React.Fragment>
         <TableOfContent />
         <div className={b('content', { 'table-of-content': showTableOfContent })}>
-          <Tabs />
+          <Tabs isBuild={isBuild} />
           <DashKit
             config={tabData}
             editMode={mode === MODE.EDIT}

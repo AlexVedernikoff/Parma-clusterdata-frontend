@@ -15,7 +15,7 @@ const translateText = (text: string | undefined): string => {
       return 'Наборы данных';
     case 'widgets':
     case 'widget':
-      return 'Диаграммы';
+      return 'Элементы аналитических панелей';
     case 'dashboards':
     case 'dash':
       return 'Аналитические панели';

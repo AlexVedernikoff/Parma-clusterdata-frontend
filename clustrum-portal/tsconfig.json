@@ -29,7 +29,8 @@
       "@lib-entities/*": ["./src/clustrum-lib/src/entities/*"],
       "@lib-shared/*": ["./src/clustrum-lib/src/shared/*"],
       "@kamatech-data-ui/*": ["./kamatech_modules/@kamatech-data-ui/*"]
-    }
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules", "./src/tests/**/*"]

@@ -13,6 +13,9 @@ import './../css/navigation.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
+import { ConfigProvider } from 'antd';
+import ruRU from 'antd/locale/ru_RU';
+import { ANT_TOKEN } from '@shared/config/theme';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -27,10 +30,12 @@ logVersion();
 
 export function NavigationBuild() {
   return (
-    <Provider store={store}>
-      <Router>
-        <NavigationPage sdk={sdk} />
-      </Router>
-    </Provider>
+    <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+      <Provider store={store}>
+        <Router>
+          <NavigationPage sdk={sdk} />
+        </Router>
+      </Provider>
+    </ConfigProvider>
   );
 }

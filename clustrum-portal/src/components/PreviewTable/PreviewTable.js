@@ -24,6 +24,8 @@ class PreviewTable extends React.Component {
       preview: { data: { regular: { Type = [], Data = [] } = {} } = {} } = {},
     } = this.props;
 
+    const positionsIndex = [];
+
     try {
       const rows = Data.map((row, index) =>
         Object.assign(
@@ -33,14 +35,24 @@ class PreviewTable extends React.Component {
           row,
         ),
       );
+      const propertiesQuantity = Object.keys(rows[0]).length - 1;
+
+      for (let i = 0; i < propertiesQuantity; i++) {
+        positionsIndex.push(i);
+      }
+
       const columns = Type[1][1].reduce((columnsTable, column, index) => {
         const [name, type] = column;
+        const shouldAddElement =
+          !columnsTable.length || !columnsTable.some(i => i.header === name);
 
-        columnsTable.push({
-          name: index,
-          header: name,
-          type,
-        });
+        if (shouldAddElement) {
+          columnsTable.push({
+            name: positionsIndex[columnsTable.length],
+            header: name,
+            type,
+          });
+        }
 
         return columnsTable;
       }, []);

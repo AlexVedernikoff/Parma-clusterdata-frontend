@@ -66,6 +66,11 @@ import isEqual from 'lodash/isEqual';
 
 import { CalcModes } from '@kamatech-data-ui/clustrum';
 
+const ITEM_SIZE = {
+  height: 30,
+  margin: 5,
+};
+
 function addIgnoreDrag(element) {
   element.className += ' ignore-drag';
 }
@@ -340,17 +345,17 @@ class SectionDataset extends Component {
   }
 
   renderDatasetItem = props => {
-    const { item, className, isDragging } = props;
+    const { itemData, className, isDragging } = props;
 
     let resultClassName = '';
 
     resultClassName += className || '';
-    resultClassName += item.className ? ` ${item.className}` : '';
+    resultClassName += itemData.className ? ` ${itemData.className}` : '';
     resultClassName += isDragging ? ' is-dragging' : '';
-    resultClassName += item.local ? ' local-item' : '';
+    resultClassName += itemData.local ? ' local-item' : '';
 
     let castIconData;
-    switch (item.cast) {
+    switch (itemData.cast) {
       case 'integer':
       case 'uinteger':
       case 'float':
@@ -378,7 +383,7 @@ class SectionDataset extends Component {
     }
 
     return (
-      <div className={resultClassName} title={item.title}>
+      <div className={resultClassName} title={itemData.title}>
         <HolderOutlined className="item-holder" />
 
         {/* Не нашел подходящих иконок, поэтому пришлось оставить так */}
@@ -388,8 +393,8 @@ class SectionDataset extends Component {
           <Icon className="item-icon" data={castIconData} width="16" />
         )}
 
-        <div className="item-title" title={item.title}>
-          {item.title}
+        <div className="item-title" title={itemData.title}>
+          {itemData.title}
         </div>
         <div
           className="item-right-icon item-more-icon"
@@ -413,7 +418,7 @@ class SectionDataset extends Component {
             }
             popup={
               <Popup hasTail hiding autoclosable onOutsideClick={() => {}}>
-                {item.local ? (
+                {itemData.local ? (
                   <Menu
                     theme="normal"
                     view="default"
@@ -425,7 +430,7 @@ class SectionDataset extends Component {
                       type="option"
                       val="access"
                       onClick={() => {
-                        this.onClickRemoveDatasetItem(item);
+                        this.onClickRemoveDatasetItem(itemData);
                       }}
                     >
                       Удалить
@@ -434,7 +439,7 @@ class SectionDataset extends Component {
                       type="option"
                       val="access"
                       onClick={() => {
-                        this.onClickEditDatasetItem(item);
+                        this.onClickEditDatasetItem(itemData);
                       }}
                     >
                       Редактировать
@@ -452,7 +457,7 @@ class SectionDataset extends Component {
                       type="option"
                       val="access"
                       onClick={() => {
-                        this.onClickDuplicateDatasetItem(item);
+                        this.onClickDuplicateDatasetItem(itemData);
                       }}
                     >
                       Дублировать
@@ -525,7 +530,7 @@ class SectionDataset extends Component {
                 return (
                   <DndContainer
                     id="dimensions-container"
-                    noRemove={true}
+                    isNeedSwap
                     title={value}
                     items={
                       (filteredDimensions &&
@@ -533,6 +538,7 @@ class SectionDataset extends Component {
                         filteredDimensions.filter(d => d.datasetName === value)) ||
                       items
                     }
+                    itemSize={ITEM_SIZE}
                     allowedTypes={ITEM_TYPES.DIMENSIONS}
                     wrapTo={this.renderDatasetItem}
                   />
@@ -556,7 +562,7 @@ class SectionDataset extends Component {
                 return (
                   <DndContainer
                     id="measures-container"
-                    noRemove={true}
+                    isNeedSwap
                     title={value}
                     allowedTypes={ITEM_TYPES.MEASURES}
                     items={
@@ -565,6 +571,7 @@ class SectionDataset extends Component {
                         filteredMeasures.filter(d => d.datasetName === value)) ||
                       items
                     }
+                    itemSize={ITEM_SIZE}
                     wrapTo={this.renderDatasetItem}
                   />
                 );

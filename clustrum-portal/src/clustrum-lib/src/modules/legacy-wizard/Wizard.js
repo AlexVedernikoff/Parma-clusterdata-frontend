@@ -12,7 +12,7 @@ import { ErrorContent, EntryDialogues, ActionPanel } from '@kamatech-data-ui/clu
 
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
-import SectionDataset from './SectionDataset/SectionDataset';
+import { SectionDataset } from '@lib-widgets/section-dataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
 import SectionPreview from './SectionPreview/SectionPreview';
 
@@ -68,6 +68,7 @@ class Wizard extends Component {
     onSavingStart: PropTypes.func,
     onSavingEnd: PropTypes.func,
     onExport: PropTypes.func,
+    isBuild: PropTypes.bool,
   };
 
   entryDialoguesRef = React.createRef();
@@ -236,6 +237,7 @@ class Wizard extends Component {
       configType,
       previewHash,
       widgetHash,
+      isBuild,
     } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
@@ -294,6 +296,7 @@ class Wizard extends Component {
           <ActionPanel
             sdk={sdk}
             entry={widget}
+            isBuild={isBuild}
             rightItems={[
               <Button
                 key="fullscreen"
