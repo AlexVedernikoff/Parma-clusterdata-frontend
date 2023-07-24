@@ -89,11 +89,11 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
   const onNavigationClose = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ): void => {
-    if (
-      (navigationButtonRef?.current &&
-        !navigationButtonRef.current.contains(event.target as Node)) ||
-      (event instanceof KeyboardEvent && event.code === 'Escape')
-    ) {
+    const isOutsideNavigationClick =
+      navigationButtonRef?.current &&
+      !navigationButtonRef.current.contains(event.target as Node);
+    const isEscKeyPressed = event instanceof KeyboardEvent && event.code === 'Escape';
+    if (isOutsideNavigationClick || isEscKeyPressed) {
       toggleNavigation();
     }
   };

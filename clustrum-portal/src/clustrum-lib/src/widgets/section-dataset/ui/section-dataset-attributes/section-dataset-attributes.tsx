@@ -18,11 +18,11 @@ export function SectionDatasetAttributes(
   } = props;
 
   const datasetNames = [
-    ...new Set(
-      [...dimensions.sort((a, b) => a.datasetName.localeCompare(b.datasetName))].map(
-        d => d.datasetName,
-      ),
-    ),
+    ...new Set([
+      ...dimensions
+        .map(dimension => dimension.datasetName)
+        .sort((a, b) => a.localeCompare(b)),
+    ]),
   ];
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

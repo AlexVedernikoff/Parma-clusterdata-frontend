@@ -14,7 +14,7 @@ const ITEM_SIZE = {
 export function SectionDatasetGroup(props: SectionDatasetGroupProps): ReactElement {
   const { id, title, datasetNames, indicators } = props;
 
-  const renderDatasetItem = (datasetItemProps: DndItemProps): JSX.Element => (
+  const renderDatasetItem = (datasetItemProps: DndItemProps): ReactElement => (
     <SectionDatasetItem
       className={datasetItemProps.className}
       itemData={datasetItemProps.itemData}
