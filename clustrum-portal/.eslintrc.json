@@ -42,6 +42,9 @@
       }
     ],
     "curly": ["error", "all"],
-    "react/destructuring-assignment": ["error", "always"]
+    "react/destructuring-assignment": ["error", "always"],
+    "max-params": ["error", 3],
+    "max-depth": ["error", 3],
+    "react/display-name": "error"
   }
 }
