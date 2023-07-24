@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 
 // TODO: изменить импорт на `@clustrum-lib`
-import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/Widget';
+import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/widget';
 
 import ChartsModule from '../../modules/charts/charts';
 import ErrorDispatcher from '../../modules/error-dispatcher/error-dispatcher';
