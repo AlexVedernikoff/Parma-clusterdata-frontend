@@ -32,6 +32,8 @@ const ALLOWED_EXTENSIONS = '.csv, .txt';
 const DISABLE_CHANGE_PARAMETERS_FOR_STATUSES = ['saved', 'materializing', 'materialized'];
 const ALLOW_UPDATE_ON_CHANGE_FIELD_LIST = ['delimiter', 'encoding', 'hasHeader'];
 
+const handleClick = (e) => {e.target.open(); e.stopPropagation();}
+
 function FileDescription(props) {
   const { acceptedFile } = props;
 
@@ -65,6 +67,7 @@ function CsvDropZone(props) {
     acceptedFile = [],
     rejectReasons: { isOverMaxSize, isNotAllowedType } = {},
   } = props;
+  const handleClick = (e) => {open(); e.stopPropagation();}
 
   return (
     <div className={b('dropzone')} {...getRootProps()}>
@@ -84,7 +87,8 @@ function CsvDropZone(props) {
                 view="default"
                 tone="default"
                 text="Выбрать CSV-файл"
-                onClick={() => open()}
+                onClick={(e) => handleClick(e) }
+                
               />
               <span className={b('drop-here-hint')}>
                 Вы можете загрузить файл размером до 100 Мб, перетащив его на экран
