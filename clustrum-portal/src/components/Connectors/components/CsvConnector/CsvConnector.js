@@ -32,8 +32,6 @@ const ALLOWED_EXTENSIONS = '.csv, .txt';
 const DISABLE_CHANGE_PARAMETERS_FOR_STATUSES = ['saved', 'materializing', 'materialized'];
 const ALLOW_UPDATE_ON_CHANGE_FIELD_LIST = ['delimiter', 'encoding', 'hasHeader'];
 
-const handleClick = (e) => {e.target.open(); e.stopPropagation();}
-
 function FileDescription(props) {
   const { acceptedFile } = props;
 
@@ -87,7 +85,7 @@ function CsvDropZone(props) {
                 view="default"
                 tone="default"
                 text="Выбрать CSV-файл"
-                onClick={(e) => handleClick(e) }
+                onClick={ handleClick }
                 
               />
               <span className={b('drop-here-hint')}>
