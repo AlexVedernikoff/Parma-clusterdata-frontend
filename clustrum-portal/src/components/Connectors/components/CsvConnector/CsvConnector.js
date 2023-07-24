@@ -65,7 +65,11 @@ function CsvDropZone(props) {
     acceptedFile = [],
     rejectReasons: { isOverMaxSize, isNotAllowedType } = {},
   } = props;
-  const handleClick = (e) => {open(); e.stopPropagation();}
+
+  const handleClick = (e) => {
+    open(); 
+    e.stopPropagation();
+  }
 
   return (
     <div className={b('dropzone')} {...getRootProps()}>
