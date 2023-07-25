@@ -17,8 +17,7 @@ import CommentsModal from './CommentsModal/CommentsModal';
 import URI from '../../../modules/uri/uri';
 import settings from '../../../modules/settings/settings';
 import { normalizeSources } from '../../../modules/sources/sources';
-// TODO: изменить импорт на `@clustrum-lib`
-import { WIDGET_TYPE } from '@clustrum-lib/shared/ui/widgets-factory/WidgetType';
+import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 import { URL_OPTIONS } from '../../../modules/constants/constants';
 import { readComments } from '../../../modules/comments/comments';
 import { drawComments, hideComments } from '../../../modules/comments/drawing';
@@ -172,7 +171,7 @@ const COMMENTS = {
   icon: <Icon size="20" name="comment" />,
   isVisible: ({ loadedData: { data, widgetType, isNewWizard } = {}, widget }) =>
     widget &&
-    widgetType === WIDGET_TYPE.GRAPH &&
+    widgetType === WidgetType.Graph &&
     !isNewWizard &&
     widget.xAxis[0].isDatetimeAxis &&
     widget.xAxis[0].closestPointRange <= 86400000,
@@ -296,7 +295,7 @@ const OPEN_AS_TABLE = {
   title: 'Открыть как таблицу',
   icon: <Icon size="20" name="table" />,
   isVisible: ({ loadedData: { data, widgetType } = {} }) =>
-    data && widgetType === WIDGET_TYPE.GRAPH,
+    data && widgetType === WidgetType.Graph,
   action: ({ loadedData, propsData }) =>
     window.open(
       goAwayLink(
