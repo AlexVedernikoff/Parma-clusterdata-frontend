@@ -19,8 +19,9 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       className="table-widget"
       columns={columns}
       dataSource={dataSource}
-      title={(): string | null => title}
       size="small"
+      title={(): string | null => title}
+      scroll={{ y: '80%' }}
       pagination={{
         total: Number(totalRowsCount),
         defaultPageSize: 10,
