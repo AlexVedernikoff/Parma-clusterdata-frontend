@@ -61,15 +61,9 @@ function CsvDropZone(props) {
     getRootProps,
     getInputProps,
     isDragActive,
-    open,
     acceptedFile = [],
     rejectReasons: { isOverMaxSize, isNotAllowedType } = {},
   } = props;
-
-  const handleClick = (e) => {
-    open(); 
-    e.stopPropagation();
-  }
 
   return (
     <div className={b('dropzone')} {...getRootProps()}>
@@ -89,8 +83,6 @@ function CsvDropZone(props) {
                 view="default"
                 tone="default"
                 text="Выбрать CSV-файл"
-                onClick={ handleClick }
-                
               />
               <span className={b('drop-here-hint')}>
                 Вы можете загрузить файл размером до 100 Мб, перетащив его на экран
@@ -145,7 +137,7 @@ function CsvDropZoneWrapper(props) {
         onClick={onClickDropZone}
         maxSize={MAX_FILE_SIZE_BYTE}
       >
-        {({ getRootProps, getInputProps, isDragActive, open }) => {
+        {({ getRootProps, getInputProps, isDragActive }) => {
           return (
             <CsvDropZone
               acceptedFile={acceptedFile}
@@ -153,7 +145,6 @@ function CsvDropZoneWrapper(props) {
               getRootProps={getRootProps}
               getInputProps={getInputProps}
               isDragActive={isDragActive}
-              open={open}
             />
           );
         }}
