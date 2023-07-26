@@ -10,7 +10,7 @@ const FILTER_CONDITION_TYPE = {
 };
 
 export function ChartWidget(props: ChartWidgetProps): JSX.Element {
-  const { data: propsData, onStateAndParamsChange, onLoad } = props;
+  const { data: propsData, refWidget, onStateAndParamsChange, onLoad } = props;
   const { data, config: conf, libraryConfig } = propsData;
   const { config: graphOptions } = getEchartsConfig(
     Object.assign({ echart: libraryConfig }, conf),
@@ -18,7 +18,7 @@ export function ChartWidget(props: ChartWidgetProps): JSX.Element {
     null,
     null,
   );
-  const { option, className } = useCreateOptions(graphOptions, libraryConfig);
+  const { option, className } = useCreateOptions(graphOptions, libraryConfig, refWidget);
 
   function convertCategoryName(category: string, categoriesDataTypeName: string): string {
     if (category === null) {

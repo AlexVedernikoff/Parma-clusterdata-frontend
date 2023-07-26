@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import axios from 'axios';
@@ -33,6 +33,8 @@ class ChartKit extends React.Component {
       orderBy: this.props.orderBy,
     };
   }
+
+  refWidget = createRef();
 
   static contextType = SignalContext;
 
@@ -320,6 +322,7 @@ class ChartKit extends React.Component {
             hidden: loading && !silentLoading,
             [widgetType]: Boolean(widgetType),
           })}
+          ref={this.refWidget}
         >
           {error ? (
             <Error
@@ -352,6 +355,7 @@ class ChartKit extends React.Component {
               ownWidgetParams={ownWidgetParams}
               orderBy={orderBy}
               onOrderByClickInWizard={this.onOrderByClickInWizard}
+              refWidget={this.refWidget}
             />
           )}
         </div>
