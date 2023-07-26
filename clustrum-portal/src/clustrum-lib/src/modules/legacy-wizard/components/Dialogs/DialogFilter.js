@@ -281,7 +281,7 @@ class DialogFilter extends PureComponent {
 
                 this.setState({
                   dimensions,
-                  originalDimensions: dimensions,
+                  originalDimensions: [...dimensions],
                   value,
                 });
               }
@@ -362,7 +362,7 @@ class DialogFilter extends PureComponent {
 
               this.setState({
                 dimensions,
-                originalDimensions: dimensions,
+                originalDimensions: [...dimensions],
                 value,
               });
             }
