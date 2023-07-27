@@ -752,7 +752,7 @@
   transform: rotate(90deg);
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--antd-color-primary);
   border-radius: 0.25rem;
 }
 
@@ -851,7 +851,7 @@
 .chartkit__widget_map .ol-zoom-in,
 .chartkit__widget_map .ol-zoom-out {
   background: #ffffff;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--antd-color-primary);
   border-radius: 0.25rem;
   box-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
   color: var(--antd-color-primary);
@@ -968,7 +968,7 @@
   width: 2.5rem;
   min-width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--antd-color-primary);
   border-radius: 4px;
   box-shadow: none;
 }
@@ -1124,11 +1124,6 @@
   border-color: var(--antd-color-primary);
 }
 
-.yc-select-control__tokens {
-  height: 100%;
-  border-right: 1px solid var(--color-divider);
-}
-
 .yc-select-control__tokens-text {
   font-weight: 400;
   line-height: 140%;
@@ -1183,11 +1178,6 @@
   display: flex;
   padding: 0 1.5rem 1rem;
   border: none;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--blue-200);
-  border-radius: inherit;
 }
 
 @-webkit-keyframes flamingBlind {
@@ -1282,15 +1272,6 @@
   color: var(--neutral-900);
 }
 
-.data-table__row {
-  cursor: default;
-  border-bottom: 1px solid var(--blue-200);
-}
-
-.data-table__row:hover {
-  background: transparent !important;
-}
-
 .chartkit-table .data-table .data-table__box .data-table__head .data-table__th {
   background: var(--blue-50) !important;
   padding: 0;
@@ -1353,46 +1334,6 @@
 
 .chartkit-table .data-table .data-table__box .data-table__td {
   background: #f1f5fc !important;
-}
-
-.data-table .data-table__head-cell {
-  justify-content: space-between;
-  gap: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  padding: 0.75rem 1.125rem;
-  height: 3.5rem;
-  align-items: center;
-  text-align: left;
-  border-top: 1px solid var(--blue-200);
-  border-bottom: 1px solid var(--blue-200);
-}
-
-.data-table__sort-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  opacity: 1;
-  position: initial;
-  transform: translateY(0);
-  min-width: 10px;
-  position: relative;
-  top: 0;
-  background-image: var(--no-sort-icon);
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.data-table__sort-icon_asc {
-  background-image: var(--sort-icon);
-  transform: scale(1, -1);
-}
-
-.data-table__sort-icon_desc {
-  background-image: var(--sort-icon);
-}
-
-.data-table__sort-icon .data-table__icon {
-  display: none;
 }
 
 .data-table__foot tr td {
