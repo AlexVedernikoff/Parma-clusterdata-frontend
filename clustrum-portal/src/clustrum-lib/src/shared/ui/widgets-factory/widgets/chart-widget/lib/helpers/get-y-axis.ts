@@ -1,24 +1,26 @@
-import { AngleAxisComponentOption } from 'echarts';
+import { EChartsOption } from 'echarts';
 import { numberValueToLocaleString } from './number-value-to-locale-string';
 import { EchartsOptions } from '../../types';
 
-export const getYAxis = (
-  echartsOptions: EchartsOptions,
-): AngleAxisComponentOption | undefined => {
-  const yAxis = {
+export const getYAxis = (echartsOptions: EchartsOptions): EChartsOption['yAxis'] => {
+  const yAxis: EChartsOption['yAxis'] = {
     axisLabel: {
       color: echartsOptions?.yAxis?.labels?.style?.color,
-      formatter: (value: string | number): string | number => {
+      formatter: (value: string | number): string => {
         if (isNaN(Number(value))) {
-          return value;
+          return String(value);
         }
 
         if (typeof value === 'number') {
-          if (value >= 1000000000)
+          if (value >= 1000000000) {
             return numberValueToLocaleString(value / 1000000000) + ' млрд';
-          if (value >= 1000000)
+          }
+          if (value >= 1000000) {
             return numberValueToLocaleString(value / 1000000) + ' млн';
-          if (value >= 1000) return numberValueToLocaleString(value / 1000) + ' тыс.';
+          }
+          if (value >= 1000) {
+            return numberValueToLocaleString(value / 1000) + ' тыс.';
+          }
           return numberValueToLocaleString(value);
         }
 
