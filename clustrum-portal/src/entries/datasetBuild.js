@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader';
 import configureStore from 'store/configureStore';
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import { SDK, Utils } from '@kamatech-data-ui/clustrum';
@@ -18,6 +16,7 @@ import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
+import { replaceIframeParams } from '@shared/lib/utils/replace-iframe-params';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -36,7 +35,10 @@ Utils.setBodyFeatures();
 
 logVersion();
 
-export function DatasetBuild() {
+export function DatasetBuild(props) {
+  const { iframeParams } = props;
+  replaceIframeParams(iframeParams);
+
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>

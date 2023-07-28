@@ -9,6 +9,7 @@ import { IS_INTERNAL } from '../modules/constants/constants';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
+import { replaceIframeParams } from '@shared/lib/utils/replace-iframe-params';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Dash from '../containers/Dash/Dash';
@@ -36,7 +37,9 @@ if (IS_INTERNAL) {
 logVersion();
 
 export function DashBuild(props) {
-  const { entryId } = props;
+  const { entryId, iframeParams } = props;
+  replaceIframeParams(iframeParams);
+
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
