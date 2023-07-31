@@ -5,11 +5,9 @@ const PADDING = 40;
 
 export const getXAxis = (
   echartsOptions: EchartsOptions,
+  refWidget: React.RefObject<HTMLDivElement>,
 ): AngleAxisComponentOption | undefined => {
-  const wrapper =
-    (document.querySelector('.chartkit__widget')?.getBoundingClientRect()
-      .width as number) - PADDING;
-
+  const wrapper = (refWidget.current?.getBoundingClientRect().width as number) - PADDING;
   const calculateWidth = wrapper / echartsOptions?.xAxis?.categories.length;
 
   const xAxis = {

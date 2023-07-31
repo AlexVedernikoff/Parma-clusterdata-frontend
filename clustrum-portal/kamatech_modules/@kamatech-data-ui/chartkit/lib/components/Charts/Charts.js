@@ -28,6 +28,7 @@ class Charts extends React.PureComponent {
     onOrderByClickInWizard: PropTypes.func,
     widgetType: PropTypes.string,
     ownWidgetParams: PropTypes.instanceOf(Map),
+    refWidget: PropTypes.object,
   };
 
   state = {
@@ -175,6 +176,7 @@ class Charts extends React.PureComponent {
       ownWidgetParams,
       orderBy,
       onOrderByClickInWizard,
+      refWidget,
     } = this.props;
 
     if (editMode && editMode.type && editMode.type === WIZARD_NODE_TYPE.MAP) {
@@ -191,6 +193,7 @@ class Charts extends React.PureComponent {
           ownWidgetParams={ownWidgetParams}
           orderBy={orderBy}
           onOrderByClickInWizard={onOrderByClickInWizard}
+          refWidget={refWidget}
         />
       ) : null;
     }
@@ -206,6 +209,7 @@ class Charts extends React.PureComponent {
         ownWidgetParams={ownWidgetParams}
         orderBy={orderBy}
         onOrderByClickInWizard={onOrderByClickInWizard}
+        refWidget={refWidget}
       />
     ) : null;
   }

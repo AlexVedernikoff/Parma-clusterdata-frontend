@@ -19,6 +19,7 @@ export interface ChartWidgetData {
 
 export interface ChartWidgetProps {
   data: ChartWidgetData;
+  refWidget: React.RefObject<HTMLDivElement>;
   onLoad(): void;
   onChange(param: { name: string }): void;
   onStateAndParamsChange(params: { [key: string]: unknown }): void;
