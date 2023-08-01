@@ -54,8 +54,8 @@ const sdk = new SDK({
 });
 
 export function WizardBuild(props) {
-  const { entryId, iframeParams } = props;
-  replaceIframeParams(iframeParams);
+  const { entryId } = props;
+  replaceIframeParams(props);
 
   const handleExport = (id, name, options) => {
     exportWidget({ id, name }, undefined, options);

@@ -37,8 +37,8 @@ if (IS_INTERNAL) {
 logVersion();
 
 export function DashBuild(props) {
-  const { entryId, iframeParams } = props;
-  replaceIframeParams(iframeParams);
+  const { entryId } = props;
+  replaceIframeParams(props);
 
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>

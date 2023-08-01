@@ -1,4 +1,4 @@
-const redundantParams = [
+const iframeParamNames = new Set([
   'hideHeader',
   'hideSubHeader',
   'hideTabs',
@@ -7,17 +7,17 @@ const redundantParams = [
   'cacheMode',
   'exportMode',
   'stateUuid',
-];
+]);
 
-export const replaceIframeParams = (newParams: { [key: string]: any } = {}): void => {
-  const currentParams = Object.entries((window as any).DL).reduce(
-    (res, [key, value]) =>
-      redundantParams.includes(key) ? res : { ...res, [key]: value },
-    {},
-  );
+export const replaceIframeParams = (buildProps: Record<string, unknown> = {}): void => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const dl = (window as any).DL;
 
-  (window as any).DL = {
-    ...currentParams,
-    ...newParams,
-  };
+  iframeParamNames.forEach(param => {
+    delete dl[param];
+
+    if (buildProps[param]) {
+      dl[param] = buildProps[param];
+    }
+  });
 };

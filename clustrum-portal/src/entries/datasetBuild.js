@@ -36,8 +36,7 @@ Utils.setBodyFeatures();
 logVersion();
 
 export function DatasetBuild(props) {
-  const { iframeParams } = props;
-  replaceIframeParams(iframeParams);
+  replaceIframeParams(props);
 
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
