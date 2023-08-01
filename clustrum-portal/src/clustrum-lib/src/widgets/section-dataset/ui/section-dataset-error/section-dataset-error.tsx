@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Button } from 'antd';
-import { ErrorCode } from '@lib-shared/config';
-import { DatasetErrorMessage } from '../../lib/constants';
+import { ErrorCode } from '@lib-shared/types';
+import { DATASET_ERROR_MESSAGES } from '../../lib/constants';
 import { SectionDatasetErrorProps } from '../../types';
 import styles from './section-dataset-error.module.css';
 
@@ -9,9 +9,8 @@ export function SectionDatasetError(props: SectionDatasetErrorProps): ReactEleme
   const { errorStatus, onRequestDatasetRights, onLoadDatasetAgain } = props;
 
   const datasetErrorText =
-    (errorStatus &&
-      DatasetErrorMessage[ErrorCode[errorStatus] as keyof typeof DatasetErrorMessage]) ||
-    DatasetErrorMessage.Unknown;
+    (errorStatus && DATASET_ERROR_MESSAGES[errorStatus]) ||
+    DATASET_ERROR_MESSAGES.UNKNOWN;
 
   return (
     <div className={styles['error-block']}>

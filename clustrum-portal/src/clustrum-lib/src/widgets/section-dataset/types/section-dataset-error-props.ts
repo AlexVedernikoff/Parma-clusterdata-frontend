@@ -1,5 +1,7 @@
+import { ErrorCode } from '@lib-shared/types';
+
 export interface SectionDatasetErrorProps {
-  errorStatus?: number;
+  errorStatus?: ErrorCode;
   onRequestDatasetRights(): void;
   onLoadDatasetAgain(): void;
 }

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { WIZARD_ITEM_TYPES } from '@lib-shared/config';
+import { WIZARD_ITEM_TYPES } from '@lib-shared/config/wizard-item-types';
 import { DndContainer } from '@lib-shared/ui/drag-n-drop';
 import { DndItemProps } from '@lib-shared/ui/drag-n-drop/types';
 import { SectionDatasetGroupProps } from '../../types';
