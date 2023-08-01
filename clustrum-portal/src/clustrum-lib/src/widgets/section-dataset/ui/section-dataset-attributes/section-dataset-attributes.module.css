@@ -8,6 +8,6 @@
   padding: 24px 24px 0 24px;
 }
 
-.search-block__input {
-  width: 100% !important;
+.search-block__icon {
+  width: 16px;
 }

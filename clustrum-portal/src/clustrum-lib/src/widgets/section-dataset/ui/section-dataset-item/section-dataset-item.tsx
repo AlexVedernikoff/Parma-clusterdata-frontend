@@ -7,17 +7,13 @@ import { SectionDatasetItemProps } from '../../types';
 import styles from './section-dataset-item.module.css';
 
 const addIgnoreDrag = (element: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
-  if (element?.currentTarget?.parentElement) {
-    element.currentTarget.parentElement.classList.add(styles['ignore-drag']);
-  }
+  element?.currentTarget?.parentElement?.classList.add(styles['ignore-drag']);
 };
 
 const removeIgnoreDrag = (
   element: React.MouseEvent<HTMLDivElement, MouseEvent>,
 ): void => {
-  if (element?.currentTarget?.parentElement) {
-    element.currentTarget.parentElement.classList.remove(styles['ignore-drag']);
-  }
+  element?.currentTarget?.parentElement?.classList.remove(styles['ignore-drag']);
 };
 
 export function SectionDatasetItem(props: SectionDatasetItemProps): ReactElement {
@@ -45,7 +41,7 @@ export function SectionDatasetItem(props: SectionDatasetItemProps): ReactElement
         onMouseEnter={addIgnoreDrag}
         onMouseLeave={removeIgnoreDrag}
       >
-        <EllipsisOutlined width="24" height="24" />
+        <EllipsisOutlined />
       </div>
     </div>
   );

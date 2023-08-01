@@ -14,30 +14,29 @@ export function SectionDatasetAttributes(
     searchPhrase,
     dimensions,
     measures,
-    onChangeSearchInputField,
+    onChangeSearchInput,
   } = props;
 
   const datasetNames = [
-    ...new Set([
-      ...dimensions
+    ...new Set(
+      dimensions
         .map(dimension => dimension.datasetName)
         .sort((a, b) => a.localeCompare(b)),
-    ]),
+    ),
   ];
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    onChangeSearchInputField(e.currentTarget.value);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    onChangeSearchInput(e.currentTarget.value);
   };
 
   return (
     <div className={styles.wrapper}>
       <div className={styles['search-block']}>
         <Input
-          className={styles['search-block__input']}
           placeholder="Поиск"
-          prefix={<SearchOutlined style={{ width: 16 }} />}
+          prefix={<SearchOutlined className={styles['search-block__icon']} />}
           value={searchPhrase}
-          onChange={onInputChange}
+          onChange={handleInputChange}
         />
       </div>
       <SectionDatasetGroup

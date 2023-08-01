@@ -1,15 +1,11 @@
 import React, { ReactElement } from 'react';
+import { WIZARD_ITEM_TYPES } from '@lib-shared/config';
 import { DndContainer } from '@lib-shared/ui/drag-n-drop';
 import { DndItemProps } from '@lib-shared/ui/drag-n-drop/types';
-import { ITEM_TYPES } from '../../../../../../constants';
 import { SectionDatasetGroupProps } from '../../types';
 import { SectionDatasetItem } from '../section-dataset-item';
+import { DATASET_DND_ITEM_SIZE } from '../../lib/constants';
 import styles from './section-dataset-group.module.css';
-
-const ITEM_SIZE = {
-  height: 40,
-  margin: 4,
-};
 
 export function SectionDatasetGroup(props: SectionDatasetGroupProps): ReactElement {
   const { id, title, datasetNames, indicators } = props;
@@ -25,26 +21,24 @@ export function SectionDatasetGroup(props: SectionDatasetGroupProps): ReactEleme
     <div className={styles['group-block']}>
       <div className={styles.header}>{title}</div>
       {datasetNames.map(datasetName => {
-        {
-          const items = indicators.filter(
-            indicator => indicator.datasetName === datasetName,
-          );
-          return (
-            items.length > 0 && (
-              <div className={styles['dnd-group']}>
-                <div className={styles.subheader}>{datasetName}</div>
-                <DndContainer
-                  isNeedSwap
-                  id={id}
-                  items={items}
-                  allowedTypes={ITEM_TYPES.DIMENSIONS}
-                  itemSize={ITEM_SIZE}
-                  wrapTo={renderDatasetItem}
-                />
-              </div>
-            )
-          );
-        }
+        const items = indicators.filter(
+          indicator => indicator.datasetName === datasetName,
+        );
+        return (
+          items.length > 0 && (
+            <div className={styles['dnd-group']}>
+              <div className={styles.subheader}>{datasetName}</div>
+              <DndContainer
+                isNeedSwap
+                id={id}
+                items={items}
+                allowedTypes={WIZARD_ITEM_TYPES.DIMENSIONS}
+                itemSize={DATASET_DND_ITEM_SIZE}
+                wrapTo={renderDatasetItem}
+              />
+            </div>
+          )
+        );
       })}
     </div>
   );

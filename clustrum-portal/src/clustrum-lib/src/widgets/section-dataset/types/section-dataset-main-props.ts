@@ -12,5 +12,5 @@ export interface SectionDatasetMainProps {
   datasetError: AxiosError | null;
   onRequestDatasetRights(): void;
   onLoadDatasetAgain(): void;
-  onChangeSearchInputField(value: string): void;
+  onChangeSearchInput(value: string): void;
 }

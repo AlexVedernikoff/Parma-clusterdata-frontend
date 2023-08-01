@@ -1,1 +1,1 @@
-export { SectionDatasetComponent as SectionDataset } from './section-dataset';
+export { SectionDataset } from './ui/section-dataset';

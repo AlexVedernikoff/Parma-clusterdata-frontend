@@ -5,11 +5,11 @@
 .action-container {
   padding: 0 8px;
   background: #fff;
-  border-bottom: 1px solid var(--color-divider);
+  border-bottom: 1px solid #00000012;
 }
 
-.icon {
-  float: left;
+.open-dataset-icon {
+  width: 12px;
 }
 
 .dataset-selector {
@@ -22,7 +22,7 @@
   padding: 0;
   color: #000;
   font-size: 14px;
-  font-family: var(--yc-font-family);
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   text-align: left;
   border: none;
   outline: none;
@@ -34,12 +34,4 @@
 
 .dataset-selector__button:not(:disabled):hover {
   color: #000;
-}
-
-.dataset-selector__button span {
-  font-size: 14px;
-}
-
-.dataset-selector__button > span {
-  text-align: left;
 }

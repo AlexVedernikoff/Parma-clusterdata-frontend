@@ -9,18 +9,19 @@ import { createStructuredSelector } from 'reselect';
 import { NavigationMinimal } from '@kamatech-data-ui/clustrum';
 import { DownOutlined, DatabaseOutlined } from '@ant-design/icons';
 
+// TODO: будет изменено при переходе на эффектор
 import {
   fetchDataset,
   toggleNavigation,
   applyTextFilter,
   setSearchPhrase,
-} from '../../../../actions';
+} from '../../../../../../actions';
 import {
   selectIsNavigationVisible,
   selectFilteredDimensions,
   selectFilteredMeasures,
   selectDefaultPath,
-} from '../../../../reducers/settings';
+} from '../../../../../../reducers/settings';
 import {
   selectDataset,
   selectMeasures,
@@ -28,14 +29,14 @@ import {
   selectIsDatasetLoading,
   selectIsDatasetLoaded,
   selectDatasetError,
-} from '../../../../reducers/dataset';
+} from '../../../../../../reducers/dataset';
 import {
   SectionDatasetProps,
   SectionDatasetState,
   SectionDatasetActions,
   NavigationEntryData,
-} from './types';
-import { SectionDatasetMain } from './ui/section-dataset-main';
+} from '../../types';
+import { SectionDatasetMain } from '../section-dataset-main';
 import { useDebounce } from '@lib-shared/lib/hooks';
 import styles from './section-dataset.module.css';
 
@@ -57,6 +58,7 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
     toggleNavigation,
     applyTextFilter,
     setSearchPhrase,
+    openDataset,
   } = props;
 
   const [searchValue, setSearchValue] = useState<string>('');
@@ -76,9 +78,7 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
     });
   }, [debouncedValue, dimensions, measures, applyTextFilter, setSearchPhrase]);
 
-  const onChangeSearchField = (value: string): void => setSearchValue(value);
-
-  const onNavigationClick = ({ entryId }: NavigationEntryData): void => {
+  const handleNavigationClick = ({ entryId }: NavigationEntryData): void => {
     fetchDataset({
       datasetId: entryId,
       sdk,
@@ -86,7 +86,7 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
     toggleNavigation();
   };
 
-  const onNavigationClose = (
+  const handleNavigationClose = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ): void => {
     const isOutsideNavigationClick =
@@ -98,14 +98,14 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
     }
   };
 
-  const onButtonDatasetTryAgainClick = (): void => {
+  const handleButtonDatasetTryAgainClick = (): void => {
     fetchDataset({
       datasetId: dataset.id,
       sdk,
     });
   };
 
-  const onButtonDatasetRequestRightsClick = (): void => {
+  const handleButtonDatasetRequestRightsClick = (): void => {
     entryDialoguesRef.current.openDialog({
       dialog: 'unlock',
       dialogProps: {
@@ -117,14 +117,12 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
     });
   };
 
-  const onOpenDatasetClick = (): void => {
-    window.open(`/datasets/${dataset.id}`);
-  };
+  const handleOpenDatasetClick = (): void => openDataset(dataset.id);
 
   const openDatasetDropdownItem = [
     {
       key: 'openDataset',
-      label: <div onClick={onOpenDatasetClick}>Перейти к датасету</div>,
+      label: <div onClick={handleOpenDatasetClick}>Перейти к датасету</div>,
     },
   ];
 
@@ -137,16 +135,16 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
             className={styles['dataset-selector__button']}
             onClick={toggleNavigation}
           >
-            <DatabaseOutlined width="24" />
+            <DatabaseOutlined />
             <span>{dataset.realName || 'Выберите набор данных'}</span>
           </Button>
           {dataset.realName && (
             <Dropdown
-              className="dataset-more-btn"
+              className={styles['open-dataset-icon']}
               menu={{ items: openDatasetDropdownItem }}
               trigger={['click']}
             >
-              <DownOutlined style={{ width: 12 }} />
+              <DownOutlined />
             </Dropdown>
           )}
         </div>
@@ -156,8 +154,8 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
             anchor={navigationButtonRef.current}
             scope="dataset"
             sdk={sdk}
-            onClose={onNavigationClose}
-            onEntryClick={onNavigationClick}
+            onClose={handleNavigationClose}
+            onEntryClick={handleNavigationClick}
             visible={isNavigationVisible}
             popupDirections={['right-bottom', 'bottom-left']}
             configMenuEditEntry={null}
@@ -174,9 +172,9 @@ function SectionDataset(props: SectionDatasetProps): ReactElement {
         isDatasetLoading={isDatasetLoading}
         isDatasetLoaded={isDatasetLoaded}
         datasetError={datasetError}
-        onRequestDatasetRights={onButtonDatasetRequestRightsClick}
-        onLoadDatasetAgain={onButtonDatasetTryAgainClick}
-        onChangeSearchInputField={onChangeSearchField}
+        onRequestDatasetRights={handleButtonDatasetRequestRightsClick}
+        onLoadDatasetAgain={handleButtonDatasetTryAgainClick}
+        onChangeSearchInput={setSearchValue}
       />
     </div>
   );

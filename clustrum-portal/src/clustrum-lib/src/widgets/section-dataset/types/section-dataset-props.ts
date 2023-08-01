@@ -11,6 +11,7 @@ export type SectionDatasetProps = SectionDatasetState &
   SectionDatasetActions & {
     sdk: object;
     entryDialoguesRef: React.RefObject<EntryDialoguesType>;
+    openDataset(id: string): void;
   };
 
 export interface SectionDatasetState {

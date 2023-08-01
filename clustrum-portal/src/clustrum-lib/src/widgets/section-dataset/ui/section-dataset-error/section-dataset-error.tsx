@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Button } from 'antd';
-import { DATASET_ERRORS } from '../../../../../../constants';
+import { ErrorCode } from '@lib-shared/config';
+import { DatasetErrorMessage } from '../../lib/constants';
 import { SectionDatasetErrorProps } from '../../types';
 import styles from './section-dataset-error.module.css';
 
@@ -8,17 +9,18 @@ export function SectionDatasetError(props: SectionDatasetErrorProps): ReactEleme
   const { errorStatus, onRequestDatasetRights, onLoadDatasetAgain } = props;
 
   const datasetErrorText =
-    (errorStatus && DATASET_ERRORS[errorStatus as keyof typeof DATASET_ERRORS]) ||
-    DATASET_ERRORS.UNKNOWN;
+    (errorStatus &&
+      DatasetErrorMessage[ErrorCode[errorStatus] as keyof typeof DatasetErrorMessage]) ||
+    DatasetErrorMessage.Unknown;
 
   return (
     <div className={styles['error-block']}>
       <div className={styles['error-block__text']}>{datasetErrorText}</div>
-      {errorStatus === 403 && (
+      {errorStatus == ErrorCode.Forbidden && (
         <Button onClick={onRequestDatasetRights}>Запросить права</Button>
       )}
-      {errorStatus !== 403 && errorStatus !== 404 && (
-        <Button className="btn-retry" type="primary" onClick={onLoadDatasetAgain}>
+      {errorStatus !== ErrorCode.Forbidden && errorStatus !== ErrorCode.NotFound && (
+        <Button type="primary" onClick={onLoadDatasetAgain}>
           Повторить
         </Button>
       )}

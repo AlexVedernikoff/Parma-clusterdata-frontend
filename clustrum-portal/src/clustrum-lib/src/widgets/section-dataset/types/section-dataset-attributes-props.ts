@@ -6,5 +6,5 @@ export interface SectionDatasetAttributesProps {
   filteredMeasures: DndItemData[];
   filteredDimensions: DndItemData[];
   searchPhrase: string;
-  onChangeSearchInputField(value: string): void;
+  onChangeSearchInput(value: string): void;
 }

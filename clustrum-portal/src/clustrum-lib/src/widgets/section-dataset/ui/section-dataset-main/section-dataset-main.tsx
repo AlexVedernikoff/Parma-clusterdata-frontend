@@ -5,7 +5,7 @@ import React, { ReactElement } from 'react';
 import { Loader } from '@kamatech-data-ui/common/src';
 import { SectionDatasetAttributes } from '../section-dataset-attributes';
 import { SectionDatasetError } from '../section-dataset-error';
-import { SectionDatasetMainProps } from '@lib-widgets/section-dataset/types';
+import { SectionDatasetMainProps } from '../../types';
 import styles from './section-dataset-main.module.css';
 
 export function SectionDatasetMain(props: SectionDatasetMainProps): ReactElement {
