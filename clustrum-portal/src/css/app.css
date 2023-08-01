@@ -968,10 +968,6 @@
   display: none;
 }
 
-.dialog-filter.dialog-filter-dimension .yc-dialog-header svg {
-  color: var(--color-apple-solid);
-}
-
 .dialog-filter.dialog-filter-dimension .dialog-filter__row .remove-value-icon {
   position: absolute;
   right: 0;
@@ -1594,7 +1590,7 @@
   display: flex;
   width: 24px;
   height: 24px;
-  padding: 0 4px;
+  padding-left: 4px;
   justify-content: center;
   align-items: center;
 }

@@ -18,7 +18,7 @@ import {
 
 import {
   CONFLICT_TOOLTIPS,
-  ITEM_TYPES,
+  ITEM_TYPES, // TODO: заменить на WIZARD_ITEM_TYPES из @lib-shared/config
   MEASURE_TYPE,
   VISUALIZATIONS,
 } from '../../../../../constants';

@@ -8,6 +8,7 @@ export enum CastIconType {
   Date = 'date',
   Geo = 'geo',
   Geopolygon = 'geopolygon',
+  Geopoint = 'geopoint',
   Boolean = 'boolean',
   String = 'string',
 }

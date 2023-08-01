@@ -1,0 +1,31 @@
+.group-block {
+  min-height: 115px;
+  padding: 24px 24px 12px 24px;
+}
+
+.group-block + .group-block {
+  border-top: 1px solid #00000012;
+}
+
+.header {
+  margin-bottom: 20px;
+  margin-left: 32px;
+  color: #00000073;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: left;
+}
+
+.subheader {
+  margin-left: 32px;
+  color: #00000073;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: left;
+}
+
+.dnd-group:not(:last-of-type) {
+  margin-bottom: 12px;
+}

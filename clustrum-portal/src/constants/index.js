@@ -214,7 +214,7 @@ export const TAB_DATA = 'data';
 export const DATASET_TABS = [TAB_DATASET, TAB_DATA];
 
 ////////////////////
-
+// TODO: удалить после замены в SectionVisualization
 export const ITEM_TYPES = {
   DIMENSIONS: new Set(['DIMENSION']),
   LATITUDE: new Set(['LATITUDE']),

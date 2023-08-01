@@ -1,0 +1,37 @@
+.container {
+  height: 100%;
+}
+
+.action-container {
+  padding: 0 8px;
+  background: #fff;
+  border-bottom: 1px solid #00000012;
+}
+
+.open-dataset-icon {
+  width: 12px;
+}
+
+.dataset-selector {
+  display: flex;
+  padding: 4px 16px;
+}
+
+.dataset-selector__button {
+  flex: 1 1;
+  padding: 0;
+  color: #000;
+  font-size: 14px;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  text-align: left;
+  border: none;
+  outline: none;
+}
+
+.dataset-selector__button:not(:disabled):focus-visible {
+  outline: none;
+}
+
+.dataset-selector__button:not(:disabled):hover {
+  color: #000;
+}
