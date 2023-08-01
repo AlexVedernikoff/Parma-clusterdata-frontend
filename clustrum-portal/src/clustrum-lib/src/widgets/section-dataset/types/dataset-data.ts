@@ -21,8 +21,8 @@ interface Source {
 }
 
 interface DatasetTasks {
-  materialization: any[];
-  preview: any[];
+  materialization: unknown[];
+  preview: unknown[];
 }
 
 interface DatasetMeta {

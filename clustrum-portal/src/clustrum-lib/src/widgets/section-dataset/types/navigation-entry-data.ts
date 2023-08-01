@@ -24,7 +24,7 @@ export interface NavigationEntryData {
   isFavorite: boolean;
   isLocked: boolean;
   key: string;
-  meta: any;
+  meta: unknown;
   mirrored: boolean;
   name: string;
   permissions: Permissions;
