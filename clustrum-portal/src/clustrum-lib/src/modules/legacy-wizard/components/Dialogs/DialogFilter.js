@@ -131,6 +131,10 @@ class DialogFilter extends PureComponent {
         break;
     }
 
+    if (!availableOperations) {
+      return;
+    }
+
     let operation = filter
       ? availableOperations.find(operation => {
           return operation.code === filter.operation.code;
@@ -277,7 +281,7 @@ class DialogFilter extends PureComponent {
 
                 this.setState({
                   dimensions,
-                  originalDimensions: dimensions,
+                  originalDimensions: [...dimensions],
                   value,
                 });
               }
@@ -358,7 +362,7 @@ class DialogFilter extends PureComponent {
 
               this.setState({
                 dimensions,
-                originalDimensions: dimensions,
+                originalDimensions: [...dimensions],
                 value,
               });
             }
@@ -377,7 +381,13 @@ class DialogFilter extends PureComponent {
       } else {
         const [first, ...rest] = value ?? [];
         value = first ? [first] : [''];
-        dimensions = [...dimensions, ...rest].sort(collator.compare);
+        if (Array.isArray(dimensions) && Array.isArray(rest)) {
+          dimensions = [...dimensions, ...rest].sort(collator.compare);
+        } else if (Array.isArray(dimensions)) {
+          dimensions.sort(collator.compare);
+        } else {
+          dimensions = [];
+        }
       }
     }
 
@@ -873,7 +883,11 @@ class DialogFilter extends PureComponent {
 
   render() {
     const { item } = this.props;
-    const { value, operation } = this.state;
+    const { value, operation, availableOperations } = this.state;
+
+    if (!availableOperations) {
+      return;
+    }
 
     if (item) {
       const { cast } = item;

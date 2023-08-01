@@ -68,6 +68,7 @@ class Wizard extends Component {
     onSavingStart: PropTypes.func,
     onSavingEnd: PropTypes.func,
     onExport: PropTypes.func,
+    isBuild: PropTypes.bool,
   };
 
   entryDialoguesRef = React.createRef();
@@ -240,6 +241,7 @@ class Wizard extends Component {
       configType,
       previewHash,
       widgetHash,
+      isBuild,
     } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
@@ -298,6 +300,7 @@ class Wizard extends Component {
           <ActionPanel
             sdk={sdk}
             entry={widget}
+            isBuild={isBuild}
             rightItems={[
               <Button
                 key="fullscreen"

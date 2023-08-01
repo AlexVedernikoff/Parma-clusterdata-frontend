@@ -46,10 +46,13 @@ class Dash extends React.PureComponent {
     setErrorMode: PropTypes.func.isRequired,
     setWidgetEditorUUID: PropTypes.func.isRequired,
     setWidgetForReloadUUID: PropTypes.func.isRequired,
+    defaultEntryId: PropTypes.string,
+    isBuild: PropTypes.bool,
   };
 
   componentDidMount() {
-    this.props.loadDash();
+    const { defaultEntryId, loadDash } = this.props;
+    loadDash(defaultEntryId);
     window.addEventListener('beforeunload', this.unloadConfirmation);
   }
 
@@ -110,13 +113,13 @@ class Dash extends React.PureComponent {
   };
 
   render() {
-    const { widgetEditorUUID, title } = this.props;
+    const { widgetEditorUUID, title, isBuild } = this.props;
 
     return (
       <React.Fragment>
         <PageHead title={title} />
-        <Header />
-        <Body />
+        <Header isBuild={isBuild} />
+        <Body isBuild={isBuild} />
         <Dialogs />
         <SideSlidingPanel
           title="Режим редактирования элемента"

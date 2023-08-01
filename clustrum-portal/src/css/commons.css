@@ -4504,16 +4504,6 @@ html {
   transform: translateY(-50%) scaleX(-1);
 }
 
-.data-table__td {
-  padding: var(--data-table-cell-vertical-padding)
-    var(--data-table-cell-horizontal-padding);
-  border: 1px solid var(--data-table-border-color);
-  vertical-align: var(--data-table-cell-align);
-  /*white-space: nowrap;*/
-  /*overflow: hidden;*/
-  /*text-overflow: ellipsis*/
-}
-
 .data-table__td_index,
 .data-table__th_index {
   text-align: right;

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import getGraph from '../graph/graph';
 import ReactHighcharts from './ReactHighcharts/ReactHighcharts';
 import formatMetric from './template';
 import ErrorDispatcher, { ERROR_TYPE } from '../error-dispatcher/error-dispatcher';

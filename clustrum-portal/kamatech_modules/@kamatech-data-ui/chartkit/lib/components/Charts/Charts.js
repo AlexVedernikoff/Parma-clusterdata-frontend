@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 
 // TODO: изменить импорт на `@clustrum-lib`
-import Widget from '@clustrum-lib/shared/ui/widgets-factory/Widget';
+import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/widget';
 
 import ChartsModule from '../../modules/charts/charts';
 import ErrorDispatcher from '../../modules/error-dispatcher/error-dispatcher';
@@ -28,6 +28,7 @@ class Charts extends React.PureComponent {
     onOrderByClickInWizard: PropTypes.func,
     widgetType: PropTypes.string,
     ownWidgetParams: PropTypes.instanceOf(Map),
+    refWidget: PropTypes.object,
   };
 
   state = {
@@ -175,6 +176,7 @@ class Charts extends React.PureComponent {
       ownWidgetParams,
       orderBy,
       onOrderByClickInWizard,
+      refWidget,
     } = this.props;
 
     if (editMode && editMode.type && editMode.type === WIZARD_NODE_TYPE.MAP) {
@@ -191,6 +193,7 @@ class Charts extends React.PureComponent {
           ownWidgetParams={ownWidgetParams}
           orderBy={orderBy}
           onOrderByClickInWizard={onOrderByClickInWizard}
+          refWidget={refWidget}
         />
       ) : null;
     }
@@ -206,6 +209,7 @@ class Charts extends React.PureComponent {
         ownWidgetParams={ownWidgetParams}
         orderBy={orderBy}
         onOrderByClickInWizard={onOrderByClickInWizard}
+        refWidget={refWidget}
       />
     ) : null;
   }

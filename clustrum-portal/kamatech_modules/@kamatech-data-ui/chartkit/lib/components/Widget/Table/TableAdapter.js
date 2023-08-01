@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ErrorDispatcher, {
+  ERROR_TYPE,
+} from '../../../modules/error-dispatcher/error-dispatcher';
 import { TableWidget, createCell } from '@clustrum-lib';
 
 function camelCaseCss(_style) {

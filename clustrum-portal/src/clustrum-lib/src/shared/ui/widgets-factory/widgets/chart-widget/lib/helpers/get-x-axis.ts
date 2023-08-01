@@ -1,18 +1,16 @@
-import { AngleAxisComponentOption } from 'echarts';
+import { EChartsOption } from 'echarts';
 import { EchartsOptions } from '../../types';
 
 const PADDING = 40;
 
 export const getXAxis = (
   echartsOptions: EchartsOptions,
-): AngleAxisComponentOption | undefined => {
-  const wrapper =
-    (document.querySelector('.chartkit__widget')?.getBoundingClientRect()
-      .width as number) - PADDING;
-
+  refWidget: React.RefObject<HTMLDivElement>,
+): EChartsOption['xAxis'] => {
+  const wrapper = (refWidget.current?.getBoundingClientRect().width as number) - PADDING;
   const calculateWidth = wrapper / echartsOptions?.xAxis?.categories.length;
 
-  const xAxis = {
+  const xAxis: EChartsOption['xAxis'] = {
     data: echartsOptions?.xAxis?.categories ?? [],
     axisTick: { show: false, lineStyle: { color: echartsOptions?.xAxis?.tickColor } },
     axisLine: {
@@ -22,6 +20,8 @@ export const getXAxis = (
       color: echartsOptions?.xAxis?.labels?.style?.color,
       interval: 0,
       hideOverlap: false,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore в документации свойство есть, а в интерфейсе нет
       overflow: 'truncate',
       width: calculateWidth,
     },
