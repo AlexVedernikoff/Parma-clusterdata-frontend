@@ -1518,6 +1518,7 @@
 }
 
 .visualization-container .subcontainer .measure-item .item-icon {
+  padding: 0 8px;
   color: var(--color-azure-solid);
 }
 
