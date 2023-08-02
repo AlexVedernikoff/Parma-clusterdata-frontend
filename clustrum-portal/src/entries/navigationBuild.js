@@ -16,6 +16,7 @@ import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
+import { replaceIframeParams } from '@shared/lib/utils';
 
 const sdk = new SDK({
   endpoints: window.DL.endpoints,
@@ -28,7 +29,9 @@ Utils.setBodyFeatures();
 
 logVersion();
 
-export function NavigationBuild() {
+export function NavigationBuild(props) {
+  replaceIframeParams(props);
+
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>

@@ -9,6 +9,7 @@ import { IS_INTERNAL } from '../modules/constants/constants';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
+import { replaceIframeParams } from '@shared/lib/utils';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Dash from '../containers/Dash/Dash';
@@ -37,6 +38,8 @@ logVersion();
 
 export function DashBuild(props) {
   const { entryId } = props;
+  replaceIframeParams(props);
+
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
