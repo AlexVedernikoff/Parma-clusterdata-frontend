@@ -1,13 +1,13 @@
 import { DndItemData } from '@lib-shared/ui/drag-n-drop/types';
 
-interface RawSchema {
+export interface RawSchema {
   title: string;
   name: string;
   user_type: string;
   nullable?: boolean;
 }
 
-interface Source {
+export interface Source {
   is_ref: boolean;
   id: string;
   parameters: {
@@ -20,12 +20,12 @@ interface Source {
   connection_id: string;
 }
 
-interface DatasetTasks {
+export interface DatasetTasks {
   materialization: unknown[];
   preview: unknown[];
 }
 
-interface DatasetMeta {
+export interface DatasetMeta {
   state: string;
   title: string;
   version: number;
@@ -33,7 +33,7 @@ interface DatasetMeta {
   version_minor: number;
 }
 
-interface DatasetOrigin {
+export interface DatasetOrigin {
   table_connection_id: string;
   table_db_name: string;
   table_name: string;
@@ -41,7 +41,7 @@ interface DatasetOrigin {
   path: string | null;
 }
 
-interface DatasetMaterializationProperties {
+export interface DatasetMaterializationProperties {
   materializationConnectionId: string;
   materializationSchemaName: string;
   materializationTableName: string;
@@ -50,7 +50,7 @@ interface DatasetMaterializationProperties {
   materializationConnectionMode: string | null;
 }
 
-interface DatasetConnection {
+export interface DatasetConnection {
   access_mode: null;
   created_at: string;
   db_name: string;

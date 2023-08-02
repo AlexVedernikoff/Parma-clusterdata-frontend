@@ -3,7 +3,7 @@ import { DndItemData } from '@lib-shared/ui/drag-n-drop/types';
 import { Wizard } from '@clustrum-lib-legacy';
 import { DatasetData } from './dataset-data';
 
-type EntryDialoguesType = typeof Wizard & {
+export type EntryDialoguesType = typeof Wizard & {
   openDialog(): void;
 };
 
