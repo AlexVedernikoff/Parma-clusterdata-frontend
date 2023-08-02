@@ -7,6 +7,20 @@ export {
   SectionDatasetProps,
   SectionDatasetState,
   SectionDatasetActions,
+  EntryDialoguesType,
 } from './section-dataset-props';
-export { NavigationEntryData, NavigationScope } from './navigation-entry-data';
-export { DatasetData } from './dataset-data';
+export {
+  NavigationEntryData,
+  NavigationScope,
+  Permissions,
+} from './navigation-entry-data';
+export {
+  DatasetData,
+  DatasetConnection,
+  DatasetMaterializationProperties,
+  DatasetOrigin,
+  DatasetMeta,
+  DatasetTasks,
+  Source,
+  RawSchema,
+} from './dataset-data';

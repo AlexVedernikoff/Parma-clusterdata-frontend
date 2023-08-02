@@ -6,7 +6,7 @@ export enum NavigationScope {
   Widget = 'widget',
 }
 
-interface Permissions {
+export interface Permissions {
   admin: boolean;
   edit: boolean;
   execute: boolean;
