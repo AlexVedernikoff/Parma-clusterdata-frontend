@@ -1,4 +1,4 @@
-const iframeParamNames = new Set([
+const iframeParamNames = [
   'hideHeader',
   'hideSubHeader',
   'hideTabs',
@@ -7,7 +7,7 @@ const iframeParamNames = new Set([
   'cacheMode',
   'exportMode',
   'stateUuid',
-]);
+];
 
 export const replaceIframeParams = (buildProps: Record<string, unknown> = {}): void => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

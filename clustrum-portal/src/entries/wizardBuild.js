@@ -16,7 +16,7 @@ import { Wizard } from '@clustrum-lib-legacy';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import { SDK } from '@kamatech-data-ui/clustrum';
 import { ANT_TOKEN } from '@shared/config/theme';
-import { replaceIframeParams } from '@shared/lib/utils/replace-iframe-params';
+import { replaceIframeParams } from '@shared/lib/utils';
 import ruRU from 'antd/locale/ru_RU';
 import reducers from '../reducers';
 import { exportWidget } from '../services/dashboard/export/export-widget';
