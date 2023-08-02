@@ -111,8 +111,11 @@ class SectionVisualization extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = { isVisible: false };
+    this.handleDialogActions = this.handleDialogActions.bind(this);
   }
+
+
 
   setFilterModalRef = c => {
     if (c) {
@@ -229,29 +232,7 @@ class SectionVisualization extends Component {
               this.setState({
                 dialogItem: item,
                 dialogType: 'column',
-                dialogCallBack: result => {
-                  if (result) {
-                    updatePreview({
-                      dataset,
-                      dimensions,
-                      measures,
-                      visualization,
-                      filters,
-                      colors,
-                      sort,
-                      coordType,
-                      titleLayerSource,
-                      clusterPrecision,
-                      updates,
-                      nullAlias,
-                      needUniqueRows,
-                      needTotal,
-                      paginateInfo,
-                      diagramMagnitude,
-                      exportLimit,
-                    });
-                  }
-                },
+                isDialogVisible: true,
               });
             }
           }}
@@ -286,6 +267,24 @@ class SectionVisualization extends Component {
       </div>
     );
   };
+
+  handleDialogActions(result, items = null) {
+    const { filters, setFilters, updatePreview } = this.props;
+    if (result) {
+      if (items) {
+        // Модалку с фильтром засабмитили
+        setFilters({
+          filters: items,
+        });
+      }
+      updatePreview({
+        ...this.props,
+        filters: items || filters,
+      });
+
+    }
+    this.setState({ dialogType: null, dialogItem: null, isDialogVisible: false });
+  }
 
   fillDatasetName(widgetItems, dimensions) {
     widgetItems.forEach(item => {
@@ -423,28 +422,9 @@ class SectionVisualization extends Component {
                 this.setState({
                   dialogItem: item,
                   dialogType: 'filter',
+                  isDialogVisible: true,
                   dialogCallBack: result => {
-                    if (result) {
-                      updatePreview({
-                        dataset,
-                        dimensions,
-                        measures,
-                        visualization,
-                        filters,
-                        colors,
-                        sort,
-                        coordType,
-                        titleLayerSource,
-                        clusterPrecision,
-                        updates,
-                        nullAlias,
-                        needUniqueRows,
-                        needTotal,
-                        paginateInfo,
-                        diagramMagnitude,
-                        exportLimit,
-                      });
-                    }
+                    this.handleDialogActions(result)
                   },
                 });
               }}
@@ -478,33 +458,9 @@ class SectionVisualization extends Component {
                   this.setState({
                     dialogItem: item,
                     dialogType: 'filter',
-                    dialogCallBack: result => {
-                      if (result) {
-                        // Модалку с фильтром засабмитили
-                        setFilters({
-                          filters: items,
-                        });
-
-                        updatePreview({
-                          dataset,
-                          dimensions,
-                          measures,
-                          visualization,
-                          filters: items,
-                          colors,
-                          sort,
-                          coordType,
-                          titleLayerSource,
-                          clusterPrecision,
-                          updates,
-                          nullAlias,
-                          needUniqueRows,
-                          needTotal,
-                          paginateInfo,
-                          diagramMagnitude,
-                          exportLimit,
-                        });
-                      }
+                    isDialogVisible: true,
+                    dialogCallBack: (result, items) => {
+                      this.handleDialogActions(result, items);
                     },
                   });
                 } else {
@@ -539,33 +495,9 @@ class SectionVisualization extends Component {
                     this.setState({
                       dialogItem: item,
                       dialogType: 'filter',
-                      dialogCallBack: result => {
-                        if (result) {
-                          // Модалку с фильтром засабмитили
-                          setFilters({
-                            filters: items,
-                          });
-
-                          updatePreview({
-                            dataset,
-                            dimensions,
-                            measures,
-                            visualization,
-                            filters: items,
-                            colors,
-                            sort,
-                            coordType,
-                            titleLayerSource,
-                            clusterPrecision,
-                            updates,
-                            nullAlias,
-                            needUniqueRows,
-                            needTotal,
-                            paginateInfo,
-                            diagramMagnitude,
-                            exportLimit,
-                          });
-                        }
+                      isDialogVisible: true,
+                      dialogCallBack: (result, items) => {
+                        this.handleDialogActions(result, items);
                       },
                     });
                   }
@@ -1153,9 +1085,8 @@ class SectionVisualization extends Component {
       checkDndActionAvailability({ draggedItem }) &&
       checkDndActionAvailability(props);
 
-    const dragHoveredClassName = `drag-hovered ${
-      swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
-    }`;
+    const dragHoveredClassName = `drag-hovered ${swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
+      }`;
 
     return (
       <div
@@ -1331,9 +1262,8 @@ class SectionVisualization extends Component {
               return (
                 <div
                   key={`visualization-item-${item.id}`}
-                  className={`visualization-item${
-                    visualization && visualization.id === item.id ? ' active' : ''
-                  }`}
+                  className={`visualization-item${visualization && visualization.id === item.id ? ' active' : ''
+                    }`}
                   onClick={() => {
                     if (visualization.id === item.id) return;
 
@@ -1383,30 +1313,43 @@ class SectionVisualization extends Component {
     return visualization ? this.renderVisualizationPlaceholders() : null;
   }
 
+  renderDialog() {
+    if (this.state.dialogType === 'column') {
+      return (
+        <DialogFormatTemplate
+          item={this.state.dialogItem}
+          callback={this.handleDialogActions}
+          visible={true}
+        />
+      );
+    }
+    else {
+      const { visualization, sdk, dataset, updates } = this.props;
+      return (
+        <DialogFilter
+          item={this.state.dialogItem}
+          callback={this.state.dialogCallBack}
+          dataset={dataset}
+          updates={updates}
+          sdk={sdk}
+          visible={true}
+        />
+      );
+    }
+
+  }
+
   render() {
     const { visualization, sdk, dataset, updates } = this.props;
     const buttonText = visualization
       ? VISUALIZATION_LABELS[visualization.name]
       : 'Выберите тип чарта';
     const iconChooseVisualization = <Icon data={iconVisualization} width="24" />;
+    console.log(this.state);
 
     return (
       <div className="container visualization-container">
-        {this.state && this.state.dialogType === 'column' ? (
-          <DialogFormatTemplate
-            item={this.state.dialogItem}
-            callback={this.state.dialogCallBack}
-            visible={true}
-          />
-        ) : (
-          <DialogFilter
-            item={this.state.dialogItem}
-            callback={this.state.dialogCallBack}
-            dataset={dataset}
-            updates={updates}
-            sdk={sdk}
-          />
-        )}
+        {this.state.isDialogVisible && this.renderDialog()}
         <div className="actions-container visualization-actions-container">
           <Dropdown
             ref={this.setDropdownRef}
@@ -1435,7 +1378,7 @@ class SectionVisualization extends Component {
     buttonText,
     visualization,
     iconChooseVisualization,
-  ) {}
+  ) { }
 
   columnTemplate(
     dataset,

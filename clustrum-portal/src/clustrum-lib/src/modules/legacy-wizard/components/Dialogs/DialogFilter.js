@@ -34,18 +34,18 @@ const VALUES_LOAD_LIMIT = 1000;
 class DialogFilter extends PureComponent {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       callback: null,
       item: null,
       operation: null,
-      visible: false,
+      visible: this.props.visible,
       value: [],
     };
   }
 
   onClose = () => {
-    const { callback } = this.state;
+    const { callback } = this.props;
 
     this.setState({
       visible: false,
@@ -86,6 +86,7 @@ class DialogFilter extends PureComponent {
   };
 
   componentWillReceiveProps(nextProps) {
+    debugger;
     const { item, dataset, updates, callback } = nextProps;
     if (
       !item ||
