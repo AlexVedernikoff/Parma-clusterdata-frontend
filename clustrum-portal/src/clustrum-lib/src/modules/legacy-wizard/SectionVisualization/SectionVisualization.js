@@ -1084,8 +1084,12 @@ class SectionVisualization extends Component {
       checkDndActionAvailability({ draggedItem }) &&
       checkDndActionAvailability(props);
 
-    const dragHoveredClassName = `drag-hovered ${swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
-      }`;
+    const dragHoveredClassName = `drag-hovered ${
+      swapIsAllowed ? 'drag-hovered-swap' : 'drag-hovered-remove'
+    }`;
+    const castIconClassName = itemData.className?.includes('measure')
+      ? 'item-icon'
+      : undefined;
 
     return (
       <div
@@ -1170,7 +1174,7 @@ class SectionVisualization extends Component {
       >
         <HolderOutlined className="item-holder" />
 
-        <CastIconsFactory iconType={itemData.cast} />
+        <CastIconsFactory iconType={itemData.cast} className={castIconClassName} />
 
         <div className="item-title" title={itemData.datasetName + '.' + itemData.title}>
           {itemData.title}
