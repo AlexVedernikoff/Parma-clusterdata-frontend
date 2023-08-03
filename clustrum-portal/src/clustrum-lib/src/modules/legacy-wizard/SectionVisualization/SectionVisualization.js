@@ -233,9 +233,7 @@ class SectionVisualization extends Component {
                 dialogItem: item,
                 dialogType: 'column',
                 isDialogVisible: true,
-                dialogCallBack: result => {
-                  this.handleDialogActions(result)
-                }
+                dialogCallBack: this.handleDialogActions,
               });
             }
           }}
@@ -426,9 +424,7 @@ class SectionVisualization extends Component {
                   dialogItem: item,
                   dialogType: 'filter',
                   isDialogVisible: true,
-                  dialogCallBack: result => {
-                    this.handleDialogActions(result)
-                  },
+                  dialogCallBack: this.handleDialogActions,
                 });
               }}
               onUpdate={(items, item, action) => {
