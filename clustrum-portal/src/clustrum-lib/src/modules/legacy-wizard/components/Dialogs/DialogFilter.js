@@ -34,7 +34,7 @@ const VALUES_LOAD_LIMIT = 1000;
 class DialogFilter extends PureComponent {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       callback: null,
       item: null,
@@ -46,18 +46,6 @@ class DialogFilter extends PureComponent {
 
   onClose = () => {
     const { callback } = this.props;
-
-    this.setState({
-      visible: false,
-    });
-
-    if (callback) {
-      callback(null);
-    }
-  };
-
-  onCancel = () => {
-    const { callback } = this.state;
 
     this.setState({
       visible: false,
@@ -917,7 +905,7 @@ class DialogFilter extends PureComponent {
             <Dialog.Body>{this.renderModalBody()}</Dialog.Body>
             <Dialog.Footer
               preset="default"
-              onClickButtonCancel={this.onCancel}
+              onClickButtonCancel={this.onClose}
               onClickButtonApply={this.onApply}
               propsButtonApply={{
                 disabled: !valid,

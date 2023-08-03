@@ -34,7 +34,6 @@ class DialogFormatTemplate extends PureComponent {
   }
 
   onClose = () => {
-    
     const { callback } = this.props;
 
     this.setState({

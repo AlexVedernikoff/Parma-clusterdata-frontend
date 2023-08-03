@@ -115,8 +115,6 @@ class SectionVisualization extends Component {
     this.handleDialogActions = this.handleDialogActions.bind(this);
   }
 
-
-
   setFilterModalRef = c => {
     if (c) {
       this.filterModalRef = c;
@@ -271,19 +269,20 @@ class SectionVisualization extends Component {
 
   handleDialogActions(result, items = null) {
     const { filters, setFilters, updatePreview } = this.props;
+
     if (result) {
       if (items) {
-        // Модалку с фильтром засабмитили
         setFilters({
           filters: items,
         });
       }
+
       updatePreview({
         ...this.props,
         filters: items || filters,
       });
-
     }
+
     this.setState({ dialogType: null, dialogItem: null, isDialogVisible: false });
   }
 
@@ -458,9 +457,7 @@ class SectionVisualization extends Component {
                     dialogItem: item,
                     dialogType: 'filter',
                     isDialogVisible: true,
-                    dialogCallBack: (result, items) => {
-                      this.handleDialogActions(result, items);
-                    },
+                    dialogCallBack: result => this.handleDialogActions(result, items),
                   });
                 } else {
                   // Обрабатываем замену фильтра
@@ -495,9 +492,7 @@ class SectionVisualization extends Component {
                       dialogItem: item,
                       dialogType: 'filter',
                       isDialogVisible: true,
-                      dialogCallBack: (result, items) => {
-                        this.handleDialogActions(result, items);
-                      },
+                      dialogCallBack: result => this.handleDialogActions(result, items),
                     });
                   }
                 }
@@ -1265,8 +1260,9 @@ class SectionVisualization extends Component {
               return (
                 <div
                   key={`visualization-item-${item.id}`}
-                  className={`visualization-item${visualization && visualization.id === item.id ? ' active' : ''
-                    }`}
+                  className={`visualization-item${
+                    visualization && visualization.id === item.id ? ' active' : ''
+                  }`}
                   onClick={() => {
                     if (visualization.id === item.id) return;
 
@@ -1316,18 +1312,6 @@ class SectionVisualization extends Component {
     return visualization ? this.renderVisualizationPlaceholders() : null;
   }
 
-  renderDialog() {
-    if (this.state.dialogType === 'column') {
-      return (
-        <DialogFormatTemplate
-          item={this.state.dialogItem}
-          callback={this.state.dialogCallBack}
-          visible={true}
-        />
-      );
-    }
-  }
-
   render() {
     const { visualization, sdk, dataset, updates } = this.props;
     const buttonText = visualization
@@ -1352,8 +1336,7 @@ class SectionVisualization extends Component {
             sdk={sdk}
             visible={true}
           />
-          )
-        }
+        )}
         <div className="actions-container visualization-actions-container">
           <Dropdown
             ref={this.setDropdownRef}
@@ -1382,7 +1365,7 @@ class SectionVisualization extends Component {
     buttonText,
     visualization,
     iconChooseVisualization,
-  ) { }
+  ) {}
 
   columnTemplate(
     dataset,
