@@ -1334,19 +1334,26 @@ class SectionVisualization extends Component {
       ? VISUALIZATION_LABELS[visualization.name]
       : 'Выберите тип чарта';
     const iconChooseVisualization = <Icon data={iconVisualization} width="24" />;
-    console.log(this.state);
 
     return (
       <div className="container visualization-container">
-        {this.state.isDialogVisible && this.renderDialog()}
-        <DialogFilter
-          item={this.state.dialogItem}
-          callback={this.state.dialogCallBack}
-          dataset={dataset}
-          updates={updates}
-          sdk={sdk}
-          visible={true}
-        />
+        {this.state.isDialogVisible && this.state.dialogType === 'column' ? (
+          <DialogFormatTemplate
+            item={this.state.dialogItem}
+            callback={this.state.dialogCallBack}
+            visible={true}
+          />
+        ) : (
+          <DialogFilter
+            item={this.state.dialogItem}
+            callback={this.state.dialogCallBack}
+            dataset={dataset}
+            updates={updates}
+            sdk={sdk}
+            visible={true}
+          />
+          )
+        }
         <div className="actions-container visualization-actions-container">
           <Dropdown
             ref={this.setDropdownRef}
