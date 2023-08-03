@@ -7,17 +7,17 @@
 
 .navigation-entries__table {
   flex-grow: 1;
+  padding: 24px;
   overflow: hidden;
   background-color: var(--color-base);
-  padding: 24px;
 }
 
 .navigation-entries__table .ant-table-header {
-  /*чтобы на маленькой высоте экрана не сужался header у таблицы*/
+  /* чтобы на маленькой высоте экрана не сужался header у таблицы */
   overflow: visible !important;
 }
 
 .navigation-entries__table .ant-table-body {
-  /*скрывать scroll, когда не нужен, если у таблицы выставлена опция scroll*/
+  /* скрывать scroll, когда не нужен, если у таблицы выставлена опция scroll */
   overflow-y: auto !important;
 }

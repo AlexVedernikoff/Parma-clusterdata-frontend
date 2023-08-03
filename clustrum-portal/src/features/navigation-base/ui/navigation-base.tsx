@@ -1,9 +1,7 @@
-import React, { ReactElement, useEffect, useRef } from 'react';
-import { Store } from 'effector';
-import { Places } from '../../../shared/lib/constants/places';
-import { NavigationList } from '../../../shared/api/navigation/navigation-list';
-import { ContextMenuActions } from '../../../shared/lib/constants/context-menu-actions';
-import { NavigationItem } from '../../../shared/types/navigation-item';
+import React, { ReactElement, useRef } from 'react';
+import { NavigationList } from '@shared/api/navigation/navigation-list';
+import { ContextMenuActions, Places } from '@shared/lib/constants';
+import { NavigationItem } from '@shared/types';
 import EntryDialogues, {
   ENTRY_DIALOG,
   entryDialoguesNotify,
@@ -14,28 +12,9 @@ import {
   Utils,
 } from '../../../../kamatech_modules/@kamatech-data-ui/clustrum';
 import { NavigationEntries } from './navigation-entries/navigation-entries';
-import { CreateMenuActionType } from '../lib/constants/create-menu-action-type';
+import { CreateMenuActionType } from '../lib/constants';
 import { DL } from '../../../../kamatech_modules/@kamatech-data-ui/clustrum/src/constants/common';
-import { NavItemContextMenuClickParams } from '../types/nav-item-context-menu-click-params';
-
-interface NavigationBase {
-  sdk: any;
-  path: string;
-  place: Places;
-  isModalView?: boolean;
-  /**
-   * TODO: осталось для обратной совместимости со старым кодом
-   * поправить после исправления модалок
-   */
-  currentPageEntry?: any;
-  /**
-   * TODO: осталось для обратной совместимости со старым кодом
-   * поправить после исправления модалок
-   */
-  onUpdate?: any;
-  updateData: () => void;
-}
-
+import { NavItemContextMenuClickParams, NavigationBase } from '../types';
 /**
  * это старый компонент, который позволяет подключить к навигации модальные окна, возможно, что он будет не нужен
  * надо смотреть на реализацию новых модальных окон
@@ -99,20 +78,23 @@ export function NavigationBase(props: NavigationBase): ReactElement {
   function update(response: { status: string }, entryDialog: any, entry?: any): void {
     if (response.status === 'success') {
       if (onUpdate) {
-        props.onUpdate(response);
+        onUpdate(response);
       } else if (currentPageEntry) {
         switch (entryDialog) {
           case ENTRY_DIALOG.RENAME:
+            // eslint-disable-next-line max-depth
             if (currentPageEntry.entryId === entry.entryId) {
               window.location.reload();
             }
             break;
           case ENTRY_DIALOG.MOVE:
+            // eslint-disable-next-line max-depth
             if ((currentPageEntry.key || '').startsWith(entry.key)) {
               window.location.reload();
             }
             break;
           case ENTRY_DIALOG.DELETE:
+            // eslint-disable-next-line max-depth
             if ((currentPageEntry.key || '').startsWith(entry.key)) {
               navigateHelper.openPlace(entry);
             }

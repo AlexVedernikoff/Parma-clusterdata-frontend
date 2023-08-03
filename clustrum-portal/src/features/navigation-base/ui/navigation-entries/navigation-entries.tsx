@@ -3,7 +3,6 @@ import { Empty, Table, TableProps } from 'antd';
 import { useUnit } from 'effector-react';
 import { SortOrder, SorterResult } from 'antd/es/table/interface';
 import { generatePath, useHistory } from 'react-router';
-import './navigation-entries.css';
 import {
   $error,
   $pending,
@@ -15,26 +14,17 @@ import {
   $place,
   changePathInFolderEvent,
 } from '@shared/model/navigation-base-model';
-import { MAP_PLACE_TO_PATH_IN_FOLDER } from '../../lib/constants/map-place-to-path-in-folder';
+import { MAP_PLACE_TO_PATH_IN_FOLDER } from '../../lib/constants';
 import { Places } from '@shared/lib/constants/places';
-import { ToggleFavoriteParams } from '../../types/toggle-favorite-params';
+import { ToggleFavoriteParams, NavigationProps } from '../../types';
 import { MAP_NAVIGATION_SCOPE_TO_PATH } from '@shared/lib/constants/map-navigation-scope-to-path';
 import { NavigationItem } from '@shared/types/navigation-item';
 import { NavigationScope } from '@shared/lib/constants/navigation-scope';
 import { NavigationError } from '../navigation-error/navigation-error';
 import { NavigationHeader } from '../navigation-header/navigation-header';
-import { CreateMenuActionType } from '../../lib/constants/create-menu-action-type';
 import { Order } from '../../../../shared/lib/constants/order';
-import { navigationTableColumnsConfig } from '../../configs/navigation-table-columns-config';
-import { NavItemContextMenuClickParams } from '../../types/nav-item-context-menu-click-params';
-
-interface NavigationProps {
-  isModalView: boolean;
-  showHidden: boolean;
-  onCreateMenuClick: (value: CreateMenuActionType) => void;
-  onContextMenuClick: (params: NavItemContextMenuClickParams) => Promise<void> | boolean;
-  onRetry: () => void;
-}
+import { navigationTableColumnsConfig } from '../../configs';
+import styles from './navigation-entries.module.css';
 
 /**
  * здесь происходят основные действия с навигацией
@@ -177,7 +167,7 @@ export function NavigationEntries(props: NavigationProps): ReactElement {
   }
 
   return (
-    <div className="navigation-entries">
+    <div className={styles['navigation-entries']}>
       <NavigationHeader
         isModalView={isModalView}
         path={pathInFolder}
@@ -186,7 +176,7 @@ export function NavigationEntries(props: NavigationProps): ReactElement {
         place={place}
         onCreateMenuClick={onCreateMenuClick}
       />
-      <div className="navigation-entries__table">
+      <div className={styles['navigation-entries__table']}>
         <Table
           columns={navigationTableColumns}
           dataSource={filteredNavigationList}

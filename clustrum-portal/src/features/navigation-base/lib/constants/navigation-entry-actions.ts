@@ -1,5 +1,5 @@
 import { MenuProps } from 'antd';
-import { ContextMenuActions } from '@shared/lib/constants/context-menu-actions';
+import { ContextMenuActions } from '@shared/lib/constants';
 
 export const NAVIGATION_ENTRY_ACTIONS: MenuProps['items'] = [
   {

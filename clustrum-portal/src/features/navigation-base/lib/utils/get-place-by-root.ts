@@ -1,5 +1,5 @@
-import { Places } from '../../../../shared/lib/constants/places';
-import { Roots } from '../constants/roots';
+import { Places } from '@shared/lib/constants';
+import { Roots } from '../constants';
 
 export const getPlaceByRoot = (root?: string): Places => {
   switch (root) {

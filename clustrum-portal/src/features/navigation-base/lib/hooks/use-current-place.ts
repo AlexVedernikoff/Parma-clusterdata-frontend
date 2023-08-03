@@ -1,5 +1,5 @@
 import { matchPath, useLocation } from 'react-router';
-import { MAP_PLACE_TO_PATH, Places } from '../../../../shared/lib/constants/places';
+import { MAP_PLACE_TO_PATH, Places } from '@shared/lib/constants/places';
 
 export const useCurrentPlace = (): Places | null => {
   const location = useLocation();

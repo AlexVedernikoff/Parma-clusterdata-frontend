@@ -3,15 +3,11 @@ import { Dropdown, Space } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { DownOutlined } from '@ant-design/icons';
 import moment from 'moment';
-import { ToggleFavoriteParams } from '../types/toggle-favorite-params';
-import { NavigationItem } from '../../../shared/types/navigation-item';
-import { NAVIGATION_ENTRY_ACTIONS } from '../lib/constants/navigation-entry-actions';
-import { getIconByScope } from '../lib/helpers/get-icon-by-scope';
-
-interface NavigationTableColumnConfigParams {
-  handleToggleFavorite: (params: ToggleFavoriteParams) => void;
-  onContextMenuClick: any;
-}
+import { NavigationTableColumnConfigParams } from '../types';
+import { NavigationItem } from '@shared/types';
+import { NAVIGATION_ENTRY_ACTIONS } from '../lib/constants';
+import { getIconByScope } from '../lib/utils';
+import { ContextMenuActions } from '@shared/lib/constants';
 
 export const navigationTableColumnsConfig = ({
   handleToggleFavorite,
@@ -69,7 +65,10 @@ export const navigationTableColumnsConfig = ({
             items: NAVIGATION_ENTRY_ACTIONS,
             onClick: (menuInfo): void => {
               menuInfo.domEvent.stopPropagation();
-              onContextMenuClick({ entry: record, action: menuInfo.key });
+              onContextMenuClick({
+                entry: record,
+                action: menuInfo.key as ContextMenuActions,
+              });
             },
           }}
         >

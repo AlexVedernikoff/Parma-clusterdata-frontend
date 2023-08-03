@@ -1,5 +1,5 @@
-import { ContextMenuActions } from '../../../shared/lib/constants/context-menu-actions';
-import { NavigationItem } from '../../../shared/types/navigation-item';
+import { ContextMenuActions } from '@shared/lib/constants';
+import { NavigationItem } from '@shared/types';
 
 export interface NavItemContextMenuClickParams {
   entry: NavigationItem;
