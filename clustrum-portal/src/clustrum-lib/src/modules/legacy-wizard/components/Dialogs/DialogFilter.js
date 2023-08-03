@@ -86,7 +86,6 @@ class DialogFilter extends PureComponent {
   };
 
   componentWillReceiveProps(nextProps) {
-    debugger;
     const { item, dataset, updates, callback } = nextProps;
     if (
       !item ||

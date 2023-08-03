@@ -111,7 +111,7 @@ class SectionVisualization extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { isVisible: false };
+    this.state = { isDialogVisible: false };
     this.handleDialogActions = this.handleDialogActions.bind(this);
   }
 
@@ -233,6 +233,9 @@ class SectionVisualization extends Component {
                 dialogItem: item,
                 dialogType: 'column',
                 isDialogVisible: true,
+                dialogCallBack: result => {
+                  this.handleDialogActions(result)
+                }
               });
             }
           }}
@@ -1318,25 +1321,11 @@ class SectionVisualization extends Component {
       return (
         <DialogFormatTemplate
           item={this.state.dialogItem}
-          callback={this.handleDialogActions}
-          visible={true}
-        />
-      );
-    }
-    else {
-      const { visualization, sdk, dataset, updates } = this.props;
-      return (
-        <DialogFilter
-          item={this.state.dialogItem}
           callback={this.state.dialogCallBack}
-          dataset={dataset}
-          updates={updates}
-          sdk={sdk}
           visible={true}
         />
       );
     }
-
   }
 
   render() {
@@ -1350,6 +1339,14 @@ class SectionVisualization extends Component {
     return (
       <div className="container visualization-container">
         {this.state.isDialogVisible && this.renderDialog()}
+        <DialogFilter
+          item={this.state.dialogItem}
+          callback={this.state.dialogCallBack}
+          dataset={dataset}
+          updates={updates}
+          sdk={sdk}
+          visible={true}
+        />
         <div className="actions-container visualization-actions-container">
           <Dropdown
             ref={this.setDropdownRef}

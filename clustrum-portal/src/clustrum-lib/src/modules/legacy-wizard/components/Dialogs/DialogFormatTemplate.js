@@ -46,18 +46,6 @@ class DialogFormatTemplate extends PureComponent {
     }
   };
 
-  /*onCancel = () => {
-    const { callback } = this.state;
-
-    this.setState({
-      visible: false,
-    });
-
-    if (callback) {
-      callback(null);
-    }
-  };*/
-
   onApply = () => {
     const { callback } = this.props;
     const { item, valueTemplate, viewFormat, actionType, action } = this.state;
