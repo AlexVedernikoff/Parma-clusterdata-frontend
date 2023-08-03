@@ -56,6 +56,7 @@ exports.generateConfig = (
         '@entities': path.resolve('./src/entities/'),
         '@shared': path.resolve('./src/shared/'),
         '@clustrum-lib': path.resolve('./src/clustrum-lib/src/'),
+        '@clustrum-lib-legacy': path.resolve('./src/clustrum-lib/src/legacy-index'),
         '@lib-modules': path.resolve('./src/clustrum-lib/src/modules/'),
         '@lib-widgets': path.resolve('./src/clustrum-lib/src/widgets/'),
         '@lib-features': path.resolve('./src/clustrum-lib/src/features/'),
@@ -100,6 +101,21 @@ exports.generateConfig = (
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
+          exclude: /\.module\.css$/,
+        },
+        {
+          test: /\.module\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[name]__[local]--[hash:base64:5]',
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,

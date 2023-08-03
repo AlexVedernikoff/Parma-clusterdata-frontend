@@ -9,4 +9,10 @@ const env = {
   from: './environment/.env',
 };
 
-module.exports = generateConfig({ biHost, portalHost, exportHost }, 'production', {}, false, env);
+module.exports = generateConfig(
+  { biHost, portalHost, exportHost },
+  'production',
+  {},
+  false,
+  env,
+);

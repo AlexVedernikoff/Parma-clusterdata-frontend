@@ -1,7 +1,6 @@
 import { matchPath, useLocation } from 'react-router';
-import { MATCH_PLACE_TO_ROUTE } from '../constants/match-routes';
-import { MENU_ITEMS } from '../constants/menu-items';
-import { Places } from '../../../../shared/lib/constants/places';
+import { MATCH_PLACE_TO_ROUTE, MENU_ITEMS } from '../constants';
+import { Places } from '@shared/lib/constants/places';
 
 export const useActiveMenuItemKey = (): string[] | undefined => {
   const location = useLocation();

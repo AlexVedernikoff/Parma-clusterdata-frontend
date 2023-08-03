@@ -1,178 +1,255 @@
 import React, { useEffect, useRef, useState } from 'react';
 // TODO: убрать зависимость из старого кода
 import { getUniqueId } from '../../../../../utils/helpers';
-import { useDrop } from 'react-dnd';
+import { DropTargetMonitor, useDrop } from 'react-dnd';
+import classNames from 'classnames';
 import { DndItem } from './dnd-item';
-import { DndItem as IDndItem, DndContainerProps } from './types';
+import {
+  DndItemData,
+  DndContainerProps,
+  DndDraggedItem,
+  DndDropResult,
+  DndEmptyDropResult,
+} from './types';
+import { DndContainerTitle } from './dnd-container-title';
+import { DropPlace } from './drop-place';
+import { checkDndActionAvailability } from './check-action-availability';
 
-//TODO 696922 деконструировать просы и вынести функции
-// eslint-disable-next-line max-lines-per-function
+// TODO 696922 вынести функции и уменьшить размер компонента
+/* eslint-disable max-lines-per-function */
 export function DndContainer(props: DndContainerProps): JSX.Element {
-  const [items, setItems] = useState<IDndItem[]>(props.items || []);
-  const [dropPlace, setDropPlace] = useState<number | null>();
-  const [tooltipVisible, setTooltipVisibleState] = useState<boolean>(false);
-  const [usedItem, setUsedItem] = useState<IDndItem>();
+  const {
+    id,
+    title,
+    items: propItems,
+    itemsClassName,
+    itemSize = {
+      height: 40,
+      margin: 12,
+    },
+    capacity,
+    allowedTypes,
+    disabled,
+    isNeedRemove = false,
+    isNeedSwap = false,
+    highlightDropPlace = false,
+    checkAllowed,
+    wrapTo,
+    onUpdate,
+    onItemClick,
+  } = props;
+
+  const [items, setItems] = useState<DndItemData[]>(propItems || []);
+  const [dropPlace, setDropPlace] = useState<number | null>(null);
+  const [tooltipVisibility, setTooltipVisibility] = useState<boolean>(false);
+  const [usedItemData, setUsedItemData] = useState<DndItemData>();
   const [action, setAction] = useState<string>();
   const [isNeedToUpdate, setIsNeedToUpdate] = useState<boolean>(false);
-  const [isNeedReplace, setIsNeedReplace] = useState<boolean>(true);
   const ref = useRef(null);
+  const isNeedReplaceRef = useRef(false);
+  const [draggedItem, setDraggedItem] = useState<DndDraggedItem | null>(null);
 
   useEffect(() => {
-    setItems(props.items);
-  }, [props.items]);
+    setItems(propItems);
+  }, [propItems]);
 
   useEffect(() => {
-    if (props.onUpdate && isNeedToUpdate) {
-      props.onUpdate(items, usedItem, action);
+    if (onUpdate && isNeedToUpdate) {
+      onUpdate(items, usedItemData, action);
       setIsNeedToUpdate(false);
     }
   }, [items]);
 
-  useEffect(() => {
-    // Сброс флага в дефолтное значение, когда флаг в дочернем компоненте меняется на false
-    if (!isNeedReplace) {
-      setIsNeedReplace(true);
-    }
-  }, [isNeedReplace]);
-
-  const [, drop] = useDrop(() => ({
+  const [{ isOver }, drop] = useDrop(() => ({
     accept: 'ITEM',
+    collect: (
+      monitor: DropTargetMonitor<
+        DndDraggedItem,
+        DndDropResult | DndEmptyDropResult | null
+      >,
+    ) => ({
+      isOver: monitor.isOver(),
+    }),
     //TODO 696922 вынести в отдельный метод и типизировать
-    drop: (itemWrapper: any, monitor: any): any => {
-      const { id } = props;
-      const itemType = itemWrapper.item.type;
-      const targetItem = items[itemWrapper.hoverIndex] ?? itemWrapper.item;
+    drop: (draggedItem: DndDraggedItem): DndDropResult | DndEmptyDropResult | null => {
+      const draggedItemData = draggedItem.data;
+      const draggedItemDataType = draggedItemData.type;
+      const targetItemData = items[draggedItem.hoverIndex] ?? draggedItemData;
 
-      if (id !== itemWrapper.listId) {
+      if (id !== draggedItem.containerId) {
         // отменяем, если не вмещается (но если не разрешена замена)
-        if (props.capacity && props.capacity <= items.length && !isNeedReplace) {
+        const isContainerFull = capacity && capacity <= items.length;
+
+        if (isContainerFull && !isNeedReplaceRef.current) {
           return { revert: true };
         }
 
         // отменяем, если не подходит по типу
-        if (props.allowedTypes) {
-          if (!props.allowedTypes.has(itemType)) {
-            return { revert: true };
-          }
-        } else if (props.checkAllowed) {
-          if (!props.checkAllowed(itemWrapper.item)) {
-            return { revert: true };
-          }
+        if (allowedTypes && !allowedTypes.has(draggedItemDataType)) {
+          return { revert: true };
+        }
+
+        // отменяем, если не подходит по типу
+        if (!allowedTypes && checkAllowed && !checkAllowed(draggedItemData)) {
+          return { revert: true };
         }
       }
 
-      const targetIndex =
-        typeof dropPlace === 'number'
-          ? dropPlace
-          : typeof itemWrapper.hoverIndex === 'number'
-          ? itemWrapper.hoverIndex
-          : items.length;
-
-      if (props.id === itemWrapper.listId) {
-        remove(itemWrapper.index);
-      }
-
-      // добавляем в целевой контейнер
-      insert(itemWrapper.item, targetIndex);
-
       return {
-        targetItem,
-        droppedItemId: props.id,
-        dropContainerReplace: replace,
-        isNeedReplace,
-        onReplaced: () => setIsNeedReplace(false),
+        revert: false,
+        itemData: targetItemData,
+        containerId: id,
+        items,
+        replace,
+        insert,
+        swap,
+        dropPlace,
+        isNeedReplace: isNeedReplaceRef.current,
+        setIsNeedReplace,
+        isNeedSwap,
       };
     },
   }));
 
-  function setTooltipVisible(visibility: boolean): void {
-    setTooltipVisibleState(visibility);
-  }
+  const setIsNeedReplace = (isNeedReplace: boolean): void => {
+    isNeedReplaceRef.current = isNeedReplace;
+  };
 
-  function insert(item: IDndItem, index: number): void {
-    // по умолчанию пушим всегда
-    let insert = true;
+  const swap = (targetIndex: number, sourceIndex: number): void => {
+    if (!isNeedSwap) {
+      return;
+    }
 
+    setItems(prev => {
+      setIsNeedToUpdate(true);
+
+      const newItems = [...prev];
+      const targetItemData = newItems[targetIndex];
+      newItems[targetIndex] = newItems[sourceIndex];
+      newItems[sourceIndex] = targetItemData;
+
+      return newItems;
+    });
+  };
+
+  const insert = (index: number, item: DndItemData): void => {
     // если контейнер работает в режиме с копированиями из себя, то не добавляем
-    if (props.noRemove) {
-      insert = items.indexOf(item) === -1;
+    if (!isNeedRemove) {
+      return;
     }
 
-    if (insert) {
-      const insertedItem = { ...item };
-      insertedItem.id = getUniqueId('inserted');
+    const insertionItem = { ...item };
+    insertionItem.id = getUniqueId('inserted');
 
-      setUsedItem(insertedItem);
-      setAction('insert');
-      setItems(prevItems => {
-        setIsNeedToUpdate(true);
-        const updatedItems = [...prevItems];
-        updatedItems.splice(index, 0, insertedItem);
-        return updatedItems;
-      });
-    }
-  }
+    setUsedItemData(insertionItem);
+    setAction('insert');
+    setItems(prevItems => {
+      setIsNeedToUpdate(true);
 
-  function remove(index: number): void {
+      const updatedItems = [...prevItems];
+      updatedItems.splice(index, 0, insertionItem);
+
+      return updatedItems;
+    });
+  };
+
+  const remove = (index: number): void => {
     // если контейнер работает в режиме с копированиями из себя, то не удаляем
-    if (props.noRemove) {
+    if (!isNeedRemove) {
       return;
     }
 
     const removedItem = items[index];
-    setUsedItem(removedItem);
+
+    setUsedItemData(removedItem);
     setAction('remove');
     setItems(prev => {
       setIsNeedToUpdate(true);
-      const filtredItems = prev.filter((_, i) => i !== index);
-      return filtredItems;
-    });
-  }
 
-  function replace(index: number, item: IDndItem): void {
-    setUsedItem(item);
+      const filteredItems = prev.filter((_, i) => i !== index);
+
+      return filteredItems;
+    });
+  };
+
+  const replace = (index: number, item: DndItemData): void => {
+    if (!isNeedRemove) {
+      return;
+    }
+
+    setUsedItemData(item);
     setAction('replace');
-    setItems(() => {
-      items.splice(index, 1, item);
+    setItems(prev => {
       setIsNeedToUpdate(true);
-      return items;
+
+      const updatedItems = [...prev];
+      updatedItems.splice(index, 1, item);
+
+      return updatedItems;
     });
+  };
+
+  const canDrop = checkDndActionAvailability({
+    itemData: draggedItem?.data,
+    allowedTypes,
+    checkAllowed,
+  });
+  const isDraggedItemHasData = !!draggedItem?.data;
+  const isOverEmptyContainer =
+    isDraggedItemHasData && isOver && dropPlace === null && items.length === 0;
+
+  if (isOverEmptyContainer) {
+    setDropPlace(0);
   }
 
-  let title;
-  if (props.title) {
-    title = (
-      <div className="subheader dimensions-subheader dimensions-dataset">
-        <span> {props.title}</span>
-      </div>
-    );
-  }
+  const containerClassName = classNames('dnd-container', {
+    'can-drop': canDrop,
+    'is-over': isOver,
+  });
 
   return (
     <div ref={ref}>
-      <div ref={drop} className={`dnd-container`}>
-        {title}
-        {items.map((item: any, index: any) => {
-          return (
-            <DndItem
-              key={`${item.id}-${index}`}
-              className={props.itemsClassName || ''}
-              item={item}
-              index={index}
-              listId={props.id}
-              listAllowedTypes={props.allowedTypes}
-              listNoRemove={props.noRemove}
-              wrapTo={props.wrapTo}
-              disabled={props.disabled}
-              setTooltipVisible={setTooltipVisible}
-              tooltipVisible={tooltipVisible}
-              remove={remove}
-              dragContainerReplace={replace}
-              setDropPlace={setDropPlace}
-              onItemClick={props.onItemClick}
-            />
-          );
-        })}
+      <div ref={drop} className={containerClassName}>
+        {highlightDropPlace && (
+          <DropPlace
+            isDraggedItemHasData={isDraggedItemHasData}
+            isOver={isOver}
+            canDrop={canDrop}
+            itemSize={itemSize}
+            itemsCount={items.length}
+            capacity={capacity}
+            dropPlace={dropPlace}
+          />
+        )}
+        <DndContainerTitle title={title} />
+        {items.map(
+          (item: DndItemData, index: number): JSX.Element => {
+            return (
+              <DndItem
+                key={`${item.id}-${index}`}
+                className={itemsClassName || ''}
+                size={itemSize}
+                itemData={item}
+                index={index}
+                containerId={id}
+                containerAllowedTypes={allowedTypes}
+                containerIsNeedRemove={isNeedRemove}
+                wrapTo={wrapTo}
+                disabled={disabled}
+                containerCheckAllowed={checkAllowed}
+                setTooltipVisibility={setTooltipVisibility}
+                tooltipVisibility={tooltipVisibility}
+                remove={remove}
+                replace={replace}
+                setDropPlace={setDropPlace}
+                onItemClick={onItemClick}
+                draggedItem={draggedItem}
+                setDraggedItem={setDraggedItem}
+                setIsNeedReplace={setIsNeedReplace}
+              />
+            );
+          },
+        )}
       </div>
     </div>
   );

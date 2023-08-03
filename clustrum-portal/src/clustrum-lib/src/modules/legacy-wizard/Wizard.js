@@ -12,7 +12,7 @@ import { ErrorContent, EntryDialogues, ActionPanel } from '@kamatech-data-ui/clu
 
 import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
-import SectionDataset from './SectionDataset/SectionDataset';
+import { SectionDataset } from '@lib-widgets/section-dataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
 import SectionPreview from './SectionPreview/SectionPreview';
 
@@ -59,8 +59,6 @@ import PageHead from '../../../../components/PageHeader/PageHeader';
 import { FullscreenOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Space } from 'antd';
 
-// import './Wizard.scss';
-
 const b = block('wizard');
 
 class Wizard extends Component {
@@ -70,6 +68,7 @@ class Wizard extends Component {
     onSavingStart: PropTypes.func,
     onSavingEnd: PropTypes.func,
     onExport: PropTypes.func,
+    isBuild: PropTypes.bool,
   };
 
   entryDialoguesRef = React.createRef();
@@ -225,6 +224,10 @@ class Wizard extends Component {
     return <ErrorContent type={type} title={title} description={description} />;
   }
 
+  handleOpenDataset(id) {
+    window.open(`/datasets/${id}`);
+  }
+
   renderApp() {
     const {
       sdk,
@@ -238,6 +241,7 @@ class Wizard extends Component {
       configType,
       previewHash,
       widgetHash,
+      isBuild,
     } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
@@ -296,6 +300,7 @@ class Wizard extends Component {
           <ActionPanel
             sdk={sdk}
             entry={widget}
+            isBuild={isBuild}
             rightItems={[
               <Button
                 key="fullscreen"
@@ -329,7 +334,11 @@ class Wizard extends Component {
             ''
           ) : (
             <div className={`column data-column${hidden}`}>
-              <SectionDataset entryDialoguesRef={entryDialoguesRef} sdk={sdk} />
+              <SectionDataset
+                entryDialoguesRef={entryDialoguesRef}
+                openDataset={this.handleOpenDataset}
+                sdk={sdk}
+              />
             </div>
           )}
           {this.props.preview ? (

@@ -7,4 +7,6 @@
   --antd-text-color-selection: #bb2649;
   --antd-color-light-grey: #0000000f;
   --antd-color-title: #262626;
+  --antd-color-split: rgba(0, 0, 0, 0.06);
+  --antd-color-border: rgba(0, 0, 0, 0.15);
 }

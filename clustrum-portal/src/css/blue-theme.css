@@ -1,0 +1,124 @@
+/*
+Это относится к предыдущему дизайну, сохранено для совместимости, 
+если это больше не нужно то можно удалить
+*/
+
+:root {
+  --data-table-header-vertical-padding: 5px;
+  --data-table-cell-vertical-padding: 0;
+  --data-table-cell-horizontal-padding: 10px;
+  --data-table-cell-border-padding: var(--data-table-cell-horizontal-padding);
+  --data-table-cell-align: top;
+  --data-table-head-align: top;
+  --data-table-row-height: 30px;
+  --data-table-sort-icon-space: 18px;
+  --data-table-sort-icon-opacity-inactive: 0.15;
+  --data-table-sort-icon-color: inherit;
+}
+
+.data-table__row {
+  background: #fff;
+}
+
+.data-table__row.selected {
+  background-color: rgba(2, 123, 243, 0.2) !important;
+}
+
+.data-table__row:hover {
+  background-color: rgba(2, 123, 243, 0.1) !important;
+}
+
+.data-table__row_odd {
+  background: #f2f9fd;
+}
+
+.data-table__th {
+  position: sticky;
+  top: 0;
+  background: rgb(181, 209, 235);
+}
+
+/* .data-table__td {
+  vertical-align: middle;
+  border-right: 1px solid rgba(53, 130, 202, 0.15);
+  text-overflow: ellipsis;
+  overflow: hidden;
+} */
+
+.data-table__td.selected {
+  background-color: rgba(2, 123, 243, 0.2) !important;
+}
+
+.data-table__foot tr td {
+  position: sticky;
+  top: 46px;
+  background: #fff;
+}
+
+.data-table .data-table__head-cell {
+  justify-content: space-between;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  padding: 0.75rem 1.125rem;
+  height: 3.5rem;
+  align-items: center;
+  text-align: left;
+  border-top: 1px solid var(--blue-200);
+  border-bottom: 1px solid var(--blue-200);
+}
+
+.data-table__sort-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 1;
+  position: initial;
+  transform: translateY(0);
+  min-width: 10px;
+  position: relative;
+  top: 0;
+  background-image: var(--no-sort-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.data-table__sort-icon_asc {
+  background-image: var(--sort-icon);
+  transform: scale(1, -1);
+}
+
+.data-table__sort-icon_desc {
+  background-image: var(--sort-icon);
+}
+
+.data-table__sort-icon .data-table__icon {
+  display: none;
+}
+
+.data-table__td:first-child,
+.data-table__th:first-child {
+  padding-left: var(--data-table-cell-border-padding);
+  text-align: center;
+}
+
+.data-table__head-cell {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 36px;
+}
+
+.data-table__td {
+  padding: var(--data-table-cell-vertical-padding)
+    var(--data-table-cell-horizontal-padding);
+  border: 1px solid var(--data-table-border-color);
+  vertical-align: var(--data-table-cell-align);
+  /*white-space: nowrap;*/
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
+}
+
+.yc-select-control__tokens {
+  height: 100%;
+  border-right: 1px solid var(--color-divider);
+}

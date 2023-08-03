@@ -760,6 +760,11 @@
   z-index: 2;
 }
 
+.dataset-table__cb-display-hidden-fields.checkbox.checkbox_size_n .checkbox__box {
+  top: -1px;
+  line-height: none;
+}
+
 .dataset-table__row {
   width: 100%;
   height: 36px;
@@ -983,7 +988,7 @@
 
 .preview-resizer__history,
 .preview-resizer__preview {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
@@ -1396,6 +1401,7 @@
 }
 
 .dataset {
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;

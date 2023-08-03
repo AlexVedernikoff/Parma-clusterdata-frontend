@@ -1,18 +1,22 @@
-import { DndItem } from './dnd-item';
+import { AllowedTypes, CheckAllowed } from './allowed-types';
+import { DndItemData } from './dnd-item-data';
 import { DndItemProps } from './dnd-item-props';
+import { DndItemSize } from './dnd-item-size';
 
 export interface DndContainerProps {
-  allowedTypes?: Set<string>;
+  id: string;
+  title?: string;
+  allowedTypes?: AllowedTypes;
   capacity?: number;
   disabled?: boolean;
-  id: string;
-  items: DndItem[];
+  items: DndItemData[];
+  itemSize: DndItemSize;
   itemsClassName?: string;
-  noRemove?: boolean;
-  title?: string;
-  listId?: string;
-  onItemClick(e: Event, item: DndItem): void;
-  onUpdate(items: DndItem[], insertItem?: DndItem, action?: string): void;
-  wrapTo(props: DndItemProps, component: HTMLDivElement | null): Element;
-  checkAllowed?(item: DndItem): boolean;
+  isNeedRemove?: boolean;
+  isNeedSwap?: boolean;
+  highlightDropPlace?: boolean;
+  wrapTo(props: DndItemProps, component: HTMLDivElement | null): JSX.Element;
+  checkAllowed?: CheckAllowed;
+  onItemClick?(e: Event, item: DndItemData): void;
+  onUpdate?(items: DndItemData[], insertItem?: DndItemData, action?: string): void;
 }

@@ -18,56 +18,13 @@ import DatasetField from '../../../../../../src/containers/Dialogs/Control/Switc
 import YCSelect from '../../../../common/src/components/YCSelect/YCSelect';
 import AceEditor from '../AceEditor/AceEditor';
 import { CalcModes } from '../../constants/calc-modes';
-import { FieldAggregation } from '../../constants/field-aggregation';
+import {
+  SettingsSectionTypes,
+  INITIAL_FIELD_PROPERTIES,
+  INITIAL_STATE,
+} from './lib/const';
 
 const b = block('field-settings-editor');
-
-const SettingsSectionTypes = {
-  Connection: 'connection',
-  Verification: 'verification',
-};
-
-const INITIAL_FIELD_PROPERTIES = {
-  calc_mode: '',
-  source: '',
-  formula: '',
-  cast: 'string',
-  type: 'DIMENSION',
-  description: '',
-  title: '',
-  hidden: false,
-  aggregation: FieldAggregation.None,
-  hasIndex: false,
-  hasArray: false,
-  hasVersion: false,
-  linkedDataset: null,
-  linkedField: null,
-  joinType: null,
-  verification_rules: '',
-  spel: '',
-};
-const INITIAL_STATE = {
-  isVisibleConfirmCancelPopup: false,
-  isDisplayDescriptionInput: false,
-  isDisabledAction: false,
-  showError: false,
-  errorMessages: [],
-  field: undefined,
-  initialField: undefined,
-  fields: [],
-  types: [],
-  sources: [],
-  fieldErrors: [],
-  isVisibleFunctionManual: false,
-  sourceType: '',
-  errors: {
-    isTitleEmptyError: false,
-    isTitleDuplicateError: false,
-    isSourceEmptyError: false,
-    isFailedFormulaValidation: false,
-  },
-  settingsSection: SettingsSectionTypes.Connection,
-};
 
 class FieldEditor extends React.Component {
   static defaultProps = {
@@ -90,6 +47,7 @@ class FieldEditor extends React.Component {
     modePath: PropTypes.string,
     initialType: PropTypes.oneOf(['direct', 'formula']),
     field: PropTypes.object,
+    isVerification: PropTypes.bool,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -100,7 +58,7 @@ class FieldEditor extends React.Component {
       types,
       sources,
       initialType,
-      sourceType,
+      isVerification,
     } = props;
     const { field: fieldState } = state;
 
@@ -113,6 +71,9 @@ class FieldEditor extends React.Component {
           types,
           sources,
           sourceType: CONTROL_SOURCE_TYPE.DATASET,
+          settingsSection: isVerification
+            ? SettingsSectionTypes.Verification
+            : SettingsSectionTypes.Connection,
         };
       } else {
         const guid = uuid();

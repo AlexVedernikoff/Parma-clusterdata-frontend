@@ -31,4 +31,4 @@ src/polyfills.ts
 src/clustrum-lib/src/modules/legacy-dashboard
 src/clustrum-lib/src/modules/legacy-wizard
 src/clustrum-lib/src/modules/legacy-datasets
-src/clustrum-lib/src/shared/ui/widgets/chart-widget/lib/helpers
+src/clustrum-lib/src/shared/ui/widgets-factory/widgets/chart-widget/lib/helpers

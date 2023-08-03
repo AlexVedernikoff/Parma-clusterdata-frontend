@@ -1,0 +1,11 @@
+.error-block {
+  width: 256px;
+  height: calc(100% - 47px);
+  padding: 16px 20px;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.error-block__text {
+  margin-bottom: 12px;
+}

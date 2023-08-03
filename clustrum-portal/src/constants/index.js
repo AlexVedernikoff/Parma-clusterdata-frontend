@@ -27,7 +27,7 @@ import iconColumns from 'icons/columns.svg';
 import iconPoints from 'icons/points.svg';
 import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
-import { WIDGET_TYPE } from '@kamatech-data-ui/chartkit/lib/components/Widget/WidgetType';
+import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',
@@ -66,6 +66,7 @@ export const getConnectorsMap = () => {
     clickhouse: 'ClickHouse',
     csv: 'CSV',
     postgres: 'PostgreSQL',
+    mssql: 'MSSQL',
   };
 
   if (chOverYtEnabled) {
@@ -213,7 +214,7 @@ export const TAB_DATA = 'data';
 export const DATASET_TABS = [TAB_DATASET, TAB_DATA];
 
 ////////////////////
-
+// TODO: удалить после замены в SectionVisualization
 export const ITEM_TYPES = {
   DIMENSIONS: new Set(['DIMENSION']),
   LATITUDE: new Set(['LATITUDE']),
@@ -585,15 +586,16 @@ const COLUMN_VISUALIZATION = {
       capacity: Infinity,
       onChange: onYAxisChange,
     },
-    {
-      allowedTypes: ITEM_TYPES.ALL,
-      id: 'additional_measure',
-      type: 'additional_measure',
-      title: 'additional_data',
-      icon: <DatabaseOutlined width="16" />,
-      items: [],
-      capacity: Infinity,
-    },
+    // Скрыто по просьбе аналитика Кластрум
+    // {
+    //   allowedTypes: ITEM_TYPES.ALL,
+    //   id: 'additional_measure',
+    //   type: 'additional_measure',
+    //   title: 'additional_data',
+    //   icon: <DatabaseOutlined width="16" />,
+    //   items: [],
+    //   capacity: Infinity,
+    // },
     {
       allowedTypes: ITEM_TYPES.ALL,
       id: 'signatures',
@@ -839,14 +841,15 @@ const FLAT_TABLE_VISUALIZATION = {
       required: true,
       capacity: Infinity,
     },
-    {
-      allowedTypes: ITEM_TYPES.ALL,
-      id: 'drill_down_measure',
-      type: 'drill_down_measure',
-      title: 'drill_down_measure',
-      items: [],
-      capacity: 1,
-    },
+    // Скрыто по просьбе аналитика Кластрум
+    // {
+    //   allowedTypes: ITEM_TYPES.ALL,
+    //   id: 'drill_down_measure',
+    //   type: 'drill_down_measure',
+    //   title: 'drill_down_measure',
+    //   items: [],
+    //   capacity: 1,
+    // },
   ],
 };
 
@@ -1152,8 +1155,8 @@ const CARD_VISUALIZATION = {
 };
 
 const INDICATOR_VISUALIZATION = {
-  id: WIDGET_TYPE.INDICATOR,
-  type: WIDGET_TYPE.INDICATOR,
+  id: WidgetType.Indicator,
+  type: WidgetType.Indicator,
   name: 'label_visualization_indicator',
   wizardNodeType: WIZARD_NODE_TYPE.INDICATOR,
   icon: <Icon data={iconIndicator} width="24" />,
@@ -1180,21 +1183,23 @@ const INDICATOR_VISUALIZATION = {
 export const VISUALIZATIONS = [
   LINE_VISUALIZATION,
   AREA_VISUALIZATION,
-  AREA_100P_VISUALIZATION,
+  // AREA_100P_VISUALIZATION,
   COLUMN_VISUALIZATION,
-  COLUMN_100P_VISUALIZATION,
-  SCATTER_VISUALIZATION,
+  // COLUMN_100P_VISUALIZATION,
+  // SCATTER_VISUALIZATION,
   PIE_VISUALIZATION,
-  TREEMAP_VISUALIZATION,
+  // TREEMAP_VISUALIZATION,
   FLAT_TABLE_VISUALIZATION,
-  PIVOT_TABLE_VISUALIZATION,
-  MAP_VISUALIZATION,
-  HEATMAP_VISUALIZATION,
-  MAP_CLUSTER_FOCUS_POINT_VISUALIZATION,
-  CARD_VISUALIZATION,
-  INDICATOR_VISUALIZATION,
-  MULTILINE_VISUALIZATION,
-  COLUMN_PLAN_FACT_VISUALIZATION,
+  // PIVOT_TABLE_VISUALIZATION,
+  // MAP_VISUALIZATION,
+  // HEATMAP_VISUALIZATION,
+  // MAP_CLUSTER_FOCUS_POINT_VISUALIZATION,
+  // CARD_VISUALIZATION,
+  // INDICATOR_VISUALIZATION,
+  // MULTILINE_VISUALIZATION,
+  // COLUMN_PLAN_FACT_VISUALIZATION,
+
+  // Скрыты неиспользуемые чарты по просьбе аналитика Кластрум
 ];
 
 export const DIMENSION_NUMBER_OPERATIONS = [

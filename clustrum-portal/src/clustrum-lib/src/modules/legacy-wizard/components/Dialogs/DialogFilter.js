@@ -23,7 +23,7 @@ import {
   DATE_OPERATIONS,
 } from '../../../../../../constants';
 
-import { getIconForCast } from '../../../../../../utils/helpers';
+import { CastIconsFactory } from '@lib-shared/ui/cast-icons-factory';
 
 const b = block('dialog-filter');
 
@@ -129,6 +129,10 @@ class DialogFilter extends PureComponent {
       case isBoolean:
         availableOperations = BOOLEAN_OPERATIONS;
         break;
+    }
+
+    if (!availableOperations) {
+      return;
     }
 
     let operation = filter
@@ -277,6 +281,7 @@ class DialogFilter extends PureComponent {
 
                 this.setState({
                   dimensions,
+                  originalDimensions: [...dimensions],
                   value,
                 });
               }
@@ -327,10 +332,9 @@ class DialogFilter extends PureComponent {
 
   onSelectChange(newValue) {
     const { sdk } = this.props;
-    let { value, dimensions, item, updates } = this.state;
+    let { value, dimensions, originalDimensions, item, updates } = this.state;
 
     const operation = newValue[0];
-
     if (operation.selectable) {
       if (!dimensions) {
         const requestParams = {
@@ -358,6 +362,7 @@ class DialogFilter extends PureComponent {
 
               this.setState({
                 dimensions,
+                originalDimensions: [...dimensions],
                 value,
               });
             }
@@ -369,13 +374,20 @@ class DialogFilter extends PureComponent {
           });
       }
 
-      dimensions = [...dimensions, ...value].sort(collator.compare);
-      value = [];
+      reset();
     } else {
       if (operation.noOperands) {
-        value = [];
+        reset();
       } else {
-        value = value && value.length ? value.slice(0, 1) : [''];
+        const [first, ...rest] = value ?? [];
+        value = first ? [first] : [''];
+        if (Array.isArray(dimensions) && Array.isArray(rest)) {
+          dimensions = [...dimensions, ...rest].sort(collator.compare);
+        } else if (Array.isArray(dimensions)) {
+          dimensions.sort(collator.compare);
+        } else {
+          dimensions = [];
+        }
       }
     }
 
@@ -384,6 +396,11 @@ class DialogFilter extends PureComponent {
       value,
       dimensions,
     });
+
+    function reset() {
+      dimensions = [...originalDimensions].sort(collator.compare);
+      value = [];
+    }
   }
 
   onFilterInputChange(field) {
@@ -866,13 +883,16 @@ class DialogFilter extends PureComponent {
 
   render() {
     const { item } = this.props;
-    const { value, operation } = this.state;
+    const { value, operation, availableOperations } = this.state;
+
+    if (!availableOperations) {
+      return;
+    }
 
     if (item) {
       const { cast } = item;
       const itemType = item.type.toLowerCase();
       const isDate = cast === 'date' || cast === 'datetime';
-      const castIconData = getIconForCast(cast);
 
       // По умолчанию все валидно
       let valid = true;
@@ -892,7 +912,7 @@ class DialogFilter extends PureComponent {
           >
             <Dialog.Header
               caption={item.title}
-              insertBefore={<Icon data={castIconData} width="16" />}
+              insertBefore={<CastIconsFactory iconType={cast} />}
             />
             <Dialog.Body>{this.renderModalBody()}</Dialog.Body>
             <Dialog.Footer

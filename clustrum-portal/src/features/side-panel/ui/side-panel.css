@@ -7,22 +7,22 @@
 
 .side-panel__header {
   display: flex;
-  align-items: center;
   gap: 9px;
+  align-items: center;
   padding: 20px 0 20px 24px;
   transition: padding 0.3s;
 }
 
 .side-panel__header--collapsed {
-  padding-left: 28px;
   gap: 0;
+  padding-left: 28px;
 }
 
 .side-panel__header-title {
+  overflow: hidden;
   color: var(--antd-color-title);
   font-weight: 600;
   font-size: 16px;
-  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -39,14 +39,14 @@
   align-items: center;
   justify-content: center;
   height: 64px;
-  cursor: pointer;
-  border: 0;
   background-color: inherit;
+  border: 0;
+  cursor: pointer;
 }
 
 .side-panel__footer-icon {
-  font-size: 22px;
   color: rgba(0, 0, 0, 0.45);
+  font-size: 22px;
 }
 
 .side-panel__footer:hover {

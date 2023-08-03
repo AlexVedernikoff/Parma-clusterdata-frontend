@@ -5,7 +5,7 @@ import settings from '../settings/settings';
 import ErrorDispatcher, { ERROR_TYPE } from '../error-dispatcher/error-dispatcher';
 
 import { URL_OPTIONS } from '../constants/constants';
-import { WIDGET_TYPE } from '../../components/Widget/Widget';
+import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 
 import runNode from './engines/node';
 import runWizard from './engines/wizard';
@@ -131,8 +131,8 @@ function postRun(loaded) {
   const converted = { config: {} };
   const editorType = denormalizedParams['_editor_type'];
   if (editorType) {
-    if (widgetType === WIDGET_TYPE.GRAPH && editorType === WIDGET_TYPE.TABLE) {
-      converted.widgetType = WIDGET_TYPE.TABLE;
+    if (widgetType === WidgetType.Graph && editorType === WidgetType.Table) {
+      converted.widgetType = WidgetType.Table;
       const { data: convertedData, config: convertedConfig } = graphToTable(data, config);
       converted.data = convertedData;
       converted.config = convertedConfig;

@@ -34,7 +34,7 @@ export const MENU_ITEMS: NonNullable<MenuProps['items']> = [
   {
     key: Places.Widgets,
     icon: <LineChartOutlined />,
-    label: 'Диаграммы',
+    label: 'Элементы аналитических панелей',
   },
   {
     key: Places.Dashboards,
