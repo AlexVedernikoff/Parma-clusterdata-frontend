@@ -12,12 +12,12 @@
   background-color: var(--color-base);
 }
 
-.navigation-entries__table .ant-table-header {
+.navigation-entries__table :global(.ant-table-header) {
   /* чтобы на маленькой высоте экрана не сужался header у таблицы */
   overflow: visible !important;
 }
 
-.navigation-entries__table .ant-table-body {
+.navigation-entries__table :global(.ant-table-body) {
   /* скрывать scroll, когда не нужен, если у таблицы выставлена опция scroll */
   overflow-y: auto !important;
 }
