@@ -34,7 +34,6 @@ export function DatepickerFilterControl(
 
   useEffect(() => {
     let currentValue;
-
     switch (defaultValue?.type) {
       case DefaultValueType.Date:
         currentValue = dayjs(defaultValue.value.from);
@@ -48,11 +47,11 @@ export function DatepickerFilterControl(
         currentValue = null;
     }
 
-    if (!currentValue) {
+    if (!currentValue && defaultValue) {
       return;
     }
 
-    if (currentValue.isValid() && onChange) {
+    if (currentValue?.isValid() && onChange) {
       setDate(currentValue);
       onChange(currentValue.format(DEFAULT_DATE_FORMAT));
     } else {

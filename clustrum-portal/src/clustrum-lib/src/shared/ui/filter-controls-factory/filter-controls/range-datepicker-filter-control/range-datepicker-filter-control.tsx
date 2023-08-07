@@ -37,6 +37,12 @@ export function RangeDatepickerFilterControl(
   useEffect(() => {
     let from;
     let to;
+
+    if (!defaultValue) {
+      setDateRange(null);
+      return;
+    }
+
     switch (defaultValue?.type) {
       case DefaultValueType.Date:
       case DefaultValueType.DefaultRanges:
@@ -54,7 +60,7 @@ export function RangeDatepickerFilterControl(
         to = null;
     }
 
-    if (from && to && from.isValid() && to.isValid() && onChange) {
+    if (from?.isValid() && to?.isValid() && onChange) {
       setDateRange([from, to]);
       onChange({
         from: `__inter${from.format(DEFAULT_DATE_FORMAT)}`,
