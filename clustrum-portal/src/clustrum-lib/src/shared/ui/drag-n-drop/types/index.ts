@@ -1,4 +1,5 @@
 export { DndItemData } from './dnd-item-data';
+export { DndItemGenericData } from './dnd-item-generic-data';
 export { DndItemProps } from './dnd-item-props';
 export { DndContainerProps } from './dnd-container-props';
 export {

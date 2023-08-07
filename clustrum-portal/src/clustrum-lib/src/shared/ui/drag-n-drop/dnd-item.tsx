@@ -12,7 +12,7 @@ import { getTargetItemData, setLastDropIndex, setTargetItemData } from './dnd-st
 
 // TODO 696922 вынести функции и уменьшить размер компонента
 /* eslint-disable max-lines-per-function */
-export function DndItem(props: DndItemProps): JSX.Element {
+export function DndItem<T>(props: DndItemProps<T>): JSX.Element {
   const {
     index,
     containerId,
@@ -40,14 +40,14 @@ export function DndItem(props: DndItemProps): JSX.Element {
       containerAllowedTypes,
       containerIsNeedRemove,
       containerCheckAllowed,
-    } as DndDraggedItem,
+    } as DndDraggedItem<T>,
     end: (
-      draggedItem: DndDraggedItem,
-      sourceMonitor: DragSourceMonitor<DndDraggedItem, DndDropResult>,
+      draggedItem: DndDraggedItem<T>,
+      sourceMonitor: DragSourceMonitor<DndDraggedItem<T>, DndDropResult<T>>,
     ): void => {
       const dropResult:
-        | DndDropResult
-        | DndEmptyDropResult
+        | DndDropResult<T>
+        | DndEmptyDropResult<T>
         | null = sourceMonitor.getDropResult();
       const hoverIndex = draggedItem.hoverIndex;
 
@@ -84,7 +84,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
 
           setIsNeedReplace(false);
         } else {
-          const targetItemData = getTargetItemData();
+          const targetItemData = getTargetItemData<T>();
 
           if (targetItemData) {
             sourceContainerReplace(draggedItem.index, targetItemData);
@@ -114,8 +114,8 @@ export function DndItem(props: DndItemProps): JSX.Element {
     accept: 'ITEM',
     //TODO 696922 вынести в отдельный метод и типизировать
     hover: (
-      draggedItem: DndDraggedItem,
-      targetMonitor: DropTargetMonitor<DndDraggedItem>,
+      draggedItem: DndDraggedItem<T>,
+      targetMonitor: DropTargetMonitor<DndDraggedItem<T>>,
     ): void => {
       setDraggedItem(draggedItem);
 

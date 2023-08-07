@@ -1,12 +1,13 @@
 import {
   CheckDndActionAvailabilityCustomParams,
   CheckDndActionAvailabilityParams,
+  DndItemGenericData,
   isCheckDndActionAvailabilityForDraggedItemParams,
 } from '../types';
 
-const parseParams = (
-  params: CheckDndActionAvailabilityParams,
-): CheckDndActionAvailabilityCustomParams => {
+const parseParams = <T>(
+  params: CheckDndActionAvailabilityParams<T>,
+): CheckDndActionAvailabilityCustomParams<T> => {
   if (!isCheckDndActionAvailabilityForDraggedItemParams(params)) {
     return params;
   }
@@ -22,8 +23,8 @@ const parseParams = (
   };
 };
 
-export const checkDndActionAvailability = (
-  params: CheckDndActionAvailabilityParams,
+export const checkDndActionAvailability = <T extends DndItemGenericData>(
+  params: CheckDndActionAvailabilityParams<T>,
 ): boolean => {
   const { itemData, allowedTypes, checkAllowed } = parseParams(params);
 
@@ -31,8 +32,9 @@ export const checkDndActionAvailability = (
     return false;
   }
 
-  if (allowedTypes) {
-    return allowedTypes.has(itemData.type);
+  const itemDataType = itemData.type;
+  if (allowedTypes && itemDataType) {
+    return allowedTypes.has(itemDataType);
   }
 
   if (checkAllowed) {

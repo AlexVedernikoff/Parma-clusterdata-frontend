@@ -1,13 +1,12 @@
 import { AllowedTypes, CheckAllowed } from './allowed-types';
-import { DndItemData } from './dnd-item-data';
 
-export type DndDraggedItem = {
+export type DndDraggedItem<T> = {
   className: string;
   hoverIndex: number;
   index: number;
-  data: DndItemData;
+  data: T;
   containerId: string;
   containerAllowedTypes?: AllowedTypes;
   containerIsNeedRemove?: boolean;
-  containerCheckAllowed?: CheckAllowed;
+  containerCheckAllowed?: CheckAllowed<T>;
 };
