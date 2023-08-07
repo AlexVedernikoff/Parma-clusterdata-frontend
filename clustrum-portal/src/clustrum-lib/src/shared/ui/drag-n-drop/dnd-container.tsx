@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-// TODO: убрать зависимость из старого кода
-import { getUniqueId } from '../../../../../utils/helpers';
+import { getUniqueId } from './get-unique-id';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
 import classNames from 'classnames';
 import { DndItem } from './dnd-item';
@@ -15,8 +14,6 @@ import { DndContainerTitle } from './dnd-container-title';
 import { DropPlace } from './drop-place';
 import { checkDndActionAvailability } from './check-action-availability';
 
-// TODO 696922 вынести функции и уменьшить размер компонента
-/* eslint-disable max-lines-per-function */
 export function DndContainer(props: DndContainerProps): JSX.Element {
   const {
     id,
@@ -209,7 +206,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
 
   return (
     <div ref={ref}>
-      <div ref={drop} className={containerClassName}>
+      <div title="dnd-container" ref={drop} className={containerClassName}>
         {highlightDropPlace && (
           <DropPlace
             isDraggedItemHasData={isDraggedItemHasData}
