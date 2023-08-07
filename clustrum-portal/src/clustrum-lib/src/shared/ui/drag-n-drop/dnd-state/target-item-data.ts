@@ -1,5 +1,5 @@
 // Это пока что единственный способ прокинуть в событие end актуальную target item data
-// TODO пока используется тип any из-за generic type
+// используется тип any из-за generic type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let targetItemData: any | null = null;
 
