@@ -20,7 +20,7 @@ const itemSize = {
   margin: 12,
 };
 
-const renderDatasetItem = (props: DndItemProps): JSX.Element => {
+const renderDatasetItem = (props: DndItemProps<DndItemData>): JSX.Element => {
   const { itemData, draggedItem } = props;
   const dragHoveredClassName = `drag-hovered`;
 
