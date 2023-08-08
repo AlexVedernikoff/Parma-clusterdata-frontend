@@ -4,7 +4,7 @@ import { DropTargetMonitor, useDrop } from 'react-dnd';
 import classNames from 'classnames';
 import { DndItem } from './dnd-item';
 import {
-  DndItemData,
+  DndItemGenericData,
   DndContainerProps,
   DndDraggedItem,
   DndDropResult,
@@ -14,7 +14,9 @@ import { DndContainerTitle } from './dnd-container-title';
 import { DropPlace } from './drop-place';
 import { checkDndActionAvailability } from './check-action-availability';
 
-export function DndContainer(props: DndContainerProps): JSX.Element {
+export function DndContainer<T extends DndItemGenericData>(
+  props: DndContainerProps<T>,
+): JSX.Element {
   const {
     id,
     title,
@@ -36,15 +38,15 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     onItemClick,
   } = props;
 
-  const [items, setItems] = useState<DndItemData[]>(propItems || []);
+  const [items, setItems] = useState<T[]>(propItems || []);
   const [dropPlace, setDropPlace] = useState<number | null>(null);
   const [tooltipVisibility, setTooltipVisibility] = useState<boolean>(false);
-  const [usedItemData, setUsedItemData] = useState<DndItemData>();
+  const [usedItemData, setUsedItemData] = useState<T>();
   const [action, setAction] = useState<string>();
   const [isNeedToUpdate, setIsNeedToUpdate] = useState<boolean>(false);
   const ref = useRef(null);
   const isNeedReplaceRef = useRef(false);
-  const [draggedItem, setDraggedItem] = useState<DndDraggedItem | null>(null);
+  const [draggedItem, setDraggedItem] = useState<DndDraggedItem<T> | null>(null);
 
   useEffect(() => {
     setItems(propItems);
@@ -61,14 +63,16 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     accept: 'ITEM',
     collect: (
       monitor: DropTargetMonitor<
-        DndDraggedItem,
-        DndDropResult | DndEmptyDropResult | null
+        DndDraggedItem<T>,
+        DndDropResult<T> | DndEmptyDropResult<T> | null
       >,
     ) => ({
       isOver: monitor.isOver(),
     }),
     //TODO 696922 вынести в отдельный метод и типизировать
-    drop: (draggedItem: DndDraggedItem): DndDropResult | DndEmptyDropResult | null => {
+    drop: (
+      draggedItem: DndDraggedItem<T>,
+    ): DndDropResult<T> | DndEmptyDropResult<T> | null => {
       const draggedItemData = draggedItem.data;
       const draggedItemDataType = draggedItemData.type;
       const targetItemData = items[draggedItem.hoverIndex] ?? draggedItemData;
@@ -82,7 +86,11 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
         }
 
         // отменяем, если не подходит по типу
-        if (allowedTypes && !allowedTypes.has(draggedItemDataType)) {
+        if (
+          allowedTypes &&
+          draggedItemDataType &&
+          !allowedTypes.has(draggedItemDataType)
+        ) {
           return { revert: true };
         }
 
@@ -129,7 +137,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     });
   };
 
-  const insert = (index: number, item: DndItemData): void => {
+  const insert = (index: number, item: T): void => {
     // если контейнер работает в режиме с копированиями из себя, то не добавляем
     if (!isNeedRemove) {
       return;
@@ -169,7 +177,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
     });
   };
 
-  const replace = (index: number, item: DndItemData): void => {
+  const replace = (index: number, item: T): void => {
     if (!isNeedRemove) {
       return;
     }
@@ -220,7 +228,7 @@ export function DndContainer(props: DndContainerProps): JSX.Element {
         )}
         <DndContainerTitle title={title} />
         {items.map(
-          (item: DndItemData, index: number): JSX.Element => {
+          (item: T, index: number): JSX.Element => {
             return (
               <DndItem
                 key={`${item.id}-${index}`}

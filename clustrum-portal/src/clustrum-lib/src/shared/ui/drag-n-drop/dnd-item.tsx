@@ -10,7 +10,7 @@ import {
 import { calcInsertionIndex } from './insertion-index';
 import { getTargetItemData, setLastDropIndex, setTargetItemData } from './dnd-state';
 
-export function DndItem(props: DndItemProps): JSX.Element {
+export function DndItem<T>(props: DndItemProps<T>): JSX.Element {
   const {
     index,
     containerId,
@@ -38,14 +38,14 @@ export function DndItem(props: DndItemProps): JSX.Element {
       containerAllowedTypes,
       containerIsNeedRemove,
       containerCheckAllowed,
-    } as DndDraggedItem,
+    } as DndDraggedItem<T>,
     end: (
-      draggedItem: DndDraggedItem,
-      sourceMonitor: DragSourceMonitor<DndDraggedItem, DndDropResult>,
+      draggedItem: DndDraggedItem<T>,
+      sourceMonitor: DragSourceMonitor<DndDraggedItem<T>, DndDropResult<T>>,
     ): void => {
       const dropResult:
-        | DndDropResult
-        | DndEmptyDropResult
+        | DndDropResult<T>
+        | DndEmptyDropResult<T>
         | null = sourceMonitor.getDropResult();
       const hoverIndex = draggedItem.hoverIndex;
 
@@ -84,7 +84,7 @@ export function DndItem(props: DndItemProps): JSX.Element {
           return;
         }
 
-        const targetItemData = getTargetItemData();
+        const targetItemData = getTargetItemData<T>();
         if (targetItemData) {
           sourceContainerReplace(draggedItem.index, targetItemData);
           targetContainerReplace(hoverIndex, draggedItem.data);
@@ -113,8 +113,8 @@ export function DndItem(props: DndItemProps): JSX.Element {
     accept: 'ITEM',
     //TODO 696922 вынести в отдельный метод и типизировать
     hover: (
-      draggedItem: DndDraggedItem,
-      targetMonitor: DropTargetMonitor<DndDraggedItem>,
+      draggedItem: DndDraggedItem<T>,
+      targetMonitor: DropTargetMonitor<DndDraggedItem<T>>,
     ): void => {
       setDraggedItem(draggedItem);
 
