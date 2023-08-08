@@ -30,9 +30,14 @@ const renderDatasetItem = (props: DndItemProps): JSX.Element => {
       title={itemData.title}
       draggable="true"
       onDragOver={(e): void => {
+        if (itemData.type === 'PSEUDO') {
+          return;
+        }
+        if (draggedItem === null) {
+          return;
+        }
+
         const element = e.currentTarget;
-        if (itemData.type === 'PSEUDO') {return;}
-        if (draggedItem === null) {return;}
 
         //getBoundingClientRect возвращает все поля нулевыми
         //т.к. по факту jsdom ничего не рендерит.
