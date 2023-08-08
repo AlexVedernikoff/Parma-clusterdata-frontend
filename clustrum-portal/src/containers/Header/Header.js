@@ -247,7 +247,7 @@ class Header extends React.PureComponent {
       canEdit,
       openExpandedFilter,
       setMode,
-      hasRightSideContent,
+      hasRightSideContent = true,
     } = this.props;
 
     if (!hasRightSideContent) {
@@ -339,8 +339,16 @@ class Header extends React.PureComponent {
     );
   }
 
+  renderRightItems(isEditMode) {
+    if (isEditMode) {
+      return this.renderEditItems();
+    } else {
+      return this.renderViewItems();
+    }
+  }
+
   render() {
-    const { isBuild } = this.props;
+    const { isBuild, isEditMode } = this.props;
 
     return (
       <>
@@ -349,9 +357,7 @@ class Header extends React.PureComponent {
           <ActionPanel
             sdk={SDK}
             entryId={this.props.entry.entryId}
-            rightItems={
-              this.props.isEditMode ? this.renderEditItems() : this.renderViewItems()
-            }
+            rightItems={this.renderRightItems(isEditMode)}
             className={b('action-panel', {
               sticky: this.props.isEditMode,
               'is-edit': this.props.isEditMode,
