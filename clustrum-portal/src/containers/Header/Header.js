@@ -339,16 +339,9 @@ class Header extends React.PureComponent {
     );
   }
 
-  renderRightItems(isEditMode) {
-    if (isEditMode) {
-      return this.renderEditItems();
-    } else {
-      return this.renderViewItems();
-    }
-  }
-
   render() {
     const { isBuild, isEditMode } = this.props;
+    const renderRightItems = isEditMode ? this.renderEditItems() : this.renderViewItems();
 
     return (
       <>
@@ -357,7 +350,7 @@ class Header extends React.PureComponent {
           <ActionPanel
             sdk={SDK}
             entryId={this.props.entry.entryId}
-            rightItems={this.renderRightItems(isEditMode)}
+            rightItems={renderRightItems}
             className={b('action-panel', {
               sticky: this.props.isEditMode,
               'is-edit': this.props.isEditMode,
