@@ -7,7 +7,6 @@ const iframeParamNames = [
   'cacheMode',
   'exportMode',
   'stateUuid',
-  'hideRightSideContent',
 ];
 
 export const replaceIframeParams = (buildProps: Record<string, unknown> = {}): void => {

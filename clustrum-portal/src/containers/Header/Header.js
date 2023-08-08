@@ -61,7 +61,7 @@ class Header extends React.PureComponent {
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
     isBuild: PropTypes.bool,
-    hideRightSideContent: PropTypes.bool,
+    hasRightSideContent: PropTypes.bool,
   };
 
   static contextType = SignalContext;
@@ -242,7 +242,18 @@ class Header extends React.PureComponent {
   }
 
   renderViewItems() {
-    const { entry, canEdit, openExpandedFilter, setMode } = this.props;
+    const {
+      entry,
+      canEdit,
+      openExpandedFilter,
+      setMode,
+      hasRightSideContent,
+    } = this.props;
+
+    if (!hasRightSideContent) {
+      return [];
+    }
+
     const exportItems = [
       {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</a>,
@@ -329,7 +340,7 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { isBuild, hideRightSideContent } = this.props;
+    const { isBuild } = this.props;
 
     return (
       <>
@@ -339,11 +350,7 @@ class Header extends React.PureComponent {
             sdk={SDK}
             entryId={this.props.entry.entryId}
             rightItems={
-              !hideRightSideContent
-                ? this.props.isEditMode
-                  ? this.renderEditItems()
-                  : this.renderViewItems()
-                : [null]
+              this.props.isEditMode ? this.renderEditItems() : this.renderViewItems()
             }
             className={b('action-panel', {
               sticky: this.props.isEditMode,

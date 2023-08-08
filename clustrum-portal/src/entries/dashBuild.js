@@ -53,7 +53,7 @@ export function DashBuild(props) {
                   <Dash
                     defaultEntryId={entryId}
                     isBuild
-                    hideRightSideContent={hideRightSideContent}
+                    hasRightSideContent={!hideRightSideContent}
                   />
                 )}
               />
