@@ -15,6 +15,7 @@ const b = block('dataset-page');
 class DatasetPage extends React.Component {
   static propTypes = {
     sdk: PropTypes.object.isRequired,
+    isBuild: PropTypes.bool,
   };
 
   constructor(props) {
@@ -28,14 +29,19 @@ class DatasetPage extends React.Component {
   }
 
   render() {
-    const { sdk } = this.props;
+    const { sdk, isBuild } = this.props;
     const { datasetId } = this.state;
     const datasetName = this.props.location.state?.datasetName;
 
     return (
       <div className={b()}>
         <DatasetPageProvider value={{ sdk }}>
-          <Dataset sdk={sdk} datasetId={datasetId} initialDatasetName={datasetName} />
+          <Dataset
+            sdk={sdk}
+            datasetId={datasetId}
+            initialDatasetName={datasetName}
+            isBuild={isBuild}
+          />
         </DatasetPageProvider>
       </div>
     );

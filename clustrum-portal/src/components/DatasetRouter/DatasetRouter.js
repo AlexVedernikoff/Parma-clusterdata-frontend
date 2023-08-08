@@ -15,10 +15,11 @@ const b = block('dataset-router');
 class DatasetRouter extends PureComponent {
   static propTypes = {
     sdk: PropTypes.object.isRequired,
+    isBuild: PropTypes.bool,
   };
 
   render() {
-    const { sdk } = this.props;
+    const { sdk, isBuild } = this.props;
     const {
       installationType,
       endpoints,
@@ -40,7 +41,7 @@ class DatasetRouter extends PureComponent {
             <Route
               path={'/datasets/new'}
               render={props => (
-                <PageContainer>
+                <PageContainer withoutSidePanel={isBuild}>
                   <DatasetCreationPage {...props} sdk={sdk} />
                 </PageContainer>
               )}
@@ -51,7 +52,7 @@ class DatasetRouter extends PureComponent {
                 const { match: { params: { datasetId } = {} } = {} } = props;
 
                 return (
-                  <PageContainer>
+                  <PageContainer withoutSidePanel={isBuild}>
                     <DatasetCreationPage
                       {...props}
                       modeId={REPLACE_SOURCE_MODE_ID}
@@ -65,8 +66,8 @@ class DatasetRouter extends PureComponent {
             <Route
               path={'/datasets/:datasetId'}
               render={props => (
-                <PageContainer>
-                  <DatasetPage {...props} sdk={sdk} />
+                <PageContainer withoutSidePanel={isBuild}>
+                  <DatasetPage {...props} sdk={sdk} isBuild={isBuild} />
                 </PageContainer>
               )}
             />

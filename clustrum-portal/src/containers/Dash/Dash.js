@@ -48,6 +48,7 @@ class Dash extends React.PureComponent {
     setWidgetForReloadUUID: PropTypes.func.isRequired,
     defaultEntryId: PropTypes.string,
     isBuild: PropTypes.bool,
+    hasRightSideContent: PropTypes.bool,
   };
 
   componentDidMount() {
@@ -113,12 +114,12 @@ class Dash extends React.PureComponent {
   };
 
   render() {
-    const { widgetEditorUUID, title, isBuild } = this.props;
+    const { widgetEditorUUID, title, isBuild, hasRightSideContent } = this.props;
 
     return (
       <React.Fragment>
         <PageHead title={title} />
-        <Header isBuild={isBuild} />
+        <Header isBuild={isBuild} hasRightSideContent={hasRightSideContent} />
         <Body isBuild={isBuild} />
         <Dialogs />
         <SideSlidingPanel
