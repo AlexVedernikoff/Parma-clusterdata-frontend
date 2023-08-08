@@ -68,6 +68,7 @@ class Dataset extends React.Component {
     updateDatasetByValidation: PropTypes.func.isRequired,
     saveDataset: PropTypes.func.isRequired,
     changeAmountPreviewRows: PropTypes.func.isRequired,
+    isBuild: PropTypes.bool,
   };
 
   state = {
@@ -366,6 +367,7 @@ class Dataset extends React.Component {
       previewEnabled,
       toggleVisibilityPreview,
       toggleVisibilityHistory,
+      isBuild,
     } = this.props;
     const {
       isVisibleDataSource,
@@ -406,6 +408,7 @@ class Dataset extends React.Component {
             isFavorite,
             scope: 'dataset',
           }}
+          isBuild={isBuild}
           additionalEntryItems={[
             <Button
               className="ant-d-header-small-btn"

@@ -41,7 +41,7 @@ export function DatasetBuild(props) {
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
-        <DatasetRouter sdk={sdk} />
+        <DatasetRouter sdk={sdk} {...props} isBuild />
       </Provider>
     </ConfigProvider>
   );

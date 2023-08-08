@@ -37,7 +37,7 @@ if (IS_INTERNAL) {
 logVersion();
 
 export function DashBuild(props) {
-  const { entryId } = props;
+  const { entryId, hideRightSideContent } = props;
   replaceIframeParams(props);
 
   return (
@@ -47,7 +47,16 @@ export function DashBuild(props) {
           <DndProvider backend={HTML5Backend}>
             <Pointerfocus />
             <Switch>
-              <Route path="*" render={() => <Dash defaultEntryId={entryId} isBuild />} />
+              <Route
+                path="*"
+                render={() => (
+                  <Dash
+                    defaultEntryId={entryId}
+                    isBuild
+                    hideRightSideContent={hideRightSideContent}
+                  />
+                )}
+              />
             </Switch>
           </DndProvider>
         </ConnectedRouter>

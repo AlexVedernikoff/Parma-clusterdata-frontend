@@ -61,6 +61,7 @@ class Header extends React.PureComponent {
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
     isBuild: PropTypes.bool,
+    hideRightSideContent: PropTypes.bool,
   };
 
   static contextType = SignalContext;
@@ -328,7 +329,7 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { isBuild } = this.props;
+    const { isBuild, hideRightSideContent } = this.props;
 
     return (
       <>
@@ -338,7 +339,11 @@ class Header extends React.PureComponent {
             sdk={SDK}
             entryId={this.props.entry.entryId}
             rightItems={
-              this.props.isEditMode ? this.renderEditItems() : this.renderViewItems()
+              !hideRightSideContent
+                ? this.props.isEditMode
+                  ? this.renderEditItems()
+                  : this.renderViewItems()
+                : [null]
             }
             className={b('action-panel', {
               sticky: this.props.isEditMode,
