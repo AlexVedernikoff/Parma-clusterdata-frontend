@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { CancelToken } from 'axios';
 import pick from 'lodash/pick';
 import { Spin } from 'antd';
-import { ITEM_TYPE } from '../../../../modules/constants/constants';
 import {
   ActualParamsReturnType,
   FilterFactoryControlsProps,
@@ -10,10 +9,10 @@ import {
   LoadedData,
   LoadedDataScheme,
 } from '@lib-shared/ui/filter-controls-factory/types';
+import { ControlSourceType, ItemType } from '@lib-shared/types';
 import { FilterFactoryControls } from '@lib-shared/ui/filter-controls-factory';
-import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
-import { SDK } from '../../../../modules/sdk';
-import { CONTROL_SOURCE_TYPE } from '../../../../constants/constants';
+import { getParamsValue } from '@lib-shared/lib/utils';
+import { SDK } from '../../../../../modules/sdk';
 import styles from './filter-controls-container.module.css';
 
 function FilterControlsContainer(props: FilterFactoryControlsProps): JSX.Element {
@@ -65,7 +64,7 @@ function FilterControlsContainer(props: FilterFactoryControlsProps): JSX.Element
       const cancelToken = await getCancelToken();
 
       const loadedData: LoadedData =
-        data.sourceType === CONTROL_SOURCE_TYPE.EXTERNAL
+        data.sourceType === ControlSourceType.External
           ? await SDK.runDashChart({
               id: data.external?.entryId,
               params: actualParams(),
@@ -80,14 +79,14 @@ function FilterControlsContainer(props: FilterFactoryControlsProps): JSX.Element
       setStatus(LoadStatus.Success);
       setScheme(scheme);
     } catch (error) {
-      console.error('DASHKIT_CONTROL_RUN', error);
+      console.error('FILTER_CONTROL_RUN', error);
       setStatus(LoadStatus.Fail);
     }
   };
 
   if (status === LoadStatus.Pending) {
     return (
-      <div className={styles['dashkit-plugin-control']}>
+      <div className={styles['filter-control']}>
         <Spin />
       </div>
     );
@@ -95,8 +94,8 @@ function FilterControlsContainer(props: FilterFactoryControlsProps): JSX.Element
 
   if (status === LoadStatus.Fail) {
     return (
-      <div className={styles['dashkit-plugin-control']}>
-        <span className={styles['dashkit-plugin-control__error']}>Произошла ошибка</span>
+      <div className={styles['filter-control']}>
+        <span className={styles['filter-control__error']}>Произошла ошибка</span>
       </div>
     );
   }
@@ -107,7 +106,7 @@ function FilterControlsContainer(props: FilterFactoryControlsProps): JSX.Element
 }
 
 export const filterControlsPlugin = {
-  type: ITEM_TYPE.CONTROL,
+  type: ItemType.Control,
   defaultLayout: { w: 8, h: 4 },
   renderer: (props: FilterFactoryControlsProps): JSX.Element =>
     FilterControlsContainer(props),

@@ -5,6 +5,7 @@ import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
+import { getParamsValue } from '@lib-shared/lib/utils';
 
 import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
@@ -15,7 +16,6 @@ import URI from '../../modules/uri/uri';
 import settings from '../../modules/settings/settings';
 import { removeEmptyProperties } from '../../helpers/helpers';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
-import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
 import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 
 const b = block('chartkit');

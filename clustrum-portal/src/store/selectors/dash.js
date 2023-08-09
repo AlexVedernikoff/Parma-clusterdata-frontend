@@ -1,6 +1,7 @@
 import isEqual from 'lodash/isEqual';
 
-import { MODE, ITEM_TYPE } from '../../modules/constants/constants';
+import { ItemType } from '@lib-shared/types';
+import { MODE } from '../../modules/constants/constants';
 
 const getCurrentPage = state => {
   const pageIndex = state.dash.data
@@ -82,10 +83,10 @@ export const getCurrentTabConnectableItems = state => {
   const tab = getCurrentTab(state);
   if (tab) {
     return tab.items
-      .filter(({ type }) => type === ITEM_TYPE.CONTROL || type === ITEM_TYPE.WIDGET)
+      .filter(({ type }) => type === ItemType.Control || type === ItemType.Widget)
       .reduce(
         (result, { id, data, type, namespace }) =>
-          type === ITEM_TYPE.WIDGET
+          type === ItemType.Widget
             ? result.concat(
                 data.map(({ id, data, title }) => ({ id, namespace, type, title })),
               )

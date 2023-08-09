@@ -120,7 +120,7 @@ export class FilterFactoryControls extends React.PureComponent<
     const actualParams = getActualParams();
 
     return (
-      <div className={styles['dashkit-plugin-control']}>
+      <div className={styles['filter-control']}>
         {scheme.map(control => {
           const { param, type, fieldDataType } = control;
 
@@ -131,7 +131,7 @@ export class FilterFactoryControls extends React.PureComponent<
           const props = {
             ...control,
             fieldDataType,
-            className: styles['dashkit-plugin-control__item'],
+            className: styles['filter-control__item'],
             key: param,
           };
 

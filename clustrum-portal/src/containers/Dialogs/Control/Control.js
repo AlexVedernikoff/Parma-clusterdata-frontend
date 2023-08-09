@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { CheckBox as LegoCheckBox, TextInput as LegoTextInput } from 'lego-on-react';
 import { Dialog } from '@kamatech-data-ui/common/src';
+import { ControlSourceType } from '@lib-shared/types';
 
 import Dataset from './Switchers/Dataset';
 import DatasetField from './Switchers/DatasetField/DatasetField';
@@ -78,7 +79,7 @@ class Control extends React.PureComponent {
           defaults: props.defaults,
           availableItems: props.availableItems,
           control:
-            state.sourceType === CONTROL_SOURCE_TYPE.EXTERNAL
+            state.sourceType === ControlSourceType.External
               ? {}
               : { elementType: ELEMENT_TYPE.SELECT },
         };
@@ -98,8 +99,8 @@ class Control extends React.PureComponent {
       external: {},
       defaults: props.defaults,
       availableItems: props.availableItems,
-      sourceType: props.data.sourceType || CONTROL_SOURCE_TYPE.DATASET,
-      prevSourceType: props.data.sourceType || CONTROL_SOURCE_TYPE.DATASET,
+      sourceType: props.data.sourceType || ControlSourceType.Dataset,
+      prevSourceType: props.data.sourceType || ControlSourceType.Dataset,
       control: { elementType: ELEMENT_TYPE.SELECT },
       isManualTitle: Boolean(props.id),
       ...props.data,
@@ -193,7 +194,7 @@ class Control extends React.PureComponent {
 
   renderSourceTypeExternal() {
     if (IS_INTERNAL) {
-      const type = CONTROL_SOURCE_TYPE.EXTERNAL;
+      const type = ControlSourceType.Dataset;
 
       const { sourceType, title, isManualTitle, external, defaults } = this.state;
 
@@ -234,7 +235,7 @@ class Control extends React.PureComponent {
 
     return (
       <React.Fragment>
-        {sourceType === CONTROL_SOURCE_TYPE.DATASET && (
+        {sourceType === ControlSourceType.Dataset && (
           <React.Fragment>
             <Dataset
               title="Набор данных"
@@ -254,14 +255,14 @@ class Control extends React.PureComponent {
             />
           </React.Fragment>
         )}
-        {sourceType !== CONTROL_SOURCE_TYPE.EXTERNAL && (
+        {sourceType !== ControlSourceType.External && (
           <ElementType
             title="Тип элемента"
             elementType={elementType}
             onChange={this.changeElementType}
           />
         )}
-        {sourceType !== CONTROL_SOURCE_TYPE.DATASET && (
+        {sourceType !== ControlSourceType.Dataset && (
           <TextInput
             title="Имя поля"
             text={controlFieldName}
@@ -362,11 +363,11 @@ class Control extends React.PureComponent {
               </LegoCheckBox>
             </div>
             {this.renderSourceType({
-              type: CONTROL_SOURCE_TYPE.DATASET,
+              type: ControlSourceType.Dataset,
               title: 'На основе датасета',
             })}
             {this.renderSourceType({
-              type: CONTROL_SOURCE_TYPE.MANUAL,
+              type: ControlSourceType.Manual,
               title: 'Ручной ввод',
             })}
             {this.renderSourceTypeExternal()}

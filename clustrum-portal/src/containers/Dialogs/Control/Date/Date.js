@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import CheckBox from '../Switchers/CheckBox';
 import Acceptable from './Acceptable/Acceptable';
 import Default from './Default/Default';
+import { ControlSourceType } from '@lib-shared/types';
 
 import { CONTROL_SOURCE_TYPE } from '../../../../constants/constants';
 
@@ -11,7 +12,7 @@ function Date(props) {
   const { sourceType, acceptableValues, defaultValue, isRange, onChange } = props;
   return (
     <React.Fragment>
-      {sourceType === CONTROL_SOURCE_TYPE.MANUAL && (
+      {sourceType === ControlSourceType.Manual && (
         <Acceptable acceptableValues={acceptableValues} onApply={onChange} />
       )}
       <CheckBox

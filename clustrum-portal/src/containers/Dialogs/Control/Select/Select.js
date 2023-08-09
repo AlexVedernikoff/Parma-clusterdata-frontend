@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { YCSelect } from '@kamatech-data-ui/common/src';
+import { ControlSourceType } from '@lib-shared/types';
 import CheckBox from '../Switchers/CheckBox';
 import Acceptable from './Acceptable/Acceptable';
 import Wrapper from '../Wrapper/Wrapper';
@@ -21,7 +22,7 @@ class Select extends React.PureComponent {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (
-      nextProps.sourceType === CONTROL_SOURCE_TYPE.MANUAL ||
+      nextProps.sourceType === ControlSourceType.Manual ||
       prevState.datasetId !== nextProps.datasetId ||
       prevState.datasetField !== nextProps.datasetField
     ) {
@@ -140,7 +141,7 @@ class Select extends React.PureComponent {
 
     return (
       <React.Fragment>
-        {sourceType === CONTROL_SOURCE_TYPE.MANUAL && (
+        {sourceType === ControlSourceType.Manual && (
           <Acceptable
             acceptableValues={acceptableValues}
             multiselectable={multiselectable}
