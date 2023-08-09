@@ -269,25 +269,24 @@ class SectionVisualization extends Component {
 
   handleDialogActions(result, items = null) {
     this.setState({ dialogType: null, dialogItem: null, isDialogVisible: false });
-    
+
     const { filters, setFilters, updatePreview } = this.props;
-  
+
     if (!result) {
       return;
     }
-    
+
     if (items) {
       setFilters({
         filters: items,
       });
     }
-  
+
     updatePreview({
       ...this.props,
       filters: items || filters,
     });
   }
-  
 
   fillDatasetName(widgetItems, dimensions) {
     widgetItems.forEach(item => {

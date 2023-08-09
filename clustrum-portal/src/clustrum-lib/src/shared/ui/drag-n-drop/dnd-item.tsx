@@ -10,8 +10,6 @@ import {
 import { calcInsertionIndex } from './insertion-index';
 import { getTargetItemData, setLastDropIndex, setTargetItemData } from './dnd-state';
 
-// TODO 696922 вынести функции и уменьшить размер компонента
-/* eslint-disable max-lines-per-function */
 export function DndItem<T>(props: DndItemProps<T>): JSX.Element {
   const {
     index,
@@ -81,17 +79,18 @@ export function DndItem<T>(props: DndItemProps<T>): JSX.Element {
       if (isNeedReplace) {
         if (inSameContainer) {
           targetContainerSwap(hoverIndex, draggedItem.index);
-
           setIsNeedReplace(false);
-        } else {
-          const targetItemData = getTargetItemData<T>();
 
-          if (targetItemData) {
-            sourceContainerReplace(draggedItem.index, targetItemData);
-            targetContainerReplace(hoverIndex, draggedItem.data);
+          return;
+        }
 
-            setIsNeedReplace(false);
-          }
+        const targetItemData = getTargetItemData<T>();
+        if (targetItemData) {
+          sourceContainerReplace(draggedItem.index, targetItemData);
+          targetContainerReplace(hoverIndex, draggedItem.data);
+          setIsNeedReplace(false);
+
+          return;
         }
       } else {
         if (containerIsNeedRemove || inSameContainer) {
