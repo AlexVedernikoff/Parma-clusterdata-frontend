@@ -7,4 +7,4 @@ export {
   createCell,
   ChartWidget,
 } from '@lib-shared/ui/widgets-factory/widgets';
-export { filterControlsPlugin } from '@lib-entities/ui/filter-controls-container/filter-controls-container';
+export { filterControlsPlugin } from '@lib-entities/filter-controls-container/ui/filter-controls-container';
