@@ -1,25 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import Tabs from './Tabs/Tabs';
+import { DashboardTabsSettings } from '@features/dashboard-tabs-settings';
 import Title from './Title/Title';
 import Widget from './Widget/Widget';
 import Control from './Control/Control';
-
-import { DIALOG_TYPE } from '../../modules/constants/constants';
+import { DialogType } from '@clustrum-lib/shared/types';
 
 // TODO: посмотреть не будут ли тормозить диалоги со сложным содержимым из-за того, что происходит mount/unmount
 // TODO: если будут заметны лаги, то можно будет рендерить содержимое диалогов по мере доступности
 // TODO: однако это содержимое по сути не нужно тем, кто не собирается редактировать дашборд
 function Dialogs({ openedDialog }) {
   switch (openedDialog) {
-    case DIALOG_TYPE.TABS:
-      return <Tabs />;
-    case DIALOG_TYPE.TITLE:
+    case DialogType.Tabs:
+      return <DashboardTabsSettings />;
+    case DialogType.Title:
       return <Title />;
-    case DIALOG_TYPE.WIDGET:
+    case DialogType.Widget:
       return <Widget />;
-    case DIALOG_TYPE.CONTROL:
+    case DialogType.Control:
       return <Control />;
   }
   return null;
