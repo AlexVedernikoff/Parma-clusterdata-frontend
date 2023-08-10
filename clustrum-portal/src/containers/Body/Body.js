@@ -55,6 +55,7 @@ class Body extends React.PureComponent {
     setWidgetForReloadUUID: PropTypes.func.isRequired,
     toggleWidgetVisibility: PropTypes.func.isRequired,
     isBuild: PropTypes.bool,
+    onFiltersChange: PropTypes.func,
     // router
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -71,9 +72,57 @@ class Body extends React.PureComponent {
   }
 
   dashKitRef = React.createRef();
+  sendedFilters = [];
+
+  isNewFilterValue = filter => {
+    const sendedFilter = this.sendedFilters.find(item => item.id === filter.id);
+    // фильтр ещё никогда не отправлялся
+    if (!sendedFilter) {
+      this.sendedFilters.push(filter);
+      return true;
+    }
+    // фильтр ранее отправлялся, но с другим значением
+    if (sendedFilter.value.toString() !== filter.value.toString()) {
+      sendedFilter.value = filter.value;
+      return true;
+    }
+    return false;
+  };
+
+  isInitiallyEmpty = filter => {
+    // фильтр, который изначально пустой (ещё до первой отправки)
+    const isEmpty = !filter.value || filter.value.length === 0;
+    const isSended = this.sendedFilters.map(item => item.id).includes(filter.id);
+    return isEmpty && !isSended;
+  };
+
+  handleFiltersChange = data => {
+    const { config, itemsStateAndParams } = data;
+    const { onFiltersChange } = this.props;
+
+    if (!onFiltersChange) {
+      return;
+    }
+
+    // данные приходят в странном виде - несколько одинаковых секций
+    // нас устроит любая из них, поэтому берём первую из config-а
+    const id = config.items[0].id;
+    const filtersData = itemsStateAndParams[id].params;
+    const rawFilters = Object.keys(filtersData).map(key => ({
+      id: key,
+      value: filtersData[key].value,
+      datasetId: filtersData[key].initiatorItem.data.dataset.id,
+    }));
+
+    const newFilters = rawFilters
+      .filter(item => !this.isInitiallyEmpty(item))
+      .filter(item => this.isNewFilterValue(item));
+    onFiltersChange(newFilters);
+  };
 
   onChange = data => {
     const { config, itemsStateAndParams } = data;
+
     if (config) {
       this.props.setCurrentTabData(config);
     }
@@ -83,6 +132,7 @@ class Body extends React.PureComponent {
       Object.keys(itemsStateAndParams).length
     ) {
       this.onStateChange(itemsStateAndParams);
+      this.handleFiltersChange(data);
     }
   };
 

@@ -113,13 +113,13 @@ class Dash extends React.PureComponent {
   };
 
   render() {
-    const { widgetEditorUUID, title, isBuild } = this.props;
+    const { widgetEditorUUID, title, isBuild, onFiltersChange } = this.props;
 
     return (
       <React.Fragment>
         <PageHead title={title} />
         <Header isBuild={isBuild} />
-        <Body isBuild={isBuild} />
+        <Body isBuild={isBuild} onFiltersChange={onFiltersChange} />
         <Dialogs />
         <SideSlidingPanel
           title="Режим редактирования элемента"
