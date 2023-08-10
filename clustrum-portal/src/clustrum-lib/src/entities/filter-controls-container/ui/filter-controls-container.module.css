@@ -1,4 +1,4 @@
-.filter-control {
+.filter-controls-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,6 +9,6 @@
   border-radius: 6px;
 }
 
-.filter-control__error {
+.filter-controls-container__error {
   color: var(--antd-text-color-selection);
 }

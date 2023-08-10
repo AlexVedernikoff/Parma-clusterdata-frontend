@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CheckBox from '../Switchers/CheckBox';
 import Acceptable from './Acceptable/Acceptable';
 import Default from './Default/Default';
-import { ControlSourceType } from '@lib-shared/types';
+import { ControlSourceType } from '@clustrum-lib/shared/types';
 
 import { CONTROL_SOURCE_TYPE } from '../../../../constants/constants';
 

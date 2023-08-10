@@ -61,7 +61,7 @@ export interface OnChangeParams {
   [key: string]: string | string[];
 }
 
-export interface FilterFactoryControlsProps {
+export interface FilterControlsFactoryProps {
   context: undefined;
   data: DashboardControlsData;
   defaults: DefaultsParams;

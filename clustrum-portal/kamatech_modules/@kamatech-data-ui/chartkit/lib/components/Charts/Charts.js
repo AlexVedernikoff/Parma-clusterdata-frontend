@@ -5,7 +5,7 @@ import isEqual from 'lodash/isEqual';
 // TODO: изменить импорт на `@clustrum-lib`
 import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/widget';
 
-import { getParamsValue } from '@lib-shared/lib/utils';
+import { getParamsValue } from '@clustrum-lib';
 
 import ChartsModule from '../../modules/charts/charts';
 import ErrorDispatcher from '../../modules/error-dispatcher/error-dispatcher';

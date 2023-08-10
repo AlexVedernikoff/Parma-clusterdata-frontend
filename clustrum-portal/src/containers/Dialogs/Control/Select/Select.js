@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { YCSelect } from '@kamatech-data-ui/common/src';
-import { ControlSourceType } from '@lib-shared/types';
+import { ControlSourceType } from '@clustrum-lib/shared/types';
 import CheckBox from '../Switchers/CheckBox';
 import Acceptable from './Acceptable/Acceptable';
 import Wrapper from '../Wrapper/Wrapper';

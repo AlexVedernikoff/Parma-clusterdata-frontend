@@ -6,7 +6,7 @@ import cloneDeep from 'lodash/cloneDeep';
 
 import { RadioBox, TextInput } from 'lego-on-react';
 import { Datepicker, YCSelect } from '@kamatech-data-ui/common/src';
-import { ControlSourceType } from '@lib-shared/types';
+import { ControlSourceType } from '@clustrum-lib/shared/types';
 
 import Dialog from '../../Dialog/Dialog';
 import Button from '../../Switchers/Button';

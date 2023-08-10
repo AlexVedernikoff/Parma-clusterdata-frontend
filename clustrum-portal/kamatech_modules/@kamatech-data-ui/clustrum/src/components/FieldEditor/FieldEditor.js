@@ -9,7 +9,7 @@ import { Dialog } from '@kamatech-data-ui/common/src';
 import { ConfirmationDialog, FieldSettingsEditor } from './components';
 import DatasetSDK from '../../libs/datasetSdk';
 
-import { ControlSourceType } from '@lib-shared/types';
+import { ControlSourceType } from '@clustrum-lib/shared/types';
 import { DATASET_JOIN_TYPE } from '../../../../../../src/containers/Dataset/dataset_join_type';
 import { DATASET_ARRAY_JOIN_TYPE } from '../../../../../../src/containers/Dataset/dataset_array_join_type';
 import Dataset from '../../../../../../src/containers/Dialogs/Control/Switchers/Dataset';

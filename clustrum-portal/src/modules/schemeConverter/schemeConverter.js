@@ -1,4 +1,4 @@
-import { ItemType } from '@lib-shared/types';
+import { ItemType } from '@clustrum-lib/shared/types';
 import sdk from '../sdk/sdk';
 
 const CURRENT_SCHEME_VERSION = 6;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ControlSourceType } from '@lib-shared/types';
+import { ControlSourceType } from '@clustrum-lib/shared/types';
 
 import TextInput from '../Switchers/TextInput';
 

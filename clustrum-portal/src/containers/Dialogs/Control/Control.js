@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { CheckBox as LegoCheckBox, TextInput as LegoTextInput } from 'lego-on-react';
 import { Dialog } from '@kamatech-data-ui/common/src';
-import { ControlSourceType } from '@lib-shared/types';
+import { ControlSourceType } from '@clustrum-lib/shared/types';
 
 import Dataset from './Switchers/Dataset';
 import DatasetField from './Switchers/DatasetField/DatasetField';

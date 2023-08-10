@@ -7,18 +7,18 @@ import {
   RangeDatepickerFilterControl,
 } from './filter-controls';
 
-import { PickerValue } from '@lib-shared/ui/filter-controls-factory/filter-controls/range-datepicker-filter-control/types';
+import { PickerValue } from './filter-controls/range-datepicker-filter-control/types';
 import { convertToPartialMatchValue, convertToPlainValue } from './lib/helpers';
-import styles from './filter-factory-controls.module.css';
+import styles from './filter-controls-factory.module.css';
 import {
-  FilterFactoryControlsProps,
+  FilterControlsFactoryProps,
   ControlType,
   DateParams,
   MemoizedHandlers,
 } from './types';
 
-export class FilterFactoryControls extends React.PureComponent<
-  FilterFactoryControlsProps
+export class FilterControlsFactory extends React.PureComponent<
+  FilterControlsFactoryProps
 > {
   memoizedHandlers: MemoizedHandlers = {
     defaultChangeHandler: {
@@ -120,7 +120,7 @@ export class FilterFactoryControls extends React.PureComponent<
     const actualParams = getActualParams();
 
     return (
-      <div className={styles['filter-control']}>
+      <div className={styles['filter-controls-factory']}>
         {scheme.map(control => {
           const { param, type, fieldDataType } = control;
 
@@ -131,7 +131,7 @@ export class FilterFactoryControls extends React.PureComponent<
           const props = {
             ...control,
             fieldDataType,
-            className: styles['filter-control__item'],
+            className: styles['filter-controls-factory__control'],
             key: param,
           };
 

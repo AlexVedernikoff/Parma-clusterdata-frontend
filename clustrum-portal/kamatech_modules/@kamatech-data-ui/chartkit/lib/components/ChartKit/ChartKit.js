@@ -5,7 +5,7 @@ import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
-import { getParamsValue } from '@lib-shared/lib/utils';
+import { getParamsValue } from '@clustrum-lib';
 
 import Loader from '../Loader/Loader';
 import Error from '../Error/Error';

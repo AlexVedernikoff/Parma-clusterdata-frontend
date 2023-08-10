@@ -1,6 +1,6 @@
 import { replace } from 'connected-react-router';
 
-import { ItemType, ControlSourceType } from '@lib-shared/types';
+import { ItemType, ControlSourceType } from '@clustrum-lib/shared/types';
 import * as actionTypes from '../constants/actionTypes';
 import { MODE } from '../../modules/constants/constants';
 import SchemeConverter from '../../modules/schemeConverter/schemeConverter';

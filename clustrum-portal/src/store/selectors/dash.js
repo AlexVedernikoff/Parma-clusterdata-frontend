@@ -1,6 +1,6 @@
 import isEqual from 'lodash/isEqual';
 
-import { ItemType } from '@lib-shared/types';
+import { ItemType } from '@clustrum-lib/shared/types';
 import { MODE } from '../../modules/constants/constants';
 
 const getCurrentPage = state => {
