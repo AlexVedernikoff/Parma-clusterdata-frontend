@@ -92,7 +92,7 @@ class Body extends React.PureComponent {
   isInitiallyEmpty = filter => {
     // фильтр, который изначально пустой (ещё до первой отправки)
     const isEmpty = !filter.value || filter.value.length === 0;
-    const isSended = this.sendedFilters.map(item => item.id).includes(filter.id);
+    const isSended = this.sendedFilters.some(item => item.id === filter.id);
     return isEmpty && !isSended;
   };
 
