@@ -30,7 +30,8 @@ export function EditableTabItem(props: EditableTabItemProps): ReactElement {
 
   const handleInputBlur = (): void => {
     if (updatedTitle) {
-      return onUpdate(id, { title: updatedTitle });
+      onUpdate(id, { title: updatedTitle });
+      return;
     }
     setEditingTabId(null);
   };

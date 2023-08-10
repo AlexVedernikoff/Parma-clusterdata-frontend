@@ -1,8 +1,8 @@
 export interface Tab {
   aliases: unknown;
   filtersLayout: unknown[];
+  hasTempId?: boolean;
   id: string;
-  isNotSaved?: boolean;
   ignores: unknown[];
   items: unknown[];
   layout: unknown[];

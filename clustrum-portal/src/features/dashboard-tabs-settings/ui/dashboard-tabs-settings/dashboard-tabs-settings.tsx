@@ -63,7 +63,7 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
   const handleCreateNewTab = (): void => {
     const newTab: Tab = {
       id: getTempId(),
-      isNotSaved: true,
+      hasTempId: true,
       title: `Вкладка ${updatedTabs.length + 1}`,
       items: [],
       layout: [],
