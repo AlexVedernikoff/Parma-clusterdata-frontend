@@ -176,9 +176,11 @@ class EntryPanel extends React.Component {
         key="navigation-modal"
       />,
     ];
-    const actionBtns = !isBuild && [...standardBtns, additionalEntryItems];
+    const actionBtns = isBuild
+      ? [...additionalEntryItems]
+      : [...standardBtns, ...additionalEntryItems];
     const breadcrumbs = !isBuild && navigationItems(entry.scope, entry.key);
-    const title = !isBuild && formatPath(entry.key === '' ? entry.scope : entry.key);
+    const title = formatPath(entry.key === '' ? entry.scope : entry.key);
 
     return (
       <div className={b()}>
