@@ -6,6 +6,7 @@ import { Input } from 'antd';
 import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 import { EditableTabItemProps } from '../../types';
 
+// TODO: будет удалено в задаче 713075
 const b = block('dialog-tabs');
 
 export function EditableTabItem(props: EditableTabItemProps): ReactElement {

@@ -93,7 +93,7 @@ function dash(state = initialState, action) {
       const hashids = new Hashids(data.salt);
 
       const newTabs = action.payload.map(tab =>
-        tab.isNotSaved
+        tab.hasTempId
           ? { ...tab, id: hashids.encode(++counter), filtersLayout: [] }
           : tab,
       );

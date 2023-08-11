@@ -26,13 +26,14 @@ import {
   Tab,
 } from '../../types';
 
+// TODO: будет удалено в задаче 713075
 const b = block('dialog-tabs');
 
 const getTempId = (): string => {
   return `tab${Math.floor(Math.random() * 10 ** 10)}`;
 };
 
-function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement {
+function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement | null {
   const { tabs, visible, setTabs, closeDialog } = props;
 
   const [updatedTabs, setUpdatedTabs] = useState<Tab[]>(tabs);
@@ -86,35 +87,37 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
     />
   );
 
+  if (!updatedTabs.length) {
+    return null;
+  }
+
   return (
-    updatedTabs && (
-      <Modal
-        centered
-        cancelText="Отменить"
-        okText="Сохранить"
-        title="Вкладки"
-        open={visible}
-        keyboard={false}
-        width={450}
-        onCancel={closeDialog}
-        onOk={handleSave}
-      >
-        <DndContainer
-          highlightDropPlace
-          isNeedRemove
-          isNeedSwap
-          id="tabs-settings"
-          items={updatedTabs}
-          itemSize={{ height: 40, margin: 4 }}
-          wrapTo={renderTabItem}
-          onUpdate={setUpdatedTabs}
-        />
-        <div className={b('row', { add: true })} onClick={handleCreateNewTab}>
-          <PlusOutlined className={b('icon')} />
-          Добавить
-        </div>
-      </Modal>
-    )
+    <Modal
+      centered
+      cancelText="Отменить"
+      okText="Сохранить"
+      title="Вкладки"
+      open={visible}
+      keyboard={false}
+      width={450}
+      onCancel={closeDialog}
+      onOk={handleSave}
+    >
+      <DndContainer
+        highlightDropPlace
+        isNeedRemove
+        isNeedSwap
+        id="tabs-settings"
+        items={updatedTabs}
+        itemSize={{ height: 40, margin: 4 }}
+        wrapTo={renderTabItem}
+        onUpdate={setUpdatedTabs}
+      />
+      <div className={b('row', { add: true })} onClick={handleCreateNewTab}>
+        <PlusOutlined className={b('icon')} />
+        Добавить
+      </div>
+    </Modal>
   );
 }
 
