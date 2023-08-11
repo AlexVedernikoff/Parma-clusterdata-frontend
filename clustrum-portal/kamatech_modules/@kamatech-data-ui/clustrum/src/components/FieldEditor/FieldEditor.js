@@ -9,7 +9,7 @@ import { Dialog } from '@kamatech-data-ui/common/src';
 import { ConfirmationDialog, FieldSettingsEditor } from './components';
 import DatasetSDK from '../../libs/datasetSdk';
 
-import { CONTROL_SOURCE_TYPE } from '../../../../../../src/constants/constants';
+import { ControlSourceType } from '@clustrum-lib/shared/types';
 import { DATASET_JOIN_TYPE } from '../../../../../../src/containers/Dataset/dataset_join_type';
 import { DATASET_ARRAY_JOIN_TYPE } from '../../../../../../src/containers/Dataset/dataset_array_join_type';
 import Dataset from '../../../../../../src/containers/Dialogs/Control/Switchers/Dataset';
@@ -70,7 +70,7 @@ class FieldEditor extends React.Component {
           fields,
           types,
           sources,
-          sourceType: CONTROL_SOURCE_TYPE.DATASET,
+          sourceType: ControlSourceType.Dataset,
           settingsSection: isVerification
             ? SettingsSectionTypes.Verification
             : SettingsSectionTypes.Connection,
@@ -90,7 +90,7 @@ class FieldEditor extends React.Component {
             guid,
             calc_mode: initialType,
           },
-          sourceType: CONTROL_SOURCE_TYPE.DATASET,
+          sourceType: ControlSourceType.Dataset,
           fields,
           types,
           sources,
@@ -385,7 +385,7 @@ class FieldEditor extends React.Component {
     return (
       <React.Fragment>
         <div>
-          {sourceType === CONTROL_SOURCE_TYPE.DATASET && (
+          {sourceType === ControlSourceType.Dataset && (
             <React.Fragment>
               <Dataset
                 title="Набор данных"
@@ -521,7 +521,7 @@ class FieldEditor extends React.Component {
         </div>
         {settingsSection === SettingsSectionTypes.Connection &&
           this._renderConnection({
-            type: CONTROL_SOURCE_TYPE.DATASET,
+            type: ControlSourceType.Dataset,
           })}
         {settingsSection === SettingsSectionTypes.Verification &&
           this._renderVerification()}

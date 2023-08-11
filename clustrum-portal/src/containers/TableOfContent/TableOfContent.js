@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from 'lego-on-react';
 import { Icon } from '@kamatech-data-ui/common/src';
-import { ITEM_TYPE } from '../../modules/constants/constants';
+import { ItemType } from '@clustrum-lib/shared/types';
 import { getCurrentPageTabs } from '../../store/selectors/dash';
 import { setPageTab, toggleTableOfContent } from '../../store/actions/dash';
 import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close.svg';
@@ -55,7 +55,7 @@ class TableOfContent extends React.PureComponent {
         id,
         title,
         items: items
-          .filter(({ type, data }) => type === ITEM_TYPE.TITLE && data.showInTOC)
+          .filter(({ type, data }) => type === ItemType.Title && data.showInTOC)
           .map(({ id, data: { text: title } }) => ({ id, title })),
       });
       return result;
