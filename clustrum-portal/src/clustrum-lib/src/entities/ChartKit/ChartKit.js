@@ -6,21 +6,21 @@ import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
 
-import Loader from '../Loader/Loader';
-import Error from '../Error/Error';
+import Loader from '@kamatech-data-ui/chartkit/lib/components/Loader/Loader';
+import Error from '@kamatech-data-ui/chartkit/lib/components/Error/Error';
 import { Charts } from '@lib-entities/Charts/Charts';
-import Menu from '../Menu/Menu';
+import Menu from '@kamatech-data-ui/chartkit/lib/components/Menu/Menu';
 
-import URI from '../../modules/uri/uri';
-import settings from '../../modules/settings/settings';
-import { removeEmptyProperties } from '../../helpers/helpers';
+import URI from '@kamatech-data-ui/chartkit/lib/modules/uri/uri';
+import settings from '@kamatech-data-ui/chartkit/lib/modules/settings/settings';
+import { removeEmptyProperties } from '@kamatech-data-ui/chartkit/lib/helpers/helpers';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
 import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 
 const b = block('chartkit');
 
-class ChartKit extends React.Component {
+export class ChartKit extends React.Component {
   constructor(props) {
     super(props);
     this.resetValue = this.resetValue.bind(this);
@@ -386,5 +386,3 @@ class ChartKit extends React.Component {
     );
   }
 }
-
-export default ChartKit;

@@ -1,6 +1,6 @@
 import Utils from '../../utils';
 
-import ChartKit from '@kamatech-data-ui/chartkit/lib';
+import { ChartKit } from '@lib-entities/ChartKit/ChartKit';
 
 import extendHighcharts from '@kamatech-data-ui/chartkit/lib/extensions/highcharts-extended';
 import boostHighcharts from '@kamatech-data-ui/chartkit/lib/extensions/highcharts-boost';
