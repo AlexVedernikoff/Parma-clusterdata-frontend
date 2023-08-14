@@ -5,6 +5,7 @@ import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
+import { getParamsValue } from '@clustrum-lib';
 
 import Loader from '@kamatech-data-ui/chartkit/lib/components/Loader/Loader';
 import Error from '@kamatech-data-ui/chartkit/lib/components/Error/Error';
@@ -15,7 +16,6 @@ import URI from '@kamatech-data-ui/chartkit/lib/modules/uri/uri';
 import settings from '@kamatech-data-ui/chartkit/lib/modules/settings/settings';
 import { removeEmptyProperties } from '@kamatech-data-ui/chartkit/lib/helpers/helpers';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
-import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
 import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 
 const b = block('chartkit');

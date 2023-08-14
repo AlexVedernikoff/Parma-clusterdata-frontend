@@ -1,4 +1,7 @@
-const paramsValue = (params: { [key: string]: any }, paramKey: string): unknown => {
+const paramsValue = (
+  params: { [key: string]: { value: string | string[] } },
+  paramKey: string,
+): unknown => {
   if (params[paramKey].value === null || params[paramKey].value === undefined) {
     return params[paramKey];
   }
@@ -7,8 +10,8 @@ const paramsValue = (params: { [key: string]: any }, paramKey: string): unknown 
 };
 
 export const getParamsValue = (params: {
-  [key: string]: any;
-}): { [key: string]: any } => {
+  [key: string]: { value: string | string[] };
+}): { [key: string]: string | string[] } => {
   return Object.keys(params).reduce((acc, paramKey) => {
     return {
       ...acc,

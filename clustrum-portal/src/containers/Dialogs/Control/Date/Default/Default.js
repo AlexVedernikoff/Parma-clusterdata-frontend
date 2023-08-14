@@ -6,6 +6,7 @@ import cloneDeep from 'lodash/cloneDeep';
 
 import { RadioBox, TextInput } from 'lego-on-react';
 import { Datepicker, YCSelect } from '@kamatech-data-ui/common/src';
+import { ControlSourceType } from '@clustrum-lib/shared/types';
 
 import Dialog from '../../Dialog/Dialog';
 import Button from '../../Switchers/Button';
@@ -96,14 +97,14 @@ const singleItems = [
     get text() {
       return 'Начало допустимого интервала';
     },
-    sourceType: CONTROL_SOURCE_TYPE.MANUAL,
+    sourceType: ControlSourceType.Manual,
   },
   {
     val: FILTER_TYPES.AcceptableTo,
     get text() {
       return 'Конец допустимого интервала';
     },
-    sourceType: CONTROL_SOURCE_TYPE.MANUAL,
+    sourceType: ControlSourceType.Manual,
   },
   {
     val: FILTER_TYPES.Date,
@@ -131,7 +132,7 @@ const rangeItems = [
     get text() {
       return 'Весь допустимый интервал';
     },
-    sourceType: CONTROL_SOURCE_TYPE.MANUAL,
+    sourceType: ControlSourceType.Manual,
   },
   {
     val: FILTER_TYPES.Date,

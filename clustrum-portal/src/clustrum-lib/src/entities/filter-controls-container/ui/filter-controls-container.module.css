@@ -1,4 +1,4 @@
-.dashkit-plugin-control {
+.filter-controls-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,6 +9,6 @@
   border-radius: 6px;
 }
 
-.dashkit-plugin-control__error {
+.filter-controls-container__error {
   color: var(--antd-text-color-selection);
 }
