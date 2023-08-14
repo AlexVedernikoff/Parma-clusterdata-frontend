@@ -5,12 +5,12 @@ import isEqual from 'lodash/isEqual';
 // TODO: изменить импорт на `@clustrum-lib`
 import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/widget';
 
-import ChartsModule from '../../modules/charts/charts';
-import ErrorDispatcher from '../../modules/error-dispatcher/error-dispatcher';
+import ChartsModule from '@kamatech-data-ui/chartkit/lib/modules/charts/charts';
+import ErrorDispatcher from '@kamatech-data-ui/chartkit/lib/modules/error-dispatcher/error-dispatcher';
 import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
-import { WIZARD_NODE_TYPE } from '../../../../../../src/constants/constants';
+import { WIZARD_NODE_TYPE } from '@constants/constants';
 
-class Charts extends React.PureComponent {
+export class Charts extends React.PureComponent {
   static propTypes = {
     id: PropTypes.string,
     source: PropTypes.string,
@@ -214,5 +214,3 @@ class Charts extends React.PureComponent {
     ) : null;
   }
 }
-
-export default Charts;

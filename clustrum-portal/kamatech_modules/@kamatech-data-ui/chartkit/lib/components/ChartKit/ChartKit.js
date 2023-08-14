@@ -8,7 +8,7 @@ import get from 'lodash/get';
 
 import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
-import Charts from '../Charts/Charts';
+import { Charts } from '@lib-entities/Charts/Charts';
 import Menu from '../Menu/Menu';
 
 import URI from '../../modules/uri/uri';
