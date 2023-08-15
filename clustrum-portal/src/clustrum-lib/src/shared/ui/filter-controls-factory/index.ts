@@ -1,1 +1,1 @@
-export { FilterFactoryControls } from './filter-factory-controls';
+export { FilterControlsFactory } from './filter-controls-factory';

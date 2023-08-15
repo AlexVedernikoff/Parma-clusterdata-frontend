@@ -1,4 +1,4 @@
-.dashkit-plugin-control {
+.filter-controls-factory {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,7 @@
   border-radius: 6px;
 }
 
-.dashkit-plugin-control__item {
+.filter-controls-factory__control {
   flex: 1;
   overflow: hidden;
 }
