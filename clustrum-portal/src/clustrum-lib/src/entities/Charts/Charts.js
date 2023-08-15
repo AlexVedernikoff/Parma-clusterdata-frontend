@@ -8,7 +8,9 @@ import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/widget';
 import ChartsModule from '@kamatech-data-ui/chartkit/lib/modules/charts/charts';
 import ErrorDispatcher from '@kamatech-data-ui/chartkit/lib/modules/error-dispatcher/error-dispatcher';
 import { getParamsValue } from '@clustrum-lib';
-import { WIZARD_NODE_TYPE } from '@constants/constants';
+// TODO: Перечисление WIZARD_NODE_TYPE фактически дублирует перечисление WidgetType
+// Нужно рассмотреть возможность использования только второго
+import { WIZARD_NODE_TYPE } from '../../../../constants/constants';
 
 export class Charts extends React.PureComponent {
   static propTypes = {
