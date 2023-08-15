@@ -252,5 +252,12 @@ exports.generateConfig = (
         exclude: /index.js|context-path.js/,
       }),
     ],
+    externals: {
+      config: JSON.stringify({
+        biHost,
+        portalHost,
+        exportHost,
+      }),
+    },
   };
 };
