@@ -11,6 +11,7 @@ import {
   SET_FILTERS,
   SET_MAP_LAYER_OPACITY,
   SET_NEED_TOTAL,
+  SET_NEED_STEPPED_LAYOUT,
   SET_NEED_UNIQUE_ROWS,
   SET_NULL_ALIAS,
   SET_PAGINATE_INFO,
@@ -40,6 +41,7 @@ const initialState = {
   mapLayerOpacity: 0,
   needUniqueRows: false,
   needTotal: false,
+  needSteppedLayout: false,
   paginateInfo: {
     page: 0,
     pageSize: 150,
@@ -80,6 +82,7 @@ export function visualization(state = initialState, action) {
         nullAlias: NULL_ALIAS_DEFAULT_VALUE,
         needUniqueRows: false,
         needTotal: false,
+        needSteppedLayout: false,
         paginateInfo: {},
         exportLimit: 10000,
         orderBy: {},
@@ -502,6 +505,14 @@ export function visualization(state = initialState, action) {
         needTotal: needTotal,
       };
     }
+    case SET_NEED_STEPPED_LAYOUT: {
+      const { needSteppedLayout } = action;
+
+      return {
+        ...state,
+        needSteppedLayout: needSteppedLayout,
+      };
+    }
     case SET_PAGINATE_INFO: {
       const { paginateInfo } = action;
 
@@ -565,6 +576,7 @@ export const selectClusterPrecision = state => state.visualization.clusterPrecis
 export const selectNullAlias = state => state.visualization.nullAlias;
 export const selectNeedUniqueRows = state => state.visualization.needUniqueRows;
 export const selectNeedTotal = state => state.visualization.needTotal;
+export const selectNeedSteppedLayout = state => state.visualization.needSteppedLayout;
 export const selectPaginateInfo = state => state.visualization.paginateInfo;
 export const selectOrderBy = state => state.visualization.orderBy;
 export const selectDiagramMagnitude = state => state.visualization.diagramMagnitude;

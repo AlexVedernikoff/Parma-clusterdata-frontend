@@ -32,6 +32,7 @@ export const SET_CLUSTER_PRECISION = 'SET_CLUSTER_PRECISION';
 export const SET_NULL_ALIAS = 'SET_NULL_ALIAS';
 export const SET_NEED_UNIQUE_ROWS = 'SET_NEED_UNIQUE_ROWS';
 export const SET_NEED_TOTAL = 'SET_NEED_TOTAL';
+export const SET_NEED_STEPPED_LAYOUT = 'SET_NEED_STEPPED_LAYOUT';
 export const SET_PAGINATE_INFO = 'SET_PAGINATE_INFO';
 export const SET_ORDER_BY = 'SET_ORDER_BY';
 export const SET_LABELS = 'SET_LABELS';
@@ -253,6 +254,7 @@ export function fetchDataset({ datasetId, sdk }) {
             nullAlias,
             needUniqueRows,
             needTotal,
+            needSteppedLayout,
             paginateInfo,
             labels,
           } = {},
@@ -282,6 +284,7 @@ export function fetchDataset({ datasetId, sdk }) {
             nullAlias,
             needUniqueRows,
             needTotal,
+            needSteppedLayout,
             paginateInfo,
             labels,
             updates,
@@ -316,6 +319,7 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
         nullAlias,
         needUniqueRows,
         needTotal,
+        needSteppedLayout,
         paginateInfo,
         labels,
       } = {},
@@ -455,6 +459,7 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
           nullAlias,
           needUniqueRows,
           needTotal,
+          needSteppedLayout,
           paginateInfo,
           labels,
           updates: fullUpdates,
@@ -594,6 +599,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
     let nullAlias;
     let needUniqueRows;
     let needTotal;
+    let needSteppedLayout;
     let paginateInfo;
     let labels;
     let updates;
@@ -628,6 +634,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
           nullAlias,
           needUniqueRows,
           needTotal,
+          needSteppedLayout,
           diagramMagnitude,
           paginateInfo = { page: 0, pageSize: 150 },
           labels,
@@ -709,6 +716,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
           nullAlias,
           needUniqueRows,
           needTotal,
+          needSteppedLayout,
           paginateInfo,
           labels,
           diagramMagnitude,
@@ -836,6 +844,9 @@ export function fetchWidget({ entryId, preview, sdk }) {
         // Проставляем флаг о строке итогов
         dispatch(setNeedTotal({ needTotal }));
 
+        // Проставляем флаг о ступенчатом макете
+        dispatch(setNeedSteppedLayout({ needSteppedLayout }));
+
         dispatch(setPaginateInfo({ paginateInfo }));
 
         //проставляем количесство выгружаемых строк
@@ -867,6 +878,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
             nullAlias,
             needUniqueRows,
             needTotal,
+            needSteppedLayout,
             paginateInfo,
             labels,
             updates,
@@ -940,6 +952,7 @@ export function setVisualization({ visualization }) {
       nullAlias: state.visualization.nullAlias,
       needUniqueRows: state.visualization.needUniqueRows,
       needTotal: state.visualization.needTotal,
+      needSteppedLayout: state.visualization.needSteppedLayout,
       paginateInfo: state.visualization.paginateInfo,
     };
   };
@@ -1043,6 +1056,13 @@ export function setNeedTotal({ needTotal }) {
   return {
     type: SET_NEED_TOTAL,
     needTotal,
+  };
+}
+
+export function setNeedSteppedLayout({ needSteppedLayout }) {
+  return {
+    type: SET_NEED_STEPPED_LAYOUT,
+    needSteppedLayout,
   };
 }
 

@@ -40,6 +40,7 @@ import {
   setFilters,
   setMapLayerOpacity,
   setNeedTotal,
+  setNeedSteppedLayout,
   setNeedUniqueRows,
   setNullAlias,
   setPaginateInfo,
@@ -60,6 +61,7 @@ import {
   selectFilters,
   selectMapLayerOpacity,
   selectNeedTotal,
+  selectNeedSteppedLayout,
   selectNeedUniqueRows,
   selectNullAlias,
   selectPaginateInfo,
@@ -150,6 +152,7 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needSteppedLayout,
       paginateInfo,
       diagramMagnitude,
       exportLimit,
@@ -257,6 +260,7 @@ class SectionVisualization extends Component {
               nullAlias,
               needUniqueRows,
               needTotal,
+              needSteppedLayout,
               paginateInfo,
               diagramMagnitude,
               exportLimit,
@@ -313,6 +317,7 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needSteppedLayout,
       updates,
       exportLimit,
       setFilters,
@@ -325,6 +330,7 @@ class SectionVisualization extends Component {
       setNullAlias,
       setNeedUniqueRows,
       setNeedTotal,
+      setNeedSteppedLayout,
       paginateInfo,
       setPaginateInfo,
       diagramMagnitude,
@@ -450,6 +456,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -485,6 +492,7 @@ class SectionVisualization extends Component {
                       nullAlias,
                       needUniqueRows,
                       needTotal,
+                      needSteppedLayout,
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
@@ -544,6 +552,7 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -595,6 +604,7 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -620,6 +630,7 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -664,6 +675,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -715,6 +727,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -758,6 +771,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -802,6 +816,7 @@ class SectionVisualization extends Component {
                     nullAlias: newValue[0],
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -858,6 +873,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows: !needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -898,6 +914,48 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal: !needTotal,
+                    needSteppedLayout,
+                    paginateInfo,
+                    diagramMagnitude,
+                    exportLimit,
+                  });
+                }}
+              />
+            </div>
+          </div>
+        )}
+        {visualization.allowSteppedLayout && (
+          <div className="subcontainer">
+            <div className="subheader">
+              <span>Ступенчатый макет</span>
+            </div>
+            <div className="subitem">
+              <CheckBox
+                theme="normal"
+                size="n"
+                view="default"
+                tone="default"
+                checked={needSteppedLayout}
+                text="Показывать ступенчатый макет таблицы"
+                onChange={() => {
+                  setNeedSteppedLayout({ needSteppedLayout: !needSteppedLayout });
+
+                  updatePreview({
+                    dataset,
+                    dimensions,
+                    measures,
+                    visualization,
+                    filters,
+                    colors,
+                    sort,
+                    coordType,
+                    titleLayerSource,
+                    clusterPrecision,
+                    updates,
+                    nullAlias,
+                    needUniqueRows,
+                    needTotal,
+                    needSteppedLayout: !needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -940,6 +998,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude: newValue[0],
                     exportLimit,
@@ -983,6 +1042,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     mapLayerOpacity: value,
@@ -1027,6 +1087,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit: text,
@@ -1048,6 +1109,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit: e.target.value,
@@ -1240,6 +1302,7 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needSteppedLayout,
       paginateInfo,
       diagramMagnitude,
       exportLimit,
@@ -1289,6 +1352,7 @@ class SectionVisualization extends Component {
                       nullAlias,
                       needUniqueRows,
                       needTotal,
+                      needSteppedLayout,
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
@@ -1413,6 +1477,7 @@ const mapStateToProps = createStructuredSelector({
   nullAlias: selectNullAlias,
   needUniqueRows: selectNeedUniqueRows,
   needTotal: selectNeedTotal,
+  needSteppedLayout: selectNeedSteppedLayout,
   paginateInfo: selectPaginateInfo,
   selectOrderBy: selectOrderBy,
 
@@ -1444,6 +1509,7 @@ const mapDispatchToProps = {
   setDiagramMagnitude,
   setMapLayerOpacity,
   setExportLimit,
+  setNeedSteppedLayout,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SectionVisualization);
