@@ -4,7 +4,7 @@ import React, { ReactElement, useState } from 'react';
 // @ts-ignore
 import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
-import { Modal } from 'antd';
+import { Button, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import {
   // eslint-disable-next-line
@@ -13,11 +13,11 @@ import {
   // eslint-disable-next-line
   // @ts-ignore
   isDialogVisible,
-} from '../../../../store/selectors/dash';
-import { closeDialog, setTabs } from '../../../../store/actions/dash';
-import { DialogType } from '@clustrum-lib/shared/types';
-import { DndContainer } from '@clustrum-lib/shared/ui/drag-n-drop';
-import { DndItemProps } from '@clustrum-lib/shared/ui/drag-n-drop/types';
+} from '../../../../../../store/selectors/dash';
+import { closeDialog, setTabs } from '../../../../../../store/actions/dash';
+import { DialogType } from '@lib-shared/types';
+import { DndContainer } from '@lib-shared/ui/drag-n-drop';
+import { DndItemProps } from '@lib-shared/ui/drag-n-drop/types';
 import { EditableTabItem } from '../editable-tab-item';
 import {
   DashboardTabsSettingsActions,
@@ -25,12 +25,13 @@ import {
   DashboardTabsSettingsState,
   Tab,
 } from '../../types';
+import styles from './dashboard-tab-settings.module.css';
 
 // TODO: будет удалено в задаче 713075
 const b = block('dialog-tabs');
 
 const getTempId = (): string => {
-  return `tab${Math.floor(Math.random() * 10 ** 10)}`;
+  return `tab-${Date.now()}`;
 };
 
 function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement | null {
@@ -39,7 +40,7 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
   const [updatedTabs, setUpdatedTabs] = useState<Tab[]>(tabs);
   const [editingTabId, setEditingTabId] = useState<string | null>(null);
 
-  const handleUpdate = (id: string, params: Record<string, unknown>): void => {
+  const handleUpdate = (id: string, params: Partial<Tab>): void => {
     setUpdatedTabs(prevTabs =>
       prevTabs.map(tab => (tab.id === id ? { ...tab, ...params } : tab)),
     );
@@ -75,17 +76,22 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
     setUpdatedTabs(prevTabs => [...prevTabs, newTab]);
   };
 
-  const renderTabItem = ({ itemData }: DndItemProps<Tab>): ReactElement => (
-    <EditableTabItem
-      id={itemData.id}
-      title={itemData.title}
-      isEditing={itemData.id === editingTabId}
-      isDeletable={updatedTabs.length > 1}
-      onUpdate={handleUpdate}
-      onRemove={handleRemove}
-      setEditingTabId={setEditingTabId}
-    />
-  );
+  const renderTabItem = ({ itemData }: DndItemProps<Tab>): ReactElement => {
+    const isItemEditing = itemData.id === editingTabId;
+    const isItemDeletable = updatedTabs.length > 1;
+
+    return (
+      <EditableTabItem
+        id={itemData.id}
+        title={itemData.title}
+        isEditing={isItemEditing}
+        isDeletable={isItemDeletable}
+        onUpdate={handleUpdate}
+        onRemove={handleRemove}
+        setEditingTabId={setEditingTabId}
+      />
+    );
+  };
 
   if (!updatedTabs.length) {
     return null;
@@ -99,7 +105,7 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
       title="Вкладки"
       open={visible}
       keyboard={false}
-      width={450}
+      width={380}
       onCancel={closeDialog}
       onOk={handleSave}
     >
@@ -113,10 +119,14 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
         wrapTo={renderTabItem}
         onUpdate={setUpdatedTabs}
       />
-      <div className={b('row', { add: true })} onClick={handleCreateNewTab}>
-        <PlusOutlined className={b('icon')} />
+      <Button
+        className={styles['add-more-button']}
+        type="link"
+        onClick={handleCreateNewTab}
+      >
+        <PlusOutlined className={styles['add-more-button__icon']} />
         Добавить
-      </div>
+      </Button>
     </Modal>
   );
 }

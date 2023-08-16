@@ -26,8 +26,9 @@ export function EditableTabItem(props: EditableTabItemProps): ReactElement {
     setUpdatedTitle(title);
   }, [title]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setUpdatedTitle(e.currentTarget.value);
+  };
 
   const handleInputBlur = (): void => {
     if (updatedTitle) {

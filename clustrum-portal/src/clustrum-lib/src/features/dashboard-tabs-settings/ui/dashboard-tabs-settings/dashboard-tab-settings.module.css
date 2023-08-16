@@ -1,0 +1,22 @@
+.add-more-button {
+  width: 100%;
+  height: 40px;
+  padding: 4px 16px 4px 12px;
+  color: rgba(0, 0, 0, 0.88);
+  text-align: left;
+  border: none;
+  outline: none;
+}
+
+.add-more-button__icon {
+  margin-right: 4px;
+  font-size: 16px;
+}
+
+.add-more-button:not(:disabled):focus-visible {
+  outline: none;
+}
+
+.add-more-button:not(:disabled):hover {
+  color: var(--antd-color-primary);
+}

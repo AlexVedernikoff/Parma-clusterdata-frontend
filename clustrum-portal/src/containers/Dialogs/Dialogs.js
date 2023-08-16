@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { DashboardTabsSettings } from '@features/dashboard-tabs-settings';
 import Title from './Title/Title';
 import Widget from './Widget/Widget';
 import Control from './Control/Control';
+import { DashboardTabsSettings } from '@clustrum-lib';
 import { DialogType } from '@clustrum-lib/shared/types';
 
 // TODO: посмотреть не будут ли тормозить диалоги со сложным содержимым из-за того, что происходит mount/unmount
