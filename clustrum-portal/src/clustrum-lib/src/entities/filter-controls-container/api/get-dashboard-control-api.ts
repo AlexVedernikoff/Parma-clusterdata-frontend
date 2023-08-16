@@ -1,10 +1,17 @@
-import axios from 'axios';
-import { DataProps } from '@lib-shared/api/get-dashboard-control/dto/get-dashboard-control-dto';
+import { CancelToken } from 'axios';
 import { getDashboardControlRequest } from '@lib-shared/api/get-dashboard-control';
-import { LoadedData } from '@lib-shared/ui/filter-controls-factory/types';
+import {
+  DashboardControlsData,
+  LoadedData,
+} from '@lib-shared/ui/filter-controls-factory/types';
 
-export const getDashboardControlApi = async (data: DataProps): Promise<LoadedData> => {
-  const requestConfig = await getDashboardControlRequest(data);
+export interface ControlDataProps {
+  cancelToken: CancelToken;
+  shared: DashboardControlsData;
+}
 
-  return axios(requestConfig).then(response => response.data);
+export const getDashboardControlApi = async (
+  data: ControlDataProps,
+): Promise<LoadedData> => {
+  return getDashboardControlRequest(data);
 };

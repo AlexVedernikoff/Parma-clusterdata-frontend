@@ -10,7 +10,7 @@ import {
 import { FilterControlsFactory } from '@lib-shared/ui/filter-controls-factory';
 import { getParamsValue } from '@lib-shared/lib/utils';
 import styles from './filter-controls-container.module.css';
-import { filterControlsContainerModel } from '../model';
+import { filterControlsContainerModel } from '../model/filter-controls-container-model';
 
 export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.Element {
   const [status, setStatus] = useState<LoadStatus>(LoadStatus.Pending);

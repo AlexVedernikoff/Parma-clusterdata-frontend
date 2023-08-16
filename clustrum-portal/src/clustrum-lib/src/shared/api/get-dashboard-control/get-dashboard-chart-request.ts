@@ -1,11 +1,13 @@
-import config from 'config';
-import { DataProps } from './dto/get-dashboard-chart-dto';
-import { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
+import ENV from 'ENV';
+import { ChartDataProps, LoadedData } from './dto';
 
-export const getDashboardChartRequest = (data: DataProps): AxiosRequestConfig => {
-  return {
+export const getDashboardChartRequest = (data: ChartDataProps): Promise<LoadedData> => {
+  const requestConfig: AxiosRequestConfig = {
     method: 'post',
-    url: `${config.biHost}/runDashChart`,
+    url: `${ENV.biHost}/runDashChart`,
     data,
   };
+
+  return axios(requestConfig).then(response => response.data);
 };

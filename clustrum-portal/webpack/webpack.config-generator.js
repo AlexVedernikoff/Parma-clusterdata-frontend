@@ -253,7 +253,7 @@ exports.generateConfig = (
       }),
     ],
     externals: {
-      config: JSON.stringify({
+      ENV: JSON.stringify({
         biHost,
         portalHost,
         exportHost,

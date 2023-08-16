@@ -5,7 +5,8 @@ import {
   DashboardControlsData,
   LoadedData,
 } from '@lib-shared/ui/filter-controls-factory/types';
-import { getDashboardChartApi, getDashboardControlApi } from '../api';
+import { getDashboardChartApi } from '../api/get-dashboard-chart-api';
+import { getDashboardControlApi } from '../api/get-dashboard-control-api';
 
 export const filterControlsContainerModel = async (
   data: DashboardControlsData,

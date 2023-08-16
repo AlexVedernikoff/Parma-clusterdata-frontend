@@ -1,10 +1,17 @@
-import axios from 'axios';
-import { DataProps } from '@lib-shared/api/get-dashboard-control/dto/get-dashboard-chart-dto';
+import { CancelToken } from 'axios';
 import { getDashboardChartRequest } from '@lib-shared/api/get-dashboard-control';
-import { LoadedData } from '@lib-shared/ui/filter-controls-factory/types';
+import { DateParams, LoadedData } from '@lib-shared/ui/filter-controls-factory/types';
 
-export const getDashboardChartApi = async (data: DataProps): Promise<LoadedData> => {
-  const requestConfig = await getDashboardChartRequest(data);
+export interface Params {
+  [key: string]: string | string[] | DateParams;
+}
 
-  return axios(requestConfig).then(response => response.data);
+export interface ChartDataProps {
+  cancelToken: CancelToken;
+  id: string | undefined;
+  params: Params;
+}
+
+export const getDashboardChartApi = async (data: ChartDataProps): Promise<LoadedData> => {
+  return getDashboardChartRequest(data);
 };
