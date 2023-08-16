@@ -104,9 +104,10 @@ class Body extends React.PureComponent {
       return;
     }
 
-    // данные приходят в странном виде - несколько одинаковых секций
-    // нас устроит любая из них, поэтому берём первую из config-а
-    const id = config.items[0].id;
+    // данные приходят в странном виде - несколько секций с отлдичающимся наполнением
+    // нас устроит любая из них с типом 'control', поэтому берём первую
+    // обязательно из config-а, т.к. в `itemsStateAndParams` могут быть секции из других табов
+    const id = config.items.filter(item => item.type === 'control')[0].id;
     const filtersData = itemsStateAndParams[id].params;
     const rawFilters = Object.keys(filtersData).map(key => ({
       id: key,
