@@ -111,7 +111,7 @@ class Body extends React.PureComponent {
     const rawFilters = Object.keys(filtersData).map(key => ({
       id: key,
       value: filtersData[key].value,
-      datasetId: filtersData[key].initiatorItem.data.dataset.id,
+      datasetId: filtersData[key].initiatorItem.data.dataset?.id,
     }));
 
     const newFilters = rawFilters
