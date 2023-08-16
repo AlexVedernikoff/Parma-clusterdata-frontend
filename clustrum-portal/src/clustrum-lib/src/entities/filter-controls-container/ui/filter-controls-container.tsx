@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { CancelToken } from 'axios';
 import pick from 'lodash/pick';
 import { Spin } from 'antd';
 import {
   ActualParamsReturnType,
   FilterControlsFactoryProps,
   LoadStatus,
-  LoadedData,
   LoadedDataScheme,
 } from '@lib-shared/ui/filter-controls-factory/types';
-import { ControlSourceType } from '@lib-shared/types';
 import { FilterControlsFactory } from '@lib-shared/ui/filter-controls-factory';
 import { getParamsValue } from '@lib-shared/lib/utils';
-import { SDK } from '../../../../../modules/sdk';
 import styles from './filter-controls-container.module.css';
+import { filterControlsContainerModel } from '../model/filter-controls-container-model';
 
 export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.Element {
   const [status, setStatus] = useState<LoadStatus>(LoadStatus.Pending);
@@ -22,11 +19,6 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
   useEffect(() => {
     init();
   }, []);
-
-  const getCancelToken = (): CancelToken => {
-    const cancelSource = SDK.createCancelSource();
-    return cancelSource.token;
-  };
 
   const initAvailableItems = (scheme: LoadedDataScheme[]): void => {
     const { params } = props;
@@ -61,19 +53,9 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
       setStatus(LoadStatus.Pending);
       const { data } = props;
 
-      const cancelToken = await getCancelToken();
-
-      const loadedData: LoadedData =
-        data.sourceType === ControlSourceType.External
-          ? await SDK.runDashChart({
-              id: data.external?.entryId,
-              params: actualParams(),
-              cancelToken,
-            })
-          : await SDK.runDashControl({ shared: data, cancelToken });
+      const loadedData = await filterControlsContainerModel(data, actualParams);
 
       const { uiScheme: scheme } = loadedData;
-
       initAvailableItems(scheme);
 
       setStatus(LoadStatus.Success);
