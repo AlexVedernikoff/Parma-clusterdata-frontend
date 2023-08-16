@@ -137,6 +137,7 @@ class PluginWidget extends React.PureComponent {
     const { params: dashParams } = this.state;
     const { description } = data[tabIndex];
     const { uuid, params = {} } = data[tabIndex].data;
+
     return (
       <div className={b()}>
         <div className={b('tabs')}>
@@ -147,7 +148,7 @@ class PluginWidget extends React.PureComponent {
               key={id}
               title={title}
             >
-              {title.trim() || '\u2014'}
+              {title.trim()}
             </div>
           ))}
         </div>

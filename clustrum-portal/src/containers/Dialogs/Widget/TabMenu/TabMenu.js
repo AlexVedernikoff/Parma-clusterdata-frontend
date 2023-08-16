@@ -61,18 +61,9 @@ export default class TabMenu extends React.PureComponent {
   }
 
   changeChosen({ index }) {
-    const { itemChosen } = this.props;
+    const { itemChosen, items } = this.props;
     if (itemChosen === index) {
       return;
-    }
-    let items = this.props.items;
-    if (items[itemChosen].title.trim() === '') {
-      items = items.map((item, i) => {
-        if (i === itemChosen) {
-          return { ...item, title: this.tabText(itemChosen) };
-        }
-        return item;
-      });
     }
     return {
       items,
