@@ -37,7 +37,7 @@ if (IS_INTERNAL) {
 logVersion();
 
 export function DashBuild(props) {
-  const { entryId, hideRightSideContent } = props;
+  const { entryId, hideRightSideContent, onFiltersChange } = props;
   replaceIframeParams(props);
 
   return (
@@ -54,6 +54,7 @@ export function DashBuild(props) {
                     defaultEntryId={entryId}
                     isBuild
                     hasRightSideContent={!hideRightSideContent}
+                    onFiltersChange={onFiltersChange}
                   />
                 )}
               />
