@@ -20,3 +20,15 @@
   right: 29px;
   opacity: 1;
 }
+
+.range-datepicker-control__picker :global(.ant-picker-input:first-of-type::before) {
+  margin-right: 8px;
+  color: rgba(0, 0, 0, 0.15);
+  content: 'От';
+}
+
+.range-datepicker-control__picker :global(.ant-picker-input:nth-of-type(3)::before) {
+  margin-right: 8px;
+  color: rgba(0, 0, 0, 0.15);
+  content: 'До';
+}

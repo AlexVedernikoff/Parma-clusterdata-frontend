@@ -15,6 +15,7 @@ import styles from './range-datepicker-filter-control.module.css';
 
 const { RangePicker } = DatePicker;
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
+const RANGE_PLACEHOLDER: [string, string] = ['дд.мм.гггг', 'дд.мм.гггг'];
 const POPUP_WIDTH = 576;
 
 // eslint-disable-next-line max-lines-per-function
@@ -116,6 +117,7 @@ export function RangeDatepickerFilterControl(
             locale={ruRU.DatePicker}
             picker="date"
             placement={placementPosition}
+            placeholder={RANGE_PLACEHOLDER}
             value={dateRange}
             onChange={handleChange}
             onOpenChange={handleCalendarPosition}
