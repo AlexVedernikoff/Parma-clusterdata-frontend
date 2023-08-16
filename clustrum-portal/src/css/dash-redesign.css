@@ -1622,17 +1622,12 @@
 }
 
 .dialog-tabs__controls svg {
-  background-image: var(--cross-icon);
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .dialog-tabs__controls svg > use {
   display: none;
-}
-
-.dialog-tabs__controls svg:first-child {
-  background-image: var(--edit-icon);
 }
 
 .preview-chartkit .chartkit__widget_table {
