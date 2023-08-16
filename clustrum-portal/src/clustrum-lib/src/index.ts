@@ -9,4 +9,4 @@ export {
   ChartWidget,
 } from '@lib-shared/ui/widgets-factory/widgets';
 export { FilterControlsContainer } from '@lib-entities/filter-controls-container';
-export { ChartKit } from '@lib-entities/ChartKit';
+export { ChartKit } from '@lib-entities/chart-kit';

@@ -9,7 +9,7 @@ import { getParamsValue } from '@clustrum-lib';
 
 import Loader from '@kamatech-data-ui/chartkit/lib/components/Loader/Loader';
 import Error from '@kamatech-data-ui/chartkit/lib/components/Error/Error';
-import { Charts } from '@lib-entities/Charts';
+import { Charts } from '@lib-entities/charts';
 import Menu from '@kamatech-data-ui/chartkit/lib/components/Menu/Menu';
 
 import URI from '@kamatech-data-ui/chartkit/lib/modules/uri/uri';
