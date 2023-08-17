@@ -23,12 +23,12 @@
 
 .range-datepicker-control__picker :global(.ant-picker-input:first-of-type::before) {
   margin-right: 8px;
-  color: rgba(0, 0, 0, 0.15);
+  color: var(--antd-color-border);
   content: 'От';
 }
 
-.range-datepicker-control__picker :global(.ant-picker-input:nth-of-type(3)::before) {
+.range-datepicker-control__picker :global(.ant-picker-input:first-of-type ~ .ant-picker-input::before) {
   margin-right: 8px;
-  color: rgba(0, 0, 0, 0.15);
+  color: var(--antd-color-border);
   content: 'До';
 }
