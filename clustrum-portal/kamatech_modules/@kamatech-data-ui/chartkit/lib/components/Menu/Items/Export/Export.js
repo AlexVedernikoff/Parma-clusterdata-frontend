@@ -91,7 +91,14 @@ class Export extends React.PureComponent {
   }
 
   renderSettings() {
-    if ([ExportFormat.XLSX, ExportFormat.XLS].includes(this.state.format)) {
+    if (
+      [
+        ExportFormat.XLSX,
+        ExportFormat.XLS,
+        ExportFormat.XLSX_FROM_TEMPLATE,
+        ExportFormat.DOCX_FROM_TEMPLATE,
+      ].includes(this.state.format)
+    ) {
       return null;
     }
 
@@ -159,6 +166,12 @@ class Export extends React.PureComponent {
               <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>
               <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>
               <RadioButton.Radio value={ExportFormat.CSV}>CSV</RadioButton.Radio>
+              <RadioButton.Radio value={ExportFormat.XLSX_FROM_TEMPLATE}>
+                XLSX (из шаблона)
+              </RadioButton.Radio>
+              <RadioButton.Radio value={ExportFormat.DOCX_FROM_TEMPLATE}>
+                DOCX (из шаблона)
+              </RadioButton.Radio>
             </RadioButton>
           </Block>
           {this.renderSettings()}
