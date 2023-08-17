@@ -14,11 +14,15 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     onPageControlClicker(page, pageSize);
   }, [page, pageSize, onPageControlClicker]);
 
-  const modifyColums = columns.map(item => ({
-    ...item,
-    title: <Tooltip title={item.title}>{item.title}</Tooltip>,
-    className: 'table-widget-column',
-  }));
+  const modifyColums = columns.map(item => {
+    const title = typeof item.title === 'function' ? item.title({}) : item.title;
+
+    return {
+      ...item,
+      title: <Tooltip title={title}>{title}</Tooltip>,
+      className: 'table-widget-column',
+    };
+  });
 
   return (
     <Table
