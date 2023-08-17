@@ -43,16 +43,16 @@
   display: flex;
 }
 
-.item__controls__button {
+.item__button {
   padding: 0 16px;
   color: #000;
   font-size: 16px;
 }
 
-.item__controls__button:not(:disabled):focus-visible {
+.item__button:not(:disabled):focus-visible {
   outline: none;
 }
 
-.item__controls__button:not(:disabled):hover {
+.item__button:not(:disabled):hover {
   color: var(--antd-color-primary);
 }
