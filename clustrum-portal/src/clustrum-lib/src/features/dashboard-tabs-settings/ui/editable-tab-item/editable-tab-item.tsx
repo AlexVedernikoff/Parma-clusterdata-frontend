@@ -1,13 +1,8 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-// eslint-disable-next-line
-// @ts-ignore
-import block from 'bem-cn-lite';
-import { Input } from 'antd';
-import { CloseOutlined, EditOutlined } from '@ant-design/icons';
+import { Button, Input } from 'antd';
+import { DeleteOutlined, EditOutlined, MenuOutlined } from '@ant-design/icons';
 import { EditableTabItemProps } from '../../types';
-
-// TODO: будет удалено в задаче 713075
-const b = block('dialog-tabs');
+import styles from './editable-tab-item.module.css';
 
 export function EditableTabItem(props: EditableTabItemProps): ReactElement {
   const {
@@ -54,7 +49,7 @@ export function EditableTabItem(props: EditableTabItemProps): ReactElement {
 
   if (isEditing) {
     return (
-      <div className={b('row', { input: true })}>
+      <div className={styles['editing-item']}>
         <Input
           autoFocus
           value={updatedTitle}
@@ -67,11 +62,28 @@ export function EditableTabItem(props: EditableTabItemProps): ReactElement {
   }
 
   return (
-    <div className={b('row')} onDoubleClick={handleEditingItemChange}>
-      <div className={b('title')}>{title}</div>
-      <div className={b('controls')}>
-        <EditOutlined className={b('icon')} onClick={handleEditingItemChange} />
-        {isDeletable && <CloseOutlined className={b('icon')} onClick={handleRemove} />}
+    <div className={styles.item} onDoubleClick={handleEditingItemChange}>
+      <MenuOutlined className={styles['item__draggable-icon']} />
+      <div className={styles.item__title}>{title}</div>
+      <div className={styles.item__controls}>
+        <Button
+          className={styles.item__button}
+          type="text"
+          title="Редактировать"
+          onClick={handleEditingItemChange}
+        >
+          <EditOutlined />
+        </Button>
+        {isDeletable && (
+          <Button
+            className={styles.item__button}
+            type="text"
+            title="Удалить"
+            onClick={handleRemove}
+          >
+            <DeleteOutlined />
+          </Button>
+        )}
       </div>
     </div>
   );

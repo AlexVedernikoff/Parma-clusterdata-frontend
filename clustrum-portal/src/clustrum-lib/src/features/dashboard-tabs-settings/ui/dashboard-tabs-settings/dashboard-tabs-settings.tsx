@@ -1,8 +1,4 @@
 import React, { ReactElement, useState } from 'react';
-// TODO: будет удалено в задаче 713075
-// eslint-disable-next-line
-// @ts-ignore
-import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 import { Button, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
@@ -26,9 +22,6 @@ import {
   Tab,
 } from '../../types';
 import styles from './dashboard-tab-settings.module.css';
-
-// TODO: будет удалено в задаче 713075
-const b = block('dialog-tabs');
 
 const getTempId = (): string => {
   return `tab-${Date.now()}`;
@@ -109,19 +102,21 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
       onCancel={closeDialog}
       onOk={handleSave}
     >
-      <DndContainer
-        highlightDropPlace
-        isNeedRemove
-        isNeedSwap
-        id="tabs-settings"
-        items={updatedTabs}
-        itemSize={{ height: 40, margin: 4 }}
-        wrapTo={renderTabItem}
-        onUpdate={setUpdatedTabs}
-      />
+      <div className={styles['modal-content']}>
+        <DndContainer
+          highlightDropPlace
+          isNeedRemove
+          isNeedSwap
+          id="tabs-settings"
+          items={updatedTabs}
+          itemSize={{ height: 40, margin: 4 }}
+          wrapTo={renderTabItem}
+          onUpdate={setUpdatedTabs}
+        />
+      </div>
       <Button
         className={styles['add-more-button']}
-        type="link"
+        type="text"
         onClick={handleCreateNewTab}
       >
         <PlusOutlined className={styles['add-more-button__icon']} />
