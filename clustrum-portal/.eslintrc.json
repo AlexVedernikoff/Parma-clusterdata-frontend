@@ -17,6 +17,11 @@
     "sourceType": "module"
   },
   "plugins": ["import", "react", "@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "error",
     "react/function-component-definition": [
@@ -28,8 +33,7 @@
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "import/no-default-export": "error",
     "import/no-namespace": "error",
-    "max-lines": ["warn", 400],
-    "max-lines-per-function": ["warn", 100],
+    "max-lines": ["warn", { "max": 400, "skipBlankLines": true, "skipComments": true }],
     "@typescript-eslint/naming-convention": [
       "error",
       {
@@ -38,6 +42,9 @@
       }
     ],
     "curly": ["error", "all"],
-    "react/destructuring-assignment": ["error", "always"]
+    "react/destructuring-assignment": ["error", "always"],
+    "max-params": ["error", 3],
+    "max-depth": ["error", 3],
+    "react/display-name": "error"
   }
 }

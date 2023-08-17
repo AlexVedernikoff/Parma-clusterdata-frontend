@@ -27,8 +27,7 @@ import iconColumns from 'icons/columns.svg';
 import iconPoints from 'icons/points.svg';
 import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
-// TODO: изменить импорт на `@clustrum-lib`
-import { WIDGET_TYPE } from '@clustrum-lib/shared/ui/widgets-factory/WidgetType';
+import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',
@@ -67,6 +66,7 @@ export const getConnectorsMap = () => {
     clickhouse: 'ClickHouse',
     csv: 'CSV',
     postgres: 'PostgreSQL',
+    mssql: 'MSSQL',
   };
 
   if (chOverYtEnabled) {
@@ -214,7 +214,7 @@ export const TAB_DATA = 'data';
 export const DATASET_TABS = [TAB_DATASET, TAB_DATA];
 
 ////////////////////
-
+// TODO: удалить после замены в SectionVisualization
 export const ITEM_TYPES = {
   DIMENSIONS: new Set(['DIMENSION']),
   LATITUDE: new Set(['LATITUDE']),
@@ -1155,8 +1155,8 @@ const CARD_VISUALIZATION = {
 };
 
 const INDICATOR_VISUALIZATION = {
-  id: WIDGET_TYPE.INDICATOR,
-  type: WIDGET_TYPE.INDICATOR,
+  id: WidgetType.Indicator,
+  type: WidgetType.Indicator,
   name: 'label_visualization_indicator',
   wizardNodeType: WIZARD_NODE_TYPE.INDICATOR,
   icon: <Icon data={iconIndicator} width="24" />,

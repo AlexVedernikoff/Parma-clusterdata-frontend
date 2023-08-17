@@ -68,6 +68,7 @@ class Wizard extends Component {
     onSavingStart: PropTypes.func,
     onSavingEnd: PropTypes.func,
     onExport: PropTypes.func,
+    isBuild: PropTypes.bool,
   };
 
   entryDialoguesRef = React.createRef();
@@ -223,6 +224,10 @@ class Wizard extends Component {
     return <ErrorContent type={type} title={title} description={description} />;
   }
 
+  handleOpenDataset(id) {
+    window.open(`/datasets/${id}`);
+  }
+
   renderApp() {
     const {
       sdk,
@@ -236,6 +241,7 @@ class Wizard extends Component {
       configType,
       previewHash,
       widgetHash,
+      isBuild,
     } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
@@ -294,6 +300,7 @@ class Wizard extends Component {
           <ActionPanel
             sdk={sdk}
             entry={widget}
+            isBuild={isBuild}
             rightItems={[
               <Button
                 key="fullscreen"
@@ -327,7 +334,11 @@ class Wizard extends Component {
             ''
           ) : (
             <div className={`column data-column${hidden}`}>
-              <SectionDataset entryDialoguesRef={entryDialoguesRef} sdk={sdk} />
+              <SectionDataset
+                entryDialoguesRef={entryDialoguesRef}
+                openDataset={this.handleOpenDataset}
+                sdk={sdk}
+              />
             </div>
           )}
           {this.props.preview ? (

@@ -54,6 +54,8 @@ class Body extends React.PureComponent {
     widgetForReloadUUID: PropTypes.string.isRequired,
     setWidgetForReloadUUID: PropTypes.func.isRequired,
     toggleWidgetVisibility: PropTypes.func.isRequired,
+    isBuild: PropTypes.bool,
+    onFiltersChange: PropTypes.func,
     // router
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -70,9 +72,58 @@ class Body extends React.PureComponent {
   }
 
   dashKitRef = React.createRef();
+  sendedFilters = [];
+
+  isNewFilterValue = filter => {
+    const sendedFilter = this.sendedFilters.find(item => item.id === filter.id);
+    // фильтр ещё никогда не отправлялся
+    if (!sendedFilter) {
+      this.sendedFilters.push(filter);
+      return true;
+    }
+    // фильтр ранее отправлялся, но с другим значением
+    if (sendedFilter.value.toString() !== filter.value.toString()) {
+      sendedFilter.value = filter.value;
+      return true;
+    }
+    return false;
+  };
+
+  isInitiallyEmpty = filter => {
+    // фильтр, который изначально пустой (ещё до первой отправки)
+    const isEmpty = !filter.value || filter.value.length === 0;
+    const isSended = this.sendedFilters.some(item => item.id === filter.id);
+    return isEmpty && !isSended;
+  };
+
+  handleFiltersChange = data => {
+    const { config, itemsStateAndParams } = data;
+    const { onFiltersChange } = this.props;
+
+    if (!onFiltersChange) {
+      return;
+    }
+
+    // данные приходят в странном виде - несколько секций с отлдичающимся наполнением
+    // нас устроит любая из них с типом 'control', поэтому берём первую
+    // обязательно из config-а, т.к. в `itemsStateAndParams` могут быть секции из других табов
+    const id = config.items.filter(item => item.type === 'control')[0].id;
+    const filtersData = itemsStateAndParams[id].params;
+    const rawFilters = Object.keys(filtersData).map(key => ({
+      id: key,
+      value: filtersData[key].value,
+      datasetId: filtersData[key].initiatorItem.data.dataset?.id,
+    }));
+
+    const newFilters = rawFilters
+      .filter(item => !this.isInitiallyEmpty(item))
+      .filter(item => this.isNewFilterValue(item));
+    onFiltersChange(newFilters);
+  };
 
   onChange = data => {
     const { config, itemsStateAndParams } = data;
+
     if (config) {
       this.props.setCurrentTabData(config);
     }
@@ -82,6 +133,7 @@ class Body extends React.PureComponent {
       Object.keys(itemsStateAndParams).length
     ) {
       this.onStateChange(itemsStateAndParams);
+      this.handleFiltersChange(data);
     }
   };
 
@@ -115,6 +167,7 @@ class Body extends React.PureComponent {
       settings,
       widgetForReloadUUID,
       setWidgetForReloadUUID,
+      isBuild,
     } = this.props;
 
     switch (mode) {
@@ -130,7 +183,7 @@ class Body extends React.PureComponent {
       <React.Fragment>
         <TableOfContent />
         <div className={b('content', { 'table-of-content': showTableOfContent })}>
-          <Tabs />
+          <Tabs isBuild={isBuild} />
           <DashKit
             config={tabData}
             editMode={mode === MODE.EDIT}

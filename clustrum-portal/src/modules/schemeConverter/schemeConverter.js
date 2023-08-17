@@ -1,4 +1,4 @@
-import { ITEM_TYPE } from '../constants/constants';
+import { ItemType } from '@clustrum-lib/shared/types';
 import sdk from '../sdk/sdk';
 
 const CURRENT_SCHEME_VERSION = 6;
@@ -42,7 +42,7 @@ class SchemeConverter {
                 namespace = 'default',
               }) => {
                 const data = itemData || tabs;
-                if (type === ITEM_TYPE.CONTROL && !defaults) {
+                if (type === ItemType.Control && !defaults) {
                   const defaultValue = data.control.defaultValue || '';
 
                   if (data.dataset) {
@@ -139,7 +139,7 @@ class SchemeConverter {
       ...tab,
       ignores: ignores.reduce((result, { who, whom }) => {
         tab.items
-          .filter(({ id, type }) => id === who && type === ITEM_TYPE.WIDGET)
+          .filter(({ id, type }) => id === who && type === ItemType.Widget)
           .forEach(({ data }) =>
             data.forEach(({ id }) => {
               result.push({ who: id, whom });

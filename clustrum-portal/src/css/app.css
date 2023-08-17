@@ -698,7 +698,7 @@
 
 .datasets-container .subcontainer .item {
   padding: 2px 20px;
-  margin: 0 0 5px;
+  margin: 0;
   height: 30px;
   border-radius: 2px;
   cursor: pointer;
@@ -966,10 +966,6 @@
 
 .dialog-filter .calendar-input .textinput__clear {
   display: none;
-}
-
-.dialog-filter.dialog-filter-dimension .yc-dialog-header svg {
-  color: var(--color-apple-solid);
 }
 
 .dialog-filter.dialog-filter-dimension .dialog-filter__row .remove-value-icon {
@@ -1385,15 +1381,6 @@
   border: 1px solid transparent;
 }
 
-.visualization-container .subcontainer .dnd-container .drop-place {
-  height: 2px;
-  border-radius: 2px;
-  background-color: rgba(0, 0, 0, 0.15);
-  position: relative;
-  margin: 0 0 -2px;
-  display: none;
-}
-
 .visualization-container .subcontainer .dimension-item,
 .visualization-container .subcontainer .dimension-item .item-sort {
   background-color: var(--color-contrast-4-solid);
@@ -1531,6 +1518,7 @@
 }
 
 .visualization-container .subcontainer .measure-item .item-icon {
+  padding: 0 8px;
   color: var(--color-azure-solid);
 }
 
@@ -1584,7 +1572,7 @@
   flex: 1 0 0;
   height: 40px;
   line-height: 22px;
-  margin: 12px 0;
+  margin: 0;
   padding: 9px 24px 9px 0;
   border-radius: 8px;
   cursor: pointer;
@@ -1601,9 +1589,7 @@
 .visualization-container .subcontainer .item .item-holder {
   visibility: hidden;
   display: flex;
-  width: 24px;
-  height: 24px;
-  padding: 0 4px;
+  padding-left: 4px;
   justify-content: center;
   align-items: center;
 }
@@ -2269,12 +2255,12 @@
 }
 
 :root {
-  --data-table-header-vertical-padding: 5px;
-  --data-table-cell-vertical-padding: 5px;
-  --data-table-cell-horizontal-padding: 10px;
+  --data-table-header-vertical-padding: 0;
+  --data-table-cell-vertical-padding: 0;
+  --data-table-cell-horizontal-padding: 0;
   --data-table-cell-border-padding: var(--data-table-cell-horizontal-padding);
-  --data-table-cell-align: top;
-  --data-table-head-align: top;
+  --data-table-cell-align: middle;
+  --data-table-head-align: middle;
   --data-table-row-height: 30px;
   --data-table-sort-icon-space: 18px;
   --data-table-sort-icon-opacity-inactive: 0.15;
@@ -2367,16 +2353,6 @@
   right: auto;
   -webkit-transform: translateY(-50%) scaleX(-1);
   transform: translateY(-50%) scaleX(-1);
-}
-
-.data-table__td {
-  padding: var(--data-table-cell-vertical-padding)
-    var(--data-table-cell-horizontal-padding);
-  border: 1px solid var(--data-table-border-color);
-  vertical-align: var(--data-table-cell-align);
-  /*white-space: nowrap;*/
-  /*overflow: hidden;*/
-  /*text-overflow: ellipsis;*/
 }
 
 .data-table__td_index,

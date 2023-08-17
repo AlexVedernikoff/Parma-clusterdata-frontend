@@ -8,11 +8,10 @@ import { connect } from 'react-redux';
 
 import ChartKit from '@kamatech-data-ui/clustrum/src/components/ChartKit/ChartKit';
 
-import iconFullscreen from 'icons/fullscreen.svg';
 import iconPencil from 'icons/pencil.svg';
 import iconPreviewDatasetError from 'icons/preview-dataset-error.svg';
 
-import { EXPORT, NEW_WINDOW } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
+import { EXPORT } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
 
 import {
   selectConfig,
@@ -90,25 +89,6 @@ class SectionPreview extends Component {
     }
 
     if (previewEntryId || (config && configType)) {
-      let LINK_NEW_WINDOW;
-
-      if (DL.installationType === 'external') {
-        LINK_NEW_WINDOW = {
-          title: 'Открыть в новой вкладке',
-          icon: <Icon width="20" data={iconFullscreen} />,
-          isVisible: () => true,
-          action: ({ loadedData, propsData }) =>
-            window.open(
-              goAwayLink(
-                { loadedData, propsData },
-                { urlPostfix: '/preview', idPrefix: '/' },
-              ),
-            ),
-        };
-      } else {
-        LINK_NEW_WINDOW = NEW_WINDOW;
-      }
-
       let editMode;
       if (config && configType) {
         editMode = {
@@ -117,7 +97,7 @@ class SectionPreview extends Component {
         };
       }
 
-      const menuItems = [EXPORT, LINK_NEW_WINDOW];
+      const menuItems = [EXPORT];
 
       if (previewEntryId) {
         menuItems.push(EDIT);

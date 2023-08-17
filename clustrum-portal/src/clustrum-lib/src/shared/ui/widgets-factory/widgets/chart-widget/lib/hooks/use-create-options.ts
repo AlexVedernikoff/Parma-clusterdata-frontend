@@ -12,8 +12,9 @@ import { getColor } from '../helpers/get-color';
 export const useCreateOptions = (
   echartsOptions: EchartsOptions,
   config: ChartConfig,
+  refWidget: React.RefObject<HTMLDivElement>,
 ): CreateOptionsReturnType => {
-  const xAxis = getXAxis(echartsOptions);
+  const xAxis = getXAxis(echartsOptions, refWidget);
   const yAxis = getYAxis(echartsOptions);
   const series = useSeries(echartsOptions, config);
   const tooltip = useTooltip(echartsOptions);

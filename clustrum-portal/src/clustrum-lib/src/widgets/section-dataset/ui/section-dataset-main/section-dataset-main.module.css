@@ -1,0 +1,12 @@
+.blank {
+  padding: 20px;
+  color: #00000080;
+  font-size: 14px;
+}
+
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 41px);
+}

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
+import { getParamsValue } from '@clustrum-lib';
 
 import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
@@ -15,7 +16,6 @@ import URI from '../../modules/uri/uri';
 import settings from '../../modules/settings/settings';
 import { removeEmptyProperties } from '../../helpers/helpers';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
-import { getParamsValue } from '@kamatech-data-ui/utils/param-utils';
 import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 
 const b = block('chartkit');
@@ -33,6 +33,8 @@ class ChartKit extends React.Component {
       orderBy: this.props.orderBy,
     };
   }
+
+  refWidget = createRef();
 
   static contextType = SignalContext;
 
@@ -320,6 +322,7 @@ class ChartKit extends React.Component {
             hidden: loading && !silentLoading,
             [widgetType]: Boolean(widgetType),
           })}
+          ref={this.refWidget}
         >
           {error ? (
             <Error
@@ -352,6 +355,7 @@ class ChartKit extends React.Component {
               ownWidgetParams={ownWidgetParams}
               orderBy={orderBy}
               onOrderByClickInWizard={this.onOrderByClickInWizard}
+              refWidget={this.refWidget}
             />
           )}
         </div>

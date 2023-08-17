@@ -1,8 +1,8 @@
 import { replace } from 'connected-react-router';
 
+import { ItemType, ControlSourceType } from '@clustrum-lib/shared/types';
 import * as actionTypes from '../constants/actionTypes';
-import { MODE, ITEM_TYPE } from '../../modules/constants/constants';
-import { CONTROL_SOURCE_TYPE } from '../../constants/constants';
+import { MODE } from '../../modules/constants/constants';
 import SchemeConverter from '../../modules/schemeConverter/schemeConverter';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 
@@ -15,7 +15,7 @@ export const cancelEditMode = () => ({
   payload: { mode: MODE.VIEW },
 });
 
-export const load = () => {
+export const load = defaultEntryId => {
   return async function(dispatch, getState, { sdk }) {
     try {
       dispatch({ type: actionTypes.LOAD_DASH, payload: { mode: MODE.LOADING } });
@@ -25,7 +25,7 @@ export const load = () => {
       } = getState();
       const { pathname, search } = location;
 
-      const entryId = pathname.match(/[^\/]*$/)[0];
+      const entryId = defaultEntryId ? defaultEntryId : pathname.match(/[^\/]*$/)[0];
 
       if (entryId === 'new') {
         return;
@@ -114,7 +114,7 @@ export const save = () => {
             (result, tab) =>
               tab.items.reduce((result, item) => {
                 const { type, data } = item;
-                if (type === ITEM_TYPE.WIDGET) {
+                if (type === ItemType.Widget) {
                   return data.reduce((result, widget) => {
                     const { uuid } = widget.data;
                     result[uuid] = uuid;
@@ -122,8 +122,8 @@ export const save = () => {
                   }, result);
                 }
                 if (
-                  type === ITEM_TYPE.CONTROL &&
-                  data.sourceType === CONTROL_SOURCE_TYPE.DATASET
+                  type === ItemType.Widget &&
+                  data.sourceType === ControlSourceType.Dataset
                 ) {
                   const { id } = data.dataset;
                   result[id] = id;

@@ -37,40 +37,44 @@
   letter-spacing: normal;
 }
 
-/* buil-in Ant Design classes */
 .ant-table-wrapper {
   height: 100%;
+}
 
-  .ant-spin-nested-loading {
-    height: 100%;
+.ant-table-wrapper .ant-spin-nested-loading {
+  height: 100%;
+}
 
-    .ant-spin-container {
-      display: flex;
-      flex-flow: column nowrap;
-      height: 100%;
+.ant-table-wrapper .ant-spin-nested-loading .ant-spin-container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+}
 
-      .ant-table {
-        flex: auto;
-        overflow: hidden;
+.ant-table-wrapper .ant-spin-nested-loading .ant-spin-container .ant-table {
+  flex: auto;
+  overflow: hidden;
+}
 
-        .ant-table-container {
-          display: flex;
-          flex-flow: column nowrap;
-          height: 100%;
+.ant-table-wrapper .ant-spin-nested-loading .ant-spin-container .ant-table .ant-table-container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+}
 
-          .ant-table-content {
-            flex: auto;
-            margin-bottom: 20px;
-            overflow: scroll;
-          }
-        }
-      }
+.ant-table-wrapper .ant-spin-nested-loading .ant-spin-container .ant-table .ant-table-container .ant-table-content {
+  flex: auto;
+  margin-bottom: 20px;
+  overflow: scroll;
+}
 
-      .ant-table-pagination {
-        flex: none;
-      }
-    }
-  }
+.ant-table-pagination {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.ant-table-wrapper .ant-spin-nested-loading .ant-spin-container .ant-table-pagination {
+  flex: none;
 }
 
 .table-widget .ant-table-thead > tr:nth-of-type(2) > .ant-table-cell {
@@ -88,5 +92,17 @@
 
 .ant-pagination .ant-pagination-total-text {
   margin-right: auto;
-  margin-left: 8px;
+  margin-left: 0;
+}
+
+.table-widget-column .ant-table-column-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-widget .ant-table-header {
+  overflow: visible !important;
 }

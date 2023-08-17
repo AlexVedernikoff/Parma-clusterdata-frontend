@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import Icon, {
   FontSizeOutlined,
   CalendarOutlined,
@@ -6,35 +7,30 @@ import Icon, {
 } from '@ant-design/icons';
 import { GeoIcon, BooleanIcon } from './icons';
 import { CastIconType, CastIconsFactoryProps } from './types';
+import styles from './cast-icons-factory.module.css';
 
 export function CastIconsFactory(props: CastIconsFactoryProps): JSX.Element {
-  const { iconType } = props;
+  const { className, iconType } = props;
+  const iconClassName = classNames(styles.icon, className);
 
-  let icon;
   switch (iconType) {
     case CastIconType.Integer:
     case CastIconType.UiIndeger:
     case CastIconType.Float:
     case CastIconType.Double:
     case CastIconType.Long:
-      icon = <NumberOutlined width="16" />;
-      break;
+      return <NumberOutlined className={iconClassName} />;
     case CastIconType.Datetime:
     case CastIconType.Date:
-      icon = <CalendarOutlined width="16" />;
-      break;
+      return <CalendarOutlined className={iconClassName} />;
     case CastIconType.Geo:
     case CastIconType.Geopolygon:
-      icon = <Icon component={GeoIcon} width="16" />;
-      break;
+    case CastIconType.Geopoint:
+      return <Icon className={iconClassName} component={GeoIcon} />;
     case CastIconType.Boolean:
-      icon = <Icon component={BooleanIcon} width="16" />;
-      break;
+      return <Icon className={iconClassName} component={BooleanIcon} />;
     case CastIconType.String:
     default:
-      icon = <FontSizeOutlined width="16" />;
-      break;
+      return <FontSizeOutlined className={iconClassName} />;
   }
-
-  return <div className="item-icon">{icon}</div>;
 }

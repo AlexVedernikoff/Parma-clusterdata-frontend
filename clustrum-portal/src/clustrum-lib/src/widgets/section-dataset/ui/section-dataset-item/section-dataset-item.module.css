@@ -1,0 +1,50 @@
+.item {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  height: 40px;
+  margin: 4px 0;
+  padding: 9px 18px 9px 0;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+div[draggable='true'] .item:hover {
+  background-color: #f5f5f5;
+}
+
+.holder {
+  justify-content: center;
+  height: 24px;
+  padding-left: 4px;
+  visibility: hidden;
+}
+
+div[draggable='true'] .item:hover .holder {
+  visibility: visible;
+}
+
+.more-icon {
+  display: none;
+  margin-left: 4px;
+}
+
+.title {
+  flex: auto;
+  overflow: hidden;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.item:focus.ignore-drag,
+.item:active:hover.ignore-drag {
+  cursor: pointer;
+}
+
+.measure-icon {
+  color: var(--antd-color-primary);
+}

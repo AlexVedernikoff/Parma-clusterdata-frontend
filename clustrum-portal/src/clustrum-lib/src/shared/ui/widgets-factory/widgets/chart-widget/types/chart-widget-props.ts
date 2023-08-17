@@ -1,22 +1,25 @@
 import { ChartConfig } from './chart-config';
 
-export interface ChartWidgetProps {
+export interface ChartWidgetData {
   data: {
-    data: {
-      categoriesDataTypeName: string;
-      groupField: string;
-    };
-    config: {
-      hideComments: boolean;
-      hideHolidays: boolean;
-      manageTooltipConfig(): void;
-      normalizeDiv: boolean;
-      normalizeSub: boolean;
-      removeShowHideAll: boolean;
-      withoutLineLimit: boolean;
-    };
-    libraryConfig: ChartConfig;
+    categoriesDataTypeName: string;
+    groupField: string;
   };
+  config: {
+    hideComments: boolean;
+    hideHolidays: boolean;
+    manageTooltipConfig(): void;
+    normalizeDiv: boolean;
+    normalizeSub: boolean;
+    removeShowHideAll: boolean;
+    withoutLineLimit: boolean;
+  };
+  libraryConfig: ChartConfig;
+}
+
+export interface ChartWidgetProps {
+  data: ChartWidgetData;
+  refWidget: React.RefObject<HTMLDivElement>;
   onLoad(): void;
   onChange(param: { name: string }): void;
   onStateAndParamsChange(params: { [key: string]: unknown }): void;

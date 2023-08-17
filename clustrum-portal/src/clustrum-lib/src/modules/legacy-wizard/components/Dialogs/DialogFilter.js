@@ -39,25 +39,13 @@ class DialogFilter extends PureComponent {
       callback: null,
       item: null,
       operation: null,
-      visible: false,
+      visible: this.props.visible,
       value: [],
     };
   }
 
   onClose = () => {
-    const { callback } = this.state;
-
-    this.setState({
-      visible: false,
-    });
-
-    if (callback) {
-      callback(null);
-    }
-  };
-
-  onCancel = () => {
-    const { callback } = this.state;
+    const { callback } = this.props;
 
     this.setState({
       visible: false,
@@ -129,6 +117,10 @@ class DialogFilter extends PureComponent {
       case isBoolean:
         availableOperations = BOOLEAN_OPERATIONS;
         break;
+    }
+
+    if (!availableOperations) {
+      return;
     }
 
     let operation = filter
@@ -277,7 +269,7 @@ class DialogFilter extends PureComponent {
 
                 this.setState({
                   dimensions,
-                  originalDimensions: dimensions,
+                  originalDimensions: [...dimensions],
                   value,
                 });
               }
@@ -358,7 +350,7 @@ class DialogFilter extends PureComponent {
 
               this.setState({
                 dimensions,
-                originalDimensions: dimensions,
+                originalDimensions: [...dimensions],
                 value,
               });
             }
@@ -377,7 +369,13 @@ class DialogFilter extends PureComponent {
       } else {
         const [first, ...rest] = value ?? [];
         value = first ? [first] : [''];
-        dimensions = [...dimensions, ...rest].sort(collator.compare);
+        if (Array.isArray(dimensions) && Array.isArray(rest)) {
+          dimensions = [...dimensions, ...rest].sort(collator.compare);
+        } else if (Array.isArray(dimensions)) {
+          dimensions.sort(collator.compare);
+        } else {
+          dimensions = [];
+        }
       }
     }
 
@@ -873,7 +871,11 @@ class DialogFilter extends PureComponent {
 
   render() {
     const { item } = this.props;
-    const { value, operation } = this.state;
+    const { value, operation, availableOperations } = this.state;
+
+    if (!availableOperations) {
+      return;
+    }
 
     if (item) {
       const { cast } = item;
@@ -903,7 +905,7 @@ class DialogFilter extends PureComponent {
             <Dialog.Body>{this.renderModalBody()}</Dialog.Body>
             <Dialog.Footer
               preset="default"
-              onClickButtonCancel={this.onCancel}
+              onClickButtonCancel={this.onClose}
               onClickButtonApply={this.onApply}
               propsButtonApply={{
                 disabled: !valid,

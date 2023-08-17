@@ -1,18 +1,25 @@
-import { DndItem } from './dnd-item';
+import { AllowedTypes, CheckAllowed } from './allowed-types';
+import { DndDraggedItem } from './dnd-dragged-item';
+import { DndItemSize } from './dnd-item-size';
 
-export interface DndItemProps {
+export interface DndItemProps<T> {
   className: string;
+  size: DndItemSize;
   disabled?: boolean;
-  listAllowedTypes?: Set<string>;
-  listNoRemove?: boolean;
-  listId: string;
+  containerAllowedTypes?: AllowedTypes;
+  containerIsNeedRemove?: boolean;
+  containerId: string;
   index: number;
-  item: DndItem;
-  tooltipVisible: boolean;
-  onItemClick(e: Event, item: DndItem): void;
+  itemData: T;
+  tooltipVisibility: boolean;
+  draggedItem: DndDraggedItem<T> | null;
   remove(index: number): void;
-  wrapTo(props: DndItemProps, component: HTMLDivElement | null): Element;
-  setTooltipVisible(isVisible: boolean): void;
-  setDropPlace(index: number): void;
-  dragContainerReplace(index: number, item: DndItem): void;
+  replace(index: number, item: T): void;
+  wrapTo(props: DndItemProps<T>, component: HTMLDivElement | null): JSX.Element;
+  setTooltipVisibility(isVisible: boolean): void;
+  setDropPlace(index: number | null): void;
+  setDraggedItem(item: DndDraggedItem<T>): void;
+  setIsNeedReplace(isNeedReplace: boolean): void;
+  containerCheckAllowed?: CheckAllowed<T>;
+  onItemClick?(e: Event, item: T): void;
 }

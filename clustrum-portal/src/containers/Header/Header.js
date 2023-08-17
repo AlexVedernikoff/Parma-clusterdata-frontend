@@ -41,7 +41,6 @@ import {
   DownOutlined,
   EditOutlined,
   FilterOutlined,
-  SettingOutlined,
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 
@@ -61,6 +60,8 @@ class Header extends React.PureComponent {
     resetAllFilters: PropTypes.func.isRequired,
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
+    isBuild: PropTypes.bool,
+    hasRightSideContent: PropTypes.bool,
   };
 
   static contextType = SignalContext;
@@ -73,7 +74,6 @@ class Header extends React.PureComponent {
     showRightsDialog: false,
   };
 
-  addRef = React.createRef();
   saveRef = React.createRef();
 
   componentDidUpdate(prevProps) {
@@ -150,8 +150,6 @@ class Header extends React.PureComponent {
   openDialog(dialogType) {
     return () => {
       this.props.openDialog(dialogType);
-      // legohack: закрываем открытый dropdown, т.к. иначе он открыт до момента клика снаружи
-      this.addRef.current._onOutsideClick();
     };
   }
 
@@ -244,7 +242,18 @@ class Header extends React.PureComponent {
   }
 
   renderViewItems() {
-    const { entry, canEdit, openExpandedFilter, setMode } = this.props;
+    const {
+      entry,
+      canEdit,
+      openExpandedFilter,
+      setMode,
+      hasRightSideContent = true,
+    } = this.props;
+
+    if (!hasRightSideContent) {
+      return [];
+    }
+
     const exportItems = [
       {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</a>,
@@ -331,6 +340,9 @@ class Header extends React.PureComponent {
   }
 
   render() {
+    const { isBuild, isEditMode } = this.props;
+    const renderRightItems = isEditMode ? this.renderEditItems() : this.renderViewItems();
+
     return (
       <>
         <BrowserPrint />
@@ -338,14 +350,13 @@ class Header extends React.PureComponent {
           <ActionPanel
             sdk={SDK}
             entryId={this.props.entry.entryId}
-            rightItems={
-              this.props.isEditMode ? this.renderEditItems() : this.renderViewItems()
-            }
+            rightItems={renderRightItems}
             className={b('action-panel', {
               sticky: this.props.isEditMode,
               'is-edit': this.props.isEditMode,
               'is-view': !this.props.isEditMode,
             })}
+            isBuild={isBuild}
           />
         )}
       </>
