@@ -68,7 +68,7 @@ export function EditableTabItem(props: EditableTabItemProps): ReactElement {
       <div className={styles.item__controls}>
         <Button
           className={styles.item__button}
-          type="link"
+          type="text"
           title="Редактировать"
           onClick={handleEditingItemChange}
         >
@@ -77,7 +77,7 @@ export function EditableTabItem(props: EditableTabItemProps): ReactElement {
         {isDeletable && (
           <Button
             className={styles.item__button}
-            type="link"
+            type="text"
             title="Удалить"
             onClick={handleRemove}
           >
