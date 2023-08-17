@@ -251,13 +251,13 @@ exports.generateConfig = (
         deleteOriginalAssets: true,
         exclude: /index.js|context-path.js/,
       }),
-    ],
-    externals: {
-      ENV: JSON.stringify({
-        biHost,
-        portalHost,
-        exportHost,
+      new webpack.DefinePlugin({
+        ENV: JSON.stringify({
+          biHost,
+          portalHost,
+          exportHost,
+        }),
       }),
-    },
+    ],
   };
 };

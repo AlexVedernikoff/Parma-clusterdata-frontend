@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import ENV from 'ENV';
 import { ChartDataProps, LoadedData } from './dto';
 
 export const getDashboardChartRequest = (data: ChartDataProps): Promise<LoadedData> => {

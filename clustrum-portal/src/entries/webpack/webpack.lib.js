@@ -1,5 +1,14 @@
+const webpack = require('webpack');
 const path = require('path');
-const { PORTAL_ASSETS_PATH } = require('../../../src/context-path.js');
+const {
+  PORTAL_ASSETS_PATH,
+  BI_PATH,
+  EXPORT_PATH,
+} = require('../../../src/context-path.js');
+
+const biHost = `http://localhost:8090${BI_PATH}`;
+const portalHost = 'http://localhost:8090';
+const exportHost = `http://localhost:8096${EXPORT_PATH}`;
 
 module.exports = {
   mode: 'production',
@@ -72,6 +81,21 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+        exclude: /\.module\.css$/,
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -87,4 +111,13 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      ENV: JSON.stringify({
+        biHost,
+        portalHost,
+        exportHost,
+      }),
+    }),
+  ],
 };
