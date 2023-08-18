@@ -59,62 +59,65 @@ export function DndContainer<T extends DndItemGenericData>(
     }
   }, [items]);
 
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: 'ITEM',
-    collect: (
-      monitor: DropTargetMonitor<
-        DndDraggedItem<T>,
-        DndDropResult<T> | DndEmptyDropResult<T> | null
-      >,
-    ) => ({
-      isOver: monitor.isOver(),
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: 'ITEM',
+      collect: (
+        monitor: DropTargetMonitor<
+          DndDraggedItem<T>,
+          DndDropResult<T> | DndEmptyDropResult<T> | null
+        >,
+      ) => ({
+        isOver: monitor.isOver(),
+      }),
+      //TODO 696922 вынести в отдельный метод и типизировать
+      drop: (
+        draggedItem: DndDraggedItem<T>,
+      ): DndDropResult<T> | DndEmptyDropResult<T> | null => {
+        const draggedItemData = draggedItem.data;
+        const draggedItemDataType = draggedItemData.type;
+        const targetItemData = items[draggedItem.hoverIndex] ?? draggedItemData;
+
+        if (id !== draggedItem.containerId) {
+          // отменяем, если не вмещается (но если не разрешена замена)
+          const isContainerFull = capacity && capacity <= items.length;
+
+          if (isContainerFull && !isNeedReplaceRef.current) {
+            return { revert: true };
+          }
+
+          // отменяем, если не подходит по типу
+          if (
+            allowedTypes &&
+            draggedItemDataType &&
+            !allowedTypes.has(draggedItemDataType)
+          ) {
+            return { revert: true };
+          }
+
+          // отменяем, если не подходит по типу
+          if (!allowedTypes && checkAllowed && !checkAllowed(draggedItemData)) {
+            return { revert: true };
+          }
+        }
+
+        return {
+          revert: false,
+          itemData: targetItemData,
+          containerId: id,
+          items,
+          replace,
+          insert,
+          swap,
+          dropPlace,
+          isNeedReplace: isNeedReplaceRef.current,
+          setIsNeedReplace,
+          isNeedSwap,
+        };
+      },
     }),
-    //TODO 696922 вынести в отдельный метод и типизировать
-    drop: (
-      draggedItem: DndDraggedItem<T>,
-    ): DndDropResult<T> | DndEmptyDropResult<T> | null => {
-      const draggedItemData = draggedItem.data;
-      const draggedItemDataType = draggedItemData.type;
-      const targetItemData = items[draggedItem.hoverIndex] ?? draggedItemData;
-
-      if (id !== draggedItem.containerId) {
-        // отменяем, если не вмещается (но если не разрешена замена)
-        const isContainerFull = capacity && capacity <= items.length;
-
-        if (isContainerFull && !isNeedReplaceRef.current) {
-          return { revert: true };
-        }
-
-        // отменяем, если не подходит по типу
-        if (
-          allowedTypes &&
-          draggedItemDataType &&
-          !allowedTypes.has(draggedItemDataType)
-        ) {
-          return { revert: true };
-        }
-
-        // отменяем, если не подходит по типу
-        if (!allowedTypes && checkAllowed && !checkAllowed(draggedItemData)) {
-          return { revert: true };
-        }
-      }
-
-      return {
-        revert: false,
-        itemData: targetItemData,
-        containerId: id,
-        items,
-        replace,
-        insert,
-        swap,
-        dropPlace,
-        isNeedReplace: isNeedReplaceRef.current,
-        setIsNeedReplace,
-        isNeedSwap,
-      };
-    },
-  }));
+    [items],
+  );
 
   const setIsNeedReplace = (isNeedReplace: boolean): void => {
     isNeedReplaceRef.current = isNeedReplace;
@@ -143,7 +146,7 @@ export function DndContainer<T extends DndItemGenericData>(
       return;
     }
 
-    const insertionItem = { ...item };
+    const insertionItem = items.find(({ id }) => item.id === id) || { ...item };
     insertionItem.id = getUniqueId('inserted');
 
     setUsedItemData(insertionItem);

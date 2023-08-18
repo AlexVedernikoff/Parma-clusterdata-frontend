@@ -128,7 +128,7 @@ class Widget extends React.PureComponent {
     if (tabIndex === -1) {
       this.props.setItemData({
         data: data.map(({ title, ...rest }, index) => ({
-          title: title.trim() || `Заголовок ${index + 1}`,
+          title: title.trim(),
           ...rest,
         })),
       });
