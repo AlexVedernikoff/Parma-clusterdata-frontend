@@ -37,17 +37,6 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
     setUpdatedTabs(prevTabs =>
       prevTabs.map(tab => (tab.id === id ? { ...tab, ...params } : tab)),
     );
-    setEditingTabId(null);
-  };
-
-  const handleRemove = (id: string): void => {
-    const tabIndex = updatedTabs.findIndex(tab => id && tab.id === id);
-
-    setUpdatedTabs(prevTabs => {
-      const newTabs = [...prevTabs];
-      newTabs.splice(tabIndex, 1);
-      return newTabs;
-    });
   };
 
   const handleSave = (): void => {
@@ -71,7 +60,7 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
 
   const renderTabItem = ({ itemData }: DndItemProps<Tab>): ReactElement => {
     const isItemEditing = itemData.id === editingTabId;
-    const isItemDeletable = updatedTabs.length > 1;
+    const isItemDeletable = updatedTabs.filter(({ isDeleted }) => !isDeleted).length > 1;
 
     return (
       <EditableTabItem
@@ -79,8 +68,8 @@ function DashboardTabsSettings(props: DashboardTabsSettingsProps): ReactElement 
         title={itemData.title}
         isEditing={isItemEditing}
         isDeletable={isItemDeletable}
+        isRemoved={itemData.isDeleted}
         onUpdate={handleUpdate}
-        onRemove={handleRemove}
         setEditingTabId={setEditingTabId}
       />
     );
