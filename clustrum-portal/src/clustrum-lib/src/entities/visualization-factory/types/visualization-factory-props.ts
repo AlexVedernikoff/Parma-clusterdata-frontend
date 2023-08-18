@@ -5,7 +5,7 @@ export interface VisualizationFactoryProps {
   containerTitle: string;
   containerType: VisualizationType;
   containerProps: ContainerProps;
-  containerIcon?: Element;
+  containerIcon?: JSX.Element;
   containerClassName?: string;
-  containerContent?: Element;
+  containerContent?: JSX.Element;
 }

@@ -40,7 +40,7 @@ export function VisualizationFactory(props: VisualizationFactoryProps): JSX.Elem
 const selectControl = (
   containerType: VisualizationType,
   containerProps: ContainerProps,
-  containerContent?: Element,
+  containerContent?: JSX.Element,
 ): JSX.Element | null => {
   //TODO Добавить остальные проверки, после появления типов
   switch (containerType) {
