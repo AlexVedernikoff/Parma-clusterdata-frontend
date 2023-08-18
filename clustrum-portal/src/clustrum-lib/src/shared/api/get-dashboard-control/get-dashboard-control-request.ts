@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import ENV from 'ENV';
 import { ControlDataProps, LoadedData } from './dto';
 
 export const getDashboardControlRequest = (
