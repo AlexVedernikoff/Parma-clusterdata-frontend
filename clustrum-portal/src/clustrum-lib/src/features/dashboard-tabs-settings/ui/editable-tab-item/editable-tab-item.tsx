@@ -9,50 +9,67 @@ export function EditableTabItem(props: EditableTabItemProps): ReactElement {
     id,
     isEditing = false,
     isDeletable = false,
+    isRemoved = false,
     title,
     onUpdate,
-    onRemove,
     setEditingTabId,
   } = props;
 
-  const [updatedTitle, setUpdatedTitle] = useState<string>(title);
+  const [currentTitle, setCurrentTitle] = useState<string>(title);
 
   useEffect(() => {
-    setUpdatedTitle(title);
+    setCurrentTitle(title);
+    setEditingTabId(null);
   }, [title]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setUpdatedTitle(e.currentTarget.value);
+    setCurrentTitle(e.currentTarget.value);
   };
 
   const handleInputBlur = (): void => {
-    if (updatedTitle) {
-      onUpdate(id, { title: updatedTitle });
-      return;
+    if (currentTitle) {
+      onUpdate(id, { title: currentTitle });
+    } else {
+      setCurrentTitle(title);
     }
     setEditingTabId(null);
   };
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === 'Enter' && updatedTitle) {
-      return onUpdate(id, { title: updatedTitle });
+    if (e.key === 'Enter' && currentTitle) {
+      onUpdate(id, { title: currentTitle });
+      setEditingTabId(null);
     }
-    if (e.key === 'Escape' || (e.key === 'Enter' && !updatedTitle)) {
-      setUpdatedTitle(title);
+    if (e.key === 'Escape' || (e.key === 'Enter' && !currentTitle)) {
+      setCurrentTitle(title);
       setEditingTabId(null);
     }
   };
 
   const handleEditingItemChange = (): void => setEditingTabId(id);
+  const toggleRemoveFlag = (): void => onUpdate(id, { isDeleted: !isRemoved });
 
-  const handleRemove = (): void => onRemove(id);
+  if (isRemoved) {
+    return (
+      <div className={styles['removed-item']}>
+        <div className={styles['removed-item__label']}>Вкладка удалена</div>
+        <Button
+          className={styles['removed-item__restore-button']}
+          type="link"
+          onClick={toggleRemoveFlag}
+        >
+          Восстановить
+        </Button>
+      </div>
+    );
+  }
 
   if (isEditing) {
     return (
       <div className={styles['editing-item']}>
         <Input
           autoFocus
-          value={updatedTitle}
+          value={currentTitle}
           onChange={handleInputChange}
           onBlur={handleInputBlur}
           onKeyDown={handleInputKeyDown}
@@ -79,7 +96,7 @@ export function EditableTabItem(props: EditableTabItemProps): ReactElement {
             className={styles.item__button}
             type="text"
             title="Удалить"
-            onClick={handleRemove}
+            onClick={toggleRemoveFlag}
           >
             <DeleteOutlined />
           </Button>
