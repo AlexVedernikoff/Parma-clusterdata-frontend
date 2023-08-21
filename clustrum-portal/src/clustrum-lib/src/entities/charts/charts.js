@@ -25,6 +25,7 @@ export class Charts extends React.PureComponent {
     onLoad: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onPageControlClick: PropTypes.func,
+    onStateAndParamsChange: PropTypes.func,
     paginateInfo: PropTypes.object,
     orderBy: PropTypes.object,
     onOrderByClickInWizard: PropTypes.func,
@@ -33,38 +34,42 @@ export class Charts extends React.PureComponent {
     refWidget: PropTypes.object,
   };
 
+  _isMounted = null;
+
   state = {
     loadedData: null,
   };
 
+  /* eslint-disable @typescript-eslint/explicit-function-return-type */
   componentDidMount() {
     this._isMounted = true;
-
     this.run();
   }
 
-  componentDidUpdate({
-    id,
-    source,
-    params,
-    forceUpdate,
-    editMode,
-    paginateInfo,
-    orderBy,
-  }) {
+  /* eslint-disable @typescript-eslint/explicit-function-return-type */
+  componentDidUpdate(prevProps) {
+    const {
+      id,
+      source,
+      params,
+      forceUpdate,
+      editMode,
+      paginateInfo,
+      orderBy,
+    } = this.props;
     /**
      * todo в родительском компоненте уже происходит проверка на обновление
      * это сделано потому что размазали логику по нескольким компонентам (Charts и Charkit) - хорошо бы структурировать
      */
     // === из-за того, что componentDidUpdate происходит на this.setState
     if (
-      (!this.props.forceUpdate || this.props.forceUpdate === forceUpdate) &&
-      id === this.props.id &&
-      source === this.props.source &&
-      isEqual(getParamsValue(params), getParamsValue(this.props.params)) &&
-      isEqual(editMode, this.props.editMode) &&
-      isEqual(paginateInfo, this.props.paginateInfo) &&
-      isEqual(orderBy, this.props.orderBy)
+      (!forceUpdate || forceUpdate === prevProps.forceUpdate) &&
+      prevProps.id === id &&
+      prevProps.source === source &&
+      isEqual(getParamsValue(prevProps.params), getParamsValue(params)) &&
+      isEqual(prevProps.editMode, editMode) &&
+      isEqual(prevProps.paginateInfo, paginateInfo) &&
+      isEqual(prevProps.orderBy, orderBy)
     ) {
       return;
     }
@@ -72,22 +77,24 @@ export class Charts extends React.PureComponent {
     this.run();
   }
 
-  componentDidCatch(error, info) {
+  /* eslint-disable @typescript-eslint/explicit-function-return-type */
+  componentDidCatch(error) {
     this.onError({ error });
   }
 
+  /* eslint-disable @typescript-eslint/explicit-function-return-type */
   componentWillUnmount() {
     this._isMounted = false;
   }
-
-  _isMounted = null;
 
   /**
    * todo: onLoad вызывается дочерними виджетами (графики, таблицы, карты) после того как они монтируются/обновляются
    * нужно вызывать onLoad после того как закончится выполняться запрос (метод run)
    * + подумать как убрать из Charkit логику с loading (по идее зона ответственности загрузки это Charts). Учесть чтобы не сломались контролы
    */
-  onLoad = data => this.props.onLoad({ ...data, loadedData: this.state.loadedData });
+  /* eslint-disable react/destructuring-assignment */
+  /* eslint-disable @typescript-eslint/explicit-function-return-type */
+  onLoad = () => this.props.onLoad({ loadedData: this.state.loadedData });
 
   onError = data => {
     if (ErrorDispatcher.isCustomError(data.error)) {
@@ -115,12 +122,8 @@ export class Charts extends React.PureComponent {
         widgetType,
         orderBy,
       } = this.props;
-      if (
-        (this.props.editMode &&
-          this.props.editMode.type &&
-          this.props.editMode.type === WIZARD_NODE_TYPE.MAP) ||
-        widgetType === 'map'
-      ) {
+      if (editMode?.type === WIZARD_NODE_TYPE.MAP || widgetType === 'map') {
+        // ? Вынести в функцию?
         const mapLoadedData = {
           widgetType: 'map',
           params: params,
@@ -128,9 +131,9 @@ export class Charts extends React.PureComponent {
             shared:
               editMode.config && editMode.config.shared ? editMode.config.shared : {},
             geoJson: {
-              coordType: this.props.editMode.config.shared.coordType,
-              titleLayerSource: this.props.editMode.config.shared.titleLayerSource,
-              widgetType: this.props.editMode.config.shared.visualization.id,
+              coordType: editMode.config.shared.coordType,
+              titleLayerSource: editMode.config.shared.titleLayerSource,
+              widgetType: editMode.config.shared.visualization.id,
             },
           },
         };
@@ -138,11 +141,7 @@ export class Charts extends React.PureComponent {
         return;
       }
 
-      if (
-        this.props.editMode &&
-        this.props.editMode.type &&
-        this.props.editMode.type === WIZARD_NODE_TYPE.TABLE
-      ) {
+      if (this.props.editMode?.type === WIZARD_NODE_TYPE.TABLE) {
         editMode.config.shared.paginateInfo = paginateInfo;
       }
 
@@ -167,6 +166,10 @@ export class Charts extends React.PureComponent {
 
   render() {
     const { loadedData } = this.state;
+    if (!loadedData) {
+      return null;
+    }
+
     const {
       editMode,
       onStateAndParamsChange,
@@ -181,25 +184,22 @@ export class Charts extends React.PureComponent {
       refWidget,
     } = this.props;
 
-    if (editMode && editMode.type && editMode.type === WIZARD_NODE_TYPE.MAP) {
-      return loadedData ? (
-        <Widget
-          data={loadedData}
-          onStateAndParamsChange={onStateAndParamsChange}
-          chartEditMode={editMode}
-          requestCancelToken={requestCancelToken}
-          entryId={id}
-          onLoad={this.onLoad}
-          onError={this.onError}
-          onChange={onChange}
-          ownWidgetParams={ownWidgetParams}
-          orderBy={orderBy}
-          onOrderByClickInWizard={onOrderByClickInWizard}
-          refWidget={refWidget}
-        />
-      ) : null;
-    }
-    return loadedData ? (
+    return editMode?.type === WIZARD_NODE_TYPE.MAP ? (
+      <Widget
+        data={loadedData}
+        onStateAndParamsChange={onStateAndParamsChange}
+        chartEditMode={editMode}
+        requestCancelToken={requestCancelToken}
+        entryId={id}
+        onLoad={this.onLoad}
+        onError={this.onError}
+        onChange={onChange}
+        ownWidgetParams={ownWidgetParams}
+        orderBy={orderBy}
+        onOrderByClickInWizard={onOrderByClickInWizard}
+        refWidget={refWidget}
+      />
+    ) : (
       <Widget
         data={loadedData}
         onStateAndParamsChange={onStateAndParamsChange}
@@ -213,6 +213,6 @@ export class Charts extends React.PureComponent {
         onOrderByClickInWizard={onOrderByClickInWizard}
         refWidget={refWidget}
       />
-    ) : null;
+    );
   }
 }
