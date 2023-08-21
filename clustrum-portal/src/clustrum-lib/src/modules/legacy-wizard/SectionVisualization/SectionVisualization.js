@@ -62,6 +62,7 @@ import {
   selectMapLayerOpacity,
   selectNeedTotal,
   selectNeedSteppedLayout,
+  selectSteppedLayoutIndentation,
   selectNeedUniqueRows,
   selectNullAlias,
   selectPaginateInfo,
@@ -153,6 +154,7 @@ class SectionVisualization extends Component {
       needUniqueRows,
       needTotal,
       needSteppedLayout,
+      steppedLayoutIndentation,
       paginateInfo,
       diagramMagnitude,
       exportLimit,
@@ -261,6 +263,7 @@ class SectionVisualization extends Component {
               needUniqueRows,
               needTotal,
               needSteppedLayout,
+              steppedLayoutIndentation,
               paginateInfo,
               diagramMagnitude,
               exportLimit,
@@ -318,6 +321,7 @@ class SectionVisualization extends Component {
       needUniqueRows,
       needTotal,
       needSteppedLayout,
+      steppedLayoutIndentation,
       updates,
       exportLimit,
       setFilters,
@@ -457,6 +461,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -493,6 +498,7 @@ class SectionVisualization extends Component {
                       needUniqueRows,
                       needTotal,
                       needSteppedLayout,
+                      steppedLayoutIndentation,
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
@@ -553,6 +559,7 @@ class SectionVisualization extends Component {
                   needUniqueRows,
                   needTotal,
                   needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -605,6 +612,7 @@ class SectionVisualization extends Component {
                   needUniqueRows,
                   needTotal,
                   needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -631,6 +639,7 @@ class SectionVisualization extends Component {
                   needUniqueRows,
                   needTotal,
                   needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -676,6 +685,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -728,6 +738,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -772,6 +783,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -817,6 +829,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -874,6 +887,7 @@ class SectionVisualization extends Component {
                     needUniqueRows: !needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -915,6 +929,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal: !needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -956,8 +971,48 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout: !needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
+                    exportLimit,
+                  });
+                }}
+              />
+            </div>
+          </div>
+        )}
+        {visualization.allowSteppedLayout && needSteppedLayout && (
+          <div className="subcontainer">
+            <div className="subheader">
+              <span>Макет с пошаговым отступом</span>
+            </div>
+            <div className="subitem">
+              <KamatechRangePicker
+                initialValue={steppedLayoutIndentation}
+                max={40}
+                onChange={steppedLayoutIndentation => {
+                  setMapLayerOpacity({ steppedLayoutIndentation });
+
+                  updatePreview({
+                    dataset,
+                    dimensions,
+                    measures,
+                    visualization,
+                    filters,
+                    colors,
+                    sort,
+                    coordType,
+                    titleLayerSource,
+                    clusterPrecision,
+                    updates,
+                    nullAlias,
+                    needUniqueRows,
+                    needTotal,
+                    needSteppedLayout,
+                    steppedLayoutIndentation,
+                    paginateInfo,
+                    diagramMagnitude,
+                    mapLayerOpacity,
                     exportLimit,
                   });
                 }}
@@ -999,6 +1054,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude: newValue[0],
                     exportLimit,
@@ -1043,6 +1099,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     mapLayerOpacity: value,
@@ -1088,6 +1145,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit: text,
@@ -1110,6 +1168,7 @@ class SectionVisualization extends Component {
                     needUniqueRows,
                     needTotal,
                     needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit: e.target.value,
@@ -1303,6 +1362,7 @@ class SectionVisualization extends Component {
       needUniqueRows,
       needTotal,
       needSteppedLayout,
+      steppedLayoutIndentation,
       paginateInfo,
       diagramMagnitude,
       exportLimit,
@@ -1353,6 +1413,7 @@ class SectionVisualization extends Component {
                       needUniqueRows,
                       needTotal,
                       needSteppedLayout,
+                      steppedLayoutIndentation,
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
@@ -1478,6 +1539,7 @@ const mapStateToProps = createStructuredSelector({
   needUniqueRows: selectNeedUniqueRows,
   needTotal: selectNeedTotal,
   needSteppedLayout: selectNeedSteppedLayout,
+  steppedLayoutIndentation: selectSteppedLayoutIndentation,
   paginateInfo: selectPaginateInfo,
   selectOrderBy: selectOrderBy,
 

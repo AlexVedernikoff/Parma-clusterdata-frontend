@@ -33,6 +33,7 @@ export const SET_NULL_ALIAS = 'SET_NULL_ALIAS';
 export const SET_NEED_UNIQUE_ROWS = 'SET_NEED_UNIQUE_ROWS';
 export const SET_NEED_TOTAL = 'SET_NEED_TOTAL';
 export const SET_NEED_STEPPED_LAYOUT = 'SET_NEED_STEPPED_LAYOUT';
+export const SET_STEPPED_LAYOUT_INDENTATION = 'SET_STEPPED_LAYOUT_INDENTATION';
 export const SET_PAGINATE_INFO = 'SET_PAGINATE_INFO';
 export const SET_ORDER_BY = 'SET_ORDER_BY';
 export const SET_LABELS = 'SET_LABELS';
@@ -255,6 +256,7 @@ export function fetchDataset({ datasetId, sdk }) {
             needUniqueRows,
             needTotal,
             needSteppedLayout,
+            steppedLayoutIndentation,
             paginateInfo,
             labels,
           } = {},
@@ -285,6 +287,7 @@ export function fetchDataset({ datasetId, sdk }) {
             needUniqueRows,
             needTotal,
             needSteppedLayout,
+            steppedLayoutIndentation,
             paginateInfo,
             labels,
             updates,
@@ -320,6 +323,7 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
         needUniqueRows,
         needTotal,
         needSteppedLayout,
+        steppedLayoutIndentation,
         paginateInfo,
         labels,
       } = {},
@@ -460,6 +464,7 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
           needUniqueRows,
           needTotal,
           needSteppedLayout,
+          steppedLayoutIndentation,
           paginateInfo,
           labels,
           updates: fullUpdates,
@@ -600,6 +605,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
     let needUniqueRows;
     let needTotal;
     let needSteppedLayout;
+    let steppedLayoutIndentation;
     let paginateInfo;
     let labels;
     let updates;
@@ -635,6 +641,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
           needUniqueRows,
           needTotal,
           needSteppedLayout,
+          steppedLayoutIndentation,
           diagramMagnitude,
           paginateInfo = { page: 0, pageSize: 150 },
           labels,
@@ -717,6 +724,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
           needUniqueRows,
           needTotal,
           needSteppedLayout,
+          steppedLayoutIndentation,
           paginateInfo,
           labels,
           diagramMagnitude,
@@ -847,6 +855,9 @@ export function fetchWidget({ entryId, preview, sdk }) {
         // Проставляем флаг о ступенчатом макете
         dispatch(setNeedSteppedLayout({ needSteppedLayout }));
 
+        // Проставляем флаг о ступенчатом макете
+        dispatch(setSteppedLayoutIndentation({ steppedLayoutIndentation }));
+
         dispatch(setPaginateInfo({ paginateInfo }));
 
         //проставляем количесство выгружаемых строк
@@ -879,6 +890,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
             needUniqueRows,
             needTotal,
             needSteppedLayout,
+            steppedLayoutIndentation,
             paginateInfo,
             labels,
             updates,
@@ -953,6 +965,7 @@ export function setVisualization({ visualization }) {
       needUniqueRows: state.visualization.needUniqueRows,
       needTotal: state.visualization.needTotal,
       needSteppedLayout: state.visualization.needSteppedLayout,
+      steppedLayoutIndentation: state.visualization.steppedLayoutIndentation,
       paginateInfo: state.visualization.paginateInfo,
     };
   };
@@ -1063,6 +1076,13 @@ export function setNeedSteppedLayout({ needSteppedLayout }) {
   return {
     type: SET_NEED_STEPPED_LAYOUT,
     needSteppedLayout,
+  };
+}
+
+export function setSteppedLayoutIndentation({ steppedLayoutIndentation }) {
+  return {
+    type: SET_STEPPED_LAYOUT_INDENTATION,
+    steppedLayoutIndentation,
   };
 }
 
