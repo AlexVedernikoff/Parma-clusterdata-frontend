@@ -41,6 +41,7 @@ import {
   setMapLayerOpacity,
   setNeedTotal,
   setNeedSteppedLayout,
+  setSteppedLayoutIndentation,
   setNeedUniqueRows,
   setNullAlias,
   setPaginateInfo,
@@ -335,6 +336,7 @@ class SectionVisualization extends Component {
       setNeedUniqueRows,
       setNeedTotal,
       setNeedSteppedLayout,
+      setSteppedLayoutIndentation,
       paginateInfo,
       setPaginateInfo,
       diagramMagnitude,
@@ -991,7 +993,7 @@ class SectionVisualization extends Component {
                 initialValue={steppedLayoutIndentation}
                 max={40}
                 onChange={steppedLayoutIndentation => {
-                  setMapLayerOpacity({ steppedLayoutIndentation });
+                  setSteppedLayoutIndentation({ steppedLayoutIndentation });
 
                   updatePreview({
                     dataset,
@@ -1572,6 +1574,7 @@ const mapDispatchToProps = {
   setMapLayerOpacity,
   setExportLimit,
   setNeedSteppedLayout,
+  setSteppedLayoutIndentation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SectionVisualization);
