@@ -2,10 +2,10 @@ import { VisualizationType } from './visualization-type';
 import { ContainerProps } from './container-props';
 
 export interface VisualizationFactoryProps {
-  containerTitle: string;
-  containerType: VisualizationType;
+  title: string;
+  type: VisualizationType;
   containerProps: ContainerProps;
-  containerIcon?: JSX.Element;
-  containerClassName?: string;
+  icon?: JSX.Element;
+  className?: string;
   containerContent?: JSX.Element;
 }

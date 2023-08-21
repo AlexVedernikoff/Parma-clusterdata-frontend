@@ -1,5 +1,5 @@
 import React from 'react';
-import { DndContainer } from '../../../shared/ui/drag-n-drop';
+import { DndContainer } from '@lib-shared/ui/drag-n-drop';
 import { VisualizationControlContainer } from './visualization-control-container';
 import { DndContainerProps, DndItemData } from '@lib-shared/ui/drag-n-drop/types';
 import {
@@ -16,34 +16,13 @@ import { KamatechRangePicker as KamatechRangePickerType } from '../../../../../.
 import Select from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import TextInput from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
 
-export function VisualizationFactory(props: VisualizationFactoryProps): JSX.Element {
-  const {
-    containerType,
-    containerProps,
-    containerTitle,
-    containerIcon,
-    containerClassName,
-    containerContent,
-  } = props;
-
-  return (
-    <VisualizationControlContainer
-      title={containerTitle}
-      icon={containerIcon}
-      className={containerClassName}
-    >
-      {selectControl(containerType, containerProps, containerContent)}
-    </VisualizationControlContainer>
-  );
-}
-
 const selectControl = (
-  containerType: VisualizationType,
+  type: VisualizationType,
   containerProps: ContainerProps,
   containerContent?: JSX.Element,
 ): JSX.Element | null => {
   //TODO Добавить остальные проверки, после появления типов
-  switch (containerType) {
+  switch (type) {
     case VisualizationType.DndContainer:
       return isDndContainerProps(containerProps) ? (
         <DndContainer {...(containerProps as DndContainerProps<DndItemData>)} />
@@ -60,3 +39,13 @@ const selectControl = (
       return null;
   }
 };
+
+export function VisualizationFactory(props: VisualizationFactoryProps): JSX.Element {
+  const { type, containerProps, title, icon, className, containerContent } = props;
+
+  return (
+    <VisualizationControlContainer title={title} icon={icon} className={className}>
+      {selectControl(type, containerProps, containerContent)}
+    </VisualizationControlContainer>
+  );
+}

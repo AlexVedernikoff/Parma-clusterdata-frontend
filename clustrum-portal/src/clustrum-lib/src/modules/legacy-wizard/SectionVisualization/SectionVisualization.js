@@ -6,7 +6,7 @@ import { Tooltip } from 'lego-on-react';
 
 import iconVisualization from 'icons/visualization.svg';
 import iconError from 'icons/error.svg';
-import { VisualizationFactory } from '@lib-entities/visualization-factory/ui/visualization-factory';
+import { VisualizationFactory } from '@lib-entities/visualization-factory';
 
 import {
   CloseOutlined,
@@ -84,7 +84,7 @@ import { CastIconsFactory } from '@lib-shared/ui/cast-icons-factory';
 import Select from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
-import { VisualizationType } from '@lib-entities/visualization-factory/types/visualization-type';
+import { VisualizationType } from '@lib-entities/visualization-factory/types';
 
 const VISUALIZATION_LABELS = {
   'label_visualization-area': 'Диаграмма с областями',
@@ -405,9 +405,9 @@ class SectionVisualization extends Component {
         })}
         {visualization.allowFilters && (
           <VisualizationFactory
-            containerTitle="Фильтры"
-            containerIcon={<FilterOutlined width="16" height="16" />}
-            containerType={VisualizationType.DndContainer}
+            title="Фильтры"
+            icon={<FilterOutlined width="16" height="16" />}
+            type={VisualizationType.DndContainer}
             containerProps={{
               id: 'filter-container',
               isNeedRemove: true,
@@ -551,9 +551,9 @@ class SectionVisualization extends Component {
         )} */}
         {visualization.allowSort && (
           <VisualizationFactory
-            containerTitle="Сортировка"
-            containerIcon={<SortAscendingOutlined width="16" height="16" />}
-            containerType={VisualizationType.DndContainer}
+            title="Сортировка"
+            icon={<SortAscendingOutlined width="16" height="16" />}
+            type={VisualizationType.DndContainer}
             containerProps={{
               id: 'sort-container',
               isNeedRemove: true,
@@ -624,9 +624,9 @@ class SectionVisualization extends Component {
         )}
         {visualization.allowCoordType && (
           <VisualizationFactory
-            containerTitle="Система координат"
-            containerType={VisualizationType.Select}
-            containerClassName="subitem"
+            title="Система координат"
+            type={VisualizationType.Select}
+            className="subitem"
             containerContent={coordsItems.map((coordType, i) => {
               return (
                 <Select.Item key={`coordType-${i}`} val={coordType}>
@@ -673,9 +673,9 @@ class SectionVisualization extends Component {
         )}
         {visualization.allowTitleLayerSource && (
           <VisualizationFactory
-            containerTitle="Адрес топосновы"
-            containerType={VisualizationType.TextInput}
-            containerClassName="subitem"
+            title="Адрес топосновы"
+            type={VisualizationType.TextInput}
+            className="subitem"
             containerProps={{
               text: titleLayerSource,
               widthSize: 'm',
@@ -714,9 +714,9 @@ class SectionVisualization extends Component {
         )}
         {visualization.allowClusterPrecision && (
           <VisualizationFactory
-            containerTitle="Точность кластера"
-            containerType={VisualizationType.TextInput}
-            containerClassName="subitem"
+            title="Точность кластера"
+            type={VisualizationType.TextInput}
+            className="subitem"
             containerProps={{
               text: clusterPrecision,
               widthSize: 'm',
@@ -755,9 +755,9 @@ class SectionVisualization extends Component {
         )}
         {visualization.allowNullAlias && (
           <VisualizationFactory
-            containerTitle="Подпись для пустых данных"
-            containerType={VisualizationType.Select}
-            containerClassName="subitem"
+            title="Подпись для пустых данных"
+            type={VisualizationType.Select}
+            className="subitem"
             containerContent={nullAliasItems.map((nullAlias, i) => {
               const nullAliasLabels = {
                 null: 'Без подписи',
@@ -811,9 +811,9 @@ class SectionVisualization extends Component {
         )}
         {visualization.allowUniqueRows && (
           <VisualizationFactory
-            containerTitle="Строки"
-            containerType={VisualizationType.CheckBox}
-            containerClassName="subitem"
+            title="Строки"
+            type={VisualizationType.CheckBox}
+            className="subitem"
             containerProps={{
               theme: 'normal',
               size: 'n',
@@ -848,9 +848,9 @@ class SectionVisualization extends Component {
         )}
         {visualization.allowTotal && (
           <VisualizationFactory
-            containerTitle="Строка итоговых значений"
-            containerType={VisualizationType.CheckBox}
-            containerClassName="subitem"
+            title="Строка итоговых значений"
+            type={VisualizationType.CheckBox}
+            className="subitem"
             containerProps={{
               theme: 'normal',
               size: 'n',
@@ -885,9 +885,9 @@ class SectionVisualization extends Component {
         )}
         {visualization.allowDiagramMagnitude && (
           <VisualizationFactory
-            containerTitle="Единицы измерения диаграммы"
-            containerType={VisualizationType.Select}
-            containerClassName="subitem"
+            title="Единицы измерения диаграммы"
+            type={VisualizationType.Select}
+            className="subitem"
             containerContent={diagramMagnitudeItems.map((magnitudeItem, i) => {
               return (
                 <Select.Item key={`measureItem-${i}`} val={magnitudeItem.value}>
@@ -931,9 +931,9 @@ class SectionVisualization extends Component {
         )}
         {visualization.allowMapLayerOpacity && (
           <VisualizationFactory
-            containerTitle="Прозрачность карты"
-            containerType={VisualizationType.RangePicker}
-            containerClassName="subitem"
+            title="Прозрачность карты"
+            type={VisualizationType.RangePicker}
+            className="subitem"
             containerProps={{
               initialValue: mapLayerOpacity,
               onChange: value => {
@@ -964,9 +964,9 @@ class SectionVisualization extends Component {
         )}
         {
           <VisualizationFactory
-            containerTitle="Лимит экспортируемых записей"
-            containerType={VisualizationType.TextInput}
-            containerClassName="subitem"
+            title="Лимит экспортируемых записей"
+            type={VisualizationType.TextInput}
+            className="subitem"
             containerProps={{
               text: exportLimit,
               widthSize: 'm',
