@@ -43,7 +43,7 @@ const initialState = {
   needUniqueRows: false,
   needTotal: false,
   needSteppedLayout: false,
-  steppedLayoutIndentation: 0,
+  steppedLayoutIndentation: 10,
   paginateInfo: {
     page: 0,
     pageSize: 150,
@@ -85,7 +85,7 @@ export function visualization(state = initialState, action) {
         needUniqueRows: false,
         needTotal: false,
         needSteppedLayout: false,
-        steppedLayoutIndentation: 0,
+        steppedLayoutIndentation: 10,
         paginateInfo: {},
         exportLimit: 10000,
         orderBy: {},

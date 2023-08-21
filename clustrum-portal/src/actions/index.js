@@ -855,8 +855,10 @@ export function fetchWidget({ entryId, preview, sdk }) {
         // Проставляем флаг о ступенчатом макете
         dispatch(setNeedSteppedLayout({ needSteppedLayout }));
 
-        // Проставляем флаг о ступенчатом макете
-        dispatch(setSteppedLayoutIndentation({ steppedLayoutIndentation }));
+        if (Number.isFinite(steppedLayoutIndentation)) {
+          // Проставляем значение пошагового отступа макета
+          dispatch(setSteppedLayoutIndentation({ steppedLayoutIndentation }));
+        }
 
         dispatch(setPaginateInfo({ paginateInfo }));
 
