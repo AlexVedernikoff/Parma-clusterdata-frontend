@@ -22,7 +22,7 @@ import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 
 const b = block('chartkit');
 
-export class ChartKit extends React.Component {
+export class WidgetContainer extends React.Component {
   constructor(props) {
     super(props);
     this.resetValue = this.resetValue.bind(this);
