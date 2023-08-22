@@ -28,6 +28,8 @@ import { NULL_ALIAS_DEFAULT_VALUE } from '../../kamatech_modules/@kamatech-data-
 
 // Reducers
 
+const defaultSteppedLayoutIndentation = 10;
+
 const initialState = {
   visualizationType: VISUALIZATION_TYPES[0],
   visualization: null,
@@ -43,7 +45,7 @@ const initialState = {
   needUniqueRows: false,
   needTotal: false,
   needSteppedLayout: false,
-  steppedLayoutIndentation: 10,
+  steppedLayoutIndentation: defaultSteppedLayoutIndentation,
   paginateInfo: {
     page: 0,
     pageSize: 150,
@@ -85,7 +87,7 @@ export function visualization(state = initialState, action) {
         needUniqueRows: false,
         needTotal: false,
         needSteppedLayout: false,
-        steppedLayoutIndentation: 10,
+        steppedLayoutIndentation: defaultSteppedLayoutIndentation,
         paginateInfo: {},
         exportLimit: 10000,
         orderBy: {},

@@ -110,6 +110,8 @@ const VISUALIZATION_LABELS = {
   label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
 };
 
+const steppedLayoutIndentationMaxValue = 40;
+
 // todo разбить на компоненты
 class SectionVisualization extends Component {
   constructor(props) {
@@ -991,7 +993,7 @@ class SectionVisualization extends Component {
             <div className="subitem">
               <KamatechRangePicker
                 initialValue={steppedLayoutIndentation}
-                max={40}
+                max={steppedLayoutIndentationMaxValue}
                 onChange={steppedLayoutIndentation => {
                   setSteppedLayoutIndentation({ steppedLayoutIndentation });
 
