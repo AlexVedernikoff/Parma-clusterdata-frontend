@@ -256,7 +256,10 @@ exports.generateConfig = (
         'process.env.REACT_APP_CLUSTRUM_BI_HOST': JSON.stringify(biHost),
         'process.env.REACT_APP_CLUSTRUM_PORTAL_HOST': JSON.stringify(portalHost),
         'process.env.REACT_APP_CLUSTRUM_EXPORT_HOST': JSON.stringify(exportHost),
-        'process.env.REACT_APP_CLUSTRUM_SYSTEM_TITLE': JSON.stringify(systemTitle),
+        BUILD_SETTINGS: JSON.stringify({
+          systemTitle,
+          isLib: false,
+        }),
       }),
     ],
   };

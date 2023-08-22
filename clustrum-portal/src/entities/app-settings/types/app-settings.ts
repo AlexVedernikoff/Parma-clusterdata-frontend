@@ -1,7 +1,6 @@
 export interface AppSettings {
   env: string;
   appEnv: string;
-  dotenv: any;
   installationType: string;
   user: User;
   hideHeader: boolean;
@@ -13,23 +12,14 @@ export interface AppSettings {
   exportMode: boolean | null;
   stateUuid: string;
   currentCloudFolderId: string;
-  clouds: any[];
+  clouds: unknown[];
   title: string;
   endpoints: Endpoints;
-  features: {
-    logoText: string;
-    toggleTheme: boolean;
-    dataset: {
-      appMetricaEnabled: boolean;
-    };
-  };
-  chartkit: {
-    chartsEndpoint: string;
-    lang: string;
-    config: boolean;
-  };
+  features: Features;
+  chartkit: Charkit;
   menu: Menu;
   metrikaOAuthClientId: string;
+  mapLayerSource: string;
 }
 
 export interface User {
@@ -80,6 +70,20 @@ export interface MenuGroup {
 
 export interface Menu {
   currentGroup: string;
-  common: any[];
+  common: unknown[];
   groups: MenuGroup[];
+}
+
+export interface Charkit {
+  chartsEndpoint: string;
+  lang: string;
+  config: boolean;
+}
+
+export interface Features {
+  logoText: string;
+  toggleTheme: boolean;
+  dataset: {
+    appMetricaEnabled: boolean;
+  };
 }

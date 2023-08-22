@@ -61,7 +61,6 @@ class Header extends React.PureComponent {
     resetAllFilters: PropTypes.func.isRequired,
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
-    isBuild: PropTypes.bool,
     hasRightSideContent: PropTypes.bool,
   };
 
@@ -341,7 +340,7 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { isBuild, isEditMode } = this.props;
+    const { isEditMode } = this.props;
     const renderRightItems = isEditMode ? this.renderEditItems() : this.renderViewItems();
 
     return (
@@ -357,7 +356,6 @@ class Header extends React.PureComponent {
               'is-edit': this.props.isEditMode,
               'is-view': !this.props.isEditMode,
             })}
-            isBuild={isBuild}
           />
         )}
       </>

@@ -528,7 +528,7 @@ class OLMap extends React.Component {
       return this.tileXYZLayer(url);
     }
 
-    return this.tileXYZLayer($appSettingsStore.getState().dotenv.MAP_LAYER_SOURCE);
+    return this.tileXYZLayer($appSettingsStore.getState().mapLayerSource);
   };
 
   tileXYZLayer = url => {

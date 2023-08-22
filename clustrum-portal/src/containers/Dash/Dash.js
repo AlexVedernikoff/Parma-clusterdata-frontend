@@ -48,7 +48,6 @@ class Dash extends React.PureComponent {
     setWidgetEditorUUID: PropTypes.func.isRequired,
     setWidgetForReloadUUID: PropTypes.func.isRequired,
     defaultEntryId: PropTypes.string,
-    isBuild: PropTypes.bool,
     hasRightSideContent: PropTypes.bool,
     onFiltersChange: PropTypes.func,
   };
@@ -116,19 +115,13 @@ class Dash extends React.PureComponent {
   };
 
   render() {
-    const {
-      widgetEditorUUID,
-      title,
-      isBuild,
-      hasRightSideContent,
-      onFiltersChange,
-    } = this.props;
+    const { widgetEditorUUID, title, hasRightSideContent, onFiltersChange } = this.props;
 
     return (
       <React.Fragment>
-        <PageHead title={title} />
-        <Header isBuild={isBuild} hasRightSideContent={hasRightSideContent} />
-        <Body isBuild={isBuild} onFiltersChange={onFiltersChange} />
+        {!BUILD_SETTINGS.isLib && <PageHead title={title} />}
+        <Header hasRightSideContent={hasRightSideContent} />
+        <Body onFiltersChange={onFiltersChange} />
         <Dialogs />
         <SideSlidingPanel
           title="Режим редактирования элемента"

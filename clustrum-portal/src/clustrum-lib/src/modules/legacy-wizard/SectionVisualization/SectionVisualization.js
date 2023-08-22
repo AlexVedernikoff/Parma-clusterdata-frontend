@@ -384,7 +384,7 @@ class SectionVisualization extends Component {
     }
     if (!titleLayerSource && visualization.allowTitleLayerSource) {
       setTitleLayerSource({
-        titleLayerSource: $appSettingsStore.getState().dotenv.MAP_LAYER_SOURCE,
+        titleLayerSource: $appSettingsStore.getState().mapLayerSource,
       });
     }
     if (!clusterPrecision && visualization.allowClusterPrecision) {

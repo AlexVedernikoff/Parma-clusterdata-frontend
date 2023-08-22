@@ -64,7 +64,6 @@ export function DashBuild(props) {
                 render={() => (
                   <Dash
                     defaultEntryId={entryId}
-                    isBuild
                     hasRightSideContent={!hideRightSideContent}
                     onFiltersChange={onFiltersChange}
                   />

@@ -1,20 +1,18 @@
 import { createEvent, createStore } from 'effector';
 import { AppSettings } from '../types';
+import { DEFAULT_ENV_VARIABLES } from '../lib/constants';
 
 const getInitialConfig = (): AppSettings => {
-  const biHost = process.env.REACT_APP_CLUSTRUM_BI_HOST || '';
-  const portalHost = process.env.REACT_APP_CLUSTRUM_PORTAL_HOST || '';
-  const exportHost = process.env.REACT_APP_CLUSTRUM_EXPORT_HOST || '';
-
-  const dotenv = {
-    SYSTEM_TITLE: process.env.REACT_APP_CLUSTRUM_SYSTEM_TITLE || '',
-    MAP_LAYER_SOURCE: 'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  };
+  const biHost = process.env.REACT_APP_CLUSTRUM_BI_HOST ?? DEFAULT_ENV_VARIABLES.biHost;
+  const portalHost =
+    process.env.REACT_APP_CLUSTRUM_PORTAL_HOST ?? DEFAULT_ENV_VARIABLES.portalHost;
+  const exportHost =
+    process.env.REACT_APP_CLUSTRUM_EXPORT_HOST ?? DEFAULT_ENV_VARIABLES.exportHost;
+  const systemTitle = BUILD_SETTINGS.isLib ? '' : BUILD_SETTINGS.systemTitle;
 
   return {
     env: 'development',
     appEnv: 'development',
-    dotenv: dotenv,
     installationType: 'external',
     user: {
       lang: 'ru',
@@ -35,7 +33,7 @@ const getInitialConfig = (): AppSettings => {
     stateUuid: '',
     currentCloudFolderId: 'b1gv7h11svmfudripdnc',
     clouds: [],
-    title: dotenv.SYSTEM_TITLE,
+    title: systemTitle,
     endpoints: {
       charts: biHost,
       connections: `${portalHost}/connections`,
@@ -59,7 +57,7 @@ const getInitialConfig = (): AppSettings => {
       exportPdf: `${exportHost}/export`,
     },
     features: {
-      logoText: dotenv.SYSTEM_TITLE,
+      logoText: systemTitle,
       toggleTheme: true,
       dataset: {
         appMetricaEnabled: false,
@@ -76,7 +74,7 @@ const getInitialConfig = (): AppSettings => {
       groups: [
         {
           name: 'clustrum',
-          title: dotenv.SYSTEM_TITLE,
+          title: systemTitle,
           items: [
             {
               icon: 'folder',
@@ -119,6 +117,7 @@ const getInitialConfig = (): AppSettings => {
       ],
     },
     metrikaOAuthClientId: '4f802221a95340dd9417c04bc30606b5',
+    mapLayerSource: 'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png',
   };
 };
 

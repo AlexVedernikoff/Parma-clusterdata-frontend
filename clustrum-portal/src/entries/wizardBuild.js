@@ -85,7 +85,6 @@ export function WizardBuild(props) {
                 component={props => (
                   <Wizard
                     {...props}
-                    isBuild
                     onExport={handleExport}
                     sdk={sdk}
                     entryId={entryId}

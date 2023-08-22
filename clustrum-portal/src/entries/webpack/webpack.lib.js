@@ -1,20 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
-const {
-  PORTAL_ASSETS_PATH,
-  BI_PATH,
-  EXPORT_PATH,
-} = require('../../../src/context-path.js');
-
-const biHost = `http://localhost:8090${BI_PATH}`;
-const portalHost = 'http://localhost:8090';
-const exportHost = `http://localhost:8096${EXPORT_PATH}`;
+const { PORTAL_ASSETS_PATH } = require('../../../src/context-path.js');
 
 module.exports = {
   mode: 'production',
   entry: './src/entries/libBuilder.js',
   output: {
-    path: path.resolve('./src/entries/dist/'),
+    path: 'D:\\test-lib\\clustrum-embedded-lib\\src\\lib',
     filename: 'bundle.js',
     library: {
       type: 'umd',
@@ -111,4 +103,11 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      BUILD_SETTINGS: JSON.stringify({
+        isLib: true,
+      }),
+    }),
+  ],
 };
