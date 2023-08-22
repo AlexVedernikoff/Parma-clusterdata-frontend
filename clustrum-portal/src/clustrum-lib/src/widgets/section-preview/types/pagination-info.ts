@@ -1,4 +1,4 @@
-export interface Paginationinfo {
+export interface PaginationInfo {
   page: number;
   pageSize: number;
 }

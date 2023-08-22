@@ -14,7 +14,7 @@ import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { SectionDataset } from '@lib-widgets/section-dataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
-import { ConnectedSectionPreview } from '../../widgets/section-preview/ui/section-preview';
+import { SectionPreview } from '@lib-widgets/section-preview';
 
 import DialogNoRights from './components/Dialogs/DialogNoRights';
 
@@ -349,7 +349,7 @@ class Wizard extends Component {
             </div>
           )}
           <div className="column preview-column">
-            <ConnectedSectionPreview
+            <SectionPreview
               entryDialoguesRef={entryDialoguesRef}
               sdk={sdk}
               onExport={onExport}

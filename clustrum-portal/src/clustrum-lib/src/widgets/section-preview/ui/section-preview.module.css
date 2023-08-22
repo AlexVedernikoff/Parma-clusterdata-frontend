@@ -1,7 +1,7 @@
 .preview-chartkit {
   height: 100%;
   padding: 20px;
-  background: var(--color-base);
+  background: #fff;
 }
 
 .preview-chartkit__dataset-error-container {
