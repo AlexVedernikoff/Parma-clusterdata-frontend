@@ -111,13 +111,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      ENV: JSON.stringify({
-        biHost,
-        portalHost,
-        exportHost,
-      }),
-    }),
-  ],
 };

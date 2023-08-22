@@ -85,6 +85,7 @@ import Select from '../../../../../../kamatech_modules/lego-on-react/es-modules-
 import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 import { VisualizationType } from '@lib-entities/visualization-factory/types';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const VISUALIZATION_LABELS = {
   'label_visualization-area': 'Диаграмма с областями',
@@ -383,7 +384,7 @@ class SectionVisualization extends Component {
     }
     if (!titleLayerSource && visualization.allowTitleLayerSource) {
       setTitleLayerSource({
-        titleLayerSource: window.DL.dotenv.MAP_LAYER_SOURCE,
+        titleLayerSource: $appSettingsStore.getState().dotenv.MAP_LAYER_SOURCE,
       });
     }
     if (!clusterPrecision && visualization.allowClusterPrecision) {

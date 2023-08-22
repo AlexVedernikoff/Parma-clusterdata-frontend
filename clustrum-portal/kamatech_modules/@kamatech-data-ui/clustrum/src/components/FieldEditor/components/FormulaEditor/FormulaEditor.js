@@ -6,6 +6,7 @@ import { Link, TextInput } from 'lego-on-react';
 import AceEditor from '../../../AceEditor/AceEditor';
 import AccessibleFields from '../AccessibleFields/AccessibleFields';
 import FunctionManual from '../FunctionManual/FunctionManual';
+import { $appSettingsStore } from '@entities/app-settings';
 
 // import './FormulaEditor.scss';
 
@@ -113,7 +114,7 @@ class FormulaEditor extends React.Component {
       onChange,
     } = this.props;
     const { searchKeyword } = this.state;
-    const { endpoints: { docsSyntax } = {} } = window.DL;
+    const { endpoints: { docsSyntax } = {} } = $appSettingsStore.getState();
 
     return (
       <div className={b()}>

@@ -1,6 +1,8 @@
-export const IS_DEVELOPMENT = window.DL.env === 'development';
+import { $appSettingsStore } from '@entities/app-settings';
 
-export const IS_INTERNAL = window.DL.installationType === 'internal';
+export const IS_DEVELOPMENT = $appSettingsStore.getState().env === 'development';
+
+export const IS_INTERNAL = $appSettingsStore.getState().installationType === 'internal';
 
 export const PREFIX = IS_DEVELOPMENT || IS_INTERNAL ? '' : '/dashboards';
 

@@ -26,11 +26,12 @@ import ExpandedFilter from '../ExpandedFilter/ExpandedFilter';
 import { resetWizard } from '../../actions';
 import { WizardSavingStatus } from './WizardSavingStatus';
 import { exportWidget } from '../../services/dashboard/export/export-widget';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const sdk = new SDK({
-  endpoints: window.DL.endpoints,
-  currentCloudFolderId: window.DL.currentCloudFolderId,
-  currentCloudId: window.DL.currentCloudId,
+  endpoints: $appSettingsStore.getState().endpoints,
+  currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
+  currentCloudId: $appSettingsStore.getState().currentCloudId,
 });
 
 const WIDGET_EDITOR_WIDTH_MOD = '80';

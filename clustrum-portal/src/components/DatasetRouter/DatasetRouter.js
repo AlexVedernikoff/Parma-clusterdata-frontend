@@ -9,6 +9,7 @@ import DatasetPage from '../../containers/DatasetPage/DatasetPage';
 import DatasetCreationPage from '../../containers/DatasetCreationPage/DatasetCreationPage';
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 import { PageContainer } from '@widgets/page-container';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('dataset-router');
 
@@ -27,7 +28,7 @@ class DatasetRouter extends PureComponent {
       menu = [],
       features: { logoText, toggleTheme } = {},
       user = {},
-    } = window.DL;
+    } = $appSettingsStore.getState();
     const userData = {
       ...user,
       yu: Utils.getCookie('parmauid'),

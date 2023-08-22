@@ -6,7 +6,7 @@ export const getDashboardControlRequest = (
 ): Promise<LoadedData> => {
   const requestConfig: AxiosRequestConfig = {
     method: 'post',
-    url: `${ENV.biHost}/runDashControl`,
+    url: `${process.env.REACT_APP_CLUSTRUM_BI_HOST}/runDashControl`,
     data,
   };
 

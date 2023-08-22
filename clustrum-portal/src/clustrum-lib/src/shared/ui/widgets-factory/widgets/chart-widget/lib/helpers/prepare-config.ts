@@ -7,6 +7,7 @@ import defaultOptions from './get-default-options';
 // eslint-disable-next-line
 // @ts-ignore
 import ExtensionsManager from '@kamatech-data-ui/chartkit/lib/modules/extensions-manager/extensions-manager';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const EXTENSION_KEY = {
   HOLIDAYS: 'holidays',
@@ -655,7 +656,7 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
     };
 
     //@ts-ignore
-    if (window.DL.exportMode) {
+    if ($appSettingsStore.getState().exportMode) {
       options.echart.plotOptions.pie.dataLabels.enabled = true;
     }
   }

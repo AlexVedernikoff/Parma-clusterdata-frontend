@@ -20,12 +20,13 @@ import { selectDatasetError } from '../../../../../reducers/dataset';
 import { selectWidget } from '../../../../../reducers/widget';
 import { setHighchartsWidget } from '../../../../../actions';
 import { createStructuredSelector } from 'reselect';
+import { $appSettingsStore } from '@entities/app-settings';
 
 function goAwayLink(
   { loadedData, propsData },
   { extraParams = {}, urlPostfix = '', idPrefix = '' },
 ) {
-  let url = window.DL.endpoints.wizard + urlPostfix;
+  let url = $appSettingsStore.getState().endpoints.wizard + urlPostfix;
 
   url +=
     loadedData.entryId || propsData.id
@@ -38,9 +39,11 @@ function goAwayLink(
   return url + query;
 }
 
-window.DL.chartkit.requestDecorator = request => {
-  if (window.DL.currentCloudFolderId) {
-    request.headers['x-yacloud-folderid'] = window.DL.currentCloudFolderId;
+window.requestDecorator = request => {
+  if ($appSettingsStore.getState().currentCloudFolderId) {
+    request.headers[
+      'x-yacloud-folderid'
+    ] = $appSettingsStore.getState().currentCloudFolderId;
   }
 
   const csrfTokenElement = document.getElementsByName('csrf-token')[0];

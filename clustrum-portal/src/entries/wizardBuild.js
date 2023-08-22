@@ -7,6 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
+import { useUnit } from 'effector-react';
 
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
@@ -16,7 +17,6 @@ import { Wizard } from '@clustrum-lib-legacy';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import { SDK } from '@kamatech-data-ui/clustrum';
 import { ANT_TOKEN } from '@shared/config/theme';
-import { replaceIframeParams } from '@shared/lib/utils';
 import ruRU from 'antd/locale/ru_RU';
 import reducers from '../reducers';
 import { exportWidget } from '../services/dashboard/export/export-widget';
@@ -30,6 +30,7 @@ import './../css/card.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
+import { $appSettingsStore, setAppSettingsEvent } from '@entities/app-settings';
 
 const middlewares = [thunkMiddleware];
 
@@ -48,14 +49,25 @@ Utils.setBodyFeatures();
 logVersion();
 
 const sdk = new SDK({
-  endpoints: window.DL.endpoints,
-  currentCloudFolderId: window.DL.currentCloudFolderId,
-  currentCloudId: window.DL.currentCloudId,
+  endpoints: $appSettingsStore.getState().endpoints,
+  currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
+  currentCloudId: $appSettingsStore.getState().currentCloudId,
 });
 
 export function WizardBuild(props) {
   const { entryId } = props;
-  replaceIframeParams(props);
+
+  const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  setAppSettings({
+    hideHeader: props.hideHeader,
+    hideSubHeader: props.hideSubHeader,
+    hideTabs: props.hideTabs,
+    hideEdit: props.hideEdit,
+    enableCaching: props.enableCaching,
+    cacheMode: props.cacheMode,
+    exportMode: props.exportMode,
+    stateUuid: props.stateUuid,
+  });
 
   const handleExport = (id, name, options) => {
     exportWidget({ id, name }, undefined, options);

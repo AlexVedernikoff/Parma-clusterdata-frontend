@@ -43,6 +43,7 @@ import {
   FilterOutlined,
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('dash-header');
 
@@ -298,7 +299,7 @@ class Header extends React.PureComponent {
           <Button icon={<DownloadOutlined />}>Экспортировать</Button>
         </Dropdown>,
         <>
-          {!window.DL.hideEdit && (
+          {!$appSettingsStore.getState().hideEdit && (
             <Button
               title="Редактировать"
               onClick={() => setMode(MODE.EDIT)}
@@ -346,7 +347,7 @@ class Header extends React.PureComponent {
     return (
       <>
         <BrowserPrint />
-        {!window.DL.hideSubHeader && this.props.entry && (
+        {!$appSettingsStore.getState().hideSubHeader && this.props.entry && (
           <ActionPanel
             sdk={SDK}
             entryId={this.props.entry.entryId}
