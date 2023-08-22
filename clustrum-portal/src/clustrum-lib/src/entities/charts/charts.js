@@ -8,6 +8,7 @@ import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/widget';
 import ChartsModule from '@kamatech-data-ui/chartkit/lib/modules/charts/charts';
 import ErrorDispatcher from '@kamatech-data-ui/chartkit/lib/modules/error-dispatcher/error-dispatcher';
 import { getParamsValue } from '@clustrum-lib';
+import { isPropsTheSame } from '../chart-kit/model/is-props-the-same';
 // TODO: Перечисление WIZARD_NODE_TYPE фактически дублирует перечисление WidgetType
 // Нужно рассмотреть возможность использования только второго
 import { WIZARD_NODE_TYPE } from '../../../../constants/constants';
@@ -43,38 +44,21 @@ export class Charts extends React.PureComponent {
   /* eslint-disable @typescript-eslint/explicit-function-return-type */
   componentDidMount() {
     this._isMounted = true;
-    this.run();
+    this.setLoadedData();
   }
 
   /* eslint-disable @typescript-eslint/explicit-function-return-type */
   componentDidUpdate(prevProps) {
-    const {
-      id,
-      source,
-      params,
-      forceUpdate,
-      editMode,
-      paginateInfo,
-      orderBy,
-    } = this.props;
     /**
      * todo в родительском компоненте уже происходит проверка на обновление
      * это сделано потому что размазали логику по нескольким компонентам (Charts и Charkit) - хорошо бы структурировать
      */
     // === из-за того, что componentDidUpdate происходит на this.setState
-    if (
-      (!forceUpdate || forceUpdate === prevProps.forceUpdate) &&
-      prevProps.id === id &&
-      prevProps.source === source &&
-      isEqual(getParamsValue(prevProps.params), getParamsValue(params)) &&
-      isEqual(prevProps.editMode, editMode) &&
-      isEqual(prevProps.paginateInfo, paginateInfo) &&
-      isEqual(prevProps.orderBy, orderBy)
-    ) {
+    if (isPropsTheSame(prevProps, this.props)) {
       return;
     }
 
-    this.run();
+    this.setLoadedData();
   }
 
   /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -109,7 +93,7 @@ export class Charts extends React.PureComponent {
     }
   };
 
-  async run() {
+  async setLoadedData() {
     try {
       const {
         id,
@@ -128,8 +112,7 @@ export class Charts extends React.PureComponent {
           widgetType: 'map',
           params: params,
           data: {
-            shared:
-              editMode.config && editMode.config.shared ? editMode.config.shared : {},
+            shared: editMode.config?.shared ? editMode.config.shared : {},
             geoJson: {
               coordType: editMode.config.shared.coordType,
               titleLayerSource: editMode.config.shared.titleLayerSource,

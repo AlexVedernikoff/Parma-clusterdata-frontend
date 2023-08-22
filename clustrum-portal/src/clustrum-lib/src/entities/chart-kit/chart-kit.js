@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable react/destructuring-assignment */
 import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
