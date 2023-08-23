@@ -8,11 +8,13 @@ import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/widget';
 import ChartsModule from '@kamatech-data-ui/chartkit/lib/modules/charts/charts';
 import ErrorDispatcher from '@kamatech-data-ui/chartkit/lib/modules/error-dispatcher/error-dispatcher';
 import { getParamsValue } from '@clustrum-lib';
-import { isPropsTheSame } from '../widget-container/model/is-props-the-same';
+import { isPropsTheSame } from '../model/is-props-the-same';
 // TODO: Перечисление WIZARD_NODE_TYPE фактически дублирует перечисление WidgetType
 // Нужно рассмотреть возможность использования только второго
-import { WIZARD_NODE_TYPE } from '../../../../constants/constants';
+import { WIZARD_NODE_TYPE } from '../../../../../constants/constants';
 
+// TODO: Необходимо переименовать компонент (я фиг его знает -- как)
+// По факту это виджет с загруженными данными
 export class Charts extends React.PureComponent {
   static propTypes = {
     id: PropTypes.string,
