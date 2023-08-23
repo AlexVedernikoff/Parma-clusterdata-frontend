@@ -22,6 +22,8 @@ import './../css/dash-redesign.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
+import { useUnit } from 'effector-react';
+import { setAppSettingsEvent } from '@entities/app-settings';
 
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');
@@ -33,13 +35,30 @@ if (IS_INTERNAL) {
 
 logVersion();
 
-ReactDOM.render(
-  <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <App />
-      </ConnectedRouter>
-    </Provider>
-  </ConfigProvider>,
-  document.getElementById('root'),
-);
+function Dash() {
+  const [setAppSettings] = useUnit([setAppSettingsEvent]);
+
+  const searchParams = new URL(window.location.href).searchParams;
+
+  setAppSettings({
+    hideSubHeader: searchParams.get('hide-header-btns') === 'true',
+    hideTabs: searchParams.get('hide-tabs') === 'true',
+    hideEdit: searchParams.get('hide-edit') === 'true',
+    enableCaching: searchParams.get('enable-caching') === 'true',
+    cacheMode: searchParams.get('cache-mode'),
+    exportMode: searchParams.get('export-mode'),
+    stateUuid: searchParams.get('state-uuid'),
+  });
+
+  return (
+    <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
+      </Provider>
+    </ConfigProvider>
+  );
+}
+
+ReactDOM.render(<Dash />, document.getElementById('root'));

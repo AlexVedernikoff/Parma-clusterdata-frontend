@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { ENABLE, DISABLE, COOKIE_TOGGLE_SWITCH_MODE_NAME } from '../../constants/common';
 import Utils from '../../utils';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const NEXT_SWITCH_MODE_MAP = {
   [ENABLE]: DISABLE,
@@ -52,7 +53,7 @@ const withSuperuserSwitch = Component => {
   function WithSuperuserSwitch(props) {
     const { actionsMenu } = props;
     let actionsMenuNext = actionsMenu;
-    const { DL: { displaySuperuserSwitch } = {} } = window;
+    const { displaySuperuserSwitch } = $appSettingsStore.getState();
 
     if (displaySuperuserSwitch) {
       const toggleSuperuserSwitchModeMenuItem = getToggleThemeMenuItem();

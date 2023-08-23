@@ -8,6 +8,7 @@ import { Connectors } from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
 import { getConnectorsMap } from '../../constants';
 import { PageContainer } from '@widgets/page-container';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('connections-router');
 
@@ -25,7 +26,7 @@ class ConnectionsRouter extends PureComponent {
       menu = [],
       features: { logoText, toggleTheme } = {},
       user = {},
-    } = window.DL;
+    } = $appSettingsStore.getState();
     const userData = {
       ...user,
       yu: Utils.getCookie('parmauid'),

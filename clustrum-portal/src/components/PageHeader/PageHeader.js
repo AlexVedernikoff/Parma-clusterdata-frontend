@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
 function PageHead({ title }) {
-  const systemTitle = window.DL.dotenv.SYSTEM_TITLE;
+  const systemTitle = BUILD_SETTINGS.systemTitle;
 
   return (
     <Helmet defaultTitle={systemTitle} titleTemplate={`%s - ${systemTitle}`} key="helmet">

@@ -1,6 +1,7 @@
 import { DL } from '@kamatech-data-ui/clustrum/src/constants/common';
 import { ADMIN_PARTICIPANT, EXECUTE_PARTICIPANT } from '../../constants';
 import Utils from '../../helpers/utils';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const _getUserItem = ({ participant = {}, permission = 'acl_view', freeze = false }) => {
   const { name } = participant;
@@ -41,7 +42,7 @@ const _getPermissionByParticipants = (participants = []) => {
 };
 
 const _getParticipants = async sdk => {
-  const { user: { uid, login } = {} } = window.DL;
+  const { user: { uid, login } = {} } = $appSettingsStore.getState();
   const participants = [];
 
   if (DL.IS_INTERNAL && uid) {
@@ -216,7 +217,7 @@ const verifyConnection = async ({ sdk, permissionsMode, connectionState = {} }) 
 };
 
 const uploadCsv = async ({ sdk, connectionState = {} }) => {
-  const { user: { login } = {} } = window.DL;
+  const { user: { login } = {} } = $appSettingsStore.getState();
   const { acceptedFile } = connectionState;
   const permissionsMode = 'explicit';
   let initialPermissions;
@@ -235,7 +236,10 @@ const uploadCsv = async ({ sdk, connectionState = {} }) => {
   formData.append('preview', '1');
   formData.append('sample_size', '100');
   formData.append('permissions_mode', permissionsMode);
-  formData.append('dir_path', window.DL.user.login ? `users/${login}` : '/');
+  formData.append(
+    'dir_path',
+    $appSettingsStore.getState().user.login ? `users/${login}` : '/',
+  );
   formData.append('initial_permissions', JSON.stringify(initialPermissions));
 
   const connection = await sdk.sendFileInConnectionUploader(
