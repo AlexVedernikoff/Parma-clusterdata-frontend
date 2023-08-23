@@ -40,6 +40,7 @@ import {
   setFilters,
   setMapLayerOpacity,
   setNeedTotal,
+  setNeedAutoNumberingRows,
   setNeedUniqueRows,
   setNullAlias,
   setPaginateInfo,
@@ -60,6 +61,7 @@ import {
   selectFilters,
   selectMapLayerOpacity,
   selectNeedTotal,
+  selectNeedAutoNumberingRows,
   selectNeedUniqueRows,
   selectNullAlias,
   selectPaginateInfo,
@@ -150,6 +152,7 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needAutoNumberingRows,
       paginateInfo,
       diagramMagnitude,
       exportLimit,
@@ -257,6 +260,7 @@ class SectionVisualization extends Component {
               nullAlias,
               needUniqueRows,
               needTotal,
+              needAutoNumberingRows,
               paginateInfo,
               diagramMagnitude,
               exportLimit,
@@ -313,6 +317,7 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needAutoNumberingRows,
       updates,
       exportLimit,
       setFilters,
@@ -325,6 +330,7 @@ class SectionVisualization extends Component {
       setNullAlias,
       setNeedUniqueRows,
       setNeedTotal,
+      setNeedAutoNumberingRows,
       paginateInfo,
       setPaginateInfo,
       diagramMagnitude,
@@ -450,6 +456,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -485,6 +492,7 @@ class SectionVisualization extends Component {
                       nullAlias,
                       needUniqueRows,
                       needTotal,
+                      needAutoNumberingRows,
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
@@ -544,6 +552,7 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needAutoNumberingRows,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -595,6 +604,7 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needAutoNumberingRows,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -620,6 +630,7 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needAutoNumberingRows,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -664,6 +675,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -715,6 +727,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -758,6 +771,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -802,6 +816,7 @@ class SectionVisualization extends Component {
                     nullAlias: newValue[0],
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -858,6 +873,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows: !needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -898,6 +914,50 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal: !needTotal,
+                    needAutoNumberingRows,
+                    paginateInfo,
+                    diagramMagnitude,
+                    exportLimit,
+                  });
+                }}
+              />
+            </div>
+          </div>
+        )}
+        {visualization.allowAutoNumberingRows && (
+          <div className="subcontainer">
+            <div className="subheader">
+              <span>Автонумерация</span>
+            </div>
+            <div className="subitem">
+              <CheckBox
+                theme="normal"
+                size="n"
+                view="default"
+                tone="default"
+                checked={needAutoNumberingRows}
+                text="Включить автонумерацию"
+                onChange={() => {
+                  setNeedAutoNumberingRows({
+                    needAutoNumberingRows: !needAutoNumberingRows,
+                  });
+
+                  updatePreview({
+                    dataset,
+                    dimensions,
+                    measures,
+                    visualization,
+                    filters,
+                    colors,
+                    sort,
+                    coordType,
+                    titleLayerSource,
+                    clusterPrecision,
+                    updates,
+                    nullAlias,
+                    needUniqueRows,
+                    needTotal,
+                    needAutoNumberingRows: !needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -940,6 +1000,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude: newValue[0],
                     exportLimit,
@@ -983,6 +1044,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     mapLayerOpacity: value,
@@ -1027,6 +1089,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit: text,
@@ -1048,6 +1111,7 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit: e.target.value,
@@ -1240,6 +1304,7 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needAutoNumberingRows,
       paginateInfo,
       diagramMagnitude,
       exportLimit,
@@ -1289,6 +1354,7 @@ class SectionVisualization extends Component {
                       nullAlias,
                       needUniqueRows,
                       needTotal,
+                      needAutoNumberingRows,
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
@@ -1413,6 +1479,7 @@ const mapStateToProps = createStructuredSelector({
   nullAlias: selectNullAlias,
   needUniqueRows: selectNeedUniqueRows,
   needTotal: selectNeedTotal,
+  needAutoNumberingRows: selectNeedAutoNumberingRows,
   paginateInfo: selectPaginateInfo,
   selectOrderBy: selectOrderBy,
 
@@ -1444,6 +1511,7 @@ const mapDispatchToProps = {
   setDiagramMagnitude,
   setMapLayerOpacity,
   setExportLimit,
+  setNeedAutoNumberingRows,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SectionVisualization);

@@ -818,6 +818,7 @@ const FLAT_TABLE_VISUALIZATION = {
   allowNullAlias: true,
   allowUniqueRows: true,
   allowTotal: true,
+  allowAutoNumberingRows: true,
   checkAllowedSort: (item, visualization) => {
     const selectedItems = visualization.placeholders.reduce(
       (a, b) => a.concat(b.items),
