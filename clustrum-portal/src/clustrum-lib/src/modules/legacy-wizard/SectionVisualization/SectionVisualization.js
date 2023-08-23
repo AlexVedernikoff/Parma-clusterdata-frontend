@@ -936,7 +936,7 @@ class SectionVisualization extends Component {
                 view="default"
                 tone="default"
                 checked={needAutoNumberingRows}
-                text="Включить автонумерацию"
+                text="Включить автонумерацию строк"
                 onChange={() => {
                   setNeedAutoNumberingRows({
                     needAutoNumberingRows: !needAutoNumberingRows,
