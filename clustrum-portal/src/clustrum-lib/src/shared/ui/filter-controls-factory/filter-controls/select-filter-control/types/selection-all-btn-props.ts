@@ -1,5 +1,5 @@
 export interface SelectionAllBtnProps {
-  onClick: () => void;
-  label: string;
-  icon?: React.ReactNode;
+  allValues: string[];
+  showClearButton: boolean;
+  onClick: (values: string[]) => void;
 }
