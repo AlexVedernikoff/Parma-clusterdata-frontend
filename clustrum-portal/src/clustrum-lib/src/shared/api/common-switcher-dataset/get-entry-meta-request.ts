@@ -1,11 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import ENV from 'ENV';
 import { EntryMetaResponse } from './dto';
 
 export const getEntryMetaRequest = (entryId: string): Promise<EntryMetaResponse> => {
   const requestConfig: AxiosRequestConfig = {
     method: 'post',
-    url: `${ENV.biHost}/getEntryMeta`,
+    url: `${process.env.REACT_APP_CLUSTRUM_BI_HOST}/getEntryMeta`,
     data: { entryId },
   };
 

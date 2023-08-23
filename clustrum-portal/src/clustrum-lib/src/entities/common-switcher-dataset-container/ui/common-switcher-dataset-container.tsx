@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
 import { CommonSwitcherDataset } from '@clustrum-lib/shared/ui/common-switcher-dataset';
-import { CommonSwitcherDatasetModel } from '../model/common-switcher-dataset/common-switcher-dataset-model';
+import { getCommonSwitcherDatasetModel } from '../model/common-switcher-dataset/common-switcher-dataset-model';
 import { CommonSwitcherDatasetContainerProps, EntryProps } from '../types';
 import styles from './common-switcher-dataset-container.module.css';
 
@@ -14,14 +14,14 @@ export function CommonSwitcherDatasetContainer(
   const { entryId, title, onClick } = props;
 
   useEffect(() => {
-    update();
+    updateEntryMeta();
   }, []);
 
-  const update = async (): Promise<void> => {
+  const updateEntryMeta = async (): Promise<void> => {
     setIsLoading(true);
 
-    const res = await CommonSwitcherDatasetModel(entryId);
-    setEntryMeta(res);
+    const updatedEntryMeta = await getCommonSwitcherDatasetModel(entryId);
+    setEntryMeta(updatedEntryMeta);
     setIsLoading(false);
   };
 
