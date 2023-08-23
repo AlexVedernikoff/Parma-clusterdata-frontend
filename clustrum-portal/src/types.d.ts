@@ -4,8 +4,7 @@ declare module '*.module.css' {
   export default classes;
 }
 
-declare let ENV: {
-  biHost: string;
-  portalHost: string;
-  exportHost: string;
+declare let BUILD_SETTINGS: {
+  systemTitle: string;
+  isLib: boolean;
 };

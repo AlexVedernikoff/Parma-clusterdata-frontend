@@ -85,6 +85,7 @@ import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 import { VisualizationType } from '@lib-entities/visualization-factory/types';
 import { VisualizationsList } from '@lib-features/visualizations-list';
+import { $appSettingsStore } from '@entities/app-settings';
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -363,7 +364,7 @@ class SectionVisualization extends Component {
     }
     if (!titleLayerSource && visualization.allowTitleLayerSource) {
       setTitleLayerSource({
-        titleLayerSource: window.DL.dotenv.MAP_LAYER_SOURCE,
+        titleLayerSource: $appSettingsStore.getState().mapLayerSource,
       });
     }
     if (!clusterPrecision && visualization.allowClusterPrecision) {

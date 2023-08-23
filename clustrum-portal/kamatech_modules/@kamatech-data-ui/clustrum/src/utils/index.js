@@ -5,6 +5,7 @@ import {
   normalizeDestination,
 } from '@kamatech-data-ui/common/src/components/Navigation/util';
 import { PERMISSION } from '../constants/common';
+import { $appSettingsStore } from '@entities/app-settings';
 
 export default class Utils {
   static getBeforeFolderName = getBeforeFolderName;
@@ -220,6 +221,6 @@ export default class Utils {
   }
 
   static isInternalInstallation() {
-    return window.DL.installationType === 'internal';
+    return $appSettingsStore.getState().installationType === 'internal';
   }
 }

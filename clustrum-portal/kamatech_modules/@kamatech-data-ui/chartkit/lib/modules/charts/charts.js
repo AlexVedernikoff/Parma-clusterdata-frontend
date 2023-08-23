@@ -9,6 +9,7 @@ import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 
 import runNode from './engines/node';
 import runWizard from './engines/wizard';
+import { $appSettingsStore } from '@entities/app-settings';
 
 function isWizard(type) {
   return /_wizard$/.test(type);
@@ -191,8 +192,12 @@ class Charts {
             },
             pageSize: paginateInfo ? paginateInfo.pageSize : null,
             page: paginateInfo ? paginateInfo.page : null,
-            enableCaching: window.DL.enableCaching ? window.DL.enableCaching : false,
-            cacheMode: window.DL.cacheMode ? window.DL.cacheMode : null,
+            enableCaching: $appSettingsStore.getState().enableCaching
+              ? $appSettingsStore.getState().enableCaching
+              : false,
+            cacheMode: $appSettingsStore.getState().cacheMode
+              ? $appSettingsStore.getState().cacheMode
+              : null,
             orderBy:
               orderBy && orderBy.direction
                 ? [

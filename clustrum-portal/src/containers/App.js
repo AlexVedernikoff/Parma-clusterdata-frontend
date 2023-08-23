@@ -14,11 +14,12 @@ import { compose } from 'recompose';
 
 import { exportWidget } from '../services/dashboard/export/export-widget';
 import { PageContainer } from '@widgets/page-container';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const sdk = new SDK({
-  endpoints: window.DL.endpoints,
-  currentCloudFolderId: window.DL.currentCloudFolderId,
-  currentCloudId: window.DL.currentCloudId,
+  endpoints: $appSettingsStore.getState().endpoints,
+  currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
+  currentCloudId: $appSettingsStore.getState().currentCloudId,
 });
 
 const b = block('app');
