@@ -9,6 +9,7 @@ import iconPostgres from '@kamatech-data-ui/clustrum/src/icons/postgres.svg';
 import iconMysql from '@kamatech-data-ui/clustrum/src/icons/mysql.svg';
 import iconYt from '@kamatech-data-ui/clustrum/src/icons/yt.svg';
 import iconUndefined from '@kamatech-data-ui/clustrum/src/icons/undefined.svg';
+import { $appSettingsStore } from '@entities/app-settings';
 
 export default class Utils {
   static sizes = ['Bytes', 'Kb', 'Mb', 'Gb', 'Tb'];
@@ -298,13 +299,13 @@ export default class Utils {
   static getPersonalFolderPath() {
     const {
       user: { login },
-    } = window.DL;
+    } = $appSettingsStore.getState();
 
     // Папка обяазетельно должна заканчиваться слэшем (без исключений)
     const rootPath = '/';
     const userPath = `users/${login}/`;
 
-    return window.DL.user.login ? userPath : rootPath;
+    return $appSettingsStore.getState().user.login ? userPath : rootPath;
   }
 
   static bytesToSize(bytes) {
@@ -318,7 +319,7 @@ export default class Utils {
   }
 
   static openCreationWidgetPage({ datasetId }) {
-    const { endpoints: { wizard = '/wizard' } = {} } = window.DL;
+    const { endpoints: { wizard = '/wizard' } = {} } = $appSettingsStore.getState();
 
     window.open(`${wizard}/?__datasetId=${datasetId}`, '_blank');
   }
@@ -331,13 +332,13 @@ export default class Utils {
   }
 
   static isEnabledFeature(featureName) {
-    const { features = {} } = window.DL;
+    const { features = {} } = $appSettingsStore.getState();
 
     return features[featureName];
   }
 
   static isInternal() {
-    const { installationType } = window.DL;
+    const { installationType } = $appSettingsStore.getState();
 
     return installationType === 'internal';
   }

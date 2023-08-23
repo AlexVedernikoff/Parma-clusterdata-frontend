@@ -191,7 +191,7 @@ class GeneralConnector extends React.Component {
 
     return (
       <div className={b()}>
-        <PageHead title={name} />
+        {!BUILD_SETTINGS.isLib && <PageHead title={name} />}
         <div className={b('fields')}>
           {isNewConnection && (
             <div className={b('row')}>
