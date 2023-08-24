@@ -10,7 +10,6 @@ export interface SectionPreviewProps {
     };
   };
   widget: Widget;
-  previewEntryId: string;
   datasetError: string;
   setWidget: (widget: any) => void;
   onExport: (id: string, name: string, options: ExportWidgetOptions) => void;

@@ -4,11 +4,7 @@ import { connect } from 'react-redux';
 import ChartKit from '@kamatech-data-ui/clustrum/src/components/ChartKit/ChartKit';
 import { EXPORT } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
 
-import {
-  selectConfig,
-  selectConfigType,
-  selectPreviewEntryId,
-} from '../../../../../reducers/preview';
+import { selectConfig, selectConfigType } from '../../../../../reducers/preview';
 import { selectDatasetError } from '../../../../../reducers/dataset';
 import { selectWidget } from '../../../../../reducers/widget';
 import { setWidget } from '../../../../../actions';
@@ -17,12 +13,6 @@ import { Empty } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
 import { SectionPreviewProps, OnLoadProps, ExportWidgetOptions } from '../types';
 import styles from './section-preview.module.css';
-
-const handleLoad = (result: OnLoadProps, setWidget: (widget: any) => void): void => {
-  setWidget({
-    widget: result.data.widget,
-  });
-};
 
 function SectionPreviewContainer(props: SectionPreviewProps): JSX.Element | null {
   const { configType, config, widget, datasetError, onExport, setWidget } = props;
@@ -36,6 +26,12 @@ function SectionPreviewContainer(props: SectionPreviewProps): JSX.Element | null
     options: ExportWidgetOptions,
   ): void => {
     onExport(runPayload.id, widget?.name ?? '', options);
+  };
+
+  const handleLoad = (result: OnLoadProps): void => {
+    setWidget({
+      widget: result.data.widget,
+    });
   };
 
   if (datasetError) {
@@ -66,7 +62,7 @@ function SectionPreviewContainer(props: SectionPreviewProps): JSX.Element | null
       <ChartKit
         id={widget ? widget.entryId : ''}
         editMode={editMode}
-        onLoad={(result: OnLoadProps): void => handleLoad(result, setWidget)}
+        onLoad={handleLoad}
         menu={menuItems}
         exportWidget={exportWidget.current}
       />
@@ -79,7 +75,6 @@ const mapStateToProps = createStructuredSelector({
   configType: selectConfigType,
   config: selectConfig,
   widget: selectWidget,
-  previewEntryId: selectPreviewEntryId,
 });
 
 const mapDispatchToProps = {
