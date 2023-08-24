@@ -1,22 +1,21 @@
 import { AllowedTypes, CheckAllowed } from './allowed-types';
 import { DndDraggedItem } from './dnd-dragged-item';
-import { DndItemData } from './dnd-item-data';
 
-export interface CheckDndActionAvailabilityCustomParams {
-  itemData?: DndItemData;
+export interface CheckDndActionAvailabilityCustomParams<T> {
+  itemData?: T;
   allowedTypes?: AllowedTypes;
-  checkAllowed?: CheckAllowed;
+  checkAllowed?: CheckAllowed<T>;
 }
 
-export interface CheckActionAvailabilityForDraggedItemParams {
-  draggedItem: DndDraggedItem;
+export interface CheckActionAvailabilityForDraggedItemParams<T> {
+  draggedItem: DndDraggedItem<T>;
 }
 
-export type CheckDndActionAvailabilityParams =
-  | CheckDndActionAvailabilityCustomParams
-  | CheckActionAvailabilityForDraggedItemParams;
+export type CheckDndActionAvailabilityParams<T> =
+  | CheckDndActionAvailabilityCustomParams<T>
+  | CheckActionAvailabilityForDraggedItemParams<T>;
 
-export const isCheckDndActionAvailabilityForDraggedItemParams = (
-  params: CheckDndActionAvailabilityParams,
-): params is CheckActionAvailabilityForDraggedItemParams =>
-  (params as CheckActionAvailabilityForDraggedItemParams).draggedItem !== undefined;
+export const isCheckDndActionAvailabilityForDraggedItemParams = <T>(
+  params: CheckDndActionAvailabilityParams<T>,
+): params is CheckActionAvailabilityForDraggedItemParams<T> =>
+  (params as CheckActionAvailabilityForDraggedItemParams<T>).draggedItem !== undefined;

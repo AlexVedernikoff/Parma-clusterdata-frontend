@@ -6,6 +6,7 @@ import iconPencil from '../../../../kamatech_modules/@kamatech-data-ui/clustrum/
 import iconAnotherTab from '../../../../kamatech_modules/@kamatech-data-ui/clustrum/src/icons/another-tab.svg';
 
 import { EXPORT } from '../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/extensions/menu-items';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const NEW_TAB = {
   get title() {
@@ -14,7 +15,7 @@ const NEW_TAB = {
   icon: <Icon data={iconAnotherTab} width="16" height="16" />,
   isVisible: () => true,
   action: ({ propsData: { id } }) =>
-    window.open(window.DL.endpoints.wizard + `/preview/${id}`),
+    window.open($appSettingsStore.getState().endpoints.wizard + `/preview/${id}`),
 };
 
 const createWidgetEditorOpeningItem = onOpenWidgetEditor => ({
@@ -22,7 +23,7 @@ const createWidgetEditorOpeningItem = onOpenWidgetEditor => ({
     return 'Редактировать';
   },
   icon: <Icon data={iconPencil} width="16" height="16" />,
-  isVisible: () => !window.DL.hideEdit,
+  isVisible: () => !$appSettingsStore.getState().hideEdit,
   action: ({ propsData: { id } }) => onOpenWidgetEditor(id),
 });
 

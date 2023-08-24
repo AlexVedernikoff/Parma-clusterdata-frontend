@@ -1,0 +1,15 @@
+.filter-controls-factory {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px 24px;
+  border: 1px solid var(--antd-color-split);
+  border-radius: 6px;
+}
+
+.filter-controls-factory__control {
+  flex: 1;
+  overflow: hidden;
+}

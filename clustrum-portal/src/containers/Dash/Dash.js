@@ -26,11 +26,12 @@ import ExpandedFilter from '../ExpandedFilter/ExpandedFilter';
 import { resetWizard } from '../../actions';
 import { WizardSavingStatus } from './WizardSavingStatus';
 import { exportWidget } from '../../services/dashboard/export/export-widget';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const sdk = new SDK({
-  endpoints: window.DL.endpoints,
-  currentCloudFolderId: window.DL.currentCloudFolderId,
-  currentCloudId: window.DL.currentCloudId,
+  endpoints: $appSettingsStore.getState().endpoints,
+  currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
+  currentCloudId: $appSettingsStore.getState().currentCloudId,
 });
 
 const WIDGET_EDITOR_WIDTH_MOD = '80';
@@ -47,7 +48,8 @@ class Dash extends React.PureComponent {
     setWidgetEditorUUID: PropTypes.func.isRequired,
     setWidgetForReloadUUID: PropTypes.func.isRequired,
     defaultEntryId: PropTypes.string,
-    isBuild: PropTypes.bool,
+    hasRightSideContent: PropTypes.bool,
+    onFiltersChange: PropTypes.func,
   };
 
   componentDidMount() {
@@ -113,13 +115,13 @@ class Dash extends React.PureComponent {
   };
 
   render() {
-    const { widgetEditorUUID, title, isBuild } = this.props;
+    const { widgetEditorUUID, title, hasRightSideContent, onFiltersChange } = this.props;
 
     return (
       <React.Fragment>
-        <PageHead title={title} />
-        <Header isBuild={isBuild} />
-        <Body isBuild={isBuild} />
+        {!BUILD_SETTINGS.isLib && <PageHead title={title} />}
+        <Header hasRightSideContent={hasRightSideContent} />
+        <Body onFiltersChange={onFiltersChange} />
         <Dialogs />
         <SideSlidingPanel
           title="Режим редактирования элемента"

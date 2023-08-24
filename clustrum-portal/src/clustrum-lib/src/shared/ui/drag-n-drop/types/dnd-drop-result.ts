@@ -1,21 +1,20 @@
-import { DndItemData } from './dnd-item-data';
-
-export interface DndDropResult {
+export interface DndDropResult<T> {
   revert: boolean;
-  itemData: DndItemData;
+  itemData: T;
   containerId: string;
   isNeedReplace: boolean;
   dropPlace: number | null;
   isNeedSwap: boolean;
-  items: DndItemData[];
-  replace(index: number, item: DndItemData): void;
-  insert(index: number, item: DndItemData): void;
+  items: T[];
+  replace(index: number, item: T): void;
+  insert(index: number, item: T): void;
   swap(targetIndex: number, sourceIndex: number): void;
   setIsNeedReplace(isNeedReplace: boolean): void;
 }
 
-export type DndEmptyDropResult = Pick<DndDropResult, 'revert'>;
+export type DndEmptyDropResult<T> = Pick<DndDropResult<T>, 'revert'>;
 
-export const notEmptyDndDropResult = (
-  dropResult: DndDropResult | DndEmptyDropResult,
-): dropResult is DndDropResult => (dropResult as DndDropResult).containerId !== undefined;
+export const notEmptyDndDropResult = <T>(
+  dropResult: DndDropResult<T> | DndEmptyDropResult<T>,
+): dropResult is DndDropResult<T> =>
+  (dropResult as DndDropResult<T>).containerId !== undefined;

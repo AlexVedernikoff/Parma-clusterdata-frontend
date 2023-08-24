@@ -34,19 +34,7 @@ class DialogFormatTemplate extends PureComponent {
   }
 
   onClose = () => {
-    const { callback } = this.state;
-
-    this.setState({
-      visible: false,
-    });
-
-    if (callback) {
-      callback(null);
-    }
-  };
-
-  onCancel = () => {
-    const { callback } = this.state;
+    const { callback } = this.props;
 
     this.setState({
       visible: false,
@@ -231,7 +219,7 @@ class DialogFormatTemplate extends PureComponent {
             <Dialog.Body>{this.renderBody()}</Dialog.Body>
             <Dialog.Footer
               preset="default"
-              onClickButtonCancel={this.onCancel}
+              onClickButtonCancel={this.onClose}
               onClickButtonApply={this.onApply}
               propsButtonApply={{
                 disabled: !valid,

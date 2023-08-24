@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const { PORTAL_ASSETS_PATH } = require('../../../src/context-path.js');
 
@@ -5,7 +6,7 @@ module.exports = {
   mode: 'production',
   entry: './src/entries/libBuilder.js',
   output: {
-    path: path.resolve('./src/entries/dist/'),
+    path: 'D:\\test-lib\\clustrum-embedded-lib\\src\\lib',
     filename: 'bundle.js',
     library: {
       type: 'umd',
@@ -72,6 +73,21 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+        exclude: /\.module\.css$/,
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -87,4 +103,11 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      BUILD_SETTINGS: JSON.stringify({
+        isLib: true,
+      }),
+    }),
+  ],
 };

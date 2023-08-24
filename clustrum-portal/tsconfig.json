@@ -22,6 +22,7 @@
       "@entities/*": ["./src/entities/*"],
       "@shared/*": ["./src/shared/*"],
       "@clustrum-lib": ["./src/clustrum-lib/src"],
+      "@clustrum-lib/*": ["./src/clustrum-lib/src/*"],
       "@clustrum-lib-legacy": ["./src/clustrum-lib/src/legacy-index"],
       "@lib-modules/*": ["./src/clustrum-lib/src/modules/*"],
       "@lib-widgets/*": ["./src/clustrum-lib/src/widgets/*"],

@@ -2,8 +2,7 @@ import React from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import GridItem from '../GridItem/GridItem';
 import { DashKitContext } from '../../context/DashKitContext';
-
-import { ITEM_TYPE } from '../../../../../../../modules/constants/constants';
+import { ItemType } from '@lib-shared/types';
 
 const Layout = WidthProvider(ReactGridLayout); // eslint-disable-line new-cap
 
@@ -42,7 +41,7 @@ export default class GridLayout extends React.PureComponent {
   #getWidgetDataOnTab = ({ id, type, data }) => {
     const { itemsState } = this.context;
 
-    if (type !== ITEM_TYPE.WIDGET) {
+    if (type !== ItemType.Widget) {
       return null;
     }
 
@@ -71,7 +70,7 @@ export default class GridLayout extends React.PureComponent {
     const item = this._findWidgetItemByUuid(widgetForReloadUUID);
 
     if (item) {
-      const ref = this.pluginsRefs.find(ref => ref.props?.id === item.id);
+      const ref = this.pluginsRefs.find(ref => ref?.props?.id === item.id);
 
       if (ref) {
         reloadItem(ref);

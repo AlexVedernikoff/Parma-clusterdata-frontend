@@ -43,6 +43,7 @@ import {
   FilterOutlined,
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('dash-header');
 
@@ -60,7 +61,7 @@ class Header extends React.PureComponent {
     resetAllFilters: PropTypes.func.isRequired,
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
-    isBuild: PropTypes.bool,
+    hasRightSideContent: PropTypes.bool,
   };
 
   static contextType = SignalContext;
@@ -241,7 +242,18 @@ class Header extends React.PureComponent {
   }
 
   renderViewItems() {
-    const { entry, canEdit, openExpandedFilter, setMode } = this.props;
+    const {
+      entry,
+      canEdit,
+      openExpandedFilter,
+      setMode,
+      hasRightSideContent = true,
+    } = this.props;
+
+    if (!hasRightSideContent) {
+      return [];
+    }
+
     const exportItems = [
       {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</a>,
@@ -286,7 +298,7 @@ class Header extends React.PureComponent {
           <Button icon={<DownloadOutlined />}>Экспортировать</Button>
         </Dropdown>,
         <>
-          {!window.DL.hideEdit && (
+          {!$appSettingsStore.getState().hideEdit && (
             <Button
               title="Редактировать"
               onClick={() => setMode(MODE.EDIT)}
@@ -328,24 +340,22 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { isBuild } = this.props;
+    const { isEditMode } = this.props;
+    const renderRightItems = isEditMode ? this.renderEditItems() : this.renderViewItems();
 
     return (
       <>
         <BrowserPrint />
-        {!window.DL.hideSubHeader && this.props.entry && (
+        {!$appSettingsStore.getState().hideSubHeader && this.props.entry && (
           <ActionPanel
             sdk={SDK}
             entryId={this.props.entry.entryId}
-            rightItems={
-              this.props.isEditMode ? this.renderEditItems() : this.renderViewItems()
-            }
+            rightItems={renderRightItems}
             className={b('action-panel', {
               sticky: this.props.isEditMode,
               'is-edit': this.props.isEditMode,
               'is-view': !this.props.isEditMode,
             })}
-            isBuild={isBuild}
           />
         )}
       </>

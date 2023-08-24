@@ -397,7 +397,7 @@ class Dataset extends React.Component {
 
     return (
       <div className={b()}>
-        <PageHead title={datasetName} />
+        {!BUILD_SETTINGS.isLib && <PageHead title={datasetName} />}
         <ActionPanel
           sdk={sdk}
           entry={{

@@ -32,7 +32,17 @@
     ],
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "import/no-default-export": "error",
-    "import/no-namespace": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["*"],
+            "importNames": ["*"]
+          }
+        ]
+      }
+    ],
     "max-lines": ["warn", { "max": 400, "skipBlankLines": true, "skipComments": true }],
     "@typescript-eslint/naming-convention": [
       "error",

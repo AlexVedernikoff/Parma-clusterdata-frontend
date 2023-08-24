@@ -5,9 +5,10 @@ import axiosInstance, {
   AxiosRequest,
 } from '../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/axios/axios';
 import settings from '../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/settings/settings';
+import { $appSettingsStore } from '@entities/app-settings';
 
 // @ts-ignore
-const ENDPOINTS: Endpoints = window.DL.endpoints;
+const ENDPOINTS: Endpoints = $appSettingsStore.getState().endpoints;
 
 const apiGetExportExcelStatus = (fileName: string) => {
   const request: AxiosRequest = {

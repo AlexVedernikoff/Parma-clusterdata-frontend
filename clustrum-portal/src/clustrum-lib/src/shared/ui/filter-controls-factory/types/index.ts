@@ -1,5 +1,5 @@
 export {
-  FilterFactoryControlsProps,
+  FilterControlsFactoryProps,
   DashboardControlsData,
 } from './filter-factory-controls-props';
 export { ControlType } from './control-type';

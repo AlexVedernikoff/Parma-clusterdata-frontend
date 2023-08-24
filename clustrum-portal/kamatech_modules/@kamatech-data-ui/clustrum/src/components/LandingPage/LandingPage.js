@@ -9,6 +9,7 @@ import ErrorContent, {
 import Header from '../Header/Header';
 import Utils from '../../utils';
 import { Pointerfocus } from 'lego-on-react';
+import { $appSettingsStore } from '@entities/app-settings';
 
 // import './LandingPage.scss';
 // import '../../styles/common.scss';
@@ -36,7 +37,9 @@ class LandingPage extends PureComponent {
   };
 
   get headerEnabled() {
-    const { pageSettings: { headerEnabled = this.props.headerEnabled } = {} } = window.DL;
+    const {
+      pageSettings: { headerEnabled = this.props.headerEnabled } = {},
+    } = $appSettingsStore.getState();
 
     return headerEnabled;
   }
@@ -55,7 +58,7 @@ class LandingPage extends PureComponent {
       menu = [],
       user,
       features: { logoText, toggleTheme } = {},
-    } = window.DL;
+    } = $appSettingsStore.getState();
     const userData = {
       ...user,
       yu: Utils.getCookie('parmauid'),

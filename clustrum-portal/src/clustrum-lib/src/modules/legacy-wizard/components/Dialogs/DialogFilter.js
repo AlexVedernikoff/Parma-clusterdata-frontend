@@ -39,25 +39,13 @@ class DialogFilter extends PureComponent {
       callback: null,
       item: null,
       operation: null,
-      visible: false,
+      visible: this.props.visible,
       value: [],
     };
   }
 
   onClose = () => {
-    const { callback } = this.state;
-
-    this.setState({
-      visible: false,
-    });
-
-    if (callback) {
-      callback(null);
-    }
-  };
-
-  onCancel = () => {
-    const { callback } = this.state;
+    const { callback } = this.props;
 
     this.setState({
       visible: false,
@@ -917,7 +905,7 @@ class DialogFilter extends PureComponent {
             <Dialog.Body>{this.renderModalBody()}</Dialog.Body>
             <Dialog.Footer
               preset="default"
-              onClickButtonCancel={this.onCancel}
+              onClickButtonCancel={this.onClose}
               onClickButtonApply={this.onApply}
               propsButtonApply={{
                 disabled: !valid,

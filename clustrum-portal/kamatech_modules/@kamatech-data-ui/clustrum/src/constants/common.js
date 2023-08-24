@@ -1,3 +1,4 @@
+import { $appSettingsStore } from '@entities/app-settings';
 export const KeyCodes = {
   ARROW_UP: 38,
   ARROW_DOWN: 40,
@@ -21,22 +22,22 @@ export const KeyCodes = {
 
 export const DL = {
   get IS_INTERNAL() {
-    return window.DL.installationType === 'internal';
+    return $appSettingsStore.getState().installationType === 'internal';
   },
   get USER_LOGIN() {
-    return window.DL.user.login;
+    return $appSettingsStore.getState().user.login;
   },
   get USER_FOLDER() {
-    return window.DL.user.login ? `Users/${this.USER_LOGIN}/` : '/';
+    return $appSettingsStore.getState().user.login ? `Users/${this.USER_LOGIN}/` : '/';
   },
   get NAVIGATION_ENDPOINT() {
-    return window.DL.endpoints.navigation;
+    return $appSettingsStore.getState().endpoints.navigation;
   },
   get ENDPOINTS() {
-    return window.DL.endpoints;
+    return $appSettingsStore.getState().endpoints;
   },
   get USER_ID() {
-    return `user:${window.DL.user.uid}`;
+    return `user:${$appSettingsStore.getState().user.uid}`;
   },
 };
 

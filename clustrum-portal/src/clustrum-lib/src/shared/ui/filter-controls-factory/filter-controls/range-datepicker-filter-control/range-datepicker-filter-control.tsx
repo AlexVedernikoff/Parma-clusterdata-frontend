@@ -15,6 +15,7 @@ import styles from './range-datepicker-filter-control.module.css';
 
 const { RangePicker } = DatePicker;
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
+const RANGE_PLACEHOLDER: [string, string] = ['дд.мм.гггг', 'дд.мм.гггг'];
 const POPUP_WIDTH = 576;
 
 // eslint-disable-next-line max-lines-per-function
@@ -37,6 +38,12 @@ export function RangeDatepickerFilterControl(
   useEffect(() => {
     let from;
     let to;
+
+    if (!defaultValue) {
+      setDateRange(null);
+      return;
+    }
+
     switch (defaultValue?.type) {
       case DefaultValueType.Date:
       case DefaultValueType.DefaultRanges:
@@ -54,7 +61,7 @@ export function RangeDatepickerFilterControl(
         to = null;
     }
 
-    if (from && to && from.isValid() && to.isValid() && onChange) {
+    if (from?.isValid() && to?.isValid() && onChange) {
       setDateRange([from, to]);
       onChange({
         from: `__inter${from.format(DEFAULT_DATE_FORMAT)}`,
@@ -110,6 +117,7 @@ export function RangeDatepickerFilterControl(
             locale={ruRU.DatePicker}
             picker="date"
             placement={placementPosition}
+            placeholder={RANGE_PLACEHOLDER}
             value={dateRange}
             onChange={handleChange}
             onOpenChange={handleCalendarPosition}
