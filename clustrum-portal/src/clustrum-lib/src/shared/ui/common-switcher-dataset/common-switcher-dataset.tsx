@@ -20,7 +20,9 @@ export function CommonSwitcherDataset(props: CommonSwitcherDatasetProps): JSX.El
   const buttonRef = useRef<null | HTMLButtonElement>(null);
   const [entry, setEntry] = useState<null | EntryProps>(entryMeta);
   const [showNavigation, setShowNavigation] = useState<boolean>(false);
-  const navigationPath = useSelector((state: DashStore) => state.dash.navigationPath);
+  const navigationPathState = useSelector(
+    (state: DashStore) => state.dash.navigationPath,
+  );
 
   useEffect(() => {
     setEntry(entryMeta);
@@ -34,9 +36,9 @@ export function CommonSwitcherDataset(props: CommonSwitcherDatasetProps): JSX.El
     setShowNavigation(false);
   };
 
-  const getNavigationPath = entry
+  const navigationPath = entry
     ? getNavigationPathFromKey(entry.key)
-    : navigationPath || getPersonalFolderPath();
+    : navigationPathState || getPersonalFolderPath();
 
   const popupDirections = [
     'right-top',
@@ -63,7 +65,7 @@ export function CommonSwitcherDataset(props: CommonSwitcherDatasetProps): JSX.El
       </Button>
       <NavigationMinimal
         sdk={SDK}
-        startFrom={getNavigationPath}
+        startFrom={navigationPath}
         hasTail
         anchor={buttonRef.current}
         onClose={(): void => setShowNavigation(false)}
