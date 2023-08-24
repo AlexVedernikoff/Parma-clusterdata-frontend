@@ -25,7 +25,6 @@ import {
 } from '../../../../../constants';
 
 import { DndContainer, checkDndActionAvailability } from '@lib-shared/ui/drag-n-drop';
-import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';
 
@@ -85,27 +84,8 @@ import Select from '../../../../../../kamatech_modules/lego-on-react/es-modules-
 import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 import { VisualizationType } from '@lib-entities/visualization-factory/types';
+import { VisualizationsList } from '@lib-features/visualizations-list';
 import { $appSettingsStore } from '@entities/app-settings';
-
-const VISUALIZATION_LABELS = {
-  'label_visualization-area': 'Диаграмма с областями',
-  'label_visualization-area-100p': '100% диаграмма с областями',
-  'label_visualization-column': 'Столбчатая диаграмма',
-  'label_visualization-column-100p': '100% cтолбчатая диаграмма',
-  'label_visualization-flat-table': 'Таблица',
-  'label_visualization-line': 'Линейная диаграмма',
-  'label_visualization-pie': 'Круговая диаграмма',
-  'label_visualization-pivot-table': 'Сводная таблица',
-  map: 'Карта',
-  heatmap: 'Фоновая карта',
-  map_cluster_focus_point: 'Карта очагов по кластеризации',
-  label_visualization_card: 'Карточка объекта',
-  'label_visualization-scatter': 'Точечная  диаграмма',
-  'label_visualization-treemap': 'Древовидная диаграмма',
-  label_visualization_indicator: 'Индикатор',
-  label_visualization_multiline: 'График',
-  label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
-};
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -1190,91 +1170,6 @@ class SectionVisualization extends Component {
     );
   }
 
-  renderVisualizationSelection() {
-    const {
-      setVisualization,
-      updatePreview,
-      visualizationType,
-      visualization,
-      dataset,
-      dimensions,
-      measures,
-      filters,
-      coordType,
-      titleLayerSource,
-      clusterPrecision,
-      updates,
-      nullAlias,
-      needUniqueRows,
-      needTotal,
-      paginateInfo,
-      diagramMagnitude,
-      exportLimit,
-    } = this.props;
-
-    const { value: visualizationTypeValue } = visualizationType;
-
-    return (
-      <div>
-        <div className="dropdown-header">
-          <h1>Элемент аналитической панели</h1>
-        </div>
-        <div className="visualizations-content">
-          <div className="items-grid">
-            {VISUALIZATIONS.filter(item => {
-              return (
-                visualizationTypeValue === 'all' || visualizationTypeValue === item.type
-              );
-            }).map(item => {
-              return (
-                <div
-                  key={`visualization-item-${item.id}`}
-                  className={`visualization-item${
-                    visualization && visualization.id === item.id ? ' active' : ''
-                  }`}
-                  onClick={() => {
-                    if (visualization.id === item.id) return;
-
-                    this.dropdownRef.toggle();
-
-                    const setResult = setVisualization({
-                      visualization: item,
-                    });
-
-                    updatePreview({
-                      dataset,
-                      dimensions,
-                      measures,
-                      visualization: item,
-                      filters,
-                      colors: setResult.colors,
-                      sort: setResult.sort,
-                      coordType,
-                      titleLayerSource,
-                      clusterPrecision,
-                      updates,
-                      nullAlias,
-                      needUniqueRows,
-                      needTotal,
-                      paginateInfo,
-                      diagramMagnitude,
-                      exportLimit,
-                    });
-                  }}
-                >
-                  {item.icon}
-                  {VISUALIZATION_LABELS[item.name]
-                    ? VISUALIZATION_LABELS[item.name]
-                    : item.name}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   renderVisualizationPlaceholdersOrBlank() {
     const { visualization } = this.props;
 
@@ -1283,10 +1178,6 @@ class SectionVisualization extends Component {
 
   render() {
     const { visualization, sdk, dataset, updates } = this.props;
-    const buttonText = visualization
-      ? VISUALIZATION_LABELS[visualization.name]
-      : 'Выберите тип чарта';
-    const iconChooseVisualization = <Icon data={iconVisualization} width="24" />;
 
     return (
       <div className="container visualization-container">
@@ -1307,18 +1198,7 @@ class SectionVisualization extends Component {
           />
         )}
         <div className="actions-container visualization-actions-container">
-          <Dropdown
-            ref={this.setDropdownRef}
-            buttonText={
-              <div>
-                <div className="icon">
-                  {visualization ? visualization.icon : iconChooseVisualization}
-                </div>
-                {buttonText}
-              </div>
-            }
-            content={this.renderVisualizationSelection()}
-          />
+          <VisualizationsList selectedId={visualization?.id} />
         </div>
         <div className="placeholders-wrapper">
           {this.renderVisualizationPlaceholdersOrBlank()}
@@ -1347,18 +1227,7 @@ class SectionVisualization extends Component {
     return (
       <div className="container visualization-container">
         <div className="actions-container visualization-actions-container">
-          <Dropdown
-            ref={this.setDropdownRef}
-            buttonText={
-              <div>
-                <div className="icon">
-                  {visualization ? visualization.icon : iconChooseVisualization}
-                </div>
-                {buttonText}
-              </div>
-            }
-            content={this.renderVisualizationSelection()}
-          />
+          <VisualizationsList selectedId={visualization?.id} />
         </div>
         <div className="placeholders-wrapper">
           {this.renderVisualizationPlaceholdersOrBlank()}
