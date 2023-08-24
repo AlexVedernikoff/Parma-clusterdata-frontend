@@ -10,6 +10,7 @@ import ConnectionSelection from '../ConnectionSelection/ConnectionSelection';
 import { TOAST_TYPES, REPLACE_SOURCE_MODE_ID } from '../../constants';
 import Utils from '../../helpers/utils';
 import { getSearchParam } from '../../helpers/QueryParams';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('dataset-creation-page');
 
@@ -353,7 +354,7 @@ class DatasetCreationPage extends React.Component {
   getFakeEntry = ({ section }) => {
     const {
       user: { login },
-    } = window.DL;
+    } = $appSettingsStore.getState();
 
     const sectionType = {
       'select-db-and-table': 'Выберите базу данных и таблицу:',
@@ -363,7 +364,7 @@ class DatasetCreationPage extends React.Component {
 
     return {
       fake: true,
-      key: window.DL.user.login
+      key: $appSettingsStore.getState().user.login
         ? `/Users/${login}/${sectionType[section]}`
         : `/${sectionType[section]}`,
       entryId: null,

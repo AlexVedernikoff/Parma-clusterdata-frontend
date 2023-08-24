@@ -18,7 +18,6 @@ class ActionPanel extends React.Component {
     children: PropTypes.array,
     openCreationWidgetPage: PropTypes.func,
     className: PropTypes.string,
-    isBuild: PropTypes.bool,
   };
 
   static EntryPanel = EntryPanel;
@@ -57,7 +56,6 @@ class ActionPanel extends React.Component {
       additionalEntryItems,
       rightItems,
       className: mix,
-      isBuild,
     } = this.props;
 
     const { entry } = this.state;
@@ -75,7 +73,6 @@ class ActionPanel extends React.Component {
               entry={entry}
               additionalEntryItems={additionalEntryItems}
               rightItems={rightItems}
-              isBuild={isBuild}
             />
           </div>
         );

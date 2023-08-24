@@ -1,0 +1,156 @@
+import React, { Component } from 'react';
+
+import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
+
+import { connect } from 'react-redux';
+
+import ChartKit from '@kamatech-data-ui/clustrum/src/components/ChartKit/ChartKit';
+
+import iconPencil from 'icons/pencil.svg';
+import iconPreviewDatasetError from 'icons/preview-dataset-error.svg';
+
+import { EXPORT } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
+
+import {
+  selectConfig,
+  selectConfigType,
+  selectPreviewEntryId,
+} from '../../../../../reducers/preview';
+import { selectDatasetError } from '../../../../../reducers/dataset';
+import { selectWidget } from '../../../../../reducers/widget';
+import { setHighchartsWidget } from '../../../../../actions';
+import { createStructuredSelector } from 'reselect';
+import { $appSettingsStore } from '@entities/app-settings';
+
+function goAwayLink(
+  { loadedData, propsData },
+  { extraParams = {}, urlPostfix = '', idPrefix = '' },
+) {
+  let url = $appSettingsStore.getState().endpoints.wizard + urlPostfix;
+
+  url +=
+    loadedData.entryId || propsData.id
+      ? idPrefix + (loadedData.entryId || propsData.id)
+      : propsData.source;
+
+  let query = new URLSearchParams({ ...propsData.params, ...extraParams }).toString();
+  query = query ? '?' + query : query;
+
+  return url + query;
+}
+
+window.requestDecorator = request => {
+  if ($appSettingsStore.getState().currentCloudFolderId) {
+    request.headers[
+      'x-yacloud-folderid'
+    ] = $appSettingsStore.getState().currentCloudFolderId;
+  }
+
+  const csrfTokenElement = document.getElementsByName('csrf-token')[0];
+
+  if (csrfTokenElement) {
+    request.headers['X-CSRF-Token'] = csrfTokenElement.content;
+  }
+
+  return request;
+};
+
+const EDIT = {
+  title: 'Редактировать',
+  icon: <Icon size="20" data={iconPencil} />,
+  isVisible: () => true,
+  action: ({ loadedData = {}, propsData }) =>
+    window.open(goAwayLink({ loadedData, propsData }, { idPrefix: '/' })),
+};
+
+class SectionPreview extends Component {
+  #exportWidget = (runPayload, options) => {
+    const { widget, onExport } = this.props;
+
+    onExport(runPayload.id, widget?.name ?? '', options);
+  };
+
+  renderChartkit() {
+    const {
+      configType,
+      config,
+      widget,
+      previewEntryId,
+      setHighchartsWidget,
+      datasetError,
+    } = this.props;
+
+    if (datasetError) {
+      return (
+        <div className="dataset-error-container">
+          <Icon width="236" data={iconPreviewDatasetError} />
+          <span>Невозможно отобразить график</span>
+        </div>
+      );
+    }
+
+    if (previewEntryId || (config && configType)) {
+      let editMode;
+      if (config && configType) {
+        editMode = {
+          config,
+          type: configType,
+        };
+      }
+
+      const menuItems = [EXPORT];
+
+      if (previewEntryId) {
+        menuItems.push(EDIT);
+      }
+
+      return (
+        <ChartKit
+          id={previewEntryId ? previewEntryId : widget ? widget.entryId : ''}
+          editMode={editMode}
+          onLoad={result => {
+            setHighchartsWidget({
+              highchartsWidget: result.data.widget,
+            });
+
+            if (result.status === 'success') {
+              const event = document.createEvent('HTMLEvents');
+
+              event.initEvent('chart-preview.done', true, true);
+              document.querySelector('.preview-chartkit').dispatchEvent(event);
+            } else {
+              const event = document.createEvent('HTMLEvents');
+
+              event.initEvent('chart-preview.error', true, true);
+              document.querySelector('.preview-chartkit').dispatchEvent(event);
+            }
+          }}
+          menu={menuItems}
+          exportWidget={this.#exportWidget}
+        />
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div className="container preview-container">
+        <div className="preview-chartkit">{this.renderChartkit()}</div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = createStructuredSelector({
+  datasetError: selectDatasetError,
+  configType: selectConfigType,
+  config: selectConfig,
+  widget: selectWidget,
+  previewEntryId: selectPreviewEntryId,
+});
+
+const mapDispatchToProps = {
+  setHighchartsWidget,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SectionPreview);

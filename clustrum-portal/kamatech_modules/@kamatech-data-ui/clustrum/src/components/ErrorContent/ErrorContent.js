@@ -14,6 +14,7 @@ import notFoundImg from 'assets/images/clouds/404.svg';
 import errorImg from 'assets/images/clouds/500.svg';
 import promoImg from 'assets/images/clouds/promo.svg';
 import identityImg from 'assets/images/clouds/identity.svg';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('error-content');
 const IMAGE_SIZE = 230;
@@ -174,7 +175,9 @@ class ErrorContent extends PureComponent {
           view="default"
           tone="default"
           text="Перейти в консоль"
-          onClick={() => window.location.assign(window.DL.endpoints.console)}
+          onClick={() =>
+            window.location.assign($appSettingsStore.getState().endpoints.console)
+          }
         />
       );
     }

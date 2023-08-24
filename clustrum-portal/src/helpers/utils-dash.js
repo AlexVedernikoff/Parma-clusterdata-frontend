@@ -1,7 +1,9 @@
 import { SDK } from '../modules/sdk';
 import { ENTRY_ID_REGEXP } from '../modules/constants/constants';
+import { $appSettingsStore } from '@entities/app-settings';
 
-export const getPersonalFolderPath = () => `Users/${window.DL.user.login}/`;
+export const getPersonalFolderPath = () =>
+  `Users/${$appSettingsStore.getState().user.login}/`;
 
 export async function getEntryByIdOrKey(pathname) {
   const keyAlike = pathname.replace(
@@ -35,7 +37,7 @@ export function unwrapFromArray(array) {
 }
 
 export function getLang() {
-  return window.DL.user.lang;
+  return $appSettingsStore.getState().user.lang;
 }
 
 export function getCSRFToken() {

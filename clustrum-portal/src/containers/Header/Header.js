@@ -43,6 +43,7 @@ import {
   FilterOutlined,
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('dash-header');
 
@@ -60,7 +61,6 @@ class Header extends React.PureComponent {
     resetAllFilters: PropTypes.func.isRequired,
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
-    isBuild: PropTypes.bool,
     hasRightSideContent: PropTypes.bool,
   };
 
@@ -298,7 +298,7 @@ class Header extends React.PureComponent {
           <Button icon={<DownloadOutlined />}>Экспортировать</Button>
         </Dropdown>,
         <>
-          {!window.DL.hideEdit && (
+          {!$appSettingsStore.getState().hideEdit && (
             <Button
               title="Редактировать"
               onClick={() => setMode(MODE.EDIT)}
@@ -340,13 +340,13 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { isBuild, isEditMode } = this.props;
+    const { isEditMode } = this.props;
     const renderRightItems = isEditMode ? this.renderEditItems() : this.renderViewItems();
 
     return (
       <>
         <BrowserPrint />
-        {!window.DL.hideSubHeader && this.props.entry && (
+        {!$appSettingsStore.getState().hideSubHeader && this.props.entry && (
           <ActionPanel
             sdk={SDK}
             entryId={this.props.entry.entryId}
@@ -356,7 +356,6 @@ class Header extends React.PureComponent {
               'is-edit': this.props.isEditMode,
               'is-view': !this.props.isEditMode,
             })}
-            isBuild={isBuild}
           />
         )}
       </>

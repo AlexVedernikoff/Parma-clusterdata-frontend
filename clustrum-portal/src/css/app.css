@@ -1165,14 +1165,13 @@
 }
 
 .visualization-container .dropdown-content {
-  background: var(--color-base);
-  width: 720px;
+  background: #fff;
+  width: 248px;
   position: absolute;
-  top: 173px;
-  left: 276px;
+  top: 167px;
+  left: 568px;
   z-index: 10;
   border-radius: 5px;
-  padding: 24px 40px;
   box-shadow: 0 9px 24px 0 rgba(0, 0, 0, 0.1);
   overflow-y: auto;
 }
@@ -4171,7 +4170,7 @@ td.rdtYear:hover {
 }
 
 .wizard .columns .column .container .actions-container {
-  height: 47px;
+  height: 40px;
   border-bottom: 1px solid var(--color-divider);
   font-size: 15px;
   font-weight: 400;
@@ -4200,6 +4199,18 @@ td.rdtYear:hover {
 .wizard .columns .visual-column {
   height: calc(100vh - 150px);
   width: 256px;
+}
+
+/* TODO Убрать после рефакторинга колонок */
+.wizard .columns .visual-column .visualization-actions-container {
+  /* переопределил импортант */
+  padding: 0 !important;
+}
+
+/* TODO Убрать после рефакторинга колонок */
+.wizard .columns .visual-column .dropdown__button {
+  padding: 0;
+  line-height: 45px;
 }
 
 .wizard .columns .preview-column {
