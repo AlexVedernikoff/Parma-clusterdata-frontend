@@ -1,0 +1,18 @@
+.preview-chartkit {
+  height: 100%;
+  padding: 20px;
+  background: #fff;
+}
+
+.preview-chartkit__dataset-error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.preview-chartkit__dataset-error-container span {
+  display: block;
+  margin-top: 20px;
+  font-size: 15px;
+}
