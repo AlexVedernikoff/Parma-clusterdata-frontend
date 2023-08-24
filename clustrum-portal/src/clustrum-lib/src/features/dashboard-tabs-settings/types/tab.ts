@@ -4,6 +4,7 @@ export interface Tab {
   hasTempId?: boolean;
   id: string;
   ignores: unknown[];
+  isDeleted?: boolean;
   items: unknown[];
   layout: unknown[];
   title: string;
