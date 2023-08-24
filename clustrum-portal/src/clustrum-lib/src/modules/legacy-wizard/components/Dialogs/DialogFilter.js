@@ -75,10 +75,7 @@ class DialogFilter extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const { item, dataset, updates, callback } = nextProps;
-    if (
-      !item ||
-      (nextProps.item === this.state.item && callback === this.state.callback)
-    ) {
+    if (!item) {
       return;
     }
 
