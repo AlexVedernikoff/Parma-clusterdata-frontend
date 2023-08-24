@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { getUniqueId } from './get-unique-id';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
 import classNames from 'classnames';
 import { DndItem } from './dnd-item';
@@ -147,7 +146,6 @@ export function DndContainer<T extends DndItemGenericData>(
     }
 
     const insertionItem = items.find(({ id }) => item.id === id) || { ...item };
-    insertionItem.id = getUniqueId('inserted');
 
     setUsedItemData(insertionItem);
     setAction('insert');
