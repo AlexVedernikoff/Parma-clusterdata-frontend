@@ -1,4 +1,4 @@
-import { getEntryMetaRequest } from '@clustrum-lib/shared/api/common-switcher-dataset';
+import { getEntryMetaRequest } from '@lib-shared/api/common-switcher-dataset';
 
 export interface EntryMetaResponse {
   entryId: string;
