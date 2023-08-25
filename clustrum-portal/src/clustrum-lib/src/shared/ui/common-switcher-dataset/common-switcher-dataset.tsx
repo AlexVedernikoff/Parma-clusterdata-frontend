@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
 // TODO будет поправлено после задачи с рефакторингом NavigationMinimal
 import { NavigationMinimal, EntryTitle } from '@kamatech-data-ui/clustrum';
-import { EntryScope } from '@clustrum-lib/shared/types';
+import { EntryScope } from '@lib-shared/types';
 import { getNavigationPathFromKey, getPersonalFolderPath } from '@lib-shared/lib/utils';
 // TODO будет поправлено после задачи с рефакторингом NavigationMinimal
 import { SDK } from '../../../../../modules/sdk';
