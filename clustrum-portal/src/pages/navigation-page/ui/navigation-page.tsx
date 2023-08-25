@@ -1,16 +1,15 @@
-import React, { ReactElement, useCallback, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useUnit } from 'effector-react';
-
+import { Places } from '@shared/lib/constants';
 import {
-  getNavigationListEvent,
-  getNavigationDataByEntryIdEvent,
   changePathInFolderEvent,
   changePlaceEvent,
-} from '../../../shared/model/navigation-base-model';
-import { NavigationBase } from '../../../features/navigation-base/ui/navigation-base';
-import { useCurrentPlace } from '../../../features/navigation-base/lib/hooks/use-current-place';
-import { Places } from '../../../shared/lib/constants/places';
+  getNavigationDataByEntryIdEvent,
+  getNavigationListEvent,
+} from '@entities/navigation-base/model/navigation-base';
+import { useCurrentPlace } from '@entities/navigation-base/lib/hooks';
+import { NavigationBase } from '@entities/navigation-base';
 
 interface NavigationPage {
   /**
@@ -37,21 +36,21 @@ export function NavigationPage({ sdk }: NavigationPage): ReactElement | null {
   const place = useCurrentPlace();
   const { path: entryId, root } = useParams<{ path?: string; root?: string }>();
 
-  const getNavigation = useCallback(() => {
+  const getNavigation = (): void => {
     if (entryId) {
       getNavigationDataByEntryId({ entryId });
     } else {
       changePathInFolder('/');
       getNavigationList();
     }
-  }, [changePathInFolder, entryId, getNavigationDataByEntryId, getNavigationList]);
+  };
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore TODO: разобраться, почему возникает ошибка при передаче параметра
     changePlace(place as Places);
     getNavigation();
-  }, [getNavigation, place, changePlace]);
+  }, [place, entryId]);
 
   return place ? (
     <div className="navigation-page">

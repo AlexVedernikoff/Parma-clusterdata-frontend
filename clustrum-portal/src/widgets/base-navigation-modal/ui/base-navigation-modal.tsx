@@ -1,8 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useUnit } from 'effector-react';
 import { MenuItemType } from 'antd/es/menu/hooks/useItems';
-import { SidePanel } from '@features/side-panel/ui/side-panel';
-
+import { SidePanel } from '@features/side-panel';
 import { Places } from '@shared/lib/constants';
 import {
   $pathInFolder,
@@ -10,8 +9,8 @@ import {
   changePathInFolderEvent,
   changePlaceEvent,
   getNavigationListEvent,
-} from '@shared/model/navigation-base-model';
-import { NavigationBase } from '@features/navigation-base/ui/navigation-base';
+} from '@entities/navigation-base/model/navigation-base';
+import { NavigationBase } from '@entities/navigation-base';
 import { NavigationModalComponentProps } from '../types';
 import styles from './base-navigation-modal.module.css';
 
@@ -44,7 +43,7 @@ export function BaseNavigationModal(props: NavigationModalComponentProps): React
     getNavigationList();
   }, []);
 
-  const onClickSidePanelMenuItem = (menuItem: MenuItemType): void => {
+  const handleClickSidePanelMenuItem = (menuItem: MenuItemType): void => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore TODO: разобраться, почему возникает ошибка при передаче параметра
     changePlace(menuItem.key as Places);
@@ -58,7 +57,7 @@ export function BaseNavigationModal(props: NavigationModalComponentProps): React
       <div className={styles['base-navigation-modal__content']}>
         <SidePanel
           withHeader={false}
-          onClickMenuItem={onClickSidePanelMenuItem}
+          onClickMenuItem={handleClickSidePanelMenuItem}
           selectedItem={[place]}
         />
         <div className={styles['base-navigation-modal__navigation']}>

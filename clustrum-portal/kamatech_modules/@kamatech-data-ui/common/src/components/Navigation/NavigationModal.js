@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '../Dialog/Dialog';
-import { BaseNavigationModal } from '@widgets/base-navigation-modal/ui/base-navigation-modal';
+import { BaseNavigationModal } from '@widgets/base-navigation-modal';
 
 import noop from 'lodash/noop';
 

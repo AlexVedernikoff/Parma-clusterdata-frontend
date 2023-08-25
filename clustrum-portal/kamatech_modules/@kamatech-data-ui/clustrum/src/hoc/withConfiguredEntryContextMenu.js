@@ -8,7 +8,7 @@ import iconDelete from '@kamatech-data-ui/common/src/assets/icons/delete-file.sv
 import iconCopy from '@kamatech-data-ui/common/src/assets/icons/copy-file.svg';
 import iconCopyLink from '@kamatech-data-ui/common/src/assets/icons/link.svg';
 import iconAccessGroup from 'icons/access-group.svg';
-import { ContextMenuActions } from '../../../../../src/shared/lib/constants/context-menu-actions';
+import { ContextMenuActions } from '@entities/navigation-base/types/context-menu-actions';
 
 const LIMITED_CONTEXT_MENU = [
   ContextMenuActions.copy,

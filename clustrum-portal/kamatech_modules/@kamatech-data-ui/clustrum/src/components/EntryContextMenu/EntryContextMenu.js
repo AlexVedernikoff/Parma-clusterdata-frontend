@@ -12,7 +12,7 @@ import EntryDialogues, {
 import Utils from '../../utils';
 import navigateHelper from '../../libs/navigateHelper';
 import ErrorDialog from '../ErrorDialog/ErrorDialog';
-import { ContextMenuActions } from '../../../../../../src/shared/lib/constants/context-menu-actions';
+import { ContextMenuActions } from '@entities/navigation-base/types';
 
 const ConfiguredEntryContextMenu = withConfiguredEntryContextMenu(EntryContextMenu);
 const defaultPopupDirections = ['bottom-center', 'bottom-left', 'bottom-right'];

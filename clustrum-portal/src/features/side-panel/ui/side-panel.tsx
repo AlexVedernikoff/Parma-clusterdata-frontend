@@ -9,10 +9,10 @@ import { useActiveMenuItemKey } from '../lib/hooks';
 import { MENU_ITEMS } from '../lib/constants';
 import { RedLogo } from './red-logo';
 import { SidePanelProps } from '../types';
-import { MAP_PLACE_TO_ROUTE } from '../lib/constants/match-routes';
+import { MAP_PLACE_TO_ROUTE } from '../lib/constants';
 import { Places } from '@shared/lib/constants/places';
 
-import './side-panel.css';
+import styles from './side-panel.module.css';
 
 const { useToken } = theme;
 
@@ -43,25 +43,23 @@ export function SidePanel(props: SidePanelProps): ReactElement {
     }
   };
 
+  const sidePanelHeaderClass = classNames(styles['side-panel__header'], {
+    [styles['side-panel__header--collapsed']]: collapsed,
+  });
+
+  const sidePanelHeaderTitleClass = classNames(styles['side-panel__header-title'], {
+    [styles['side-panel__header-title--collapsed']]: collapsed,
+  });
+
   return (
-    <div className="side-panel">
+    <div className={styles['side-panel']}>
       {withHeader && (
-        <div
-          className={classNames('side-panel__header', {
-            'side-panel__header--collapsed': collapsed,
-          })}
-        >
+        <div className={sidePanelHeaderClass}>
           <Icons component={RedLogo} style={{ color: token.colorPrimary }} />
-          <span
-            className={classNames('side-panel__header-title', {
-              'side-panel__header-title--collapsed': collapsed,
-            })}
-          >
-            Кластрум
-          </span>
+          <span className={sidePanelHeaderTitleClass}>Кластрум</span>
         </div>
       )}
-      <nav className="side-panel__content">
+      <nav className={styles['side-panel__content']}>
         <Menu
           mode="inline"
           inlineCollapsed={collapsed}
@@ -71,15 +69,15 @@ export function SidePanel(props: SidePanelProps): ReactElement {
         />
       </nav>
       <button
-        className="side-panel__footer"
+        className={styles['side-panel__footer']}
         onClick={(): void => {
           setCollapsed(!collapsed);
         }}
       >
         {collapsed ? (
-          <RightOutlined className="side-panel__footer-icon" />
+          <RightOutlined className={styles['side-panel__footer-icon']} />
         ) : (
-          <LeftOutlined className="side-panel__footer-icon" />
+          <LeftOutlined className={styles['side-panel__footer-icon']} />
         )}
       </button>
     </div>

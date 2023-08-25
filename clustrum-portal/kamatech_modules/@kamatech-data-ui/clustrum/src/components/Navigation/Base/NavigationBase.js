@@ -20,7 +20,7 @@ import {
   getCreateMenuItemsExternal,
   getPlaceParameters,
 } from './configure';
-import { ContextMenuActions } from '../../../../../../../src/shared/lib/constants/context-menu-actions';
+import { ContextMenuActions } from '@entities/navigation-base/types';
 
 const geEntryUrl = (entry, navigationUrl, place) => {
   const link = navigateHelper.redirectUrlSwitcher(entry, place);
