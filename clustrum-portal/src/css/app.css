@@ -4043,21 +4043,6 @@ td.rdtYear:hover {
   --data-table-color-footer-area: var(--data-table-color-base);
 }
 
-.preview-container {
-  height: 100%;
-}
-
-.preview-container .dropdown-menu__list {
-  width: 150px;
-  margin-left: -30px;
-}
-
-.preview-container .preview-chartkit {
-  height: 100%;
-  padding: 20px;
-  background: var(--color-base);
-}
-
 .preview-container .preview-chartkit .chartkit {
   height: 100%;
 }
@@ -4089,20 +4074,6 @@ td.rdtYear:hover {
 
 .yc-root_theme_dark .chartkit_theme_default .highcharts-legend-item text:hover {
   fill: var(--color-contrast-55-solid) !important;
-}
-
-.dataset-error-container {
-  position: absolute;
-  top: calc(50% + 50px);
-  left: calc(50% + 256px);
-  margin-top: -112px;
-  margin-left: -118px;
-}
-
-.dataset-error-container span {
-  display: block;
-  font-size: 15px;
-  margin-top: 20px;
 }
 
 .error-content {

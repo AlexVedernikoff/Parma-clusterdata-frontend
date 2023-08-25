@@ -1090,9 +1090,9 @@ export function setSearchPhrase({ searchPhrase }) {
   };
 }
 
-export function setHighchartsWidget({ highchartsWidget }) {
+export function setWidget({ widget }) {
   return {
-    highchartsWidget,
+    widget,
     type: SET_HIGHCHARTS_WIDGET,
   };
 }

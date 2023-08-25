@@ -92,11 +92,13 @@ function dash(state = initialState, action) {
 
       const hashids = new Hashids(data.salt);
 
-      const newTabs = action.payload.map(tab =>
-        tab.hasTempId
-          ? { ...tab, id: hashids.encode(++counter), filtersLayout: [] }
-          : tab,
-      );
+      const newTabs = action.payload
+        .filter(tab => !tab.isDeleted)
+        .map(tab =>
+          tab.hasTempId
+            ? { ...tab, id: hashids.encode(++counter), filtersLayout: [] }
+            : tab,
+        );
 
       let newTabId = tabId;
 

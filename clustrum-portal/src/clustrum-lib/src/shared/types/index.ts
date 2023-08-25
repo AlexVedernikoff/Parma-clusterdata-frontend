@@ -7,3 +7,4 @@ export {
   NavigationScope,
   Permissions,
 } from './navigation-entry-data';
+export { EntryScope } from './entry-scope';
