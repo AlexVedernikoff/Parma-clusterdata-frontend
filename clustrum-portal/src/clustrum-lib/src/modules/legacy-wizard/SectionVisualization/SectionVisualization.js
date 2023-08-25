@@ -365,7 +365,7 @@ class SectionVisualization extends Component {
 
     let clusterPrecisionItem = 0;
 
-    let paginateInfoItem = { page: 0, pageSize: 150 };
+    let paginateInfoItem = { page: 1, pageSize: 10 };
 
     if (!visualization) {
       return null;
@@ -838,7 +838,7 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows: !needUniqueRows,
                   needTotal,
-                  paginateInfo,
+                  paginateInfo: { page: 1, pageSize: paginateInfo.pageSize },
                   diagramMagnitude,
                   exportLimit,
                 });
