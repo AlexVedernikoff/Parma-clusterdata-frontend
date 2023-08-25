@@ -71,6 +71,8 @@ interface WidgetProps extends UnknownProps, ChartWidgetProps {
   onChange(): void;
 }
 
+// TODO: Переименовать в `WidgetFactory` (и файл в `widget-factory.tsx`)
+// TODO: Добавить `index.ts`
 export class Widget extends React.PureComponent<WidgetProps> {
   static propTypes = {
     data: PropTypes.object.isRequired,

@@ -7,7 +7,7 @@ import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
-import { getParamsValue } from '@clustrum-lib';
+import { getParamsValue } from '@lib-shared/lib/utils';
 
 import Loader from '@kamatech-data-ui/chartkit/lib/components/Loader/Loader';
 import Error from '@kamatech-data-ui/chartkit/lib/components/Error/Error';
