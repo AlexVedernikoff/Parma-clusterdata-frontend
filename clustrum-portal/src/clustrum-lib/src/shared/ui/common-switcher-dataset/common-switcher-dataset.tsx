@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
+// TODO будет поправлено после задачи с рефакторингом NavigationMinimal
 import { NavigationMinimal, EntryTitle } from '@kamatech-data-ui/clustrum';
-import { ENTRY_SCOPE } from '@clustrum-lib/shared/config/entry-scope';
-import {
-  getNavigationPathFromKey,
-  getPersonalFolderPath,
-} from '@clustrum-lib/shared/lib/utils';
+import { EntryScope } from '@clustrum-lib/shared/types';
+import { getNavigationPathFromKey, getPersonalFolderPath } from '@lib-shared/lib/utils';
+// TODO будет поправлено после задачи с рефакторингом NavigationMinimal
 import { SDK } from '../../../../../modules/sdk';
 import { changeNavigationPath } from '../../../../../store/actions/dash';
 import { CommonSwitcherDatasetProps, EntryProps, DashStore } from './types';
@@ -71,7 +70,7 @@ export function CommonSwitcherDataset(props: CommonSwitcherDatasetProps): JSX.El
         onClose={(): void => setShowNavigation(false)}
         visible={showNavigation}
         popupDirections={popupDirections}
-        clickableScope={ENTRY_SCOPE.Dataset}
+        clickableScope={EntryScope.Dataset}
         onEntryClick={handleEntryClick}
       />
     </div>

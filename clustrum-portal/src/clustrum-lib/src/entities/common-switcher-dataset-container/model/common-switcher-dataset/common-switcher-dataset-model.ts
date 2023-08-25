@@ -1,4 +1,5 @@
-import { EntryMetaResponse, getEntryMetaApi } from '../../api/get-entry-meta';
+import { getEntryMetaApi } from '../../api/get-entry-meta';
+import { EntryMetaResponse } from '../../types';
 
 export const getCommonSwitcherDatasetModel = async (
   entryId: string,

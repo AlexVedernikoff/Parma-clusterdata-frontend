@@ -1,4 +1,4 @@
-export enum ENTRY_SCOPE {
+export enum EntryScope {
   Widget = 'widget',
   Dataset = 'dataset',
 }

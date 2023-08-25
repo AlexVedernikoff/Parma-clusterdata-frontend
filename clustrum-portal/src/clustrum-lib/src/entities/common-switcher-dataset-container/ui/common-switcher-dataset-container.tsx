@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
-import { CommonSwitcherDataset } from '@clustrum-lib/shared/ui/common-switcher-dataset';
+import { CommonSwitcherDataset } from '@lib-shared/ui/common-switcher-dataset';
 import { getCommonSwitcherDatasetModel } from '../model/common-switcher-dataset/common-switcher-dataset-model';
 import { CommonSwitcherDatasetContainerProps, EntryProps } from '../types';
 import styles from './common-switcher-dataset-container.module.css';
