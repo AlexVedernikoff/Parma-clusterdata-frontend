@@ -9,6 +9,7 @@ import { DL } from '@kamatech-data-ui/clustrum/src/constants/common';
 
 import { Pointerfocus } from 'lego-on-react';
 import { PageContainer } from '@widgets/page-container';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('navigation-page');
 
@@ -29,7 +30,7 @@ class NavigationPage extends React.Component {
       menu = [],
       features: { logoText, toggleTheme } = {},
       user = {},
-    } = window.DL;
+    } = $appSettingsStore.getState();
     const { sdk } = this.props;
 
     const userData = {

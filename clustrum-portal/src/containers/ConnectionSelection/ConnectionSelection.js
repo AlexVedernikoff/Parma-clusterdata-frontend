@@ -9,11 +9,12 @@ import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 
 // import './ConnectionSelection.scss';
 import iconFolder from '@kamatech-data-ui/clustrum/src/icons/folder-selection.svg';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('connection-selection');
 
 function DatasetCreationSettings(props) {
-  const { installationType } = window.DL;
+  const { installationType } = $appSettingsStore.getState();
   const {
     sdk,
     modeId,

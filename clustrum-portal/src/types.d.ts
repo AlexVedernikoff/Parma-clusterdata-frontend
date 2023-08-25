@@ -3,4 +3,8 @@ declare module '*.module.css' {
   // eslint-disable-next-line import/no-default-export
   export default classes;
 }
-declare module 'ENV';
+
+declare let BUILD_SETTINGS: {
+  systemTitle: string;
+  isLib: boolean;
+};

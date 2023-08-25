@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('dl-connector');
 const TOKEN_CODE_PATTERN = /code=([\d]{7})/;
@@ -52,7 +53,7 @@ class AppMetricaConnector extends React.Component {
     const {
       metrikaOAuthClientId,
       endpoints: { extPassportOAuth: oauthUrl } = {},
-    } = window.DL;
+    } = $appSettingsStore.getState();
     const redirectUrl = window.location.origin;
 
     const queryParams = `response_type=code&client_id=${metrikaOAuthClientId}&redirect_uri=${redirectUrl}`;

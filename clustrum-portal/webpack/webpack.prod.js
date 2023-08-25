@@ -15,4 +15,5 @@ module.exports = generateConfig(
   {},
   false,
   env,
+  'Анализ данных',
 );

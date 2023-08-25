@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('dashkit-plugin-widget');
 
@@ -99,7 +100,11 @@ class PluginWidget extends React.PureComponent {
       this.widget = data.data.widget;
     }
 
-    if (window.DL.exportMode && this.widget && typeof this.widget.reflow === 'function') {
+    if (
+      $appSettingsStore.getState().exportMode &&
+      this.widget &&
+      typeof this.widget.reflow === 'function'
+    ) {
       setInterval(() => {
         this.widget.reflow();
       }, 1000);

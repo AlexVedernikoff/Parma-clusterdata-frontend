@@ -28,6 +28,7 @@ import iconPoints from 'icons/points.svg';
 import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
 import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',
@@ -60,7 +61,7 @@ export const getConnectorsMap = () => {
     features: {
       dataset: { chOverYtEnabled, oracleEnabled, appMetricaEnabled } = {},
     } = {},
-  } = window.DL;
+  } = $appSettingsStore.getState();
 
   const connectorsList = {
     clickhouse: 'ClickHouse',
@@ -121,11 +122,11 @@ const sectionCreationType = {
 export const getFakeEntry = entryType => {
   const {
     user: { login },
-  } = window.DL;
+  } = $appSettingsStore.getState();
 
   return {
     fake: true,
-    key: window.DL.user.login
+    key: $appSettingsStore.getState().user.login
       ? `/Users/${login}/${sectionCreationType[entryType]}`
       : `/${sectionCreationType[entryType]}`,
     entryId: null,
