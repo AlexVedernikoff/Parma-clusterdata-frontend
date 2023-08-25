@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEqual from 'lodash/isEqual';
 
 // TODO: изменить импорт на `@clustrum-lib`
-import { Widget } from '@clustrum-lib/shared/ui/widgets-factory/widget';
+import { Widget } from '@lib-shared/ui/widgets-factory';
 
 import ChartsModule from '@kamatech-data-ui/chartkit/lib/modules/charts/charts';
 import ErrorDispatcher from '@kamatech-data-ui/chartkit/lib/modules/error-dispatcher/error-dispatcher';
-import { getParamsValue } from '@clustrum-lib';
+import { getParamsValue } from '@lib-shared/lib/utils';
 import { isPropsTheSame } from '../model/is-props-the-same';
 // TODO: Перечисление WIZARD_NODE_TYPE фактически дублирует перечисление WidgetType
 // Нужно рассмотреть возможность использования только второго
