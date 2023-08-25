@@ -1,6 +1,6 @@
 import { ColumnType } from 'antd/es/table';
 
-interface PaginateInfo {
+export interface PaginateInfo {
   page: number;
   pageSize: number;
 }
