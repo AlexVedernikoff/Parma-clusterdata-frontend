@@ -1,1 +1,1 @@
-export { WidgetContainer } from './widget-container';
+export { WidgetContainer } from './ui/widget-container';

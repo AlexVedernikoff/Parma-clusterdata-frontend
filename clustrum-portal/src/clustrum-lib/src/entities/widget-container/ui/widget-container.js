@@ -7,11 +7,11 @@ import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
-import { getParamsValue } from '@lib-shared/lib/utils';
 
+import { getParamsValue } from '@lib-shared/lib/utils';
 import Loader from '@kamatech-data-ui/chartkit/lib/components/Loader/Loader';
 import Error from '@kamatech-data-ui/chartkit/lib/components/Error/Error';
-import { Charts } from './ui/charts';
+import { Charts } from './charts';
 import Menu from '@kamatech-data-ui/chartkit/lib/components/Menu/Menu';
 
 import URI from '@kamatech-data-ui/chartkit/lib/modules/uri/uri';
