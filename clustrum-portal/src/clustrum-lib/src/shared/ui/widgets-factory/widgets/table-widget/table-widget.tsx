@@ -32,7 +32,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       size="small"
       showSorterTooltip={false}
       title={(): string | null => title}
-      scroll={{ y: '80%' }}
+      scroll={{ y: '100%' }}
       pagination={{
         total: Number(totalRowsCount),
         defaultPageSize: 10,
