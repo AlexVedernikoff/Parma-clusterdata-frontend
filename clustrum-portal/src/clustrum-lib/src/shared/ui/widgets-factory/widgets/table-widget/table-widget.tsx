@@ -31,6 +31,11 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     };
   });
 
+  const changeHandler = (page: number, pageSize: number): void => {
+    setPage(page);
+    setPageSize(pageSize);
+  };
+
   return (
     <Table
       className="table-widget"
@@ -45,10 +50,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
         current: currentPage,
         defaultPageSize: 10,
         showTotal: (total: number): string => `Всего: ${total}`,
-        onChange: (page: number, pageSize: number): void => {
-          setPage(page);
-          setPageSize(pageSize);
-        },
+        onChange: changeHandler,
       }}
     />
   );
