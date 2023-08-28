@@ -1,6 +1,6 @@
 import isEqual from 'lodash/isEqual';
 
-import { getParamsValue } from '@clustrum-lib';
+import { getParamsValue } from '@lib-shared/lib/utils';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function isPropsTheSame(prevProps, newProps) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// TODO: изменить импорт на `@clustrum-lib`
 import { Widget } from '@lib-shared/ui/widgets-factory';
 
 import ChartsModule from '@kamatech-data-ui/chartkit/lib/modules/charts/charts';
