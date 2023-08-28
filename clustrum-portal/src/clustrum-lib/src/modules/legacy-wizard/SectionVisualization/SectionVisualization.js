@@ -91,8 +91,12 @@ import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Tabl
 import { VisualizationType } from '@lib-entities/visualization-factory/types';
 import { VisualizationsList } from '@lib-features/visualizations-list';
 import { $appSettingsStore } from '@entities/app-settings';
+import { DialogPivotTable } from '../components/Dialogs/DialogPivotTable';
+import cloneDeep from 'lodash/cloneDeep';
 
 const steppedLayoutIndentationMaxValue = 40;
+
+const pivotTablePlaceholdersId = ['pivot-table-columns', 'rows', 'measures'];
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -216,13 +220,23 @@ class SectionVisualization extends Component {
           disabled={datasetError}
           onItemClick={(e, item) => {
             if (
-              ['flat-table-columns', 'measures', 'dimensions'].includes(placeholder.id)
+              [
+                'flat-table-columns',
+                'measures',
+                'dimensions',
+                ...pivotTablePlaceholdersId,
+              ].includes(placeholder.id)
             ) {
               this.setState({
                 dialogItem: item,
-                dialogType: 'column',
+                dialogType: pivotTablePlaceholdersId.includes(placeholder.id)
+                  ? 'pivotTableDialog'
+                  : 'column',
                 isDialogVisible: true,
-                dialogCallBack: this.handleDialogActions,
+                dialogCallBack: pivotTablePlaceholdersId.includes(placeholder.id)
+                  ? this.handleDialogPivotTableActions
+                  : this.handleDialogActions,
+                dialogPlaceholder: placeholder,
               });
             }
           }}
@@ -261,8 +275,17 @@ class SectionVisualization extends Component {
     );
   };
 
+  hideDialogWindow() {
+    this.setState({
+      dialogType: null,
+      dialogItem: null,
+      isDialogVisible: false,
+      dialogPlaceholder: null,
+    });
+  }
+
   handleDialogActions(result, items = null) {
-    this.setState({ dialogType: null, dialogItem: null, isDialogVisible: false });
+    this.hideDialogWindow();
 
     const { filters, setFilters, updatePreview } = this.props;
 
@@ -279,6 +302,25 @@ class SectionVisualization extends Component {
     updatePreview({
       ...this.props,
       filters: items || filters,
+    });
+  }
+
+  handleDialogPivotTableActions(item) {
+    this.hideDialogWindow();
+
+    const { updatePreview, setVisualizationPlaceholderItems, visualization } = this.props;
+    const { dialogPlaceholder } = this.state;
+    const newItems = cloneDeep(dialogPlaceholder.items);
+    newItems[dialogPlaceholder.items.findIndex(el => el.id === item.id)] = item;
+
+    setVisualizationPlaceholderItems({
+      visualization,
+      placeholder: dialogPlaceholder,
+      items: newItems,
+    });
+
+    updatePreview({
+      ...this.props,
     });
   }
 
@@ -1359,18 +1401,29 @@ class SectionVisualization extends Component {
     return visualization ? this.renderVisualizationPlaceholders() : null;
   }
 
-  render() {
-    const { visualization, sdk, dataset, updates } = this.props;
-
-    return (
-      <div className="container visualization-container">
-        {this.state.isDialogVisible && this.state.dialogType === 'column' ? (
+  renderDialogWindow() {
+    const { sdk, dataset, updates } = this.props;
+    if (!this.state.isDialogVisible) {
+      return null;
+    }
+    switch (this.state.dialogType) {
+      case 'column':
+        return (
           <DialogFormatTemplate
             item={this.state.dialogItem}
             callback={this.state.dialogCallBack}
             visible={true}
           />
-        ) : (
+        );
+      case 'pivotTableDialog':
+        return (
+          <DialogPivotTable
+            item={this.state.dialogItem}
+            callback={this.state.dialogCallBack.bind(this)}
+          />
+        );
+      default:
+        return (
           <DialogFilter
             item={this.state.dialogItem}
             callback={this.state.dialogCallBack}
@@ -1379,7 +1432,16 @@ class SectionVisualization extends Component {
             sdk={sdk}
             visible={true}
           />
-        )}
+        );
+    }
+  }
+
+  render() {
+    const { visualization } = this.props;
+
+    return (
+      <div className="container visualization-container">
+        {this.renderDialogWindow()}
         <div className="actions-container visualization-actions-container">
           <VisualizationsList selectedId={visualization?.id} />
         </div>
