@@ -630,7 +630,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
           needUniqueRows,
           needTotal,
           diagramMagnitude,
-          paginateInfo = { page: 0, pageSize: 150 },
+          paginateInfo = { page: 1, pageSize: 10 },
           labels,
           updates,
           mapLayerOpacity,
