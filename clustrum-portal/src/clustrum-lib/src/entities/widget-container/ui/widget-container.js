@@ -106,6 +106,7 @@ export class WidgetContainer extends React.Component {
       prevPaginateInfo,
       orderBy: orderByFromState,
       prevOrderBy,
+      loading,
     },
   ) {
     const sourceURI = new URI(propsSource);
@@ -149,7 +150,7 @@ export class WidgetContainer extends React.Component {
     const randomString = settings.requestIdGenerator();
 
     return {
-      loading: true,
+      loading,
       error: false,
       data: null,
       forceUpdate,
