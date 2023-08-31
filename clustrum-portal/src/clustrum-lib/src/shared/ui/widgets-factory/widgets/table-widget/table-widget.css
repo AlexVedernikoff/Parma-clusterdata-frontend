@@ -106,3 +106,8 @@
 .table-widget .ant-table-header {
   overflow: visible !important;
 }
+
+.ant-tooltip-content > .ant-tooltip-inner {
+  color: black;
+  background-color: white;
+}
