@@ -36,7 +36,7 @@ Utils.setBodyFeatures();
 
 logVersion();
 
-export function DatasetBuild(props) {
+export default function DatasetBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
     hideHeader: props.hideHeader,

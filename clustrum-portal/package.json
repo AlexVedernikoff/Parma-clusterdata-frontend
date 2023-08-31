@@ -25,7 +25,8 @@
     "eslint:pre-commit": "eslint --fix",
     "stylelint": "stylelint **/*.{css,scss}",
     "stylelint:fix": "stylelint **/*.{css,scss} --fix",
-    "stylelint:pre-commit": "stylelint --fix --allow-empty-input"
+    "stylelint:pre-commit": "stylelint --fix --allow-empty-input",
+    "npm:build": "npm run build:lib && cd src/entries/npmBuild && chmod +x ./npmBuild.sh && ./npmBuild.sh && cd ../dist && npm pack"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json}": "npm run eslint:pre-commit",

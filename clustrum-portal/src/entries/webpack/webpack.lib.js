@@ -4,13 +4,21 @@ const { PORTAL_ASSETS_PATH } = require('../../../src/context-path.js');
 
 module.exports = {
   mode: 'production',
-  entry: './src/entries/libBuilder.js',
+  entry: {
+    dashBuild: './src/entries/dashBuild.js',
+    datasetBuild: './src/entries/datasetBuild.js',
+    wizardBuild: './src/entries/wizardBuild.js',
+    navigationBuild: './src/entries/navigationBuild.js',
+    bundle: './src/entries/libBuilder.js',
+  },
+  experiments: {
+    outputModule: true,
+  },
   output: {
-    path: 'D:\\test-lib\\clustrum-embedded-lib\\src\\lib',
-    filename: 'bundle.js',
+    path: path.resolve('./src/entries/dist/'),
+    filename: '[name].js',
     library: {
-      type: 'umd',
-      name: 'clustrum',
+      type: 'module',
     },
     globalObject: 'this',
     publicPath: PORTAL_ASSETS_PATH,

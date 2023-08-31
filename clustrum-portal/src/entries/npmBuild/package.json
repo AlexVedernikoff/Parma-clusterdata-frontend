@@ -1,0 +1,21 @@
+{
+  "name": "clustrum",
+  "version": "0.1.0",
+  "author": "parmalogica",
+  "description": "BI solution",
+  "main": "bundle.js",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^18.1.0"
+  },
+  "compilerOptions": {
+    "rootDir": "dist"
+  },
+  "files": [
+    "dashBuild.js",
+    "datasetBuild.js",
+    "navigationBuild.js",
+    "wizardBuild.js",
+    "bundle.js"
+  ]
+}

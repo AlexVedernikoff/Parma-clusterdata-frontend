@@ -30,7 +30,7 @@ Utils.setBodyFeatures();
 
 logVersion();
 
-export function NavigationBuild(props) {
+export default function NavigationBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
     hideHeader: props.hideHeader,
