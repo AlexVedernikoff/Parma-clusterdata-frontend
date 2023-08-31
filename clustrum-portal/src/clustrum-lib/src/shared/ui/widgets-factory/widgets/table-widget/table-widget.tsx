@@ -11,11 +11,11 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     title,
     totalRowsCount,
     onPageControlClicker,
-    paginateInfo: { page: currentPage, pageSize: currentPageSize },
+    paginateInfo: { page: initPage, pageSize: initPageSize },
   } = props;
 
-  const [page, setPage] = useState(currentPage);
-  const [pageSize, setPageSize] = useState(currentPageSize);
+  const [page, setPage] = useState(initPage);
+  const [pageSize, setPageSize] = useState(initPageSize);
 
   useEffect(() => {
     onPageControlClicker(page, pageSize);
@@ -32,7 +32,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   });
 
   const changeHandler = (page: number, pageSize: number): void => {
-    setPage(page);
+    setPage(page - 1);
     setPageSize(pageSize);
   };
 
@@ -47,7 +47,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       scroll={{ y: '100%' }}
       pagination={{
         total: Number(totalRowsCount),
-        current: currentPage,
+        current: initPage + 1,
         defaultPageSize: 10,
         showTotal: (total: number): string => `Всего: ${total}`,
         onChange: changeHandler,
