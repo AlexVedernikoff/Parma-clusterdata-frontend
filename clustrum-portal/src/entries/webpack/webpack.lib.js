@@ -1,24 +1,24 @@
 const webpack = require('webpack');
 const path = require('path');
-const {
-  PORTAL_ASSETS_PATH,
-  BI_PATH,
-  EXPORT_PATH,
-} = require('../../../src/context-path.js');
-
-const biHost = `http://localhost:8090${BI_PATH}`;
-const portalHost = 'http://localhost:8090';
-const exportHost = `http://localhost:8096${EXPORT_PATH}`;
+const { PORTAL_ASSETS_PATH } = require('../../../src/context-path.js');
 
 module.exports = {
   mode: 'production',
-  entry: './src/entries/libBuilder.js',
+  entry: {
+    dashBuild: './src/entries/dashBuild.js',
+    datasetBuild: './src/entries/datasetBuild.js',
+    wizardBuild: './src/entries/wizardBuild.js',
+    navigationBuild: './src/entries/navigationBuild.js',
+    bundle: './src/entries/libBuilder.js',
+  },
+  experiments: {
+    outputModule: true,
+  },
   output: {
     path: path.resolve('./src/entries/dist/'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     library: {
-      type: 'umd',
-      name: 'clustrum',
+      type: 'module',
     },
     globalObject: 'this',
     publicPath: PORTAL_ASSETS_PATH,
@@ -113,10 +113,8 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      ENV: JSON.stringify({
-        biHost,
-        portalHost,
-        exportHost,
+      BUILD_SETTINGS: JSON.stringify({
+        isLib: true,
       }),
     }),
   ],

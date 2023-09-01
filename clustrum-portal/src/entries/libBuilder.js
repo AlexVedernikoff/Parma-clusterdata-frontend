@@ -1,4 +1,4 @@
-export { WizardBuild } from './wizardBuild';
-export { DatasetBuild } from './datasetBuild';
-export { NavigationBuild } from './navigationBuild';
-export { DashBuild } from './dashBuild';
+export { default as WizardBuild } from './wizardBuild';
+export { default as DatasetBuild } from './datasetBuild';
+export { default as NavigationBuild } from './navigationBuild';
+export { default as DashBuild } from './dashBuild';

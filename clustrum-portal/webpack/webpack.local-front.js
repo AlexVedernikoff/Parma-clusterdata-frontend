@@ -22,4 +22,5 @@ module.exports = generateConfig(
   devServer,
   'inline-source-map',
   env,
+  'Кластрум',
 );

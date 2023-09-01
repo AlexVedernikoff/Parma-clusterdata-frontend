@@ -14,7 +14,7 @@ import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { SectionDataset } from '@lib-widgets/section-dataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
-import SectionPreview from './SectionPreview/SectionPreview';
+import { SectionPreview } from '@lib-widgets/section-preview';
 
 import DialogNoRights from './components/Dialogs/DialogNoRights';
 
@@ -68,7 +68,6 @@ class Wizard extends Component {
     onSavingStart: PropTypes.func,
     onSavingEnd: PropTypes.func,
     onExport: PropTypes.func,
-    isBuild: PropTypes.bool,
   };
 
   entryDialoguesRef = React.createRef();
@@ -241,7 +240,6 @@ class Wizard extends Component {
       configType,
       previewHash,
       widgetHash,
-      isBuild,
     } = this.props;
 
     const fullscreen = isFullscreen || preview ? ' fullscreen-mode' : '';
@@ -278,7 +276,7 @@ class Wizard extends Component {
 
     return (
       <div className={`${b()}${fullscreen}`}>
-        <PageHead title={widget.name} />
+        {!BUILD_SETTINGS.isLib && <PageHead title={widget.name} />}
         <DialogNoRights
           visible={this.state.dialogNoRightsVisible}
           onClose={() => {
@@ -300,7 +298,6 @@ class Wizard extends Component {
           <ActionPanel
             sdk={sdk}
             entry={widget}
-            isBuild={isBuild}
             rightItems={[
               <Button
                 key="fullscreen"

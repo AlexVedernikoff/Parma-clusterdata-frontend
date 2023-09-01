@@ -4,8 +4,6 @@ import { Select, SelectProps } from 'antd';
 import { OptionsTypes, SelectFilterControlProps } from './types';
 import { useDebounce } from '@lib-shared/lib/hooks';
 import { SelectionAllBtn } from './selection-all-btn';
-import { CheckOutlined } from '@ant-design/icons';
-
 import styles from './select-filter-control.module.css';
 
 export function SelectFilterControl(props: SelectFilterControlProps): JSX.Element {
@@ -41,6 +39,10 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
     }
   };
 
+  const handleChange = (values: string | string[] | undefined): void => {
+    setCurrentValue(values ?? []);
+  };
+
   const getOptions = (): OptionsTypes[] =>
     content.map(({ title, value }) => ({
       value,
@@ -51,13 +53,11 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
   const getDropdown = (menu: JSX.Element): JSX.Element => {
     return (
       <>
-        {multiselect && isClearBtnVisible ? (
-          <SelectionAllBtn onClick={(): void => setCurrentValue([])} label="Очистить" />
-        ) : (
+        {multiselect && (
           <SelectionAllBtn
-            onClick={(): void => setCurrentValue(allValues)}
-            label="Выбрать все"
-            icon={<CheckOutlined />}
+            allValues={allValues}
+            showClearButton={isClearBtnVisible}
+            onClick={setCurrentValue}
           />
         )}
         {menu}
@@ -72,15 +72,15 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
       <label className={styles['select-filter-control__label']}>
         {`${label}:`}
         <Select
+          allowClear
           placeholder="Все"
           className={styles['select-filter-control__select']}
           mode={mode}
           maxTagCount="responsive"
-          allowClear={multiselect}
           showSearch={searchable}
           value={currentValue}
           options={getOptions()}
-          onChange={setCurrentValue}
+          onChange={handleChange}
           onSelect={handleSelect}
           dropdownRender={getDropdown}
         />

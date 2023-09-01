@@ -1,6 +1,7 @@
 import { MEASURE_TYPE, VISUALIZATIONS } from '../constants';
 import { MapConstant } from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/map-constant';
 import Charts from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/charts/charts';
+import { $appSettingsStore } from '@entities/app-settings';
 
 export const REQUEST_WIDGET = 'REQUEST_WIDGET';
 export const RECEIVE_WIDGET = 'RECEIVE_WIDGET';
@@ -629,7 +630,7 @@ export function fetchWidget({ entryId, preview, sdk }) {
           needUniqueRows,
           needTotal,
           diagramMagnitude,
-          paginateInfo = { page: 0, pageSize: 150 },
+          paginateInfo = { page: 0, pageSize: 10 },
           labels,
           updates,
           mapLayerOpacity,
@@ -662,7 +663,9 @@ export function fetchWidget({ entryId, preview, sdk }) {
         // Проставляем defaultPath независимо от датасета
         dispatch(
           setDefaultPath({
-            defaultPath: window.DL.user.login ? `/Users/${window.DL.user.login}` : '/',
+            defaultPath: $appSettingsStore.getState().user.login
+              ? `/Users/${$appSettingsStore.getState().user.login}`
+              : '/',
           }),
         );
 
@@ -1087,9 +1090,9 @@ export function setSearchPhrase({ searchPhrase }) {
   };
 }
 
-export function setHighchartsWidget({ highchartsWidget }) {
+export function setWidget({ widget }) {
   return {
-    highchartsWidget,
+    widget,
     type: SET_HIGHCHARTS_WIDGET,
   };
 }
@@ -1144,8 +1147,8 @@ export function setDefaults({ preview, sdk, entryId }) {
           setDefaultPath({
             defaultPath: searchCurrentPath
               ? decodeURIComponent(searchCurrentPath[1])
-              : window.DL.user.login
-              ? `/Users/${window.DL.user.login}`
+              : $appSettingsStore.getState().user.login
+              ? `/Users/${$appSettingsStore.getState().user.login}`
               : '/',
           }),
         );
