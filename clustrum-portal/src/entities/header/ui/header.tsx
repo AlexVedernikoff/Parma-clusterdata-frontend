@@ -19,7 +19,11 @@ export function Header({
       </div>
       <div className="header-wrapper__content">
         <div className="header-wrapper__left-side">
-          {title && <div className="header-wrapper__left-side-title">{title}</div>}
+          {title && (
+            <div className="header-wrapper__left-side-title" title={title}>
+              {title}
+            </div>
+          )}
           {leftSideContent && (
             <div className="header-wrapper__left-side-content">{leftSideContent}</div>
           )}
