@@ -1375,6 +1375,9 @@ class SectionVisualization extends Component {
           <DialogPivotTable
             item={this.state.dialogItem}
             callback={this.state.dialogCallBack.bind(this)}
+            sdk={sdk}
+            fields={this.props.dimensions}
+            aceModeUrl={dataset.ace_url}
           />
         );
       default:
