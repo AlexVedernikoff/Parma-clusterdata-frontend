@@ -38,7 +38,7 @@ import {
 import { SectionDatasetMain } from '../section-dataset-main';
 import { useDebounce } from '@lib-shared/lib/hooks';
 import styles from './section-dataset.module.css';
-import { NavigationEntryData } from '@clustrum-lib/shared/types';
+import { NavigationEntryData } from '@lib-shared/types';
 
 function SectionDataset(props: SectionDatasetProps): ReactElement {
   const {

@@ -2,17 +2,16 @@ import React, { ReactElement, useState } from 'react';
 import { Empty, Table } from 'antd';
 import { useUnit } from 'effector-react';
 import { generatePath, useHistory } from 'react-router';
-
 import {
   MAP_NAVIGATION_SCOPE_TO_PATH,
   MAP_PLACE_TO_PATH_IN_FOLDER,
 } from '../../lib/constants';
-import { Places } from '@shared/lib/constants/places';
+import { Places } from '@shared/config/routing/places';
 import { ToggleFavoriteParams, NavigationProps } from '../../types';
 import { NavigationError } from '../navigation-error/navigation-error';
 import { NavigationHeader } from '../navigation-header/navigation-header';
 import styles from './navigation-entries.module.css';
-import { getNavigationTableColumns } from '@entities/navigation-base/lib/utils';
+import { getNavigationTableColumns } from '../../lib/utils';
 import {
   $error,
   $navigationListStore,
@@ -23,7 +22,7 @@ import {
   changePathInFolderEvent,
   getNavigationListEvent,
   removeFavoritesEvent,
-} from '@entities/navigation-base/model/navigation-base';
+} from '../../model/navigation-base';
 import { NavigationEntryData, NavigationScope } from '@clustrum-lib/shared/types';
 
 /**

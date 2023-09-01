@@ -1,19 +1,18 @@
 import { createEffect, createEvent, createStore, sample } from 'effector';
-import { NavigationList, NavigationListRequestParams } from '@shared/api/navigation-list';
-import { ToggleFavoriteRequestParams } from '@shared/api/favorites';
 import { addFavoritesApi } from '../api/add-favorites-api';
 import { removeFavoritesApi } from '../api/remove-favorites-api';
 import { getNavigationEntryApi } from '../api/get-navigation-entry-api';
-import { Places } from '@shared/lib/constants';
 import { getNavigationListApi } from '../api/get-navigation-list-api';
 import { NAVIGATION_ERROR } from '../lib/constants';
+import {
+  NavigationList,
+  NavigationListRequestParams,
+  NavigationParams,
+  ToggleFavoriteRequestParams,
+} from '../types';
+import { Places } from '@shared/config/routing';
 
-interface NavigationParams {
-  page: number | null;
-  pageSize: number;
-}
-
-export const getNavigationListFx = createEffect(getNavigationListApi);
+const getNavigationListFx = createEffect(getNavigationListApi);
 
 export const $navigationListStore = createStore<NavigationList | null>(null)
   .on(getNavigationListFx.doneData, (state, result) => result)
@@ -22,13 +21,13 @@ export const $navigationListStore = createStore<NavigationList | null>(null)
 export const getNavigationListEvent = createEvent();
 
 export const addFavoritesEvent = createEvent<ToggleFavoriteRequestParams>();
-export const addFavoritesFx = createEffect(addFavoritesApi);
+const addFavoritesFx = createEffect(addFavoritesApi);
 
 export const removeFavoritesEvent = createEvent<ToggleFavoriteRequestParams>();
-export const removeFavoritesFx = createEffect(removeFavoritesApi);
+const removeFavoritesFx = createEffect(removeFavoritesApi);
 
 export const getNavigationDataByEntryIdEvent = createEvent<{ entryId: string }>();
-export const getNavigationDataByEntryIdFx = createEffect(getNavigationEntryApi);
+const getNavigationDataByEntryIdFx = createEffect(getNavigationEntryApi);
 
 export const changePlaceEvent = createEvent<Places>();
 export const $place = createStore<Places>(Places.Root).on(

@@ -1,24 +1,17 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useUnit } from 'effector-react';
-import { Places } from '@shared/lib/constants';
 import {
+  NavigationBase,
+  useCurrentPlace,
   changePathInFolderEvent,
   changePlaceEvent,
   getNavigationDataByEntryIdEvent,
   getNavigationListEvent,
-} from '@entities/navigation-base/model/navigation-base';
-import { useCurrentPlace } from '@entities/navigation-base/lib/hooks';
-import { NavigationBase } from '@entities/navigation-base';
-
-interface NavigationPage {
-  /**
-   * TODO: пока необходим для работы модальных окон, удалить
-   * 1. после рефакторинга модалок (создание элементов и изменение элементов в навигации)
-   * 2. после переключения всех страниц на единый роутер
-   */
-  sdk: any;
-}
+} from '@entities/navigation-base';
+import { NavigationPage } from '../types';
+import styles from './navigation-page.module.css';
+import { Places } from '@shared/config/routing';
 
 export function NavigationPage({ sdk }: NavigationPage): ReactElement | null {
   const [
@@ -53,7 +46,7 @@ export function NavigationPage({ sdk }: NavigationPage): ReactElement | null {
   }, [place, entryId]);
 
   return place ? (
-    <div className="navigation-page">
+    <div className={styles['navigation-page']}>
       <NavigationBase sdk={sdk} path={'/'} place={place} updateData={getNavigation} />
     </div>
   ) : null;

@@ -8,7 +8,7 @@ import {
   DashboardOutlined,
 } from '@ant-design/icons';
 import { MenuProps } from 'antd';
-import { Places } from '@shared/lib/constants/places';
+import { Places } from '@shared/config/routing/places';
 
 export const MENU_ITEMS: NonNullable<MenuProps['items']> = [
   {

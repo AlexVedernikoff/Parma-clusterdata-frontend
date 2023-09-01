@@ -15,7 +15,7 @@ import {
   CreateMenuActionType,
   NavItemContextMenuClickParams,
   NavigationBase,
-} from '../../../entities/navigation-base/types';
+} from '../types';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 /**
  * TODO

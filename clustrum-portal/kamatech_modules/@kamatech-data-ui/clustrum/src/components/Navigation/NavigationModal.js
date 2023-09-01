@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NavigationBase from './Base/NavigationBase';
 import NavigationModal from '@kamatech-data-ui/common/src/components/Navigation/NavigationModal';
 import { PLACE } from './constants';
 import { resolveNavigationPath } from './hoc/resolveNavigationPath';

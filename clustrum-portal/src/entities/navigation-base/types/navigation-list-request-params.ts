@@ -1,4 +1,5 @@
-import { Order, Places } from '@shared/lib/constants';
+import { Places } from '@shared/config/routing';
+import { Order } from '@shared/types';
 
 export interface NavigationListRequestParams {
   orderBy?: Order;
@@ -9,7 +10,7 @@ export interface NavigationListRequestParams {
   placeParameters?: PlaceParameters; // TODO: поле, возможно, не нужно, удалить после уточнения api
 }
 
-interface PlaceParameters {
+export interface PlaceParameters {
   displayParentFolder: boolean;
   filters: boolean;
   icon: Icon;
@@ -20,7 +21,7 @@ interface PlaceParameters {
   text: string;
 }
 
-interface Icon {
+export interface Icon {
   id: string;
   url: string;
   viewBox: string;

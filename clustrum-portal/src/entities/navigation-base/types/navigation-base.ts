@@ -1,4 +1,4 @@
-import { Places } from '@shared/lib/constants';
+import { Places } from '@shared/config/routing';
 
 export interface NavigationBase {
   sdk: any;

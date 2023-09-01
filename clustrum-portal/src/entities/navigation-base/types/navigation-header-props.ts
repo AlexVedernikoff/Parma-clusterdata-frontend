@@ -1,4 +1,4 @@
-import { Places } from '@shared/lib/constants';
+import { Places } from '@shared/config/routing';
 import { CreateMenuActionType } from './create-menu-action-type';
 
 export interface NavigationHeaderProps {

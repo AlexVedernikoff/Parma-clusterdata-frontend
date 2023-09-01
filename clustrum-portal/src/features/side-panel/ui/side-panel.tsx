@@ -10,7 +10,7 @@ import { MENU_ITEMS } from '../lib/constants';
 import { RedLogo } from './red-logo';
 import { SidePanelProps } from '../types';
 import { MAP_PLACE_TO_ROUTE } from '../lib/constants';
-import { Places } from '@shared/lib/constants/places';
+import { Places } from '@shared/config/routing/places';
 
 import styles from './side-panel.module.css';
 
@@ -71,7 +71,7 @@ export function SidePanel(props: SidePanelProps): ReactElement {
       <button
         className={styles['side-panel__footer']}
         onClick={(): void => {
-          setCollapsed(!collapsed);
+          setCollapsed(prev => !prev);
         }}
       >
         {collapsed ? (

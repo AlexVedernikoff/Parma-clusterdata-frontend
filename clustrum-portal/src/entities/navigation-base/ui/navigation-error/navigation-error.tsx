@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Button } from 'antd';
-import { NavigationErrorProps } from '@entities/navigation-base/types';
+import { NavigationErrorProps } from '../../types';
 
 export function NavigationError(props: NavigationErrorProps): ReactElement {
   const { onRetry, error } = props;

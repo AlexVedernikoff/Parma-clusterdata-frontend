@@ -1,5 +1,5 @@
-import { Places } from '@shared/lib/constants/places';
-import { ROUTES } from '@shared/lib/constants/routes';
+import { Places } from '@shared/config/routing/places';
+import { ROUTES } from '@shared/config/routing/routes';
 
 export const MAP_PLACE_TO_PATH_IN_FOLDER = {
   [Places.Root]: ROUTES.navigationId,

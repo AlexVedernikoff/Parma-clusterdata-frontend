@@ -2,14 +2,15 @@ import React, { ReactElement } from 'react';
 import { Button, Dropdown, Input, Space } from 'antd';
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
 import { MenuInfo } from 'rc-menu/lib/interface';
+// TODO: не по FSD, надо куда-то переместить
 import { Header } from '@entities/header';
+// TODO: данные функции перенести в clustrum-portal
 import {
   formatPath,
   navigationItems,
-} from '../../../../../kamatech_modules/@kamatech-data-ui/common/src/components/Navigation/utils/header-navigation-utils';
+} from '@kamatech-data-ui/common/src/components/Navigation/utils/header-navigation-utils';
 import { INITIAL_PATH, CREATE_MENU_ITEMS } from '../../lib/constants';
-import { NavigationHeaderProps } from '../../types';
-import { CreateMenuActionType } from '@entities/navigation-base/types';
+import { NavigationHeaderProps, CreateMenuActionType } from '../../types';
 
 export function NavigationHeader(props: NavigationHeaderProps): ReactElement {
   const {
@@ -55,7 +56,7 @@ export function NavigationHeader(props: NavigationHeaderProps): ReactElement {
   );
 
   return (
-    <div className="navigation-header">
+    <div>
       {isModalView ? (
         <Header
           leftSideContent={inputSearch}

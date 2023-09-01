@@ -5,6 +5,7 @@ export const ROUTES = {
   favorites: '/favorites',
   favoritesId: '/favorites/:id',
   connections: '/connections',
+  connectionsId: '/connections/:id',
   connectionsInFolder: '/connections_in_folder/:id',
   datasets: '/datasets',
   datasetsInFolder: '/datasets_in_folder/:id',

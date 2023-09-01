@@ -2,17 +2,17 @@ import React, { ReactElement, useEffect } from 'react';
 import { useUnit } from 'effector-react';
 import { MenuItemType } from 'antd/es/menu/hooks/useItems';
 import { SidePanel } from '@features/side-panel';
-import { Places } from '@shared/lib/constants';
 import {
   $pathInFolder,
   $place,
   changePathInFolderEvent,
   changePlaceEvent,
   getNavigationListEvent,
-} from '@entities/navigation-base/model/navigation-base';
-import { NavigationBase } from '@entities/navigation-base';
+  NavigationBase,
+} from '@entities/navigation-base';
 import { NavigationModalComponentProps } from '../types';
 import styles from './base-navigation-modal.module.css';
+import { Places } from '@shared/config/routing';
 
 /* компонент, который будет отображаться в новой модалке (сейчас встроен в старую реализацию) */
 export function BaseNavigationModal(props: NavigationModalComponentProps): ReactElement {

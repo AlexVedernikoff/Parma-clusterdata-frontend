@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NavigationBase from './Base/NavigationBase';
 import { PLACE, PLACE_VALUES } from './constants';
 import Utils from '../../utils';
 import { DL } from '../../constants/common';
 import { isRoot, mapPlace } from './util';
 import { withRouter } from 'react-router';
-import { NavigationPage } from '../../../../../../src/pages/navigation-page/ui/navigation-page';
+import { NavigationPage } from '@pages/navigation-page';
 
+// TODO: NavigationPage - будущий главный компонент страницы навигации
+// ServiceNavigation при рефакторинге нужно удалить
 // use only with react-router
 class ServiceNavigation extends React.PureComponent {
   static propTypes = {
