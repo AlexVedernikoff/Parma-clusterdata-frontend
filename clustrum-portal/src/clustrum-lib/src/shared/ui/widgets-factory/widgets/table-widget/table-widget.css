@@ -108,6 +108,6 @@
 }
 
 .ant-tooltip-content > .ant-tooltip-inner {
-  color: black;
-  background-color: white;
+  color: #000;
+  background-color: #fff;
 }
