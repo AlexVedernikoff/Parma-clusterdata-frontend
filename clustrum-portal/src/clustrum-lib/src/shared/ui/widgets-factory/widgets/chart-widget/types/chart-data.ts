@@ -1,5 +1,8 @@
 import { ChartType } from './chart-type';
 
+// TODO: Этот тип нигде не используется, вместо него -- ChartWidgetData
+// Но здесь значительно больше свойств, поэтому на всякий случай оставлен
+// как источник знаний
 export interface ChartData {
   config: {
     withoutLineLimit: boolean;

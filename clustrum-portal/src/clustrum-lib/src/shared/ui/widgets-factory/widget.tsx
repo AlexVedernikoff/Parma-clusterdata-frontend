@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { ChartWidget } from '@lib-shared/ui/widgets-factory/widgets/chart-widget';
 import { ChartWidgetProps, ChartWidgetData } from './widgets/chart-widget/types';
+import { UnknownWidget } from '@lib-shared/ui/widgets-factory/widgets/unknown-widget';
+import { UnknownWidgetProps } from '@lib-shared/ui/widgets-factory/widgets/unknown-widget/types';
 import OLMap from '@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/OLMap';
 import SideHtml from '@kamatech-data-ui/chartkit/lib/components/Widget/SideHtml/SideHtml';
 import Card from '@kamatech-data-ui/chartkit/lib/components/Widget/Card/Card';
@@ -14,30 +16,6 @@ import Metric from '@kamatech-data-ui/chartkit/lib/components/Widget/Metric/Metr
 import Control from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
 import { WidgetType } from './types';
-
-interface UnknownProps {
-  onLoad(): void;
-}
-
-class Unknown extends React.PureComponent<UnknownProps> {
-  static propTypes = {
-    onLoad: PropTypes.func.isRequired,
-  };
-
-  componentDidMount(): void {
-    const { onLoad } = this.props;
-    onLoad();
-  }
-
-  componentDidUpdate(): void {
-    const { onLoad } = this.props;
-    onLoad();
-  }
-
-  render(): JSX.Element {
-    return <div>Unknown widget type</div>;
-  }
-}
 
 interface ConfigType {
   shouldHideComments: boolean;
@@ -66,7 +44,8 @@ interface WidgetData {
   uiScheme: SchemeItem[];
 }
 
-interface WidgetProps extends UnknownProps, ChartWidgetProps {
+// TODO: При типизации остальных виджетов добавлять их пропсы в список родителей
+interface WidgetProps extends UnknownWidgetProps, ChartWidgetProps {
   data: ChartWidgetData & WidgetData;
   onChange(): void;
 }
@@ -117,7 +96,7 @@ export class Widget extends React.PureComponent<WidgetProps> {
       case WidgetType.Control:
         return null;
       default:
-        return <Unknown {...this.props} />;
+        return <UnknownWidget {...this.props} />;
     }
   }
 
