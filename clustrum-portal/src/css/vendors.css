@@ -1869,11 +1869,6 @@
   border-radius: 3px;
 }
 
-.button2_theme_clear .button2__icon,
-.button2_theme_clear .button2__text {
-  opacity: 0.3;
-}
-
 .button2.button2_theme_clear.button2_checked_yes:not(.button2_disabled_yes)
   .button2__icon,
 .button2.button2_theme_clear.button2_checked_yes:not(.button2_disabled_yes)
