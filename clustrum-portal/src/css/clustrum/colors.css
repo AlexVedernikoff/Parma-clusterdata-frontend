@@ -5,7 +5,10 @@
   --antd-color-primary-hover: #c74861;
   --antd-color-selection: #faebec;
   --antd-text-color-selection: #bb2649;
+  --antd-color-light-grey: rgba(0, 0, 0, 0.06);
+  --antd-color-title: #262626;
   --antd-color-split: rgba(0, 0, 0, 0.06);
   --antd-color-border: rgba(0, 0, 0, 0.15);
+  --antd-background-color-base: #fff;
   --antd-color-text-disabled: rgba(0, 0, 0, 0.25);
 }
