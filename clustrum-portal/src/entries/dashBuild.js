@@ -37,7 +37,7 @@ if (IS_INTERNAL) {
 
 logVersion();
 
-export function DashBuild(props) {
+export default function DashBuild(props) {
   const { entryId, hideRightSideContent, onFiltersChange } = props;
 
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
