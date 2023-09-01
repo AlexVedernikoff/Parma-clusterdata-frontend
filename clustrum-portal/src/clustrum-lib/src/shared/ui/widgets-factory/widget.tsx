@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ChartWidget } from '@lib-shared/ui/widgets-factory/widgets/chart-widget';
-import { ChartWidgetProps, ChartWidgetData } from './widgets/chart-widget/types';
 import { UnknownWidget } from '@lib-shared/ui/widgets-factory/widgets/unknown-widget';
-import { UnknownWidgetProps } from '@lib-shared/ui/widgets-factory/widgets/unknown-widget/types';
+
 import OLMap from '@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/OLMap';
 import SideHtml from '@kamatech-data-ui/chartkit/lib/components/Widget/SideHtml/SideHtml';
 import Card from '@kamatech-data-ui/chartkit/lib/components/Widget/Card/Card';
@@ -15,40 +14,7 @@ import Text from '@kamatech-data-ui/chartkit/lib/components/Widget/WikiText/Wiki
 import Metric from '@kamatech-data-ui/chartkit/lib/components/Widget/Metric/Metric';
 import Control from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
-import { WidgetType } from './types';
-
-interface ConfigType {
-  shouldHideComments: boolean;
-  shouldShowSideHtml: boolean;
-}
-
-// TODO: Взято из `Control.js`, после типизации `Control`-а импортировать типы оттуда
-interface SchemeItem {
-  type: 'select' | 'button' | 'input' | 'checkbox' | 'datepicker' | 'range-datepicker';
-  param: string;
-  label: string;
-  updateOnChange: boolean;
-  updateControlsOnChange: boolean;
-}
-
-interface WidgetData {
-  widgetType: WidgetType;
-  // Следующие два нужны только для `SideHtml`
-  config: ConfigType;
-  sideHtml: string;
-  // Всё что ниже, нужно только для проброса в `Control`
-  entryId: string;
-  // Тип `object` в `Control.js`
-  // TODO: Типизировать `params` после типизации `Control`
-  params: object;
-  uiScheme: SchemeItem[];
-}
-
-// TODO: При типизации остальных виджетов добавлять их пропсы в список родителей
-interface WidgetProps extends UnknownWidgetProps, ChartWidgetProps {
-  data: ChartWidgetData & WidgetData;
-  onChange(): void;
-}
+import { WidgetProps, WidgetType } from './types';
 
 // TODO: Переименовать в `WidgetFactory` (и файл в `widget-factory.tsx`)
 export class Widget extends React.PureComponent<WidgetProps> {
