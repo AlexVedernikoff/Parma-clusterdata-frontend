@@ -34,7 +34,7 @@ import { exportDashboard } from './model/exportDashboard';
 import { Toaster } from '../../../kamatech_modules/@kamatech-data-ui/common/src';
 import { NOTIFY_TYPES } from '../../../kamatech_modules/@kamatech-data-ui/clustrum/src/constants/common';
 import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
-import { Button, Dropdown, Space } from 'antd';
+import { Button, Dropdown, Space, Popover } from 'antd';
 import {
   ClearOutlined,
   DownloadOutlined,
@@ -276,37 +276,35 @@ class Header extends React.PureComponent {
     if (canEdit) {
       return [
         this.#hasVisibleExpandedFilters() ? (
-          <Button
-            title="Открыть панель расширенных фильтров"
-            onClick={openExpandedFilter}
-            key="button-expanded-filter-panel"
-            icon={<FilterOutlined />}
-          >
-            Фильтры
-          </Button>
+          <Popover placement="bottom" content={<span>Расширенный фильтр</span>}>
+            <Button
+              onClick={openExpandedFilter}
+              key="button-expanded-filter-panel"
+              icon={<FilterOutlined />}
+            />
+          </Popover>
         ) : null,
-        <Button
-          title="Сбросить фильтры"
-          onClick={() => this.onClearFilters()}
-          key="button-clear-filters"
-          icon={<ClearOutlined />}
-        >
-          Сбросить все фильтры
-        </Button>,
-
-        <Dropdown menu={{ items: exportItems }} trigger={['click']}>
-          <Button icon={<DownloadOutlined />}>Экспортировать</Button>
-        </Dropdown>,
+        <Popover placement="bottom" content={<span>Сбросить фильтры</span>}>
+          <Button
+            onClick={() => this.onClearFilters()}
+            key="button-clear-filters"
+            icon={<ClearOutlined />}
+          />
+        </Popover>,
+        <Popover placement="bottom" content={<span>Экспортировать</span>}>
+          <Dropdown menu={{ items: exportItems }} trigger={['click']}>
+            <Button icon={<DownloadOutlined />}></Button>
+          </Dropdown>
+        </Popover>,
         <>
           {!$appSettingsStore.getState().hideEdit && (
-            <Button
-              title="Редактировать"
-              onClick={() => setMode(MODE.EDIT)}
-              key="button-edit"
-              icon={<EditOutlined />}
-            >
-              Редактировать
-            </Button>
+            <Popover placement="bottom" content={<span>Редактировать</span>}>
+              <Button
+                onClick={() => setMode(MODE.EDIT)}
+                key="button-edit"
+                icon={<EditOutlined />}
+              ></Button>
+            </Popover>
           )}
         </>,
       ];
