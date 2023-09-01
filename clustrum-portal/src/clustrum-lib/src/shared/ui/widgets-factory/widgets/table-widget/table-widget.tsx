@@ -5,10 +5,17 @@ import { TableWidgetProps } from './types';
 import './table-widget.css';
 
 export function TableWidget(props: TableWidgetProps): JSX.Element {
-  const { columns, dataSource, title, totalRowsCount, onPageControlClicker } = props;
+  const {
+    columns,
+    dataSource,
+    title,
+    totalRowsCount,
+    onPageControlClicker,
+    paginateInfo: { page: initPage, pageSize: initPageSize },
+  } = props;
 
-  const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
+  const [page, setPage] = useState(initPage);
+  const [pageSize, setPageSize] = useState(initPageSize);
 
   useEffect(() => {
     onPageControlClicker(page, pageSize);
@@ -24,6 +31,11 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     };
   });
 
+  const changeHandler = (page: number, pageSize: number): void => {
+    setPage(page - 1);
+    setPageSize(pageSize);
+  };
+
   return (
     <Table
       className="table-widget"
@@ -35,12 +47,10 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       scroll={{ y: '100%' }}
       pagination={{
         total: Number(totalRowsCount),
+        current: initPage + 1,
         defaultPageSize: 10,
         showTotal: (total: number): string => `Всего: ${total}`,
-        onChange: (page: number, pageSize: number): void => {
-          setPage(page - 1);
-          setPageSize(pageSize);
-        },
+        onChange: changeHandler,
       }}
     />
   );

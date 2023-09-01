@@ -1,6 +1,6 @@
 import Utils from '../../utils';
 
-import ChartKit from '@kamatech-data-ui/chartkit/lib';
+import { WidgetContainer } from '@clustrum-lib';
 
 import extendHighcharts from '@kamatech-data-ui/chartkit/lib/extensions/highcharts-extended';
 import boostHighcharts from '@kamatech-data-ui/chartkit/lib/extensions/highcharts-boost';
@@ -22,13 +22,13 @@ import { $appSettingsStore } from '@entities/app-settings';
 
 // import './ChartKit.scss';
 
-extendHighcharts(ChartKit);
+extendHighcharts(WidgetContainer);
 if ($appSettingsStore.getState().features.highchartsBoost) {
-  boostHighcharts(ChartKit);
+  boostHighcharts(WidgetContainer);
 }
-useHolidays(ChartKit);
+useHolidays(WidgetContainer);
 
-ChartKit.setSettings({
+WidgetContainer.setSettings({
   chartsEndpoint: $appSettingsStore.getState().endpoints.charts,
   lang: $appSettingsStore.getState().user.lang,
   config: Utils.isInternalInstallation(),
@@ -61,4 +61,4 @@ ChartKit.setSettings({
     : [EXPORT],
 });
 
-export default ChartKit;
+export default WidgetContainer;

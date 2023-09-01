@@ -54,7 +54,7 @@ const sdk = new SDK({
   currentCloudId: $appSettingsStore.getState().currentCloudId,
 });
 
-export function WizardBuild(props) {
+export default function WizardBuild(props) {
   const { entryId } = props;
 
   const [setAppSettings] = useUnit([setAppSettingsEvent]);

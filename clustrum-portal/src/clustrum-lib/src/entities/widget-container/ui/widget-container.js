@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable react/destructuring-assignment */
 import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
@@ -5,22 +7,22 @@ import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
-import { getParamsValue } from '@clustrum-lib';
 
-import Loader from '../Loader/Loader';
-import Error from '../Error/Error';
-import Charts from '../Charts/Charts';
-import Menu from '../Menu/Menu';
+import { getParamsValue } from '@lib-shared/lib/utils';
+import Loader from '@kamatech-data-ui/chartkit/lib/components/Loader/Loader';
+import Error from '@kamatech-data-ui/chartkit/lib/components/Error/Error';
+import { Charts } from './charts';
+import Menu from '@kamatech-data-ui/chartkit/lib/components/Menu/Menu';
 
-import URI from '../../modules/uri/uri';
-import settings from '../../modules/settings/settings';
-import { removeEmptyProperties } from '../../helpers/helpers';
+import URI from '@kamatech-data-ui/chartkit/lib/modules/uri/uri';
+import settings from '@kamatech-data-ui/chartkit/lib/modules/settings/settings';
+import { removeEmptyProperties } from '@kamatech-data-ui/chartkit/lib/helpers/helpers';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
 import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 
 const b = block('chartkit');
 
-class ChartKit extends React.Component {
+export class WidgetContainer extends React.Component {
   constructor(props) {
     super(props);
     this.resetValue = this.resetValue.bind(this);
@@ -104,6 +106,7 @@ class ChartKit extends React.Component {
       prevPaginateInfo,
       orderBy: orderByFromState,
       prevOrderBy,
+      loading,
     },
   ) {
     const sourceURI = new URI(propsSource);
@@ -147,7 +150,7 @@ class ChartKit extends React.Component {
     const randomString = settings.requestIdGenerator();
 
     return {
-      loading: true,
+      loading,
       error: false,
       data: null,
       forceUpdate,
@@ -386,5 +389,3 @@ class ChartKit extends React.Component {
     );
   }
 }
-
-export default ChartKit;
