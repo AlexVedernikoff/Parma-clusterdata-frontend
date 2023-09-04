@@ -61,12 +61,6 @@ router.get('/dashboards/:id', (req, res) => {
 const dashboardSimpleHandler = (req, res) => {
   res.render('dashboards_simple.ejs', {
     dotenv: JSON.stringify(dotenv.parsed),
-    hideEdit: req.query['hide-edit'],
-    hideSubHeader: req.query['hide-header-btns'],
-    hideTabs: req.query['hide-tabs'],
-    enableCaching: req.query['enable-caching'],
-    cacheMode: req.query['cache-mode'],
-    exportMode: req.query['export-mode'],
   });
 };
 router.get(`/dashboards_simple/:id`, dashboardSimpleHandler);

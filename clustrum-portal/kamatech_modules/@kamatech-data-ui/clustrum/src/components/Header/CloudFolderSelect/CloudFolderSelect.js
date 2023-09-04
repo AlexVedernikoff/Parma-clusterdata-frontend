@@ -4,6 +4,7 @@ import block from 'bem-cn-lite';
 import CloudFolderSelect from '@kamatech-data-ui/common/src/components/CloudFolderSelect/CloudFolderSelect';
 import noop from 'lodash/noop';
 import Utils from '../../../utils';
+import { $appSettingsStore } from '@entities/app-settings';
 // import './CloudFolderSelect.scss';
 
 const CURRENT_FOLDER_COOKIE_NAME = 'dl_current_cloud_folder_id';
@@ -42,7 +43,7 @@ class CloudFolderSelectClustrum extends React.PureComponent {
   }
 
   getCurrentCloud() {
-    const { currentCloudFolderId } = window.DL;
+    const { currentCloudFolderId } = $appSettingsStore.getState();
     const cachedCloud = Utils.restore(STORE_KEY);
     if (
       currentCloudFolderId &&
@@ -69,7 +70,7 @@ class CloudFolderSelectClustrum extends React.PureComponent {
         status: STATUS.LOADING,
         cloudTreeLoading: true,
       });
-      const { currentCloudFolderId } = window.DL;
+      const { currentCloudFolderId } = $appSettingsStore.getState();
       const availableCloudFolders = await this.props.sdk.getAvailableCloudFolders();
       if (this._isUnmounted) {
         return;

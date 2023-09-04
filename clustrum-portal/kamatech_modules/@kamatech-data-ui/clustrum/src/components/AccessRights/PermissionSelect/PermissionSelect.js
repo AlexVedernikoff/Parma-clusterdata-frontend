@@ -4,6 +4,7 @@ import block from 'bem-cn-lite';
 import Utils from '../../../utils';
 import { Select } from 'lego-on-react';
 import { PERMISSION, DL } from '../../../constants/common';
+import { $appSettingsStore } from '@entities/app-settings';
 
 // import './PermissionSelect.scss';
 
@@ -25,10 +26,10 @@ const getItemsExternal = scope => {
 };
 
 const getItemsInternal = scope => {
-  if (!window.DL.appEnv) {
+  if (!$appSettingsStore.getState().appEnv) {
     return excludedItems;
   }
-  if (window.DL.appEnv === 'production') {
+  if ($appSettingsStore.getState().appEnv === 'production') {
     return scope === 'connection' ? items : excludedItems;
   }
   return executeScopes.includes(scope) ? items : excludedItems;

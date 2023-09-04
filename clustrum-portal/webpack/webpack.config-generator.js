@@ -11,6 +11,7 @@ exports.generateConfig = (
   devServer,
   devtool,
   env,
+  systemTitle,
 ) => {
   return {
     mode,
@@ -251,13 +252,15 @@ exports.generateConfig = (
         deleteOriginalAssets: true,
         exclude: /index.js|context-path.js/,
       }),
-    ],
-    externals: {
-      ENV: JSON.stringify({
-        biHost,
-        portalHost,
-        exportHost,
+      new webpack.DefinePlugin({
+        'process.env.REACT_APP_CLUSTRUM_BI_HOST': JSON.stringify(biHost),
+        'process.env.REACT_APP_CLUSTRUM_PORTAL_HOST': JSON.stringify(portalHost),
+        'process.env.REACT_APP_CLUSTRUM_EXPORT_HOST': JSON.stringify(exportHost),
+        BUILD_SETTINGS: JSON.stringify({
+          systemTitle,
+          isLib: false,
+        }),
       }),
-    },
+    ],
   };
 };
