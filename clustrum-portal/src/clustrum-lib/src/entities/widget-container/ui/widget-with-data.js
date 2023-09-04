@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Widget } from '@lib-shared/ui/widgets-factory';
+import { WidgetFactory } from '@lib-shared/ui/widgets-factory';
 
 import ChartsModule from '@kamatech-data-ui/chartkit/lib/modules/charts/charts';
 import ErrorDispatcher from '@kamatech-data-ui/chartkit/lib/modules/error-dispatcher/error-dispatcher';
@@ -11,9 +11,7 @@ import { isPropsTheSame } from '../lib/is-props-the-same';
 // Нужно рассмотреть возможность использования только второго
 import { WIZARD_NODE_TYPE } from '../../../../../constants/constants';
 
-// TODO: Необходимо переименовать компонент (я фиг его знает -- как)
-// По факту это виджет с загруженными данными
-export class Charts extends React.PureComponent {
+export class WidgetWithData extends React.PureComponent {
   static propTypes = {
     id: PropTypes.string,
     source: PropTypes.string,
@@ -168,7 +166,7 @@ export class Charts extends React.PureComponent {
     } = this.props;
 
     return editMode?.type === WIZARD_NODE_TYPE.MAP ? (
-      <Widget
+      <WidgetFactory
         data={loadedData}
         onStateAndParamsChange={onStateAndParamsChange}
         chartEditMode={editMode}
@@ -183,7 +181,7 @@ export class Charts extends React.PureComponent {
         refWidget={refWidget}
       />
     ) : (
-      <Widget
+      <WidgetFactory
         data={loadedData}
         onStateAndParamsChange={onStateAndParamsChange}
         onLoad={this.onLoad}
