@@ -20,13 +20,9 @@ export function Header({
       <div className="header-wrapper__content">
         <div className="header-wrapper__left-side">
           {title && (
-            <div className="header-wrapper__left-side-title">
-              {/* <Tooltip placement="bottomRight" arrow={false} title={title}> */}
-
-              {title}
-
-              {/* </Tooltip> */}
-            </div>
+            <Tooltip placement="bottomRight" arrow={false} title={title}>
+              <div className="header-wrapper__left-side-title">{title}</div>
+            </Tooltip>
           )}
           {leftSideContent && (
             <div className="header-wrapper__left-side-content">{leftSideContent}</div>
