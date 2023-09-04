@@ -43,3 +43,8 @@
   gap: 8px;
   align-items: center;
 }
+
+.ant-tooltip-content > .ant-tooltip-inner {
+  color: #000;
+  background-color: #fff;
+}

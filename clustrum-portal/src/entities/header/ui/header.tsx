@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Tooltip } from 'antd';
 import { HeaderProps } from '../types';
 
 import './header.css';
@@ -20,8 +20,12 @@ export function Header({
       <div className="header-wrapper__content">
         <div className="header-wrapper__left-side">
           {title && (
-            <div className="header-wrapper__left-side-title" title={title}>
+            <div className="header-wrapper__left-side-title">
+              {/* <Tooltip placement="bottomRight" arrow={false} title={title}> */}
+
               {title}
+
+              {/* </Tooltip> */}
             </div>
           )}
           {leftSideContent && (
