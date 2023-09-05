@@ -492,7 +492,6 @@ export class Table_deprecated extends React.PureComponent {
           }, {})
         : row.cells.reduce((result, value, index) => {
             value.isGroupField = index === groupFieldPosition;
-            value.resultShemaId = head[index].resultSchemaId;
             result[names[index]] = value;
             return result;
           }, {}),
