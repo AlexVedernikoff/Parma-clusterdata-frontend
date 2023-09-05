@@ -11,6 +11,7 @@ import { KamatechNavigationPageControl } from '../../../../../../kamatech-ui/com
 import DateFormat from '../../../modules/date/date-format';
 import { FILTER_CONDITION_TYPE } from '../../../../../../../src/constants/FilterConditionType';
 import { NullAlias } from './NullAlias';
+import { WidgetType } from '@lib-shared/ui/widgets-factory/types';
 
 const DATE_FORMAT_BY_SCALE = {
   d: 'DD.MM.YYYY',
@@ -439,6 +440,7 @@ export class Table_deprecated extends React.PureComponent {
       data: {
         data: { head, rows = [], total = [] } = {},
         config: { title, sort, order, settings } = {},
+        widgetType,
       } = {},
       orderBy,
     } = this.props;
@@ -544,14 +546,16 @@ export class Table_deprecated extends React.PureComponent {
           onStateAndParamsChange={this.props.onStateAndParamsChange}
           onOrderByClickInWizard={this.props.onOrderByClickInWizard}
         />
-        <KamatechNavigationPageControl
-          page={this.props.paginateInfo.page}
-          pageSize={this.props.paginateInfo.pageSize}
-          rowsCount={this.props.data.data.rowsCount}
-          dataLength={data.length}
-          onStateAndParamsChange={this.props.onStateAndParamsChange}
-          onClick={this.props.onPageControlClick}
-        />
+        {widgetType === WidgetType.Table && (
+          <KamatechNavigationPageControl
+            page={this.props.paginateInfo.page}
+            pageSize={this.props.paginateInfo.pageSize}
+            rowsCount={this.props.data.data.rowsCount}
+            dataLength={data.length}
+            onStateAndParamsChange={this.props.onStateAndParamsChange}
+            onClick={this.props.onPageControlClick}
+          />
+        )}
       </div>
     );
   }

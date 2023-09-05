@@ -6183,7 +6183,7 @@ a.user-account_hovered_yes {
 }
 
 .checkbox.checkbox_size_n .checkbox__box {
-  top: -1px;
+  flex: 0 0 auto;
   line-height: 18px;
 }
 
