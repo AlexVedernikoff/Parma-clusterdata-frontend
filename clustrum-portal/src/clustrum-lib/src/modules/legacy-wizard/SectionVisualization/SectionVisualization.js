@@ -898,6 +898,47 @@ class SectionVisualization extends Component {
             }}
           />
         )}
+
+        {visualization.allowSteppedLayout && (
+          <VisualizationFactory
+            title="Ступенчатый макет"
+            type={VisualizationType.CheckBox}
+            className="subitem"
+            containerProps={{
+              theme: 'normal',
+              size: 'n',
+              view: 'default',
+              tone: 'default',
+              checked: needSteppedLayout,
+              text: 'Показывать ступенчатый макет таблицы',
+              onChange: () => {
+                setNeedSteppedLayout({ needSteppedLayout: !needSteppedLayout });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needSteppedLayout: !needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
+        )}
+
         {visualization.allowDiagramMagnitude && (
           <VisualizationFactory
             title="Единицы измерения диаграммы"
