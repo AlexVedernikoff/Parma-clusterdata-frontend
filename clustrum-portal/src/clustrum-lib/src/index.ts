@@ -9,3 +9,6 @@ export {
   ChartWidget,
 } from '@lib-shared/ui/widgets-factory/widgets';
 export { FilterControlsContainer } from '@lib-entities/filter-controls-container';
+export { DashboardTabsSettings } from '@lib-features/dashboard-tabs-settings';
+export { CommonSwitcherDatasetContainer } from '@lib-entities/common-switcher-dataset-container';
+export { WidgetContainer } from '@lib-entities/widget-container';

@@ -3,6 +3,7 @@ import { CancelToken, isCancel } from 'axios';
 import { schema } from '@kamatech-data-ui/clustrum-core-plugins/components/schema';
 import Utils from '../../utils';
 import { COOKIE_TOGGLE_SWITCH_MODE_NAME, ENABLE } from '../../constants/common';
+import { $appSettingsStore } from '@entities/app-settings';
 
 export default class SDK {
   constructor(config) {
@@ -25,7 +26,7 @@ export default class SDK {
   }
 
   getAuthHeaders() {
-    const { DL: { displaySuperuserSwitch } = {} } = window;
+    const { displaySuperuserSwitch } = $appSettingsStore.getState();
     const { config } = this;
     const headers = {};
 

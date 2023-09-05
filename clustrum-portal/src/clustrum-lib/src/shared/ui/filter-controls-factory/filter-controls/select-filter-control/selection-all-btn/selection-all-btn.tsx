@@ -1,10 +1,17 @@
 import React from 'react';
 import { Divider, Button } from 'antd';
+import { CheckOutlined } from '@ant-design/icons';
 import { SelectionAllBtnProps } from '../types';
 import './selection-all-btn.css';
 
 export function SelectionAllBtn(props: SelectionAllBtnProps): JSX.Element {
-  const { onClick, label, icon } = props;
+  const { allValues, showClearButton, onClick } = props;
+
+  const label = showClearButton ? 'Очистить' : 'Выбрать все';
+  const icon = showClearButton ? undefined : <CheckOutlined />;
+
+  const handleClick = (): void => onClick(showClearButton ? [] : allValues);
+
   return (
     <>
       <Button
@@ -12,7 +19,7 @@ export function SelectionAllBtn(props: SelectionAllBtnProps): JSX.Element {
         block
         icon={icon}
         type="text"
-        onClick={onClick}
+        onClick={handleClick}
       >
         {label}
       </Button>

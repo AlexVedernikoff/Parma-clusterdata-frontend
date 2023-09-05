@@ -34,7 +34,7 @@ import { exportDashboard } from './model/exportDashboard';
 import { Toaster } from '../../../kamatech_modules/@kamatech-data-ui/common/src';
 import { NOTIFY_TYPES } from '../../../kamatech_modules/@kamatech-data-ui/clustrum/src/constants/common';
 import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
-import { Button, Dropdown, Space } from 'antd';
+import { Button, Dropdown, Space, Popover } from 'antd';
 import {
   ClearOutlined,
   DownloadOutlined,
@@ -43,6 +43,7 @@ import {
   FilterOutlined,
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('dash-header');
 
@@ -60,7 +61,6 @@ class Header extends React.PureComponent {
     resetAllFilters: PropTypes.func.isRequired,
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
-    isBuild: PropTypes.bool,
     hasRightSideContent: PropTypes.bool,
   };
 
@@ -276,37 +276,35 @@ class Header extends React.PureComponent {
     if (canEdit) {
       return [
         this.#hasVisibleExpandedFilters() ? (
-          <Button
-            title="Открыть панель расширенных фильтров"
-            onClick={openExpandedFilter}
-            key="button-expanded-filter-panel"
-            icon={<FilterOutlined />}
-          >
-            Фильтры
-          </Button>
-        ) : null,
-        <Button
-          title="Сбросить фильтры"
-          onClick={() => this.onClearFilters()}
-          key="button-clear-filters"
-          icon={<ClearOutlined />}
-        >
-          Сбросить все фильтры
-        </Button>,
-
-        <Dropdown menu={{ items: exportItems }} trigger={['click']}>
-          <Button icon={<DownloadOutlined />}>Экспортировать</Button>
-        </Dropdown>,
-        <>
-          {!window.DL.hideEdit && (
+          <Popover placement="bottom" content={<span>Расширенный фильтр</span>}>
             <Button
-              title="Редактировать"
-              onClick={() => setMode(MODE.EDIT)}
-              key="button-edit"
-              icon={<EditOutlined />}
-            >
-              Редактировать
-            </Button>
+              onClick={openExpandedFilter}
+              key="button-expanded-filter-panel"
+              icon={<FilterOutlined />}
+            />
+          </Popover>
+        ) : null,
+        <Popover placement="bottom" content={<span>Сбросить фильтры</span>}>
+          <Button
+            onClick={() => this.onClearFilters()}
+            key="button-clear-filters"
+            icon={<ClearOutlined />}
+          />
+        </Popover>,
+        <Popover placement="bottom" content={<span>Экспортировать</span>}>
+          <Dropdown menu={{ items: exportItems }} trigger={['click']}>
+            <Button icon={<DownloadOutlined />}></Button>
+          </Dropdown>
+        </Popover>,
+        <>
+          {!$appSettingsStore.getState().hideEdit && (
+            <Popover placement="bottom" content={<span>Редактировать</span>}>
+              <Button
+                onClick={() => setMode(MODE.EDIT)}
+                key="button-edit"
+                icon={<EditOutlined />}
+              ></Button>
+            </Popover>
           )}
         </>,
       ];
@@ -340,13 +338,13 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { isBuild, isEditMode } = this.props;
+    const { isEditMode } = this.props;
     const renderRightItems = isEditMode ? this.renderEditItems() : this.renderViewItems();
 
     return (
       <>
         <BrowserPrint />
-        {!window.DL.hideSubHeader && this.props.entry && (
+        {!$appSettingsStore.getState().hideSubHeader && this.props.entry && (
           <ActionPanel
             sdk={SDK}
             entryId={this.props.entry.entryId}
@@ -356,7 +354,6 @@ class Header extends React.PureComponent {
               'is-edit': this.props.isEditMode,
               'is-view': !this.props.isEditMode,
             })}
-            isBuild={isBuild}
           />
         )}
       </>

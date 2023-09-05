@@ -5,8 +5,9 @@ import block from 'bem-cn-lite';
 import { Dropdown, Button, Popup, Menu as LegoMenu } from 'lego-on-react';
 
 import withErrorBoundary from '../ErrorBoundary/withErrorBoundary';
-import ButtonIcon from './Items/ButtonIcon/ButtonIcon';
-import Icon, { extend } from '../Icon/Icon';
+import { extend } from '../Icon/Icon';
+import { EllipsisOutlined } from '@ant-design/icons';
+import { ANT_TOKEN } from '@shared/config/theme';
 
 // import './Menu.scss';
 
@@ -57,11 +58,8 @@ class Menu extends React.PureComponent {
           cls={b('button')}
           ref={this.dropdownRef}
           switcher={
-            <Button theme="clear" view="default" tone="default" size="s">
-              &#8204;
-              <ButtonIcon>
-                <Icon name="dots" size="16" viewBoxSize="16" />
-              </ButtonIcon>
+            <Button>
+              <EllipsisOutlined color={ANT_TOKEN.token.colorPrimary} />
             </Button>
           }
           popup={

@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Loader, Icon } from '@kamatech-data-ui/common/src';
+import { Loader } from '@kamatech-data-ui/common/src';
 
 import DatasetCreation from '../../components/DatasetCreation/DatasetCreation';
 import SelectConnection from '../../containers/SelectConnection/SelectConnection';
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 
 // import './ConnectionSelection.scss';
-import iconFolder from '@kamatech-data-ui/clustrum/src/icons/folder-selection.svg';
+import Icon from '@ant-design/icons';
+import { FolderIcon } from '@clustrum-lib/shared/ui/cast-icons-factory/icons';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const b = block('connection-selection');
 
 function DatasetCreationSettings(props) {
-  const { installationType } = window.DL;
+  const { installationType } = $appSettingsStore.getState();
   const {
     sdk,
     modeId,
@@ -101,7 +103,7 @@ class ConnectionSelection extends React.Component {
               </div>
             ) : (
               <React.Fragment>
-                <Icon className={b('icon-folder')} data={iconFolder} />
+                <Icon component={FolderIcon} />
                 <SelectConnection
                   sdk={sdk}
                   onEntryClick={onEntryClick}

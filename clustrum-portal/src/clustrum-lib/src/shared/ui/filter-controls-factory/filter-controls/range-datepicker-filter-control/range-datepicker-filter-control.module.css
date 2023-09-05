@@ -1,22 +1,29 @@
 .range-datepicker-control {
   display: flex;
   width: 100%;
-  height: 100%;
 }
 
 .range-datepicker-control__label {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
 }
 
-.range-datepicker-control__picker {
-  margin-left: 8px;
-}
-
 .range-datepicker-control .ant-picker-clear {
   right: 29px;
   opacity: 1;
+}
+
+.range-datepicker-control__picker :global(.ant-picker-input:first-of-type::before) {
+  margin-right: 8px;
+  color: var(--antd-color-border);
+  content: 'От';
+}
+
+.range-datepicker-control__picker :global(.ant-picker-input:first-of-type ~ .ant-picker-input::before) {
+  margin-right: 8px;
+  color: var(--antd-color-border);
+  content: 'До';
 }
