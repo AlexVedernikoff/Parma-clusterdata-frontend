@@ -856,9 +856,9 @@ const FLAT_TABLE_VISUALIZATION = {
 
 const PIVOT_TABLE_VISUALIZATION = {
   id: 'pivotTable',
-  type: 'table',
+  type: 'pivotTable',
   name: 'label_visualization-pivot-table',
-  wizardNodeType: WIZARD_NODE_TYPE.TABLE,
+  wizardNodeType: WIZARD_NODE_TYPE.PIVOT_TABLE,
   icon: <Icon data={iconVisPivot} width="24" />,
   allowFilters: true,
   allowColors: false,

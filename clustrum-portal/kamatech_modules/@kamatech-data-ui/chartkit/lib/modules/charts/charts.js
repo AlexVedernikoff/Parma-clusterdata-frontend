@@ -132,8 +132,11 @@ function postRun(loaded) {
   const converted = { config: {} };
   const editorType = denormalizedParams['_editor_type'];
   if (editorType) {
-    if (widgetType === WidgetType.Graph && editorType === WidgetType.Table) {
-      converted.widgetType = WidgetType.Table;
+    if (
+      widgetType === WidgetType.Graph &&
+      [WidgetType.Table, WidgetType.PivotTable].includes(editorType)
+    ) {
+      converted.widgetType = editorType;
       const { data: convertedData, config: convertedConfig } = graphToTable(data, config);
       converted.data = convertedData;
       converted.config = convertedConfig;
