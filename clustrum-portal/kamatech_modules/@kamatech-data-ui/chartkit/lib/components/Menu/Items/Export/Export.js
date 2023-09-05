@@ -159,8 +159,9 @@ class Export extends React.PureComponent {
               theme="normal"
               view="default"
               tone="default"
-              size="m"
+              size="s"
               value={this.state.format}
+              freeWidth={true}
               onChange={event => this.changeFormat(event.target.value)}
             >
               <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>
