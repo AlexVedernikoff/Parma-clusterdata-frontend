@@ -5,7 +5,7 @@ import './title-info-element.css';
 
 export const TitleInfoElement = React.forwardRef<HTMLDivElement, TitleInfoElementProps>(
   (
-    { data: { text = '', showInTOC = false, size } }: TitleInfoElementProps,
+    { data: { text = '', showInTOC = false, size = 'l' } }: TitleInfoElementProps,
     ref: React.Ref<HTMLDivElement>,
   ): JSX.Element => {
     const id = showInTOC && text ? encodeURIComponent(text) : undefined;
