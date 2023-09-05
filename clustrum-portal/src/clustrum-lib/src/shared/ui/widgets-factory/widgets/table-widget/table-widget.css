@@ -59,7 +59,7 @@
 .ant-table-wrapper .ant-spin-nested-loading .ant-spin-container .ant-table .ant-table-container {
   display: flex;
   flex-flow: column nowrap;
-  height: 100%;
+  height: calc(100% - 16px);
 }
 
 .ant-table-wrapper .ant-spin-nested-loading .ant-spin-container .ant-table .ant-table-container .ant-table-content {
@@ -105,4 +105,9 @@
 
 .table-widget .ant-table-header {
   overflow: visible !important;
+}
+
+.ant-tooltip-content > .ant-tooltip-inner {
+  color: #000;
+  background-color: #fff;
 }

@@ -12,6 +12,8 @@ import {
   SET_MAP_LAYER_OPACITY,
   SET_NEED_TOTAL,
   SET_NEED_AUTO_NUMBERING_ROWS,
+  SET_NEED_STEPPED_LAYOUT,
+  SET_STEPPED_LAYOUT_INDENTATION,
   SET_NEED_UNIQUE_ROWS,
   SET_NULL_ALIAS,
   SET_PAGINATE_INFO,
@@ -26,6 +28,8 @@ import {
 import { NULL_ALIAS_DEFAULT_VALUE } from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
 // Reducers
+
+const defaultSteppedLayoutIndentation = 10;
 
 const initialState = {
   visualizationType: VISUALIZATION_TYPES[0],
@@ -42,6 +46,8 @@ const initialState = {
   needUniqueRows: false,
   needTotal: false,
   needAutoNumberingRows: false,
+  needSteppedLayout: false,
+  steppedLayoutIndentation: defaultSteppedLayoutIndentation,
   paginateInfo: {
     page: 0,
     pageSize: 150,
@@ -83,6 +89,8 @@ export function visualization(state = initialState, action) {
         needUniqueRows: false,
         needTotal: false,
         needAutoNumberingRows: false,
+        needSteppedLayout: false,
+        steppedLayoutIndentation: defaultSteppedLayoutIndentation,
         paginateInfo: {},
         exportLimit: 10000,
         orderBy: {},
@@ -513,6 +521,22 @@ export function visualization(state = initialState, action) {
         needAutoNumberingRows,
       };
     }
+    case SET_NEED_STEPPED_LAYOUT: {
+      const { needSteppedLayout } = action;
+
+      return {
+        ...state,
+        needSteppedLayout,
+      };
+    }
+    case SET_STEPPED_LAYOUT_INDENTATION: {
+      const { steppedLayoutIndentation } = action;
+
+      return {
+        ...state,
+        steppedLayoutIndentation,
+      };
+    }
     case SET_PAGINATE_INFO: {
       const { paginateInfo } = action;
 
@@ -578,6 +602,9 @@ export const selectNeedUniqueRows = state => state.visualization.needUniqueRows;
 export const selectNeedTotal = state => state.visualization.needTotal;
 export const selectNeedAutoNumberingRows = state =>
   state.visualization.needAutoNumberingRows;
+export const selectNeedSteppedLayout = state => state.visualization.needSteppedLayout;
+export const selectSteppedLayoutIndentation = state =>
+  state.visualization.steppedLayoutIndentation;
 export const selectPaginateInfo = state => state.visualization.paginateInfo;
 export const selectOrderBy = state => state.visualization.orderBy;
 export const selectDiagramMagnitude = state => state.visualization.diagramMagnitude;

@@ -3,6 +3,7 @@ import { REQUEST_WIDGET, RECEIVE_WIDGET, RESET_WIDGET } from '../actions';
 import sha1 from 'js-sha1';
 
 import { versionExtractor } from '../utils/helpers';
+import { $appSettingsStore } from '@entities/app-settings';
 
 // Reducers
 
@@ -70,7 +71,7 @@ export const selectWidget = state => {
   return (
     state.widget.widget || {
       fake: true,
-      key: window.DL.user.login
+      key: $appSettingsStore.getState().user.login
         ? `/Users/${DL.user.login}/Новый элемент аналитической панели`
         : `/Новый элемент аналитической панели`,
       entryId: null,

@@ -1,6 +1,7 @@
 import { MEASURE_TYPE, VISUALIZATIONS } from '../constants';
 import { MapConstant } from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/map-constant';
 import Charts from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/charts/charts';
+import { $appSettingsStore } from '@entities/app-settings';
 
 export const REQUEST_WIDGET = 'REQUEST_WIDGET';
 export const RECEIVE_WIDGET = 'RECEIVE_WIDGET';
@@ -33,6 +34,8 @@ export const SET_NULL_ALIAS = 'SET_NULL_ALIAS';
 export const SET_NEED_UNIQUE_ROWS = 'SET_NEED_UNIQUE_ROWS';
 export const SET_NEED_TOTAL = 'SET_NEED_TOTAL';
 export const SET_NEED_AUTO_NUMBERING_ROWS = 'SET_NEED_AUTO_NUMBERING_ROWS';
+export const SET_NEED_STEPPED_LAYOUT = 'SET_NEED_STEPPED_LAYOUT';
+export const SET_STEPPED_LAYOUT_INDENTATION = 'SET_STEPPED_LAYOUT_INDENTATION';
 export const SET_PAGINATE_INFO = 'SET_PAGINATE_INFO';
 export const SET_ORDER_BY = 'SET_ORDER_BY';
 export const SET_LABELS = 'SET_LABELS';
@@ -255,6 +258,8 @@ export function fetchDataset({ datasetId, sdk }) {
             needUniqueRows,
             needTotal,
             needAutoNumberingRows,
+            needSteppedLayout,
+            steppedLayoutIndentation,
             paginateInfo,
             labels,
           } = {},
@@ -285,6 +290,8 @@ export function fetchDataset({ datasetId, sdk }) {
             needUniqueRows,
             needTotal,
             needAutoNumberingRows,
+            needSteppedLayout,
+            steppedLayoutIndentation,
             paginateInfo,
             labels,
             updates,
@@ -320,6 +327,8 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
         needUniqueRows,
         needTotal,
         needAutoNumberingRows,
+        needSteppedLayout,
+        steppedLayoutIndentation,
         paginateInfo,
         labels,
       } = {},
@@ -460,6 +469,8 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
           needUniqueRows,
           needTotal,
           needAutoNumberingRows,
+          needSteppedLayout,
+          steppedLayoutIndentation,
           paginateInfo,
           labels,
           updates: fullUpdates,
@@ -600,6 +611,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
     let needUniqueRows;
     let needTotal;
     let needAutoNumberingRows;
+    let needSteppedLayout;
+    let steppedLayoutIndentation;
     let paginateInfo;
     let labels;
     let updates;
@@ -635,8 +648,10 @@ export function fetchWidget({ entryId, preview, sdk }) {
           needUniqueRows,
           needTotal,
           needAutoNumberingRows,
+          needSteppedLayout,
+          steppedLayoutIndentation,
           diagramMagnitude,
-          paginateInfo = { page: 0, pageSize: 150 },
+          paginateInfo = { page: 0, pageSize: 10 },
           labels,
           updates,
           mapLayerOpacity,
@@ -669,7 +684,9 @@ export function fetchWidget({ entryId, preview, sdk }) {
         // Проставляем defaultPath независимо от датасета
         dispatch(
           setDefaultPath({
-            defaultPath: window.DL.user.login ? `/Users/${window.DL.user.login}` : '/',
+            defaultPath: $appSettingsStore.getState().user.login
+              ? `/Users/${$appSettingsStore.getState().user.login}`
+              : '/',
           }),
         );
 
@@ -717,6 +734,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
           needUniqueRows,
           needTotal,
           needAutoNumberingRows,
+          needSteppedLayout,
+          steppedLayoutIndentation,
           paginateInfo,
           labels,
           diagramMagnitude,
@@ -847,6 +866,13 @@ export function fetchWidget({ entryId, preview, sdk }) {
         // Проставляем флаг о ступенчатом макете
         dispatch(setNeedAutoNumberingRows({ needAutoNumberingRows }));
 
+        dispatch(setNeedSteppedLayout({ needSteppedLayout }));
+
+        if (Number.isFinite(steppedLayoutIndentation)) {
+          // Проставляем значение пошагового отступа макета
+          dispatch(setSteppedLayoutIndentation({ steppedLayoutIndentation }));
+        }
+
         dispatch(setPaginateInfo({ paginateInfo }));
 
         //проставляем количесство выгружаемых строк
@@ -879,6 +905,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
             needUniqueRows,
             needTotal,
             needAutoNumberingRows,
+            needSteppedLayout,
+            steppedLayoutIndentation,
             paginateInfo,
             labels,
             updates,
@@ -953,6 +981,8 @@ export function setVisualization({ visualization }) {
       needUniqueRows: state.visualization.needUniqueRows,
       needTotal: state.visualization.needTotal,
       needAutoNumberingRows: state.visualization.needAutoNumberingRows,
+      needSteppedLayout: state.visualization.needSteppedLayout,
+      steppedLayoutIndentation: state.visualization.steppedLayoutIndentation,
       paginateInfo: state.visualization.paginateInfo,
     };
   };
@@ -1066,6 +1096,20 @@ export function setNeedAutoNumberingRows({ needAutoNumberingRows }) {
   };
 }
 
+export function setNeedSteppedLayout({ needSteppedLayout }) {
+  return {
+    type: SET_NEED_STEPPED_LAYOUT,
+    needSteppedLayout,
+  };
+}
+
+export function setSteppedLayoutIndentation({ steppedLayoutIndentation }) {
+  return {
+    type: SET_STEPPED_LAYOUT_INDENTATION,
+    steppedLayoutIndentation,
+  };
+}
+
 export function setPaginateInfo({ paginateInfo }) {
   return {
     type: SET_PAGINATE_INFO,
@@ -1107,9 +1151,9 @@ export function setSearchPhrase({ searchPhrase }) {
   };
 }
 
-export function setHighchartsWidget({ highchartsWidget }) {
+export function setWidget({ widget }) {
   return {
-    highchartsWidget,
+    widget,
     type: SET_HIGHCHARTS_WIDGET,
   };
 }
@@ -1164,8 +1208,8 @@ export function setDefaults({ preview, sdk, entryId }) {
           setDefaultPath({
             defaultPath: searchCurrentPath
               ? decodeURIComponent(searchCurrentPath[1])
-              : window.DL.user.login
-              ? `/Users/${window.DL.user.login}`
+              : $appSettingsStore.getState().user.login
+              ? `/Users/${$appSettingsStore.getState().user.login}`
               : '/',
           }),
         );

@@ -19,11 +19,12 @@ import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const sdk = new SDK({
-  endpoints: window.DL.endpoints,
-  currentCloudId: window.DL.currentCloudId,
-  currentCloudFolderId: window.DL.currentCloudFolderId,
+  endpoints: $appSettingsStore.getState().endpoints,
+  currentCloudId: $appSettingsStore.getState().currentCloudId,
+  currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
 });
 
 const toaster = new Toaster();

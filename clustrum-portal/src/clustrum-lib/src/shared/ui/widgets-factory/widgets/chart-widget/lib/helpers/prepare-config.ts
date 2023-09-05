@@ -653,11 +653,6 @@ export const prepareConfig = (data: any, options: any, vaultId: number): any => 
         },
       },
     };
-
-    //@ts-ignore
-    if (window.DL.exportMode) {
-      options.echart.plotOptions.pie.dataLabels.enabled = true;
-    }
   }
 
   // TODO: очень неправильно ориентироваться на этот параметр из Config

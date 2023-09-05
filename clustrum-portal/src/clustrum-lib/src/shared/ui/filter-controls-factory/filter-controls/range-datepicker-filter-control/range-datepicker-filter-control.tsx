@@ -110,7 +110,7 @@ export function RangeDatepickerFilterControl(
     <div className={classNames(styles['range-datepicker-control'], className)}>
       <label className={styles['range-datepicker-control__label']}>
         {`${label}:`}
-        <div ref={pickerRef} className={styles['range-datepicker-control__picker']}>
+        <div ref={pickerRef}>
           <RangePicker
             disabledDate={hasDisabled}
             format={dateFormat}

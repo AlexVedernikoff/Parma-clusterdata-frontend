@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import isMatch from 'lodash/isMatch';
 import pick from 'lodash/pick';
 import { Spin } from 'antd';
 import {
   ActualParamsReturnType,
+  DashboardControlsData,
   FilterControlsFactoryProps,
   LoadStatus,
   LoadedDataScheme,
@@ -13,16 +15,20 @@ import styles from './filter-controls-container.module.css';
 import { filterControlsContainerModel } from '../model/filter-controls-container-model';
 
 export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.Element {
+  const { data, defaults, params } = props;
+
   const [status, setStatus] = useState<LoadStatus>(LoadStatus.Pending);
   const [scheme, setScheme] = useState<LoadedDataScheme[] | null>(null);
+  const previousControlData = useRef<DashboardControlsData | null>(null);
 
   useEffect(() => {
-    init();
-  }, []);
+    if (!isMatch(previousControlData.current ?? {}, data)) {
+      init();
+    }
+    previousControlData.current = data;
+  }, [data]);
 
   const initAvailableItems = (scheme: LoadedDataScheme[]): void => {
-    const { params } = props;
-
     for (const control of scheme) {
       const { param } = control;
       const { initiatorItem: item } = params[param];
@@ -43,15 +49,12 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
   };
 
   const actualParams = (): ActualParamsReturnType => {
-    const { params, defaults } = props;
-
     return pick(getParamsValue(params), Object.keys(defaults));
   };
 
   const init = async (): Promise<void> => {
     try {
       setStatus(LoadStatus.Pending);
-      const { data } = props;
 
       const loadedData = await filterControlsContainerModel(data, actualParams);
 

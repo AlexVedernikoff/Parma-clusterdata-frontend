@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ChartWidget } from '@lib-shared/ui/widgets-factory/widgets/chart-widget';
-import { ChartWidgetProps, ChartWidgetData } from './widgets/chart-widget/types';
+import { UnknownWidget } from '@lib-shared/ui/widgets-factory/widgets/unknown-widget';
+
 import OLMap from '@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/OLMap';
 import SideHtml from '@kamatech-data-ui/chartkit/lib/components/Widget/SideHtml/SideHtml';
 import Card from '@kamatech-data-ui/chartkit/lib/components/Widget/Card/Card';
@@ -13,64 +14,10 @@ import Text from '@kamatech-data-ui/chartkit/lib/components/Widget/WikiText/Wiki
 import Metric from '@kamatech-data-ui/chartkit/lib/components/Widget/Metric/Metric';
 import Control from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
-import { WidgetType } from './types';
+import { WidgetProps, WidgetType } from './types';
+import { Table_deprecated } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/Table_deprecated';
 
-interface UnknownProps {
-  onLoad(): void;
-}
-
-class Unknown extends React.PureComponent<UnknownProps> {
-  static propTypes = {
-    onLoad: PropTypes.func.isRequired,
-  };
-
-  componentDidMount(): void {
-    const { onLoad } = this.props;
-    onLoad();
-  }
-
-  componentDidUpdate(): void {
-    const { onLoad } = this.props;
-    onLoad();
-  }
-
-  render(): JSX.Element {
-    return <div>Unknown widget type</div>;
-  }
-}
-
-interface ConfigType {
-  shouldHideComments: boolean;
-  shouldShowSideHtml: boolean;
-}
-
-// TODO: Взято из `Control.js`, после типизации `Control`-а импортировать типы оттуда
-interface SchemeItem {
-  type: 'select' | 'button' | 'input' | 'checkbox' | 'datepicker' | 'range-datepicker';
-  param: string;
-  label: string;
-  updateOnChange: boolean;
-  updateControlsOnChange: boolean;
-}
-
-interface WidgetData {
-  widgetType: WidgetType;
-  // Следующие два нужны только для `SideHtml`
-  config: ConfigType;
-  sideHtml: string;
-  // Всё что ниже, нужно только для проброса в `Control`
-  entryId: string;
-  // Тип `object` в `Control.js`
-  // TODO: Типизировать `params` после типизации `Control`
-  params: object;
-  uiScheme: SchemeItem[];
-}
-
-interface WidgetProps extends UnknownProps, ChartWidgetProps {
-  data: ChartWidgetData & WidgetData;
-  onChange(): void;
-}
-
+// TODO: Переименовать в `WidgetFactory` (и файл в `widget-factory.tsx`)
 export class Widget extends React.PureComponent<WidgetProps> {
   static propTypes = {
     data: PropTypes.object.isRequired,
@@ -107,6 +54,8 @@ export class Widget extends React.PureComponent<WidgetProps> {
         return <Indicator {...this.props} />;
       case WidgetType.Table:
         return <Table {...this.props} />;
+      case WidgetType.PivotTable:
+        return <Table_deprecated {...this.props} />;
       case WidgetType.Ymap:
         return <YandexMap {...this.props} />;
       case WidgetType.Text:
@@ -116,7 +65,7 @@ export class Widget extends React.PureComponent<WidgetProps> {
       case WidgetType.Control:
         return null;
       default:
-        return <Unknown {...this.props} />;
+        return <UnknownWidget {...this.props} />;
     }
   }
 

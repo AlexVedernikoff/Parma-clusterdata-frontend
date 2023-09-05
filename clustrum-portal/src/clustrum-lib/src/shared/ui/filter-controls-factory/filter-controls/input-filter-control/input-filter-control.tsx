@@ -42,7 +42,6 @@ export function InputFilterControl(props: InputFilterControlProps): JSX.Element 
           value={value}
           onChange={handleChange}
           onPressEnter={handlePress}
-          className={styles['input-filter-control__input']}
         />
       </label>
     </div>

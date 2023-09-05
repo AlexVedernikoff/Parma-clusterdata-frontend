@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { CheckBox as LegoCheckBox, TextInput as LegoTextInput } from 'lego-on-react';
 import { Dialog } from '@kamatech-data-ui/common/src';
 import { ControlSourceType } from '@clustrum-lib/shared/types';
+import { CommonSwitcherDatasetContainer } from '@clustrum-lib';
 
-import Dataset from './Switchers/Dataset';
 import DatasetField from './Switchers/DatasetField/DatasetField';
 import ElementType from './Switchers/ElementType';
 import TextInput from './Switchers/TextInput';
@@ -237,9 +237,9 @@ class Control extends React.PureComponent {
       <React.Fragment>
         {sourceType === ControlSourceType.Dataset && (
           <React.Fragment>
-            <Dataset
+            <CommonSwitcherDatasetContainer
               title="Набор данных"
-              datasetId={id}
+              entryId={id}
               onClick={id => this.setState({ dataset: { id } })}
             />
             <DatasetField
