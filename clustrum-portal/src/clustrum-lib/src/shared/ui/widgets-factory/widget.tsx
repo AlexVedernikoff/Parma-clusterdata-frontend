@@ -15,6 +15,7 @@ import Metric from '@kamatech-data-ui/chartkit/lib/components/Widget/Metric/Metr
 import Control from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
 import { WidgetProps, WidgetType } from './types';
+import { Table_deprecated } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/Table_deprecated';
 
 // TODO: Переименовать в `WidgetFactory` (и файл в `widget-factory.tsx`)
 export class Widget extends React.PureComponent<WidgetProps> {
@@ -53,6 +54,8 @@ export class Widget extends React.PureComponent<WidgetProps> {
         return <Indicator {...this.props} />;
       case WidgetType.Table:
         return <Table {...this.props} />;
+      case WidgetType.PivotTable:
+        return <Table_deprecated {...this.props} />;
       case WidgetType.Ymap:
         return <YandexMap {...this.props} />;
       case WidgetType.Text:

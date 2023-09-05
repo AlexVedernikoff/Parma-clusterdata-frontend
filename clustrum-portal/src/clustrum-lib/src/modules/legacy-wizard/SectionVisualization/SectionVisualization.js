@@ -40,6 +40,8 @@ import {
   setFilters,
   setMapLayerOpacity,
   setNeedTotal,
+  setNeedSteppedLayout,
+  setSteppedLayoutIndentation,
   setNeedUniqueRows,
   setNullAlias,
   setPaginateInfo,
@@ -60,6 +62,8 @@ import {
   selectFilters,
   selectMapLayerOpacity,
   selectNeedTotal,
+  selectNeedSteppedLayout,
+  selectSteppedLayoutIndentation,
   selectNeedUniqueRows,
   selectNullAlias,
   selectPaginateInfo,
@@ -86,6 +90,8 @@ import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Tabl
 import { VisualizationType } from '@lib-entities/visualization-factory/types';
 import { VisualizationsList } from '@lib-features/visualizations-list';
 import { $appSettingsStore } from '@entities/app-settings';
+
+const steppedLayoutIndentationMaxValue = 40;
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -131,6 +137,8 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needSteppedLayout,
+      steppedLayoutIndentation,
       paginateInfo,
       diagramMagnitude,
       exportLimit,
@@ -238,6 +246,8 @@ class SectionVisualization extends Component {
               nullAlias,
               needUniqueRows,
               needTotal,
+              needSteppedLayout,
+              steppedLayoutIndentation,
               paginateInfo,
               diagramMagnitude,
               exportLimit,
@@ -294,6 +304,8 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needSteppedLayout,
+      steppedLayoutIndentation,
       updates,
       exportLimit,
       setFilters,
@@ -306,6 +318,8 @@ class SectionVisualization extends Component {
       setNullAlias,
       setNeedUniqueRows,
       setNeedTotal,
+      setNeedSteppedLayout,
+      setSteppedLayoutIndentation,
       paginateInfo,
       setPaginateInfo,
       diagramMagnitude,
@@ -428,6 +442,8 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -463,6 +479,8 @@ class SectionVisualization extends Component {
                       nullAlias,
                       needUniqueRows,
                       needTotal,
+                      needSteppedLayout,
+                      steppedLayoutIndentation,
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
@@ -522,6 +540,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -570,6 +590,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -595,6 +617,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -644,6 +668,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -685,6 +711,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -726,6 +754,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -782,6 +812,8 @@ class SectionVisualization extends Component {
                   nullAlias: newValue[0],
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -819,6 +851,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows: !needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo: { page: 0, pageSize: paginateInfo.pageSize },
                   diagramMagnitude,
                   exportLimit,
@@ -856,8 +890,85 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal: !needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
+        )}
+        {visualization.allowSteppedLayout && (
+          <VisualizationFactory
+            title="Ступенчатый макет"
+            type={VisualizationType.CheckBox}
+            className="subitem"
+            containerProps={{
+              theme: 'normal',
+              size: 'n',
+              view: 'default',
+              tone: 'default',
+              checked: needSteppedLayout,
+              text: 'Показывать ступенчатый макет таблицы',
+              onChange: () => {
+                setNeedSteppedLayout({ needSteppedLayout: !needSteppedLayout });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needSteppedLayout: !needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
+        )}
+        {visualization.allowSteppedLayout && needSteppedLayout && (
+          <VisualizationFactory
+            title="Макет с пошаговым отступом"
+            type={VisualizationType.RangePicker}
+            className="subitem"
+            containerProps={{
+              max: steppedLayoutIndentationMaxValue,
+              initialValue: steppedLayoutIndentation,
+              onChange: steppedLayoutIndentation => {
+                setMapLayerOpacity({ steppedLayoutIndentation });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  mapLayerOpacity,
                   exportLimit,
                 });
               },
@@ -902,6 +1013,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude: newValue[0],
                   exportLimit,
@@ -934,6 +1047,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   mapLayerOpacity: value,
@@ -975,6 +1090,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit: text,
@@ -996,6 +1113,8 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit: e.target.value,
@@ -1249,6 +1368,8 @@ const mapStateToProps = createStructuredSelector({
   nullAlias: selectNullAlias,
   needUniqueRows: selectNeedUniqueRows,
   needTotal: selectNeedTotal,
+  needSteppedLayout: selectNeedSteppedLayout,
+  steppedLayoutIndentation: selectSteppedLayoutIndentation,
   paginateInfo: selectPaginateInfo,
   selectOrderBy: selectOrderBy,
 
@@ -1280,6 +1401,8 @@ const mapDispatchToProps = {
   setDiagramMagnitude,
   setMapLayerOpacity,
   setExportLimit,
+  setNeedSteppedLayout,
+  setSteppedLayoutIndentation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SectionVisualization);

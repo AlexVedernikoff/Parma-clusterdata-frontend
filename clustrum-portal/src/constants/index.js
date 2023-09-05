@@ -856,16 +856,17 @@ const FLAT_TABLE_VISUALIZATION = {
 
 const PIVOT_TABLE_VISUALIZATION = {
   id: 'pivotTable',
-  type: 'table',
+  type: 'pivotTable',
   name: 'label_visualization-pivot-table',
-  wizardNodeType: WIZARD_NODE_TYPE.TABLE,
+  wizardNodeType: WIZARD_NODE_TYPE.PIVOT_TABLE,
   icon: <Icon data={iconVisPivot} width="24" />,
   allowFilters: true,
-  allowColors: true,
-  allowSort: true,
+  allowColors: false,
+  allowSort: false,
   allowNullAlias: true,
-  allowUniqueRows: true,
-  allowTotal: true,
+  allowUniqueRows: false,
+  allowTotal: false,
+  allowSteppedLayout: true,
   checkAllowedSort: (item, visualization) => {
     if (item.type === 'MEASURE') return false;
 
@@ -889,7 +890,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       icon: <Icon data={iconColumns} width="24" />,
       items: [],
       onChange: onTableDimensionsChange,
-      capacity: Infinity,
+      capacity: 5,
     },
     {
       allowedTypes: ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
@@ -899,7 +900,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       icon: <DatabaseOutlined width="16" />,
       items: [],
       onChange: onTableDimensionsChange,
-      capacity: Infinity,
+      capacity: 5,
     },
     {
       allowedTypes: ITEM_TYPES.MEASURES,
@@ -908,7 +909,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       title: 'section_measures',
       icon: <Icon data={iconMeasuresTable} width="24" />,
       items: [],
-      capacity: Infinity,
+      capacity: 1,
       onChange: onPivotTableMeasuresChange,
     },
   ],
@@ -1191,7 +1192,7 @@ export const VISUALIZATIONS = [
   PIE_VISUALIZATION,
   // TREEMAP_VISUALIZATION,
   FLAT_TABLE_VISUALIZATION,
-  // PIVOT_TABLE_VISUALIZATION,
+  PIVOT_TABLE_VISUALIZATION,
   // MAP_VISUALIZATION,
   // HEATMAP_VISUALIZATION,
   // MAP_CLUSTER_FOCUS_POINT_VISUALIZATION,
