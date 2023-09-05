@@ -91,6 +91,8 @@ import { VisualizationType } from '@lib-entities/visualization-factory/types';
 import { VisualizationsList } from '@lib-features/visualizations-list';
 import { $appSettingsStore } from '@entities/app-settings';
 
+const steppedLayoutIndentationMaxValue = 40;
+
 // todo разбить на компоненты
 class SectionVisualization extends Component {
   constructor(props) {
@@ -898,7 +900,6 @@ class SectionVisualization extends Component {
             }}
           />
         )}
-
         {visualization.allowSteppedLayout && (
           <VisualizationFactory
             title="Ступенчатый макет"
@@ -938,7 +939,42 @@ class SectionVisualization extends Component {
             }}
           />
         )}
-
+        {visualization.allowSteppedLayout && needSteppedLayout && (
+          <VisualizationFactory
+            title="Макет с пошаговым отступом"
+            type={VisualizationType.RangePicker}
+            className="subitem"
+            containerProps={{
+              max: steppedLayoutIndentationMaxValue,
+              initialValue: steppedLayoutIndentation,
+              onChange: steppedLayoutIndentation => {
+                setMapLayerOpacity({ steppedLayoutIndentation });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  mapLayerOpacity,
+                  exportLimit,
+                });
+              },
+            }}
+          />
+        )}
         {visualization.allowDiagramMagnitude && (
           <VisualizationFactory
             title="Единицы измерения диаграммы"
