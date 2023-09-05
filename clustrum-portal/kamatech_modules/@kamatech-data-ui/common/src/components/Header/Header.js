@@ -5,6 +5,7 @@ import Logo from './Logo/Logo';
 import Menu from './Menu/Menu';
 import Search from './Search/Search';
 import UserAvatar from './UserAvatar/UserAvatar';
+import { $appSettingsStore } from '@entities/app-settings';
 
 // import './Header.scss';
 
@@ -40,7 +41,7 @@ export default class Header extends React.PureComponent {
   }
 
   render() {
-    if (window.DL.hideHeader) {
+    if ($appSettingsStore.getState().hideHeader) {
       return null;
     }
 
@@ -59,7 +60,7 @@ export default class Header extends React.PureComponent {
               logoHref={this.props.logoHref}
             />
           }
-          {window.DL.title}
+          {$appSettingsStore.getState().title}
         </div>
         {this.renderSearchSection()}
         <div className={b('custom-section')}>{this.props.children}</div>

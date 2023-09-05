@@ -93,7 +93,7 @@ export function DatepickerFilterControl(
     <div className={classNames(styles['datepicker-control'], className)}>
       <label className={styles['datepicker-control__label']}>
         {`${label}:`}
-        <div ref={pickerRef} className={styles['datepicker-control__picker']}>
+        <div ref={pickerRef}>
           <DatePicker
             disabledDate={hasDisabled}
             format={dateFormat}

@@ -21,6 +21,7 @@ import Select from 'ol/interaction/Select';
 import Zoom from 'ol/control/Zoom';
 import { MapConstant } from './map-constant';
 import MapTooltip from './tooltip/MapTooltip';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const EPSG_3857 = 'EPSG:3857';
 const EPSG_4326 = 'EPSG:4326';
@@ -527,7 +528,7 @@ class OLMap extends React.Component {
       return this.tileXYZLayer(url);
     }
 
-    return this.tileXYZLayer(window.DL.dotenv.MAP_LAYER_SOURCE);
+    return this.tileXYZLayer($appSettingsStore.getState().mapLayerSource);
   };
 
   tileXYZLayer = url => {

@@ -4852,7 +4852,7 @@ html {
 }
 
 .yc-root .button2_theme_clear {
-  color: var(--yc-lego-color-text-primary);
+  color: var(--antd-color-primary);
 }
 
 .yc-root .button2_view_classic.button2_theme_clear.button2_disabled_yes:before {
@@ -5318,6 +5318,8 @@ html {
 }
 
 .yc-root .checkbox_view_default.checkbox_tone_default.checkbox_theme_normal {
+  display: flex;
+  align-items: center;
   color: var(--yc-lego-color-text-primary);
 }
 

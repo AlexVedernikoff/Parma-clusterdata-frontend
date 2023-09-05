@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { useUnit } from 'effector-react';
 import configureStore from 'store/configureStore';
 import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
@@ -16,12 +17,12 @@ import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
-import { replaceIframeParams } from '@shared/lib/utils';
+import { $appSettingsStore, setAppSettingsEvent } from '@entities/app-settings';
 
 const sdk = new SDK({
-  endpoints: window.DL.endpoints,
-  currentCloudId: window.DL.currentCloudId,
-  currentCloudFolderId: window.DL.currentCloudFolderId,
+  endpoints: $appSettingsStore.getState().endpoints,
+  currentCloudId: $appSettingsStore.getState().currentCloudId,
+  currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
 });
 const store = configureStore();
 
@@ -29,8 +30,18 @@ Utils.setBodyFeatures();
 
 logVersion();
 
-export function NavigationBuild(props) {
-  replaceIframeParams(props);
+export default function NavigationBuild(props) {
+  const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  setAppSettings({
+    hideHeader: props.hideHeader,
+    hideSubHeader: props.hideSubHeader,
+    hideTabs: props.hideTabs,
+    hideEdit: props.hideEdit,
+    enableCaching: props.enableCaching,
+    cacheMode: props.cacheMode,
+    exportMode: props.exportMode,
+    stateUuid: props.stateUuid,
+  });
 
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>

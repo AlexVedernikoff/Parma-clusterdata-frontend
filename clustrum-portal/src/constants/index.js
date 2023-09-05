@@ -28,6 +28,7 @@ import iconPoints from 'icons/points.svg';
 import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
 import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
+import { $appSettingsStore } from '@entities/app-settings';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',
@@ -60,7 +61,7 @@ export const getConnectorsMap = () => {
     features: {
       dataset: { chOverYtEnabled, oracleEnabled, appMetricaEnabled } = {},
     } = {},
-  } = window.DL;
+  } = $appSettingsStore.getState();
 
   const connectorsList = {
     clickhouse: 'ClickHouse',
@@ -121,11 +122,11 @@ const sectionCreationType = {
 export const getFakeEntry = entryType => {
   const {
     user: { login },
-  } = window.DL;
+  } = $appSettingsStore.getState();
 
   return {
     fake: true,
-    key: window.DL.user.login
+    key: $appSettingsStore.getState().user.login
       ? `/Users/${login}/${sectionCreationType[entryType]}`
       : `/${sectionCreationType[entryType]}`,
     entryId: null,
@@ -855,16 +856,18 @@ const FLAT_TABLE_VISUALIZATION = {
 
 const PIVOT_TABLE_VISUALIZATION = {
   id: 'pivotTable',
-  type: 'table',
+  type: 'pivotTable',
   name: 'label_visualization-pivot-table',
-  wizardNodeType: WIZARD_NODE_TYPE.TABLE,
+  wizardNodeType: WIZARD_NODE_TYPE.PIVOT_TABLE,
   icon: <Icon data={iconVisPivot} width="24" />,
   allowFilters: true,
-  allowColors: true,
-  allowSort: true,
+  allowColors: false,
+  allowSort: false,
   allowNullAlias: true,
-  allowUniqueRows: true,
-  allowTotal: true,
+  allowUniqueRows: false,
+  allowTotal: false,
+  allowSteppedLayout: true,
+  allowAutoNumberingRows: true,
   checkAllowedSort: (item, visualization) => {
     if (item.type === 'MEASURE') return false;
 
@@ -888,7 +891,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       icon: <Icon data={iconColumns} width="24" />,
       items: [],
       onChange: onTableDimensionsChange,
-      capacity: Infinity,
+      capacity: 5,
     },
     {
       allowedTypes: ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
@@ -898,7 +901,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       icon: <DatabaseOutlined width="16" />,
       items: [],
       onChange: onTableDimensionsChange,
-      capacity: Infinity,
+      capacity: 5,
     },
     {
       allowedTypes: ITEM_TYPES.MEASURES,
@@ -907,7 +910,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       title: 'section_measures',
       icon: <Icon data={iconMeasuresTable} width="24" />,
       items: [],
-      capacity: Infinity,
+      capacity: 1,
       onChange: onPivotTableMeasuresChange,
     },
   ],
@@ -1190,7 +1193,7 @@ export const VISUALIZATIONS = [
   PIE_VISUALIZATION,
   // TREEMAP_VISUALIZATION,
   FLAT_TABLE_VISUALIZATION,
-  // PIVOT_TABLE_VISUALIZATION,
+  PIVOT_TABLE_VISUALIZATION,
   // MAP_VISUALIZATION,
   // HEATMAP_VISUALIZATION,
   // MAP_CLUSTER_FOCUS_POINT_VISUALIZATION,

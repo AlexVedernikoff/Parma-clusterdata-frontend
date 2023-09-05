@@ -7,4 +7,5 @@
   --antd-text-color-selection: #bb2649;
   --antd-color-split: rgba(0, 0, 0, 0.06);
   --antd-color-border: rgba(0, 0, 0, 0.15);
+  --antd-color-text-disabled: rgba(0, 0, 0, 0.25);
 }

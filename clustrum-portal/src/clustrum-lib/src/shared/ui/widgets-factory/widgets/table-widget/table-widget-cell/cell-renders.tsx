@@ -28,7 +28,7 @@ export function renderText(cell: Cell): JSX.Element {
         target={cell.link.newWindow ? '_blank' : '_self'}
         rel="noreferrer"
       >
-        {cell.value}
+        {cell.value?.toString()}
       </a>
     );
   }

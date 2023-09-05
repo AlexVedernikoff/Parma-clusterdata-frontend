@@ -21,6 +21,10 @@ import { TableTheme } from './TableTheme';
 
 const b = cn('data-table');
 
+const HIDDEN_ROW_SPAN = -1;
+const DEFAULT_ROW_SPAN = 1;
+const DEFAULT_CELL_PADDING_LEFT = 10;
+
 const ICON_ASC = (
   <svg className={b('icon')} viewBox="0 0 10 6" width="10" height="6">
     <path fill="currentColor" d="M0 5h10l-5 -5z" />
@@ -122,19 +126,31 @@ class TableRow extends React.PureComponent {
           const isValueSelected = this.checkValueSelection(selectedRow, value);
           const classNameValue = column._className + (isValueSelected ? ' selected' : '');
 
+          if (value?.rowSpan === HIDDEN_ROW_SPAN) {
+            return;
+          }
+
+          const paddingLeft = {
+            paddingLeft: value?.cellPadding || DEFAULT_CELL_PADDING_LEFT,
+          };
+
           return (
             <td
               key={columnIndex}
               className={classNameValue}
               title={column._getTitle(row)}
-              style={column.customStyle({
-                row,
-                index,
-                name: column.name,
-                header: false,
-                footer,
-              })}
+              style={{
+                ...column.customStyle({
+                  row,
+                  index,
+                  name: column.name,
+                  header: false,
+                  footer,
+                }),
+                ...paddingLeft,
+              }}
               onClick={column._getOnClick({ row, index, footer })}
+              rowSpan={value?.rowSpan || DEFAULT_ROW_SPAN}
             >
               {footer ? (
                 <div className={b('footer')}>

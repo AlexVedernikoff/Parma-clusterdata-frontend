@@ -1,6 +1,6 @@
 import Utils from '../../utils';
 
-import ChartKit from '@kamatech-data-ui/chartkit/lib';
+import { WidgetContainer } from '@clustrum-lib';
 
 import extendHighcharts from '@kamatech-data-ui/chartkit/lib/extensions/highcharts-extended';
 import boostHighcharts from '@kamatech-data-ui/chartkit/lib/extensions/highcharts-boost';
@@ -18,18 +18,19 @@ import {
   SOURCES,
   EDIT,
 } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
+import { $appSettingsStore } from '@entities/app-settings';
 
 // import './ChartKit.scss';
 
-extendHighcharts(ChartKit);
-if (window.DL.features.highchartsBoost) {
-  boostHighcharts(ChartKit);
+extendHighcharts(WidgetContainer);
+if ($appSettingsStore.getState().features.highchartsBoost) {
+  boostHighcharts(WidgetContainer);
 }
-useHolidays(ChartKit);
+useHolidays(WidgetContainer);
 
-ChartKit.setSettings({
-  chartsEndpoint: window.DL.endpoints.charts,
-  lang: window.DL.user.lang,
+WidgetContainer.setSettings({
+  chartsEndpoint: $appSettingsStore.getState().endpoints.charts,
+  lang: $appSettingsStore.getState().user.lang,
   config: Utils.isInternalInstallation(),
   theme: 'clustrum',
   requestDecorator: request => {
@@ -37,8 +38,10 @@ ChartKit.setSettings({
     if (CSRFToken) {
       request.headers['X-CSRF-Token'] = CSRFToken;
     }
-    if (window.DL.currentCloudFolderId) {
-      request.headers['X-YaCloud-FolderId'] = window.DL.currentCloudFolderId;
+    if ($appSettingsStore.getState().currentCloudFolderId) {
+      request.headers[
+        'X-YaCloud-FolderId'
+      ] = $appSettingsStore.getState().currentCloudFolderId;
     }
     return request;
   },
@@ -58,4 +61,4 @@ ChartKit.setSettings({
     : [EXPORT],
 });
 
-export default ChartKit;
+export default WidgetContainer;

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
-import { CheckBox, Tooltip } from 'lego-on-react';
+import { Tooltip } from 'lego-on-react';
 
 import iconVisualization from 'icons/visualization.svg';
 import iconError from 'icons/error.svg';
+import { VisualizationFactory } from '@lib-entities/visualization-factory';
 
 import {
   CloseOutlined,
@@ -20,11 +21,9 @@ import {
   CONFLICT_TOOLTIPS,
   ITEM_TYPES, // TODO: заменить на WIZARD_ITEM_TYPES из @lib-shared/config
   MEASURE_TYPE,
-  VISUALIZATIONS,
 } from '../../../../../constants';
 
 import { DndContainer, checkDndActionAvailability } from '@lib-shared/ui/drag-n-drop';
-import Dropdown from '../../../../../components/Dropdown/Dropdown';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';
 
@@ -40,6 +39,9 @@ import {
   setFilters,
   setMapLayerOpacity,
   setNeedTotal,
+  setNeedAutoNumberingRows,
+  setNeedSteppedLayout,
+  setSteppedLayoutIndentation,
   setNeedUniqueRows,
   setNullAlias,
   setPaginateInfo,
@@ -60,6 +62,9 @@ import {
   selectFilters,
   selectMapLayerOpacity,
   selectNeedTotal,
+  selectNeedAutoNumberingRows,
+  selectNeedSteppedLayout,
+  selectSteppedLayoutIndentation,
   selectNeedUniqueRows,
   selectNullAlias,
   selectPaginateInfo,
@@ -81,30 +86,13 @@ import {
 import { CastIconsFactory } from '@lib-shared/ui/cast-icons-factory';
 
 import Select from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
-import TextInput from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/textinput/textinput.react';
 import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
-import { KamatechRangePicker } from '@kamatech-ui';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
+import { VisualizationType } from '@lib-entities/visualization-factory/types';
+import { VisualizationsList } from '@lib-features/visualizations-list';
+import { $appSettingsStore } from '@entities/app-settings';
 
-const VISUALIZATION_LABELS = {
-  'label_visualization-area': 'Диаграмма с областями',
-  'label_visualization-area-100p': '100% диаграмма с областями',
-  'label_visualization-column': 'Столбчатая диаграмма',
-  'label_visualization-column-100p': '100% cтолбчатая диаграмма',
-  'label_visualization-flat-table': 'Таблица',
-  'label_visualization-line': 'Линейная диаграмма',
-  'label_visualization-pie': 'Круговая диаграмма',
-  'label_visualization-pivot-table': 'Сводная таблица',
-  map: 'Карта',
-  heatmap: 'Фоновая карта',
-  map_cluster_focus_point: 'Карта очагов по кластеризации',
-  label_visualization_card: 'Карточка объекта',
-  'label_visualization-scatter': 'Точечная  диаграмма',
-  'label_visualization-treemap': 'Древовидная диаграмма',
-  label_visualization_indicator: 'Индикатор',
-  label_visualization_multiline: 'График',
-  label_visualization_column_plan_fact: 'Индикатор сопоставления план-факт',
-};
+const steppedLayoutIndentationMaxValue = 40;
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -150,6 +138,9 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needAutoNumberingRows,
+      needSteppedLayout,
+      steppedLayoutIndentation,
       paginateInfo,
       diagramMagnitude,
       exportLimit,
@@ -257,6 +248,9 @@ class SectionVisualization extends Component {
               nullAlias,
               needUniqueRows,
               needTotal,
+              needAutoNumberingRows,
+              needSteppedLayout,
+              steppedLayoutIndentation,
               paginateInfo,
               diagramMagnitude,
               exportLimit,
@@ -313,6 +307,9 @@ class SectionVisualization extends Component {
       nullAlias,
       needUniqueRows,
       needTotal,
+      needAutoNumberingRows,
+      needSteppedLayout,
+      steppedLayoutIndentation,
       updates,
       exportLimit,
       setFilters,
@@ -325,6 +322,9 @@ class SectionVisualization extends Component {
       setNullAlias,
       setNeedUniqueRows,
       setNeedTotal,
+      setNeedAutoNumberingRows,
+      setNeedSteppedLayout,
+      setSteppedLayoutIndentation,
       paginateInfo,
       setPaginateInfo,
       diagramMagnitude,
@@ -365,7 +365,7 @@ class SectionVisualization extends Component {
 
     let clusterPrecisionItem = 0;
 
-    let paginateInfoItem = { page: 0, pageSize: 150 };
+    let paginateInfoItem = { page: 0, pageSize: 10 };
 
     if (!visualization) {
       return null;
@@ -383,7 +383,7 @@ class SectionVisualization extends Component {
     }
     if (!titleLayerSource && visualization.allowTitleLayerSource) {
       setTitleLayerSource({
-        titleLayerSource: window.DL.dotenv.MAP_LAYER_SOURCE,
+        titleLayerSource: $appSettingsStore.getState().mapLayerSource,
       });
     }
     if (!clusterPrecision && visualization.allowClusterPrecision) {
@@ -404,31 +404,28 @@ class SectionVisualization extends Component {
           return this.renderPlaceholder(placeholder, index);
         })}
         {visualization.allowFilters && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <div className="placeholder-icon">
-                <FilterOutlined width="16" height="16" />
-              </div>
-              <span>Фильтры</span>
-            </div>
-            <DndContainer
-              id="filter-container"
-              isNeedRemove
-              highlightDropPlace
-              items={[...filters]}
-              allowedTypes={ITEM_TYPES.ALL}
-              itemsClassName="placeholder-item"
-              wrapTo={this.renderDatasetItem}
-              disabled={datasetError}
-              onItemClick={(e, item) => {
+          <VisualizationFactory
+            title="Фильтры"
+            icon={<FilterOutlined width="16" height="16" />}
+            type={VisualizationType.DndContainer}
+            containerProps={{
+              id: 'filter-container',
+              isNeedRemove: true,
+              highlightDropPlace: true,
+              items: [...filters],
+              allowedTypes: ITEM_TYPES.ALL,
+              itemsClassName: 'placeholder-item',
+              wrapTo: this.renderDatasetItem,
+              disabled: datasetError,
+              onItemClick: (e, item) => {
                 this.setState({
                   dialogItem: item,
                   dialogType: 'filter',
                   isDialogVisible: true,
                   dialogCallBack: this.handleDialogActions,
                 });
-              }}
-              onUpdate={(items, item, action) => {
+              },
+              onUpdate: (items, item, action) => {
                 if (action === 'remove') {
                   // Обрабатываем удаление фильтра
                   setFilters({
@@ -450,6 +447,9 @@ class SectionVisualization extends Component {
                     nullAlias,
                     needUniqueRows,
                     needTotal,
+                    needAutoNumberingRows,
+                    needSteppedLayout,
+                    steppedLayoutIndentation,
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
@@ -485,6 +485,9 @@ class SectionVisualization extends Component {
                       nullAlias,
                       needUniqueRows,
                       needTotal,
+                      needAutoNumberingRows,
+                      needSteppedLayout,
+                      steppedLayoutIndentation,
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
@@ -498,9 +501,9 @@ class SectionVisualization extends Component {
                     });
                   }
                 }
-              }}
-            />
-          </div>
+              },
+            }}
+          />
         )}
         {/* Скрыто по просьбе аналитика Кластрум
         {visualization.allowColors && (
@@ -544,6 +547,9 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
@@ -553,27 +559,24 @@ class SectionVisualization extends Component {
           </div>
         )} */}
         {visualization.allowSort && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <div className="placeholder-icon">
-                <SortAscendingOutlined width="16" height="16" />
-              </div>
-              <span>Сортировка</span>
-            </div>
-            <DndContainer
-              id="sort-container"
-              isNeedRemove
-              isNeedSwap
-              highlightDropPlace
-              items={sort}
-              capacity={10}
-              checkAllowed={item => {
+          <VisualizationFactory
+            title="Сортировка"
+            icon={<SortAscendingOutlined width="16" height="16" />}
+            type={VisualizationType.DndContainer}
+            containerProps={{
+              id: 'sort-container',
+              isNeedRemove: true,
+              isNeedSwap: true,
+              highlightDropPlace: true,
+              items: sort,
+              capacity: 10,
+              checkAllowed: item => {
                 return visualization.checkAllowedSort(item, visualization, colors);
-              }}
-              itemsClassName="placeholder-item sort-item"
-              wrapTo={this.renderDatasetItem}
-              disabled={datasetError}
-              onItemClick={(e, item) => {
+              },
+              itemsClassName: 'placeholder-item sort-item',
+              wrapTo: this.renderDatasetItem,
+              disabled: datasetError,
+              onItemClick: (e, item) => {
                 item.direction = item.direction === 'ASC' ? 'DESC' : 'ASC';
 
                 setSort({
@@ -595,12 +598,15 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
                 });
-              }}
-              onUpdate={items => {
+              },
+              onUpdate: items => {
                 setSort({
                   sort: items,
                 });
@@ -620,442 +626,566 @@ class SectionVisualization extends Component {
                   nullAlias,
                   needUniqueRows,
                   needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
                 });
-              }}
-            />
-          </div>
+              },
+            }}
+          />
         )}
         {visualization.allowCoordType && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <span>Система координат</span>
-            </div>
-            <div className="subitem">
-              <Select
-                theme="normal"
-                size="m"
-                view="default"
-                tone="default"
-                type="radio"
-                placeholder="size m"
-                width="max"
-                options={coordsItems}
-                val={coordType}
-                onChange={newValue => {
-                  setCoordType({
-                    coordType: newValue[0],
-                  });
-
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType: newValue[0],
-                    titleLayerSource,
-                    clusterPrecision,
-                    updates,
-                    nullAlias,
-                    needUniqueRows,
-                    needTotal,
-                    paginateInfo,
-                    diagramMagnitude,
-                    exportLimit,
-                  });
-                }}
-              >
-                {coordsItems.map((coordType, i) => {
-                  return (
-                    <Select.Item key={`coordType-${i}`} val={coordType}>
-                      {coordType}
-                    </Select.Item>
-                  );
-                })}
-              </Select>
-            </div>
-          </div>
+          <VisualizationFactory
+            title="Система координат"
+            type={VisualizationType.Select}
+            className="subitem"
+            containerContent={coordsItems.map((coordType, i) => {
+              return (
+                <Select.Item key={`coordType-${i}`} val={coordType}>
+                  {coordType}
+                </Select.Item>
+              );
+            })}
+            containerProps={{
+              theme: 'normal',
+              size: 'm',
+              view: 'default',
+              tone: 'default',
+              type: 'radio',
+              placeholder: 'size m',
+              width: 'max',
+              options: coordsItems,
+              val: coordType,
+              onChange: newValue => {
+                setCoordType({
+                  coordType: newValue[0],
+                });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType: newValue[0],
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
         )}
         {visualization.allowTitleLayerSource && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <span>Адрес топосновы</span>
-            </div>
-            <div className="subitem">
-              <TextInput
-                text={titleLayerSource}
-                widthSize={'m'}
-                theme="normal"
-                size="m"
-                view="default"
-                tone="default"
-                onChange={text => {
-                  setTitleLayerSource({
-                    titleLayerSource: text,
-                  });
-                }}
-                onBlur={e => {
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType,
-                    titleLayerSource: e.target.value,
-                    clusterPrecision,
-                    updates,
-                    nullAlias,
-                    needUniqueRows,
-                    needTotal,
-                    paginateInfo,
-                    diagramMagnitude,
-                    exportLimit,
-                  });
-                }}
-              />
-            </div>
-          </div>
+          <VisualizationFactory
+            title="Адрес топосновы"
+            type={VisualizationType.TextInput}
+            className="subitem"
+            containerProps={{
+              text: titleLayerSource,
+              widthSize: 'm',
+              theme: 'normal',
+              size: 'm',
+              view: 'default',
+              tone: 'default',
+              onChange: text => {
+                setTitleLayerSource({
+                  titleLayerSource: text,
+                });
+              },
+              onBlur: e => {
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource: e.target.value,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
         )}
         {visualization.allowClusterPrecision && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <span>Точность кластера</span>
-            </div>
-            <div className="subitem">
-              <TextInput
-                text={clusterPrecision}
-                widthSize={'m'}
-                theme="normal"
-                size="m"
-                view="default"
-                tone="default"
-                onChange={text => {
-                  setClusterPrecision({
-                    clusterPrecision: text,
-                  });
-                }}
-                onBlur={e => {
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType,
-                    titleLayerSource,
-                    clusterPrecision: e.target.value,
-                    updates,
-                    nullAlias,
-                    needUniqueRows,
-                    needTotal,
-                    paginateInfo,
-                    diagramMagnitude,
-                    exportLimit,
-                  });
-                }}
-              />
-            </div>
-          </div>
+          <VisualizationFactory
+            title="Точность кластера"
+            type={VisualizationType.TextInput}
+            className="subitem"
+            containerProps={{
+              text: clusterPrecision,
+              widthSize: 'm',
+              theme: 'normal',
+              size: 'm',
+              view: 'default',
+              tone: 'default',
+              onChange: text => {
+                setClusterPrecision({
+                  clusterPrecision: text,
+                });
+              },
+              onBlur: e => {
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision: e.target.value,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
         )}
         {visualization.allowNullAlias && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <span>Подпись для пустых данных</span>
-            </div>
-            <div className="subitem">
-              <Select
-                theme="normal"
-                size="n"
-                view="default"
-                tone="default"
-                type="radio"
-                width="max"
-                options={nullAliasItems}
-                val={nullAlias}
-                onChange={newValue => {
-                  setNullAlias({
-                    nullAlias: newValue[0],
-                  });
-
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType,
-                    titleLayerSource,
-                    clusterPrecision,
-                    updates,
-                    nullAlias: newValue[0],
-                    needUniqueRows,
-                    needTotal,
-                    paginateInfo,
-                    diagramMagnitude,
-                    exportLimit,
-                  });
-                }}
-              >
-                {nullAliasItems.map((nullAlias, i) => {
-                  const nullAliasLabels = {
-                    null: 'Без подписи',
-                    empty: 'Пустая строка " "',
-                    dash: '"—"',
-                    'no-data': '"Нет данных"',
-                    undefined: '"Не указано"',
-                    zero: 'Значение "0"',
-                  };
-                  return (
-                    <Select.Item key={`null-alias-${i}`} val={nullAlias}>
-                      {nullAliasLabels[nullAlias]}
-                    </Select.Item>
-                  );
-                })}
-              </Select>
-            </div>
-          </div>
+          <VisualizationFactory
+            title="Подпись для пустых данных"
+            type={VisualizationType.Select}
+            className="subitem"
+            containerContent={nullAliasItems.map((nullAlias, i) => {
+              const nullAliasLabels = {
+                null: 'Без подписи',
+                empty: 'Пустая строка " "',
+                dash: '"—"',
+                'no-data': '"Нет данных"',
+                undefined: '"Не указано"',
+                zero: 'Значение "0"',
+              };
+              return (
+                <Select.Item key={`null-alias-${i}`} val={nullAlias}>
+                  {nullAliasLabels[nullAlias]}
+                </Select.Item>
+              );
+            })}
+            containerProps={{
+              theme: 'normal',
+              size: 'n',
+              view: 'default',
+              tone: 'default',
+              type: 'radio',
+              width: 'max',
+              options: nullAliasItems,
+              val: nullAlias,
+              onChange: newValue => {
+                setNullAlias({
+                  nullAlias: newValue[0],
+                });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias: newValue[0],
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
         )}
         {visualization.allowUniqueRows && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <span>Строки</span>
-            </div>
-            <div className="subitem">
-              <CheckBox
-                theme="normal"
-                size="n"
-                view="default"
-                tone="default"
-                checked={needUniqueRows}
-                text="Показывать только уникальные строки"
-                onChange={() => {
-                  setNeedUniqueRows({ needUniqueRows: !needUniqueRows });
-
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType,
-                    titleLayerSource,
-                    clusterPrecision,
-                    updates,
-                    nullAlias,
-                    needUniqueRows: !needUniqueRows,
-                    needTotal,
-                    paginateInfo,
-                    diagramMagnitude,
-                    exportLimit,
-                  });
-                }}
-              />
-            </div>
-          </div>
+          <VisualizationFactory
+            title="Строки"
+            type={VisualizationType.CheckBox}
+            className="subitem"
+            containerProps={{
+              theme: 'normal',
+              size: 'n',
+              view: 'default',
+              tone: 'default',
+              checked: needUniqueRows,
+              text: 'Показывать только уникальные строки',
+              onChange: () => {
+                setNeedUniqueRows({ needUniqueRows: !needUniqueRows });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows: !needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo: { page: 0, pageSize: paginateInfo.pageSize },
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
         )}
         {visualization.allowTotal && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <span>Строка итоговых значений</span>
-            </div>
-            <div className="subitem">
-              <CheckBox
-                theme="normal"
-                size="n"
-                view="default"
-                tone="default"
-                checked={needTotal}
-                text="Показывать строку итоговых значений"
-                onChange={() => {
-                  setNeedTotal({ needTotal: !needTotal });
-
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType,
-                    titleLayerSource,
-                    clusterPrecision,
-                    updates,
-                    nullAlias,
-                    needUniqueRows,
-                    needTotal: !needTotal,
-                    paginateInfo,
-                    diagramMagnitude,
-                    exportLimit,
-                  });
-                }}
-              />
-            </div>
-          </div>
+          <VisualizationFactory
+            title="Строка итоговых значений"
+            type={VisualizationType.CheckBox}
+            className="subitem"
+            containerProps={{
+              theme: 'normal',
+              size: 'n',
+              view: 'default',
+              tone: 'default',
+              checked: needTotal,
+              text: 'Показывать строку итоговых значений',
+              onChange: () => {
+                setNeedTotal({ needTotal: !needTotal });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal: !needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
+        )}
+        {visualization.allowSteppedLayout && (
+          <VisualizationFactory
+            title="Ступенчатый макет"
+            type={VisualizationType.CheckBox}
+            className="subitem"
+            containerProps={{
+              theme: 'normal',
+              size: 'n',
+              view: 'default',
+              tone: 'default',
+              checked: needSteppedLayout,
+              text: 'Ступенчатый макет таблицы',
+              onChange: () => {
+                setNeedSteppedLayout({ needSteppedLayout: !needSteppedLayout });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout: !needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
+        )}
+        {visualization.allowSteppedLayout && needSteppedLayout && (
+          <VisualizationFactory
+            title="Макет с пошаговым отступом"
+            type={VisualizationType.RangePicker}
+            className="subitem"
+            containerProps={{
+              max: steppedLayoutIndentationMaxValue,
+              initialValue: steppedLayoutIndentation,
+              onChange: steppedLayoutIndentation => {
+                setSteppedLayoutIndentation({ steppedLayoutIndentation });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  mapLayerOpacity,
+                  exportLimit,
+                });
+              },
+            }}
+          />
+        )}
+        {visualization.allowAutoNumberingRows && (
+          <VisualizationFactory
+            title="Автонумерация"
+            type={VisualizationType.CheckBox}
+            className="subitem"
+            containerProps={{
+              theme: 'normal',
+              size: 'n',
+              view: 'default',
+              tone: 'default',
+              checked: needAutoNumberingRows,
+              text: 'Автонумерация строк',
+              onChange: () => {
+                setNeedAutoNumberingRows({
+                  needAutoNumberingRows: !needAutoNumberingRows,
+                });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows: !needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit,
+                });
+              },
+            }}
+          />
         )}
         {visualization.allowDiagramMagnitude && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <span>Единицы измерения диаграммы</span>
-            </div>
-            <div className="subitem">
-              <Select
-                theme="normal"
-                size="n"
-                view="default"
-                tone="default"
-                type="radio"
-                width="max"
-                options={diagramMagnitudeItems}
-                val={diagramMagnitude}
-                onChange={newValue => {
-                  setDiagramMagnitude({ diagramMagnitude: newValue[0] });
-
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType,
-                    titleLayerSource,
-                    clusterPrecision,
-                    updates,
-                    nullAlias,
-                    needUniqueRows,
-                    needTotal,
-                    paginateInfo,
-                    diagramMagnitude: newValue[0],
-                    exportLimit,
-                  });
-                }}
-              >
-                {diagramMagnitudeItems.map((magnitudeItem, i) => {
-                  return (
-                    <Select.Item key={`measureItem-${i}`} val={magnitudeItem.value}>
-                      {magnitudeItem.label}
-                    </Select.Item>
-                  );
-                })}
-              </Select>
-            </div>
-          </div>
+          <VisualizationFactory
+            title="Единицы измерения диаграммы"
+            type={VisualizationType.Select}
+            className="subitem"
+            containerContent={diagramMagnitudeItems.map((magnitudeItem, i) => {
+              return (
+                <Select.Item key={`measureItem-${i}`} val={magnitudeItem.value}>
+                  {magnitudeItem.label}
+                </Select.Item>
+              );
+            })}
+            containerProps={{
+              theme: 'normal',
+              size: 'n',
+              view: 'default',
+              tone: 'default',
+              type: 'radio',
+              width: 'max',
+              options: diagramMagnitudeItems,
+              val: diagramMagnitude,
+              onChange: newValue => {
+                setDiagramMagnitude({ diagramMagnitude: newValue[0] });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude: newValue[0],
+                  exportLimit,
+                });
+              },
+            }}
+          />
         )}
         {visualization.allowMapLayerOpacity && (
-          <div className="subcontainer">
-            <div className="subheader">
-              <span>Прозрачность карты</span>
-            </div>
-            <div className="subitem">
-              <KamatechRangePicker
-                initialValue={mapLayerOpacity}
-                onChange={value => {
-                  setMapLayerOpacity({ mapLayerOpacity: value });
-
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType,
-                    titleLayerSource,
-                    clusterPrecision,
-                    updates,
-                    nullAlias,
-                    needUniqueRows,
-                    needTotal,
-                    paginateInfo,
-                    diagramMagnitude,
-                    mapLayerOpacity: value,
-                    exportLimit,
-                  });
-                }}
-              />
-            </div>
-          </div>
+          <VisualizationFactory
+            title="Прозрачность карты"
+            type={VisualizationType.RangePicker}
+            className="subitem"
+            containerProps={{
+              initialValue: mapLayerOpacity,
+              onChange: value => {
+                setMapLayerOpacity({ mapLayerOpacity: value });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  mapLayerOpacity: value,
+                  exportLimit,
+                });
+              },
+            }}
+          />
         )}
         {
-          <div className="subcontainer">
-            <div className="subheader">
-              <span>Лимит экспортируемых записей</span>
-            </div>
-            <div className="subitem">
-              <TextInput
-                text={exportLimit}
-                widthSize={'m'}
-                theme="normal"
-                size="m"
-                view="default"
-                tone="default"
-                type="number"
-                onChange={text => {
-                  setExportLimit({
-                    exportLimit: text,
-                  });
-
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType,
-                    titleLayerSource,
-                    clusterPrecision,
-                    updates,
-                    nullAlias,
-                    needUniqueRows,
-                    needTotal,
-                    paginateInfo,
-                    diagramMagnitude,
-                    exportLimit: text,
-                  });
-                }}
-                onBlur={e => {
-                  updatePreview({
-                    dataset,
-                    dimensions,
-                    measures,
-                    visualization,
-                    filters,
-                    colors,
-                    sort,
-                    coordType,
-                    titleLayerSource,
-                    clusterPrecision,
-                    updates,
-                    nullAlias,
-                    needUniqueRows,
-                    needTotal,
-                    paginateInfo,
-                    diagramMagnitude,
-                    exportLimit: e.target.value,
-                  });
-                }}
-              />
-            </div>
-          </div>
+          <VisualizationFactory
+            title="Лимит экспортируемых записей"
+            type={VisualizationType.TextInput}
+            className="subitem"
+            containerProps={{
+              text: exportLimit,
+              widthSize: 'm',
+              theme: 'normal',
+              size: 'm',
+              view: 'default',
+              tone: 'default',
+              type: 'number',
+              onChange: text => {
+                setExportLimit({
+                  exportLimit: text,
+                });
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit: text,
+                });
+              },
+              onBlur: e => {
+                updatePreview({
+                  dataset,
+                  dimensions,
+                  measures,
+                  visualization,
+                  filters,
+                  colors,
+                  sort,
+                  coordType,
+                  titleLayerSource,
+                  clusterPrecision,
+                  updates,
+                  nullAlias,
+                  needUniqueRows,
+                  needTotal,
+                  needAutoNumberingRows,
+                  needSteppedLayout,
+                  steppedLayoutIndentation,
+                  paginateInfo,
+                  diagramMagnitude,
+                  exportLimit: e.target.value,
+                });
+              },
+            }}
+          />
         }
       </div>
     );
@@ -1223,91 +1353,6 @@ class SectionVisualization extends Component {
     );
   }
 
-  renderVisualizationSelection() {
-    const {
-      setVisualization,
-      updatePreview,
-      visualizationType,
-      visualization,
-      dataset,
-      dimensions,
-      measures,
-      filters,
-      coordType,
-      titleLayerSource,
-      clusterPrecision,
-      updates,
-      nullAlias,
-      needUniqueRows,
-      needTotal,
-      paginateInfo,
-      diagramMagnitude,
-      exportLimit,
-    } = this.props;
-
-    const { value: visualizationTypeValue } = visualizationType;
-
-    return (
-      <div>
-        <div className="dropdown-header">
-          <h1>Элемент аналитической панели</h1>
-        </div>
-        <div className="visualizations-content">
-          <div className="items-grid">
-            {VISUALIZATIONS.filter(item => {
-              return (
-                visualizationTypeValue === 'all' || visualizationTypeValue === item.type
-              );
-            }).map(item => {
-              return (
-                <div
-                  key={`visualization-item-${item.id}`}
-                  className={`visualization-item${
-                    visualization && visualization.id === item.id ? ' active' : ''
-                  }`}
-                  onClick={() => {
-                    if (visualization.id === item.id) return;
-
-                    this.dropdownRef.toggle();
-
-                    const setResult = setVisualization({
-                      visualization: item,
-                    });
-
-                    updatePreview({
-                      dataset,
-                      dimensions,
-                      measures,
-                      visualization: item,
-                      filters,
-                      colors: setResult.colors,
-                      sort: setResult.sort,
-                      coordType,
-                      titleLayerSource,
-                      clusterPrecision,
-                      updates,
-                      nullAlias,
-                      needUniqueRows,
-                      needTotal,
-                      paginateInfo,
-                      diagramMagnitude,
-                      exportLimit,
-                    });
-                  }}
-                >
-                  {item.icon}
-                  {VISUALIZATION_LABELS[item.name]
-                    ? VISUALIZATION_LABELS[item.name]
-                    : item.name}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   renderVisualizationPlaceholdersOrBlank() {
     const { visualization } = this.props;
 
@@ -1316,10 +1361,6 @@ class SectionVisualization extends Component {
 
   render() {
     const { visualization, sdk, dataset, updates } = this.props;
-    const buttonText = visualization
-      ? VISUALIZATION_LABELS[visualization.name]
-      : 'Выберите тип чарта';
-    const iconChooseVisualization = <Icon data={iconVisualization} width="24" />;
 
     return (
       <div className="container visualization-container">
@@ -1340,18 +1381,7 @@ class SectionVisualization extends Component {
           />
         )}
         <div className="actions-container visualization-actions-container">
-          <Dropdown
-            ref={this.setDropdownRef}
-            buttonText={
-              <div>
-                <div className="icon">
-                  {visualization ? visualization.icon : iconChooseVisualization}
-                </div>
-                {buttonText}
-              </div>
-            }
-            content={this.renderVisualizationSelection()}
-          />
+          <VisualizationsList selectedId={visualization?.id} />
         </div>
         <div className="placeholders-wrapper">
           {this.renderVisualizationPlaceholdersOrBlank()}
@@ -1380,18 +1410,7 @@ class SectionVisualization extends Component {
     return (
       <div className="container visualization-container">
         <div className="actions-container visualization-actions-container">
-          <Dropdown
-            ref={this.setDropdownRef}
-            buttonText={
-              <div>
-                <div className="icon">
-                  {visualization ? visualization.icon : iconChooseVisualization}
-                </div>
-                {buttonText}
-              </div>
-            }
-            content={this.renderVisualizationSelection()}
-          />
+          <VisualizationsList selectedId={visualization?.id} />
         </div>
         <div className="placeholders-wrapper">
           {this.renderVisualizationPlaceholdersOrBlank()}
@@ -1413,6 +1432,9 @@ const mapStateToProps = createStructuredSelector({
   nullAlias: selectNullAlias,
   needUniqueRows: selectNeedUniqueRows,
   needTotal: selectNeedTotal,
+  needAutoNumberingRows: selectNeedAutoNumberingRows,
+  needSteppedLayout: selectNeedSteppedLayout,
+  steppedLayoutIndentation: selectSteppedLayoutIndentation,
   paginateInfo: selectPaginateInfo,
   selectOrderBy: selectOrderBy,
 
@@ -1444,6 +1466,9 @@ const mapDispatchToProps = {
   setDiagramMagnitude,
   setMapLayerOpacity,
   setExportLimit,
+  setNeedSteppedLayout,
+  setSteppedLayoutIndentation,
+  setNeedAutoNumberingRows,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SectionVisualization);
