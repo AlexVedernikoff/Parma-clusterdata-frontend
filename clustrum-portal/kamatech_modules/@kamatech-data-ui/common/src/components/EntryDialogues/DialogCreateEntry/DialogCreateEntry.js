@@ -9,6 +9,7 @@ import { normalizeDestination } from '../../Navigation/util';
 import { ERROR_TYPE } from '../constants';
 
 const b = block('yc-dialog-create-entry');
+const maxLengthEntryName = 63;
 
 class DialogCreateEntry extends Component {
   static propTypes = {
@@ -51,9 +52,8 @@ class DialogCreateEntry extends Component {
   onChange = value => {
     const forbiddenCharacters = /([\\<>\|?*[\]=\/])+/g;
 
-    !forbiddenCharacters.test(value) &&
-      this.state.entryName.length < 64 &&
-      this.setState({ entryName: value, showError: false });
+    if (forbiddenCharacters.test(value)) return;
+    this.setState({ entryName: value, showError: false });
   };
 
   onClickButtonApply = async () => {
@@ -133,7 +133,7 @@ class DialogCreateEntry extends Component {
             onChoosePath={this.onChooseFolder}
             onClick={this.onClickFolderSelect}
             inputRef={this.setTextInputRef}
-            inputValue={entryName}
+            inputValue={entryName.slice(0, maxLengthEntryName)}
             onChangeInput={this.onChange}
             placeholder={defaultName}
           />
