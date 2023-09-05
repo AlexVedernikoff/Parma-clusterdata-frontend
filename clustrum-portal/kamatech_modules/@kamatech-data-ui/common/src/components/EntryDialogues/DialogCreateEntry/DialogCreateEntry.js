@@ -49,7 +49,11 @@ class DialogCreateEntry extends Component {
   }
 
   onChange = value => {
-    this.setState({ entryName: value, showError: false });
+    const forbiddenCharacters = /([\\<>\|?*[\]=\/])+/g;
+
+    !forbiddenCharacters.test(value) &&
+      this.state.entryName.length < 64 &&
+      this.setState({ entryName: value, showError: false });
   };
 
   onClickButtonApply = async () => {
