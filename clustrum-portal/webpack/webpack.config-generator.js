@@ -6,7 +6,7 @@ const { PORTAL_ASSETS_PATH } = require('../src/context-path');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 exports.generateConfig = (
-  { biHost, portalHost, exportHost },
+  { biHost, portalHost, exportHost, primaryColor = null },
   mode,
   devServer,
   devtool,
@@ -256,6 +256,7 @@ exports.generateConfig = (
         'process.env.REACT_APP_CLUSTRUM_BI_HOST': JSON.stringify(biHost),
         'process.env.REACT_APP_CLUSTRUM_PORTAL_HOST': JSON.stringify(portalHost),
         'process.env.REACT_APP_CLUSTRUM_EXPORT_HOST': JSON.stringify(exportHost),
+        'process.env.REACT_APP_PRIMARY_COLOR': JSON.stringify(primaryColor),
         BUILD_SETTINGS: JSON.stringify({
           systemTitle,
           isLib: false,
