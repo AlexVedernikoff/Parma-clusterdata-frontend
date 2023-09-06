@@ -11,6 +11,7 @@ import {
   SET_FILTERS,
   SET_MAP_LAYER_OPACITY,
   SET_NEED_TOTAL,
+  SET_NEED_AUTO_NUMBERING_ROWS,
   SET_NEED_STEPPED_LAYOUT,
   SET_STEPPED_LAYOUT_INDENTATION,
   SET_NEED_UNIQUE_ROWS,
@@ -44,6 +45,7 @@ const initialState = {
   mapLayerOpacity: 0,
   needUniqueRows: false,
   needTotal: false,
+  needAutoNumberingRows: false,
   needSteppedLayout: false,
   steppedLayoutIndentation: defaultSteppedLayoutIndentation,
   paginateInfo: {
@@ -86,6 +88,7 @@ export function visualization(state = initialState, action) {
         nullAlias: NULL_ALIAS_DEFAULT_VALUE,
         needUniqueRows: false,
         needTotal: false,
+        needAutoNumberingRows: false,
         needSteppedLayout: false,
         steppedLayoutIndentation: defaultSteppedLayoutIndentation,
         paginateInfo: {},
@@ -510,6 +513,14 @@ export function visualization(state = initialState, action) {
         needTotal: needTotal,
       };
     }
+    case SET_NEED_AUTO_NUMBERING_ROWS: {
+      const { needAutoNumberingRows } = action;
+
+      return {
+        ...state,
+        needAutoNumberingRows,
+      };
+    }
     case SET_NEED_STEPPED_LAYOUT: {
       const { needSteppedLayout } = action;
 
@@ -589,6 +600,8 @@ export const selectClusterPrecision = state => state.visualization.clusterPrecis
 export const selectNullAlias = state => state.visualization.nullAlias;
 export const selectNeedUniqueRows = state => state.visualization.needUniqueRows;
 export const selectNeedTotal = state => state.visualization.needTotal;
+export const selectNeedAutoNumberingRows = state =>
+  state.visualization.needAutoNumberingRows;
 export const selectNeedSteppedLayout = state => state.visualization.needSteppedLayout;
 export const selectSteppedLayoutIndentation = state =>
   state.visualization.steppedLayoutIndentation;

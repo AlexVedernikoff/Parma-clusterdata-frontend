@@ -867,6 +867,7 @@ const PIVOT_TABLE_VISUALIZATION = {
   allowUniqueRows: false,
   allowTotal: false,
   allowSteppedLayout: true,
+  allowAutoNumberingRows: true,
   checkAllowedSort: (item, visualization) => {
     if (item.type === 'MEASURE') return false;
 
