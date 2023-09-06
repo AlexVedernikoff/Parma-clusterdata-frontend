@@ -10,11 +10,6 @@ export {
   EntryDialoguesType,
 } from './section-dataset-props';
 export {
-  NavigationEntryData,
-  NavigationScope,
-  Permissions,
-} from './navigation-entry-data';
-export {
   DatasetData,
   DatasetConnection,
   DatasetMaterializationProperties,

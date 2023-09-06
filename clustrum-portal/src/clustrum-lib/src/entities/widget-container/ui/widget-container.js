@@ -11,7 +11,7 @@ import get from 'lodash/get';
 import { getParamsValue } from '@lib-shared/lib/utils';
 import Loader from '@kamatech-data-ui/chartkit/lib/components/Loader/Loader';
 import Error from '@kamatech-data-ui/chartkit/lib/components/Error/Error';
-import { Charts } from './charts';
+import { WidgetWithData } from './widget-with-data';
 import Menu from '@kamatech-data-ui/chartkit/lib/components/Menu/Menu';
 
 import URI from '@kamatech-data-ui/chartkit/lib/modules/uri/uri';
@@ -340,7 +340,7 @@ export class WidgetContainer extends React.Component {
             ) ? (
             this.displayOnlyWithFilter()
           ) : (
-            <Charts
+            <WidgetWithData
               id={prevId}
               source={prevSource}
               params={this.params}
