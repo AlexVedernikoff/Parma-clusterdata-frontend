@@ -52,7 +52,9 @@ class DialogCreateEntry extends Component {
   onChange = value => {
     const forbiddenCharacters = /([\\<>\|?*[\]=\/])+/g;
 
-    if (forbiddenCharacters.test(value)) return;
+    if (forbiddenCharacters.test(value)) {
+      return;
+    }
     this.setState({ entryName: value, showError: false });
   };
 
