@@ -1347,9 +1347,12 @@
 }
 
 .dialog-pivot-table-container .subcontainer .subitem {
-  padding: 20px;
   padding-bottom: 12px;
   font-weight: 700;
+}
+
+.dialog-pivot-table-container .subcontainer .subheader {
+  margin: -5px 0 10px;
 }
 
 .visualization-container .subcontainer .subheader {

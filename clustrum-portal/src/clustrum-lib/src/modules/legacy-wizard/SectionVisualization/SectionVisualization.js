@@ -1402,34 +1402,42 @@ class SectionVisualization extends Component {
   }
 
   renderDialogWindow() {
-    const { sdk, dataset, updates } = this.props;
-    if (!this.state.isDialogVisible) {
+    const { sdk, dataset, updates, dimensions } = this.props;
+    const {
+      dialogType,
+      isDialogVisible,
+      dialogItem,
+      dialogCallBack,
+      dialogPlaceholder,
+    } = this.state;
+    if (!isDialogVisible) {
       return null;
     }
-    switch (this.state.dialogType) {
+    switch (dialogType) {
       case 'column':
         return (
           <DialogFormatTemplate
-            item={this.state.dialogItem}
-            callback={this.state.dialogCallBack}
+            item={dialogItem}
+            callback={dialogCallBack}
             visible={true}
           />
         );
       case 'pivotTableDialog':
         return (
           <DialogPivotTable
-            item={this.state.dialogItem}
-            callback={this.state.dialogCallBack.bind(this)}
+            item={dialogItem}
+            callback={dialogCallBack.bind(this)}
             sdk={sdk}
-            fields={this.props.dimensions}
+            fields={dimensions}
             aceModeUrl={dataset.ace_url}
+            placeholderType={dialogPlaceholder.type}
           />
         );
       default:
         return (
           <DialogFilter
-            item={this.state.dialogItem}
-            callback={this.state.dialogCallBack}
+            item={dialogItem}
+            callback={dialogCallBack}
             dataset={dataset}
             updates={updates}
             sdk={sdk}
