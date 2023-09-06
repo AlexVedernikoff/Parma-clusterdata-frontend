@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NavigationBase from './Base/NavigationBase';
 import NavigationModal from '@kamatech-data-ui/common/src/components/Navigation/NavigationModal';
 import { PLACE } from './constants';
 import { resolveNavigationPath } from './hoc/resolveNavigationPath';
@@ -49,15 +48,7 @@ class ServiceNavigationModal extends React.PureComponent {
 
   render() {
     const { path, root } = this.state;
-    return (
-      <NavigationBase
-        {...this.props}
-        path={path}
-        root={root}
-        onNavigate={this.onNavigate}
-        navConstructor={NavigationModal}
-      />
-    );
+    return <NavigationModal sdk={this.props.sdk} path={path} {...this.props} />;
   }
 }
 

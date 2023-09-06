@@ -1,1 +1,1 @@
-export { Widget } from './widget';
+export { WidgetFactory } from './widget-factory';
