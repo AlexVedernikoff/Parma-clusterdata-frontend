@@ -615,6 +615,11 @@
   outline: none;
 }
 
+.anticon > svg[data-icon='ellipsis'] {
+  width: 16px;
+  height: 16px;
+}
+
 .datasets-container .dataset-custom-button .select-dataset-btn .button2__text {
   margin: 0 5px;
   overflow: hidden;
