@@ -4,7 +4,12 @@ import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 import cloneDeep from 'lodash/cloneDeep';
 
 import { Toaster } from '@kamatech-data-ui/common/src';
-import { DialogPivotTableProps, IItem, ISubTotalsSettings } from './types';
+import {
+  DialogPivotTableProps,
+  IItem,
+  ISubTotalsSettings,
+  RejectFormulaError,
+} from './types';
 import { NOTIFY_TYPES } from '@kamatech-data-ui/clustrum/src/constants/common';
 import { DialogPivotTableBody } from './DialogPivotTableBody';
 
@@ -15,7 +20,7 @@ export const DialogPivotTable = <T extends IItem>(
 ): JSX.Element => {
   const { item, callback } = props;
   const [subTotalsSettings, setSubTotalsSettings] = useState<ISubTotalsSettings>({});
-  const [formulaError, setFormulaError] = useState<{} | null>(null);
+  const [formulaError, setFormulaError] = useState<RejectFormulaError | null>(null);
 
   useEffect(() => {
     setSubTotalsSettings(item.subTotalsSettings ?? {});

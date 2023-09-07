@@ -1,7 +1,12 @@
 import React from 'react';
 import { FormulaEditor } from '@kamatech-data-ui/clustrum/src/components/FieldEditor/components';
 
-import { IItem, ISubTotalsSettings, MainDialogPivotTableFieldsProps } from './types';
+import {
+  IItem,
+  ISubTotalsSettings,
+  MainDialogPivotTableFieldsProps,
+  RejectFormulaError,
+} from './types';
 import { NOTIFY_TYPES } from '@kamatech-data-ui/clustrum/src/constants/common';
 import { VisualizationType } from '@clustrum-lib/entities/visualization-factory/types';
 import { getDialogPivotTableFields } from './helper';
@@ -44,9 +49,9 @@ export const DialogPivotTableBody = <T extends IItem>({
         setFormulaError(null);
       }
     } catch (error) {
-      setFormulaError(error);
+      setFormulaError(error as RejectFormulaError);
       toaster.createToast({
-        title: error.response.data.message,
+        title: (error as RejectFormulaError).response.data.message,
         type: NOTIFY_TYPES.ERROR,
         allowAutoHiding: true,
         actions: [
