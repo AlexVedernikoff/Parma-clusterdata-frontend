@@ -3,18 +3,26 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Tooltip } from 'antd';
 import { TableWidgetProps } from './types';
-import { TableProps } from 'antd/es/table';
-import { createStructuredSelector } from 'reselect';
-
 import './table-widget.css';
-import { SortOrder } from 'antd/es/table/interface';
-import { connect, useSelector } from 'react-redux';
-import { selectVisualization } from '../../../../../../../reducers/visualization';
+import { useSelector } from 'react-redux';
 
 enum ESortDir {
   ASC = 'ascend',
   DESC = 'descend',
 }
+
+interface ESortMapItem {
+  [key: string]: keyof typeof ESortDir;
+}
+
+interface ESortMap {
+  [key: string]: ESortMapItem;
+}
+
+const intialMapState = {
+  differenceValue: {},
+  sortMap: {},
+};
 
 export function TableWidget(props: TableWidgetProps): JSX.Element {
   const {
@@ -28,38 +36,33 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
 
   const [page, setPage] = useState(initPage);
   const [pageSize, setPageSize] = useState(initPageSize);
-  const [sortMap, setSortMap] = useState<any>({});
-  const [sortMap01, setSortMap01] = useState<any>({});
+  const [sortMapState, setSortMapState] = useState<ESortMap>(intialMapState);
   // функция configureStore в проекте не имеет типизации, поэтому ставим state: any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const sortData = useSelector((state: any) => state.visualization.sort);
+  const sortData = useSelector((state: any) => state.visualization?.sort);
+
+  console.log('sortData = ', sortData);
 
   useEffect(() => {
-    const sortMapUpdate = sortData.reduce((acc: any, el: any) => {
-      acc[el.title] = el.direction;
-      return acc;
-    }, {});
+    const { sortMap } = sortMapState;
+
+    const sortMapUpdate = sortData.reduce(
+      (acc: ESortMapItem, el: typeof sortData[number]) => {
+        acc[el.title] = el.direction;
+        return acc;
+      },
+      {},
+    );
     console.log('sortMapUpdate =  ', sortMapUpdate);
 
-    const res: any = {};
+    const differenceValue: ESortMapItem = {};
     for (const key in sortMapUpdate) {
       if (sortMapUpdate[key] !== sortMap[key]) {
-        res[key] = sortMapUpdate[key];
+        differenceValue[key] = sortMapUpdate[key];
       }
     }
-    setSortMap01(res);
 
-    //   setSortMap((sortMapPrev: any) => {
-    //     const res: any = {};
-    //     for (const key in sortMapUpdate) {
-    //       if (sortMapUpdate[key] !== sortMapPrev[key]) {
-    //         res[key] = sortMapUpdate[key];
-    //       }
-    //     }
-    //     return res;
-    //   });
-    // }, [sortData]);
-    setSortMap(sortMapUpdate);
+    setSortMapState({ sortMap: sortMapUpdate, differenceValue });
   }, [sortData]);
 
   useEffect(() => {
@@ -68,32 +71,27 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
 
   const modifyColums = columns.map(item => {
     const title = typeof item.title === 'function' ? item.title({}) : item.title;
+    const { differenceValue } = sortMapState;
 
-    // console.log('item = ', item);
+    console.log('differenceValue = ', differenceValue);
 
     const sortOrder: keyof typeof ESortDir | undefined =
-      typeof item.title === 'string' && item.title in sortMap01
-        ? sortMap01[item.title]
+      typeof item.title === 'string' && item.title in differenceValue
+        ? differenceValue[item.title]
         : undefined;
-    // console.log('sortOrder = ', sortOrder);
-    // console.log('ESortDir[sord] = ', sortOrder && ESortDir[sortOrder]);
 
-    const res = {
+    const itemTable = {
       ...item,
       title: <Tooltip title={title}>{title}</Tooltip>,
-      // defaultSortOrder: sortOrder && ESortDir[sortOrder],
       // sortOrder: sortOrder && ESortDir[sortOrder],
-      // sortDirections: ['ascend', 'descend', 'ascend'] as SortOrder[],
-      //  sorter: (a: any, b: any) => a - b,
       className: 'table-widget-column',
     };
 
     if (sortOrder) {
-      res.sortOrder = ESortDir[sortOrder];
-      // res.defaultSortOrder = ESortDir[sortOrder];
+      itemTable.sortOrder = ESortDir[sortOrder];
     }
 
-    return res;
+    return itemTable;
   });
 
   const changeHandler = (page: number, pageSize: number): void => {
@@ -101,27 +99,14 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     setPageSize(pageSize);
   };
 
-  // console.log("props table-widjet = ", props)
-  // console.log("sortData = ", sortData)
-  console.log('sortMap = ', sortMap);
-  console.log('sortMap 01 = ', sortMap01);
+  console.log('sortMapFull = ', sortMapState);
 
-  console.log('columns = ', modifyColums);
-  // console.log('dataSource = ', dataSource);
-
-  // eslint-disable-next-line max-params
-  // const onChange: TableProps<any>['onChange'] = (pagination, filters, sorter, extra) => {
-  //   console.log('params', pagination, filters, sorter, extra);
-  //   setSortMap({});
-  // };
   const onChange = (): void => {
-    setSortMap({});
-    setSortMap01({});
+    setSortMapState(intialMapState);
   };
 
   return (
     <Table
-      // key={Math.random()}
       className="table-widget"
       columns={modifyColums}
       dataSource={dataSource}
@@ -136,7 +121,6 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
         showTotal: (total: number): string => `Всего: ${total}`,
         onChange: changeHandler,
       }}
-      // sortDirections= {['ascend', 'descend', 'ascend']}
       onChange={onChange}
     />
   );
