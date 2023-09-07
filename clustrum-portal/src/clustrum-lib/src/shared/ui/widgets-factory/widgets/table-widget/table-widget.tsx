@@ -5,19 +5,7 @@ import { Table, Tooltip } from 'antd';
 import { TableWidgetProps } from './types';
 import './table-widget.css';
 import { useSelector } from 'react-redux';
-
-enum ESortDir {
-  ASC = 'ascend',
-  DESC = 'descend',
-}
-
-interface ESortMapItem {
-  [key: string]: keyof typeof ESortDir;
-}
-
-interface ESortMap {
-  [key: string]: ESortMapItem;
-}
+import { ESortDir, ISortMap, ISortMapItem } from './types/table-widget-types';
 
 const intialMapState = {
   differenceValue: {},
@@ -36,7 +24,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
 
   const [page, setPage] = useState(initPage);
   const [pageSize, setPageSize] = useState(initPageSize);
-  const [sortMapState, setSortMapState] = useState<ESortMap>(intialMapState);
+  const [sortMapState, setSortMapState] = useState<ISortMap>(intialMapState);
   // функция configureStore в проекте не имеет типизации, поэтому ставим state: any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sortData = useSelector((state: any) => state.visualization?.sort);
@@ -44,25 +32,25 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   console.log('sortData = ', sortData);
 
   useEffect(() => {
-    const { sortMap } = sortMapState;
+    setSortMapState(({ sortMap }) => {
+      const sortMapUpdate = sortData.reduce(
+        (acc: ISortMapItem, el: typeof sortData[number]) => {
+          acc[el.title] = el.direction;
+          return acc;
+        },
+        {},
+      );
 
-    const sortMapUpdate = sortData.reduce(
-      (acc: ESortMapItem, el: typeof sortData[number]) => {
-        acc[el.title] = el.direction;
-        return acc;
-      },
-      {},
-    );
-    console.log('sortMapUpdate =  ', sortMapUpdate);
+      console.log('sortMapUpdate =  ', sortMapUpdate);
 
-    const differenceValue: ESortMapItem = {};
-    for (const key in sortMapUpdate) {
-      if (sortMapUpdate[key] !== sortMap[key]) {
-        differenceValue[key] = sortMapUpdate[key];
+      const differenceValue: ISortMapItem = {};
+      for (const key in sortMapUpdate) {
+        if (sortMapUpdate[key] !== sortMap[key]) {
+          differenceValue[key] = sortMapUpdate[key];
+        }
       }
-    }
-
-    setSortMapState({ sortMap: sortMapUpdate, differenceValue });
+      return { sortMap: sortMapUpdate, differenceValue };
+    });
   }, [sortData]);
 
   useEffect(() => {
@@ -83,7 +71,6 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     const itemTable = {
       ...item,
       title: <Tooltip title={title}>{title}</Tooltip>,
-      // sortOrder: sortOrder && ESortDir[sortOrder],
       className: 'table-widget-column',
     };
 
