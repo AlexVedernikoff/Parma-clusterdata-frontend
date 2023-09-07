@@ -33,4 +33,8 @@ export const VISUALIZATION_LIST = {
     name: 'Таблица',
     icon: <TableOutlined style={ICON_STYLE} />,
   },
+  pivotTable: {
+    name: 'Сводная таблица',
+    icon: <TableOutlined style={ICON_STYLE} />,
+  },
 } as const;

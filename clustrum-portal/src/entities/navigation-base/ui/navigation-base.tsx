@@ -17,6 +17,8 @@ import {
   NavigationBase,
 } from '../types';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
+import { $pathInFolder } from '@entities/navigation-base';
+
 /**
  * TODO
  * это старый компонент, который позволяет подключить к навигации модальные окна, возможно, что он будет не нужен
@@ -111,7 +113,7 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     const response = await refDialogues?.current?.openDialog({
       dialog: ENTRY_DIALOG.CREATE_FOLDER,
       dialogProps: {
-        path: path,
+        path: `${$pathInFolder.getState()}${path}`,
         withError: false,
         onNotify: entryDialoguesNotify(ENTRY_DIALOG.CREATE_FOLDER, refErrorDialog),
       },
@@ -195,7 +197,7 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     const response = await refDialogues?.current?.openDialog({
       dialog: ENTRY_DIALOG.CREATE_DASHBOARD,
       dialogProps: {
-        path: path,
+        path: `${$pathInFolder.getState()}${path}`,
         withError: false,
         onNotify: entryDialoguesNotify(ENTRY_DIALOG.CREATE_DASHBOARD, refErrorDialog),
       },

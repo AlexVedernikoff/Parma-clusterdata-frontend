@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Tooltip } from 'antd';
 import { TableWidgetProps } from './types';
+import { selectNeedUniqueRows } from '../../../../../../../reducers/visualization';
 import './table-widget.css';
 import { useSelector } from 'react-redux';
 import { ESortDir, ISortMap, ISortMapItem } from './types/table-widget-types';
@@ -19,11 +20,21 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     title,
     totalRowsCount,
     onPageControlClicker,
-    paginateInfo: { page: initPage, pageSize: initPageSize },
+    paginateInfo: { page: initPage },
   } = props;
 
-  const [page, setPage] = useState(initPage);
-  const [pageSize, setPageSize] = useState(initPageSize);
+  const [initPageState, setInitPageState] = useState(initPage + 1);
+  const [page, setPage] = useState(initPageState);
+  const [pageSize, setPageSize] = useState(10);
+  const isNeedUniqueRows = useSelector(state => selectNeedUniqueRows(state));
+
+  useEffect(() => {
+    setInitPageState(1);
+
+    if (isNeedUniqueRows) {
+      setInitPageState(1);
+    }
+  }, [pageSize, isNeedUniqueRows]);
   const [sortMapState, setSortMapState] = useState<ISortMap>(intialMapState);
   // функция configureStore в проекте не имеет типизации, поэтому ставим state: any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -82,6 +93,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   });
 
   const changeHandler = (page: number, pageSize: number): void => {
+    setInitPageState(page);
     setPage(page - 1);
     setPageSize(pageSize);
   };
@@ -103,7 +115,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       scroll={{ y: '100%' }}
       pagination={{
         total: Number(totalRowsCount),
-        current: initPage + 1,
+        current: initPageState,
         defaultPageSize: 10,
         showTotal: (total: number): string => `Всего: ${total}`,
         onChange: changeHandler,

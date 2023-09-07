@@ -1,6 +1,5 @@
 /* Определяет стили для блока "Строка итоговых значений" в настройке визуализации виджета */
 .checkbox.checkbox_size_n .checkbox__box {
-  top: 10px;
 }
 
 .checkbox_size_n .checkbox__label {

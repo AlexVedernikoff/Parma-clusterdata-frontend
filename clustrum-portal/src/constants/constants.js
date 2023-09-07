@@ -38,6 +38,7 @@ export const LAYOUT_ID = {
 
 export const WIZARD_NODE_TYPE = {
   TABLE: 'table_wizard_node',
+  PIVOT_TABLE: 'pivotTable_wizard_node',
   MAP: 'map_wizard_node',
   CARD: 'card_wizard_node',
   GRAPH: 'graph_wizard_node',
