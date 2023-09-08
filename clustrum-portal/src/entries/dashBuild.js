@@ -38,7 +38,7 @@ if (IS_INTERNAL) {
 logVersion();
 
 export default function DashBuild(props) {
-  const { entryId, hideRightSideContent, onFiltersChange } = props;
+  const { entryId, hideRightSideContent, onFiltersChange, onTabChange } = props;
 
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
@@ -66,6 +66,7 @@ export default function DashBuild(props) {
                     defaultEntryId={entryId}
                     hasRightSideContent={!hideRightSideContent}
                     onFiltersChange={onFiltersChange}
+                    onTabChange={onTabChange}
                   />
                 )}
               />
