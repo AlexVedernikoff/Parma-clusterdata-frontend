@@ -5,6 +5,7 @@ export interface NavigationListRequestParams {
   orderBy?: Order;
   page: number | null;
   pageSize: number;
+  token: string;
   path: string;
   place: Places | null;
   placeParameters?: PlaceParameters; // TODO: поле, возможно, не нужно, удалить после уточнения api
