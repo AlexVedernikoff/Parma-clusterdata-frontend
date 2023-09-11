@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import isMatch from 'lodash/isMatch';
 import pick from 'lodash/pick';
 import { Spin } from 'antd';
@@ -24,14 +24,30 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
   const previousControlData = useRef<DashboardControlsData | null>(null);
 
   useEffect(() => {
-    const isDataChanged = !isMatch(previousControlData.current ?? {}, data);
-    const isParamsChanged = !isMatch(previousParams.current ?? {}, params);
-    if (isDataChanged || isParamsChanged) {
+    if (!isMatch(previousControlData.current ?? {}, data)) {
       init();
     }
     previousControlData.current = data;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
+  const getFilters = (): string => {
+    const filters: { [key: string]: string | string[] } = {};
+    for (const key of Object.keys(params)) {
+      filters[key] = params[key].value;
+    }
+    return JSON.stringify(filters);
+  };
+
+  const filters = getFilters();
+
+  useEffect(() => {
+    if (!isMatch(previousParams.current ?? {}, params)) {
+      init();
+    }
     previousParams.current = params;
-  }, [data, params]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   const initAvailableItems = (scheme: LoadedDataScheme[]): void => {
     for (const control of scheme) {
