@@ -747,6 +747,34 @@
   padding: 1rem 1.125rem;
 }
 
+.dropdown-horizontal-btn.chartkit-menu__button .control {
+  visibility: visible;
+  transform: none;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.dropdown-horizontal-btn.chartkit-menu__button .control:hover {
+  border: 1px solid var(--antd-color-primary);
+  background-color: transparent;
+}
+
+.dropdown-horizontal-btn.chartkit-menu__button .control .icon-ellipsis > svg {
+  fill: #000;
+}
+
+.dropdown-horizontal-btn.chartkit-menu__button .control:hover .icon-ellipsis > svg {
+  fill: var(--antd-color-primary);
+}
+
+.dropdown-horizontal-btn.chartkit-menu__button .button2_size_s .button2__text {
+  margin: 0;
+  position: relative;
+  top: 2px;
+}
+
 .chartkit-menu__button .control {
   visibility: visible;
   transform: rotate(90deg);
