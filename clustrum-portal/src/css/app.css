@@ -615,6 +615,11 @@
   outline: none;
 }
 
+.icon-ellipsis > svg {
+  width: 16px;
+  height: 16px;
+}
+
 .datasets-container .dataset-custom-button .select-dataset-btn .button2__text {
   margin: 0 5px;
   overflow: hidden;
@@ -4400,15 +4405,15 @@ h6 {
   margin: 0;
 }
 
-h1 {
+.clustrum h1 {
   font-size: 17px;
 }
 
-h2 {
+.clustrum h2 {
   font-size: 15px;
 }
 
-h3 {
+.clustrum h3 {
   font-size: 13px;
 }
 

@@ -14,11 +14,11 @@ import Text from '@kamatech-data-ui/chartkit/lib/components/Widget/WikiText/Wiki
 import Metric from '@kamatech-data-ui/chartkit/lib/components/Widget/Metric/Metric';
 import Control from '@kamatech-data-ui/chartkit/lib/components/Widget/Control/Control';
 
-import { WidgetProps, WidgetType } from './types';
+import { WidgetFactoryProps, WidgetType } from './types';
 import { Table_deprecated } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/Table_deprecated';
 
 // TODO: Переименовать в `WidgetFactory` (и файл в `widget-factory.tsx`)
-export class Widget extends React.PureComponent<WidgetProps> {
+export class WidgetFactory extends React.PureComponent<WidgetFactoryProps> {
   static propTypes = {
     data: PropTypes.object.isRequired,
     onLoad: PropTypes.func.isRequired,

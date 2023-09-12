@@ -33,7 +33,7 @@ interface WidgetData {
 }
 
 // TODO: При типизации остальных виджетов добавлять их пропсы в список родителей
-export interface WidgetProps extends UnknownWidgetProps, ChartWidgetProps {
+export interface WidgetFactoryProps extends UnknownWidgetProps, ChartWidgetProps {
   data: ChartWidgetData & WidgetData;
   onChange(): void;
 }

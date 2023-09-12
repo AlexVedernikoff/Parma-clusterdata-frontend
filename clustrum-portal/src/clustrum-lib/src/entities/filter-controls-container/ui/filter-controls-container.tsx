@@ -13,12 +13,14 @@ import { FilterControlsFactory } from '@lib-shared/ui/filter-controls-factory';
 import { getParamsValue } from '@lib-shared/lib/utils';
 import styles from './filter-controls-container.module.css';
 import { filterControlsContainerModel } from '../model/filter-controls-container-model';
+import { ParamsProps } from '@lib-shared/ui/filter-controls-factory/types/filter-factory-controls-props';
 
 export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.Element {
   const { data, defaults, params } = props;
 
   const [status, setStatus] = useState<LoadStatus>(LoadStatus.Pending);
   const [scheme, setScheme] = useState<LoadedDataScheme[] | null>(null);
+  const previousParams = useRef<ParamsProps | null>(null);
   const previousControlData = useRef<DashboardControlsData | null>(null);
 
   useEffect(() => {
@@ -26,7 +28,26 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
       init();
     }
     previousControlData.current = data;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  const getFilters = (): string => {
+    const filters: { [key: string]: string | string[] } = {};
+    for (const key of Object.keys(params)) {
+      filters[key] = params[key].value;
+    }
+    return JSON.stringify(filters);
+  };
+
+  const filters = getFilters();
+
+  useEffect(() => {
+    if (!isMatch(previousParams.current ?? {}, params)) {
+      init();
+    }
+    previousParams.current = params;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   const initAvailableItems = (scheme: LoadedDataScheme[]): void => {
     for (const control of scheme) {
@@ -56,7 +77,8 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
     try {
       setStatus(LoadStatus.Pending);
 
-      const loadedData = await filterControlsContainerModel(data, actualParams);
+      const requestData = { ...data, params };
+      const loadedData = await filterControlsContainerModel(requestData, actualParams);
 
       const { uiScheme: scheme } = loadedData;
       initAvailableItems(scheme);

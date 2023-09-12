@@ -31,12 +31,20 @@
 
 .header-wrapper__left-side-title {
   margin: 0;
+  overflow: hidden;
   font-size: 30px;
   line-height: 30px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .header-wrapper__right-side-content {
   display: flex;
   gap: 8px;
   align-items: center;
+}
+
+.ant-tooltip-content > .ant-tooltip-inner {
+  color: #000;
+  background-color: #fff;
 }

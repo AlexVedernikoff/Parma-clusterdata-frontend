@@ -6,6 +6,7 @@
 
 .page-container__content {
   flex-grow: 1;
+  overflow: hidden;
   overflow-y: auto;
-  background-color: var(--color-base);
+  background-color: var(--antd-background-color-base);
 }

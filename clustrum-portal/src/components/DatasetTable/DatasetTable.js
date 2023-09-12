@@ -661,7 +661,7 @@ class DatasetTable extends React.Component {
           size="n"
           view="default"
           tone="default"
-          title={value ? 'Поле-массив' : 'Поле-не масив'}
+          title={value ? 'Поле-массив' : 'Поле-не массив'}
           onClick={() => this.toggleHasArray({ row })}
         >
           <Icon

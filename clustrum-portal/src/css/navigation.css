@@ -16,6 +16,7 @@
 .navigation-page__navigation {
   flex-grow: 1;
   display: flex;
+  overflow: hidden;
 }
 .navigation-page__spin {
   width: 100%;
