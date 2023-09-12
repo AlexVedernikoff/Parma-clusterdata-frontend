@@ -364,7 +364,7 @@ class Control extends React.PureComponent {
             </div>
             {this.renderSourceType({
               type: ControlSourceType.Dataset,
-              title: 'На основе датасета',
+              title: 'На основе набора данных',
             })}
             {this.renderSourceType({
               type: ControlSourceType.Manual,
