@@ -14,14 +14,12 @@ module.exports = {
     navigationBuild: './src/entries/navigationBuild.js',
     bundle: './src/entries/libBuilder.js',
   },
-  experiments: {
-    outputModule: true,
-  },
   output: {
     path: path.resolve('./src/entries/dist/'),
     filename: '[name].js',
     library: {
-      type: 'module',
+      type: 'umd',
+      name: 'clustrum',
     },
     globalObject: 'this',
     publicPath: PORTAL_ASSETS_PATH,
