@@ -65,7 +65,6 @@ class FormulaEditor extends React.Component {
 
   _formulaEditorRef = React.createRef();
 
-  // TODO уточнить похоже на ненужную функцию
   getAutocomplete = async ({ text, row, column }) => {
     const { sdk, datasetId, fields } = this.props;
 

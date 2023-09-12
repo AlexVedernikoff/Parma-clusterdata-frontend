@@ -93,10 +93,11 @@ import { VisualizationsList } from '@lib-features/visualizations-list';
 import { $appSettingsStore } from '@entities/app-settings';
 import { DialogPivotTable } from '../components/Dialogs/DialogPivotTable';
 import cloneDeep from 'lodash/cloneDeep';
+import { Dialogs } from './types';
 
 const STEPPED_LAYOUT_INDENTATION_MAX_VALUE = 40;
 
-const PIVOT_TABLE_PLACEHOLDERS_ID = ['pivot-table-columns', 'rows', 'measures'];
+const PIVOT_TABLE_PLACEHOLDERS_IDS = ['pivot-table-columns', 'rows', 'measures'];
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -122,6 +123,18 @@ class SectionVisualization extends Component {
   onDropdownClick = () => {
     this.dropdownRef.toggle();
   };
+
+  getPlaceholderDialogType(id) {
+    return PIVOT_TABLE_PLACEHOLDERS_IDS.includes(id)
+      ? Dialogs.PivotTableDialog
+      : Dialogs.Column;
+  }
+
+  getPlaceholderDialogCallBack(id) {
+    return PIVOT_TABLE_PLACEHOLDERS_IDS.includes(id)
+      ? this.handleDialogPivotTableActions
+      : this.handleDialogActions;
+  }
 
   renderPlaceholder = placeholder => {
     const {
@@ -224,18 +237,14 @@ class SectionVisualization extends Component {
                 'flat-table-columns',
                 'measures',
                 'dimensions',
-                ...PIVOT_TABLE_PLACEHOLDERS_ID,
+                ...PIVOT_TABLE_PLACEHOLDERS_IDS,
               ].includes(placeholder.id)
             ) {
               this.setState({
                 dialogItem: item,
-                dialogType: PIVOT_TABLE_PLACEHOLDERS_ID.includes(placeholder.id)
-                  ? 'pivotTableDialog'
-                  : 'column',
+                dialogType: this.getPlaceholderDialogType(placeholder.id),
                 isDialogVisible: true,
-                dialogCallBack: PIVOT_TABLE_PLACEHOLDERS_ID.includes(placeholder.id)
-                  ? this.handleDialogPivotTableActions
-                  : this.handleDialogActions,
+                dialogCallBack: this.getPlaceholderDialogCallBack(placeholder.id),
                 dialogPlaceholder: placeholder,
               });
             }
@@ -1414,7 +1423,7 @@ class SectionVisualization extends Component {
       return null;
     }
     switch (dialogType) {
-      case 'column':
+      case Dialogs.Column:
         return (
           <DialogFormatTemplate
             item={dialogItem}
@@ -1422,7 +1431,7 @@ class SectionVisualization extends Component {
             visible={true}
           />
         );
-      case 'pivotTableDialog':
+      case Dialogs.PivotTableDialog:
         return (
           <DialogPivotTable
             item={dialogItem}
@@ -1433,6 +1442,7 @@ class SectionVisualization extends Component {
             placeholderType={dialogPlaceholder.type}
           />
         );
+      case Dialogs.Filter:
       default:
         return (
           <DialogFilter

@@ -31,7 +31,7 @@ export const DialogPivotTable = <T extends IItem>(
     setFormulaError(null);
   };
 
-  const onApplay = () => {
+  const onApply = () => {
     if (formulaError) {
       console.error(formulaError);
       toaster.createToast({
@@ -72,7 +72,7 @@ export const DialogPivotTable = <T extends IItem>(
         <Dialog.Footer
           preset="default"
           onClickButtonCancel={callback}
-          onClickButtonApply={onApplay}
+          onClickButtonApply={onApply}
           textButtonApply="Применить"
           textButtonCancel="Отменить"
           listenKeyEnter
