@@ -86,7 +86,7 @@ export const DialogPivotTableBody = <T extends IItem>({
           </div>
         ))}
       </div>
-      <FormulaEditor
+      {/* <FormulaEditor
         sdk={sdk}
         isNewField={false}
         datasetId={item.datasetId}
@@ -95,7 +95,7 @@ export const DialogPivotTableBody = <T extends IItem>({
         isVisibleFunctionManual={false}
         aceModeUrl={aceModeUrl}
         onChange={validateFormula}
-      />
+      /> */}
     </div>
   );
 };
