@@ -547,7 +547,7 @@
 }
 
 .yc-select-search .textinput__control {
-  padding: 0 2rem 0 0;
+  padding: 0;
   border: none;
   font-style: normal;
   font-weight: 400;
