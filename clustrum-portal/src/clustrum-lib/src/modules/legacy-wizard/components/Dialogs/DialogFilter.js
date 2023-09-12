@@ -74,7 +74,6 @@ class DialogFilter extends PureComponent {
   };
 
   initializationDialog({ sdk, item, dataset, updates, callback }) {
-    // Произведем инициализацию диалога
     const { filter } = item;
 
     const isDate = item.cast === 'date' || item.cast === 'datetime';
@@ -301,7 +300,6 @@ class DialogFilter extends PureComponent {
   }
 
   componentDidMount() {
-    // Произведем инициализацию диалога
     const { sdk, item, dataset, updates, callback } = this.props;
     this.initializationDialog({ sdk, item, dataset, updates, callback });
   }
@@ -315,7 +313,6 @@ class DialogFilter extends PureComponent {
       return;
     }
 
-    // Произведем инициализацию диалога
     const { sdk } = this.props;
     this.initializationDialog({ sdk, item, dataset, updates, callback });
   }
