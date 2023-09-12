@@ -9,4 +9,5 @@ export interface RangeDatepickerFilterControlProps {
   minDate?: string;
   defaultValue?: DateParams;
   onChange: ((value: PickerValue) => void) | null;
+  showTitle?: boolean;
 }
