@@ -94,9 +94,9 @@ import { $appSettingsStore } from '@entities/app-settings';
 import { DialogPivotTable } from '../components/Dialogs/DialogPivotTable';
 import cloneDeep from 'lodash/cloneDeep';
 
-const steppedLayoutIndentationMaxValue = 40;
+const STEPPED_LAYOUT_INDENTATION_MAX_VALUE = 40;
 
-const pivotTablePlaceholdersId = ['pivot-table-columns', 'rows', 'measures'];
+const PIVOT_TABLE_PLACEHOLDERS_ID = ['pivot-table-columns', 'rows', 'measures'];
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -224,16 +224,16 @@ class SectionVisualization extends Component {
                 'flat-table-columns',
                 'measures',
                 'dimensions',
-                ...pivotTablePlaceholdersId,
+                ...PIVOT_TABLE_PLACEHOLDERS_ID,
               ].includes(placeholder.id)
             ) {
               this.setState({
                 dialogItem: item,
-                dialogType: pivotTablePlaceholdersId.includes(placeholder.id)
+                dialogType: PIVOT_TABLE_PLACEHOLDERS_ID.includes(placeholder.id)
                   ? 'pivotTableDialog'
                   : 'column',
                 isDialogVisible: true,
-                dialogCallBack: pivotTablePlaceholdersId.includes(placeholder.id)
+                dialogCallBack: PIVOT_TABLE_PLACEHOLDERS_ID.includes(placeholder.id)
                   ? this.handleDialogPivotTableActions
                   : this.handleDialogActions,
                 dialogPlaceholder: placeholder,
@@ -1004,7 +1004,7 @@ class SectionVisualization extends Component {
             type={VisualizationType.RangePicker}
             className="subitem"
             containerProps={{
-              max: steppedLayoutIndentationMaxValue,
+              max: STEPPED_LAYOUT_INDENTATION_MAX_VALUE,
               initialValue: steppedLayoutIndentation,
               onChange: steppedLayoutIndentation => {
                 setSteppedLayoutIndentation({ steppedLayoutIndentation });
