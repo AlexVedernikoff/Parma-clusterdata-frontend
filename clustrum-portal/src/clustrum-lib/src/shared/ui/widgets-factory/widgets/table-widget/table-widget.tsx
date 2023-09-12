@@ -20,12 +20,23 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     title,
     totalRowsCount,
     onPageControlClicker,
+    // *****
     paginateInfo: { page: initPage },
+    // paginateInfo: { page: initPage, pageSize: initPageSize },
+    // *****
   } = props;
 
   const [initPageState, setInitPageState] = useState(initPage + 1);
+  // *****
+
   const [page, setPage] = useState(initPageState);
   const [pageSize, setPageSize] = useState(10);
+
+  // const [page, setPage] = useState(initPage);
+  // const [pageSize, setPageSize] = useState(initPageSize);
+
+  // *****
+
   const isNeedUniqueRows = useSelector(state => selectNeedUniqueRows(state));
 
   useEffect(() => {
@@ -116,6 +127,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       pagination={{
         total: Number(totalRowsCount),
         current: initPageState,
+        // current: initPage + 1,
         defaultPageSize: 10,
         showTotal: (total: number): string => `Всего: ${total}`,
         onChange: changeHandler,
