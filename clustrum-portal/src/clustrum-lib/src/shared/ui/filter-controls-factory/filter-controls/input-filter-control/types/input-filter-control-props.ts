@@ -4,5 +4,5 @@ export interface InputFilterControlProps {
   placeholder?: string;
   defaultValue?: string;
   onChange: ((str: string) => void) | null;
-  showTitle?: boolean;
+  needShowTitle?: boolean;
 }

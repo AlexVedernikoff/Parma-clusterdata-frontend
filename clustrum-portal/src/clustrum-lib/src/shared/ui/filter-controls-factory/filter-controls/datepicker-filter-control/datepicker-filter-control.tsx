@@ -27,7 +27,7 @@ export function DatepickerFilterControl(
     defaultValue,
     dateFormat = DEFAULT_DATE_FORMAT,
     onChange,
-    showTitle,
+    needShowTitle,
   } = props;
   const [date, setDate] = useState<Dayjs | null>(null);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
@@ -93,7 +93,7 @@ export function DatepickerFilterControl(
   return (
     <div className={classNames(styles['datepicker-control'], className)}>
       <label className={styles['datepicker-control__label']}>
-        {showTitle && `${label}:`}
+        {needShowTitle && `${label}:`}
         <div ref={pickerRef}>
           <DatePicker
             disabledDate={hasDisabled}

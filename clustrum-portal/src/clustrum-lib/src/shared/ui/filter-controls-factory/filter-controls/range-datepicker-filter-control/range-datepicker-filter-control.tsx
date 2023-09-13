@@ -30,7 +30,7 @@ export function RangeDatepickerFilterControl(
     defaultValue,
     dateFormat = DEFAULT_DATE_FORMAT,
     onChange,
-    showTitle,
+    needShowTitle,
   } = props;
   const [dateRange, setDateRange] = useState<Range>(null);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
@@ -110,7 +110,7 @@ export function RangeDatepickerFilterControl(
   return (
     <div className={classNames(styles['range-datepicker-control'], className)}>
       <label className={styles['range-datepicker-control__label']}>
-        {showTitle && `${label}:`}
+        {needShowTitle && `${label}:`}
         <div ref={pickerRef}>
           <RangePicker
             disabledDate={hasDisabled}
