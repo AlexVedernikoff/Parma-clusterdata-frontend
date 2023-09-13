@@ -29,7 +29,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
 
   useEffect(() => {
     if (onChange) {
-      onChange(debouncedValue);
+      onChange(debouncedValue ?? []);
     }
   }, [debouncedValue, onChange]);
 
