@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { Table, Tooltip } from 'antd';
 import { TableWidgetProps } from './types';
@@ -40,8 +38,6 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sortData = useSelector((state: any) => state.visualization?.sort);
 
-  console.log('sortData = ', sortData);
-
   useEffect(() => {
     setSortMapState(({ sortMap }) => {
       const sortMapUpdate = sortData.reduce(
@@ -51,8 +47,6 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
         },
         {},
       );
-
-      console.log('sortMapUpdate =  ', sortMapUpdate);
 
       const differenceValue: ISortMapItem = {};
       for (const key in sortMapUpdate) {
@@ -71,8 +65,6 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   const modifyColums = columns.map(item => {
     const title = typeof item.title === 'function' ? item.title({}) : item.title;
     const { differenceValue } = sortMapState;
-
-    console.log('differenceValue = ', differenceValue);
 
     const sortOrder: keyof typeof ESortDir | undefined =
       typeof item.title === 'string' && item.title in differenceValue
@@ -97,8 +89,6 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     setPage(page - 1);
     setPageSize(pageSize);
   };
-
-  console.log('sortMapFull = ', sortMapState);
 
   const onChange = (): void => {
     setSortMapState(intialMapState);
