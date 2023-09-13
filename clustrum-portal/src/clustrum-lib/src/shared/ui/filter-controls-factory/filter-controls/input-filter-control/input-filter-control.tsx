@@ -13,7 +13,7 @@ export function InputFilterControl(props: InputFilterControlProps): JSX.Element 
     defaultValue = '',
     onChange,
     className,
-    needShowTitle,
+    showTitle: needShowTitle,
   } = props;
   const [value, setValue] = useState<string>(defaultValue);
   const debouncedValue = useDebounce(value, 500);

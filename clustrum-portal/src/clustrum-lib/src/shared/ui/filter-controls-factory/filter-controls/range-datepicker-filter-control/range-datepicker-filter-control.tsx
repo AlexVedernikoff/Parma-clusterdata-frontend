@@ -30,7 +30,7 @@ export function RangeDatepickerFilterControl(
     defaultValue,
     dateFormat = DEFAULT_DATE_FORMAT,
     onChange,
-    needShowTitle,
+    showTitle: needShowTitle,
   } = props;
   const [dateRange, setDateRange] = useState<Range>(null);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);

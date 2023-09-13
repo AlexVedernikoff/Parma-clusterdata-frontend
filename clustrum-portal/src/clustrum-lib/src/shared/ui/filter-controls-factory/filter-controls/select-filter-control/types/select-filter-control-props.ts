@@ -8,7 +8,7 @@ export interface SelectFilterControlProps {
   searchable?: boolean;
   className?: string;
   onChange: ((value: string | string[]) => void) | null;
-  needShowTitle?: boolean;
+  showTitle?: boolean;
 }
 
 export interface OptionsTypes {

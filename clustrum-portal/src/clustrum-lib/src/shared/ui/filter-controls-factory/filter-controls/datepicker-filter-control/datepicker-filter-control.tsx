@@ -27,7 +27,7 @@ export function DatepickerFilterControl(
     defaultValue,
     dateFormat = DEFAULT_DATE_FORMAT,
     onChange,
-    needShowTitle,
+    showTitle: needShowTitle,
   } = props;
   const [date, setDate] = useState<Dayjs | null>(null);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);

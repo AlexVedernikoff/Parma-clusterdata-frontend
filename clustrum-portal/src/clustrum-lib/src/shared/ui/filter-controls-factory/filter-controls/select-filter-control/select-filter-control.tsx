@@ -15,7 +15,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
     onChange,
     label,
     className,
-    needShowTitle,
+    showTitle: needShowTitle,
   } = props;
   const [currentValue, setCurrentValue] = useState<string | string[]>(defaultValue);
   const debouncedValue = useDebounce(currentValue, 500);
