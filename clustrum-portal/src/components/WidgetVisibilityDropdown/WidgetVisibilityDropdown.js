@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button, Dropdown } from 'antd';
+import styles from './withHover.module.css';
 
 function WidgetVisibilityDropdown({
   items,
@@ -77,7 +78,7 @@ function WidgetVisibilityDropdown({
     };
   });
 
-  console.log('hovering = ', hovering);
+  const { WidgetVisibilityDropdown__hint } = styles;
 
   return (
     <>
@@ -89,7 +90,7 @@ function WidgetVisibilityDropdown({
       >
         <Button icon={<EyeOutlined />} />
       </Dropdown>
-      {hovering && <div style={{ position: 'absolute', top: '0px' }}>{text}</div>}
+      {hovering && <div className={`${WidgetVisibilityDropdown__hint}`}>{text}</div>}
     </>
   );
 }

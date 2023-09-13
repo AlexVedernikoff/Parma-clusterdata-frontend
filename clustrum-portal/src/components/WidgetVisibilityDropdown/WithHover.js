@@ -13,7 +13,11 @@ export function WithHover(Component, props, text) {
     };
     render() {
       return (
-        <div onMouseEnter={this.mouseOver} onMouseLeave={this.mouseOut}>
+        <div
+          onMouseEnter={this.mouseOver}
+          onMouseLeave={this.mouseOut}
+          style={{ position: 'relative' }}
+        >
           <Component hovering={this.state.hovering} {...props} text={text} />
         </div>
       );
