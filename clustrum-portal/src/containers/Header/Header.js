@@ -195,7 +195,7 @@ class Header extends React.PureComponent {
       WidgetVisibilityDropdown,
       {
         key: 'widget-visibility',
-        items: items,
+        items,
         layout: jointLayout,
         toggleWidgetVisibility: this.toggleWidgetVisibility,
       },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export function WithHover(Component, props, text) {
   return class WithHover extends React.Component {
