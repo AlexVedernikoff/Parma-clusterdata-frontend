@@ -2337,6 +2337,10 @@
   text-align: right;
 }
 
+.chartkit-table__cell_is-total-cell {
+  background-color: var(--ck-control-backgound);
+}
+
 .data-table__th {
   font-weight: 600;
   cursor: default;
