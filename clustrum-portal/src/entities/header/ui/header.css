@@ -27,6 +27,7 @@
   gap: 8px;
   align-items: center;
   padding: 0;
+  overflow: hidden;
 }
 
 .header-wrapper__left-side-title {
@@ -36,6 +37,10 @@
   line-height: 30px;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.header-wrapper__left-side-content {
+  display: flex;
 }
 
 .header-wrapper__right-side-content {
