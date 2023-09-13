@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button, Dropdown } from 'antd';
 
-function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
+function WidgetVisibilityDropdown({
+  items,
+  layout,
+  toggleWidgetVisibility,
+  hovering,
+  text,
+}) {
   const getWidgetList = () => {
     const isWidget = item => item.type === 'widget';
     const isTitle = item => item.type === 'title';
@@ -71,15 +77,20 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
     };
   });
 
+  console.log('hovering = ', hovering);
+
   return (
-    <Dropdown
-      menu={{ items: visibilityItems }}
-      onOpenChange={flag => setOpen(flag)}
-      trigger={['click']}
-      open={open}
-    >
-      <Button icon={<EyeOutlined />} />
-    </Dropdown>
+    <>
+      <Dropdown
+        menu={{ items: visibilityItems }}
+        onOpenChange={flag => setOpen(flag)}
+        trigger={['click']}
+        open={open}
+      >
+        <Button icon={<EyeOutlined />} />
+      </Dropdown>
+      {hovering && <div style={{ position: 'absolute', top: '0px' }}>{text}</div>}
+    </>
   );
 }
 
