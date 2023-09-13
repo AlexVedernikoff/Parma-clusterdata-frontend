@@ -199,17 +199,11 @@ class Header extends React.PureComponent {
         layout: jointLayout,
         toggleWidgetVisibility: this.toggleWidgetVisibility,
       },
-      'Скрытие элементов аналитической панели!',
+      'Скрытие элементов аналитической панели',
     );
 
     return [
       <WidgetVisibilityDropdownHover />,
-      // <WidgetVisibilityDropdown
-      //   key="widget-visibility"
-      //   items={items}
-      //   layout={jointLayout}
-      //   toggleWidgetVisibility={this.toggleWidgetVisibility}
-      // />,
       <Button
         title="Открыть панель расширенных фильтров"
         onClick={this.props.openExpandedFilter}

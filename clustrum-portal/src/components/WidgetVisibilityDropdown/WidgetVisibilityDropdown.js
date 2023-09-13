@@ -90,7 +90,7 @@ function WidgetVisibilityDropdown({
       >
         <Button icon={<EyeOutlined />} />
       </Dropdown>
-      {hovering && <div className={`${WidgetVisibilityDropdown__hint}`}>{text}</div>}
+      {hovering && <div className={WidgetVisibilityDropdown__hint}>{text}</div>}
     </>
   );
 }
