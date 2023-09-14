@@ -383,6 +383,7 @@ export class WidgetContainer extends React.Component {
             }}
             onChange={this.onChange}
             exportWidget={exportWidget}
+            editMode={editMode}
           />
         )}
       </div>

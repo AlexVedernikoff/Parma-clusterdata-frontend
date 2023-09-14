@@ -50,6 +50,7 @@ class Export extends React.PureComponent {
     element: PropTypes.object.isRequired,
     runPayload: PropTypes.object.isRequired,
     exportWidget: PropTypes.func,
+    editMode: PropTypes.object,
   };
 
   state = Object.assign(
@@ -150,10 +151,36 @@ class Export extends React.PureComponent {
   }
 
   render() {
+    const {
+      config: {
+        shared: { existsXlsxExportTemplate, existsDocxExportTemplate },
+      },
+    } = this.props.editMode;
+
+    const radioButtons = [
+      <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>,
+      <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>,
+      <RadioButton.Radio value={ExportFormat.CSV}>CSV</RadioButton.Radio>,
+      existsXlsxExportTemplate && (
+        <RadioButton.Radio value={ExportFormat.XLSX_FROM_TEMPLATE}>
+          XLSX (из шаблона)
+        </RadioButton.Radio>
+      ),
+      existsDocxExportTemplate && (
+        <RadioButton.Radio value={ExportFormat.DOCX_FROM_TEMPLATE}>
+          DOCX (из шаблона)
+        </RadioButton.Radio>
+      ),
+    ].filter(Boolean);
+
     return (
       <Modal element={this.props.element}>
         <Modal.Header caption="Экспорт данных" />
-        <Modal.Body className={b()}>
+        <Modal.Body
+          className={b({
+            'export-xlsx-docx': existsXlsxExportTemplate || existsDocxExportTemplate,
+          })}
+        >
           <Block title="Формат">
             <RadioButton
               theme="normal"
@@ -164,15 +191,7 @@ class Export extends React.PureComponent {
               freeWidth={true}
               onChange={event => this.changeFormat(event.target.value)}
             >
-              <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>
-              <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>
-              <RadioButton.Radio value={ExportFormat.CSV}>CSV</RadioButton.Radio>
-              <RadioButton.Radio value={ExportFormat.XLSX_FROM_TEMPLATE}>
-                XLSX (из шаблона)
-              </RadioButton.Radio>
-              <RadioButton.Radio value={ExportFormat.DOCX_FROM_TEMPLATE}>
-                DOCX (из шаблона)
-              </RadioButton.Radio>
+              {radioButtons}
             </RadioButton>
           </Block>
           {this.renderSettings()}
@@ -190,7 +209,7 @@ export default {
   title: 'Экспорт данных',
   icon: <Icon size="20" name="download" />,
   isVisible: ({ loadedData: { data } = {} }) => Boolean(data),
-  action: ({ event, anchorNode, runPayload, options, exportWidget }) => {
+  action: ({ event, anchorNode, runPayload, editMode, exportWidget }) => {
     if (event.ctrlKey || event.metaKey) {
       if (exportWidget) {
         exportWidget(runPayload);
@@ -203,6 +222,7 @@ export default {
           element={anchorNode}
           runPayload={runPayload}
           exportWidget={exportWidget}
+          editMode={editMode}
         />,
         anchorNode,
       );
