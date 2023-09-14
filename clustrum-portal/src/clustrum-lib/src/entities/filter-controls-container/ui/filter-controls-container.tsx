@@ -52,19 +52,15 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
     for (const control of scheme) {
       const { param } = control;
       const { initiatorItem: item } = params[param];
-      if (
-        !item.availableItems ||
-        !item.availableItems[param] ||
-        item.availableItems[param].length === 0
-      ) {
-        continue;
-      }
+      const currentAvailableItems = item.availableItems[param];
 
-      const availableItems = new Set(item.availableItems[param]);
-      control.content = control.content.filter(
-        (it: { title: string; value: string }) =>
-          availableItems.has(it.title) || availableItems.has(it.value),
-      );
+      if (Array.isArray(currentAvailableItems) && currentAvailableItems.length > 0) {
+        const availableItems = new Set(currentAvailableItems);
+        control.content = control.content.filter(
+          (it: { title: string; value: string }) =>
+            availableItems.has(it.title) || availableItems.has(it.value),
+        );
+      }
     }
   };
 

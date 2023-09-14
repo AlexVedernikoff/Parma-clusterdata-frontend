@@ -1,5 +1,3 @@
-import { PickerValue } from '../filter-controls/range-datepicker-filter-control/types';
-
 export interface MemoizedHandlers {
   defaultChangeHandler: {
     param: string;
@@ -16,6 +14,6 @@ export interface MemoizedHandlers {
   };
   rangeDatepickerChangeHandler: {
     param: string;
-    memoizedHandleFn: ((value: PickerValue) => void) | null;
+    memoizedHandleFn: ((value: string) => void) | null;
   };
 }

@@ -31,6 +31,7 @@ import {
   openExpandedFilter,
   setItemData,
 } from '../../../store/actions/dash';
+import { DefaultValueType } from '@clustrum-lib/shared/ui/filter-controls-factory/types';
 
 // import './Control.scss';
 
@@ -113,7 +114,22 @@ class Control extends React.PureComponent {
     return Boolean(this.props.id);
   }
 
-  _createEmptyValue = elementType => (elementType === ELEMENT_TYPE.SELECT ? [] : '');
+  _createEmptyValue = elementType => {
+    switch (elementType) {
+      case ELEMENT_TYPE.SELECT:
+        return [];
+      case ELEMENT_TYPE.DATE:
+        return {
+          type: DefaultValueType.NoDefined,
+          value: {
+            from: '',
+            to: '',
+          },
+        };
+      default:
+        return '';
+    }
+  };
 
   onApply = () => {
     const {
