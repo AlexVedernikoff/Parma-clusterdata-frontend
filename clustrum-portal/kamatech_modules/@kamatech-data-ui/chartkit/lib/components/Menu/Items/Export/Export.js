@@ -165,6 +165,7 @@ class Export extends React.PureComponent {
   }
 
   render() {
+    const developmentView = !this.props.editMode;
     const { config } = this.props.editMode ?? {};
     const { shared } = config ?? {};
     const { existsXlsxExportTemplate, existsDocxExportTemplate } = shared ?? {};
@@ -173,12 +174,12 @@ class Export extends React.PureComponent {
       <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>,
       <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>,
       <RadioButton.Radio value={ExportFormat.CSV}>CSV</RadioButton.Radio>,
-      existsXlsxExportTemplate && (
+      (developmentView || existsXlsxExportTemplate) && (
         <RadioButton.Radio value={ExportFormat.XLSX_FROM_TEMPLATE}>
           XLSX (из шаблона)
         </RadioButton.Radio>
       ),
-      existsDocxExportTemplate && (
+      (developmentView || existsDocxExportTemplate) && (
         <RadioButton.Radio value={ExportFormat.DOCX_FROM_TEMPLATE}>
           DOCX (из шаблона)
         </RadioButton.Radio>
