@@ -63,6 +63,22 @@ class Export extends React.PureComponent {
     getStorageState(),
   );
 
+  componentDidMount() {
+    const {
+      config: {
+        shared: { existsXlsxExportTemplate, existsDocxExportTemplate },
+      },
+    } = this.props.editMode;
+
+    if (
+      (!existsXlsxExportTemplate &&
+        this.state.format === ExportFormat.XLSX_FROM_TEMPLATE) ||
+      (!existsDocxExportTemplate && this.state.format === ExportFormat.DOCX_FROM_TEMPLATE)
+    ) {
+      this.setState({ format: ExportFormat.XLSX });
+    }
+  }
+
   onApply = () => {
     const { exportWidget, runPayload } = this.props;
 

@@ -627,8 +627,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
     let diagramMagnitude;
     let mapLayerOpacity;
     let exportLimit;
-    let existsXlsxExportTemplate = true;
-    let existsDocxExportTemplate = true;
+    let existsXlsxExportTemplate;
+    let existsDocxExportTemplate;
 
     sdk
       .getWidget({ entryId })
