@@ -64,7 +64,7 @@ class ConnectionPage extends React.Component {
     return (
       <Button
         key={'create-dataset-btn'}
-        text="Создать датасет"
+        text="Создать набор данных"
         onClick={() => {
           let currentPathParam = currentPath
             ? `&currentPath=${encodeURIComponent(currentPath)}`
@@ -72,7 +72,7 @@ class ConnectionPage extends React.Component {
           window.open(`/datasets/new?id=${connectionId}${currentPathParam}`, '_self');
         }}
       >
-        Создать датасет
+        Создать набор данных
       </Button>
     );
   }
