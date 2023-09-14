@@ -262,6 +262,8 @@ export function fetchDataset({ datasetId, sdk }) {
             steppedLayoutIndentation,
             paginateInfo,
             labels,
+            existsXlsxExportTemplate,
+            existsDocxExportTemplate,
           } = {},
         } = getState();
 
@@ -295,6 +297,8 @@ export function fetchDataset({ datasetId, sdk }) {
             paginateInfo,
             labels,
             updates,
+            existsXlsxExportTemplate,
+            existsDocxExportTemplate,
           }),
         );
       })
@@ -331,6 +335,8 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
         steppedLayoutIndentation,
         paginateInfo,
         labels,
+        existsXlsxExportTemplate,
+        existsDocxExportTemplate,
       } = {},
     } = getState();
 
@@ -474,6 +480,8 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
           paginateInfo,
           labels,
           updates: fullUpdates,
+          existsXlsxExportTemplate,
+          existsDocxExportTemplate,
         }),
       );
     } catch (e) {
@@ -619,6 +627,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
     let diagramMagnitude;
     let mapLayerOpacity;
     let exportLimit;
+    let existsXlsxExportTemplate = true;
+    let existsDocxExportTemplate = true;
 
     sdk
       .getWidget({ entryId })
@@ -656,6 +666,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
           updates,
           mapLayerOpacity,
           exportLimit,
+          existsXlsxExportTemplate,
+          existsDocxExportTemplate,
         } = data.data);
 
         diagramMagnitude = diagramMagnitude || MEASURE_TYPE.ABSOLUTE;
@@ -740,6 +752,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
           labels,
           diagramMagnitude,
           mapLayerOpacity,
+          existsXlsxExportTemplate,
+          existsDocxExportTemplate,
         });
 
         const searchPairs = decodeURI(location.search).match(/[^&?]+=[^&]+/g);
@@ -913,6 +927,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
             diagramMagnitude,
             mapLayerOpacity,
             exportLimit,
+            existsXlsxExportTemplate,
+            existsDocxExportTemplate,
           }),
         );
       })
@@ -984,6 +1000,8 @@ export function setVisualization({ visualization }) {
       needSteppedLayout: state.visualization.needSteppedLayout,
       steppedLayoutIndentation: state.visualization.steppedLayoutIndentation,
       paginateInfo: state.visualization.paginateInfo,
+      existsXlsxExportTemplate: state.visualization.existsXlsxExportTemplate,
+      existsDocxExportTemplate: state.visualization.existsDocxExportTemplate,
     };
   };
 }

@@ -44,6 +44,8 @@ export function preview(state = initialState, action = {}) {
         mapLayerOpacity,
         exportLimit,
         orderBy,
+        existsXlsxExportTemplate,
+        existsDocxExportTemplate,
       } = action;
 
       if (previewEntryId) {
@@ -109,6 +111,8 @@ export function preview(state = initialState, action = {}) {
             updates: lodash.cloneDeep(updates),
             visualization: lodash.cloneDeep(visualization),
             exportLimit,
+            existsXlsxExportTemplate,
+            existsDocxExportTemplate,
           };
 
           const version = JSON.stringify(data, versionExtractor);
