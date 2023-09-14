@@ -165,11 +165,9 @@ class Export extends React.PureComponent {
   }
 
   render() {
-    const {
-      config: {
-        shared: { existsXlsxExportTemplate, existsDocxExportTemplate },
-      },
-    } = this.props.editMode;
+    const { config } = this.props.editMode ?? {};
+    const { shared } = config ?? {};
+    const { existsXlsxExportTemplate, existsDocxExportTemplate } = shared ?? {};
 
     const radioButtons = [
       <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>,
