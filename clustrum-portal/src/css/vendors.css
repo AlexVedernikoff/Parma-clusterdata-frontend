@@ -1793,6 +1793,11 @@
   opacity: 1;
 }
 
+.button2.dataset-creation-page__action-btn {
+  height: 32px;
+  line-height: 32px;
+}
+
 @-webkit-keyframes button2-progress {
   0% {
     background-position: -12px 0;
