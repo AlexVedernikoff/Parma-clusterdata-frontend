@@ -85,6 +85,15 @@ export function DatepickerFilterControl(
     );
   };
 
+  const renderCustomDate = (current: Dayjs): React.ReactNode => {
+    const styles = { width: 35.99 };
+    return (
+      <td title={current.format('DD.MM.YYYY')} className="ant-picker-cell" style={styles}>
+        {current.date()}
+      </td>
+    );
+  };
+
   const placementPosition = shouldMoveCalendar
     ? PlacementPosition.BottomRight
     : PlacementPosition.BottomLeft;
@@ -96,6 +105,7 @@ export function DatepickerFilterControl(
         <div ref={pickerRef}>
           <DatePicker
             disabledDate={hasDisabled}
+            dateRender={renderCustomDate}
             format={dateFormat}
             locale={ruRU.DatePicker}
             picker="date"

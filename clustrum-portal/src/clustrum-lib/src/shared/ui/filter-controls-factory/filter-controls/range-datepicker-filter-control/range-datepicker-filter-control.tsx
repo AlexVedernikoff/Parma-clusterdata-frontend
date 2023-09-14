@@ -102,6 +102,15 @@ export function RangeDatepickerFilterControl(
     );
   };
 
+  const renderCustomDate = (current: Dayjs): React.ReactNode => {
+    const styles = { width: 35.99 };
+    return (
+      <td title={current.format('DD.MM.YYYY')} className="ant-picker-cell" style={styles}>
+        {current.date()}
+      </td>
+    );
+  };
+
   const placementPosition = shouldMoveCalendar
     ? PlacementPosition.BottomRight
     : PlacementPosition.BottomLeft;
@@ -114,6 +123,7 @@ export function RangeDatepickerFilterControl(
           <RangePicker
             disabledDate={hasDisabled}
             format={dateFormat}
+            dateRender={renderCustomDate}
             locale={ruRU.DatePicker}
             picker="date"
             placement={placementPosition}
