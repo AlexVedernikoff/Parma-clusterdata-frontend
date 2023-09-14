@@ -281,7 +281,7 @@ class Header extends React.PureComponent {
       },
       {
         label: (
-          <a onClick={() => this.#exportClickHandler(ExportFormat.XLSX_FROM_TEMPLATE)}>
+          <a onClick={() => this.#exportClickHandler(ExportFormat.DOCX_FROM_TEMPLATE)}>
             DOCX (из шаблона)
           </a>
         ),
