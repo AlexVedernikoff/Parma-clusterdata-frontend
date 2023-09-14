@@ -64,7 +64,7 @@ class Export extends React.PureComponent {
   );
 
   componentDidMount() {
-    const { config } = this.props.editMode;
+    const { config } = this.props.editMode ?? {};
     const { shared } = config ?? {};
     const { existsXlsxExportTemplate, existsDocxExportTemplate } = shared ?? {};
 
