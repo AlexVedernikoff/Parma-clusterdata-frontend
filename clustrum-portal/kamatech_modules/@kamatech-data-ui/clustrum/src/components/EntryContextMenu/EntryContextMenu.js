@@ -13,11 +13,16 @@ import Utils from '../../utils';
 import navigateHelper from '../../libs/navigateHelper';
 import ErrorDialog from '../ErrorDialog/ErrorDialog';
 import { ContextMenuActions } from '@entities/navigation-base/types';
+import { getEntry } from '@kamatech-data-ui/clustrum-core-plugins/components/schema/general';
 
 const ConfiguredEntryContextMenu = withConfiguredEntryContextMenu(EntryContextMenu);
 const defaultPopupDirections = ['bottom-center', 'bottom-left', 'bottom-right'];
 
 class EntryContextMenuService extends React.PureComponent {
+  state = {
+    description: '',
+  };
+
   refDialogues = React.createRef();
   refErrorDialog = React.createRef();
 
@@ -28,6 +33,13 @@ class EntryContextMenuService extends React.PureComponent {
     } else {
       window.location.reload();
     }
+  }
+
+  async componentDidMount() {
+    const { description } = await this.props.sdk.getEntry({
+      entryId: this.props.entry.entryId,
+    });
+    this.setState({ description });
   }
 
   async renameEntry(entry) {
@@ -50,7 +62,7 @@ class EntryContextMenuService extends React.PureComponent {
       dialog: ENTRY_DIALOG.DESCRIBE,
       dialogProps: {
         entryId: entry.entryId,
-        description: entry.description,
+        description: entry.description || this.state.description,
         withError: false,
         onNotify: entryDialoguesNotify(ENTRY_DIALOG.DESCRIBE, this.refErrorDialog),
       },
