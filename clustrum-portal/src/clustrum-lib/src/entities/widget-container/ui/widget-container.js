@@ -79,6 +79,7 @@ export class WidgetContainer extends React.Component {
       direction: PropTypes.string,
       field: PropTypes.string,
     }),
+    item: PropTypes.object,
   };
 
   static defaultProps = {
@@ -107,6 +108,7 @@ export class WidgetContainer extends React.Component {
       orderBy: orderByFromState,
       prevOrderBy,
       loading,
+      data,
     },
   ) {
     const sourceURI = new URI(propsSource);
@@ -152,7 +154,7 @@ export class WidgetContainer extends React.Component {
     return {
       loading,
       error: false,
-      data: null,
+      data,
       forceUpdate,
       paginateInfo: paginateInfo,
       prevPaginateInfo: paginateInfo,
@@ -306,7 +308,11 @@ export class WidgetContainer extends React.Component {
       isDisplayOnlyWithFilter,
       ownWidgetParams,
       exportWidget,
+      item,
     } = this.props;
+
+    const { hasExportTemplateXlsx, hasExportTemplateDocx } =
+      editMode?.config?.shared || item || {};
 
     const theme = this.props.theme || settings.theme;
     const menu = this.props.menu || settings.menu;
@@ -383,6 +389,8 @@ export class WidgetContainer extends React.Component {
             }}
             onChange={this.onChange}
             exportWidget={exportWidget}
+            hasExportTemplateXlsx={hasExportTemplateXlsx}
+            hasExportTemplateDocx={hasExportTemplateDocx}
           />
         )}
       </div>
