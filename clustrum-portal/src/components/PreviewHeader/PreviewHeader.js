@@ -79,7 +79,7 @@ class PreviewHeader extends React.Component {
     if (
       ![undefined, null].includes(amountPreviewRows) &&
       amountPreviewRowsNumber >= 1 &&
-      amountPreviewRowsNumber <= 10000
+      amountPreviewRowsNumber <= 100
     ) {
       return this.setState(
         {
