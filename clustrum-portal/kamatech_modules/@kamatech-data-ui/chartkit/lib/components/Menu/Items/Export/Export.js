@@ -166,8 +166,6 @@ class Export extends React.PureComponent {
   render() {
     const { existsXlsxExportTemplate, existsDocxExportTemplate } = this.props;
 
-    console.log(this.props);
-
     const radioButtons = [
       <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>,
       <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>,

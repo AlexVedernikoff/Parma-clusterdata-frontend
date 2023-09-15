@@ -314,13 +314,6 @@ export class WidgetContainer extends React.Component {
     const { existsXlsxExportTemplate, existsDocxExportTemplate } =
       editMode?.config?.shared || item || {};
 
-    console.log({
-      item,
-      props: this.props,
-      thisState: this.state,
-      this: this,
-    });
-
     const theme = this.props.theme || settings.theme;
     const menu = this.props.menu || settings.menu;
     const paginateInfo = this.props.paginateInfo

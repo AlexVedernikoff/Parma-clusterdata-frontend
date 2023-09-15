@@ -140,7 +140,6 @@ class PluginWidget extends React.PureComponent {
       orderBy,
       item,
     } = this.props;
-    console.log(this.props);
     const { params: dashParams } = this.state;
     const { description } = data[tabIndex];
     const { uuid, params = {} } = data[tabIndex].data;
