@@ -176,7 +176,6 @@ class GridItem extends React.PureComponent {
       children,
       className,
       isHidden,
-      config,
     } = this.props;
     const { editMode } = this.context;
 
@@ -215,7 +214,6 @@ class GridItem extends React.PureComponent {
             height={height}
             transform={transform}
             forwardedPluginRef={this.props.forwardedPluginRef}
-            config={config}
           />
         </div>
         {this._renderOverlay()}

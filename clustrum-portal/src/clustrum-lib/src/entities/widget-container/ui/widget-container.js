@@ -79,7 +79,7 @@ export class WidgetContainer extends React.Component {
       direction: PropTypes.string,
       field: PropTypes.string,
     }),
-    config: PropTypes.object,
+    item: PropTypes.object,
   };
 
   static defaultProps = {
@@ -308,11 +308,18 @@ export class WidgetContainer extends React.Component {
       isDisplayOnlyWithFilter,
       ownWidgetParams,
       exportWidget,
-      config,
+      item,
     } = this.props;
 
     const { existsXlsxExportTemplate, existsDocxExportTemplate } =
-      editMode?.config?.shared || config || {};
+      editMode?.config?.shared || item || {};
+
+    console.log({
+      item,
+      props: this.props,
+      thisState: this.state,
+      this: this,
+    });
 
     const theme = this.props.theme || settings.theme;
     const menu = this.props.menu || settings.menu;

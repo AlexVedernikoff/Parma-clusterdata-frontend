@@ -81,7 +81,7 @@ export function prepareItem(Component) {
     };
 
     render() {
-      const { id, width, height, item, config } = this.props;
+      const { id, width, height, item } = this.props;
       const {
         itemsState,
         itemsParams,
@@ -109,7 +109,7 @@ export function prepareItem(Component) {
         ownWidgetParams,
         exportWidget: this.#exportWidgetFactory(),
         orderBy: orderBy[id],
-        config,
+        item,
       };
 
       return (
