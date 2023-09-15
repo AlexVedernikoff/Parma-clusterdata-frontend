@@ -108,6 +108,7 @@ export class WidgetContainer extends React.Component {
       orderBy: orderByFromState,
       prevOrderBy,
       loading,
+      data,
     },
   ) {
     const sourceURI = new URI(propsSource);
@@ -153,7 +154,7 @@ export class WidgetContainer extends React.Component {
     return {
       loading,
       error: false,
-      data: null,
+      data,
       forceUpdate,
       paginateInfo: paginateInfo,
       prevPaginateInfo: paginateInfo,
