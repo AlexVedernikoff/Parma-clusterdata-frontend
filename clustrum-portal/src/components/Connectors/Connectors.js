@@ -43,7 +43,7 @@ export function Connectors({ sdk, location: { search } }) {
           tone="default"
           text={searchConnectorName}
           placeholder="Имя коннектора"
-          onChange={e => setSearchConnectorName(e.target.value)}
+          onChange={value => setSearchConnectorName(value)}
           hasClear
           focused
         />
