@@ -22,6 +22,7 @@ import { WidgetData } from './types/WidgetData';
 import { clientFileName } from '../utils/clientFileName';
 import { startExportStatusTimer } from '../utils/startExportStatusTimer';
 import { GenerateFileNameFormat } from '@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
+import moment from 'moment';
 
 async function getStateUuid(
   entryId: string,
@@ -50,6 +51,7 @@ export const exportWidget = async (
   const data = {
     ...widgetData,
     stateUuid: uuid,
+    createdAt: moment().format(),
     exportConfig: {
       delimiter: options.delValues,
       format: options.format,

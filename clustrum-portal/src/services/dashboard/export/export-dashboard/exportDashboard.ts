@@ -87,6 +87,7 @@ const exportToExcel = async (
   const clientFileNameWithoutFormat = clientFileName(entry.name, tab.title);
 
   const data = {
+    createdAt: moment().format(),
     dashboardId: entry.entryId,
     tabId: tab.id,
     exportConfig,
