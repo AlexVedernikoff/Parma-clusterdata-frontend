@@ -109,7 +109,7 @@ const exportToExcel = async (
 
           saveAs(
             new Blob([response.data], { type: response.headers['content-type'] }),
-            `${clientFileNameWithoutFormat}.${GenerateFileNameFormat(format)}`,
+            `${clientFileNameWithoutFormat}.${GenerateFileNameFormat(format, true)}`,
           );
 
           store.dispatch(endExport());

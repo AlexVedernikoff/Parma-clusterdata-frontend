@@ -143,6 +143,7 @@ export default class GridLayout extends React.PureComponent {
                 itemDataOnTab={this.#getWidgetDataOnTab(item)}
                 isHidden={isHidden}
                 shouldItemUpdate={this.state.shouldItemUpdate}
+                config={config}
               />
             );
           })}

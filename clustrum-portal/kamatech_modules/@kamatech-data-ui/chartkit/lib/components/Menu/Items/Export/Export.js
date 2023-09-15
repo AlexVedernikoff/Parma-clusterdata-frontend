@@ -50,7 +50,8 @@ class Export extends React.PureComponent {
     element: PropTypes.object.isRequired,
     runPayload: PropTypes.object.isRequired,
     exportWidget: PropTypes.func,
-    editMode: PropTypes.object,
+    existsXlsxExportTemplate: PropTypes.bool,
+    existsDocxExportTemplate: PropTypes.bool,
   };
 
   state = Object.assign(
@@ -64,9 +65,7 @@ class Export extends React.PureComponent {
   );
 
   componentDidMount() {
-    const { config } = this.props.editMode ?? {};
-    const { shared } = config ?? {};
-    const { existsXlsxExportTemplate, existsDocxExportTemplate } = shared ?? {};
+    const { existsXlsxExportTemplate, existsDocxExportTemplate } = this.props;
 
     if (
       (!existsXlsxExportTemplate &&
@@ -165,21 +164,20 @@ class Export extends React.PureComponent {
   }
 
   render() {
-    const developmentView = !this.props.editMode;
-    const { config } = this.props.editMode ?? {};
-    const { shared } = config ?? {};
-    const { existsXlsxExportTemplate, existsDocxExportTemplate } = shared ?? {};
+    const { existsXlsxExportTemplate, existsDocxExportTemplate } = this.props;
+
+    console.log(this.props);
 
     const radioButtons = [
       <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>,
       <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>,
       <RadioButton.Radio value={ExportFormat.CSV}>CSV</RadioButton.Radio>,
-      (developmentView || existsXlsxExportTemplate) && (
+      existsXlsxExportTemplate && (
         <RadioButton.Radio value={ExportFormat.XLSX_FROM_TEMPLATE}>
           XLSX (из шаблона)
         </RadioButton.Radio>
       ),
-      (developmentView || existsDocxExportTemplate) && (
+      existsDocxExportTemplate && (
         <RadioButton.Radio value={ExportFormat.DOCX_FROM_TEMPLATE}>
           DOCX (из шаблона)
         </RadioButton.Radio>
@@ -222,7 +220,14 @@ export default {
   title: 'Экспорт данных',
   icon: <Icon size="20" name="download" />,
   isVisible: ({ loadedData: { data } = {} }) => Boolean(data),
-  action: ({ event, anchorNode, runPayload, editMode, exportWidget }) => {
+  action: ({
+    event,
+    anchorNode,
+    runPayload,
+    exportWidget,
+    existsXlsxExportTemplate,
+    existsDocxExportTemplate,
+  }) => {
     if (event.ctrlKey || event.metaKey) {
       if (exportWidget) {
         exportWidget(runPayload);
@@ -235,7 +240,8 @@ export default {
           element={anchorNode}
           runPayload={runPayload}
           exportWidget={exportWidget}
-          editMode={editMode}
+          existsXlsxExportTemplate={existsXlsxExportTemplate}
+          existsDocxExportTemplate={existsDocxExportTemplate}
         />,
         anchorNode,
       );

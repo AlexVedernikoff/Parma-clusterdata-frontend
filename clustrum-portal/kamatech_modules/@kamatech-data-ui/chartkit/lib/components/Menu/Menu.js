@@ -47,7 +47,15 @@ class Menu extends React.PureComponent {
   modalRef = React.createRef();
 
   render() {
-    const { items, data, onChange, runPayload, exportWidget, editMode } = this.props;
+    const {
+      items,
+      data,
+      onChange,
+      runPayload,
+      exportWidget,
+      existsXlsxExportTemplate,
+      existsDocxExportTemplate,
+    } = this.props;
 
     return (
       <React.Fragment>
@@ -92,7 +100,8 @@ class Menu extends React.PureComponent {
                           onChange,
                           anchorNode: this.modalRef.current,
                           exportWidget,
-                          editMode,
+                          existsXlsxExportTemplate,
+                          existsDocxExportTemplate,
                         });
                         // legohack: закрываем открытый dropdown,
                         // т.к. иначе он открыт до момента клика снаружи

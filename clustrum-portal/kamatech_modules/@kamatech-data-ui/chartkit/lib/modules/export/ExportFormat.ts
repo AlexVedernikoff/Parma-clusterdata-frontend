@@ -10,8 +10,11 @@ export enum ExportFormat {
   DOCX_FROM_TEMPLATE = 'docx_from_template',
 }
 
-export function GenerateFileNameFormat(format: ExportFormat): string {
-  if (format === ExportFormat.CSV) {
+export function GenerateFileNameFormat(
+  format: ExportFormat,
+  isZipDownload: boolean,
+): string {
+  if (format === ExportFormat.CSV || isZipDownload) {
     return ExportFormat.ZIP;
   } else {
     switch (format) {

@@ -84,6 +84,7 @@ export const exportWidget = async (
             new Blob([response.data], { type: response.headers['content-type'] }),
             `${clientFileNameWithoutFormat}.${GenerateFileNameFormat(
               data.exportConfig.format,
+              false,
             )}`,
           );
 
