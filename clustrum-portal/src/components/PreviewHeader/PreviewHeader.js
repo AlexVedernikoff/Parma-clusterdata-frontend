@@ -175,7 +175,7 @@ class PreviewHeader extends React.Component {
               size="s"
               view="default"
               tone="default"
-              title="Развернуть сниз"
+              title="Развернуть снизу"
               onClick={this.togglePreviewBottom}
             >
               <Icon data={iconPreviewBottom} width="24" height="28" />

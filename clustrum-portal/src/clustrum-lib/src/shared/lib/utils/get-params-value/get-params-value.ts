@@ -2,7 +2,7 @@ const paramsValue = (
   params: { [key: string]: { value: string | string[] } },
   paramKey: string,
 ): unknown => {
-  if (params[paramKey].value === null || params[paramKey].value === undefined) {
+  if (!('value' in params[paramKey])) {
     return params[paramKey];
   }
 

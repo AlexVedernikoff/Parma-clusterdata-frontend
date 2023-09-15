@@ -13,15 +13,14 @@ import { FilterControlsFactory } from '@lib-shared/ui/filter-controls-factory';
 import { getParamsValue } from '@lib-shared/lib/utils';
 import styles from './filter-controls-container.module.css';
 import { filterControlsContainerModel } from '../model/filter-controls-container-model';
-import { ParamsProps } from '@lib-shared/ui/filter-controls-factory/types/filter-factory-controls-props';
 
 export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.Element {
   const { data, defaults, params } = props;
 
   const [status, setStatus] = useState<LoadStatus>(LoadStatus.Pending);
   const [scheme, setScheme] = useState<LoadedDataScheme[] | null>(null);
-  const previousParams = useRef<ParamsProps | null>(null);
   const previousControlData = useRef<DashboardControlsData | null>(null);
+  const previousFilters = useRef<string | null>(null);
 
   useEffect(() => {
     if (!isMatch(previousControlData.current ?? {}, data)) {
@@ -42,10 +41,10 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
   const filters = getFilters();
 
   useEffect(() => {
-    if (!isMatch(previousParams.current ?? {}, params)) {
+    if (previousFilters.current !== filters) {
       init();
+      previousFilters.current = filters;
     }
-    previousParams.current = params;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
@@ -53,19 +52,15 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
     for (const control of scheme) {
       const { param } = control;
       const { initiatorItem: item } = params[param];
-      if (
-        !item.availableItems ||
-        !item.availableItems[param] ||
-        item.availableItems[param].length === 0
-      ) {
-        continue;
-      }
+      const currentAvailableItems = item.availableItems[param];
 
-      const availableItems = new Set(item.availableItems[param]);
-      control.content = control.content.filter(
-        (it: { title: string; value: string }) =>
-          availableItems.has(it.title) || availableItems.has(it.value),
-      );
+      if (Array.isArray(currentAvailableItems) && currentAvailableItems.length > 0) {
+        const availableItems = new Set(currentAvailableItems);
+        control.content = control.content.filter(
+          (it: { title: string; value: string }) =>
+            availableItems.has(it.title) || availableItems.has(it.value),
+        );
+      }
     }
   };
 
