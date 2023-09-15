@@ -6,7 +6,7 @@ import './table-widget.css';
 import { useSelector } from 'react-redux';
 import { ESortDir, ISortMap, ISortMapItem } from './types/table-widget-types';
 
-const intialMapState = {
+const INITIAL_MAP_STATE = {
   differenceValue: {},
   sortMap: {},
 };
@@ -33,7 +33,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       setInitPageState(1);
     }
   }, [pageSize, isNeedUniqueRows]);
-  const [sortMapState, setSortMapState] = useState<ISortMap>(intialMapState);
+  const [sortMapState, setSortMapState] = useState<ISortMap>(INITIAL_MAP_STATE);
   // функция configureStore в проекте не имеет типизации, поэтому ставим state: any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sortData = useSelector((state: any) => state.visualization?.sort);
@@ -67,7 +67,8 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     const { differenceValue } = sortMapState;
 
     const sortOrder: keyof typeof ESortDir | undefined =
-      typeof item.title === 'string' && item.title in differenceValue
+      // eslint-disable-next-line no-prototype-builtins
+      typeof item.title === 'string' && differenceValue.hasOwnProperty(item.title)
         ? differenceValue[item.title]
         : undefined;
 
@@ -90,8 +91,8 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     setPageSize(pageSize);
   };
 
-  const onChange = (): void => {
-    setSortMapState(intialMapState);
+  const handleChange = (): void => {
+    setSortMapState(INITIAL_MAP_STATE);
   };
 
   return (
@@ -110,7 +111,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
         showTotal: (total: number): string => `Всего: ${total}`,
         onChange: changeHandler,
       }}
-      onChange={onChange}
+      onChange={handleChange}
     />
   );
 }
