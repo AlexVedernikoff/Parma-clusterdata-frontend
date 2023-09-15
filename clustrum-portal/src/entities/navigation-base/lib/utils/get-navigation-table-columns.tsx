@@ -22,12 +22,26 @@ export const getNavigationTableColumns = ({
         {name}
       </Space>
     ),
+    sorter: (a, b): number => {
+      if (a.name > b.name) {
+        return 1;
+      } else {
+        return -1;
+      }
+    },
     width: '30%',
   },
   {
     title: 'Автор',
     dataIndex: 'createdBy',
     key: 'createdBy',
+    sorter: (a, b): number => {
+      if (a.createdBy > b.createdBy) {
+        return 1;
+      } else {
+        return -1;
+      }
+    },
   },
   {
     title: 'Дата создания',
