@@ -5,13 +5,9 @@ import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button, Dropdown } from 'antd';
 import styles from './withHover.module.css';
 
-function WidgetVisibilityDropdown({
-  items,
-  layout,
-  toggleWidgetVisibility,
-  hovering,
-  text,
-}) {
+function WidgetVisibilityDropdown(props) {
+  const { items, layout, toggleWidgetVisibility, isHover, text } = props;
+
   const getWidgetList = () => {
     const isWidget = item => item.type === 'widget';
     const isTitle = item => item.type === 'title';
@@ -78,8 +74,6 @@ function WidgetVisibilityDropdown({
     };
   });
 
-  const { WidgetVisibilityDropdown__hint } = styles;
-
   return (
     <>
       <Dropdown
@@ -90,7 +84,9 @@ function WidgetVisibilityDropdown({
       >
         <Button icon={<EyeOutlined />} />
       </Dropdown>
-      {hovering && <div className={WidgetVisibilityDropdown__hint}>{text}</div>}
+      {isHover && (
+        <div className={styles['widget-visibility-dropdown__hint']}>{text}</div>
+      )}
     </>
   );
 }

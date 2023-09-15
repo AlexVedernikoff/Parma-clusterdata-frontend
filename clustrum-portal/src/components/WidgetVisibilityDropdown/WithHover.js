@@ -2,23 +2,21 @@ import React from 'react';
 
 export function WithHover(Component, props, text) {
   return class WithHover extends React.Component {
-    state = { hovering: false };
-    mouseOver = () => {
-      if (!this.state.hovering) {
-        this.setState({ hovering: true });
-      }
+    state = { isHover: false };
+    mouseEnter = () => {
+      this.setState({ isHover: true });
     };
-    mouseOut = () => {
-      this.setState({ hovering: false });
+    mouseLeave = () => {
+      this.setState({ isHover: false });
     };
     render() {
       return (
         <div
-          onMouseEnter={this.mouseOver}
-          onMouseLeave={this.mouseOut}
+          onMouseEnter={this.mouseEnter}
+          onMouseLeave={this.mouseLeave}
           style={{ position: 'relative' }}
         >
-          <Component hovering={this.state.hovering} {...props} text={text} />
+          <Component isHover={this.state.isHover} {...props} text={text} />
         </div>
       );
     }
