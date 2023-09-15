@@ -24,12 +24,16 @@ export function NavigationHeader(props: NavigationHeaderProps): ReactElement {
 
   const formatPlace = place || '';
 
+  const clearInput = searchValue && (
+    <CloseOutlined onClick={(): void => onChangeFilter('')} />
+  );
+
   const inputSearch = (
     <Input
       className="ant-d-input-search"
       placeholder="Найти"
       prefix={<SearchOutlined />}
-      suffix={searchValue && <CloseOutlined onClick={(): void => onChangeFilter('')} />}
+      suffix={clearInput}
       onChange={(event): void => {
         onChangeFilter(event.target.value);
       }}
