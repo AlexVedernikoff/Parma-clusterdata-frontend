@@ -53,8 +53,8 @@ class Menu extends React.PureComponent {
       onChange,
       runPayload,
       exportWidget,
-      existsXlsxExportTemplate,
-      existsDocxExportTemplate,
+      hasExportTemplateXlsx,
+      hasExportTemplateDocx,
     } = this.props;
 
     return (
@@ -100,8 +100,8 @@ class Menu extends React.PureComponent {
                           onChange,
                           anchorNode: this.modalRef.current,
                           exportWidget,
-                          existsXlsxExportTemplate,
-                          existsDocxExportTemplate,
+                          hasExportTemplateXlsx,
+                          hasExportTemplateDocx,
                         });
                         // legohack: закрываем открытый dropdown,
                         // т.к. иначе он открыт до момента клика снаружи

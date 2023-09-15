@@ -50,8 +50,8 @@ class Export extends React.PureComponent {
     element: PropTypes.object.isRequired,
     runPayload: PropTypes.object.isRequired,
     exportWidget: PropTypes.func,
-    existsXlsxExportTemplate: PropTypes.bool,
-    existsDocxExportTemplate: PropTypes.bool,
+    hasExportTemplateXlsx: PropTypes.bool,
+    hasExportTemplateDocx: PropTypes.bool,
   };
 
   state = Object.assign(
@@ -65,12 +65,11 @@ class Export extends React.PureComponent {
   );
 
   componentDidMount() {
-    const { existsXlsxExportTemplate, existsDocxExportTemplate } = this.props;
+    const { hasExportTemplateXlsx, hasExportTemplateDocx } = this.props;
 
     if (
-      (!existsXlsxExportTemplate &&
-        this.state.format === ExportFormat.XLSX_FROM_TEMPLATE) ||
-      (!existsDocxExportTemplate && this.state.format === ExportFormat.DOCX_FROM_TEMPLATE)
+      (!hasExportTemplateXlsx && this.state.format === ExportFormat.XLSX_FROM_TEMPLATE) ||
+      (!hasExportTemplateDocx && this.state.format === ExportFormat.DOCX_FROM_TEMPLATE)
     ) {
       this.setState({ format: ExportFormat.XLSX });
     }
@@ -164,18 +163,18 @@ class Export extends React.PureComponent {
   }
 
   render() {
-    const { existsXlsxExportTemplate, existsDocxExportTemplate } = this.props;
+    const { hasExportTemplateXlsx, hasExportTemplateDocx } = this.props;
 
     const radioButtons = [
       <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>,
       <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>,
       <RadioButton.Radio value={ExportFormat.CSV}>CSV</RadioButton.Radio>,
-      existsXlsxExportTemplate && (
+      hasExportTemplateXlsx && (
         <RadioButton.Radio value={ExportFormat.XLSX_FROM_TEMPLATE}>
           XLSX (из шаблона)
         </RadioButton.Radio>
       ),
-      existsDocxExportTemplate && (
+      hasExportTemplateDocx && (
         <RadioButton.Radio value={ExportFormat.DOCX_FROM_TEMPLATE}>
           DOCX (из шаблона)
         </RadioButton.Radio>
@@ -187,7 +186,7 @@ class Export extends React.PureComponent {
         <Modal.Header caption="Экспорт данных" />
         <Modal.Body
           className={b({
-            'export-xlsx-docx': existsXlsxExportTemplate || existsDocxExportTemplate,
+            'export-xlsx-docx': hasExportTemplateXlsx || hasExportTemplateDocx,
           })}
         >
           <Block title="Формат">
@@ -223,8 +222,8 @@ export default {
     anchorNode,
     runPayload,
     exportWidget,
-    existsXlsxExportTemplate,
-    existsDocxExportTemplate,
+    hasExportTemplateXlsx,
+    hasExportTemplateDocx,
   }) => {
     if (event.ctrlKey || event.metaKey) {
       if (exportWidget) {
@@ -238,8 +237,8 @@ export default {
           element={anchorNode}
           runPayload={runPayload}
           exportWidget={exportWidget}
-          existsXlsxExportTemplate={existsXlsxExportTemplate}
-          existsDocxExportTemplate={existsDocxExportTemplate}
+          hasExportTemplateXlsx={hasExportTemplateXlsx}
+          hasExportTemplateDocx={hasExportTemplateDocx}
         />,
         anchorNode,
       );

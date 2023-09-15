@@ -254,10 +254,12 @@ class Header extends React.PureComponent {
     if (!hasRightSideContent) {
       return [];
     }
+
     const selectedTab = entry?.data?.pages?.[0]?.tabs?.find(
       tab => tab.id === dash?.tabId,
     );
-    const { existsXlsxExportTemplate = true, existsDocxExportTemplate = true } =
+
+    const { hasExportTemplateXlsx = true, hasExportTemplateDocx = true } =
       selectedTab ?? {};
 
     const exportItems = [
@@ -277,7 +279,7 @@ class Header extends React.PureComponent {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</a>,
         key: '4',
       },
-      existsXlsxExportTemplate && {
+      hasExportTemplateXlsx && {
         label: (
           <a onClick={() => this.#exportClickHandler(ExportFormat.XLSX_FROM_TEMPLATE)}>
             XLSX (из шаблона)
@@ -285,7 +287,7 @@ class Header extends React.PureComponent {
         ),
         key: '5',
       },
-      existsDocxExportTemplate && {
+      hasExportTemplateDocx && {
         label: (
           <a onClick={() => this.#exportClickHandler(ExportFormat.DOCX_FROM_TEMPLATE)}>
             DOCX (из шаблона)

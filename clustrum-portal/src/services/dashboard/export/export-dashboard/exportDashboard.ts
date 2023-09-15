@@ -2,7 +2,7 @@ import { saveAs } from 'file-saver';
 import moment from 'moment';
 import {
   ExportFormat,
-  GenerateFileNameFormat,
+  dashboardExportFilename,
 } from '../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { Entry } from './types/Entry';
 import { Tab } from './types/Tab';
@@ -110,7 +110,7 @@ const exportToExcel = async (
 
           saveAs(
             new Blob([response.data], { type: response.headers['content-type'] }),
-            `${clientFileNameWithoutFormat}.${GenerateFileNameFormat(format, true)}`,
+            `${clientFileNameWithoutFormat}.${dashboardExportFilename(format)}`,
           );
 
           store.dispatch(endExport());

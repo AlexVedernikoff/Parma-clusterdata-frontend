@@ -21,7 +21,10 @@ import { ExportWidgetOptions } from './types/ExportWidgetOptions';
 import { WidgetData } from './types/WidgetData';
 import { clientFileName } from '../utils/clientFileName';
 import { startExportStatusTimer } from '../utils/startExportStatusTimer';
-import { GenerateFileNameFormat } from '@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
+import {
+  dashboardExportFilename,
+  widgetExportFilename,
+} from '@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import moment from 'moment';
 
 async function getStateUuid(
@@ -84,9 +87,8 @@ export const exportWidget = async (
 
           saveAs(
             new Blob([response.data], { type: response.headers['content-type'] }),
-            `${clientFileNameWithoutFormat}.${GenerateFileNameFormat(
+            `${clientFileNameWithoutFormat}.${widgetExportFilename(
               data.exportConfig.format,
-              false,
             )}`,
           );
 

@@ -311,7 +311,7 @@ export class WidgetContainer extends React.Component {
       item,
     } = this.props;
 
-    const { existsXlsxExportTemplate, existsDocxExportTemplate } =
+    const { hasExportTemplateXlsx, hasExportTemplateDocx } =
       editMode?.config?.shared || item || {};
 
     const theme = this.props.theme || settings.theme;
@@ -389,8 +389,8 @@ export class WidgetContainer extends React.Component {
             }}
             onChange={this.onChange}
             exportWidget={exportWidget}
-            existsXlsxExportTemplate={existsXlsxExportTemplate}
-            existsDocxExportTemplate={existsDocxExportTemplate}
+            hasExportTemplateXlsx={hasExportTemplateXlsx}
+            hasExportTemplateDocx={hasExportTemplateDocx}
           />
         )}
       </div>

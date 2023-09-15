@@ -73,8 +73,8 @@ import {
   selectVisualization,
   selectVisualizationType,
   selectOrderBy,
-  selectExistsXlsxExportTemplate,
-  selectExistsDocxExportTemplate,
+  selectHasExportTemplateXlsx,
+  selectHasExportTemplateDocx,
 } from '../../../../../reducers/visualization';
 
 import {
@@ -146,8 +146,8 @@ class SectionVisualization extends Component {
       paginateInfo,
       diagramMagnitude,
       exportLimit,
-      existsXlsxExportTemplate,
-      existsDocxExportTemplate,
+      hasExportTemplateXlsx,
+      hasExportTemplateDocx,
     } = this.props;
 
     const { items } = placeholder;
@@ -258,8 +258,8 @@ class SectionVisualization extends Component {
               paginateInfo,
               diagramMagnitude,
               exportLimit,
-              existsXlsxExportTemplate,
-              existsDocxExportTemplate,
+              hasExportTemplateXlsx,
+              hasExportTemplateDocx,
             });
           }}
         />
@@ -338,8 +338,8 @@ class SectionVisualization extends Component {
       mapLayerOpacity,
       setMapLayerOpacity,
       setExportLimit,
-      existsXlsxExportTemplate,
-      existsDocxExportTemplate,
+      hasExportTemplateXlsx,
+      hasExportTemplateDocx,
     } = this.props;
 
     visualization.placeholders.forEach(p => this.fillDatasetName(p.items, dimensions));
@@ -461,8 +461,8 @@ class SectionVisualization extends Component {
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
-                    existsXlsxExportTemplate,
-                    existsDocxExportTemplate,
+                    hasExportTemplateXlsx,
+                    hasExportTemplateDocx,
                   });
                 } else if (action === 'insert') {
                   this.setState({
@@ -501,8 +501,8 @@ class SectionVisualization extends Component {
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
-                      existsXlsxExportTemplate,
-                      existsDocxExportTemplate,
+                      hasExportTemplateXlsx,
+                      hasExportTemplateDocx,
                     });
                   } else {
                     this.setState({
@@ -565,8 +565,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               }}
             />
@@ -618,8 +618,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
               onUpdate: items => {
@@ -648,8 +648,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -702,8 +702,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -748,8 +748,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -794,8 +794,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -855,8 +855,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -897,8 +897,8 @@ class SectionVisualization extends Component {
                   paginateInfo: { page: 0, pageSize: paginateInfo.pageSize },
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -939,8 +939,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -981,8 +981,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1020,8 +1020,8 @@ class SectionVisualization extends Component {
                   diagramMagnitude,
                   mapLayerOpacity,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1064,8 +1064,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1115,8 +1115,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude: newValue[0],
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1153,8 +1153,8 @@ class SectionVisualization extends Component {
                   diagramMagnitude,
                   mapLayerOpacity: value,
                   exportLimit,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1198,8 +1198,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit: text,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
               onBlur: e => {
@@ -1224,8 +1224,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit: e.target.value,
-                  existsXlsxExportTemplate,
-                  existsDocxExportTemplate,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1481,8 +1481,8 @@ const mapStateToProps = createStructuredSelector({
   steppedLayoutIndentation: selectSteppedLayoutIndentation,
   paginateInfo: selectPaginateInfo,
   selectOrderBy: selectOrderBy,
-  existsXlsxExportTemplate: selectExistsXlsxExportTemplate,
-  existsDocxExportTemplate: selectExistsDocxExportTemplate,
+  hasExportTemplateXlsx: selectHasExportTemplateXlsx,
+  hasExportTemplateDocx: selectHasExportTemplateDocx,
 
   dataset: selectDataset,
   datasetError: selectDatasetError,

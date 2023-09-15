@@ -54,8 +54,8 @@ const initialState = {
   },
   exportLimit: 10000,
   orderBy: null,
-  existsXlsxExportTemplate: false,
-  existsDocxExportTemplate: false,
+  hasExportTemplateXlsx: false,
+  hasExportTemplateDocx: false,
 };
 
 export function visualization(state = initialState, action) {
@@ -612,7 +612,7 @@ export const selectOrderBy = state => state.visualization.orderBy;
 export const selectDiagramMagnitude = state => state.visualization.diagramMagnitude;
 export const selectMapLayerOpacity = state => state.visualization.mapLayerOpacity;
 export const selectExportLimit = state => state.visualization.exportLimit;
-export const selectExistsXlsxExportTemplate = state =>
-  state.visualization.existsXlsxExportTemplate;
-export const selectExistsDocxExportTemplate = state =>
-  state.visualization.existsDocxExportTemplate;
+export const selectHasExportTemplateXlsx = state =>
+  state.visualization.hasExportTemplateXlsx;
+export const selectHasExportTemplateDocx = state =>
+  state.visualization.hasExportTemplateDocx;
