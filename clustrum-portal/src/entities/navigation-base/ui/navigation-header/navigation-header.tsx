@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Button, Dropdown, Input, Space } from 'antd';
-import { DownOutlined, SearchOutlined } from '@ant-design/icons';
+import { CloseOutlined, DownOutlined, SearchOutlined } from '@ant-design/icons';
 import { MenuInfo } from 'rc-menu/lib/interface';
 // TODO: не по FSD, надо куда-то переместить
 import { Header } from '@entities/header';
@@ -24,11 +24,16 @@ export function NavigationHeader(props: NavigationHeaderProps): ReactElement {
 
   const formatPlace = place || '';
 
+  const clearInput = searchValue && (
+    <CloseOutlined onClick={(): void => onChangeFilter('')} />
+  );
+
   const inputSearch = (
     <Input
       className="ant-d-input-search"
       placeholder="Найти"
       prefix={<SearchOutlined />}
+      suffix={clearInput}
       onChange={(event): void => {
         onChangeFilter(event.target.value);
       }}
