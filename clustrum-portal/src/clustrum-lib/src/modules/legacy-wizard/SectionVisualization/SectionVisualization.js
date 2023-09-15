@@ -23,7 +23,7 @@ import {
   MEASURE_TYPE,
 } from '../../../../../constants';
 
-import { DndContainer, checkDndActionAvailability } from '@lib-shared/ui/drag-n-drop';
+import { checkDndActionAvailability } from '@lib-shared/ui/drag-n-drop';
 
 import DialogFilter from '../components/Dialogs/DialogFilter';
 
@@ -85,7 +85,6 @@ import {
 
 import { CastIconsFactory } from '@lib-shared/ui/cast-icons-factory';
 
-import Select from '../../../../../../kamatech_modules/lego-on-react/es-modules-src/components/select/select.react';
 import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 import { VisualizationType } from '@lib-entities/visualization-factory/types';
@@ -198,23 +197,23 @@ class SectionVisualization extends Component {
     };
 
     return (
-      <div key={`placeholder-${placeholder.id}`} className={'subcontainer'}>
-        <div className="subheader">
-          <div className="placeholder-icon">{placeholder.icon}</div>
-          <span>{placeholderTitleLabels[placeholder.title]}</span>
-        </div>
-        <DndContainer
-          id={`placeholder-container-${placeholder.id}`}
-          capacity={placeholder.capacity}
-          allowedTypes={placeholder.allowedTypes}
-          isNeedRemove
-          isNeedSwap
-          highlightDropPlace
-          items={items}
-          itemsClassName="placeholder-item"
-          wrapTo={this.renderDatasetItem}
-          disabled={datasetError}
-          onItemClick={(e, item) => {
+      <VisualizationFactory
+        key={`placeholder-${placeholder.id}`}
+        title={placeholderTitleLabels[placeholder.title]}
+        type={VisualizationType.DndContainer}
+        icon={placeholder.icon}
+        containerProps={{
+          id: `placeholder-container-${placeholder.id}`,
+          capacity: placeholder.capacity,
+          allowedTypes: placeholder.allowedTypes,
+          isNeedRemove: true,
+          isNeedSwap: true,
+          highlightDropPlace: true,
+          items: items,
+          itemsClassName: 'placeholder-item',
+          wrapTo: this.renderDatasetItem,
+          disabled: datasetError,
+          onItemClick: (e, item) => {
             if (
               ['flat-table-columns', 'measures', 'dimensions'].includes(placeholder.id)
             ) {
@@ -225,14 +224,13 @@ class SectionVisualization extends Component {
                 dialogCallBack: this.handleDialogActions,
               });
             }
-          }}
-          onUpdate={items => {
+          },
+          onUpdate: items => {
             setVisualizationPlaceholderItems({
               visualization,
               placeholder,
               items,
             });
-
             updatePreview({
               dataset,
               dimensions,
@@ -255,9 +253,9 @@ class SectionVisualization extends Component {
               diagramMagnitude,
               exportLimit,
             });
-          }}
-        />
-      </div>
+          },
+        }}
+      />
     );
   };
 
@@ -337,15 +335,42 @@ class SectionVisualization extends Component {
     visualization.placeholders.forEach(p => this.fillDatasetName(p.items, dimensions));
     this.fillDatasetName(filters, dimensions);
 
-    let coordsItems = ['EPSG:4326', 'EPSG:3857'];
+    const coordsItems = [
+      {
+        label: 'EPSG:4326',
+        value: 'EPSG:4326',
+      },
+      {
+        label: 'EPSG:3857',
+        value: 'EPSG:3857',
+      },
+    ];
 
     const nullAliasItems = [
-      NullAlias.NULL,
-      NullAlias.EMPTY,
-      NullAlias.DASH,
-      NullAlias.NO_DATA,
-      NullAlias.UNDEFINED,
-      NullAlias.ZERO,
+      {
+        label: 'Без подписи',
+        value: NullAlias.NULL,
+      },
+      {
+        label: 'Пустая строка " "',
+        value: NullAlias.EMPTY,
+      },
+      {
+        label: '"—"',
+        value: NullAlias.DASH,
+      },
+      {
+        label: '"Нет данных"',
+        value: NullAlias.NO_DATA,
+      },
+      {
+        label: '"Не указано"',
+        value: NullAlias.UNDEFINED,
+      },
+      {
+        label: 'Значение "0"',
+        value: NullAlias.ZERO,
+      },
     ];
 
     const diagramMagnitudeItems = [
@@ -642,26 +667,12 @@ class SectionVisualization extends Component {
             title="Система координат"
             type={VisualizationType.Select}
             className="subitem"
-            containerContent={coordsItems.map((coordType, i) => {
-              return (
-                <Select.Item key={`coordType-${i}`} val={coordType}>
-                  {coordType}
-                </Select.Item>
-              );
-            })}
             containerProps={{
-              theme: 'normal',
-              size: 'm',
-              view: 'default',
-              tone: 'default',
-              type: 'radio',
-              placeholder: 'size m',
-              width: 'max',
               options: coordsItems,
-              val: coordType,
+              value: coordType,
               onChange: newValue => {
                 setCoordType({
-                  coordType: newValue[0],
+                  coordType: newValue,
                 });
                 updatePreview({
                   dataset,
@@ -671,7 +682,7 @@ class SectionVisualization extends Component {
                   filters,
                   colors,
                   sort,
-                  coordType: newValue[0],
+                  coordType: newValue,
                   titleLayerSource,
                   clusterPrecision,
                   updates,
@@ -695,15 +706,11 @@ class SectionVisualization extends Component {
             type={VisualizationType.TextInput}
             className="subitem"
             containerProps={{
-              text: titleLayerSource,
-              widthSize: 'm',
-              theme: 'normal',
-              size: 'm',
-              view: 'default',
-              tone: 'default',
-              onChange: text => {
+              value: titleLayerSource,
+              type: 'text',
+              onChange: e => {
                 setTitleLayerSource({
-                  titleLayerSource: text,
+                  titleLayerSource: e.target.value,
                 });
               },
               onBlur: e => {
@@ -739,15 +746,11 @@ class SectionVisualization extends Component {
             type={VisualizationType.TextInput}
             className="subitem"
             containerProps={{
-              text: clusterPrecision,
-              widthSize: 'm',
-              theme: 'normal',
-              size: 'm',
-              view: 'default',
-              tone: 'default',
-              onChange: text => {
+              value: clusterPrecision,
+              type: 'text',
+              onChange: e => {
                 setClusterPrecision({
-                  clusterPrecision: text,
+                  clusterPrecision: e.target.value,
                 });
               },
               onBlur: e => {
@@ -782,33 +785,12 @@ class SectionVisualization extends Component {
             title="Подпись для пустых данных"
             type={VisualizationType.Select}
             className="subitem"
-            containerContent={nullAliasItems.map((nullAlias, i) => {
-              const nullAliasLabels = {
-                null: 'Без подписи',
-                empty: 'Пустая строка " "',
-                dash: '"—"',
-                'no-data': '"Нет данных"',
-                undefined: '"Не указано"',
-                zero: 'Значение "0"',
-              };
-              return (
-                <Select.Item key={`null-alias-${i}`} val={nullAlias}>
-                  {nullAliasLabels[nullAlias]}
-                </Select.Item>
-              );
-            })}
             containerProps={{
-              theme: 'normal',
-              size: 'n',
-              view: 'default',
-              tone: 'default',
-              type: 'radio',
-              width: 'max',
               options: nullAliasItems,
-              val: nullAlias,
+              value: nullAlias,
               onChange: newValue => {
                 setNullAlias({
-                  nullAlias: newValue[0],
+                  nullAlias: newValue,
                 });
                 updatePreview({
                   dataset,
@@ -822,7 +804,7 @@ class SectionVisualization extends Component {
                   titleLayerSource,
                   clusterPrecision,
                   updates,
-                  nullAlias: newValue[0],
+                  nullAlias: newValue,
                   needUniqueRows,
                   needTotal,
                   needAutoNumberingRows,
@@ -841,13 +823,9 @@ class SectionVisualization extends Component {
             title="Строки"
             type={VisualizationType.CheckBox}
             className="subitem"
+            containerContent="Показывать только уникальные строки"
             containerProps={{
-              theme: 'normal',
-              size: 'n',
-              view: 'default',
-              tone: 'default',
               checked: needUniqueRows,
-              text: 'Показывать только уникальные строки',
               onChange: () => {
                 setNeedUniqueRows({ needUniqueRows: !needUniqueRows });
                 updatePreview({
@@ -881,13 +859,9 @@ class SectionVisualization extends Component {
             title="Строка итоговых значений"
             type={VisualizationType.CheckBox}
             className="subitem"
+            containerContent="Показывать строку итоговых значений"
             containerProps={{
-              theme: 'normal',
-              size: 'n',
-              view: 'default',
-              tone: 'default',
               checked: needTotal,
-              text: 'Показывать строку итоговых значений',
               onChange: () => {
                 setNeedTotal({ needTotal: !needTotal });
                 updatePreview({
@@ -1040,24 +1014,11 @@ class SectionVisualization extends Component {
             title="Единицы измерения диаграммы"
             type={VisualizationType.Select}
             className="subitem"
-            containerContent={diagramMagnitudeItems.map((magnitudeItem, i) => {
-              return (
-                <Select.Item key={`measureItem-${i}`} val={magnitudeItem.value}>
-                  {magnitudeItem.label}
-                </Select.Item>
-              );
-            })}
             containerProps={{
-              theme: 'normal',
-              size: 'n',
-              view: 'default',
-              tone: 'default',
-              type: 'radio',
-              width: 'max',
               options: diagramMagnitudeItems,
-              val: diagramMagnitude,
+              value: diagramMagnitude,
               onChange: newValue => {
-                setDiagramMagnitude({ diagramMagnitude: newValue[0] });
+                setDiagramMagnitude({ diagramMagnitude: newValue });
                 updatePreview({
                   dataset,
                   dimensions,
@@ -1077,7 +1038,7 @@ class SectionVisualization extends Component {
                   needSteppedLayout,
                   steppedLayoutIndentation,
                   paginateInfo,
-                  diagramMagnitude: newValue[0],
+                  diagramMagnitude: newValue,
                   exportLimit,
                 });
               },
@@ -1087,10 +1048,12 @@ class SectionVisualization extends Component {
         {visualization.allowMapLayerOpacity && (
           <VisualizationFactory
             title="Прозрачность карты"
-            type={VisualizationType.RangePicker}
+            type={VisualizationType.Slider}
             className="subitem"
             containerProps={{
-              initialValue: mapLayerOpacity,
+              value: mapLayerOpacity,
+              min: 0,
+              max: 100,
               onChange: value => {
                 setMapLayerOpacity({ mapLayerOpacity: value });
                 updatePreview({
@@ -1123,19 +1086,14 @@ class SectionVisualization extends Component {
         {
           <VisualizationFactory
             title="Лимит экспортируемых записей"
-            type={VisualizationType.TextInput}
+            type={VisualizationType.NumberInput}
             className="subitem"
             containerProps={{
-              text: exportLimit,
-              widthSize: 'm',
-              theme: 'normal',
-              size: 'm',
-              view: 'default',
-              tone: 'default',
-              type: 'number',
-              onChange: text => {
+              value: exportLimit,
+              controls: true,
+              onChange: newValue => {
                 setExportLimit({
-                  exportLimit: text,
+                  exportLimit: newValue,
                 });
                 updatePreview({
                   dataset,
@@ -1157,7 +1115,7 @@ class SectionVisualization extends Component {
                   steppedLayoutIndentation,
                   paginateInfo,
                   diagramMagnitude,
-                  exportLimit: text,
+                  exportLimit: newValue,
                 });
               },
               onBlur: e => {

@@ -1,1 +1,1 @@
-export { VisualizationFactory } from './ui/visualization-factory';
+export { VisualizationFactory } from './ui/visualization-factory/visualization-factory';

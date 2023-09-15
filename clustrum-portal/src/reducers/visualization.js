@@ -37,7 +37,7 @@ const initialState = {
   filters: [],
   colors: [],
   sort: [],
-  coordType: '',
+  coordType: { label: '', value: '' },
   titleLayerSource: '',
   clusterPrecision: 0,
   nullAlias: NULL_ALIAS_DEFAULT_VALUE,

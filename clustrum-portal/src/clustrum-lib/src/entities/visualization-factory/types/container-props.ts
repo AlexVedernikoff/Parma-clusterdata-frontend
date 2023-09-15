@@ -1,8 +1,14 @@
 import { DndContainerProps, DndItemData } from '@lib-shared/ui/drag-n-drop/types';
-import { KamatechRangePicker } from '../../../../../../kamatech_modules/kamatech-ui/components/KamatechRangePicker/KamatechRangePicker.interface';
+import { CheckboxProps } from './checkbox-props';
+import { InputNumberProps } from './input-number-props';
+import { SliderProps } from './slider-props';
+import { InputTextProps } from './input-text-props';
+import { SelectProps } from './select-props';
 
-//TODO Добавить остальные типы вмсесто object после перевода на Ant 711988
 export type ContainerProps =
   | DndContainerProps<DndItemData>
-  | KamatechRangePicker
-  | object;
+  | SliderProps
+  | CheckboxProps
+  | InputNumberProps
+  | InputTextProps
+  | SelectProps;
