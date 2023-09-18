@@ -8,6 +8,11 @@ import { NAVIGATION_ENTRY_ACTIONS } from '../constants';
 import { getIconByScope } from '.';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 
+const stringSorter = (field: 'createdBy' | 'name') => (
+  a: NavigationEntryData,
+  b: NavigationEntryData,
+): number => (a[field] > b[field] ? 1 : -1);
+
 export const getNavigationTableColumns = ({
   handleToggleFavorite,
   onContextMenuClick,
@@ -22,26 +27,14 @@ export const getNavigationTableColumns = ({
         {name}
       </Space>
     ),
-    sorter: (a, b): number => {
-      if (a.name > b.name) {
-        return 1;
-      } else {
-        return -1;
-      }
-    },
+    sorter: stringSorter('name'),
     width: '30%',
   },
   {
     title: 'Автор',
     dataIndex: 'createdBy',
     key: 'createdBy',
-    sorter: (a, b): number => {
-      if (a.createdBy > b.createdBy) {
-        return 1;
-      } else {
-        return -1;
-      }
-    },
+    sorter: stringSorter('createdBy'),
   },
   {
     title: 'Дата создания',
