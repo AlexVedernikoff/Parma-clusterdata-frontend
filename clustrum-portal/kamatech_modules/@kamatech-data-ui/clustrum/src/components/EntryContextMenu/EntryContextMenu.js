@@ -118,25 +118,25 @@ class EntryContextMenuService extends React.PureComponent {
 
   onMenuClick = ({ entry, action }) => {
     switch (action) {
-      case ContextMenuActions.rename: {
+      case ContextMenuActions.Rename: {
         return this.renameEntry(entry);
       }
-      case ContextMenuActions.describe: {
+      case ContextMenuActions.Describe: {
         return this.describeEntry(entry);
       }
-      case ContextMenuActions.move: {
+      case ContextMenuActions.Move: {
         return this.moveEntry(entry);
       }
-      case ContextMenuActions.copy: {
+      case ContextMenuActions.Copy: {
         return this.copyEntry(entry);
       }
-      case ContextMenuActions.delete: {
+      case ContextMenuActions.Delete: {
         return this.deleteEntry(entry);
       }
-      case ContextMenuActions.access: {
+      case ContextMenuActions.Access: {
         return this.accessEntry(entry);
       }
-      case ContextMenuActions.copyLink: {
+      case ContextMenuActions.CopyLink: {
         // do nothing
         return false;
       }

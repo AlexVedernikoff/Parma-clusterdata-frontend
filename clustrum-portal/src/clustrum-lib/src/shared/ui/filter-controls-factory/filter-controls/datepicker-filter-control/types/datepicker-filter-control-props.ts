@@ -1,11 +1,9 @@
-import { DateParams } from '@lib-shared/ui/filter-controls-factory/types';
-
 export interface DatepickerFilterControlProps {
   className?: string;
   dateFormat?: string;
   label: string;
   maxDate?: string;
   minDate?: string;
-  defaultValue?: DateParams;
+  defaultValue?: string;
   onChange: ((value: string) => void) | null;
 }

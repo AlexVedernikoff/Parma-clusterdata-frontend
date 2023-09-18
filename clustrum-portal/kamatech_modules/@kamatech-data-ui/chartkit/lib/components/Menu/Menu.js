@@ -7,7 +7,6 @@ import { Dropdown, Button, Popup, Menu as LegoMenu } from 'lego-on-react';
 import withErrorBoundary from '../ErrorBoundary/withErrorBoundary';
 import { extend } from '../Icon/Icon';
 import { EllipsisOutlined } from '@ant-design/icons';
-import { ANT_TOKEN } from '@shared/config/theme';
 
 // import './Menu.scss';
 
@@ -64,14 +63,11 @@ class Menu extends React.PureComponent {
           view="default"
           tone="default"
           size="s"
-          cls={b('button')}
+          cls={`${b('button')} dropdown-horizontal-btn`}
           ref={this.dropdownRef}
           switcher={
             <Button>
-              <EllipsisOutlined
-                color={ANT_TOKEN.token.colorPrimary}
-                className="icon-ellipsis"
-              />
+              <EllipsisOutlined className="icon-ellipsis" />
             </Button>
           }
           popup={

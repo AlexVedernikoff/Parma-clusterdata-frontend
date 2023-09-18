@@ -67,7 +67,7 @@ class DatasetPreview extends React.Component {
             changeAmountPreviewRows={changeAmountPreviewRows}
             headerTitle="Предпросмотр"
             fieldDisplayRowsTitle="Количество строк:"
-            maxAmountRowsTitle="не более 10 000"
+            maxAmountRowsTitle="не более 100"
             datasetUpdated={datasetUpdated}
           />
           <PreviewTable preview={datasetPreview} />

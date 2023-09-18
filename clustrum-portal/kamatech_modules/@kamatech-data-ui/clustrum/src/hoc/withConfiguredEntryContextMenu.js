@@ -11,9 +11,9 @@ import iconAccessGroup from 'icons/access-group.svg';
 import { ContextMenuActions } from '@entities/navigation-base/types';
 
 const LIMITED_CONTEXT_MENU = [
-  ContextMenuActions.copy,
-  ContextMenuActions.access,
-  ContextMenuActions.copyLink,
+  ContextMenuActions.Copy,
+  ContextMenuActions.Access,
+  ContextMenuActions.CopyLink,
 ];
 
 export const getEntryContextMenuItems = ({ entry = {} } = {}) => {
@@ -31,27 +31,27 @@ export const getEntryContextMenuItems = ({ entry = {} } = {}) => {
     {
       icon: iconRename,
       text: TEXT.RENAME,
-      action: ContextMenuActions.rename,
+      action: ContextMenuActions.Rename,
     },
     {
       icon: iconRename,
       text: TEXT.DESCRIBE,
-      action: ContextMenuActions.describe,
+      action: ContextMenuActions.Describe,
     },
     {
       icon: iconDelete,
       text: TEXT.DELETE,
-      action: ContextMenuActions.delete,
+      action: ContextMenuActions.Delete,
     },
     {
       icon: iconMove,
       text: TEXT.MOVE,
-      action: ContextMenuActions.move,
+      action: ContextMenuActions.Move,
     },
     {
       icon: iconCopy,
       text: TEXT.COPY,
-      action: ContextMenuActions.copy,
+      action: ContextMenuActions.Copy,
     },
     {
       icon: iconCopyLink,
