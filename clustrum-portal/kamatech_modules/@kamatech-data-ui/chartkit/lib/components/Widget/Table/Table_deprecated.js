@@ -211,8 +211,10 @@ function _resultValue(value, type, grid, options, href, newWindow, hasArray) {
   return resultValue;
 }
 
-function _generateName({ id = 'id', name = 'name', shift, level, index }) {
-  return `${level}_${shift}_${index}_id=${id}_name=${name}`;
+function _generateName({ id = 'id', name = 'name', shift, level, index, parentName }) {
+  return `${level}_${shift}_${index}${
+    parentName ? `_parentName=${parentName}` : ''
+  }_id=${id}_name=${name}`;
 }
 
 function _getIdFromGeneratedName(generatedName) {
@@ -289,7 +291,7 @@ const handleCellClick = (context, row, field, columnName, prevSelectedCell, call
 };
 
 function _getColumnsAndNames(
-  { head, context, level = 0, shift = 0 },
+  { head, context, level = 0, shift = 0, parentName = '' },
   clickCallback,
   field,
   prevSelectedCell,
@@ -303,6 +305,7 @@ function _getColumnsAndNames(
             context,
             level: level + 1,
             shift: index,
+            parentName: parentName ? parentName + '_' + column.name : column.name,
           },
           clickCallback,
           field,
@@ -314,6 +317,7 @@ function _getColumnsAndNames(
           level,
           shift,
           index,
+          parentName,
         });
         result.columns.push({
           name: columnName,
@@ -330,7 +334,14 @@ function _getColumnsAndNames(
         result.names = result.names.concat(names);
       } else {
         const { id, name, type, css: columnCss, resultSchemaId, ...options } = column;
-        const columnName = _generateName({ id, name, level, shift, index });
+        const columnName = _generateName({
+          id,
+          name,
+          level,
+          shift,
+          index,
+          parentName,
+        });
 
         const columnData = {
           name: columnName,

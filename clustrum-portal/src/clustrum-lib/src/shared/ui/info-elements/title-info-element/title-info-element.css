@@ -4,8 +4,22 @@
   padding: 0 24px;
 }
 
-.title-info-element__title {
-  font-weight: 600;
+.title-info-element__title_l {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.title-info-element__title_m {
+  font-weight: 500;
   font-size: 20px;
-  line-height: 24px;
+}
+
+.title-info-element__title_s {
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.title-info-element__title_xs {
+  font-weight: 400;
+  font-size: 13px;
 }

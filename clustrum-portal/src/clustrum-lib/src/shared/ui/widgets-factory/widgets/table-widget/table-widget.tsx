@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Tooltip } from 'antd';
+import { useSelector } from 'react-redux';
 import { TableWidgetProps } from './types';
+import { selectNeedUniqueRows } from '../../../../../../../reducers/visualization';
 
 import './table-widget.css';
 
@@ -11,11 +13,21 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     title,
     totalRowsCount,
     onPageControlClicker,
-    paginateInfo: { page: initPage, pageSize: initPageSize },
+    paginateInfo: { page: initPage },
   } = props;
 
-  const [page, setPage] = useState(initPage);
-  const [pageSize, setPageSize] = useState(initPageSize);
+  const [initPageState, setInitPageState] = useState(initPage + 1);
+  const [page, setPage] = useState(initPageState);
+  const [pageSize, setPageSize] = useState(10);
+  const isNeedUniqueRows = useSelector(state => selectNeedUniqueRows(state));
+
+  useEffect(() => {
+    setInitPageState(1);
+
+    if (isNeedUniqueRows) {
+      setInitPageState(1);
+    }
+  }, [pageSize, isNeedUniqueRows]);
 
   useEffect(() => {
     onPageControlClicker(page, pageSize);
@@ -32,6 +44,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   });
 
   const changeHandler = (page: number, pageSize: number): void => {
+    setInitPageState(page);
     setPage(page - 1);
     setPageSize(pageSize);
   };
@@ -47,7 +60,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       scroll={{ y: '100%' }}
       pagination={{
         total: Number(totalRowsCount),
-        current: initPage + 1,
+        current: initPageState,
         defaultPageSize: 10,
         showTotal: (total: number): string => `Всего: ${total}`,
         onChange: changeHandler,

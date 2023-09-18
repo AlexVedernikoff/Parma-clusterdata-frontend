@@ -45,7 +45,7 @@ export const useSeries = (
                 show: false,
               },
               label: {
-                show: config.plotOptions.diagramMagnitude !== 'empty',
+                show: Boolean(config.plotOptions.diagramMagnitude),
                 position: 'inner',
                 formatter: (params): string => {
                   const measureType = config.plotOptions.diagramMagnitude;

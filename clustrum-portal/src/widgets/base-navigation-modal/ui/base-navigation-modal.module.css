@@ -1,0 +1,25 @@
+.base-navigation-modal {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  max-width: 1300px;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.base-navigation-modal__header {
+  padding: 16px 24px 8px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.base-navigation-modal__content {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.base-navigation-modal__navigation {
+  display: flex;
+  overflow: hidden;
+}

@@ -68,7 +68,10 @@ class Menu extends React.PureComponent {
           ref={this.dropdownRef}
           switcher={
             <Button>
-              <EllipsisOutlined color={ANT_TOKEN.token.colorPrimary} />
+              <EllipsisOutlined
+                color={ANT_TOKEN.token.colorPrimary}
+                className="icon-ellipsis"
+              />
             </Button>
           }
           popup={

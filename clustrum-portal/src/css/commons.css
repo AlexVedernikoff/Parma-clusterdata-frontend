@@ -771,6 +771,7 @@
 
 .yc-navigation__view {
   flex: 1 1 100%;
+  overflow: auto;
 }
 
 .yc-navigation__error {
@@ -3815,6 +3816,7 @@
   max-width: 1024px;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
 }
 
 .yc-navigation_modal .yc-navigation__entries {

@@ -50,6 +50,7 @@ class Dash extends React.PureComponent {
     defaultEntryId: PropTypes.string,
     hasRightSideContent: PropTypes.bool,
     onFiltersChange: PropTypes.func,
+    onTabChange: PropTypes.func,
   };
 
   componentDidMount() {
@@ -115,13 +116,19 @@ class Dash extends React.PureComponent {
   };
 
   render() {
-    const { widgetEditorUUID, title, hasRightSideContent, onFiltersChange } = this.props;
+    const {
+      widgetEditorUUID,
+      title,
+      hasRightSideContent,
+      onFiltersChange,
+      onTabChange,
+    } = this.props;
 
     return (
       <React.Fragment>
         {!BUILD_SETTINGS.isLib && <PageHead title={title} />}
         <Header hasRightSideContent={hasRightSideContent} />
-        <Body onFiltersChange={onFiltersChange} />
+        <Body onFiltersChange={onFiltersChange} onTabChange={onTabChange} />
         <Dialogs />
         <SideSlidingPanel
           title="Режим редактирования элемента"

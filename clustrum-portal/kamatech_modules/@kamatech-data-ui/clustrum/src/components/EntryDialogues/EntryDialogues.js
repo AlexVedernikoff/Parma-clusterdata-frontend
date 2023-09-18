@@ -16,6 +16,7 @@ export const ENTRY_DIALOG = {
   MOVE: 'move',
   RENAME: 'rename',
   DELETE: 'delete',
+  DESCRIBE: 'describe',
   CREATE_FOLDER: 'create_folder',
   CREATE_DASHBOARD: 'create_dashboard',
   SAVE_WIDGET: 'save_widget',

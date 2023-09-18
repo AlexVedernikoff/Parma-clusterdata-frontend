@@ -1,10 +1,20 @@
-import { ROUTES } from '@shared/lib/constants';
+import { ROUTES } from '@shared/config/routing/routes';
+import { Places } from '@shared/config/routing/places';
 
-export const MATCH_ROUTES = {
-  [ROUTES.connections]: [ROUTES.connections, ROUTES.connectionsInFolder],
-  [ROUTES.dashboards]: [ROUTES.dashboards, ROUTES.dashboardsInFolder],
-  [ROUTES.datasets]: [ROUTES.datasets, ROUTES.datasetsInFolder],
-  [ROUTES.navigation]: [ROUTES.root, ROUTES.navigation, ROUTES.navigationId],
-  [ROUTES.favorites]: [ROUTES.favorites, ROUTES.favoritesId],
-  [ROUTES.widgets]: [ROUTES.widgets, ROUTES.widgetsInFolder],
+export const MAP_PLACE_TO_ROUTE = {
+  [Places.Connections]: ROUTES.connections,
+  [Places.Dashboards]: ROUTES.dashboards,
+  [Places.Datasets]: ROUTES.datasets,
+  [Places.Root]: ROUTES.navigation,
+  [Places.Favorites]: ROUTES.favorites,
+  [Places.Widgets]: ROUTES.widgets,
+};
+
+export const MATCH_PLACE_TO_ROUTE = {
+  [Places.Connections]: [ROUTES.connections, ROUTES.connectionsInFolder],
+  [Places.Dashboards]: [ROUTES.dashboards, ROUTES.dashboardsInFolder],
+  [Places.Datasets]: [ROUTES.datasets, ROUTES.datasetsInFolder],
+  [Places.Root]: [ROUTES.root, ROUTES.navigation, ROUTES.navigationId],
+  [Places.Favorites]: [ROUTES.favorites, ROUTES.favoritesId],
+  [Places.Widgets]: [ROUTES.widgets, ROUTES.widgetsInFolder],
 };
