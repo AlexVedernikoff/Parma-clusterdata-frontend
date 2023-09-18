@@ -1351,6 +1351,15 @@
   font-weight: 700;
 }
 
+.dialog-pivot-table-container .subcontainer .subitem {
+  padding-bottom: 12px;
+  font-weight: 700;
+}
+
+.dialog-pivot-table-container .subcontainer .subheader {
+  margin: -5px 0 10px;
+}
+
 .visualization-container .subcontainer .subheader {
   margin: 0 20px -35px;
 }
@@ -2326,6 +2335,10 @@
 .chartkit-table__cell_type_date,
 .chartkit-table__cell_type_datetime {
   text-align: right;
+}
+
+.chartkit-table__cell_is-total-cell {
+  background-color: var(--ck-control-backgound);
 }
 
 .data-table__th {

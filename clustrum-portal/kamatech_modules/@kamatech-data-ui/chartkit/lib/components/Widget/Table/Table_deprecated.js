@@ -333,7 +333,15 @@ function _getColumnsAndNames(
         });
         result.names = result.names.concat(names);
       } else {
-        const { id, name, type, css: columnCss, resultSchemaId, ...options } = column;
+        const {
+          id,
+          name,
+          type,
+          css: columnCss,
+          resultSchemaId,
+          isTotalCell,
+          ...options
+        } = column;
         const columnName = _generateName({
           id,
           name,
@@ -346,7 +354,7 @@ function _getColumnsAndNames(
         const columnData = {
           name: columnName,
           header: <span className={b('head-cell')}>{name}</span>,
-          className: b('cell', { type }),
+          className: b('cell', { type, 'is-total-cell': isTotalCell }),
           render: ({ value }) => _valueFormatter(type, value, options),
           customStyle: ({ row, header, name }) => {
             if (header) {
