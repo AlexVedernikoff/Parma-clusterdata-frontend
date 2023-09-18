@@ -444,12 +444,13 @@ class DatasetTable extends React.Component {
           tabIndex={tabIndex}
           text={value}
           onFocus={this.onFocusTextInput}
-          onBlur={e =>
-            this.changeTitle({
+          onBlur={e => {
+            if (!e.target.value) return;
+            return this.changeTitle({
               row,
               title: e.target.value,
-            })
-          }
+            });
+          }}
         />
       );
     },
