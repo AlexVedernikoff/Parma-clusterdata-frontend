@@ -259,8 +259,7 @@ class Header extends React.PureComponent {
       tab => tab.id === dash?.tabId,
     );
 
-    const { hasExportTemplateXlsx = true, hasExportTemplateDocx = true } =
-      selectedTab ?? {};
+    const { hasExportTemplateXlsx, hasExportTemplateDocx } = selectedTab ?? {};
 
     const exportItems = [
       {
