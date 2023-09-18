@@ -9,7 +9,7 @@ import {
 } from './types';
 import { NOTIFY_TYPES } from '@kamatech-data-ui/clustrum/src/constants/common';
 import { VisualizationType } from '@clustrum-lib/entities/visualization-factory/types';
-import { getDialogPivotTableFields } from './helper';
+import { pivotTableDialogFields } from './helper';
 import { VisualizationFactory } from '@clustrum-lib/entities/visualization-factory';
 
 export const DialogPivotTableBody = <T extends IItem>({
@@ -68,23 +68,26 @@ export const DialogPivotTableBody = <T extends IItem>({
   return (
     <div className="dialog-pivot-table-container">
       <div className="subcontainer">
-        {getDialogPivotTableFields(placeholderType).map(({ text, type, id }) => (
-          <div key={`${id}__${text}`} className="subitem">
-            <VisualizationFactory
-              title={type === VisualizationType.TextInput ? text : ''}
-              type={type}
-              className="subitem"
-              containerProps={{
-                theme: 'normal',
-                size: 'n',
-                view: 'default',
-                checked: subTotalsSettings[id],
-                text: type === VisualizationType.TextInput ? subTotalsSettings[id] : text,
-                onChange: onChangeFields(id, type),
-              }}
-            />
-          </div>
-        ))}
+        {pivotTableDialogFields(placeholderType)
+          .filter(({ visible }) => visible)
+          .map(({ text, type, id }) => (
+            <div key={`${id}__${text}`} className="subitem">
+              <VisualizationFactory
+                title={type === VisualizationType.TextInput ? text : ''}
+                type={type}
+                className="subitem"
+                containerProps={{
+                  theme: 'normal',
+                  size: 'n',
+                  view: 'default',
+                  checked: subTotalsSettings[id],
+                  text:
+                    type === VisualizationType.TextInput ? subTotalsSettings[id] : text,
+                  onChange: onChangeFields(id, type),
+                }}
+              />
+            </div>
+          ))}
       </div>
       <FormulaEditor
         sdk={sdk}
@@ -95,6 +98,7 @@ export const DialogPivotTableBody = <T extends IItem>({
         isVisibleFunctionManual={false}
         aceModeUrl={aceModeUrl}
         onChange={validateFormula}
+        hidden={true}
       />
     </div>
   );

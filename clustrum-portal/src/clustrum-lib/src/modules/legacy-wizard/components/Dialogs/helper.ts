@@ -1,17 +1,19 @@
 import { ISubTotalsSettings } from './types';
 import { VisualizationType } from '@clustrum-lib/entities/visualization-factory/types';
 
-export const getDialogPivotTableFields = (
+export const pivotTableDialogFields = (
   placeholderType: string,
 ): Array<{
   id: keyof ISubTotalsSettings;
   text: string;
   type: VisualizationType;
+  visible: boolean;
 }> => [
   {
     id: 'needSubTotal',
     text: 'Подытоги',
     type: VisualizationType.CheckBox,
+    visible: true,
   },
   {
     id: 'showBefore',
@@ -19,10 +21,12 @@ export const getDialogPivotTableFields = (
       ? 'Расположить строку с итогами сверху'
       : 'Расположить столбец с итогами слева',
     type: VisualizationType.CheckBox,
+    visible: false,
   },
   {
     id: 'customName',
     text: 'Пользовательское название:',
     type: VisualizationType.TextInput,
+    visible: false,
   },
 ];
