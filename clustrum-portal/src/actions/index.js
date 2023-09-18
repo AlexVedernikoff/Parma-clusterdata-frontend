@@ -903,7 +903,6 @@ export function fetchWidget({ entryId, preview, sdk }) {
         // Проставляем визуализацию и все ее параметры (какие поля выбраны)
         dispatch(setVisualization({ visualization }));
 
-        // Проставляем подписи
         dispatch(
           setSettingsExportTemplate({ hasExportTemplateXlsx, hasExportTemplateDocx }),
         );
