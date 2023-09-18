@@ -50,6 +50,8 @@ class Export extends React.PureComponent {
     element: PropTypes.object.isRequired,
     runPayload: PropTypes.object.isRequired,
     exportWidget: PropTypes.func,
+    hasExportTemplateXlsx: PropTypes.bool,
+    hasExportTemplateDocx: PropTypes.bool,
   };
 
   state = Object.assign(
@@ -61,6 +63,17 @@ class Export extends React.PureComponent {
     },
     getStorageState(),
   );
+
+  componentDidMount() {
+    const { hasExportTemplateXlsx, hasExportTemplateDocx } = this.props;
+
+    if (
+      (!hasExportTemplateXlsx && this.state.format === ExportFormat.XLSX_FROM_TEMPLATE) ||
+      (!hasExportTemplateDocx && this.state.format === ExportFormat.DOCX_FROM_TEMPLATE)
+    ) {
+      this.setState({ format: ExportFormat.XLSX });
+    }
+  }
 
   onApply = () => {
     const { exportWidget, runPayload } = this.props;
@@ -91,7 +104,14 @@ class Export extends React.PureComponent {
   }
 
   renderSettings() {
-    if ([ExportFormat.XLSX, ExportFormat.XLS].includes(this.state.format)) {
+    if (
+      [
+        ExportFormat.XLSX,
+        ExportFormat.XLS,
+        ExportFormat.XLSX_FROM_TEMPLATE,
+        ExportFormat.DOCX_FROM_TEMPLATE,
+      ].includes(this.state.format)
+    ) {
       return null;
     }
 
@@ -143,22 +163,43 @@ class Export extends React.PureComponent {
   }
 
   render() {
+    const { hasExportTemplateXlsx, hasExportTemplateDocx } = this.props;
+
+    const radioButtons = [
+      <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>,
+      <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>,
+      <RadioButton.Radio value={ExportFormat.CSV}>CSV</RadioButton.Radio>,
+      hasExportTemplateXlsx && (
+        <RadioButton.Radio value={ExportFormat.XLSX_FROM_TEMPLATE}>
+          XLSX (из шаблона)
+        </RadioButton.Radio>
+      ),
+      hasExportTemplateDocx && (
+        <RadioButton.Radio value={ExportFormat.DOCX_FROM_TEMPLATE}>
+          DOCX (из шаблона)
+        </RadioButton.Radio>
+      ),
+    ].filter(Boolean);
+
     return (
       <Modal element={this.props.element}>
         <Modal.Header caption="Экспорт данных" />
-        <Modal.Body className={b()}>
+        <Modal.Body
+          className={b({
+            'export-xlsx-docx': hasExportTemplateXlsx || hasExportTemplateDocx,
+          })}
+        >
           <Block title="Формат">
             <RadioButton
               theme="normal"
               view="default"
               tone="default"
-              size="m"
+              size="s"
               value={this.state.format}
+              freeWidth={true}
               onChange={event => this.changeFormat(event.target.value)}
             >
-              <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>
-              <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>
-              <RadioButton.Radio value={ExportFormat.CSV}>CSV</RadioButton.Radio>
+              {radioButtons}
             </RadioButton>
           </Block>
           {this.renderSettings()}
@@ -176,7 +217,14 @@ export default {
   title: 'Экспорт данных',
   icon: <Icon size="20" name="download" />,
   isVisible: ({ loadedData: { data } = {} }) => Boolean(data),
-  action: ({ event, anchorNode, runPayload, options, exportWidget }) => {
+  action: ({
+    event,
+    anchorNode,
+    runPayload,
+    exportWidget,
+    hasExportTemplateXlsx,
+    hasExportTemplateDocx,
+  }) => {
     if (event.ctrlKey || event.metaKey) {
       if (exportWidget) {
         exportWidget(runPayload);
@@ -189,6 +237,8 @@ export default {
           element={anchorNode}
           runPayload={runPayload}
           exportWidget={exportWidget}
+          hasExportTemplateXlsx={hasExportTemplateXlsx}
+          hasExportTemplateDocx={hasExportTemplateDocx}
         />,
         anchorNode,
       );

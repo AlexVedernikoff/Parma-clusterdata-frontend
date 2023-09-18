@@ -262,6 +262,8 @@ export function fetchDataset({ datasetId, sdk }) {
             steppedLayoutIndentation,
             paginateInfo,
             labels,
+            hasExportTemplateXlsx,
+            hasExportTemplateDocx,
           } = {},
         } = getState();
 
@@ -295,6 +297,8 @@ export function fetchDataset({ datasetId, sdk }) {
             paginateInfo,
             labels,
             updates,
+            hasExportTemplateXlsx,
+            hasExportTemplateDocx,
           }),
         );
       })
@@ -331,6 +335,8 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
         steppedLayoutIndentation,
         paginateInfo,
         labels,
+        hasExportTemplateXlsx,
+        hasExportTemplateDocx,
       } = {},
     } = getState();
 
@@ -474,6 +480,8 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
           paginateInfo,
           labels,
           updates: fullUpdates,
+          hasExportTemplateXlsx,
+          hasExportTemplateDocx,
         }),
       );
     } catch (e) {
@@ -619,6 +627,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
     let diagramMagnitude;
     let mapLayerOpacity;
     let exportLimit;
+    let hasExportTemplateXlsx;
+    let hasExportTemplateDocx;
 
     sdk
       .getWidget({ entryId })
@@ -656,6 +666,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
           updates,
           mapLayerOpacity,
           exportLimit,
+          hasExportTemplateXlsx,
+          hasExportTemplateDocx,
         } = data.data);
 
         diagramMagnitude = diagramMagnitude || MEASURE_TYPE.ABSOLUTE;
@@ -740,6 +752,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
           labels,
           diagramMagnitude,
           mapLayerOpacity,
+          hasExportTemplateXlsx,
+          hasExportTemplateDocx,
         });
 
         const searchPairs = decodeURI(location.search).match(/[^&?]+=[^&]+/g);
@@ -913,6 +927,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
             diagramMagnitude,
             mapLayerOpacity,
             exportLimit,
+            hasExportTemplateXlsx,
+            hasExportTemplateDocx,
           }),
         );
       })
@@ -984,6 +1000,8 @@ export function setVisualization({ visualization }) {
       needSteppedLayout: state.visualization.needSteppedLayout,
       steppedLayoutIndentation: state.visualization.steppedLayoutIndentation,
       paginateInfo: state.visualization.paginateInfo,
+      hasExportTemplateXlsx: state.visualization.hasExportTemplateXlsx,
+      hasExportTemplateDocx: state.visualization.hasExportTemplateDocx,
     };
   };
 }
