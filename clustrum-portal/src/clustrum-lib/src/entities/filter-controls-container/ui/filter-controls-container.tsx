@@ -14,6 +14,7 @@ import { getParamsValue } from '@lib-shared/lib/utils';
 import styles from './filter-controls-container.module.css';
 import { filterControlsContainerModel } from '../model/filter-controls-container-model';
 
+// вынесено на уровень модуля, потому что ref иногда сбрасывается, почему -- неясно
 let previousFilters = '';
 
 export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.Element {
