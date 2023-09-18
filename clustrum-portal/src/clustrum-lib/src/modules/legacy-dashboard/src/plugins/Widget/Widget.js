@@ -138,6 +138,7 @@ class PluginWidget extends React.PureComponent {
       ownWidgetParams,
       exportWidget,
       orderBy,
+      item,
     } = this.props;
     const { params: dashParams } = this.state;
     const { description } = data[tabIndex];
@@ -170,6 +171,7 @@ class PluginWidget extends React.PureComponent {
             ownWidgetParams={ownWidgetParams}
             orderBy={orderBy}
             exportWidget={exportWidget}
+            item={item}
           />
         </div>
         {description && <div className={b('description')}>{description}</div>}

@@ -1,6 +1,9 @@
 import { saveAs } from 'file-saver';
 import moment from 'moment';
-import { ExportFormat } from '../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
+import {
+  ExportFormat,
+  dashboardExportFilename,
+} from '../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { Entry } from './types/Entry';
 import { Tab } from './types/Tab';
 import { PORTAL_PATH } from '../../../../context-path';
@@ -18,10 +21,6 @@ import {
   TIME_BETWEEN_EXPORT_STATUS_REQUESTS,
 } from '../consts/timer-consts';
 import { clientFileName } from '../utils/clientFileName';
-
-const generateFileNameFormat = (format: ExportFormat) => {
-  return format === ExportFormat.CSV ? ExportFormat.ZIP : format;
-};
 
 const exportedPagesUrl = (url: string, tabId: string, stateUuid: string) => {
   const baseUrl = `${url}?tab=${tabId}&hide-header-btns=true&export-mode=true`;
@@ -88,6 +87,7 @@ const exportToExcel = async (
   const clientFileNameWithoutFormat = clientFileName(entry.name, tab.title);
 
   const data = {
+    createdAt: moment().format(),
     dashboardId: entry.entryId,
     tabId: tab.id,
     exportConfig,
@@ -110,7 +110,7 @@ const exportToExcel = async (
 
           saveAs(
             new Blob([response.data], { type: response.headers['content-type'] }),
-            `${clientFileNameWithoutFormat}.${generateFileNameFormat(format)}`,
+            `${clientFileNameWithoutFormat}.${dashboardExportFilename(format)}`,
           );
 
           store.dispatch(endExport());
