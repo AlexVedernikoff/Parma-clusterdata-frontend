@@ -15,6 +15,7 @@ const b = block('formula-editor');
 class FormulaEditor extends React.Component {
   static defaultProps = {
     isVisibleFunctionManual: false,
+    hidden: false,
   };
 
   static propTypes = {
@@ -27,6 +28,7 @@ class FormulaEditor extends React.Component {
     onChange: PropTypes.func.isRequired,
     isVisibleFunctionManual: PropTypes.bool,
     modePath: PropTypes.string,
+    hidden: PropTypes.bool,
   };
 
   state = {
@@ -112,12 +114,13 @@ class FormulaEditor extends React.Component {
       modePath,
       isVisibleFunctionManual,
       onChange,
+      hidden,
     } = this.props;
     const { searchKeyword } = this.state;
     const { endpoints: { docsSyntax } = {} } = $appSettingsStore.getState();
 
     return (
-      <div className={b()}>
+      <div className={b()} hidden={hidden}>
         <div className={b('columns')}>
           <div className={b('column-left')}>
             <div className={b('search-field')}>
