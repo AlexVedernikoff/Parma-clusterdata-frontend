@@ -14,13 +14,14 @@ import { getParamsValue } from '@lib-shared/lib/utils';
 import styles from './filter-controls-container.module.css';
 import { filterControlsContainerModel } from '../model/filter-controls-container-model';
 
+let previousFilters = '';
+
 export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.Element {
   const { data, defaults, params } = props;
 
   const [status, setStatus] = useState<LoadStatus>(LoadStatus.Pending);
   const [scheme, setScheme] = useState<LoadedDataScheme[] | null>(null);
   const previousControlData = useRef<DashboardControlsData | null>(null);
-  const previousFilters = useRef<string | null>(null);
 
   useEffect(() => {
     if (!isMatch(previousControlData.current ?? {}, data)) {
@@ -41,9 +42,9 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
   const filters = getFilters();
 
   useEffect(() => {
-    if (previousFilters.current !== filters) {
+    if (previousFilters !== filters) {
       init();
-      previousFilters.current = filters;
+      previousFilters = filters;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
