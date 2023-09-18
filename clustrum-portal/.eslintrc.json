@@ -8,6 +8,7 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:boundaries/recommended",
     "prettier"
   ],
   "overrides": [],
@@ -16,11 +17,74 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["import", "react", "@typescript-eslint"],
+  "plugins": ["import", "react", "@typescript-eslint", "boundaries"],
   "settings": {
     "react": {
       "version": "detect"
-    }
+    },
+    "import/resolver": {
+      "typescript": {},
+      "alias": {
+        "map": [
+          ["@pages", "./src/pages"],
+          ["@widgets", "./src/widgets"],
+          ["@features", "./src/features"],
+          ["@entities", "./src/entities"],
+          ["@shared", "./src/shared"],
+          ["@clustrum-lib", "./src/clustrum-lib/src"],
+          ["@clustrum-lib-legacy", "./src/clustrum-lib/src/legacy-index.ts"],
+          ["@lib-modules", "./src/clustrum-lib/src/modules"],
+          ["@lib-widgets", "./src/clustrum-lib/src/widgets"],
+          ["@lib-features", "./src/clustrum-lib/src/features"],
+          ["@lib-entities", "./src/clustrum-lib/src/entities"],
+          ["@lib-shared", "./src/clustrum-lib/src/shared"]
+        ],
+        "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"]
+      }
+    },
+    "boundaries/elements": [
+      {
+        "type": "pages",
+        "pattern": "src/pages/*"
+      },
+      {
+        "type": "widgets",
+        "pattern": "src/widgets/*"
+      },
+      {
+        "type": "features",
+        "pattern": "src/features/*"
+      },
+      {
+        "type": "entities",
+        "pattern": "src/entities/*"
+      },
+      {
+        "type": "shared",
+        "pattern": "src/shared/*"
+      },
+      {
+        "type": "lib-modules",
+        "pattern": "src/clustrum-lib/src/modules/*"
+      },
+      {
+        "type": "lib-widgets",
+        "pattern": "src/clustrum-lib/src/widgets/*"
+      },
+      {
+        "type": "lib-features",
+        "pattern": "src/clustrum-lib/src/features/*"
+      },
+      {
+        "type": "lib-entities",
+        "pattern": "src/clustrum-lib/src/entities/*"
+      },
+      {
+        "type": "lib-shared",
+        "pattern": "src/clustrum-lib/src/shared/*",
+        "capture": ["segment"]
+      }
+    ]
   },
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "error",
@@ -39,6 +103,30 @@
           {
             "group": ["*"],
             "importNames": ["*"]
+          },
+          {
+            "group": ["../**/clustrum-lib/src"],
+            "message": "Relative import from clustrum-lib is forbidden"
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives, use alias @pages instead",
+            "group": ["../**/pages"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives, use alias @widgets instead",
+            "group": ["../**/widgets"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives, use alias @features instead",
+            "group": ["../**/features"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives, use alias @entities instead",
+            "group": ["../**/entites"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives, use alias @shared instead",
+            "group": ["../**/shared"]
           }
         ]
       }
@@ -55,6 +143,62 @@
     "react/destructuring-assignment": ["error", "always"],
     "max-params": ["error", 3],
     "max-depth": ["error", 3],
-    "react/display-name": "error"
+    "react/display-name": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "off",
+    "boundaries/element-types": [
+      "error",
+      {
+        "default": "disallow",
+        "rules": [
+          {
+            "from": "pages",
+            "allow": ["widgets", "features", "entities", "shared"]
+          },
+          {
+            "from": ["widgets"],
+            "allow": ["features", "entities", "shared"]
+          },
+          {
+            "from": "features",
+            "allow": ["features", "entities", "shared"]
+          },
+          {
+            "from": "entities",
+            "allow": ["shared"]
+          },
+          {
+            "from": "shared",
+            "allow": ["shared"]
+          },
+          {
+            "from": "lib-modules",
+            "allow": ["lib-widgets", "lib-features", "lib-entities", "lib-shared"]
+          },
+          {
+            "from": "lib-widgets",
+            "allow": ["lib-features", "lib-entities", "lib-shared"]
+          },
+          {
+            "from": "lib-features",
+            "allow": ["lib-features", "lib-entities", "lib-shared"]
+          },
+          {
+            "from": "lib-entities",
+            "allow": ["lib-shared"]
+          },
+          {
+            "from": [["lib-shared", { "segment": "ui" }]],
+            "allow": [["lib-shared", { "segment": ["config", "lib", "types"] }]],
+            "message": "@lib-shared/ui is not allowed to import @${dependency.type}/${dependency.segment}"
+          },
+          {
+            "from": [["lib-shared", { "segment": "api" }]],
+            "allow": ["lib-shared"]
+          }
+        ],
+        "message": "@${file.type} is not allowed to import @${dependency.type}"
+      }
+    ]
   }
 }
