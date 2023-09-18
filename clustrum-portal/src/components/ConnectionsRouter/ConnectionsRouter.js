@@ -40,33 +40,33 @@ class ConnectionsRouter extends PureComponent {
             <Route
               path={'/connections/new'}
               render={() => (
-                <Switch>
-                  <Route
-                    exact
-                    path={'/connections/new'}
-                    render={props => (
-                      <PageContainer>
-                        <Connectors {...props} sdk={sdk} />
-                      </PageContainer>
-                    )}
-                  />
-                  <Route
-                    path={'/connections/new/:connectorType'}
-                    render={props => {
-                      const { params: { connectorType } = {} } = props.match;
-
-                      if (Object.keys(getConnectorsMap()).includes(connectorType)) {
-                        return (
-                          <PageContainer>
-                            <ConnectionPage {...props} sdk={sdk} />
-                          </PageContainer>
-                        );
-                      }
-
-                      return <Redirect to={'/connections/new'} />;
-                    }}
-                  />
-                </Switch>
+                <Route
+                  exact
+                  path={'/connections/new'}
+                  render={props => {
+                    const searchUrlPart = new URLSearchParams(props.location.search);
+                    const connectorType = searchUrlPart.get('connectorType');
+                    if (!connectorType) {
+                      return (
+                        <PageContainer>
+                          <Connectors {...props} sdk={sdk} />
+                        </PageContainer>
+                      );
+                    }
+                    if (Object.keys(getConnectorsMap()).includes(connectorType)) {
+                      return (
+                        <PageContainer>
+                          <ConnectionPage
+                            {...props}
+                            sdk={sdk}
+                            connectorType={connectorType}
+                          />
+                        </PageContainer>
+                      );
+                    }
+                    return <Redirect to={'/connections/new'} />;
+                  }}
+                />
               )}
             />
             <Route

@@ -464,10 +464,7 @@ class ConnectionPage extends React.Component {
   };
 
   _getConnectorType() {
-    const {
-      params: { connectorType },
-    } = this.props.match;
-
+    const { connectorType } = this.props;
     const { connectionState: { dbType } = {} } = this.state;
 
     return connectorType || dbType;
