@@ -11,7 +11,56 @@
     "plugin:boundaries/recommended",
     "prettier"
   ],
-  "overrides": [],
+  "overrides": [
+    {
+      "files": ["./src/clustrum-lib/src/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "message": "Relative import from clustrum-lib is forbidden",
+                "group": ["../**/clustrum-lib/src"]
+              },
+              {
+                "message": "No @clustrum-lib imports inside the lib",
+                "group": ["@clustrum-lib"]
+              },
+              {
+                "message": "No @clustrum-lib-legacy imports inside the lib",
+                "group": ["@clustrum-lib-legacy"]
+              },
+              {
+                "message": "Prefer absolute imports instead of relatives, use alias @lib-modules instead",
+                "group": ["../**/modules"]
+              },
+              {
+                "message": "Prefer absolute imports instead of relatives, use alias @lib-widgets instead",
+                "group": ["../**/widgets"]
+              },
+              {
+                "message": "Prefer absolute imports instead of relatives, use alias @lib-features instead",
+                "group": ["../**/features"]
+              },
+              {
+                "message": "Prefer absolute imports instead of relatives, use alias @lib-entities instead",
+                "group": ["../**/entites"]
+              },
+              {
+                "message": "Prefer absolute imports instead of relatives, use alias @lib-shared instead",
+                "group": ["../**/shared"]
+              },
+              {
+                "message": "Portal aliases are restricted from using inside lib",
+                "group": ["@pages", "@widgets", "@features", "@entities", "@shared"]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -49,15 +98,18 @@
       },
       {
         "type": "widgets",
-        "pattern": "src/widgets/*"
+        "pattern": "src/widgets/*",
+        "capture": ["slice", "segment"]
       },
       {
         "type": "features",
-        "pattern": "src/features/*"
+        "pattern": "src/features/*",
+        "capture": ["slice", "segment"]
       },
       {
         "type": "entities",
-        "pattern": "src/entities/*"
+        "pattern": "src/entities/*",
+        "capture": ["slice", "segment"]
       },
       {
         "type": "shared",
@@ -69,15 +121,18 @@
       },
       {
         "type": "lib-widgets",
-        "pattern": "src/clustrum-lib/src/widgets/*"
+        "pattern": "src/clustrum-lib/src/widgets/*",
+        "capture": ["slice", "segment"]
       },
       {
         "type": "lib-features",
-        "pattern": "src/clustrum-lib/src/features/*"
+        "pattern": "src/clustrum-lib/src/features/*",
+        "capture": ["slice", "segment"]
       },
       {
         "type": "lib-entities",
-        "pattern": "src/clustrum-lib/src/entities/*"
+        "pattern": "src/clustrum-lib/src/entities/*",
+        "capture": ["slice", "segment"]
       },
       {
         "type": "lib-shared",
@@ -105,8 +160,8 @@
             "importNames": ["*"]
           },
           {
-            "group": ["../**/clustrum-lib/src"],
-            "message": "Relative import from clustrum-lib is forbidden"
+            "message": "Relative import from clustrum-lib is forbidden",
+            "group": ["../**/clustrum-lib/src"]
           },
           {
             "message": "Prefer absolute imports instead of relatives, use alias @pages instead",
@@ -127,6 +182,16 @@
           {
             "message": "Prefer absolute imports instead of relatives, use alias @shared instead",
             "group": ["../**/shared"]
+          },
+          {
+            "message": "Lib aliases are restricted from using outside lib",
+            "group": [
+              "@lib-modules",
+              "@lib-widgets",
+              "@lib-features",
+              "@lib-entities",
+              "@lib-shared"
+            ]
           }
         ]
       }
@@ -156,19 +221,11 @@
             "allow": ["widgets", "features", "entities", "shared"]
           },
           {
-            "from": ["widgets"],
+            "from": ["widgets", "features"],
             "allow": ["features", "entities", "shared"]
           },
           {
-            "from": "features",
-            "allow": ["features", "entities", "shared"]
-          },
-          {
-            "from": "entities",
-            "allow": ["shared"]
-          },
-          {
-            "from": "shared",
+            "from": ["entities", "shared"],
             "allow": ["shared"]
           },
           {
@@ -176,11 +233,7 @@
             "allow": ["lib-widgets", "lib-features", "lib-entities", "lib-shared"]
           },
           {
-            "from": "lib-widgets",
-            "allow": ["lib-features", "lib-entities", "lib-shared"]
-          },
-          {
-            "from": "lib-features",
+            "from": ["lib-widgets", "lib-features"],
             "allow": ["lib-features", "lib-entities", "lib-shared"]
           },
           {
@@ -195,6 +248,17 @@
           {
             "from": [["lib-shared", { "segment": "api" }]],
             "allow": ["lib-shared"]
+          },
+          {
+            "from": [
+              ["widgets", { "segment": "types" }],
+              ["features", { "segment": "types" }],
+              ["entities", { "segment": "types" }],
+              ["lib-widgets", { "segment": "types" }],
+              ["lib-features", { "segment": "types" }],
+              ["lib-entities", { "segment": "types" }]
+            ],
+            "allow": "*"
           }
         ],
         "message": "@${file.type} is not allowed to import @${dependency.type}"
