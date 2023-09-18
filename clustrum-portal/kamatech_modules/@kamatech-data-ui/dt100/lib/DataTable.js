@@ -124,7 +124,7 @@ class TableRow extends React.PureComponent {
         {columns.map((column, columnIndex) => {
           const value = column._getValue(row);
           const isValueSelected = this.checkValueSelection(selectedRow, value);
-          const { isTotalCell } = value;
+          const { isTotalCell } = value ?? {};
           const classNameValue =
             column._className +
             (isValueSelected ? ' selected' : '') +
