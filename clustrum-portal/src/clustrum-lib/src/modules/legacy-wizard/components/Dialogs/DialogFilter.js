@@ -394,7 +394,7 @@ class DialogFilter extends PureComponent {
     });
 
     function reset() {
-      dimensions = [...originalDimensions].sort(collator.compare);
+      dimensions = originalDimensions && [...originalDimensions].sort(collator.compare);
       value = [];
     }
   }
