@@ -77,13 +77,10 @@ export const DialogPivotTableBody = <T extends IItem>({
                 type={type}
                 className="subitem"
                 containerProps={{
-                  theme: 'normal',
-                  size: 'n',
-                  view: 'default',
-                  checked: subTotalsSettings[id],
-                  text:
+                  checked: subTotalsSettings[id] as boolean,
+                  value:
                     type === VisualizationType.TextInput ? subTotalsSettings[id] : text,
-                  onChange: onChangeFields(id, type),
+                  onChange: onChangeFields(id, type) as any,
                 }}
               />
             </div>
