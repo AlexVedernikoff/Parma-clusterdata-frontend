@@ -6,4 +6,5 @@ export interface DatepickerFilterControlProps {
   minDate?: string;
   defaultValue?: string;
   onChange: ((value: string) => void) | null;
+  showTitle?: boolean;
 }

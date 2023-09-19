@@ -248,11 +248,18 @@ class Header extends React.PureComponent {
       openExpandedFilter,
       setMode,
       hasRightSideContent = true,
+      dash,
     } = this.props;
 
     if (!hasRightSideContent) {
       return [];
     }
+
+    const selectedTab = entry?.data?.pages?.[0]?.tabs?.find(
+      tab => tab.id === dash?.tabId,
+    );
+
+    const { hasExportTemplateXlsx, hasExportTemplateDocx } = selectedTab ?? {};
 
     const exportItems = [
       {
@@ -271,7 +278,23 @@ class Header extends React.PureComponent {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</a>,
         key: '4',
       },
-    ];
+      hasExportTemplateXlsx && {
+        label: (
+          <a onClick={() => this.#exportClickHandler(ExportFormat.XLSX_FROM_TEMPLATE)}>
+            XLSX (из шаблона)
+          </a>
+        ),
+        key: '5',
+      },
+      hasExportTemplateDocx && {
+        label: (
+          <a onClick={() => this.#exportClickHandler(ExportFormat.DOCX_FROM_TEMPLATE)}>
+            DOCX (из шаблона)
+          </a>
+        ),
+        key: '6',
+      },
+    ].filter(Boolean);
 
     if (canEdit) {
       return [

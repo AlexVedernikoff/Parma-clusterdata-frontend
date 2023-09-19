@@ -74,10 +74,11 @@ export const load = defaultEntryId => {
         dispatch(replace({ ...location, search: `?${searchParams.toString()}` }));
       }
 
-      const mode =
-        data.pages[0].tabs.length === 1 && !data.pages[0].tabs[0].items.length
-          ? MODE.EDIT
-          : MODE.VIEW;
+      const isNoDataLoaded =
+        data.pages[0].tabs.length === 1 && !data.pages[0].tabs[0].items.length;
+      const isLib = BUILD_SETTINGS.isLib;
+
+      const mode = isNoDataLoaded && !isLib ? MODE.EDIT : MODE.VIEW;
 
       dispatch({
         type: actionTypes.LOAD_DASH_SUCCESS,

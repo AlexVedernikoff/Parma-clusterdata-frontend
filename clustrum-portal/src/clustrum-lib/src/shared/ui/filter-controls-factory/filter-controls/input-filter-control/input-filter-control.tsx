@@ -7,7 +7,14 @@ import { InputFilterControlProps } from './types';
 import styles from './input-filter-control.module.css';
 
 export function InputFilterControl(props: InputFilterControlProps): JSX.Element | null {
-  const { label, placeholder, defaultValue = '', onChange, className } = props;
+  const {
+    label,
+    placeholder,
+    defaultValue = '',
+    onChange,
+    className,
+    showTitle: needShowTitle,
+  } = props;
   const [value, setValue] = useState<string>(defaultValue);
   const debouncedValue = useDebounce(value, 500);
 
@@ -36,7 +43,7 @@ export function InputFilterControl(props: InputFilterControlProps): JSX.Element 
   return (
     <div className={classNames(styles['input-filter-control'], className)}>
       <label className={styles['input-filter-control__label']}>
-        {`${label}:`}
+        {needShowTitle && `${label}:`}
         <Input
           placeholder={placeholder}
           value={value}

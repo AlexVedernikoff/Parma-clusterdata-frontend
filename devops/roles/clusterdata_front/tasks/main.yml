@@ -1,0 +1,25 @@
+---
+
+- name: "Stage 1: Preparing folders"
+  file:
+    path: "/opt/compose"
+    state: directory
+    recurse: yes
+
+- name: "Stage 2: Updating docker-compose file"
+  template:
+    src: "docker-compose.yml.j2"
+    dest: "/opt/compose/clusterdata_front-compose.yml"
+
+- name: "Stage 3: Uploading docker image"
+  copy:
+    src: /deploy/clusterdata_front_{{ app_version }}.tar
+    dest: /tmp/clusterdata_front.tar
+
+- name: "Stage 4: Loading docker image"
+  command: docker load -i /tmp/clusterdata_front.tar
+
+- name: "Stage 5: Updating compose"
+  command:
+    cmd: docker-compose  -f clusterdata_front-compose.yml up -d
+    chdir: /opt/compose

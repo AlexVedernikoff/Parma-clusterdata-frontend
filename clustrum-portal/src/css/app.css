@@ -1340,6 +1340,15 @@
   border: none;
 }
 
+.dialog-pivot-table-container .subcontainer .subitem {
+  padding-bottom: 12px;
+  font-weight: 700;
+}
+
+.dialog-pivot-table-container .subcontainer .subheader {
+  margin: -5px 0 10px;
+}
+
 @-webkit-keyframes pulse {
   50% {
     background: var(--rc-loader-active-color, rgb(30, 136, 229));
@@ -1950,6 +1959,10 @@
 .chartkit-table__cell_type_date,
 .chartkit-table__cell_type_datetime {
   text-align: right;
+}
+
+.chartkit-table__cell_is-total-cell {
+  background-color: var(--ck-control-backgound);
 }
 
 .data-table__th {
@@ -3625,6 +3638,18 @@ td.rdtYear:hover {
   grid-template-rows: auto 10%;
   grid-column-gap: 20px;
   align-items: flex-start;
+}
+
+.chartkit-export-modal_export-xlsx-docx {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  min-height: 210px;
+}
+
+.chartkit-export-modal_export-xlsx-docx .chartkit-export-modal__block {
+  padding: 5px 0;
 }
 
 .chartkit-export-modal__block,

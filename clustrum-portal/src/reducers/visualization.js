@@ -24,6 +24,7 @@ import {
   SET_VISUALIZATION_TYPE,
   UPDATE_FILTER,
   SET_ORDER_BY,
+  SET_SETTINGS_EXPORT_TEMPLATE,
 } from '../actions';
 import { NULL_ALIAS_DEFAULT_VALUE } from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
@@ -54,6 +55,8 @@ const initialState = {
   },
   exportLimit: 10000,
   orderBy: null,
+  hasExportTemplateXlsx: false,
+  hasExportTemplateDocx: false,
 };
 
 export function visualization(state = initialState, action) {
@@ -67,6 +70,15 @@ export function visualization(state = initialState, action) {
       return {
         ...state,
         visualizationType,
+      };
+    }
+    case SET_SETTINGS_EXPORT_TEMPLATE: {
+      const { hasExportTemplateXlsx, hasExportTemplateDocx } = action;
+
+      return {
+        ...state,
+        hasExportTemplateXlsx,
+        hasExportTemplateDocx,
       };
     }
     case CLEAR_VISUALIZATION: {
@@ -610,3 +622,7 @@ export const selectOrderBy = state => state.visualization.orderBy;
 export const selectDiagramMagnitude = state => state.visualization.diagramMagnitude;
 export const selectMapLayerOpacity = state => state.visualization.mapLayerOpacity;
 export const selectExportLimit = state => state.visualization.exportLimit;
+export const selectHasExportTemplateXlsx = state =>
+  state.visualization.hasExportTemplateXlsx;
+export const selectHasExportTemplateDocx = state =>
+  state.visualization.hasExportTemplateDocx;

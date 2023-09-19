@@ -480,7 +480,7 @@ class DatasetTable extends React.Component {
           size="m"
           view="default"
           tone="default"
-          title="Редактировать"
+          title="Имеет связь"
           onClick={() => this.openFieldEditor({ field: row })}
         >
           <Icon className={b('linked')} data={iconLinkedDataset} width="18" height="18" />

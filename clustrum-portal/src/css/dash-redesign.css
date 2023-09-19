@@ -723,7 +723,7 @@
 .dashkit-plugin-widget__tabs {
   background: transparent;
   border-bottom: 1px solid var(--neutral-100);
-  height: 4.5rem;
+  height: 2.5rem;
   padding-right: 4.5rem;
   padding-left: 1rem;
 }
@@ -739,7 +739,6 @@
 }
 
 .dashkit_theme_clustrum .dashkit-plugin-widget .chartkit-menu__button {
-  top: -3.5rem;
   right: 1rem;
 }
 
@@ -1284,7 +1283,7 @@
 
 .chartkit .chartkit-table,
 .dashkit-plugin-widget .chartkit .chartkit-table {
-  margin: 0 0 24px 0;
+  margin: 0;
   overflow: auto;
 }
 
