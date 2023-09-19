@@ -127,7 +127,6 @@ class EntryPanel extends React.Component {
 
   render() {
     const { sdk, additionalEntryItems } = this.props;
-
     const { entry: { isFavorite } = {}, entry, isNavigationVisible } = this.state;
 
     const disabled = Boolean(entry.fake);
