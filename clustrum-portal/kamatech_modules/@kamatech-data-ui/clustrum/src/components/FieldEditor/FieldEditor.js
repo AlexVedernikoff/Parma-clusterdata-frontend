@@ -221,7 +221,7 @@ class FieldEditor extends React.Component {
     const { sdk, visible, datasetId, fields } = this.props;
     const { field } = this.state;
     let validation, isFailedFormulaValidation;
-    const isValidField = this.validateField();
+    this.validateField();
 
     if (visible) {
       try {

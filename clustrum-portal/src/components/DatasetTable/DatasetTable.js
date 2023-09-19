@@ -445,7 +445,9 @@ class DatasetTable extends React.Component {
           text={value}
           onFocus={this.onFocusTextInput}
           onBlur={e => {
-            if (!e.target.value) return;
+            if (!e.target.value) {
+              return;
+            }
             return this.changeTitle({
               row,
               title: e.target.value,
