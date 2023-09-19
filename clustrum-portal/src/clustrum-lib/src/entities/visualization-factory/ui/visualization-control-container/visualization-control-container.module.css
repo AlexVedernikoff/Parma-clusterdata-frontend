@@ -35,12 +35,6 @@
   border-radius: 4px;
 }
 
-.subcontainer :global(.sort-item) {
-  width: 172px;
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-}
-
 .subcontainer :global(.item) {
   display: flex;
   flex: 1 0 0;
@@ -51,6 +45,12 @@
   line-height: 22px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.subcontainer :global(.sort-item) {
+  width: 172px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .subcontainer :global(.dimension-item) {
@@ -302,11 +302,6 @@
 
 .subcontainer :global(.item:hover .item-right-icon.cross-icon) {
   display: block;
-}
-
-.subcontainer :global(.item.is-dragging .item-right-icon.cross-icon),
-.subcontainer :global(.item.is-dragging .item-right-icon.swap-icon) {
-  display: none !important;
 }
 
 .subcontainer :global(.item.is-dragging .item-right-icon.cross-icon),

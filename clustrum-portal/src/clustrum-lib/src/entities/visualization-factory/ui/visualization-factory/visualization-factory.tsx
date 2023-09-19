@@ -1,17 +1,23 @@
 import React from 'react';
 import { DndContainer } from '@lib-shared/ui/drag-n-drop';
-import { Checkbox, Select, InputNumber, Input, Slider } from 'antd';
-import { VisualizationControlContainer } from '../visualization-control-container/visualization-control-container';
+import {
+  Checkbox,
+  Select,
+  InputNumber,
+  Input,
+  Slider,
+  CheckboxProps,
+  SliderSingleProps,
+  InputNumberProps,
+  SelectProps,
+  InputProps,
+} from 'antd';
+import { VisualizationControlContainer } from '../visualization-control-container';
 import {
   VisualizationFactoryProps,
   VisualizationType,
   ContainerProps,
   isDndContainerProps,
-  isCheckboxProps,
-  isSelectProps,
-  isInputNumberProps,
-  isInputTextProps,
-  isSliderProps,
 } from '../../types';
 import styles from './visualization-factory.module.css';
 
@@ -26,25 +32,31 @@ const selectControl = (
         <DndContainer {...containerProps} />
       ) : null;
     case VisualizationType.CheckBox:
-      return isCheckboxProps(containerProps) ? (
-        <Checkbox className={styles['ant-checkbox']} {...containerProps}>
+      return (
+        <Checkbox
+          className={styles['ant-checkbox']}
+          {...(containerProps as CheckboxProps)}
+        >
           {containerContent}
         </Checkbox>
-      ) : null;
+      );
     case VisualizationType.Slider:
-      return isSliderProps(containerProps) ? <Slider {...containerProps} /> : null;
+      return <Slider {...(containerProps as SliderSingleProps)} />;
     case VisualizationType.TextInput:
-      return isInputTextProps(containerProps) ? (
-        <Input className={styles['ant-control']} {...containerProps} />
-      ) : null;
+      return (
+        <Input className={styles['ant-control']} {...(containerProps as InputProps)} />
+      );
     case VisualizationType.NumberInput:
-      return isInputNumberProps(containerProps) ? (
-        <InputNumber className={styles['ant-control']} {...containerProps} />
-      ) : null;
+      return (
+        <InputNumber
+          className={styles['ant-control']}
+          {...(containerProps as InputNumberProps)}
+        />
+      );
     case VisualizationType.Select:
-      return isSelectProps(containerProps) ? (
-        <Select className={styles['ant-control']} {...containerProps} />
-      ) : null;
+      return (
+        <Select className={styles['ant-control']} {...(containerProps as SelectProps)} />
+      );
     default:
       return null;
   }
