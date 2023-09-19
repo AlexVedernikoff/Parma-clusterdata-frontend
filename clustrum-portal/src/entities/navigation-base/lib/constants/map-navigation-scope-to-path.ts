@@ -1,5 +1,5 @@
 import { NavigationScope } from '@clustrum-lib/shared/types';
-import { ROUTES } from '../../../../shared/config/routing/routes';
+import { ROUTES } from '@shared/config/routing/routes';
 
 export const MAP_NAVIGATION_SCOPE_TO_PATH = {
   [NavigationScope.Connection]: ROUTES.connectionsId,

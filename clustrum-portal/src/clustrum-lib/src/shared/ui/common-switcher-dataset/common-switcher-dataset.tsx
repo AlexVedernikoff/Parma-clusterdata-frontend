@@ -6,6 +6,7 @@ import { NavigationMinimal, EntryTitle } from '@kamatech-data-ui/clustrum';
 import { EntryScope } from '@lib-shared/types';
 import { getNavigationPathFromKey, getPersonalFolderPath } from '@lib-shared/lib/utils';
 // TODO будет поправлено после задачи с рефакторингом NavigationMinimal
+// eslint-disable-next-line no-restricted-imports
 import { SDK } from '../../../../../modules/sdk';
 import { changeNavigationPath } from '../../../../../store/actions/dash';
 import { CommonSwitcherDatasetProps, EntryProps, DashStore } from './types';
