@@ -72,11 +72,10 @@ class EntryPanel extends React.Component {
 
   toggleFavorite = () => {
     const { sdk } = this.props;
-    //TODO: метод возвращает название поля "isFavorite" с опечаткой, как "asFavorite". Переименовать обратно после правок на бэкенде.
-    const { entry: { entryId, asFavorite } = {} } = this.state;
+    const { entry: { entryId, isFavorite } = {} } = this.state;
 
     try {
-      if (asFavorite) {
+      if (isFavorite) {
         sdk.deleteFavorite({ entryId });
       } else {
         sdk.addFavorite({ entryId });
@@ -85,7 +84,7 @@ class EntryPanel extends React.Component {
       this.setState({
         entry: {
           ...this.state.entry,
-          asFavorite: !asFavorite,
+          isFavorite: !isFavorite,
         },
       });
     } catch (error) {
@@ -129,16 +128,16 @@ class EntryPanel extends React.Component {
   render() {
     const { sdk, additionalEntryItems } = this.props;
 
-    const { entry: { asFavorite } = {}, entry, isNavigationVisible } = this.state;
+    const { entry: { isFavorite } = {}, entry, isNavigationVisible } = this.state;
 
     const disabled = Boolean(entry.fake);
-    const iconColor = asFavorite ? COLOR_ACCENT : ANT_TOKEN.token.colorPrimary;
+    const iconColor = isFavorite ? COLOR_ACCENT : ANT_TOKEN.token.colorPrimary;
 
     const standardBtns = [
       <Button
         className="ant-d-header-small-btn"
         disabled={disabled}
-        title={asFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
+        title={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
         icon={<StarTwoTone twoToneColor={iconColor} />}
         onClick={this.toggleFavorite}
         key="favorite-btn"
