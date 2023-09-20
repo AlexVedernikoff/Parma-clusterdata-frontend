@@ -376,6 +376,8 @@ class DatasetTable extends React.Component {
   hasVerificationRules = verificationRules => verificationRules !== '';
 
   sortTitleColumn = (rowCurrent, rowNext) => {
+    console.log('379 sortTitleColumn = (rowCurrent, rowNext)');
+    console.log('rowCurrent = ', rowCurrent);
     const { row: { title: titleCurrent } = {} } = rowCurrent;
     const { row: { title: titleNext } = {} } = rowNext;
 
@@ -383,11 +385,14 @@ class DatasetTable extends React.Component {
   };
 
   sortCastColumn = (rowCurrent, rowNext) => {
+    console.log('sortCastColumn = (rowCurrent, rowNext)');
     const { row: { cast: castCurrent } = {} } = rowCurrent;
     const { row: { cast: castNext } = {} } = rowNext;
 
     const castCurrentLocale = getFieldTypeLabel(castCurrent);
     const castNextLocale = getFieldTypeLabel(castNext);
+
+    // console.log('castCurrentLocale = ', castCurrentLocale);
 
     return castCurrentLocale.localeCompare(castNextLocale, undefined, { numeric: true });
   };
@@ -495,7 +500,7 @@ class DatasetTable extends React.Component {
     width: '250px',
     align: DataTable.LEFT,
     sortable: true,
-    header: <div className={b('header')}>Источник поля</div>,
+    header: <div className={b('header')}>Источник поля!!</div>,
     render: ({ index, row }) => {
       const { calc_mode: calcMode, source: source } = row;
 
