@@ -204,11 +204,14 @@ class TableHead extends React.Component {
   }
   onSort(column, multisort) {
     const { onSort } = this.props;
+    // console.log('onSort = ', onSort);
     if (typeof onSort === 'function') {
       onSort(column, multisort);
     }
   }
   _getonOrderByClickInWizard(column) {
+    // console.log('getonOrderByClickInWizard(column)');
+    // console.log('column = ', column);
     const { sortable = false, name } = column;
     if (name === INDEX_COLUMN) {
       return () => {
@@ -217,6 +220,7 @@ class TableHead extends React.Component {
     }
     return sortable
       ? event => {
+          // console.log('event = ', event);
           this.onSort(column, event.ctrlKey);
         }
       : undefined;
@@ -552,6 +556,9 @@ class Table extends React.PureComponent {
       rowClassName,
     } = this.props;
 
+    console.log('559 Table dataColumns = ', dataColumns);
+    console.log('559 Table items = ', items);
+
     return (
       <div className={b('table-wrapper')}>
         <table className={b('table')}>
@@ -574,6 +581,8 @@ class Table extends React.PureComponent {
     );
   };
   renderTableDynamic() {
+    console.log('renderTableDynamic()');
+    console.log('renderTableDynamic() props = ', this.props);
     const {
       data,
       settings: {
@@ -595,8 +604,10 @@ class Table extends React.PureComponent {
     );
   }
   renderTableSimple() {
+    console.log('renderTableSimple() ');
     const { data } = this.props;
     const rows = data.map((row, index) => this.renderRow(index, index));
+    console.log('rows 608 = ', rows);
     return this.renderTable(rows);
   }
   render() {
@@ -676,6 +687,9 @@ class DataTableView extends React.Component {
   static contextType = SignalContext;
 
   static getSortedData(data, dataColumns, columnOrder = {}) {
+    console.log(
+      '690!!!!!!!!!!!!!!!!!!!!!!!!!! getSortedData(data, dataColumns, columnOrder = {})',
+    );
     const { columnId, order } = columnOrder;
     const column = dataColumns.find(item => item.name === columnId);
     const indexedData = data.map((row, index) => ({ row, index }));
@@ -806,7 +820,11 @@ class DataTableView extends React.Component {
       typeof accessor === 'function'
         ? row => accessor(row)
         : row => {
-            return row.hasOwnProperty(accessor) ? row[accessor] : undefined;
+            return row.hasOwnProperty(accessor)
+              ? accessor === 'formula'
+                ? row.source
+                : row[accessor]
+              : undefined;
           };
 
     const _getTitle =
@@ -888,6 +906,8 @@ class DataTableView extends React.Component {
       cell.rowSpan = cell.itemLevel < 0 ? 1 : headColumns.length - cell.itemLevel;
     });
 
+    // console.log('dataColumns = ', dataColumns);
+
     return { headColumns, dataColumns };
   }
 
@@ -897,6 +917,7 @@ class DataTableView extends React.Component {
   };
 
   onSort = (column, multisort) => {
+    // console.log('column = ', column);
     const {
       onStateAndParamsChange: onOrderByClickInDash,
       onOrderByClickInWizard,
@@ -909,14 +930,18 @@ class DataTableView extends React.Component {
         multisort,
         this.props.settings,
       );
+      // console.log('DT sortOrder = ', sortOrder);
+      // console.log('DT sortColumns = ', sortColumns);
       const sortingDirection = this.sortingDirection(sortOrder, sortColumns);
 
       if (onOrderByClickInDash) {
+        console.log('up');
         onOrderByClickInDash({
           direction: sortingDirection,
           field: column.resultSchemaId,
         });
       } else if (onOrderByClickInWizard) {
+        console.log('down');
         onOrderByClickInWizard(sortingDirection, column.resultSchemaId);
       }
 
@@ -935,6 +960,7 @@ class DataTableView extends React.Component {
   };
 
   sortingDirection(sortOrder, sortColumns) {
+    // console.log('sortingDirection(sortOrder, sortColumns)');
     const direction = sortOrder[sortColumns[0]];
 
     if (direction === ASCENDING) {
@@ -976,7 +1002,9 @@ class DataTableView extends React.Component {
       renderEmptyRow,
       selectedRow,
     } = this.props;
+    // console.log('DT 989 data = ', data);
     const { settings, sortOrder, sortColumns } = this.state;
+    // console.log('DT 991 this.state = ', this.state);
     const { highlightRows = false, stripedRows = false, headerMod = false } = settings;
     const tableClassName = b({
       'highlight-rows': highlightRows,
@@ -986,6 +1014,7 @@ class DataTableView extends React.Component {
     });
 
     const dataColumns = this.getComplexColumns(columns);
+    console.log('DT 1004 dataColumns = ', dataColumns);
     return (
       <Table
         ref={this._tableRef}
