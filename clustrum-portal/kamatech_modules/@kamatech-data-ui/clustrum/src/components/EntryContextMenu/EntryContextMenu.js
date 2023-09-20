@@ -19,10 +19,6 @@ const ConfiguredEntryContextMenu = withConfiguredEntryContextMenu(EntryContextMe
 const defaultPopupDirections = ['bottom-center', 'bottom-left', 'bottom-right'];
 
 class EntryContextMenuService extends React.PureComponent {
-  state = {
-    description: '',
-  };
-
   refDialogues = React.createRef();
   refErrorDialog = React.createRef();
 
@@ -33,13 +29,6 @@ class EntryContextMenuService extends React.PureComponent {
     } else {
       window.location.reload();
     }
-  }
-
-  async componentDidMount() {
-    const { description } = await this.props.sdk.getEntry({
-      entryId: this.props.entry.entryId,
-    });
-    this.setState({ description });
   }
 
   async renameEntry(entry) {
@@ -58,15 +47,24 @@ class EntryContextMenuService extends React.PureComponent {
   }
 
   async describeEntry(entry) {
+    let entryData;
+
+    if (this.props.entry.entryId) {
+      entryData = await this.props.sdk.getEntry({
+        entryId: this.props.entry.entryId,
+      });
+    }
+
     const response = await this.refDialogues.current.openDialog({
       dialog: ENTRY_DIALOG.DESCRIBE,
       dialogProps: {
         entryId: entry.entryId,
-        description: entry.description || this.state.description,
+        description: entryData?.description || '',
         withError: false,
         onNotify: entryDialoguesNotify(ENTRY_DIALOG.DESCRIBE, this.refErrorDialog),
       },
     });
+
     if (response.status === 'success') {
       this.update({ entry: response.data[0] });
     }
