@@ -260,7 +260,6 @@
 .subcontainer :global(.item.is-dragging.conflict),
 .subcontainer :global(.item:active.conflict),
 .subcontainer :global(.item:focus.conflict) {
-  padding: 6px 12px 4px;
   cursor: pointer;
 }
 
