@@ -27,7 +27,6 @@ export function DndItem<T>(props: DndItemProps<T>): JSX.Element {
   } = props;
   const ref = useRef<HTMLDivElement>(null);
   const [tooltipVisibility, setTooltipVisibility] = useState<boolean>(false);
-  const newProps = { ...props, tooltipVisibility, setTooltipVisibility };
 
   const [, drag] = useDrag(() => ({
     type: 'ITEM',
@@ -180,6 +179,8 @@ export function DndItem<T>(props: DndItemProps<T>): JSX.Element {
     marginTop: size.margin,
     marginBottom: size.margin,
   };
+
+  const newProps = { ...props, tooltipVisibility, setTooltipVisibility };
 
   return (
     <div ref={drop}>
