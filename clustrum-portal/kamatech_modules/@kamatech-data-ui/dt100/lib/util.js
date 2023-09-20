@@ -6,13 +6,8 @@ export function getSortOrder(
   multisort,
   settings = {},
 ) {
-  // console.log('getSortOrder');
-  // console.log('GSO column = ', column);
-  // console.log('GSO sortOrder = ', sortOrder);
-  // console.log('GSO sortColumns = ', sortColumns);
   const defaultOrder = column.defaultOrder || settings.defaultOrder;
   const columnName = column.name;
-  // console.log('GSO columnName = ', columnName);
   const emptyResult = {
     sortOrder: {},
     sortColumns: [],
@@ -22,10 +17,8 @@ export function getSortOrder(
     return multisort ? { sortOrder, sortColumns } : emptyResult;
   }
 
-  let newColumns = sortColumns; // ["formula"]
-  // console.log('GSO newColumns = ', newColumns);
+  let newColumns = sortColumns;
   const prevOrder = sortOrder[columnName];
-  // console.log('GSO prevOrder = ', prevOrder); // -1 / 1 / undefined
 
   let order = defaultOrder;
   if (prevOrder === order) {
@@ -35,7 +28,6 @@ export function getSortOrder(
   }
 
   if (!multisort) {
-    // console.log('multisort = ', multisort);
     return order
       ? {
           sortOrder: { [columnName]: order },
@@ -62,13 +54,8 @@ export function getSortOrder(
 }
 
 function generateSortingFunction(column, order) {
-  console.log('function generateSortingFunction(column, order)');
-  console.log('66 order = ', order);
-
   const compareValue = order;
   if (typeof column.sortAscending === 'function') {
-    console.log("sortAscending === 'function'");
-    console.log('compareValue ', compareValue);
     return (row1, row2) => {
       return compareValue * column.sortAscending(row1, row2);
     };
@@ -77,10 +64,6 @@ function generateSortingFunction(column, order) {
   return (row1, row2) => {
     const value1 = column._getSortValue(row1.row);
     const value2 = column._getSortValue(row2.row);
-    console.log('GSF column = ', column);
-    console.log('GSF row1.row = ', row1.row);
-    console.log('GSF value 1 = ', value1);
-    console.log('GSF value 2 = ', value2);
     if (value1 < value2) {
       return -compareValue;
     }
@@ -106,17 +89,10 @@ export function getIndexedData(data) {
 }
 
 export function getSortedData(data, dataColumns, { sortOrder, sortColumns }) {
-  console.log('function getSortedData(data, dataColumns, { sortOrder, sortColumns })');
-  console.log('GSD data = ', data);
-  console.log('GSD dataColumns = ', dataColumns);
-  console.log('GSD sortOrder = ', sortOrder);
-  console.log('GSD sortOrder = ', sortColumns);
-
   const sortFunctionDict = {};
 
   dataColumns.forEach(column => {
     if (sortOrder[column.name]) {
-      console.log('GSD column = ', column);
       sortFunctionDict[column.name] = generateSortingFunction(
         column,
         sortOrder[column.name],
@@ -124,10 +100,7 @@ export function getSortedData(data, dataColumns, { sortOrder, sortColumns }) {
     }
   });
 
-  console.log('GSD sortFunctionDict = ', sortFunctionDict);
-
   const sortFunctions = sortColumns.map(name => sortFunctionDict[name]).filter(Boolean);
-  console.log('GSD sortFunctions = ', sortFunctions);
   const indexedData = data.map((row, index) => ({ row, index }));
 
   if (sortFunctions.length) {
