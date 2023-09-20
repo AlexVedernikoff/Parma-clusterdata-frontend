@@ -6,6 +6,7 @@ import { Pointerfocus } from 'lego-on-react';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import { Connectors } from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
+import { getConnectorType } from '../../containers/ConnectionPage/getConnectorType';
 import { getConnectorsMap } from '../../constants';
 import { PageContainer } from '@widgets/page-container';
 import { $appSettingsStore } from '@entities/app-settings';
@@ -44,8 +45,7 @@ class ConnectionsRouter extends PureComponent {
                   exact
                   path={'/connections/new'}
                   render={props => {
-                    const searchUrlPart = new URLSearchParams(props.location.search);
-                    const connectorType = searchUrlPart.get('connectorType');
+                    const connectorType = getConnectorType(props.location.search);
                     if (!connectorType) {
                       return (
                         <PageContainer>
@@ -56,11 +56,7 @@ class ConnectionsRouter extends PureComponent {
                     if (Object.keys(getConnectorsMap()).includes(connectorType)) {
                       return (
                         <PageContainer>
-                          <ConnectionPage
-                            {...props}
-                            sdk={sdk}
-                            connectorType={connectorType}
-                          />
+                          <ConnectionPage {...props} sdk={sdk} />
                         </PageContainer>
                       );
                     }

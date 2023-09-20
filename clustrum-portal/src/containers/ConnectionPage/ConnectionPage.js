@@ -21,6 +21,7 @@ import {
   saveCsv,
 } from './actions';
 import { getEmptyFields } from './validator';
+import { getConnectorType } from './getConnectorType';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 import { normalizeDestination } from '@kamatech-data-ui/clustrum-core-plugins/utils';
 import { Button } from 'antd';
@@ -464,7 +465,7 @@ class ConnectionPage extends React.Component {
   };
 
   _getConnectorType() {
-    const { connectorType } = this.props;
+    const connectorType = getConnectorType(this.props.location.search);
     const { connectionState: { dbType } = {} } = this.state;
 
     return connectorType || dbType;
