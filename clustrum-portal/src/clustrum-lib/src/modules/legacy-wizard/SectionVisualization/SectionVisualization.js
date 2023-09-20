@@ -73,6 +73,8 @@ import {
   selectVisualization,
   selectVisualizationType,
   selectOrderBy,
+  selectHasExportTemplateXlsx,
+  selectHasExportTemplateDocx,
 } from '../../../../../reducers/visualization';
 
 import {
@@ -91,8 +93,13 @@ import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Tabl
 import { VisualizationType } from '@lib-entities/visualization-factory/types';
 import { VisualizationsList } from '@lib-features/visualizations-list';
 import { $appSettingsStore } from '@entities/app-settings';
+import { DialogPivotTable } from '../components/Dialogs/DialogPivotTable';
+import cloneDeep from 'lodash/cloneDeep';
+import { Dialogs } from './types';
 
-const steppedLayoutIndentationMaxValue = 40;
+const STEPPED_LAYOUT_INDENTATION_MAX_VALUE = 40;
+
+const PIVOT_TABLE_PLACEHOLDERS_IDS = ['pivot-table-columns', 'rows', 'measures'];
 
 // todo разбить на компоненты
 class SectionVisualization extends Component {
@@ -119,6 +126,18 @@ class SectionVisualization extends Component {
     this.dropdownRef.toggle();
   };
 
+  getPlaceholderDialogType(id) {
+    return PIVOT_TABLE_PLACEHOLDERS_IDS.includes(id)
+      ? Dialogs.PivotTableDialog
+      : Dialogs.Column;
+  }
+
+  getPlaceholderDialogCallBack(id) {
+    return PIVOT_TABLE_PLACEHOLDERS_IDS.includes(id)
+      ? this.handleDialogPivotTableActions
+      : this.handleDialogActions;
+  }
+
   renderPlaceholder = placeholder => {
     const {
       setVisualizationPlaceholderItems,
@@ -144,6 +163,8 @@ class SectionVisualization extends Component {
       paginateInfo,
       diagramMagnitude,
       exportLimit,
+      hasExportTemplateXlsx,
+      hasExportTemplateDocx,
     } = this.props;
 
     const { items } = placeholder;
@@ -216,13 +237,19 @@ class SectionVisualization extends Component {
           disabled={datasetError}
           onItemClick={(e, item) => {
             if (
-              ['flat-table-columns', 'measures', 'dimensions'].includes(placeholder.id)
+              [
+                'flat-table-columns',
+                'measures',
+                'dimensions',
+                ...PIVOT_TABLE_PLACEHOLDERS_IDS,
+              ].includes(placeholder.id)
             ) {
               this.setState({
                 dialogItem: item,
-                dialogType: 'column',
+                dialogType: this.getPlaceholderDialogType(placeholder.id),
                 isDialogVisible: true,
-                dialogCallBack: this.handleDialogActions,
+                dialogCallBack: this.getPlaceholderDialogCallBack(placeholder.id),
+                dialogPlaceholder: placeholder,
               });
             }
           }}
@@ -254,6 +281,8 @@ class SectionVisualization extends Component {
               paginateInfo,
               diagramMagnitude,
               exportLimit,
+              hasExportTemplateXlsx,
+              hasExportTemplateDocx,
             });
           }}
         />
@@ -261,8 +290,17 @@ class SectionVisualization extends Component {
     );
   };
 
+  hideDialogWindow() {
+    this.setState({
+      dialogType: null,
+      dialogItem: null,
+      isDialogVisible: false,
+      dialogPlaceholder: null,
+    });
+  }
+
   handleDialogActions(result, items = null) {
-    this.setState({ dialogType: null, dialogItem: null, isDialogVisible: false });
+    this.hideDialogWindow();
 
     const { filters, setFilters, updatePreview } = this.props;
 
@@ -279,6 +317,25 @@ class SectionVisualization extends Component {
     updatePreview({
       ...this.props,
       filters: items || filters,
+    });
+  }
+
+  handleDialogPivotTableActions(item) {
+    this.hideDialogWindow();
+
+    const { updatePreview, setVisualizationPlaceholderItems, visualization } = this.props;
+    const { dialogPlaceholder } = this.state;
+    const newItems = cloneDeep(dialogPlaceholder.items);
+    newItems[dialogPlaceholder.items.findIndex(el => el.id === item.id)] = item;
+
+    setVisualizationPlaceholderItems({
+      visualization,
+      placeholder: dialogPlaceholder,
+      items: newItems,
+    });
+
+    updatePreview({
+      ...this.props,
     });
   }
 
@@ -332,6 +389,8 @@ class SectionVisualization extends Component {
       mapLayerOpacity,
       setMapLayerOpacity,
       setExportLimit,
+      hasExportTemplateXlsx,
+      hasExportTemplateDocx,
     } = this.props;
 
     visualization.placeholders.forEach(p => this.fillDatasetName(p.items, dimensions));
@@ -453,6 +512,8 @@ class SectionVisualization extends Component {
                     paginateInfo,
                     diagramMagnitude,
                     exportLimit,
+                    hasExportTemplateXlsx,
+                    hasExportTemplateDocx,
                   });
                 } else if (action === 'insert') {
                   this.setState({
@@ -491,6 +552,8 @@ class SectionVisualization extends Component {
                       paginateInfo,
                       diagramMagnitude,
                       exportLimit,
+                      hasExportTemplateXlsx,
+                      hasExportTemplateDocx,
                     });
                   } else {
                     this.setState({
@@ -553,6 +616,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               }}
             />
@@ -604,6 +669,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
               onUpdate: items => {
@@ -632,6 +699,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -684,6 +753,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -728,6 +799,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -772,6 +845,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -831,6 +906,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -871,6 +948,8 @@ class SectionVisualization extends Component {
                   paginateInfo: { page: 0, pageSize: paginateInfo.pageSize },
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -911,6 +990,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -951,6 +1032,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -962,7 +1045,7 @@ class SectionVisualization extends Component {
             type={VisualizationType.RangePicker}
             className="subitem"
             containerProps={{
-              max: steppedLayoutIndentationMaxValue,
+              max: STEPPED_LAYOUT_INDENTATION_MAX_VALUE,
               initialValue: steppedLayoutIndentation,
               onChange: steppedLayoutIndentation => {
                 setSteppedLayoutIndentation({ steppedLayoutIndentation });
@@ -988,6 +1071,8 @@ class SectionVisualization extends Component {
                   diagramMagnitude,
                   mapLayerOpacity,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1030,6 +1115,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1079,6 +1166,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude: newValue[0],
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1115,6 +1204,8 @@ class SectionVisualization extends Component {
                   diagramMagnitude,
                   mapLayerOpacity: value,
                   exportLimit,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1158,6 +1249,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit: text,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
               onBlur: e => {
@@ -1182,6 +1275,8 @@ class SectionVisualization extends Component {
                   paginateInfo,
                   diagramMagnitude,
                   exportLimit: e.target.value,
+                  hasExportTemplateXlsx,
+                  hasExportTemplateDocx,
                 });
               },
             }}
@@ -1359,27 +1454,59 @@ class SectionVisualization extends Component {
     return visualization ? this.renderVisualizationPlaceholders() : null;
   }
 
-  render() {
-    const { visualization, sdk, dataset, updates } = this.props;
-
-    return (
-      <div className="container visualization-container">
-        {this.state.isDialogVisible && this.state.dialogType === 'column' ? (
+  renderDialogWindow() {
+    const { sdk, dataset, updates, dimensions } = this.props;
+    const {
+      dialogType,
+      isDialogVisible,
+      dialogItem,
+      dialogCallBack,
+      dialogPlaceholder,
+    } = this.state;
+    if (!isDialogVisible) {
+      return null;
+    }
+    switch (dialogType) {
+      case Dialogs.Column:
+        return (
           <DialogFormatTemplate
-            item={this.state.dialogItem}
-            callback={this.state.dialogCallBack}
+            item={dialogItem}
+            callback={dialogCallBack}
             visible={true}
           />
-        ) : (
+        );
+      case Dialogs.PivotTableDialog:
+        return (
+          <DialogPivotTable
+            item={dialogItem}
+            callback={dialogCallBack.bind(this)}
+            sdk={sdk}
+            fields={dimensions}
+            aceModeUrl={dataset.ace_url}
+            placeholderType={dialogPlaceholder.type}
+          />
+        );
+      case Dialogs.Filter:
+      default:
+        return (
           <DialogFilter
-            item={this.state.dialogItem}
-            callback={this.state.dialogCallBack}
+            item={dialogItem}
+            callback={dialogCallBack}
             dataset={dataset}
             updates={updates}
             sdk={sdk}
             visible={true}
           />
-        )}
+        );
+    }
+  }
+
+  render() {
+    const { visualization } = this.props;
+
+    return (
+      <div className="container visualization-container">
+        {this.renderDialogWindow()}
         <div className="actions-container visualization-actions-container">
           <VisualizationsList selectedId={visualization?.id} />
         </div>
@@ -1437,6 +1564,8 @@ const mapStateToProps = createStructuredSelector({
   steppedLayoutIndentation: selectSteppedLayoutIndentation,
   paginateInfo: selectPaginateInfo,
   selectOrderBy: selectOrderBy,
+  hasExportTemplateXlsx: selectHasExportTemplateXlsx,
+  hasExportTemplateDocx: selectHasExportTemplateDocx,
 
   dataset: selectDataset,
   datasetError: selectDatasetError,

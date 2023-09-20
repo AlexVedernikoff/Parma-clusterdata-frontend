@@ -14,6 +14,7 @@ const DIALOG = {
   COPY: 'copy',
   MOVE: 'move',
   RENAME: 'rename',
+  DESCRIBE: 'describe',
   DELETE: 'delete',
   CREATE_FOLDER: 'create_folder',
   SAVE_DASHBOARD: 'save_dashboard',

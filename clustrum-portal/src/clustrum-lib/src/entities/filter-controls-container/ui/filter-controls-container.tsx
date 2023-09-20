@@ -20,31 +20,47 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
   const [status, setStatus] = useState<LoadStatus>(LoadStatus.Pending);
   const [scheme, setScheme] = useState<LoadedDataScheme[] | null>(null);
   const previousControlData = useRef<DashboardControlsData | null>(null);
+  const previousFilters = useRef<string | null>(null);
 
   useEffect(() => {
     if (!isMatch(previousControlData.current ?? {}, data)) {
       init();
     }
     previousControlData.current = data;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  const getFilters = (): string => {
+    const filters: { [key: string]: string | string[] } = {};
+    for (const key of Object.keys(params)) {
+      filters[key] = params[key].value;
+    }
+    return JSON.stringify(filters);
+  };
+
+  const filters = getFilters();
+
+  useEffect(() => {
+    if (previousFilters.current !== filters) {
+      init();
+      previousFilters.current = filters;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   const initAvailableItems = (scheme: LoadedDataScheme[]): void => {
     for (const control of scheme) {
       const { param } = control;
       const { initiatorItem: item } = params[param];
-      if (
-        !item.availableItems ||
-        !item.availableItems[param] ||
-        item.availableItems[param].length === 0
-      ) {
-        continue;
-      }
+      const currentAvailableItems = item.availableItems[param];
 
-      const availableItems = new Set(item.availableItems[param]);
-      control.content = control.content.filter(
-        (it: { title: string; value: string }) =>
-          availableItems.has(it.title) || availableItems.has(it.value),
-      );
+      if (Array.isArray(currentAvailableItems) && currentAvailableItems.length > 0) {
+        const availableItems = new Set(currentAvailableItems);
+        control.content = control.content.filter(
+          (it: { title: string; value: string }) =>
+            availableItems.has(it.title) || availableItems.has(it.value),
+        );
+      }
     }
   };
 
@@ -56,7 +72,8 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
     try {
       setStatus(LoadStatus.Pending);
 
-      const loadedData = await filterControlsContainerModel(data, actualParams);
+      const requestData = { ...data, params };
+      const loadedData = await filterControlsContainerModel(requestData, actualParams);
 
       const { uiScheme: scheme } = loadedData;
       initAvailableItems(scheme);

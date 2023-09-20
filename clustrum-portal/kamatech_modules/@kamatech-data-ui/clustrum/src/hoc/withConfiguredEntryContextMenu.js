@@ -8,21 +8,12 @@ import iconDelete from '@kamatech-data-ui/common/src/assets/icons/delete-file.sv
 import iconCopy from '@kamatech-data-ui/common/src/assets/icons/copy-file.svg';
 import iconCopyLink from '@kamatech-data-ui/common/src/assets/icons/link.svg';
 import iconAccessGroup from 'icons/access-group.svg';
-
-export const ENTRY_CONTEXT_MENU_ACTION = {
-  RENAME: 'rename',
-  DESCRIBE: 'describe',
-  DELETE: 'delete',
-  MOVE: 'move',
-  COPY: 'copy',
-  ACCESS: 'access',
-  COPY_LINK: 'copy_link',
-};
+import { ContextMenuActions } from '@entities/navigation-base/types';
 
 const LIMITED_CONTEXT_MENU = [
-  ENTRY_CONTEXT_MENU_ACTION.COPY,
-  ENTRY_CONTEXT_MENU_ACTION.ACCESS,
-  ENTRY_CONTEXT_MENU_ACTION.COPY_LINK,
+  ContextMenuActions.Copy,
+  ContextMenuActions.Access,
+  ContextMenuActions.CopyLink,
 ];
 
 export const getEntryContextMenuItems = ({ entry = {} } = {}) => {
@@ -40,32 +31,32 @@ export const getEntryContextMenuItems = ({ entry = {} } = {}) => {
     {
       icon: iconRename,
       text: TEXT.RENAME,
-      action: ENTRY_CONTEXT_MENU_ACTION.RENAME,
+      action: ContextMenuActions.Rename,
     },
     {
       icon: iconRename,
       text: TEXT.DESCRIBE,
-      action: ENTRY_CONTEXT_MENU_ACTION.DESCRIBE,
+      action: ContextMenuActions.Describe,
     },
     {
       icon: iconDelete,
       text: TEXT.DELETE,
-      action: ENTRY_CONTEXT_MENU_ACTION.DELETE,
+      action: ContextMenuActions.Delete,
     },
     {
       icon: iconMove,
       text: TEXT.MOVE,
-      action: ENTRY_CONTEXT_MENU_ACTION.MOVE,
+      action: ContextMenuActions.Move,
     },
     {
       icon: iconCopy,
       text: TEXT.COPY,
-      action: ENTRY_CONTEXT_MENU_ACTION.COPY,
+      action: ContextMenuActions.Copy,
     },
     {
       icon: iconCopyLink,
       text: TEXT.COPY_LINK,
-      action: ENTRY_CONTEXT_MENU_ACTION.COPY_LINK,
+      action: ContextMenuActions.COPY_LINK,
       wrapper: ({ entry, children }) => {
         // eslint-disable-line react/display-name, react/prop-types
         return (

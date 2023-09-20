@@ -124,7 +124,11 @@ class TableRow extends React.PureComponent {
         {columns.map((column, columnIndex) => {
           const value = column._getValue(row);
           const isValueSelected = this.checkValueSelection(selectedRow, value);
-          const classNameValue = column._className + (isValueSelected ? ' selected' : '');
+          const { isTotalCell } = value ?? {};
+          const classNameValue =
+            column._className +
+            (isValueSelected ? ' selected' : '') +
+            (isTotalCell ? ' chartkit-table__cell_is-total-cell' : '');
 
           if (value?.rowSpan === HIDDEN_ROW_SPAN) {
             return;

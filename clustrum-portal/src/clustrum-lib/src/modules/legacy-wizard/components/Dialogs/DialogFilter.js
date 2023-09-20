@@ -73,14 +73,7 @@ class DialogFilter extends PureComponent {
     }
   };
 
-  componentWillReceiveProps(nextProps) {
-    const { item, dataset, updates, callback } = nextProps;
-    if (!item) {
-      return;
-    }
-
-    // Произведем инициализацию диалога
-    const { sdk } = this.props;
+  initializationDialog({ sdk, item, dataset, updates, callback }) {
     const { filter } = item;
 
     const isDate = item.cast === 'date' || item.cast === 'datetime';
@@ -304,6 +297,24 @@ class DialogFilter extends PureComponent {
         isString,
       });
     }
+  }
+
+  componentDidMount() {
+    const { sdk, item, dataset, updates, callback } = this.props;
+    this.initializationDialog({ sdk, item, dataset, updates, callback });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { item, dataset, updates, callback } = nextProps;
+    if (
+      !item ||
+      (nextProps.item === this.state.item && callback === this.state.callback)
+    ) {
+      return;
+    }
+
+    const { sdk } = this.props;
+    this.initializationDialog({ sdk, item, dataset, updates, callback });
   }
 
   onTextInputChange(value, i) {

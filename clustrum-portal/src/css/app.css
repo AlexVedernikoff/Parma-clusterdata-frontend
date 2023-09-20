@@ -615,6 +615,11 @@
   outline: none;
 }
 
+.icon-ellipsis > svg {
+  width: 16px;
+  height: 16px;
+}
+
 .datasets-container .dataset-custom-button .select-dataset-btn .button2__text {
   margin: 0 5px;
   overflow: hidden;
@@ -1344,6 +1349,15 @@
 .visualization-container .subcontainer .subitem {
   padding: 48px 19px 12px;
   font-weight: 700;
+}
+
+.dialog-pivot-table-container .subcontainer .subitem {
+  padding-bottom: 12px;
+  font-weight: 700;
+}
+
+.dialog-pivot-table-container .subcontainer .subheader {
+  margin: -5px 0 10px;
 }
 
 .visualization-container .subcontainer .subheader {
@@ -2321,6 +2335,10 @@
 .chartkit-table__cell_type_date,
 .chartkit-table__cell_type_datetime {
   text-align: right;
+}
+
+.chartkit-table__cell_is-total-cell {
+  background-color: var(--ck-control-backgound);
 }
 
 .data-table__th {
@@ -3998,6 +4016,18 @@ td.rdtYear:hover {
   align-items: flex-start;
 }
 
+.chartkit-export-modal_export-xlsx-docx {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  min-height: 210px;
+}
+
+.chartkit-export-modal_export-xlsx-docx .chartkit-export-modal__block {
+  padding: 5px 0;
+}
+
 .chartkit-export-modal__block,
 .chartkit-export-modal__block-body {
   display: grid;
@@ -4391,15 +4421,15 @@ h6 {
   margin: 0;
 }
 
-h1 {
+.clustrum h1 {
   font-size: 17px;
 }
 
-h2 {
+.clustrum h2 {
   font-size: 15px;
 }
 
-h3 {
+.clustrum h3 {
   font-size: 13px;
 }
 

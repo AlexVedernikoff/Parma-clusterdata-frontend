@@ -12,6 +12,7 @@ import EntryDialogues, {
 import Utils from '../../utils';
 import navigateHelper from '../../libs/navigateHelper';
 import ErrorDialog from '../ErrorDialog/ErrorDialog';
+import { ContextMenuActions } from '@entities/navigation-base/types';
 
 const ConfiguredEntryContextMenu = withConfiguredEntryContextMenu(EntryContextMenu);
 const defaultPopupDirections = ['bottom-center', 'bottom-left', 'bottom-right'];
@@ -117,25 +118,25 @@ class EntryContextMenuService extends React.PureComponent {
 
   onMenuClick = ({ entry, action }) => {
     switch (action) {
-      case ENTRY_CONTEXT_MENU_ACTION.RENAME: {
+      case ContextMenuActions.Rename: {
         return this.renameEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.DESCRIBE: {
+      case ContextMenuActions.Describe: {
         return this.describeEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.MOVE: {
+      case ContextMenuActions.Move: {
         return this.moveEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.COPY: {
+      case ContextMenuActions.Copy: {
         return this.copyEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.DELETE: {
+      case ContextMenuActions.Delete: {
         return this.deleteEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.ACCESS: {
+      case ContextMenuActions.Access: {
         return this.accessEntry(entry);
       }
-      case ENTRY_CONTEXT_MENU_ACTION.COPY_LINK: {
+      case ContextMenuActions.CopyLink: {
         // do nothing
         return false;
       }

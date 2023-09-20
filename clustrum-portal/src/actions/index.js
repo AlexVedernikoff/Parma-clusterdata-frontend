@@ -22,6 +22,7 @@ export const CLEAR_VISUALIZATION = 'CLEAR_VISUALIZATION';
 export const ACTUALIZE_VISUALIZATION = 'ACTUALIZE_VISUALIZATION';
 export const SET_VISUALIZATION = 'SET_VISUALIZATION';
 export const SET_VISUALIZATION_PLACEHOLDER_ITEMS = 'SET_VISUALIZATION_PLACEHOLDER_ITEMS';
+export const SET_SETTINGS_EXPORT_TEMPLATE = 'SET_SETTINGS_EXPORT_TEMPLATE';
 
 export const UPDATE_FILTER = 'UPDATE_FILTER';
 export const SET_FILTERS = 'SET_FILTERS';
@@ -262,6 +263,8 @@ export function fetchDataset({ datasetId, sdk }) {
             steppedLayoutIndentation,
             paginateInfo,
             labels,
+            hasExportTemplateXlsx,
+            hasExportTemplateDocx,
           } = {},
         } = getState();
 
@@ -295,6 +298,8 @@ export function fetchDataset({ datasetId, sdk }) {
             paginateInfo,
             labels,
             updates,
+            hasExportTemplateXlsx,
+            hasExportTemplateDocx,
           }),
         );
       })
@@ -331,6 +336,8 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
         steppedLayoutIndentation,
         paginateInfo,
         labels,
+        hasExportTemplateXlsx,
+        hasExportTemplateDocx,
       } = {},
     } = getState();
 
@@ -474,6 +481,8 @@ export function updateDatasetByValidation({ fields, updates, sdk } = {}) {
           paginateInfo,
           labels,
           updates: fullUpdates,
+          hasExportTemplateXlsx,
+          hasExportTemplateDocx,
         }),
       );
     } catch (e) {
@@ -619,6 +628,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
     let diagramMagnitude;
     let mapLayerOpacity;
     let exportLimit;
+    let hasExportTemplateXlsx;
+    let hasExportTemplateDocx;
 
     sdk
       .getWidget({ entryId })
@@ -656,6 +667,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
           updates,
           mapLayerOpacity,
           exportLimit,
+          hasExportTemplateXlsx,
+          hasExportTemplateDocx,
         } = data.data);
 
         diagramMagnitude = diagramMagnitude || MEASURE_TYPE.ABSOLUTE;
@@ -740,6 +753,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
           labels,
           diagramMagnitude,
           mapLayerOpacity,
+          hasExportTemplateXlsx,
+          hasExportTemplateDocx,
         });
 
         const searchPairs = decodeURI(location.search).match(/[^&?]+=[^&]+/g);
@@ -888,6 +903,10 @@ export function fetchWidget({ entryId, preview, sdk }) {
         // Проставляем визуализацию и все ее параметры (какие поля выбраны)
         dispatch(setVisualization({ visualization }));
 
+        dispatch(
+          setSettingsExportTemplate({ hasExportTemplateXlsx, hasExportTemplateDocx }),
+        );
+
         // Рисуем график
         dispatch(
           updatePreview({
@@ -913,6 +932,8 @@ export function fetchWidget({ entryId, preview, sdk }) {
             diagramMagnitude,
             mapLayerOpacity,
             exportLimit,
+            hasExportTemplateXlsx,
+            hasExportTemplateDocx,
           }),
         );
       })
@@ -984,6 +1005,8 @@ export function setVisualization({ visualization }) {
       needSteppedLayout: state.visualization.needSteppedLayout,
       steppedLayoutIndentation: state.visualization.steppedLayoutIndentation,
       paginateInfo: state.visualization.paginateInfo,
+      hasExportTemplateXlsx: state.visualization.hasExportTemplateXlsx,
+      hasExportTemplateDocx: state.visualization.hasExportTemplateDocx,
     };
   };
 }
@@ -991,6 +1014,17 @@ export function setVisualization({ visualization }) {
 export function clearVisualization() {
   return {
     type: CLEAR_VISUALIZATION,
+  };
+}
+
+export function setSettingsExportTemplate({
+  hasExportTemplateXlsx,
+  hasExportTemplateDocx,
+}) {
+  return {
+    type: SET_SETTINGS_EXPORT_TEMPLATE,
+    hasExportTemplateXlsx,
+    hasExportTemplateDocx,
   };
 }
 

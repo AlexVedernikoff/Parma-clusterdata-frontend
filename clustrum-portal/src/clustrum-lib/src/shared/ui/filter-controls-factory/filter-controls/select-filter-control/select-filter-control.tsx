@@ -29,9 +29,15 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
 
   useEffect(() => {
     if (onChange) {
-      onChange(debouncedValue);
+      onChange(debouncedValue ?? []);
     }
   }, [debouncedValue, onChange]);
+
+  useEffect(() => {
+    if (!multiselect && typeof defaultValue !== 'string') {
+      setCurrentValue(defaultValue[0]);
+    }
+  }, [defaultValue, multiselect]);
 
   const handleSelect = (newValue: string): void => {
     if (!multiselect && newValue === currentValue) {

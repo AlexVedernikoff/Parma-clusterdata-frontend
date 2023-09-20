@@ -1,6 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
+const dotenv = require('dotenv').config({ path: path.resolve('./environment/.env') });
 const { PORTAL_ASSETS_PATH } = require('../../../src/context-path.js');
+
+const primaryColor = dotenv.parsed?.PRIMARY_COLOR;
 
 module.exports = {
   mode: 'production',
@@ -11,14 +14,12 @@ module.exports = {
     navigationBuild: './src/entries/navigationBuild.js',
     bundle: './src/entries/libBuilder.js',
   },
-  experiments: {
-    outputModule: true,
-  },
   output: {
     path: path.resolve('./src/entries/dist/'),
     filename: '[name].js',
     library: {
-      type: 'module',
+      type: 'umd',
+      name: 'clustrum',
     },
     globalObject: 'this',
     publicPath: PORTAL_ASSETS_PATH,
@@ -116,6 +117,7 @@ module.exports = {
       BUILD_SETTINGS: JSON.stringify({
         isLib: true,
       }),
+      'process.env.REACT_APP_PRIMARY_COLOR': JSON.stringify(primaryColor),
     }),
   ],
 };
