@@ -24,6 +24,7 @@ import {
   SET_VISUALIZATION_TYPE,
   UPDATE_FILTER,
   SET_ORDER_BY,
+  SET_SETTINGS_EXPORT_TEMPLATE,
 } from '../actions';
 import { NULL_ALIAS_DEFAULT_VALUE } from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 
@@ -37,7 +38,7 @@ const initialState = {
   filters: [],
   colors: [],
   sort: [],
-  coordType: '',
+  coordType: { label: '', value: '' },
   titleLayerSource: '',
   clusterPrecision: 0,
   nullAlias: NULL_ALIAS_DEFAULT_VALUE,
@@ -69,6 +70,15 @@ export function visualization(state = initialState, action) {
       return {
         ...state,
         visualizationType,
+      };
+    }
+    case SET_SETTINGS_EXPORT_TEMPLATE: {
+      const { hasExportTemplateXlsx, hasExportTemplateDocx } = action;
+
+      return {
+        ...state,
+        hasExportTemplateXlsx,
+        hasExportTemplateDocx,
       };
     }
     case CLEAR_VISUALIZATION: {

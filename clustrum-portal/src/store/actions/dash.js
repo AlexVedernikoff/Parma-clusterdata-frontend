@@ -24,15 +24,14 @@ export const load = defaultEntryId => {
         router: { location },
       } = getState();
       const { pathname, search } = location;
-
-      const entryId = defaultEntryId ? defaultEntryId : pathname.match(/[^\/]*$/)[0];
+      const isLib = BUILD_SETTINGS.isLib;
+      const entryId = isLib ? defaultEntryId : pathname.match(/[^\/]*$/)[0];
+      const searchParams = new URLSearchParams(search);
+      const stateUuid = searchParams.get('state-uuid');
 
       if (entryId === 'new') {
         return;
       }
-
-      const searchParams = new URLSearchParams(search);
-      const stateUuid = searchParams.get('state-uuid');
 
       const [entry, hashData] = await Promise.all([
         sdk.getEntry({ entryId, includePermissionsInfo: true, includeLinks: true }),
@@ -76,7 +75,6 @@ export const load = defaultEntryId => {
 
       const isNoDataLoaded =
         data.pages[0].tabs.length === 1 && !data.pages[0].tabs[0].items.length;
-      const isLib = BUILD_SETTINGS.isLib;
 
       const mode = isNoDataLoaded && !isLib ? MODE.EDIT : MODE.VIEW;
 
