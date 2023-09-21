@@ -196,6 +196,7 @@ class Header extends React.PureComponent {
         items={items}
         layout={jointLayout}
         toggleWidgetVisibility={this.toggleWidgetVisibility}
+        hint={'Скрытие элементов аналитической панели'}
       />,
       <Button
         title="Открыть панель расширенных фильтров"
