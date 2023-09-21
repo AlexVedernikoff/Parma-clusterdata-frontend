@@ -191,19 +191,14 @@ class Header extends React.PureComponent {
       },
     ];
 
-    const WidgetVisibilityDropdownHover = WithHover(
-      WidgetVisibilityDropdown,
-      {
-        key: 'widget-visibility',
-        items,
-        layout: jointLayout,
-        toggleWidgetVisibility: this.toggleWidgetVisibility,
-      },
-      'Скрытие элементов аналитической панели',
-    );
-
     return [
-      <WidgetVisibilityDropdownHover />,
+      <WidgetVisibilityDropdown
+        key="widget-visibility"
+        items={items}
+        layout={jointLayout}
+        toggleWidgetVisibility={this.toggleWidgetVisibility}
+        hint={'Скрытие элементов аналитической панели'}
+      />,
       <Button
         title="Открыть панель расширенных фильтров"
         onClick={this.props.openExpandedFilter}

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import { Button, Dropdown } from 'antd';
-import styles from './withHover.module.css';
+import { Button, Dropdown, Popover } from 'antd';
 
 function WidgetVisibilityDropdown(props) {
-  const { items, layout, toggleWidgetVisibility, isHover, text } = props;
+  const { items, layout, toggleWidgetVisibility, hint } = props;
 
   const getWidgetList = () => {
     const isWidget = item => item.type === 'widget';
@@ -75,19 +73,20 @@ function WidgetVisibilityDropdown(props) {
   });
 
   return (
-    <>
-      <Dropdown
-        menu={{ items: visibilityItems }}
-        onOpenChange={flag => setOpen(flag)}
-        trigger={['click']}
-        open={open}
-      >
+    <Dropdown
+      menu={{ items: visibilityItems }}
+      onOpenChange={flag => setOpen(flag)}
+      trigger={['click']}
+      open={open}
+    >
+      {hint ? (
+        <Popover placement="bottom" content={<span>{hint}</span>}>
+          <Button icon={<EyeOutlined />} />
+        </Popover>
+      ) : (
         <Button icon={<EyeOutlined />} />
-      </Dropdown>
-      {isHover && (
-        <div className={styles['widget-visibility-dropdown__hint']}>{text}</div>
       )}
-    </>
+    </Dropdown>
   );
 }
 
