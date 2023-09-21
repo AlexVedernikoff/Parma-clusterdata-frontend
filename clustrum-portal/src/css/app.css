@@ -1009,7 +1009,7 @@
   vertical-align: middle;
 }
 
-.dialog-filter.dialog-filter-dimension .left-column {
+.dialog-filter .left-column {
   position: relative;
   width: 50%;
   float: left;
@@ -1017,12 +1017,12 @@
   padding: 22px 20px 0 0;
 }
 
-.dialog-filter.dialog-filter-dimension .left-column .options-list {
+.dialog-filter .left-column .options-list {
   margin-top: 8px;
   margin-left: -20px;
 }
 
-.dialog-filter.dialog-filter-dimension .right-column {
+.dialog-filter .right-column {
   position: relative;
   width: 50%;
   float: right;
@@ -1031,16 +1031,16 @@
   border-left: 1px solid var(--color-divider);
 }
 
-.dialog-filter.dialog-filter-dimension .right-column .options-list {
+.dialog-filter .right-column .options-list {
   margin-top: 8px;
 }
 
-.dialog-filter.dialog-filter-dimension .options-list {
+.dialog-filter .options-list {
   height: 285px;
   overflow-y: auto;
 }
 
-.dialog-filter.dialog-filter-dimension .options-list .dimension-option {
+.dialog-filter .options-list .dimension-option {
   height: 40px;
   padding: 12px 0 12px 20px;
   line-height: 18px;
@@ -1048,7 +1048,7 @@
   width: 100%;
 }
 
-.dialog-filter.dialog-filter-dimension .options-list .dimension-option .dimension-value {
+.dialog-filter .options-list .dimension-option .dimension-value {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1056,25 +1056,19 @@
   width: 100%;
 }
 
-.dialog-filter.dialog-filter-dimension .options-list .dimension-option:hover {
+.dialog-filter .options-list .dimension-option:hover {
   background: var(--color-contrast-4);
 }
 
-.dialog-filter.dialog-filter-dimension
-  .options-list
-  .dimension-option:hover
-  .dimension-select {
+.dialog-filter .options-list .dimension-option:hover .dimension-select {
   display: inline-block;
 }
 
-.dialog-filter.dialog-filter-dimension
-  .options-list
-  .dimension-option:hover
-  .dimension-value {
+.dialog-filter .options-list .dimension-option:hover .dimension-value {
   width: calc(100% - 100px);
 }
 
-.dialog-filter.dialog-filter-dimension .options-list .dimension-option .dimension-select {
+.dialog-filter .options-list .dimension-option .dimension-select {
   float: right;
   height: 40px;
   margin-top: -12px;
@@ -1086,7 +1080,7 @@
   display: none;
 }
 
-.dialog-filter.dialog-filter-dimension .column-title {
+.dialog-filter .column-title {
   display: inline-block;
   font-size: 15px;
   font-weight: 700;
@@ -1094,13 +1088,13 @@
   margin-bottom: 12px;
 }
 
-.dialog-filter.dialog-filter-dimension .column-action {
+.dialog-filter .column-action {
   float: right;
   font-size: 15px;
   color: var(--color-contrast-50);
 }
 
-.dialog-filter.dialog-filter-dimension .column-action.active {
+.dialog-filter .column-action.active {
   color: var(--color-azure-solid);
   cursor: pointer;
 }
