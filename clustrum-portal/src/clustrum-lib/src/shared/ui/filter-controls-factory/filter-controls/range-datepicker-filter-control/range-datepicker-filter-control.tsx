@@ -12,6 +12,7 @@ import {
 } from '@lib-shared/ui/filter-controls-factory/types';
 
 import styles from './range-datepicker-filter-control.module.css';
+import { renderCustomDate } from '../../custom-date';
 
 const { RangePicker } = DatePicker;
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
@@ -99,15 +100,6 @@ export function RangeDatepickerFilterControl(
     return (
       (Boolean(minDate) && current.isBefore(minDate, 'date')) ||
       (Boolean(maxDate) && current.isAfter(maxDate, 'date'))
-    );
-  };
-
-  const renderCustomDate = (current: Dayjs): React.ReactNode => {
-    const styles = { width: 35.99 };
-    return (
-      <td title={current.format('DD.MM.YYYY')} className="ant-picker-cell" style={styles}>
-        {current.date()}
-      </td>
     );
   };
 
