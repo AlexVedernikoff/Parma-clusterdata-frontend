@@ -392,6 +392,8 @@ class FieldEditor extends React.Component {
               <Dataset
                 title="Набор данных"
                 datasetId={linkedDataset}
+                entryId={this.props.datasetId}
+                sdk={this.props.sdk}
                 onClick={linkedDataset =>
                   this.setState(prevState => ({
                     field: {
