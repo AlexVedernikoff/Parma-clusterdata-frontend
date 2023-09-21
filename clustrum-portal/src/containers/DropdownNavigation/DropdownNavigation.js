@@ -25,6 +25,7 @@ class DropdownNavigation extends React.PureComponent {
     size: PropTypes.string,
     navigationPath: PropTypes.string.isRequired,
     changeNavigationPath: PropTypes.func.isRequired,
+    path: PropTypes.string.isRequired,
   };
 
   static defaultProps = { size: 'n' };
@@ -105,7 +106,7 @@ class DropdownNavigation extends React.PureComponent {
           startFrom={
             this.state.entry
               ? getNavigationPathFromKey(this.state.entry.key)
-              : this.props.navigationPath || getPersonalFolderPath()
+              : this.props.navigationPath || this.props.path || getPersonalFolderPath()
           }
           hasTail={true}
           anchor={this.buttonRef}

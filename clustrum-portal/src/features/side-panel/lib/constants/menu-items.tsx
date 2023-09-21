@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   FolderOutlined,
-  LikeOutlined,
+  StarOutlined,
   ForkOutlined,
   DatabaseOutlined,
   LineChartOutlined,
@@ -18,7 +18,7 @@ export const MENU_ITEMS: NonNullable<MenuProps['items']> = [
   },
   {
     key: Places.Favorites,
-    icon: <LikeOutlined />,
+    icon: <StarOutlined />,
     label: 'Избранное',
   },
   {
