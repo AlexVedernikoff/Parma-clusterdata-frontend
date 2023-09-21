@@ -17,9 +17,9 @@ function Dataset({
   const [path, setPath] = useState();
 
   useEffect(async () => {
-    const { key } = await sdk.getEntry({ entryId: entryId });
+    const { key } = await sdk.getEntry({ entryId });
     setPath(key);
-  }, []);
+  }, [entryId]);
 
   return (
     path && (
