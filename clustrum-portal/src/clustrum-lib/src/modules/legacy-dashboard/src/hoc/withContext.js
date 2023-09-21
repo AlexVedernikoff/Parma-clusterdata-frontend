@@ -180,10 +180,7 @@ export function withContext(Component) {
     get _paginateInfo() {
       const { config, itemsStateAndParams } = this.props;
       return config.items.reduce((acc, { id }) => {
-        acc[id] = (itemsStateAndParams[id] && itemsStateAndParams[id].paginateInfo) || {
-          page: 0,
-          pageSize: 150,
-        };
+        acc[id] = itemsStateAndParams[id] && itemsStateAndParams[id].paginateInfo;
         return acc;
       }, {});
     }
