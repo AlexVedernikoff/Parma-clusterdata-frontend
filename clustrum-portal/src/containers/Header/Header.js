@@ -315,11 +315,15 @@ class Header extends React.PureComponent {
             icon={<ClearOutlined />}
           />
         </Popover>,
-        <Popover placement="bottom" content={<span>Экспортировать</span>}>
-          <Dropdown menu={{ items: exportItems }} trigger={['click']}>
-            <Button icon={<DownloadOutlined />}></Button>
-          </Dropdown>
-        </Popover>,
+        <>
+          {!$appSettingsStore.getState().hideDashExport && (
+            <Popover placement="bottom" content={<span>Экспортировать</span>}>
+              <Dropdown menu={{ items: exportItems }} trigger={['click']}>
+                <Button icon={<DownloadOutlined />}></Button>
+              </Dropdown>
+            </Popover>
+          )}
+        </>,
         <>
           {!$appSettingsStore.getState().hideEdit && (
             <Popover placement="bottom" content={<span>Редактировать</span>}>

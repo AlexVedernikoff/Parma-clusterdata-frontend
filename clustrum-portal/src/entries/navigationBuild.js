@@ -35,12 +35,9 @@ export default function NavigationBuild(props) {
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,
-    hideTabs: props.hideTabs,
-    hideEdit: props.hideEdit,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,
-    stateUuid: props.stateUuid,
   });
 
   return (
