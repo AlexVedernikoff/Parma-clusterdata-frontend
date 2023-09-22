@@ -19,7 +19,7 @@ export function Header(props: HeaderProps): JSX.Element {
   const [place, pathInFolder] = useUnit([$place, $pathInFolder]);
 
   function breadCrumbItemRender(route: any, _: any, items: ItemType[]): JSX.Element {
-    const last = items.indexOf(route) === items.length - 1;
+    const isLastItem = items.indexOf(route) === items.length - 1;
     const getEntryPath = async (): Promise<void> => {
       const targetUrlKey = route.title + ROUTES.root;
 
@@ -28,7 +28,7 @@ export function Header(props: HeaderProps): JSX.Element {
           0,
           pathInFolder.indexOf(targetUrlKey) + targetUrlKey.length,
         );
-        const entryData = await getEntryDataByPathApi({ key: newUrlPath });
+        const entryData = await getEntryDataByPathApi(newUrlPath);
         history.push(
           generatePath(MAP_PLACE_TO_PATH_IN_FOLDER[place as Places], {
             id: entryData.entryId,
@@ -39,7 +39,7 @@ export function Header(props: HeaderProps): JSX.Element {
       }
     };
 
-    return last ? (
+    return isLastItem ? (
       <span>{route.title}</span>
     ) : (
       <Link onClick={getEntryPath} to={'#'}>
