@@ -6,15 +6,12 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { DatepickerFilterControlProps } from './types';
-import {
-  DefaultValueType,
-  PlacementPosition,
-} from '@lib-shared/ui/filter-controls-factory/types';
+import { PlacementPosition } from '@lib-shared/ui/filter-controls-factory/types';
+import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
 
 import styles from './datepicker-filter-control.module.css';
 import { renderCustomDate } from '../../custom-date';
 
-const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 const POPUP_WIDTH = 288;
 
 export function DatepickerFilterControl(
@@ -28,35 +25,20 @@ export function DatepickerFilterControl(
     defaultValue,
     dateFormat = DEFAULT_DATE_FORMAT,
     onChange,
+    showTitle: needShowTitle,
   } = props;
   const [date, setDate] = useState<Dayjs | null>(null);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let currentValue;
-    switch (defaultValue?.type) {
-      case DefaultValueType.Date:
-        currentValue = dayjs(defaultValue.value.from);
-        break;
+    const currentValue = defaultValue && dayjs(defaultValue);
 
-      case DefaultValueType.Relative:
-        currentValue = dayjs().subtract(parseInt(defaultValue.value.from), 'day');
-        break;
-
-      default:
-        currentValue = null;
-    }
-
-    if (!currentValue && defaultValue) {
-      return;
-    }
-
-    if (currentValue?.isValid() && onChange) {
+    if (currentValue && currentValue?.isValid()) {
       setDate(currentValue);
-      onChange(currentValue.format(DEFAULT_DATE_FORMAT));
     } else {
       setDate(null);
+      onChange?.('');
     }
   }, [defaultValue]);
 
@@ -65,10 +47,8 @@ export function DatepickerFilterControl(
       return;
     }
     if (dateValue) {
-      setDate(dateValue);
       onChange(dateValue.format(DEFAULT_DATE_FORMAT));
     } else {
-      setDate(null);
       onChange('');
     }
   };
@@ -93,7 +73,7 @@ export function DatepickerFilterControl(
   return (
     <div className={classNames(styles['datepicker-control'], className)}>
       <label className={styles['datepicker-control__label']}>
-        {`${label}:`}
+        {needShowTitle && `${label}:`}
         <div ref={pickerRef}>
           <DatePicker
             disabledDate={hasDisabled}

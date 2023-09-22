@@ -6,20 +6,18 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { Range, RangeDatepickerFilterControlProps } from './types';
-import {
-  DefaultValueType,
-  PlacementPosition,
-} from '@lib-shared/ui/filter-controls-factory/types';
+import { PlacementPosition } from '@lib-shared/ui/filter-controls-factory/types';
+import { getIntervalString } from '../../lib/helpers';
+import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
 
 import styles from './range-datepicker-filter-control.module.css';
 import { renderCustomDate } from '../../custom-date';
 
 const { RangePicker } = DatePicker;
-const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 const RANGE_PLACEHOLDER: [string, string] = ['От дд.мм.гггг', 'До дд.мм.гггг'];
 const POPUP_WIDTH = 576;
+const intervalFormat = /^__interval_(\d{4}-\d{2}-\d{2})_(\d{4}-\d{2}-\d{2})$/;
 
-// eslint-disable-next-line max-lines-per-function
 export function RangeDatepickerFilterControl(
   props: RangeDatepickerFilterControlProps,
 ): JSX.Element {
@@ -31,43 +29,26 @@ export function RangeDatepickerFilterControl(
     defaultValue,
     dateFormat = DEFAULT_DATE_FORMAT,
     onChange,
+    showTitle: needShowTitle,
   } = props;
   const [dateRange, setDateRange] = useState<Range>(null);
   const [shouldMoveCalendar, setShouldMoveCalendar] = useState<boolean>(false);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let from;
-    let to;
+    const parsedDates = defaultValue?.match(intervalFormat);
 
-    if (!defaultValue) {
+    if (!parsedDates) {
       setDateRange(null);
+      onChange?.('');
       return;
     }
 
-    switch (defaultValue?.type) {
-      case DefaultValueType.Date:
-      case DefaultValueType.DefaultRanges:
-        from = dayjs(defaultValue.value.from);
-        to = dayjs(defaultValue.value.to);
-        break;
-
-      case DefaultValueType.Relative:
-        from = dayjs().subtract(parseInt(defaultValue.value.from), 'day');
-        to = dayjs().add(parseInt(defaultValue.value.to), 'day');
-        break;
-
-      default:
-        from = null;
-        to = null;
-    }
+    const from = dayjs(parsedDates[1]);
+    const to = dayjs(parsedDates[2]);
 
     if (from?.isValid() && to?.isValid() && onChange) {
       setDateRange([from, to]);
-      onChange({
-        from: `__inter${from.format(DEFAULT_DATE_FORMAT)}`,
-        to: to.format(DEFAULT_DATE_FORMAT),
-      });
     }
   }, [defaultValue]);
 
@@ -76,17 +57,9 @@ export function RangeDatepickerFilterControl(
       return;
     }
     if (values?.[0] && values?.[1]) {
-      setDateRange([values[0], values[1]]);
-      onChange({
-        from: `__interval_${values[0].format(DEFAULT_DATE_FORMAT)}`,
-        to: values[1].format(DEFAULT_DATE_FORMAT),
-      });
+      onChange(getIntervalString(values[0], values[1]));
     } else {
-      setDateRange(null);
-      onChange({
-        from: '',
-        to: '',
-      });
+      onChange('');
     }
   };
 
@@ -110,7 +83,7 @@ export function RangeDatepickerFilterControl(
   return (
     <div className={classNames(styles['range-datepicker-control'], className)}>
       <label className={styles['range-datepicker-control__label']}>
-        {`${label}:`}
+        {needShowTitle && `${label}:`}
         <div ref={pickerRef}>
           <RangePicker
             disabledDate={hasDisabled}

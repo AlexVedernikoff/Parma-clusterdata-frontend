@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  clusterdata_front:
+    image: clusterdata_front:{{ app_version }}
+    ports:
+      - 8090:8090
+    restart: always
+    environment:
+      - APP_BI_SERVICE_HOST="http://10.80.24.20:8092"
+      - APP_HEADER_SCRIPT=""
+      - APP_MAP_LAYER_SOURCE="https://b.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      - DEBUG=1

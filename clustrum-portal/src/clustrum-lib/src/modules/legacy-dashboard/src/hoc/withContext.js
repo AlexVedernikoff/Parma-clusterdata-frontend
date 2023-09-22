@@ -4,6 +4,7 @@ import { UpdateManager } from '../modules/update-manager/update-manager';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import { matchParamsWithAliases } from '../modules/utils';
+import { convertDateToString } from '@lib-shared/ui/filter-controls-factory';
 const START_ROLE = 'control';
 
 /**
@@ -126,17 +127,35 @@ export function withContext(Component) {
                 itemData.findIndex(({ id }) => id === who) !== -1),
           )
           .map(({ whom }) => whom);
+
         params[itemId] = Object.assign(
           {},
           controlsDefaultsByNamespace.reduceRight((acc, control) => {
             const { id, defaults, initiatorItem } = control;
+
+            const processedDefaults = Object.keys(defaults).reduce((res, key) => {
+              if (
+                initiatorItem.type === 'control' &&
+                initiatorItem.data.control.elementType === 'date'
+              ) {
+                return {
+                  ...res,
+                  [key]: convertDateToString(
+                    defaults[key],
+                    initiatorItem.data.control.isRange,
+                  ),
+                };
+              }
+              return { ...res, [key]: defaults[key] };
+            }, {});
+
             if (!ignoreIds.includes(id)) {
               Object.assign(
                 acc,
                 matchParamsWithAliases({
                   aliases,
                   namespace: itemNamespace,
-                  params: defaults,
+                  params: processedDefaults,
                   initiatorItem,
                 }),
               );
@@ -145,6 +164,7 @@ export function withContext(Component) {
           }, {}),
           (itemsStateAndParams[itemId] && itemsStateAndParams[itemId].params) || {},
         );
+
         return params;
       }, {});
     }
@@ -160,10 +180,11 @@ export function withContext(Component) {
     get _paginateInfo() {
       const { config, itemsStateAndParams } = this.props;
       return config.items.reduce((acc, { id }) => {
-        acc[id] = (itemsStateAndParams[id] && itemsStateAndParams[id].paginateInfo) || {
-          page: 0,
-          pageSize: 150,
-        };
+        const paginateInfo = itemsStateAndParams[id]?.paginateInfo;
+        if (!paginateInfo) {
+          return acc;
+        }
+        acc[id] = paginateInfo;
         return acc;
       }, {});
     }

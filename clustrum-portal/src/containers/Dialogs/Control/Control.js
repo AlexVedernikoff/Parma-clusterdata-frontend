@@ -31,6 +31,7 @@ import {
   openExpandedFilter,
   setItemData,
 } from '../../../store/actions/dash';
+import { DefaultValueType } from '@clustrum-lib/shared/ui/filter-controls-factory/types';
 
 // import './Control.scss';
 
@@ -113,7 +114,22 @@ class Control extends React.PureComponent {
     return Boolean(this.props.id);
   }
 
-  _createEmptyValue = elementType => (elementType === ELEMENT_TYPE.SELECT ? [] : '');
+  _createEmptyValue = elementType => {
+    switch (elementType) {
+      case ELEMENT_TYPE.SELECT:
+        return [];
+      case ELEMENT_TYPE.DATE:
+        return {
+          type: DefaultValueType.NoDefined,
+          value: {
+            from: '',
+            to: '',
+          },
+        };
+      default:
+        return '';
+    }
+  };
 
   onApply = () => {
     const {
@@ -332,7 +348,7 @@ class Control extends React.PureComponent {
 
   render() {
     const { visible, closeDialog } = this.props;
-    const { title, showTitle, error, isExpandedFilter } = this.state;
+    const { title, showTitle: needShowTitle, error, isExpandedFilter } = this.state;
 
     // TODO: вот это место выглядит не очень хорошо, сделано для того, чтобы проще обновлялись под-диалоги
     return visible ? (
@@ -356,8 +372,8 @@ class Control extends React.PureComponent {
                 view="default"
                 tone="default"
                 size="s"
-                checked={showTitle}
-                onChange={() => this.setState({ showTitle: !showTitle })}
+                checked={needShowTitle}
+                onChange={() => this.setState({ showTitle: !needShowTitle })}
               >
                 Показывать
               </LegoCheckBox>

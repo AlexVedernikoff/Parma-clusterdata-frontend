@@ -7,15 +7,9 @@ import {
   RangeDatepickerFilterControl,
 } from './filter-controls';
 
-import { PickerValue } from './filter-controls/range-datepicker-filter-control/types';
 import { convertToPartialMatchValue, convertToPlainValue } from './lib/helpers';
 import styles from './filter-controls-factory.module.css';
-import {
-  FilterControlsFactoryProps,
-  ControlType,
-  DateParams,
-  MemoizedHandlers,
-} from './types';
+import { FilterControlsFactoryProps, ControlType, MemoizedHandlers } from './types';
 
 export class FilterControlsFactory extends React.PureComponent<
   FilterControlsFactoryProps
@@ -88,7 +82,7 @@ export class FilterControlsFactory extends React.PureComponent<
     return handler.memoizedHandleFn;
   }
 
-  handleChangeRangeDatepicker(param: string): ((value: PickerValue) => void) | null {
+  handleChangeRangeDatepicker(param: string): ((value: string) => void) | null {
     const handler = this.memoizedHandlers.rangeDatepickerChangeHandler;
 
     if (handler.param === param) {
@@ -96,9 +90,8 @@ export class FilterControlsFactory extends React.PureComponent<
     }
 
     handler.param = param;
-    handler.memoizedHandleFn = (value: PickerValue): void => {
-      const newValue = value.from && value.to ? `${value.from}_${value.to}` : '';
-      this.onChange(handler.param, newValue);
+    handler.memoizedHandleFn = (value: string): void => {
+      this.onChange(handler.param, value);
     };
 
     return handler.memoizedHandleFn;
@@ -159,7 +152,7 @@ export class FilterControlsFactory extends React.PureComponent<
               return (
                 <DatepickerFilterControl
                   onChange={this.handleChangeDefault(param)}
-                  defaultValue={actualParams[param] as DateParams}
+                  defaultValue={actualParams[param] as string}
                   {...props}
                 />
               );
@@ -167,7 +160,7 @@ export class FilterControlsFactory extends React.PureComponent<
               return (
                 <RangeDatepickerFilterControl
                   onChange={this.handleChangeRangeDatepicker(param)}
-                  defaultValue={actualParams[param] as DateParams}
+                  defaultValue={actualParams[param] as string}
                   {...props}
                 />
               );

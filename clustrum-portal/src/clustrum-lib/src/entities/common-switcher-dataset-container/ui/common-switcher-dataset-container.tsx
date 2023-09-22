@@ -18,11 +18,12 @@ export function CommonSwitcherDatasetContainer(
   }, []);
 
   const updateEntryMeta = async (): Promise<void> => {
-    setIsLoading(true);
-
-    const updatedEntryMeta = await getCommonSwitcherDatasetModel(entryId);
-    setEntryMeta(updatedEntryMeta);
-    setIsLoading(false);
+    if (entryId) {
+      setIsLoading(true);
+      const updatedEntryMeta = await getCommonSwitcherDatasetModel(entryId);
+      setEntryMeta(updatedEntryMeta);
+      setIsLoading(false);
+    }
   };
 
   if (isLoading) {
