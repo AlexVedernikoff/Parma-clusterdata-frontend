@@ -22,7 +22,6 @@ import { TableTheme } from './TableTheme';
 const b = cn('data-table');
 
 const HIDDEN_ROW_SPAN = -1;
-const ALWAYS_SHOW_ROW_INDEX = 2;
 const DEFAULT_CELL_PADDING_LEFT = 10;
 
 const ICON_ASC = (
@@ -88,7 +87,6 @@ class TableRow extends React.PureComponent {
     footer: PropTypes.bool,
     onClick: PropTypes.func,
     selectedRow: PropTypes.object,
-    renderIndex: PropTypes.number,
   };
   static defaultProps = {
     footer: false,
@@ -115,16 +113,7 @@ class TableRow extends React.PureComponent {
   };
 
   render() {
-    const {
-      className,
-      columns,
-      row,
-      index,
-      odd,
-      footer,
-      selectedRow,
-      renderIndex,
-    } = this.props;
+    const { className, columns, row, index, odd, footer, selectedRow } = this.props;
     const isRowSelected = this.checkRowSelection(selectedRow, row);
     const classNameRow =
       b('row', { odd, footer }, className) + (isRowSelected ? ' selected' : '');
@@ -140,10 +129,7 @@ class TableRow extends React.PureComponent {
             (isValueSelected ? ' selected' : '') +
             (isTotalCell ? ' chartkit-table__cell_is-total-cell' : '');
 
-          if (
-            value?.rowSpan === HIDDEN_ROW_SPAN &&
-            renderIndex !== ALWAYS_SHOW_ROW_INDEX
-          ) {
+          if (value?.rowSpan === HIDDEN_ROW_SPAN) {
             return <td></td>;
           }
 
@@ -534,7 +520,7 @@ class Table extends React.PureComponent {
       />
     );
   }
-  renderRow = (vIndex, renderIndex) => {
+  renderRow = vIndex => {
     const {
       data,
       columns: { dataColumns },
@@ -554,7 +540,6 @@ class Table extends React.PureComponent {
         odd={vIndex % 2 === 0}
         columns={dataColumns}
         selectedRow={selectedRow}
-        renderIndex={renderIndex}
       />
     );
   };
