@@ -21,7 +21,7 @@ export const pivotTableDialogFields = (
       ? 'Расположить строку с итогами сверху'
       : 'Расположить столбец с итогами слева',
     type: VisualizationType.CheckBox,
-    visible: false,
+    visible: true,
   },
   {
     id: 'customName',
