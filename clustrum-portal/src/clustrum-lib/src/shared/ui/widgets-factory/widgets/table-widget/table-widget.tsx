@@ -6,6 +6,8 @@ import { selectNeedUniqueRows } from '../../../../../../../reducers/visualizatio
 
 import './table-widget.css';
 
+const FIRST_PAGE_INDEX = 0;
+
 export function TableWidget(props: TableWidgetProps): JSX.Element {
   const {
     columns,
@@ -22,10 +24,10 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   const isNeedUniqueRows = useSelector(state => selectNeedUniqueRows(state));
 
   useEffect(() => {
-    setInitPageState(0);
+    setInitPageState(FIRST_PAGE_INDEX);
 
     if (isNeedUniqueRows) {
-      setInitPageState(0);
+      setInitPageState(FIRST_PAGE_INDEX);
     }
   }, [pageSize, isNeedUniqueRows]);
 
