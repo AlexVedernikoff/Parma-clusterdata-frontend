@@ -64,6 +64,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
         defaultPageSize: 10,
         showTotal: (total: number): string => `Всего: ${total}`,
         onChange: changeHandler,
+        showSizeChanger: true,
       }}
     />
   );
