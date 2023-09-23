@@ -26,6 +26,9 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     // *****
   } = props;
 
+  console.log('columns = ', columns);
+  console.log('dataSource = ', dataSource);
+
   const [initPageState, setInitPageState] = useState(initPage + 1);
   // *****
 
