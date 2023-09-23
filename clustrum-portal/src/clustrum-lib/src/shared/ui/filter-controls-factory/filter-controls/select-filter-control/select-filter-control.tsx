@@ -15,6 +15,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
     onChange,
     label,
     className,
+    showTitle: needShowTitle,
   } = props;
   const [currentValue, setCurrentValue] = useState<string | string[]>(defaultValue);
   const debouncedValue = useDebounce(currentValue, 500);
@@ -29,9 +30,15 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
 
   useEffect(() => {
     if (onChange) {
-      onChange(debouncedValue);
+      onChange(debouncedValue ?? []);
     }
   }, [debouncedValue, onChange]);
+
+  useEffect(() => {
+    if (!multiselect && typeof defaultValue !== 'string') {
+      setCurrentValue(defaultValue[0]);
+    }
+  }, [defaultValue, multiselect]);
 
   const handleSelect = (newValue: string): void => {
     if (!multiselect && newValue === currentValue) {
@@ -70,7 +77,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
   return (
     <div className={classNames(styles['select-filter-control'], className)}>
       <label className={styles['select-filter-control__label']}>
-        {`${label}:`}
+        {needShowTitle && `${label}:`}
         <Select
           allowClear
           placeholder="Все"

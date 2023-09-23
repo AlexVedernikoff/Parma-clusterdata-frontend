@@ -1,0 +1,71 @@
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily midnight build
+  branches:
+    include:
+    - master
+    - development
+
+pr: none
+trigger: none
+
+pool:
+  name: SKIAO-Pool
+  demands:
+  - jdk-11
+
+variables:
+  - group: 'DTRACK'
+
+
+jobs:
+- job: Sonar_scan
+  steps:
+    - task: SonarQubePrepare@5
+      inputs:
+        SonarQube: 'sonar.parmalogica.ru'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: '$(SONAR_PROJ)'
+        cliProjectName: '$(SONAR_PROJ)'
+        projectVersion: $(SONAR_PROJ_VER)
+        #cliSources: '$(SONAR_SOURCES)'
+  
+
+    - task: SonarQubeAnalyze@5
+
+    - task: SonarQubePublish@5
+      inputs:
+        pollingTimeoutSec: '300'
+
+- job: Dtrack_scan
+  condition: contains(variables['build.sourceBranch'], 'refs/heads/development')
+  steps:
+    - task: Npm@1
+      displayName: 'Install CycloneDX'
+      inputs:
+        command: custom
+        customCommand: 'install --registry $(NEXUS_NPM) --global @cyclonedx/bom'
+
+    - task: Npm@1
+      displayName: 'Install clustrum-portal deps'
+      inputs:
+        command: custom
+        customCommand: 'install --production'
+        workingDir: clustrum-portal
+
+    - task: PowerShell@2
+      displayName: 'Run CycloneDX aggregate for clustrum-portal'
+      inputs:
+        targetType: 'inline'
+        script: |
+          cyclonedx-bom -d -t 'application' -o '$(Agent.TempDirectory)/portal-bom.xml'
+        workingDirectory: clustrum-portal
+
+    - task: upload-bom-dtrack-task@1
+      displayName: 'Upload clustrum-portal CycloneDX report'
+      inputs:
+        bomFilePath: '$(Agent.TempDirectory)/portal-bom.xml'
+        dtrackProjId: $(DTRACK_PROJ_ID)
+        dtrackAPIKey: '$(DTRACK_API_KEY)'
+        dtrackURI: '$(DTRACK_URL)'

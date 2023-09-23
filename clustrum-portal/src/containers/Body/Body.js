@@ -55,6 +55,7 @@ class Body extends React.PureComponent {
     setWidgetForReloadUUID: PropTypes.func.isRequired,
     toggleWidgetVisibility: PropTypes.func.isRequired,
     onFiltersChange: PropTypes.func,
+    onTabChange: PropTypes.func,
     // router
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -64,7 +65,16 @@ class Body extends React.PureComponent {
     this.props.setErrorMode();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    const { onTabChange } = this.props;
+
+    const isTabDataChanged =
+      JSON.stringify(prevProps.tabData) !== JSON.stringify(this.props.tabData);
+    if (isTabDataChanged && onTabChange) {
+      const { id } = this.props.tabData;
+      onTabChange(id);
+    }
+
     if (this.dashKitRef !== this.props.dashKitRef) {
       this.props.setDashKitRef(this.dashKitRef);
     }
@@ -114,10 +124,18 @@ class Body extends React.PureComponent {
       datasetId: filtersData[key].initiatorItem.data.dataset?.id,
     }));
 
+    const filtersParams = rawFilters.reduce(
+      (params, filter) => ((params[filter.id] = filter.value), params),
+      {},
+    );
+
     const newFilters = rawFilters
       .filter(item => !this.isInitiallyEmpty(item))
       .filter(item => this.isNewFilterValue(item));
-    onFiltersChange(newFilters);
+
+    if (newFilters.length) {
+      onFiltersChange(newFilters, filtersParams);
+    }
   };
 
   onChange = data => {

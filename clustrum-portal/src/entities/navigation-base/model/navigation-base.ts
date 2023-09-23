@@ -60,6 +60,7 @@ sample({
     ...(source.navParams as NavigationParams),
     path: source.pathInFolder,
     place: source.place,
+    token: '',
   }),
   target: getNavigationListFx,
 });
@@ -76,6 +77,7 @@ sample({
     ...(source.navParams as NavigationParams),
     path: navEntry.key,
     place: source.place,
+    token: '',
   }),
   target: getNavigationListFx,
 });
@@ -92,6 +94,7 @@ sample({
     ...(source.navParams as NavigationParams),
     path: source.pathInFolder,
     place: source.place,
+    token: '',
   }),
   target: getNavigationListFx,
 });
@@ -108,6 +111,7 @@ sample({
     ...(source.navParams as NavigationParams),
     path: source.pathInFolder,
     place: source.place,
+    token: '',
   }),
   target: getNavigationListFx,
 });

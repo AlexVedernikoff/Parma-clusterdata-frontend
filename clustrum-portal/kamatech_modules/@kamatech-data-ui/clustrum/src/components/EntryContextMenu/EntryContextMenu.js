@@ -13,6 +13,7 @@ import Utils from '../../utils';
 import navigateHelper from '../../libs/navigateHelper';
 import ErrorDialog from '../ErrorDialog/ErrorDialog';
 import { ContextMenuActions } from '@entities/navigation-base/types';
+import { getEntry } from '@kamatech-data-ui/clustrum-core-plugins/components/schema/general';
 
 const ConfiguredEntryContextMenu = withConfiguredEntryContextMenu(EntryContextMenu);
 const defaultPopupDirections = ['bottom-center', 'bottom-left', 'bottom-right'];
@@ -46,15 +47,24 @@ class EntryContextMenuService extends React.PureComponent {
   }
 
   async describeEntry(entry) {
+    let entryData;
+
+    if (this.props.entry.entryId) {
+      entryData = await this.props.sdk.getEntry({
+        entryId: this.props.entry.entryId,
+      });
+    }
+
     const response = await this.refDialogues.current.openDialog({
       dialog: ENTRY_DIALOG.DESCRIBE,
       dialogProps: {
         entryId: entry.entryId,
-        description: entry.description,
+        description: entryData?.description || '',
         withError: false,
         onNotify: entryDialoguesNotify(ENTRY_DIALOG.DESCRIBE, this.refErrorDialog),
       },
     });
+
     if (response.status === 'success') {
       this.update({ entry: response.data[0] });
     }
@@ -118,25 +128,25 @@ class EntryContextMenuService extends React.PureComponent {
 
   onMenuClick = ({ entry, action }) => {
     switch (action) {
-      case ContextMenuActions.rename: {
+      case ContextMenuActions.Rename: {
         return this.renameEntry(entry);
       }
-      case ContextMenuActions.describe: {
+      case ContextMenuActions.Describe: {
         return this.describeEntry(entry);
       }
-      case ContextMenuActions.move: {
+      case ContextMenuActions.Move: {
         return this.moveEntry(entry);
       }
-      case ContextMenuActions.copy: {
+      case ContextMenuActions.Copy: {
         return this.copyEntry(entry);
       }
-      case ContextMenuActions.delete: {
+      case ContextMenuActions.Delete: {
         return this.deleteEntry(entry);
       }
-      case ContextMenuActions.access: {
+      case ContextMenuActions.Access: {
         return this.accessEntry(entry);
       }
-      case ContextMenuActions.copyLink: {
+      case ContextMenuActions.CopyLink: {
         // do nothing
         return false;
       }

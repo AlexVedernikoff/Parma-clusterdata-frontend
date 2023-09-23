@@ -221,6 +221,7 @@ class FieldEditor extends React.Component {
     const { sdk, visible, datasetId, fields } = this.props;
     const { field } = this.state;
     let validation, isFailedFormulaValidation;
+    this.validateField();
 
     if (visible) {
       try {
@@ -299,10 +300,11 @@ class FieldEditor extends React.Component {
     const fieldsNext = DatasetSDK.modifyField({ field, fields });
     const fieldNext = DatasetSDK.modifyFieldSettings({ field });
 
-    onSave({
-      result_schema: fieldsNext,
-      field: fieldNext,
-    });
+    isValidField &&
+      onSave({
+        result_schema: fieldsNext,
+        field: fieldNext,
+      });
   };
 
   createField = () => {
@@ -390,6 +392,8 @@ class FieldEditor extends React.Component {
               <Dataset
                 title="Набор данных"
                 datasetId={linkedDataset}
+                entryId={this.props.datasetId}
+                sdk={this.props.sdk}
                 onClick={linkedDataset =>
                   this.setState(prevState => ({
                     field: {

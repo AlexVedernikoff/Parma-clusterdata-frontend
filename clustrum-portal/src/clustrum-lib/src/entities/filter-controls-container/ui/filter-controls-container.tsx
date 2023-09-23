@@ -13,43 +13,56 @@ import { FilterControlsFactory } from '@lib-shared/ui/filter-controls-factory';
 import { getParamsValue } from '@lib-shared/lib/utils';
 import styles from './filter-controls-container.module.css';
 import { filterControlsContainerModel } from '../model/filter-controls-container-model';
-import { ParamsProps } from '@lib-shared/ui/filter-controls-factory/types/filter-factory-controls-props';
 
 export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.Element {
   const { data, defaults, params } = props;
 
   const [status, setStatus] = useState<LoadStatus>(LoadStatus.Pending);
   const [scheme, setScheme] = useState<LoadedDataScheme[] | null>(null);
-  const previousParams = useRef<ParamsProps | null>(null);
   const previousControlData = useRef<DashboardControlsData | null>(null);
+  const previousFilters = useRef<string | null>(null);
 
   useEffect(() => {
-    const isDataChanged = !isMatch(previousControlData.current ?? {}, data);
-    const isParamsChanged = !isMatch(previousParams.current ?? {}, params);
-    if (isDataChanged || isParamsChanged) {
+    if (!isMatch(previousControlData.current ?? {}, data)) {
       init();
     }
     previousControlData.current = data;
-    previousParams.current = params;
-  }, [data, params]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
+  const getFilters = (): string => {
+    const filters: { [key: string]: string | string[] } = {};
+    for (const key of Object.keys(params)) {
+      filters[key] = params[key].value;
+    }
+    return JSON.stringify(filters);
+  };
+
+  const filters = getFilters();
+
+  useEffect(() => {
+    // TODO: при запросе на бек фильтры всегда обновляются, даже если фактических изменений
+    // не было. Поэтому костыль для сравнения с предыдущим состоянием
+    if (previousFilters.current !== filters) {
+      init();
+      previousFilters.current = filters;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   const initAvailableItems = (scheme: LoadedDataScheme[]): void => {
     for (const control of scheme) {
       const { param } = control;
       const { initiatorItem: item } = params[param];
-      if (
-        !item.availableItems ||
-        !item.availableItems[param] ||
-        item.availableItems[param].length === 0
-      ) {
-        continue;
-      }
+      const currentAvailableItems = item.availableItems[param];
 
-      const availableItems = new Set(item.availableItems[param]);
-      control.content = control.content.filter(
-        (it: { title: string; value: string }) =>
-          availableItems.has(it.title) || availableItems.has(it.value),
-      );
+      if (Array.isArray(currentAvailableItems) && currentAvailableItems.length > 0) {
+        const availableItems = new Set(currentAvailableItems);
+        control.content = control.content.filter(
+          (it: { title: string; value: string }) =>
+            availableItems.has(it.title) || availableItems.has(it.value),
+        );
+      }
     }
   };
 

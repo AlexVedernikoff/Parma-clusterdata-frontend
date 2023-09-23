@@ -243,8 +243,6 @@ export function DndContainer<T extends DndItemGenericData>(
                 wrapTo={wrapTo}
                 disabled={disabled}
                 containerCheckAllowed={checkAllowed}
-                setTooltipVisibility={setTooltipVisibility}
-                tooltipVisibility={tooltipVisibility}
                 remove={remove}
                 replace={replace}
                 setDropPlace={setDropPlace}

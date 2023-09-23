@@ -109,6 +109,7 @@ export function prepareItem(Component) {
         ownWidgetParams,
         exportWidget: this.#exportWidgetFactory(),
         orderBy: orderBy[id],
+        item,
       };
 
       return (

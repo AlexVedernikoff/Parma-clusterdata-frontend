@@ -1,4 +1,4 @@
-import { ActualParamsReturnType, LoadedDataScheme } from '../types';
+import { ActualParamsReturnType, DateParams, LoadedDataScheme } from '../types';
 
 export interface DashboardControlsDataDataset {
   id: string;
@@ -27,7 +27,7 @@ export interface DashboardControlsData {
 }
 
 export interface ParamsKeyAvailableItems {
-  [key: string]: string;
+  [key: string]: string | string[] | DateParams;
 }
 
 export interface DefaultsParams {
