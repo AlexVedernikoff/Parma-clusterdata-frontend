@@ -11,6 +11,7 @@ import { getIntervalString } from '../../lib/helpers';
 import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
 
 import styles from './range-datepicker-filter-control.module.css';
+import { LabelWithHover } from '../../labelWithHover';
 
 const { RangePicker } = DatePicker;
 const RANGE_PLACEHOLDER: [string, string] = ['От дд.мм.гггг', 'До дд.мм.гггг'];
@@ -34,7 +35,7 @@ export function RangeDatepickerFilterControl(
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const parsedDates = defaultValue?.match(intervalFormat);
+    const parsedDates = defaultValue?.length && defaultValue.match(intervalFormat);
 
     if (!parsedDates) {
       setDateRange(null);
@@ -81,7 +82,7 @@ export function RangeDatepickerFilterControl(
   return (
     <div className={classNames(styles['range-datepicker-control'], className)}>
       <label className={styles['range-datepicker-control__label']}>
-        {`${label}:`}
+        <LabelWithHover label={label} />
         <div ref={pickerRef}>
           <RangePicker
             disabledDate={hasDisabled}
