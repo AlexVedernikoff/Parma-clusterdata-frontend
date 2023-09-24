@@ -6,6 +6,8 @@ import { selectNeedUniqueRows } from '../../../../../../../reducers/visualizatio
 
 import './table-widget.css';
 
+const FIRST_PAGE_INDEX = 0;
+
 export function TableWidget(props: TableWidgetProps): JSX.Element {
   const {
     columns,
@@ -16,16 +18,16 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     paginateInfo: { page: initPage },
   } = props;
 
-  const [initPageState, setInitPageState] = useState(initPage + 1);
+  const [initPageState, setInitPageState] = useState(initPage);
   const [page, setPage] = useState(initPageState);
   const [pageSize, setPageSize] = useState(10);
   const isNeedUniqueRows = useSelector(state => selectNeedUniqueRows(state));
 
   useEffect(() => {
-    setInitPageState(1);
+    setInitPageState(FIRST_PAGE_INDEX);
 
     if (isNeedUniqueRows) {
-      setInitPageState(1);
+      setInitPageState(FIRST_PAGE_INDEX);
     }
   }, [pageSize, isNeedUniqueRows]);
 
@@ -44,7 +46,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   });
 
   const changeHandler = (page: number, pageSize: number): void => {
-    setInitPageState(page);
+    setInitPageState(page - 1);
     setPage(page - 1);
     setPageSize(pageSize);
   };
@@ -60,10 +62,11 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       scroll={{ y: '100%' }}
       pagination={{
         total: Number(totalRowsCount),
-        current: initPageState,
+        current: initPageState + 1,
         defaultPageSize: 10,
         showTotal: (total: number): string => `Всего: ${total}`,
         onChange: changeHandler,
+        showSizeChanger: true,
       }}
     />
   );

@@ -31,6 +31,18 @@ const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'bas
 
 const VALUES_LOAD_LIMIT = 1000;
 
+const DATA_TYPE = {
+  INTEGER: 'integer',
+  UI_INTEGER: 'ininteger',
+  FLOAT: 'float',
+  DOUBLE: 'double',
+  LONG: 'long',
+  DATETIME: 'datetime',
+  DATE: 'date',
+  BOOLEAN: 'boolean',
+  STRING: 'string',
+};
+
 class DialogFilter extends PureComponent {
   constructor(props) {
     super(props);
@@ -73,29 +85,18 @@ class DialogFilter extends PureComponent {
     }
   };
 
-  componentWillReceiveProps(nextProps) {
-    const { item, dataset, updates, callback } = nextProps;
-    if (!item) {
-      return;
-    }
-
-    // Произведем инициализацию диалога
-    const { sdk } = this.props;
+  initializationDialog({ sdk, item, dataset, updates, callback }) {
     const { filter } = item;
 
-    const isDate = item.cast === 'date' || item.cast === 'datetime';
-    const isNumber =
-      item.cast === 'integer' ||
-      item.cast === 'uinteger' ||
-      item.cast === 'float' ||
-      item.cast === 'double' ||
-      item.cast === 'long';
-    const isBoolean = item.cast === 'boolean';
-    const isString = item.cast === 'string';
+    const isDate = item.cast === DATA_TYPE.DATE || item.cast === DATA_TYPE.DATETIME;
 
     let availableOperations;
-    switch (true) {
-      case isNumber:
+    switch (item.cast) {
+      case DATA_TYPE.INTEGER:
+      case DATA_TYPE.UI_INTEGER:
+      case DATA_TYPE.FLOAT:
+      case DATA_TYPE.DOUBLE:
+      case DATA_TYPE.LONG:
         if (item.type === 'DIMENSION') {
           availableOperations = DIMENSION_NUMBER_OPERATIONS;
         } else if (item.type === 'MEASURE') {
@@ -103,15 +104,16 @@ class DialogFilter extends PureComponent {
         }
         break;
 
-      case isString:
+      case DATA_TYPE.STRING:
         availableOperations = STRING_OPERATIONS;
         break;
 
-      case isDate:
+      case DATA_TYPE.DATE:
+      case DATA_TYPE.DATETIME:
         availableOperations = DATE_OPERATIONS;
         break;
 
-      case isBoolean:
+      case DATA_TYPE.BOOLEAN:
         availableOperations = BOOLEAN_OPERATIONS;
         break;
     }
@@ -120,190 +122,177 @@ class DialogFilter extends PureComponent {
       return;
     }
 
-    let operation = filter
-      ? availableOperations.find(operation => {
-          return operation.code === filter.operation.code;
-        })
-      : availableOperations[0];
+    const operation =
+      (filter &&
+        availableOperations.find(
+          operation => operation.code === filter.operation.code,
+        )) ||
+      availableOperations[0];
 
-    // Fallback если не найден фильтр по соответсвующему code
-    if (!operation) {
-      operation = availableOperations[0];
-    }
+    let setValue = operation.selectable ? [] : [''];
 
-    if (item.type === 'DIMENSION' || isDate) {
-      let setValue = operation.selectable ? [] : [''];
-
-      if (filter) {
-        if (filter.operation.noOperands) {
-          setValue = [];
-        } else {
-          setValue = [...filter.value];
-        }
-      }
-
-      this.setState({
-        updates,
-        item,
-        callback,
-        operation,
-        value: setValue,
-        dimensions: null,
-        dateInputType: 'point',
-        leftSearchPhrase: '',
-        rightSearchPhrase: '',
-        leftFilteredDimensions: null,
-        rightFilteredDimensions: null,
-        visible: true,
-        error: null,
-        minDate: null,
-        maxDate: null,
-        availableOperations,
-        isDate,
-        isNumber,
-        isBoolean,
-        isString,
-      });
-
-      // В случае, если фильтруем по измерению, необходимо выгрузить все возможные его значения,
-      // чтобы показать их в селекте.
-      // Если у поля тип "дата" - то лучше не выгружать возможные значения - дат может быть очень много!
-      if (isDate) {
-        const minRequestParams = {
-          dataSetId: item.datasetId,
-          version: 'draft',
-          columns: [item.guid],
-          orderBy: [
-            {
-              column: item.guid,
-              direction: 'ASC',
-            },
-          ],
-          limit: 1,
-        };
-
-        if (item.local) {
-          minRequestParams.resultSchema = dataset.result_schema;
-        }
-
-        sdk.bi
-          .getResultBySQL(minRequestParams)
-          .then(data => {
-            // Если закрыли не дожидаясь загрузки - игнорируем проставление данных
-            if (this.state.visible) {
-              const minDate = data.result.data.Data[0][0];
-
-              this.setState({
-                minDate,
-              });
-            }
-          })
-          .catch(error => {
-            this.setState({
-              error,
-            });
-          });
-
-        const maxRequestParams = {
-          dataSetId: item.datasetId,
-          version: 'draft',
-          columns: [item.guid],
-          orderBy: [
-            {
-              column: item.guid,
-              direction: 'DESC',
-            },
-          ],
-          limit: 1,
-        };
-
-        if (item.local) {
-          maxRequestParams.resultSchema = dataset.result_schema;
-        }
-
-        sdk.bi
-          .getResultBySQL(maxRequestParams)
-          .then(data => {
-            // Если закрыли не дожидаясь загрузки - игнорируем проставление данных
-            if (this.state.visible) {
-              const maxDate = data.result.data.Data[0][0];
-
-              this.setState({
-                maxDate,
-              });
-            }
-          })
-          .catch(error => {
-            this.setState({
-              error,
-            });
-          });
+    if (filter) {
+      if (filter.operation.noOperands) {
+        setValue = [];
       } else {
-        // В случае если работаем с другими полями - выгружаем все возможные значения
-        if (operation.selectable) {
-          const requestParams = {
-            dataSetId: item.datasetId,
-            version: 'draft',
-            fieldGuid: item.guid,
-          };
-
-          if (item.local) {
-            requestParams.updates = updates;
-          }
-
-          sdk.bi
-            .getDistincts(requestParams)
-            .then(data => {
-              // Если закрыли не дожидаясь загрузки - игнорируем проставление данных
-              if (this.state.visible) {
-                const { value } = this.state;
-
-                const dimensions = data.result.data.Data.map(row => row[0])
-                  .filter(dimension => {
-                    return value.indexOf(dimension) === -1;
-                  })
-                  .sort(collator.compare);
-
-                this.setState({
-                  dimensions,
-                  originalDimensions: [...dimensions],
-                  value,
-                });
-              }
-            })
-            .catch(error => {
-              this.setState({
-                error,
-              });
-            });
-        }
+        setValue = [...filter.value];
       }
-    } else if (item.type === 'MEASURE') {
-      let setValue = [''];
-
-      if (filter) {
-        if (filter.operation.noOperands) {
-          setValue = [];
-        } else {
-          setValue = [...filter.value];
-        }
-      }
-
-      this.setState({
-        updates,
-        item,
-        callback,
-        operation,
-        value: setValue,
-        visible: true,
-        error: null,
-        availableOperations,
-        isDate,
-        isNumber,
-        isBoolean,
-        isString,
-      });
     }
+
+    this.setState({
+      updates,
+      item,
+      callback,
+      operation,
+      value: setValue,
+      dimensions: null,
+      leftSearchPhrase: '',
+      rightSearchPhrase: '',
+      leftFilteredDimensions: null,
+      rightFilteredDimensions: null,
+      visible: true,
+      error: null,
+      minDate: null,
+      maxDate: null,
+      availableOperations,
+    });
+
+    // В случае, если фильтруем по измерению, необходимо выгрузить все возможные его значения,
+    // чтобы показать их в селекте.
+    // Если у поля тип "дата" - то лучше не выгружать возможные значения - дат может быть очень много!
+    if (isDate) {
+      const minRequestParams = {
+        dataSetId: item.datasetId,
+        version: 'draft',
+        columns: [item.guid],
+        orderBy: [
+          {
+            column: item.guid,
+            direction: 'ASC',
+          },
+        ],
+        limit: 1,
+      };
+
+      if (item.local) {
+        minRequestParams.resultSchema = dataset.result_schema;
+      }
+
+      sdk.bi
+        .getResultBySQL(minRequestParams)
+        .then(data => {
+          // Если закрыли не дожидаясь загрузки - игнорируем проставление данных
+          if (this.state.visible) {
+            const minDate = data.result.data.Data[0][0];
+
+            this.setState({
+              minDate,
+            });
+          }
+        })
+        .catch(error => {
+          this.setState({
+            error,
+          });
+        });
+
+      const maxRequestParams = {
+        dataSetId: item.datasetId,
+        version: 'draft',
+        columns: [item.guid],
+        orderBy: [
+          {
+            column: item.guid,
+            direction: 'DESC',
+          },
+        ],
+        limit: 1,
+      };
+
+      if (item.local) {
+        maxRequestParams.resultSchema = dataset.result_schema;
+      }
+
+      sdk.bi
+        .getResultBySQL(maxRequestParams)
+        .then(data => {
+          // Если закрыли не дожидаясь загрузки - игнорируем проставление данных
+          if (this.state.visible) {
+            const maxDate = data.result.data.Data[0][0];
+
+            this.setState({
+              maxDate,
+            });
+          }
+        })
+        .catch(error => {
+          this.setState({
+            error,
+          });
+        });
+
+      return;
+    }
+
+    if (operation.selectable) {
+      const requestParams = {
+        dataSetId: item.datasetId,
+        version: 'draft',
+        fieldGuid: item.guid,
+      };
+
+      if (item.local) {
+        requestParams.updates = updates;
+      }
+
+      this.setState({ isDataLoading: true });
+
+      sdk.bi
+        .getDistincts(requestParams)
+        .then(data => {
+          // Если закрыли не дожидаясь загрузки - игнорируем проставление данных
+          if (this.state.visible) {
+            const { value } = this.state;
+
+            const dimensions = data.result.data.Data.map(row => row[0])
+              .filter(dimension => {
+                return value.indexOf(dimension) === -1;
+              })
+              .sort(collator.compare);
+
+            this.setState({
+              dimensions,
+              originalDimensions: [...dimensions, ...value],
+              value,
+              isDataLoading: false,
+            });
+          }
+        })
+        .catch(error => {
+          this.setState({
+            error,
+            isDataLoading: false,
+          });
+        });
+    }
+  }
+
+  componentDidMount() {
+    const { sdk, item, dataset, updates, callback } = this.props;
+    this.initializationDialog({ sdk, item, dataset, updates, callback });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { item, dataset, updates, callback } = nextProps;
+    if (
+      !item ||
+      (nextProps.item === this.state.item && callback === this.state.callback)
+    ) {
+      return;
+    }
+
+    const { sdk } = this.props;
+    this.initializationDialog({ sdk, item, dataset, updates, callback });
   }
 
   onTextInputChange(value, i) {
@@ -347,7 +336,7 @@ class DialogFilter extends PureComponent {
 
               this.setState({
                 dimensions,
-                originalDimensions: [...dimensions],
+                originalDimensions: [...dimensions, ...value],
                 value,
               });
             }
@@ -383,7 +372,7 @@ class DialogFilter extends PureComponent {
     });
 
     function reset() {
-      dimensions = [...originalDimensions].sort(collator.compare);
+      dimensions = originalDimensions && [...originalDimensions].sort(collator.compare);
       value = [];
     }
   }
@@ -414,7 +403,7 @@ class DialogFilter extends PureComponent {
       [field]: fixedValue,
     });
 
-    const { dimensions, value, item, updates, isString } = this.state;
+    const { dimensions, value, item, updates } = this.state;
 
     const { sdk } = this.props;
 
@@ -440,7 +429,7 @@ class DialogFilter extends PureComponent {
           where: [
             {
               values: [fixedValue],
-              operation: isString ? 'CONTAINS' : 'EQ',
+              operation: item.cast === DATA_TYPE.STRING ? 'CONTAINS' : 'EQ',
               column: item.guid,
             },
           ],
@@ -558,7 +547,7 @@ class DialogFilter extends PureComponent {
 
   renderManualCalendarInput() {
     const { state } = this;
-    const withTime = state.item.cast === 'datetime';
+    const withTime = state.item.cast === DATA_TYPE.DATETIME;
 
     if (state.minDate && state.maxDate) {
       let minDate;
@@ -624,6 +613,7 @@ class DialogFilter extends PureComponent {
 
     const {
       dimensions,
+      isDataLoading,
       leftSearchPhrase,
       rightSearchPhrase,
       leftFilteredDimensions,
@@ -656,7 +646,7 @@ class DialogFilter extends PureComponent {
             onChange={this.onFilterInputChange('leftSearchPhrase')}
           />
           <div className={'options-list'}>
-            {dimensions ? (
+            {dimensions &&
               (leftFilteredDimensions || dimensions).map((dimension, i) => {
                 return (
                   <div
@@ -701,8 +691,8 @@ class DialogFilter extends PureComponent {
                     <span className="dimension-select">Выбрать</span>
                   </div>
                 );
-              })
-            ) : (
+              })}
+            {!dimensions && isDataLoading && (
               <div>
                 <Loader size={'l'} />
               </div>
@@ -795,7 +785,7 @@ class DialogFilter extends PureComponent {
     const { props, state } = this;
     const { item } = props;
 
-    const isDate = item.cast === 'date' || item.cast === 'datetime';
+    const isDate = item.cast === DATA_TYPE.DATE || item.cast === DATA_TYPE.DATETIME;
     const { operation, availableOperations } = state;
 
     const { selectable } = operation;
@@ -877,7 +867,7 @@ class DialogFilter extends PureComponent {
     if (item) {
       const { cast } = item;
       const itemType = item.type.toLowerCase();
-      const isDate = cast === 'date' || cast === 'datetime';
+      const isDate = cast === DATA_TYPE.DATE || cast === DATA_TYPE.DATETIME;
 
       // По умолчанию все валидно
       let valid = true;

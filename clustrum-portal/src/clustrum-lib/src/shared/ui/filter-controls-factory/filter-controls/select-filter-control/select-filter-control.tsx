@@ -16,6 +16,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
     onChange,
     label,
     className,
+    showTitle: needShowTitle,
   } = props;
   const [currentValue, setCurrentValue] = useState<string | string[]>(defaultValue);
   const debouncedValue = useDebounce(currentValue, 500);
@@ -78,6 +79,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
     <div className={classNames(styles['select-filter-control'], className)}>
       <label className={styles['select-filter-control__label']}>
         <LabelWithHover label={label} />
+        {needShowTitle && `${label}:`}
         <Select
           allowClear
           placeholder="Все"

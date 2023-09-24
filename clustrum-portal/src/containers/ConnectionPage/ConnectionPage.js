@@ -21,6 +21,7 @@ import {
   saveCsv,
 } from './actions';
 import { getEmptyFields } from './validator';
+import { getConnectorType } from './getConnectorType';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 import { normalizeDestination } from '@kamatech-data-ui/clustrum-core-plugins/utils';
 import { Button } from 'antd';
@@ -64,7 +65,7 @@ class ConnectionPage extends React.Component {
     return (
       <Button
         key={'create-dataset-btn'}
-        text="Создать датасет"
+        text="Создать набор данных"
         onClick={() => {
           let currentPathParam = currentPath
             ? `&currentPath=${encodeURIComponent(currentPath)}`
@@ -72,7 +73,7 @@ class ConnectionPage extends React.Component {
           window.open(`/datasets/new?id=${connectionId}${currentPathParam}`, '_self');
         }}
       >
-        Создать датасет
+        Создать набор данных
       </Button>
     );
   }
@@ -464,10 +465,7 @@ class ConnectionPage extends React.Component {
   };
 
   _getConnectorType() {
-    const {
-      params: { connectorType },
-    } = this.props.match;
-
+    const connectorType = getConnectorType(this.props.location.search);
     const { connectionState: { dbType } = {} } = this.state;
 
     return connectorType || dbType;
