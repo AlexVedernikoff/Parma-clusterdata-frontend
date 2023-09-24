@@ -78,8 +78,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
   return (
     <div className={classNames(styles['select-filter-control'], className)}>
       <label className={styles['select-filter-control__label']}>
-        <LabelWithHover label={label} />
-        {needShowTitle && `${label}:`}
+        {needShowTitle && <LabelWithHover label={label} />}
         <Select
           allowClear
           placeholder="Все"

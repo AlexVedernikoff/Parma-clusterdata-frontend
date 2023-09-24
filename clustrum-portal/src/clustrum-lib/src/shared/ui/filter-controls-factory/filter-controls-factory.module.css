@@ -42,7 +42,7 @@
   width: 285px;
   padding: 5px;
   color: antiquewhite;
-  font-size: 12px;
+  font-size: 15px !important;
   text-align: center;
   background: rgba(94, 33, 41, 0.8);
   border-radius: 10px;

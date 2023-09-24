@@ -73,8 +73,7 @@ export function DatepickerFilterControl(
   return (
     <div className={classNames(styles['datepicker-control'], className)}>
       <label className={styles['datepicker-control__label']}>
-        <LabelWithHover label={label} />
-        {needShowTitle && `${label}:`}
+        {needShowTitle && <LabelWithHover label={label} />}
         <div ref={pickerRef}>
           <DatePicker
             disabledDate={hasDisabled}

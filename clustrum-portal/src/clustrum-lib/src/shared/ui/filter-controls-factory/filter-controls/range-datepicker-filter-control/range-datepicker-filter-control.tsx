@@ -83,8 +83,7 @@ export function RangeDatepickerFilterControl(
   return (
     <div className={classNames(styles['range-datepicker-control'], className)}>
       <label className={styles['range-datepicker-control__label']}>
-        <LabelWithHover label={label} />
-        {needShowTitle && `${label}:`}
+        {needShowTitle && <LabelWithHover label={label} />}
         <div ref={pickerRef}>
           <RangePicker
             disabledDate={hasDisabled}
