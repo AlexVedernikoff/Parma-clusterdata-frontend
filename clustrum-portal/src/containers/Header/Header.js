@@ -297,6 +297,9 @@ class Header extends React.PureComponent {
       },
     ].filter(Boolean);
 
+    const isEditButtonVisible = !$appSettingsStore.getState().hideEdit;
+    const isDashExportButtonVisible = !$appSettingsStore.getState().hideDashExport;
+
     if (canEdit) {
       return [
         this.#hasVisibleExpandedFilters() ? (
@@ -316,7 +319,7 @@ class Header extends React.PureComponent {
           />
         </Popover>,
         <>
-          {!$appSettingsStore.getState().hideDashExport && (
+          {isDashExportButtonVisible && (
             <Popover placement="bottom" content={<span>Экспортировать</span>}>
               <Dropdown menu={{ items: exportItems }} trigger={['click']}>
                 <Button icon={<DownloadOutlined />}></Button>
@@ -325,7 +328,7 @@ class Header extends React.PureComponent {
           )}
         </>,
         <>
-          {!$appSettingsStore.getState().hideEdit && (
+          {isEditButtonVisible && (
             <Popover placement="bottom" content={<span>Редактировать</span>}>
               <Button
                 onClick={() => setMode(MODE.EDIT)}
