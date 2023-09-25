@@ -31,7 +31,6 @@ export interface DialogPivotTableProps<T> {
 export interface MainDialogPivotTableFieldsProps<T> extends DialogPivotTableProps<T> {
   subTotalsSettings: ISubTotalsSettings;
   setSubTotalsSettings: Dispatch<SetStateAction<ISubTotalsSettings>>;
-  toaster: Toaster;
   clearFormulaField: () => void;
   setFormulaError: Dispatch<SetStateAction<RejectFormulaError | null>>;
 }

@@ -18,6 +18,7 @@ import {
 } from '../types';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 import { $pathInFolder } from '@entities/navigation-base';
+import { useCustomNotification } from '@entities/notification';
 
 /**
  * TODO
@@ -38,7 +39,7 @@ export function NavigationBase(props: NavigationBase): ReactElement {
 
   const refDialogues = useRef() as React.RefObject<EntryDialogues> | undefined;
   const refErrorDialog = useRef() as React.RefObject<ErrorDialog> | undefined;
-
+  const [openNotification, contextHolder] = useCustomNotification();
   /**
    * обновить отображение навигации при помощи моделей из эффектора
    */
@@ -115,7 +116,11 @@ export function NavigationBase(props: NavigationBase): ReactElement {
       dialogProps: {
         path: `${$pathInFolder.getState()}${path}`,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.CREATE_FOLDER, refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.CREATE_FOLDER,
+          refErrorDialog,
+          openNotification,
+        ),
       },
     });
     update(response, ENTRY_DIALOG.CREATE_FOLDER);
@@ -129,7 +134,11 @@ export function NavigationBase(props: NavigationBase): ReactElement {
         entryId: entry.entryId,
         initName: entry.name,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.RENAME, refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.RENAME,
+          refErrorDialog,
+          openNotification,
+        ),
       },
     });
     update(response, ENTRY_DIALOG.RENAME, entry);
@@ -143,7 +152,11 @@ export function NavigationBase(props: NavigationBase): ReactElement {
         entryId: entry.entryId,
         description: entry.description,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.DESCRIBE, refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.DESCRIBE,
+          refErrorDialog,
+          openNotification,
+        ),
       },
     });
     update(response, ENTRY_DIALOG.DESCRIBE, entry);
@@ -159,7 +172,11 @@ export function NavigationBase(props: NavigationBase): ReactElement {
         inactiveEntryKey: entry.scope === 'folder' ? entry.key : undefined,
         withError: false,
         sdk,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.MOVE, refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.MOVE,
+          refErrorDialog,
+          openNotification,
+        ),
       },
     });
     update(response, ENTRY_DIALOG.MOVE, entry);
@@ -173,7 +190,11 @@ export function NavigationBase(props: NavigationBase): ReactElement {
         entryId: entry.entryId,
         initDestination: path,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.COPY, refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.COPY,
+          refErrorDialog,
+          openNotification,
+        ),
       },
     });
     update(response, ENTRY_DIALOG.COPY, entry);
@@ -186,7 +207,11 @@ export function NavigationBase(props: NavigationBase): ReactElement {
       dialogProps: {
         entry,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.DELETE, refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.DELETE,
+          refErrorDialog,
+          openNotification,
+        ),
       },
     });
     update(response, ENTRY_DIALOG.DELETE, entry);
@@ -199,7 +224,11 @@ export function NavigationBase(props: NavigationBase): ReactElement {
       dialogProps: {
         path: `${$pathInFolder.getState()}${path}`,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.CREATE_DASHBOARD, refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.CREATE_DASHBOARD,
+          refErrorDialog,
+          openNotification,
+        ),
       },
     });
     if (DL.IS_INTERNAL && response.status === 'success') {
@@ -260,6 +289,7 @@ export function NavigationBase(props: NavigationBase): ReactElement {
       />
       <EntryDialogues ref={refDialogues} sdk={sdk} />
       <ErrorDialog ref={refErrorDialog} />
+      {contextHolder}
     </>
   );
 }

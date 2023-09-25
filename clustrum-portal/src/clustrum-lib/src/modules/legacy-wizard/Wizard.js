@@ -10,8 +10,6 @@ import { compose } from 'recompose';
 
 import { ErrorContent, EntryDialogues, ActionPanel } from '@kamatech-data-ui/clustrum';
 
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
-
 import { SectionDataset } from '@lib-widgets/section-dataset';
 import SectionVisualization from './SectionVisualization/SectionVisualization';
 import { SectionPreview } from '@lib-widgets/section-preview';
@@ -58,6 +56,7 @@ import { getNavigationPathFromKey } from '../../../../helpers/utils-dash';
 import PageHead from '../../../../components/PageHeader/PageHeader';
 import { FullscreenOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Space } from 'antd';
+import { NotificationContext, NotificationType } from '@entities/notification';
 
 const b = block('wizard');
 
@@ -70,6 +69,8 @@ class Wizard extends Component {
     onExport: PropTypes.func,
   };
 
+  static contextType = NotificationContext;
+
   entryDialoguesRef = React.createRef();
 
   constructor(props) {
@@ -81,15 +82,13 @@ class Wizard extends Component {
       setDefaults({ sdk, preview, entryId });
     }
 
-    this.toaster = new Toaster();
-
     this.state = {
       copyTooltipVisible: false,
       dialogNoRightsVisible: false,
     };
   }
 
-  openSaveAsWidgetDialog = async () => {
+  async openSaveAsWidgetDialog() {
     const { config, dataset, visualization, receiveWidget } = this.props;
 
     const labelVisualization = {
@@ -121,11 +120,10 @@ class Wizard extends Component {
         title: 'Сохранить чарт',
         onNotify: ({ error }) => {
           if (error && error.response && error.response.status === 400) {
-            this.toaster.createToast({
-              title: 'Диаграмма с таким именем уже существует',
-              name: 'WIZARD',
-              type: 'error',
-              allowAutoHiding: true,
+            this.context({
+              message: 'Диаграмма с таким именем уже существует',
+              key: 'WIZARD',
+              type: NotificationType.Error,
             });
           }
         },
@@ -137,7 +135,7 @@ class Wizard extends Component {
     }
 
     receiveWidget(result);
-  };
+  }
 
   openSaveWidgetDialog = async () => {
     const {

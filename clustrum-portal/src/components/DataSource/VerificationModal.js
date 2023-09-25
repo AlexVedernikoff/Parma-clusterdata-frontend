@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Dialog, Loader } from '@kamatech-data-ui/common/src';
 import { ErrorDialog } from '@kamatech-data-ui/clustrum';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 import { ConnectionInfo, DataSourceButton, Status } from './components';
 import ErrorView from '../ErrorView/ErrorView';
 import { Stage } from './Stage';
+import { NotificationContext, NotificationType } from '@entities/notification';
 
 const b = block('data-source');
 
@@ -82,6 +82,8 @@ class VerificationModal extends React.Component {
     error: PropTypes.object,
   };
 
+  static contextType = NotificationContext;
+
   static getDerivedStateFromProps(props) {
     const { error, errorType, progress } = props;
 
@@ -115,8 +117,7 @@ class VerificationModal extends React.Component {
   };
 
   _verificationStatusTimer = null;
-
-  toaster = new Toaster();
+  openNotification = this.context;
 
   async componentDidUpdate(prevProps, prevState) {
     const { visible: visiblePrev } = prevProps;
@@ -126,12 +127,10 @@ class VerificationModal extends React.Component {
 
     if (!showErrorPrev && showError) {
       const title = this.getErrorTitle();
-
-      this.toaster.createToast({
-        title,
-        name: `${errorType}_toast`,
-        type: 'error',
-        allowAutoHiding: false,
+      this.openNotification({
+        message: title,
+        key: `${errorType}_toast`,
+        type: NotificationType.Error,
         actions: [
           {
             label: 'Подробнее',

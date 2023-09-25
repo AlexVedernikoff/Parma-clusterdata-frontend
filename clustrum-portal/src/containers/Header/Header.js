@@ -31,8 +31,6 @@ import { LAYOUT_ID } from '../../constants/constants';
 import { getLayoutId } from '../../utils/helpers';
 import BrowserPrint from '../BrowserPrint/BrowserPrint';
 import { exportDashboard } from './model/exportDashboard';
-import { Toaster } from '../../../kamatech_modules/@kamatech-data-ui/common/src';
-import { NOTIFY_TYPES } from '../../../kamatech_modules/@kamatech-data-ui/clustrum/src/constants/common';
 import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
 import { Button, Dropdown, Space, Popover } from 'antd';
 import {
@@ -44,6 +42,7 @@ import {
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { $appSettingsStore } from '@entities/app-settings';
+import { NotificationType } from '@entities/notification';
 
 const b = block('dash-header');
 
@@ -62,11 +61,10 @@ class Header extends React.PureComponent {
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
     hasRightSideContent: PropTypes.bool,
+    openNotification: PropTypes.func.isRequired,
   };
 
   static contextType = SignalContext;
-
-  toaster = new Toaster();
 
   state = {
     progress: false,
@@ -83,30 +81,30 @@ class Header extends React.PureComponent {
 
     switch (this.props.dash.exportStatus) {
       case ExportStatusEnum.PENDING: {
-        this.toaster.createToast({
-          title: 'Экспорт выполняется, ожидайте загрузку файла',
-          name: 'DASHBOARD',
-          type: NOTIFY_TYPES.INFO,
-          allowAutoHiding: true,
+        this.props.openNotification({
+          message: 'Экспорт выполняется, ожидайте загрузку файла',
+          key: 'DASHBOARD',
+          type: NotificationType.Info,
+          duration: 6,
         });
         break;
       }
       case ExportStatusEnum.SUCCESS: {
-        this.toaster.createToast({
-          title: 'Экспорт выполнен',
-          name: 'DASHBOARD',
-          type: NOTIFY_TYPES.SUCCESS,
-          allowAutoHiding: true,
+        this.props.openNotification({
+          message: 'Экспорт выполнен',
+          key: 'DASHBOARD',
+          type: NotificationType.Success,
+          duration: 6,
         });
         this.props.exportStatusReset();
         break;
       }
       case ExportStatusEnum.ERROR: {
-        this.toaster.createToast({
-          title: 'Ошибка выполнения экспорта',
-          name: 'DASHBOARD',
-          type: NOTIFY_TYPES.ERROR,
-          allowAutoHiding: true,
+        this.props.openNotification({
+          message: 'Ошибка выполнения экспорта',
+          key: 'DASHBOARD',
+          type: NotificationType.Error,
+          duration: 6,
         });
         this.props.exportStatusReset();
         break;

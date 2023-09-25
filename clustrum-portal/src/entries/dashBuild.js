@@ -27,6 +27,7 @@ import './../css/dash-redesign.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
+import { NotificationContext, useCustomNotification } from '@entities/notification';
 
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');
@@ -40,6 +41,7 @@ logVersion();
 export default function DashBuild(props) {
   const { entryId, hideRightSideContent, onFiltersChange, onTabChange } = props;
 
+  const [openNotification, contextHolder] = useCustomNotification();
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
     hideHeader: props.hideHeader,
@@ -62,12 +64,15 @@ export default function DashBuild(props) {
               <Route
                 path="*"
                 render={() => (
-                  <Dash
-                    defaultEntryId={entryId}
-                    hasRightSideContent={!hideRightSideContent}
-                    onFiltersChange={onFiltersChange}
-                    onTabChange={onTabChange}
-                  />
+                  <NotificationContext.Provider value={openNotification}>
+                    {contextHolder}
+                    <Dash
+                      defaultEntryId={entryId}
+                      hasRightSideContent={!hideRightSideContent}
+                      onFiltersChange={onFiltersChange}
+                      onTabChange={onTabChange}
+                    />
+                  </NotificationContext.Provider>
                 )}
               />
             </Switch>

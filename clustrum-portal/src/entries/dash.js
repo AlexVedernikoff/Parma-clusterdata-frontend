@@ -24,6 +24,7 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { useUnit } from 'effector-react';
 import { setAppSettingsEvent } from '@entities/app-settings';
+import { NotificationContext, useCustomNotification } from '@entities/notification';
 
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');
@@ -39,6 +40,7 @@ function Dash() {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
 
   const searchParams = new URL(window.location.href).searchParams;
+  const [openNotification, contextHolder] = useCustomNotification();
 
   setAppSettings({
     hideSubHeader: searchParams.get('hide-header-btns') === 'true',
@@ -54,7 +56,10 @@ function Dash() {
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <App />
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <App />
+          </NotificationContext.Provider>
         </ConnectedRouter>
       </Provider>
     </ConfigProvider>

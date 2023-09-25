@@ -17,6 +17,7 @@ import ErrorView from '../ErrorView/ErrorView';
 import { Stage } from './Stage';
 import MaterializationSettings from './components/MaterializationCustomSettings/MaterializationSettings';
 import Utils from '../../helpers/utils';
+import { NotificationContext, NotificationType } from '@entities/notification';
 
 // import './DataSource.scss';
 
@@ -199,6 +200,9 @@ class DataSource extends React.Component {
     error: PropTypes.object,
   };
 
+  static contextType = NotificationContext;
+  openNotification = this.context;
+
   static getDerivedStateFromProps(props) {
     const { error, errorType, progress } = props;
 
@@ -247,8 +251,6 @@ class DataSource extends React.Component {
 
   _materializationStatusTimer = null;
 
-  toaster = new Toaster();
-
   onEntryClick = async (entry, closeNavModal, materializationCustomSettings) => {
     closeNavModal();
 
@@ -284,11 +286,10 @@ class DataSource extends React.Component {
     if (!showErrorPrev && showError) {
       const title = this.getErrorTitle();
 
-      this.toaster.createToast({
-        title,
-        name: `${errorType}_toast`,
-        type: 'error',
-        allowAutoHiding: false,
+      this.openNotification({
+        message: title,
+        key: `${errorType}_toast`,
+        type: NotificationType.Error,
         actions: [
           {
             label: 'Подробнее',

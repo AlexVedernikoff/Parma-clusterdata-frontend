@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Icon, Loader, Toaster, YCSelect, TextInput } from '@kamatech-data-ui/common/src';
+import { Icon, Loader, YCSelect, TextInput } from '@kamatech-data-ui/common/src';
 import { PathSelect } from '@kamatech-data-ui/clustrum';
 
 import getErrorMessageHelper from './getErrorMessageHelper';
@@ -15,6 +15,7 @@ import {
 import Utils from '../../helpers/utils';
 import SelectConnection from '../../containers/SelectConnection/SelectConnection';
 import { getSearchParam } from '../../helpers/QueryParams';
+import { NotificationContext, NotificationType } from '@entities/notification';
 
 const b = block('dataset-creation');
 
@@ -71,6 +72,8 @@ class DatasetCreation extends React.Component {
       };
     }
   }
+
+  static contextType = NotificationContext;
 
   state = {
     connectionType: '',
@@ -137,11 +140,10 @@ class DatasetCreation extends React.Component {
           status: responseStatus,
         });
 
-        this.toaster.createToast({
-          name: TOAST_NAME,
-          title,
-          type: 'error',
-          allowAutoHiding: false,
+        this.context({
+          key: TOAST_NAME,
+          message: title,
+          type: NotificationType.Error,
         });
       }
     } else if (isYtConnection && !connectionId) {
@@ -209,17 +211,14 @@ class DatasetCreation extends React.Component {
           status: responseStatus,
         });
 
-        this.toaster.createToast({
-          name: TOAST_NAME,
-          title,
-          type: 'error',
-          allowAutoHiding: false,
+        this.context({
+          key: TOAST_NAME,
+          message: title,
+          type: NotificationType.Error,
         });
       }
     }
   }
-
-  toaster = new Toaster();
 
   _databaseNameInpRef = React.createRef();
 

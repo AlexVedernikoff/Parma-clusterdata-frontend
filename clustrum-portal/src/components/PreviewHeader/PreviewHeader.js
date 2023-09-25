@@ -12,6 +12,7 @@ import iconPreviewBottom from '@kamatech-data-ui/clustrum/src/icons/preview-bott
 import iconPreviewExpand from '@kamatech-data-ui/clustrum/src/icons/preview-expand.svg';
 import iconPreviewSide from '@kamatech-data-ui/clustrum/src/icons/preview-side.svg';
 import { changeAmountPreviewRows } from '../../store/reducers/dataset';
+import { NotificationContext } from '@entities/notification';
 
 const b = block('preview-header');
 
@@ -37,6 +38,8 @@ class PreviewHeader extends React.Component {
       amountPreviewRows: this.props.amountPreviewRows,
     };
   }
+
+  static contextType = NotificationContext;
 
   static getDerivedStateFromProps(props, state) {
     const { amountPreviewRowsProps } = props;
@@ -69,6 +72,7 @@ class PreviewHeader extends React.Component {
 
   changeAmountPreviewRows = amountPreviewRows => {
     const amountPreviewRowsNumber = Number(amountPreviewRows);
+    const openNotification = this.context;
 
     if (amountPreviewRowsNumber === 0) {
       return this.setState({
@@ -88,6 +92,7 @@ class PreviewHeader extends React.Component {
         () => {
           this.debouncedChangeAmountPreviewRows({
             amountPreviewRows: amountPreviewRowsNumber,
+            openNotification,
           });
         },
       );

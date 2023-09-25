@@ -19,6 +19,8 @@ import Utils from '../../../../helpers/utils';
 import iconCsv from '@kamatech-data-ui/clustrum/src/icons/csv.svg';
 import { getErrorMessage } from '../../utils';
 import { getSearchParam } from '../../../../helpers/QueryParams';
+import { NotificationContext } from '@entities/notification/lib/context/notification-context';
+import { NotificationType } from '@entities/notification';
 
 const b = block('csv-connector2');
 
@@ -322,6 +324,8 @@ class CsvConnector extends React.Component {
     emptyFields: PropTypes.array,
   };
 
+  static contextType = NotificationContext;
+
   static defaultProps = {
     viewStepId: VIEW_STEPS.CSV_LOADING,
   };
@@ -382,8 +386,6 @@ class CsvConnector extends React.Component {
       await this.fetchConnection();
     }
   }
-
-  toaster = new Toaster();
 
   getSelectItem = ({ items = [] }) => {
     return items.map(item => ({
@@ -472,11 +474,11 @@ class CsvConnector extends React.Component {
           this.onChangeCallback,
         );
       } catch (error) {
-        this.toaster.createToast({
-          name: CSV_TOAST_NAME,
-          title: 'Ошибка: не удалось загрузить подлючение',
-          type: 'error',
-          timeout: TOAST_TIMEOUT_DEFAULT,
+        this.context({
+          key: CSV_TOAST_NAME,
+          message: 'Ошибка: не удалось загрузить подлючение',
+          type: NotificationType.Error,
+          duration: TOAST_TIMEOUT_DEFAULT / 1000,
         });
 
         this.setState(
@@ -552,11 +554,11 @@ class CsvConnector extends React.Component {
           this.onChangeCallback,
         );
       } catch (error) {
-        this.toaster.createToast({
-          name: CSV_TOAST_NAME,
-          title: 'Ошибка: не удалось получить превью',
-          type: 'error',
-          timeout: TOAST_TIMEOUT_DEFAULT,
+        this.context({
+          key: CSV_TOAST_NAME,
+          message: 'Ошибка: не удалось получить превью',
+          type: NotificationType.Error,
+          duration: TOAST_TIMEOUT_DEFAULT / 1000,
         });
 
         this.setState({

@@ -30,6 +30,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 
 import { logVersion } from '../utils/version-logger';
+import { NotificationContext, useCustomNotification } from '@entities/notification';
 
 const middlewares = [thunkMiddleware];
 
@@ -47,21 +48,29 @@ Utils.setBodyFeatures();
 
 logVersion();
 
-function render() {
-  ReactDOM.render(
+function AppEntry() {
+  const [openNotification, contextHolder] = useCustomNotification();
+
+  return (
     <AppContainer>
       <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
         <Provider store={store}>
           <DndProvider backend={HTML5Backend}>
             <BrowserRouter>
-              <App />
+              <NotificationContext.Provider value={openNotification}>
+                {contextHolder}
+                <App />
+              </NotificationContext.Provider>
             </BrowserRouter>
           </DndProvider>
         </Provider>
       </ConfigProvider>
-    </AppContainer>,
-    document.getElementById('root'),
+    </AppContainer>
   );
+}
+
+function render() {
+  ReactDOM.render(<AppEntry />, document.getElementById('root'));
 }
 
 render();

@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
 import { ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
-import { Toaster } from '@kamatech-data-ui/common/src';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
 import ConnectionSelection from '../ConnectionSelection/ConnectionSelection';
 import { TOAST_TYPES, REPLACE_SOURCE_MODE_ID } from '../../constants';
 import Utils from '../../helpers/utils';
 import { getSearchParam } from '../../helpers/QueryParams';
 import { $appSettingsStore } from '@entities/app-settings';
+import { NotificationContext, NotificationType } from '@entities/notification';
 
 const b = block('dataset-creation-page');
 
@@ -25,6 +25,8 @@ class DatasetCreationPage extends React.Component {
     history: PropTypes.object.isRequired,
     modeId: PropTypes.oneOf([REPLACE_SOURCE_MODE_ID]),
   };
+
+  static contextType = NotificationContext;
 
   state = {
     fetchError: undefined,
@@ -45,7 +47,6 @@ class DatasetCreationPage extends React.Component {
     }
   }
 
-  toaster = new Toaster();
   errorDialogRef = React.createRef();
 
   async _fetchConnection(connectionId) {
@@ -129,7 +130,10 @@ class DatasetCreationPage extends React.Component {
 
       this.setState({ redirect: `/datasets/${id}` });
     } catch (error) {
-      this._showToast({ name: TOAST_TYPES.CREATE_DATASET, type: 'error' });
+      this.showNotification({
+        name: TOAST_TYPES.CREATE_DATASET,
+        type: NotificationType.Error,
+      });
 
       this.setState({
         toastError: {
@@ -309,12 +313,11 @@ class DatasetCreationPage extends React.Component {
     }
   };
 
-  _showToast({ name, type }) {
-    return this.toaster.createToast({
-      name,
+  showNotification({ name, type }) {
+    this.context({
+      message: getErrorTitle()[name],
+      key: name,
       type,
-      title: getErrorTitle()[name],
-      allowAutoHiding: false,
       actions: [
         {
           label: 'Подробнее',

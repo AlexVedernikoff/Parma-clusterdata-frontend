@@ -31,6 +31,7 @@ import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
 import { $appSettingsStore, setAppSettingsEvent } from '@entities/app-settings';
+import { NotificationContext, useCustomNotification } from '@entities/notification';
 
 const middlewares = [thunkMiddleware];
 
@@ -58,6 +59,7 @@ export default function WizardBuild(props) {
   const { entryId } = props;
 
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const [openNotification, contextHolder] = useCustomNotification();
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,
@@ -83,12 +85,15 @@ export default function WizardBuild(props) {
               <Route
                 path="*"
                 component={props => (
-                  <Wizard
-                    {...props}
-                    onExport={handleExport}
-                    sdk={sdk}
-                    entryId={entryId}
-                  />
+                  <NotificationContext.Provider value={openNotification}>
+                    {contextHolder}
+                    <Wizard
+                      {...props}
+                      onExport={handleExport}
+                      sdk={sdk}
+                      entryId={entryId}
+                    />
+                  </NotificationContext.Provider>
                 )}
               />
             </Switch>
