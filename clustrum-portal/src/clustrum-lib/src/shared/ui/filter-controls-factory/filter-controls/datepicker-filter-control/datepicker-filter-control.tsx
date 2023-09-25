@@ -77,7 +77,7 @@ export function DatepickerFilterControl(
         <div ref={pickerRef}>
           <DatePicker
             disabledDate={hasDisabled}
-            dateRender={renderCustomDate}
+            dateRender={renderCustomDate(dateFormat)}
             format={dateFormat}
             locale={ruRU.DatePicker}
             picker="date"

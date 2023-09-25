@@ -88,7 +88,7 @@ export function RangeDatepickerFilterControl(
           <RangePicker
             disabledDate={hasDisabled}
             format={dateFormat}
-            dateRender={renderCustomDate}
+            dateRender={renderCustomDate(dateFormat)}
             locale={ruRU.DatePicker}
             picker="date"
             placement={placementPosition}
