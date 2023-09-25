@@ -1,7 +1,6 @@
 export {
   FilterControlsFactoryProps,
   DashboardControlsData,
-  LabelWithHoverProps,
 } from './filter-factory-controls-props';
 export { ControlType } from './control-type';
 export { PlacementPosition } from './placement-position';
@@ -17,3 +16,4 @@ export {
 export { ActualParamsReturnType } from './actual-params';
 export { ControlState } from './control-state';
 export { MemoizedHandlers } from './memoized-handlers';
+export { LabelWithHoverProps } from './label-with-hover-props';

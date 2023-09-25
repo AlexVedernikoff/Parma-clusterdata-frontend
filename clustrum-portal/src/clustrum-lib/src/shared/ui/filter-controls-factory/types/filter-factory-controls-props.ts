@@ -77,7 +77,3 @@ export interface FilterControlsFactoryProps {
   scheme: LoadedDataScheme[] | null;
   getActualParams(): ActualParamsReturnType;
 }
-
-export interface LabelWithHoverProps {
-  label: string;
-}
