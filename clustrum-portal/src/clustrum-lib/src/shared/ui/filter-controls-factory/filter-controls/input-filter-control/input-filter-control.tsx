@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { InputFilterControlProps } from './types';
 
 import styles from './input-filter-control.module.css';
-import { LabelWithHover } from '../../labelWithHover';
+import { LabelWithHover } from '../../label-with-hover';
 
 export function InputFilterControl(props: InputFilterControlProps): JSX.Element | null {
   const {

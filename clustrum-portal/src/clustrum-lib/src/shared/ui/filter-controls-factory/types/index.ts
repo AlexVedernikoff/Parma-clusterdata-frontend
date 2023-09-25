@@ -1,6 +1,7 @@
 export {
   FilterControlsFactoryProps,
   DashboardControlsData,
+  LabelWithHoverProps,
 } from './filter-factory-controls-props';
 export { ControlType } from './control-type';
 export { PlacementPosition } from './placement-position';

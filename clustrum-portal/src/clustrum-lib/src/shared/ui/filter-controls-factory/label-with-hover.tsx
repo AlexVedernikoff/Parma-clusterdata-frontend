@@ -1,14 +1,15 @@
 import { Popover } from 'antd';
 import React from 'react';
 import styles from './filter-controls-factory.module.css';
-import { LabelWithHoverProps } from './types/filter-factory-controls-props';
+import { LabelWithHoverProps } from './types';
 
-export function LabelWithHover({ label }: LabelWithHoverProps): JSX.Element {
+export function LabelWithHover(props: LabelWithHoverProps): JSX.Element {
+  const { label } = props;
   return (
     <Popover
       placement="bottom"
       content={
-        <div className={styles['filter-controls-factory__labelContainer_hint']}>
+        <div className={styles['filter-controls-factory__label-сontainer-hint']}>
           {label}
         </div>
       }
@@ -18,7 +19,7 @@ export function LabelWithHover({ label }: LabelWithHoverProps): JSX.Element {
       }}
     >
       <div
-        className={styles['filter-controls-factory__labelContainer']}
+        className={styles['filter-controls-factory__label-сontainer']}
       >{`${label}:`}</div>
     </Popover>
   );
