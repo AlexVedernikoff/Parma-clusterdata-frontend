@@ -6,18 +6,7 @@ import { LabelWithHoverProps } from './types';
 export function LabelWithHover(props: LabelWithHoverProps): JSX.Element {
   const { label } = props;
   return (
-    <Popover
-      placement="bottom"
-      content={
-        <div className={styles['filter-controls-factory__label-сontainer-hint']}>
-          {label}
-        </div>
-      }
-      overlayInnerStyle={{
-        background: 'transparent',
-        boxShadow: 'none',
-      }}
-    >
+    <Popover placement="bottom" content={<span>{label}</span>}>
       <div
         className={styles['filter-controls-factory__label-сontainer']}
       >{`${label}:`}</div>
