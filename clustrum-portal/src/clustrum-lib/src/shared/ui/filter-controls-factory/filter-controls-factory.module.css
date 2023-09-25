@@ -31,19 +31,3 @@
   opacity: 0.5;
   content: '';
 }
-
-.filter-controls-factory__label-сontainer-hint {
-  position: absolute;
-  right: 120px;
-  bottom: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 285px;
-  padding: 5px;
-  color: antiquewhite;
-  font-size: 15px !important;
-  text-align: center;
-  background: rgba(94, 33, 41, 0.8);
-  border-radius: 10px;
-}
