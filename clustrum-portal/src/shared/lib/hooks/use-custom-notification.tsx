@@ -1,5 +1,5 @@
 import { notification, Space, Typography } from 'antd';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
   NotificationAction,
   NotificationProps,
@@ -11,10 +11,10 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
   const [api, contextHolder] = notification.useNotification();
 
   function getDescriptionWithAction(
-    description: React.ReactNode,
+    description: ReactNode,
     actions: NotificationAction[],
     key?: string,
-  ): React.ReactNode {
+  ): ReactNode {
     if (!actions?.length) {
       return description;
     }

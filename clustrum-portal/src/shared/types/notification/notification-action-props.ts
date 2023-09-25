@@ -1,7 +1,7 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 export interface NotificationActionProps {
-  description: React.ReactNode;
+  description: ReactNode;
   onClick: () => void;
   label: string;
 }
