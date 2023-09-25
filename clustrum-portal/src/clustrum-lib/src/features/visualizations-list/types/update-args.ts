@@ -1,14 +1,19 @@
 import { Color } from './color';
 import { Dataset } from './dataset';
 import { MeasureType, NullAlias } from './enums';
-import { FieldProperties } from './field-properties';
-import { Filter } from './filter';
+import { FieldProperties } from '@lib-entities/visualization-factory/types';
+import { Filter } from '@lib-entities/visualization-factory/types';
 import { PaginateInfo } from './paginate-info';
 import { IntRange } from './common-services';
 import { VisualizationItem } from './visualization-item';
 
 export interface CommonSelectionProps {
   dataset: Dataset;
+  datasetError: boolean;
+  needSteppedLayout: boolean;
+  steppedLayoutIndentation: number;
+  needAutoNumberingRows: boolean;
+  mapLayerOpacity: number;
   dimensions: FieldProperties[];
   measures: FieldProperties[];
   visualization: VisualizationItem;
