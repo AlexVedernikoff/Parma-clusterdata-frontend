@@ -4,9 +4,9 @@ import { NotificationActionBody } from '@entities/notification/ui/notification-a
 import { NotificationAction as action } from '@entities/notification/types/notification-action';
 import { NotificationProps } from '@entities/notification/types/notification-props';
 import { NotificationType } from '@entities/notification';
-import { useCustomNotificationReturnType } from '@entities/notification/types/notification-hook-return';
+import { UseCustomNotificationReturnType } from '@entities/notification/types/notification-hook-return';
 
-export function useCustomNotification(): useCustomNotificationReturnType {
+export function useCustomNotification(): UseCustomNotificationReturnType {
   const [api, contextHolder] = notification.useNotification();
 
   function getDescriptionWithAction(
