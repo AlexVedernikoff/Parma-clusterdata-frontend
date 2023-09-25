@@ -127,10 +127,13 @@ class TableRow extends React.PureComponent {
           const classNameValue =
             column._className +
             (isValueSelected ? ' selected' : '') +
-            (isTotalCell ? ' chartkit-table__cell_is-total-cell' : '');
+            (isTotalCell ? ' chartkit-table__cell_is-total-cell' : '') +
+            (value?.rowSpan > 1 ? ' high_row_span_cell' : '');
 
           if (value?.rowSpan === HIDDEN_ROW_SPAN) {
-            return <td></td>;
+            return (
+              <td key={columnIndex} className={classNameValue + ' hidden_cell'}></td>
+            );
           }
 
           const paddingLeft = {

@@ -2476,6 +2476,19 @@
   background: var(--data-table-color-stripe);
 }
 
+.data-table__table .data-table__row .data-table__td {
+  border: 1px solid var(--data-table-border-color);
+}
+
+.data-table__table .data-table__row .high_row_span_cell {
+  border-bottom: none;
+}
+
+.data-table__table .data-table__row .hidden_cell {
+  border-bottom: none;
+  border-top: none;
+}
+
 .data-table_highlight-rows .data-table__row:hover {
   background: var(--data-table-color-hover-area);
 }
