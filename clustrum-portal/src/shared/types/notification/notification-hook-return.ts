@@ -1,5 +1,5 @@
-import { NotificationProps } from '@entities/notification';
 import React from 'react';
+import { NotificationProps } from '@shared/types/notification/notification-props';
 
 export type UseCustomNotificationReturnType = [
   (args: NotificationProps) => void,

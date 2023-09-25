@@ -9,7 +9,8 @@ import {
   RejectFormulaError,
 } from './types';
 import { DialogPivotTableBody } from './DialogPivotTableBody';
-import { NotificationType, useCustomNotification } from '@entities/notification';
+import { useCustomNotification } from '@shared/lib/hooks';
+import { NotificationType } from '@shared/types/notification';
 
 export const DialogPivotTable = <T extends IItem>(
   props: DialogPivotTableProps<T>,

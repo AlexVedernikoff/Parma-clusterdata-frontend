@@ -18,7 +18,7 @@ import {
 } from '../types';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 import { $pathInFolder } from '@entities/navigation-base';
-import { useCustomNotification } from '@entities/notification';
+import { useCustomNotification } from '@shared/lib/hooks';
 
 /**
  * TODO
@@ -73,7 +73,7 @@ export function NavigationBase(props: NavigationBase): ReactElement {
         return accessEntry(entry);
       }
       case ContextMenuActions.CopyLink: {
-        return false;
+        return copyEntryId(entry);
       }
       default:
         return false;
@@ -199,6 +199,10 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     });
     update(response, ENTRY_DIALOG.COPY, entry);
     updateEffector(response);
+  }
+
+  function copyEntryId(entry: NavigationEntryData): Promise<void> {
+    return navigator.clipboard.writeText(entry.entryId);
   }
 
   async function deleteEntry(entry: NavigationEntryData): Promise<void> {

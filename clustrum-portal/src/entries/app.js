@@ -30,7 +30,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 
 import { logVersion } from '../utils/version-logger';
-import { NotificationContext, useCustomNotification } from '@entities/notification';
+import { NotificationContext } from '@entities/notification';
+import { useCustomNotification } from '@shared/lib/hooks';
 
 const middlewares = [thunkMiddleware];
 

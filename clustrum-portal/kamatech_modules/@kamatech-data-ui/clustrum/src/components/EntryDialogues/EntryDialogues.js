@@ -9,7 +9,7 @@ import DialogCreateDashboard from './DialogCreateDashboard/DialogCreateDashboard
 import DialogUnlock from './DialogUnlock/DialogUnlock';
 import DialogAccess from './DialogAccess/DialogAccess';
 import DialogSaveEditorChart from './DialogSaveEditorChart/DialogSaveEditorChart';
-import { NotificationType } from '@entities/notification';
+import { NotificationType } from '@shared/types/notification';
 
 export const ENTRY_DIALOG = {
   COPY: 'copy',
@@ -40,7 +40,14 @@ export const entryDialoguesNotify = (dialogName, errorDialogRef, openNotificatio
     case ENTRY_DIALOG.DESCRIBE:
     case ENTRY_DIALOG.COPY:
     case ENTRY_DIALOG.SAVE_EDITOR_CHART:
-      if (type === NOTIFY_TYPES.ERROR) {
+      console.log('asdfas');
+      openNotification({
+        message: title,
+        key: `${dialogName}_${NotificationType.Error}`,
+        type: NotificationType.Error,
+      });
+      return;
+      if (true) {
         const { message, requestId } = Utils.parseErrorResponse(error);
         let actions;
         let allowAutoHiding = true;

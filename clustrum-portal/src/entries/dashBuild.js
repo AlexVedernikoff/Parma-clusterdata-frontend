@@ -27,7 +27,8 @@ import './../css/dash-redesign.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
-import { NotificationContext, useCustomNotification } from '@entities/notification';
+import { useCustomNotification } from '@shared/lib/hooks';
+import { NotificationContext } from '@entities/notification';
 
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');
@@ -48,6 +49,7 @@ export default function DashBuild(props) {
     hideSubHeader: props.hideSubHeader,
     hideTabs: props.hideTabs,
     hideEdit: props.hideEdit,
+    hideDashExport: props.hideDashExport,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,

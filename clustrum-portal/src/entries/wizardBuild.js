@@ -31,7 +31,8 @@ import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
 import { $appSettingsStore, setAppSettingsEvent } from '@entities/app-settings';
-import { NotificationContext, useCustomNotification } from '@entities/notification';
+import { NotificationContext } from '@entities/notification';
+import { useCustomNotification } from '@shared/lib/hooks';
 
 const middlewares = [thunkMiddleware];
 
@@ -63,12 +64,9 @@ export default function WizardBuild(props) {
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,
-    hideTabs: props.hideTabs,
-    hideEdit: props.hideEdit,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,
-    stateUuid: props.stateUuid,
   });
 
   const handleExport = (id, name, options) => {

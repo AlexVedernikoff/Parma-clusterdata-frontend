@@ -1,4 +1,6 @@
 import React from 'react';
-
-const NotificationContext = React.createContext(null);
+import { NotificationProps } from '@shared/types/notification';
+const NotificationContext = React.createContext<
+  ((args: NotificationProps) => void) | null
+>(null);
 export { NotificationContext };

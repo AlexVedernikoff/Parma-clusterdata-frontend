@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { DragSourceMonitor, DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
 import {
   DndItemProps,
@@ -26,6 +26,7 @@ export function DndItem<T>(props: DndItemProps<T>): JSX.Element {
     wrapTo,
   } = props;
   const ref = useRef<HTMLDivElement>(null);
+  const [tooltipVisibility, setTooltipVisibility] = useState<boolean>(false);
 
   const [, drag] = useDrag(() => ({
     type: 'ITEM',
@@ -179,11 +180,13 @@ export function DndItem<T>(props: DndItemProps<T>): JSX.Element {
     marginBottom: size.margin,
   };
 
+  const newProps = { ...props, tooltipVisibility, setTooltipVisibility };
+
   return (
     <div ref={drop}>
       <div ref={drag}>
         <div style={style} ref={ref}>
-          {wrapTo(props, ref.current)}
+          {wrapTo(newProps, ref.current)}
         </div>
       </div>
     </div>

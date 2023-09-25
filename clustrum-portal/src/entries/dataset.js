@@ -19,7 +19,8 @@ import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
 import { $appSettingsStore } from '@entities/app-settings';
-import { NotificationContext, useCustomNotification } from '@entities/notification';
+import { NotificationContext } from '@entities/notification';
+import { useCustomNotification } from '@shared/lib/hooks';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,

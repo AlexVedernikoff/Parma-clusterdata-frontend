@@ -1,11 +1,11 @@
 import React from 'react';
-import { NotificationAction as action, NotificationType } from '@entities/notification';
+import { NotificationAction, NotificationType } from '@shared/types/notification';
 import { NotificationPlacement } from 'antd/es/notification/interface';
 
 export interface NotificationProps {
   message: string;
   description?: React.ReactNode;
-  actions?: action[];
+  actions?: NotificationAction[];
   type?: NotificationType;
   placement?: NotificationPlacement;
   style?: React.CSSProperties;

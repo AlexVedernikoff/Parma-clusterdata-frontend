@@ -10,7 +10,8 @@ import {
 import { VisualizationType } from '@clustrum-lib/entities/visualization-factory/types';
 import { pivotTableDialogFields } from './helper';
 import { VisualizationFactory } from '@clustrum-lib/entities/visualization-factory';
-import { NotificationType, useCustomNotification } from '@entities/notification';
+import { useCustomNotification } from '@shared/lib/hooks';
+import { NotificationType } from '@shared/types/notification';
 
 export const DialogPivotTableBody = <T extends IItem>({
   subTotalsSettings,
@@ -78,13 +79,10 @@ export const DialogPivotTableBody = <T extends IItem>({
                 type={type}
                 className="subitem"
                 containerProps={{
-                  theme: 'normal',
-                  size: 'n',
-                  view: 'default',
-                  checked: subTotalsSettings[id],
-                  text:
+                  checked: subTotalsSettings[id] as boolean,
+                  value:
                     type === VisualizationType.TextInput ? subTotalsSettings[id] : text,
-                  onChange: onChangeFields(id, type),
+                  onChange: onChangeFields(id, type) as any,
                 }}
               />
             </div>

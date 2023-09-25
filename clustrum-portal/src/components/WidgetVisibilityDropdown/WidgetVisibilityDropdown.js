@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import { Button, Dropdown } from 'antd';
+import { Button, Dropdown, Popover } from 'antd';
 
-function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
+function WidgetVisibilityDropdown(props) {
+  const { items, layout, toggleWidgetVisibility, hint } = props;
+
   const getWidgetList = () => {
     const isWidget = item => item.type === 'widget';
     const isTitle = item => item.type === 'title';
@@ -78,7 +79,13 @@ function WidgetVisibilityDropdown({ items, layout, toggleWidgetVisibility }) {
       trigger={['click']}
       open={open}
     >
-      <Button icon={<EyeOutlined />} />
+      {hint ? (
+        <Popover placement="bottom" content={<span>{hint}</span>}>
+          <Button icon={<EyeOutlined />} />
+        </Popover>
+      ) : (
+        <Button icon={<EyeOutlined />} />
+      )}
     </Dropdown>
   );
 }

@@ -10,7 +10,8 @@ import { TOAST_TYPES, REPLACE_SOURCE_MODE_ID } from '../../constants';
 import Utils from '../../helpers/utils';
 import { getSearchParam } from '../../helpers/QueryParams';
 import { $appSettingsStore } from '@entities/app-settings';
-import { NotificationContext, NotificationType } from '@entities/notification';
+import { NotificationType } from '@shared/types/notification';
+import { NotificationContext } from '@entities/notification';
 
 const b = block('dataset-creation-page');
 

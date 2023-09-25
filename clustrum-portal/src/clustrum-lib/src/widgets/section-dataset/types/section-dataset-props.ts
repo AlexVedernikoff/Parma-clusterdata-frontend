@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { DndItemData } from '@lib-shared/ui/drag-n-drop/types';
-import { Wizard } from '@clustrum-lib-legacy';
+import Wizard from '@lib-modules/legacy-wizard/Wizard';
 import { DatasetData } from './dataset-data';
 
 export type EntryDialoguesType = typeof Wizard & {

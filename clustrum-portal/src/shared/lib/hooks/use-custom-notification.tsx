@@ -1,17 +1,18 @@
-import { notification, Space } from 'antd';
+import { notification, Space, Typography } from 'antd';
 import React from 'react';
-import { NotificationActionBody } from '@entities/notification/ui/notification-action-body';
-import { NotificationAction as action } from '@entities/notification/types/notification-action';
-import { NotificationProps } from '@entities/notification/types/notification-props';
-import { NotificationType } from '@entities/notification';
-import { UseCustomNotificationReturnType } from '@entities/notification/types/notification-hook-return';
+import {
+  NotificationAction,
+  NotificationProps,
+  NotificationType,
+  UseCustomNotificationReturnType,
+} from '@shared/types/notification';
 
 export function useCustomNotification(): UseCustomNotificationReturnType {
   const [api, contextHolder] = notification.useNotification();
 
   function getDescriptionWithAction(
     description: React.ReactNode,
-    actions: action[],
+    actions: NotificationAction[],
     key?: string,
   ): React.ReactNode {
     if (!actions?.length) {
@@ -29,12 +30,10 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
             api.destroy(key);
           };
           return (
-            <NotificationActionBody
-              key={label}
-              description={description}
-              onClick={onActionClick}
-              label={label}
-            />
+            <Space key={label} direction="vertical">
+              {description}
+              <Typography.Link onClick={onActionClick}>{label}</Typography.Link>
+            </Space>
           );
         })}
       </Space>

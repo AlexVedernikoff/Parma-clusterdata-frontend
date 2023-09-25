@@ -8,7 +8,8 @@ import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 import { ConnectionInfo, DataSourceButton, Status } from './components';
 import ErrorView from '../ErrorView/ErrorView';
 import { Stage } from './Stage';
-import { NotificationContext, NotificationType } from '@entities/notification';
+import { NotificationType } from '@shared/types/notification';
+import { NotificationContext } from '@entities/notification';
 
 const b = block('data-source');
 

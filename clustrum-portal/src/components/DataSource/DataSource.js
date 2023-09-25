@@ -17,7 +17,8 @@ import ErrorView from '../ErrorView/ErrorView';
 import { Stage } from './Stage';
 import MaterializationSettings from './components/MaterializationCustomSettings/MaterializationSettings';
 import Utils from '../../helpers/utils';
-import { NotificationContext, NotificationType } from '@entities/notification';
+import { NotificationType } from '@shared/types/notification';
+import { NotificationContext } from '@entities/notification';
 
 // import './DataSource.scss';
 

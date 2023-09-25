@@ -15,7 +15,8 @@ import {
 import Utils from '../../helpers/utils';
 import SelectConnection from '../../containers/SelectConnection/SelectConnection';
 import { getSearchParam } from '../../helpers/QueryParams';
-import { NotificationContext, NotificationType } from '@entities/notification';
+import { NotificationType } from '@shared/types/notification';
+import { NotificationContext } from '@entities/notification';
 
 const b = block('dataset-creation');
 
