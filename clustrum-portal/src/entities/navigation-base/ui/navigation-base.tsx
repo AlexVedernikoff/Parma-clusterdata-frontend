@@ -180,7 +180,7 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     updateEffector(response);
   }
 
-  // Данный метод нужен для корректной работы копирования при работе с HTTP://
+  // Данный метод нужен для корректной работы копирования в буфер обмена при работе с HTTP://
   const unsecuredCopyToClipboard = (text: string): void => {
     const textArea = document.createElement('textarea');
     textArea.value = text;
