@@ -5,6 +5,7 @@ import { OptionsTypes, SelectFilterControlProps } from './types';
 import { useDebounce } from '@lib-shared/lib/hooks';
 import { SelectionAllBtn } from './selection-all-btn';
 import styles from './select-filter-control.module.css';
+import { LabelWithHover } from '../../label-with-hover';
 
 export function SelectFilterControl(props: SelectFilterControlProps): JSX.Element {
   const {
@@ -77,7 +78,7 @@ export function SelectFilterControl(props: SelectFilterControlProps): JSX.Elemen
   return (
     <div className={classNames(styles['select-filter-control'], className)}>
       <label className={styles['select-filter-control__label']}>
-        {needShowTitle && `${label}:`}
+        {needShowTitle && <LabelWithHover label={label} />}
         <Select
           allowClear
           placeholder="Все"
