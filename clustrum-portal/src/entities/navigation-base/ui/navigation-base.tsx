@@ -19,6 +19,7 @@ import {
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 import { $pathInFolder } from '@entities/navigation-base';
 import { useCustomNotification } from '@shared/lib/hooks';
+import { unsecuredCopyToClipboard } from '../lib/utils';
 
 /**
  * TODO
@@ -201,8 +202,12 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     updateEffector(response);
   }
 
-  function copyEntryId(entry: NavigationEntryData): Promise<void> {
-    return navigator.clipboard.writeText(entry.entryId);
+  async function copyEntryId(entry: NavigationEntryData): Promise<void> {
+    if (window.isSecureContext && navigator.clipboard) {
+      return await navigator.clipboard.writeText(entry.entryId);
+    } else {
+      return unsecuredCopyToClipboard(entry.entryId);
+    }
   }
 
   async function deleteEntry(entry: NavigationEntryData): Promise<void> {

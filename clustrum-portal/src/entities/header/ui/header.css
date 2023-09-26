@@ -49,6 +49,10 @@
   align-items: center;
 }
 
+.ant-tooltip .ant-tooltip-arrow {
+  --antd-arrow-background-color: #fff;
+}
+
 .ant-tooltip-content > .ant-tooltip-inner {
   color: #000;
   background-color: #fff;
