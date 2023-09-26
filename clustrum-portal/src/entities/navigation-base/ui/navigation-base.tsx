@@ -18,6 +18,7 @@ import {
 } from '../types';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 import { $pathInFolder } from '@entities/navigation-base';
+import { unsecuredCopyToClipboard } from '../lib/utils';
 
 /**
  * TODO
@@ -270,7 +271,4 @@ export function NavigationBase(props: NavigationBase): ReactElement {
       <ErrorDialog ref={refErrorDialog} />
     </>
   );
-}
-function unsecuredCopyToClipboard(entryId: string): void | PromiseLike<void> {
-  throw new Error('Function not implemented.');
 }
