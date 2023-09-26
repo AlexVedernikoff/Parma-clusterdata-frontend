@@ -7,6 +7,7 @@ import { Tooltip } from 'lego-on-react';
 import iconError from 'icons/error.svg';
 import { VisualizationFactory } from '@lib-entities/visualization-factory';
 import { VisualizationAdapter } from '@lib-widgets/section-visualization';
+import { COORD_ITEMS } from '@lib-widgets/section-visualization/lib/constants';
 
 import {
   CloseOutlined,
@@ -399,59 +400,6 @@ class SectionVisualization extends Component {
     visualization.placeholders.forEach(p => this.fillDatasetName(p.items, dimensions));
     this.fillDatasetName(filters, dimensions);
 
-    const coordsItems = [
-      {
-        label: 'EPSG:4326',
-        value: 'EPSG:4326',
-      },
-      {
-        label: 'EPSG:3857',
-        value: 'EPSG:3857',
-      },
-    ];
-
-    const nullAliasItems = [
-      {
-        label: 'Без подписи',
-        value: NullAlias.NULL,
-      },
-      {
-        label: 'Пустая строка " "',
-        value: NullAlias.EMPTY,
-      },
-      {
-        label: '"—"',
-        value: NullAlias.DASH,
-      },
-      {
-        label: '"Нет данных"',
-        value: NullAlias.NO_DATA,
-      },
-      {
-        label: '"Не указано"',
-        value: NullAlias.UNDEFINED,
-      },
-      {
-        label: 'Значение "0"',
-        value: NullAlias.ZERO,
-      },
-    ];
-
-    const diagramMagnitudeItems = [
-      {
-        label: 'Абсолютные значения',
-        value: MEASURE_TYPE.ABSOLUTE,
-      },
-      {
-        label: 'Проценты',
-        value: MEASURE_TYPE.RELATIVE,
-      },
-      {
-        label: 'Не отображать',
-        value: MEASURE_TYPE.EMPTY,
-      },
-    ];
-
     let clusterPrecisionItem = 0;
 
     let paginateInfoItem = { page: 0, pageSize: 10 };
@@ -467,7 +415,7 @@ class SectionVisualization extends Component {
 
     if (!coordType && visualization.allowCoordType) {
       setCoordType({
-        coordType: coordsItems[0],
+        coordType: COORD_ITEMS[0],
       });
     }
     if (!titleLayerSource && visualization.allowTitleLayerSource) {

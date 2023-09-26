@@ -12,7 +12,7 @@ export interface DndItemData {
   datasetId?: string;
   datasetName: string;
   description?: string;
-  filter?: Filter;
+  filter?: DndItemFilter;
   formula?: string;
   guid?: string;
   hasArray?: boolean;
@@ -34,7 +34,7 @@ export interface DndItemData {
   direction?: string;
 }
 
-export interface Filter {
+export interface DndItemFilter {
   operation: FilterOperation;
   value: string[];
 }

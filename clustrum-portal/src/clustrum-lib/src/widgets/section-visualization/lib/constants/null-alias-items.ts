@@ -1,4 +1,4 @@
-export const NULL_ALIAS = {
+export const NULL_ALIAS_LIST = {
   NULL: 'null',
   EMPTY: 'empty',
   DASH: 'dash',
@@ -10,26 +10,26 @@ export const NULL_ALIAS = {
 export const NULL_ALIAS_ITEMS = [
   {
     label: 'Без подписи',
-    value: NULL_ALIAS.NULL,
+    value: NULL_ALIAS_LIST.NULL,
   },
   {
     label: 'Пустая строка " "',
-    value: NULL_ALIAS.EMPTY,
+    value: NULL_ALIAS_LIST.EMPTY,
   },
   {
     label: '"—"',
-    value: NULL_ALIAS.DASH,
+    value: NULL_ALIAS_LIST.DASH,
   },
   {
     label: '"Нет данных"',
-    value: NULL_ALIAS.NO_DATA,
+    value: NULL_ALIAS_LIST.NO_DATA,
   },
   {
     label: '"Не указано"',
-    value: NULL_ALIAS.UNDEFINED,
+    value: NULL_ALIAS_LIST.UNDEFINED,
   },
   {
     label: 'Значение "0"',
-    value: NULL_ALIAS.ZERO,
+    value: NULL_ALIAS_LIST.ZERO,
   },
 ];
