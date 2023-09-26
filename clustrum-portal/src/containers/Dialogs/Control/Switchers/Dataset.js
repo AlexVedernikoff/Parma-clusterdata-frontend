@@ -16,10 +16,14 @@ function Dataset({
 }) {
   const [path, setPath] = useState();
 
-  useEffect(async () => {
+  const initPath = async () => {
     const { key } = await sdk.getEntry({ entryId });
     setPath(key);
-  }, [entryId]);
+  };
+
+  useEffect(() => {
+    initPath();
+  }, []);
 
   return (
     path && (
