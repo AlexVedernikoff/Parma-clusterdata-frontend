@@ -10,7 +10,7 @@ import { PlacementPosition } from '@lib-shared/ui/filter-controls-factory/types'
 import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
 
 import styles from './datepicker-filter-control.module.css';
-import { LabelWithHover } from '../label-with-hover';
+import { LabelWithHover } from '../../label-with-hover';
 import { renderCustomDate } from '../../custom-date';
 
 const POPUP_WIDTH = 288;
