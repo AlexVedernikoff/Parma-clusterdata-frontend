@@ -180,21 +180,6 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     updateEffector(response);
   }
 
-  // Данный метод нужен для корректной работы копирования в буфер обмена при работе с HTTP://
-  const unsecuredCopyToClipboard = (text: string): void => {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    try {
-      document.execCommand('copy');
-    } catch (err) {
-      console.error('Unable to copy to clipboard', err);
-    }
-    document.body.removeChild(textArea);
-  };
-
   async function copyEntryId(entry: NavigationEntryData): Promise<void> {
     if (window.isSecureContext && navigator.clipboard) {
       return await navigator.clipboard.writeText(entry.entryId);
@@ -285,4 +270,7 @@ export function NavigationBase(props: NavigationBase): ReactElement {
       <ErrorDialog ref={refErrorDialog} />
     </>
   );
+}
+function unsecuredCopyToClipboard(entryId: string): void | PromiseLike<void> {
+  throw new Error('Function not implemented.');
 }
