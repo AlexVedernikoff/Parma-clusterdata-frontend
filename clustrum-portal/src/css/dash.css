@@ -4648,6 +4648,7 @@ td.data-table__td.chartkit-table__cell.chartkit-table__cell_type_FLOAT {
   width: 1033px;
   height: 400px;
   background-color: white;
+  overflow: visible !important;
 }
 
 .widget-visibility-dropdown {

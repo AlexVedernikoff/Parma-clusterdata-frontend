@@ -56,22 +56,13 @@
   overflow: hidden;
 }
 
-.ant-table-wrapper
-  .ant-spin-nested-loading
-  .ant-spin-container
-  .ant-table
-  .ant-table-container {
+.ant-table-wrapper .ant-spin-nested-loading .ant-spin-container .ant-table .ant-table-container {
   display: flex;
   flex-flow: column nowrap;
   height: calc(100% - 16px);
 }
 
-.ant-table-wrapper
-  .ant-spin-nested-loading
-  .ant-spin-container
-  .ant-table
-  .ant-table-container
-  .ant-table-content {
+.ant-table-wrapper .ant-spin-nested-loading .ant-spin-container .ant-table .ant-table-container .ant-table-content {
   flex: auto;
   margin-bottom: 20px;
   overflow: scroll;
