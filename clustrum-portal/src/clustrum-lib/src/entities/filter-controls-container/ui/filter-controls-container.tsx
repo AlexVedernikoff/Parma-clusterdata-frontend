@@ -41,6 +41,8 @@ export function FilterControlsContainer(props: FilterControlsFactoryProps): JSX.
   const filters = getFilters();
 
   useEffect(() => {
+    // TODO: при запросе на бек фильтры всегда обновляются, даже если фактических изменений
+    // не было. Поэтому костыль для сравнения с предыдущим состоянием
     if (previousFilters.current !== filters) {
       init();
       previousFilters.current = filters;

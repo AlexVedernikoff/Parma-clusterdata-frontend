@@ -1,0 +1,6 @@
+front_app_name: sed_front
+
+repo_url: https://nexus.parmalogica.ru/repository/aprf-sed/
+
+front_home_dir: /var/www
+vhost_location: /etc/nginx/sites-enabled

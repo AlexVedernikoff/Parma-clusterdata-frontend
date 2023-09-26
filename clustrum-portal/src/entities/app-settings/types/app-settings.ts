@@ -7,6 +7,7 @@ export interface AppSettings {
   hideSubHeader: boolean | null;
   hideTabs: boolean | null;
   hideEdit: boolean | null;
+  hideDashExport: boolean | null;
   enableCaching: boolean | null;
   cacheMode: boolean | null;
   exportMode: boolean | null;

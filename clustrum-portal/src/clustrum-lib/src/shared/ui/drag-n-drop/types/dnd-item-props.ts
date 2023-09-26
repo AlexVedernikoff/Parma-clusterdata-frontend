@@ -11,12 +11,10 @@ export interface DndItemProps<T> {
   containerId: string;
   index: number;
   itemData: T;
-  tooltipVisibility: boolean;
   draggedItem: DndDraggedItem<T> | null;
   remove(index: number): void;
   replace(index: number, item: T): void;
   wrapTo(props: DndItemProps<T>, component: HTMLDivElement | null): JSX.Element;
-  setTooltipVisibility(isVisible: boolean): void;
   setDropPlace(index: number | null): void;
   setDraggedItem(item: DndDraggedItem<T>): void;
   setIsNeedReplace(isNeedReplace: boolean): void;
