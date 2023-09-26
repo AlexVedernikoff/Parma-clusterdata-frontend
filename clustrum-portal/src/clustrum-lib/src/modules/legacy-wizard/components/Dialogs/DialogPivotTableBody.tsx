@@ -68,7 +68,7 @@ export const DialogPivotTableBody = <T extends IItem>({
   return (
     <div className="dialog-pivot-table-container">
       <div className="subcontainer">
-        {pivotTableDialogFields(placeholderType)
+        {pivotTableDialogFields(placeholderType, subTotalsSettings['needSubTotal'])
           .filter(({ visible }) => visible)
           .map(({ text, type, id }) => (
             <div key={`${id}__${text}`} className="subitem">
