@@ -11,7 +11,7 @@ import { getIntervalString } from '../../lib/helpers';
 import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
 
 import styles from './range-datepicker-filter-control.module.css';
-import { LabelWithHover } from '../../label-with-hover';
+import { LabelWithHover } from '../label-with-hover';
 
 const { RangePicker } = DatePicker;
 const RANGE_PLACEHOLDER: [string, string] = ['От дд.мм.гггг', 'До дд.мм.гггг'];

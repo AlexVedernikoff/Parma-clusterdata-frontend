@@ -5,7 +5,7 @@ import { OptionsTypes, SelectFilterControlProps } from './types';
 import { useDebounce } from '@lib-shared/lib/hooks';
 import { SelectionAllBtn } from './selection-all-btn';
 import styles from './select-filter-control.module.css';
-import { LabelWithHover } from '../../label-with-hover';
+import { LabelWithHover } from '../label-with-hover';
 
 export function SelectFilterControl(props: SelectFilterControlProps): JSX.Element {
   const {
