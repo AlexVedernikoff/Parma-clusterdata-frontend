@@ -38,7 +38,6 @@ export function DatepickerFilterControl(
       setDate(currentValue);
     } else {
       setDate(null);
-      onChange?.('');
     }
   }, [defaultValue]);
 

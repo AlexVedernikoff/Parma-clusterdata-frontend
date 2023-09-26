@@ -40,7 +40,6 @@ export function RangeDatepickerFilterControl(
 
     if (!parsedDates) {
       setDateRange(null);
-      onChange?.('');
       return;
     }
 
