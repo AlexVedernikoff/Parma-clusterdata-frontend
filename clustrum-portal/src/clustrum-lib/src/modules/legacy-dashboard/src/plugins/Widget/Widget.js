@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const b = block('dashkit-plugin-widget');
 

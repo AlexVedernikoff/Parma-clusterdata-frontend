@@ -710,7 +710,7 @@
   border: none;
   overflow: hidden;
   background-color: var(--white);
-  box-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
+  box-shadow: var(--clustrum-default-widget-shadow);
 }
 
 .expanded-filter {
@@ -1518,6 +1518,7 @@
 .action-panel {
   margin: 0;
   border: none;
+  background: var(--clustrum-default-background-panel-color);
 }
 
 .yc-header {

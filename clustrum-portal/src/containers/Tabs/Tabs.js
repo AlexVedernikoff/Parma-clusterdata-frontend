@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import { DIALOG_TYPE } from '../../modules/constants/constants';
 import { getCurrentPageTabs, isEditMode } from '../../store/selectors/dash';
 import { setPageTab, openDialog } from '../../store/actions/dash';
 import { getSearchParam } from '../../helpers/QueryParams';
+import { $appSettingsStore } from '@shared/app-settings';
 
 import './tabs.css';
 
@@ -25,10 +26,12 @@ function Tabs(props) {
 
   const activeTabId = getSearchParam('tab') ?? tabs[0].id;
 
+  const tabType = $appSettingsStore.getState().theme.tabs.tabType;
+
   return (
     <div className="tabs-wrapper">
       <AntdTabs
-        type="card"
+        type={tabType}
         items={antdTabs}
         defaultActiveKey={activeTabId}
         onTabClick={changeTabHandler}

@@ -18,7 +18,7 @@ import {
   SOURCES,
   EDIT,
 } from '@kamatech-data-ui/chartkit/lib/extensions/menu-items';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 // import './ChartKit.scss';
 

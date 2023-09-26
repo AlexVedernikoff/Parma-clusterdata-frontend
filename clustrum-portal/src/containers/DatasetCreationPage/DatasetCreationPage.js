@@ -10,7 +10,7 @@ import ConnectionSelection from '../ConnectionSelection/ConnectionSelection';
 import { TOAST_TYPES, REPLACE_SOURCE_MODE_ID } from '../../constants';
 import Utils from '../../helpers/utils';
 import { getSearchParam } from '../../helpers/QueryParams';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const b = block('dataset-creation-page');
 

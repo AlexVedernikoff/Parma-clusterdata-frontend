@@ -1,5 +1,5 @@
 .tabs-wrapper {
-  background: var(--color-contrast-4-solid);
+  background: var(--clustrum-default-background-panel-color);
 }
 
 .ant-tabs-top > .ant-tabs-nav {

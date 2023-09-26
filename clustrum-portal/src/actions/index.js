@@ -1,7 +1,7 @@
 import { MEASURE_TYPE, VISUALIZATIONS } from '../constants';
 import { MapConstant } from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/components/Widget/OLMap/map-constant';
 import Charts from '../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/charts/charts';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 export const REQUEST_WIDGET = 'REQUEST_WIDGET';
 export const RECEIVE_WIDGET = 'RECEIVE_WIDGET';

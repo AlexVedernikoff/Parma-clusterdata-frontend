@@ -1,4 +1,4 @@
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 import { SDK } from '@kamatech-data-ui/clustrum';
 
 export default new SDK({

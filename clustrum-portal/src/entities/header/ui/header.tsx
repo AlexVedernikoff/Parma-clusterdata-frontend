@@ -12,11 +12,14 @@ import { $pathInFolder, $place } from '@entities/navigation-base';
 import { getEntryDataByPathApi } from '../api/get-entry-by-path-api';
 // eslint-disable-next-line boundaries/element-types
 import { MAP_PLACE_TO_PATH_IN_FOLDER } from '@entities/navigation-base/lib/constants';
+import { $appSettingsStore } from '@shared/app-settings';
 
 export function Header(props: HeaderProps): JSX.Element {
   const { leftSideContent, rightSideContent, path, title } = props;
   const history = useHistory();
   const [place, pathInFolder] = useUnit([$place, $pathInFolder]);
+
+  const enableBreadcrumbs = $appSettingsStore.getState().theme.layout.showBreadcrumbs;
 
   function breadCrumbItemRender(route: any, _: any, items: ItemType[]): JSX.Element {
     const isLastItem = items.indexOf(route) === items.length - 1;
@@ -50,11 +53,13 @@ export function Header(props: HeaderProps): JSX.Element {
 
   return (
     <header className="header-wrapper">
-      <div className="header-wrapper__breadcrumb">
-        <div className="header-wrapper__breadcrumb-patch">
-          <Breadcrumb itemRender={breadCrumbItemRender} items={path} />
+      {enableBreadcrumbs && (
+        <div className="header-wrapper__breadcrumb">
+          <div className="header-wrapper__breadcrumb-patch">
+            <Breadcrumb itemRender={breadCrumbItemRender} items={path} />
+          </div>
         </div>
-      </div>
+      )}
       <div className="header-wrapper__content">
         <div className="header-wrapper__left-side">
           {title && (

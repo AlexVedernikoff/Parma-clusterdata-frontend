@@ -16,7 +16,6 @@ import { Pointerfocus } from 'lego-on-react';
 import { Wizard } from '@clustrum-lib-legacy';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import { SDK } from '@kamatech-data-ui/clustrum';
-import { ANT_TOKEN } from '@shared/config/theme';
 import ruRU from 'antd/locale/ru_RU';
 import reducers from '../reducers';
 import { exportWidget } from '../services/dashboard/export/export-widget';
@@ -30,7 +29,8 @@ import './../css/card.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
-import { $appSettingsStore, setAppSettingsEvent } from '@entities/app-settings';
+import { $appSettingsStore, setAppSettingsEvent } from '@shared/app-settings';
+import { setCssVariables } from '@shared/theme';
 
 const middlewares = [thunkMiddleware];
 
@@ -57,6 +57,8 @@ const sdk = new SDK({
 export default function WizardBuild(props) {
   const { entryId } = props;
 
+  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
+
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
     hideHeader: props.hideHeader,
@@ -64,14 +66,18 @@ export default function WizardBuild(props) {
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,
+    stateUuid: props.stateUuid,
+    theme,
   });
 
   const handleExport = (id, name, options) => {
     exportWidget({ id, name }, undefined, options);
   };
 
+  setCssVariables(theme);
+
   return (
-    <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
       <Provider store={store}>
         <DndProvider backend={HTML5Backend}>
           <BrowserRouter>

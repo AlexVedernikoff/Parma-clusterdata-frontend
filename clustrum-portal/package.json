@@ -26,8 +26,9 @@
     "stylelint": "stylelint **/*.{css,scss}",
     "stylelint:fix": "stylelint **/*.{css,scss} --fix",
     "stylelint:pre-commit": "stylelint --fix --allow-empty-input",
-    "npm-package-build": "npm run build:lib && cd src/entries/npmBuild && chmod +x ./npmBuild.sh && ./npmBuild.sh && cd ../dist && npm pack",
-    "local-front:fix-out-of-memory": "node --max_old_space_size=8192 ./node_modules/webpack/bin/webpack.js --watch --config webpack/webpack.local-front.js"
+    "npm-package-build": "node --max_old_space_size=8192 ./node_modules/webpack/bin/webpack.js --config src/entries/webpack/webpack.lib.js && cd src/entries/npmBuild && chmod +x ./npmBuild.sh && ./npmBuild.sh && cd ../dist && npm pack",
+    "local-front:fix-out-of-memory": "node --max_old_space_size=8192 ./node_modules/webpack/bin/webpack.js --watch --config webpack/webpack.local-front.js",
+    "build:lib:fix-out-of-memory": "node --max_old_space_size=8192 ./node_modules/webpack/bin/webpack.js --config src/entries/webpack/webpack.lib.js"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json}": "npm run eslint:pre-commit",

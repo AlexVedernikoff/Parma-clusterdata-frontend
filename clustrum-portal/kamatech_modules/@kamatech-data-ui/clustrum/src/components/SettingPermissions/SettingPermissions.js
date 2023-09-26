@@ -7,7 +7,7 @@ import User from '../AccessRights/User/User';
 import ButtonDelete from '../AccessRights/ButtonDelete/ButtonDelete';
 import PermissionSelect from '../AccessRights/PermissionSelect/PermissionSelect';
 import { DL, PERMISSION } from '../../constants/common';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 // import './SettingPermissions.scss';
 
