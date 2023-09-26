@@ -19,8 +19,8 @@ export const useTooltip = (echartsOptions: EchartsOptions): TooltipComponentOpti
           const { percent, value, name } = Array.isArray(params) ? params[0] : params;
           return `${percent}% ${value} ${name}`;
         };
-        tooltip.textStyle = { color: '#FFF' };
-        tooltip.backgroundColor = '#000';
+        tooltip.textStyle = { color: '#000' };
+        tooltip.backgroundColor = '#FFF';
         return tooltip;
       case 'column':
       case 'line':
