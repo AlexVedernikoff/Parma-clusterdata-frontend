@@ -76,27 +76,27 @@ export default function WizardBuild(props) {
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
-        <DndProvider backend={HTML5Backend}>
-          <BrowserRouter>
-            <Pointerfocus />
-            <Switch>
-              <Route
-                path="*"
-                component={props => (
-                  <NotificationContext.Provider value={openNotification}>
-                    {contextHolder}
+        <NotificationContext.Provider value={openNotification}>
+          {contextHolder}
+          <DndProvider backend={HTML5Backend}>
+            <BrowserRouter>
+              <Pointerfocus />
+              <Switch>
+                <Route
+                  path="*"
+                  component={props => (
                     <Wizard
                       {...props}
                       onExport={handleExport}
                       sdk={sdk}
                       entryId={entryId}
                     />
-                  </NotificationContext.Provider>
-                )}
-              />
-            </Switch>
-          </BrowserRouter>
-        </DndProvider>
+                  )}
+                />
+              </Switch>
+            </BrowserRouter>
+          </DndProvider>
+        </NotificationContext.Provider>
       </Provider>
     </ConfigProvider>
   );

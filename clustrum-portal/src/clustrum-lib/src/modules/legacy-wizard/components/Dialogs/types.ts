@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { CastIconType } from '@clustrum-lib/shared/ui/cast-icons-factory/types';
 import { schema } from '@kamatech-data-ui/clustrum-core-plugins/components/schema';
-import { Toaster } from '@kamatech-data-ui/common/src';
 
 export interface ISubTotalsSettings {
   needSubTotal?: boolean;

@@ -60,25 +60,25 @@ export default function DashBuild(props) {
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <DndProvider backend={HTML5Backend}>
-            <Pointerfocus />
-            <Switch>
-              <Route
-                path="*"
-                render={() => (
-                  <NotificationContext.Provider value={openNotification}>
-                    {contextHolder}
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <DndProvider backend={HTML5Backend}>
+              <Pointerfocus />
+              <Switch>
+                <Route
+                  path="*"
+                  render={() => (
                     <Dash
                       defaultEntryId={entryId}
                       hasRightSideContent={!hideRightSideContent}
                       onFiltersChange={onFiltersChange}
                       onTabChange={onTabChange}
                     />
-                  </NotificationContext.Provider>
-                )}
-              />
-            </Switch>
-          </DndProvider>
+                  )}
+                />
+              </Switch>
+            </DndProvider>
+          </NotificationContext.Provider>
         </ConnectedRouter>
       </Provider>
     </ConfigProvider>

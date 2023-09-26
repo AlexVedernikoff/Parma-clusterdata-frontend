@@ -5,7 +5,7 @@ import block from 'bem-cn-lite';
 import _intersection from 'lodash/intersection';
 import { ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
-import { Loader, Toaster } from '@kamatech-data-ui/common/src';
+import { Loader } from '@kamatech-data-ui/common/src';
 import GeneralConnector from '../../components/Connectors/components/GeneralConnector/GeneralConnector';
 import ChOverYtConnector from '../../components/Connectors/components/ChOverYtConnector/ChOverYtConnector';
 import CsvConnector from '../../components/Connectors/components/CsvConnector/CsvConnector';

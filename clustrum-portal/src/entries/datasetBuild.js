@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { useUnit } from 'effector-react';
 import configureStore from 'store/configureStore';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
 import DatasetRouter from '../components/DatasetRouter/DatasetRouter';
@@ -18,6 +17,8 @@ import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
 import { $appSettingsStore, setAppSettingsEvent } from '@entities/app-settings';
+import { useCustomNotification } from '@shared/lib/hooks';
+import { NotificationContext } from '@entities/notification';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,
@@ -25,11 +26,8 @@ const sdk = new SDK({
   currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
 });
 
-const toaster = new Toaster();
-
 const store = configureStore({
   sdk,
-  toaster,
 });
 
 Utils.setBodyFeatures();
@@ -38,6 +36,7 @@ logVersion();
 
 export default function DatasetBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const [openNotification, contextHolder] = useCustomNotification();
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,
@@ -49,7 +48,10 @@ export default function DatasetBuild(props) {
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
-        <DatasetRouter sdk={sdk} {...props} />
+        <NotificationContext.Provider value={openNotification}>
+          {contextHolder}
+          <DatasetRouter sdk={sdk} {...props} />
+        </NotificationContext.Provider>
       </Provider>
     </ConfigProvider>
   );

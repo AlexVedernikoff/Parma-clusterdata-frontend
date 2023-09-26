@@ -20,6 +20,8 @@ import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
 import { $appSettingsStore } from '@entities/app-settings';
+import { NotificationContext } from '@entities/notification';
+import { useCustomNotification } from '@shared/lib/hooks';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,
@@ -32,19 +34,27 @@ Utils.setBodyFeatures();
 
 logVersion();
 
-function render() {
-  ReactDOM.render(
+function NavigationEntity() {
+  const [openNotification, contextHolder] = useCustomNotification();
+
+  return (
     <AppContainer>
       <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
         <Provider store={store}>
-          <Router>
-            <NavigationPage sdk={sdk} />
-          </Router>
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <Router>
+              <NavigationPage sdk={sdk} />
+            </Router>
+          </NotificationContext.Provider>
         </Provider>
       </ConfigProvider>
-    </AppContainer>,
-    document.getElementById('root'),
+    </AppContainer>
   );
+}
+
+function render() {
+  ReactDOM.render(<NavigationEntity />, document.getElementById('root'));
 }
 
 moment.locale('ru');

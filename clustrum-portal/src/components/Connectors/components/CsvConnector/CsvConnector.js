@@ -6,7 +6,6 @@ import Dropzone from 'react-dropzone';
 import { Button, RadioButton } from 'lego-on-react';
 import { Icon, YCSelect } from '@kamatech-data-ui/common/src';
 import { PathSelect } from '@kamatech-data-ui/clustrum';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import DataTable from '@kamatech-data-ui/dt100/lib';
 import ContainerLoader from '../../../../components/ContainerLoader/ContainerLoader';
 import ArrowBack from '../../subcomponents/ArrowBack/ArrowBack';

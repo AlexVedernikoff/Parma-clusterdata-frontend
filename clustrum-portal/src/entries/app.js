@@ -56,14 +56,14 @@ function AppEntry() {
     <AppContainer>
       <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
         <Provider store={store}>
-          <DndProvider backend={HTML5Backend}>
-            <BrowserRouter>
-              <NotificationContext.Provider value={openNotification}>
-                {contextHolder}
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <DndProvider backend={HTML5Backend}>
+              <BrowserRouter>
                 <App />
-              </NotificationContext.Provider>
-            </BrowserRouter>
-          </DndProvider>
+              </BrowserRouter>
+            </DndProvider>
+          </NotificationContext.Provider>
         </Provider>
       </ConfigProvider>
     </AppContainer>

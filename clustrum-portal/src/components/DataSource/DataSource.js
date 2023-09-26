@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import { Dialog, Loader } from '@kamatech-data-ui/common/src';
 import { RadioBox } from 'lego-on-react';
 import { ErrorDialog } from '@kamatech-data-ui/clustrum';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 import {

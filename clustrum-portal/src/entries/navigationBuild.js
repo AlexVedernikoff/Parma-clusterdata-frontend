@@ -18,6 +18,8 @@ import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ANT_TOKEN } from '@shared/config/theme';
 import { $appSettingsStore, setAppSettingsEvent } from '@entities/app-settings';
+import { useCustomNotification } from '@shared/lib/hooks';
+import { NotificationContext } from '@entities/notification';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,
@@ -32,6 +34,7 @@ logVersion();
 
 export default function NavigationBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const [openNotification, contextHolder] = useCustomNotification();
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,
@@ -44,7 +47,10 @@ export default function NavigationBuild(props) {
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
         <Router>
-          <NavigationPage sdk={sdk} />
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <NavigationPage sdk={sdk} />
+          </NotificationContext.Provider>
         </Router>
       </Provider>
     </ConfigProvider>

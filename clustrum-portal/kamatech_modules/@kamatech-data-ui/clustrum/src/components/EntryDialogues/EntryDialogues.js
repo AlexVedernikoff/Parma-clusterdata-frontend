@@ -40,14 +40,7 @@ export const entryDialoguesNotify = (dialogName, errorDialogRef, openNotificatio
     case ENTRY_DIALOG.DESCRIBE:
     case ENTRY_DIALOG.COPY:
     case ENTRY_DIALOG.SAVE_EDITOR_CHART:
-      console.log('asdfas');
-      openNotification({
-        message: title,
-        key: `${dialogName}_${NotificationType.Error}`,
-        type: NotificationType.Error,
-      });
-      return;
-      if (true) {
+      if (type === NOTIFY_TYPES.ERROR) {
         const { message, requestId } = Utils.parseErrorResponse(error);
         let actions;
         let allowAutoHiding = true;
