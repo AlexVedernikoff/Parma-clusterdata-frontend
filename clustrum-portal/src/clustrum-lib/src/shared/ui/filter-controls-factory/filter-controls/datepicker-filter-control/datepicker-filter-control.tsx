@@ -10,6 +10,7 @@ import { PlacementPosition } from '@lib-shared/ui/filter-controls-factory/types'
 import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
 
 import styles from './datepicker-filter-control.module.css';
+import { renderCustomDate } from '../../custom-date';
 
 const POPUP_WIDTH = 288;
 
@@ -76,6 +77,7 @@ export function DatepickerFilterControl(
         <div ref={pickerRef}>
           <DatePicker
             disabledDate={hasDisabled}
+            dateRender={renderCustomDate(dateFormat)}
             format={dateFormat}
             locale={ruRU.DatePicker}
             picker="date"

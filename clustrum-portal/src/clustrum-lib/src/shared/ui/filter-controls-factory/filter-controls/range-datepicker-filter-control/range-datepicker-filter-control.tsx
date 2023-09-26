@@ -11,6 +11,7 @@ import { getIntervalString } from '../../lib/helpers';
 import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
 
 import styles from './range-datepicker-filter-control.module.css';
+import { renderCustomDate } from '../../custom-date';
 
 const { RangePicker } = DatePicker;
 const RANGE_PLACEHOLDER: [string, string] = ['От дд.мм.гггг', 'До дд.мм.гггг'];
@@ -87,6 +88,7 @@ export function RangeDatepickerFilterControl(
           <RangePicker
             disabledDate={hasDisabled}
             format={dateFormat}
+            dateRender={renderCustomDate(dateFormat)}
             locale={ruRU.DatePicker}
             picker="date"
             placement={placementPosition}
