@@ -10,7 +10,7 @@ import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 // import './ConnectionSelection.scss';
 import Icon from '@ant-design/icons';
 import { FolderIcon } from '@clustrum-lib/shared/ui/cast-icons-factory/icons';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const b = block('connection-selection');
 

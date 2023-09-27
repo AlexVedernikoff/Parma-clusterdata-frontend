@@ -1,6 +1,6 @@
 import { SDK } from '../modules/sdk';
 import { ENTRY_ID_REGEXP } from '../modules/constants/constants';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 export const getPersonalFolderPath = () =>
   `Users/${$appSettingsStore.getState().user.login}/`;

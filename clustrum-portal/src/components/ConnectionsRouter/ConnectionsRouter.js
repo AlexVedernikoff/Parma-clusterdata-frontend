@@ -9,7 +9,7 @@ import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
 import { getConnectorType } from '../../containers/ConnectionPage/getConnectorType';
 import { getConnectorsMap } from '../../constants';
 import { PageContainer } from '@widgets/page-container';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const b = block('connections-router');
 

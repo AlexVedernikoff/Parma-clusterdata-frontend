@@ -3901,7 +3901,7 @@
   align-items: center;
   border-bottom: 1px solid var(--color-divider);
   z-index: 220;
-  background: var(--color-base);
+  background: var(--clustrum-default-background-panel-color);
 }
 
 .action-panel__create-widget-btn {

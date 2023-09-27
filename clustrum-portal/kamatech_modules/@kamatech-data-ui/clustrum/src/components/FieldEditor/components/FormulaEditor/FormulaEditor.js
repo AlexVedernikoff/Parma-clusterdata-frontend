@@ -6,7 +6,7 @@ import { Link, TextInput } from 'lego-on-react';
 import AceEditor from '../../../AceEditor/AceEditor';
 import AccessibleFields from '../AccessibleFields/AccessibleFields';
 import FunctionManual from '../FunctionManual/FunctionManual';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 // import './FormulaEditor.scss';
 

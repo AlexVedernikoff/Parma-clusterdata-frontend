@@ -9,7 +9,7 @@ import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 
 import runNode from './engines/node';
 import runWizard from './engines/wizard';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 function isWizard(type) {
   return /_wizard$/.test(type);

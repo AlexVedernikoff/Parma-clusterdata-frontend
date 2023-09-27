@@ -3,7 +3,7 @@ import { REQUEST_WIDGET, RECEIVE_WIDGET, RESET_WIDGET } from '../actions';
 import sha1 from 'js-sha1';
 
 import { versionExtractor } from '../utils/helpers';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 // Reducers
 

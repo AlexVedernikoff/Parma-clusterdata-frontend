@@ -11,6 +11,37 @@ const getInitialConfig = (): AppSettings => {
   const systemTitle = BUILD_SETTINGS.isLib ? '' : BUILD_SETTINGS.systemTitle;
 
   return {
+    theme: {
+      ant: {
+        colorPrimary: '#bb2649',
+        colorSuccess: '#52c41a',
+        colorWarning: '#faad14',
+        colorError: '#ff4d4f',
+        colorLink: '#bb2649',
+        colorSplit: 'rgba(0, 0, 0, 0.06)',
+        colorBorder: 'rgba(0, 0, 0, 0.15)',
+      },
+      app: {
+        font: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+      },
+      layout: {
+        backgroundContentColor: '#fff',
+        backgroundPanelColor: '#f5f5f5',
+        showBreadcrumbs: true,
+        colorAccent: '#ffd700',
+      },
+      filters: {
+        backgroundFilterColor: '#fff',
+        borderFilterColor: 'rgba(0, 0, 0, 0.06)',
+        labelFilterColor: '#252625',
+      },
+      widget: {
+        borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
+      },
+      tabs: {
+        tabType: 'card',
+      },
+    },
     env: 'development',
     appEnv: 'development',
     installationType: 'external',

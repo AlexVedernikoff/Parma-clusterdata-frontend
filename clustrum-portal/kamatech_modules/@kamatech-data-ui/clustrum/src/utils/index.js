@@ -5,7 +5,7 @@ import {
   normalizeDestination,
 } from '@kamatech-data-ui/common/src/components/Navigation/util';
 import { PERMISSION } from '../constants/common';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 export default class Utils {
   static getBeforeFolderName = getBeforeFolderName;

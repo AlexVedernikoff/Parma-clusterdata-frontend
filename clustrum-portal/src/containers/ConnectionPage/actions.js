@@ -1,7 +1,7 @@
 import { DL } from '@kamatech-data-ui/clustrum/src/constants/common';
 import { ADMIN_PARTICIPANT, EXECUTE_PARTICIPANT } from '../../constants';
 import Utils from '../../helpers/utils';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const _getUserItem = ({ participant = {}, permission = 'acl_view', freeze = false }) => {
   const { name } = participant;
