@@ -51,7 +51,9 @@ export default function NavigationBuild(props) {
     <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
       <Provider store={store}>
         <Router>
-          <NavigationPage sdk={sdk} />
+          <div className="clustrum">
+            <NavigationPage sdk={sdk} />
+          </div>
         </Router>
       </Provider>
     </ConfigProvider>
