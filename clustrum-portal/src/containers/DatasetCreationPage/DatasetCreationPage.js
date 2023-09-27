@@ -124,13 +124,25 @@ class DatasetCreationPage extends React.Component {
       selectedTable,
     });
 
+    let dataSetByVersion = false;
+
     try {
       const { id } = await sdk.bi.createDataSet(data);
-
+      dataSetByVersion = await sdk.bi.getDataSetByVersion({
+        dataSetId: id,
+        version: 'draft',
+      });
       this.setState({ redirect: `/datasets/${id}` });
     } catch (error) {
-      this._showToast({ name: TOAST_TYPES.CREATE_DATASET, type: 'error' });
-
+      if (!dataSetByVersion && error.response.data.code === 500) {
+        this._showToast({
+          name: TOAST_TYPES.CREATE_DATASET,
+          type: 'error',
+          title: `Набор данных с названием ${datasetTitle} уже существует.`,
+        });
+      } else {
+        this._showToast({ name: TOAST_TYPES.CREATE_DATASET, type: 'error' });
+      }
       this.setState({
         toastError: {
           ...Utils.getNormalizedError(error),
@@ -309,11 +321,11 @@ class DatasetCreationPage extends React.Component {
     }
   };
 
-  _showToast({ name, type }) {
+  _showToast({ name, type, title }) {
     return this.toaster.createToast({
       name,
       type,
-      title: getErrorTitle()[name],
+      title: title || getErrorTitle()[name],
       allowAutoHiding: false,
       actions: [
         {
