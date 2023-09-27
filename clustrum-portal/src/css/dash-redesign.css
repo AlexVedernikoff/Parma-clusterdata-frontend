@@ -1197,9 +1197,9 @@
   top: 1.5rem;
   width: 1.5rem;
   height: 1.5rem;
-  background-image: var(--cross-icon);
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: var(--cross-icon) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
 .side-sliding-panel__close .button2__icon {
