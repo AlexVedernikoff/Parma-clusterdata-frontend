@@ -43,12 +43,14 @@ import {
   previewEnabledSelector,
   syncDataSet,
   datasetNameSelector,
+  originSelector,
 } from '../../store/reducers/dataset';
 
 import PageHead from '../../components/PageHeader/PageHeader';
 import VerificationModal from '../../components/DataSource/VerificationModal';
 import { Button } from 'antd';
 import { BarChartOutlined, BlockOutlined, SafetyOutlined } from '@ant-design/icons';
+import { dataset } from '../../reducers/dataset';
 
 const b = block('dataset');
 
@@ -160,6 +162,8 @@ class Dataset extends React.Component {
 
   onClickConnectionMenuItem = async ({ item, datasetId, connection }) => {
     const { sdk, initialFetchDataset } = this.props;
+    const { origin } = this.props;
+    console.log('166 origin = ', origin);
 
     try {
       this.setState({
@@ -177,7 +181,8 @@ class Dataset extends React.Component {
         }
         case REPLACE_SOURCE_MODE_ID: {
           const { id: connectionId } = connection;
-
+          console.log('were are here!');
+          localStorage.setItem('origin', JSON.stringify(origin));
           window.open(`/datasets/source?id=${connectionId}`, '_blank');
 
           break;
@@ -376,6 +381,7 @@ class Dataset extends React.Component {
       isProcessingSource,
       tab,
       searchKeyword,
+      origin,
     } = this.state;
     const {
       requestId,
@@ -513,6 +519,7 @@ const mapStateToProps = createStructuredSelector({
   savingDatasetDisabled: isSavingDatasetDisabledSelector,
   isProcessingSavingDataset: isSavingDatasetSelector,
   previewEnabled: previewEnabledSelector,
+  origin: originSelector,
 });
 const mapDispatchToProps = {
   initialFetchDataset,

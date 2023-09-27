@@ -91,10 +91,30 @@ class DatasetCreation extends React.Component {
     databaseTables: [],
     error: {},
     ytIdErrorText: '',
+    isChanged: false,
   };
 
   async componentDidMount() {
+    console.log(' ');
+    console.log('componentDidMount()');
     const { sdk, connectionId, connectionType } = this.props;
+
+    // *****************
+    const origin = JSON.parse(localStorage.getItem('origin'));
+    this.setState(prevState => {
+      console.log('CDM setState()');
+      return {
+        ...prevState,
+        selectedTable: origin.table_name,
+        selectedDatabase: origin.table_db_name,
+      };
+    });
+    // this.setState({
+    //   selectedTable: origin.table_name,
+    //   selectedDatabase: origin.table_db_name,
+    // });
+
+    // *****************
     const isNeedDatabaseList =
       connectionId &&
       ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
@@ -113,14 +133,26 @@ class DatasetCreation extends React.Component {
 
         const sortedDatabases = databases.sort(Utils.sortStrings);
 
-        this.setState(
-          {
+        this.setState(prevState => {
+          console.log('CDM setState() 137');
+          return {
+            ...prevState,
             databases: sortedDatabases,
-            selectedDatabase: sortedDatabases[0],
+            // selectedDatabase: sortedDatabases[0],
+            selectedDatabase: origin.table_db_name,
             isLoadingDatabasesList: false,
-          },
-          this.onChangeCallback,
-        );
+          };
+        });
+
+        // this.setState(
+        //   {
+        //     databases: sortedDatabases,
+        //     // selectedDatabase: sortedDatabases[0],
+        //     selectedDatabase: origin.table_db_name,
+        //     isLoadingDatabasesList: false,
+        //   },
+        //   this.onChangeCallback,
+        // );
       } catch (error) {
         const { response: { status: responseStatus } = {} } = error;
 
@@ -164,14 +196,45 @@ class DatasetCreation extends React.Component {
 
   async componentDidUpdate(prevProps, prevState) {
     const { sdk, connectionId, connectionType } = this.props;
-    const { selectedDatabase } = this.state;
+    const { selectedDatabase, isChanged } = this.state;
+
+    console.log(' ');
+    console.log('componentDidUpdate()');
+    console.log('componentDidUpdate isChanged = ', isChanged);
+
     const { selectedDatabase: selectedDatabasePrev } = prevState;
+    console.log(
+      'componentDidUpdate selectedDatabase, selectedDatabasePrev = ',
+      selectedDatabase,
+      ' ',
+      selectedDatabasePrev,
+    );
+    console.log(
+      'selectedDatabasePrev !== selectedDatabase',
+      selectedDatabasePrev !== selectedDatabase,
+    );
+
+    // *****************
+    const origin = JSON.parse(localStorage.getItem('origin'));
+    // console.log('186 origin.table_db_name  = ', origin.table_db_name);
+    // console.log('186 origin.table_name  = ', origin.table_name);
+    // // table_db_name: 'public';
+    // // table_name: 't_list_of_fk';
+    // !isChanged &&
+    //   this.setState({
+    //     selectedTable: origin.table_name,
+    //     selectedDatabase: origin.table_db_name,
+    //     isChanged: true,
+    //   });
+
+    // *****************
 
     const isNeedDatabaseTableList =
       connectionId &&
       ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
 
     if (selectedDatabasePrev !== selectedDatabase && isNeedDatabaseTableList) {
+      console.log('Мы здесь!');
       try {
         this.setState({
           isLoadingDatabaseTablesList: true,
@@ -185,10 +248,16 @@ class DatasetCreation extends React.Component {
 
         const sortedDatabaseTables = databaseTables.sort(Utils.sortStrings);
 
+        console.log('sortedDatabaseTables[0] = ', sortedDatabaseTables[0]);
+
         this.setState(
           {
             databaseTables: sortedDatabaseTables,
-            selectedTable: sortedDatabaseTables[0],
+            // selectedTable: origin.table_name,
+            selectedTable:
+              isChanged && selectedDatabase !== origin.table_db_name
+                ? sortedDatabaseTables[0]
+                : origin.table_name,
             isLoadingDatabaseTablesList: false,
           },
           this.onChangeCallback,
@@ -297,6 +366,7 @@ class DatasetCreation extends React.Component {
     this.setState(
       {
         ...data,
+        isChanged: true,
       },
       this.onChangeCallback,
     );
@@ -491,6 +561,7 @@ class DatasetCreation extends React.Component {
                   <span>База данных</span>
                 </div>
                 <div className={b('field')}>
+                  {console.log('537 selectedDatabase = ', selectedDatabase)}
                   <YCSelect
                     cls={b('field-databases')}
                     items={databases.map(dbName => {
@@ -501,6 +572,8 @@ class DatasetCreation extends React.Component {
                       };
                     })}
                     value={selectedDatabase}
+                    // value={'public'}
+                    // public
                     onChange={selectedDatabase => this.changeValue({ selectedDatabase })}
                     showSearch={false}
                     disabled={isDisabledDatabaseSelection}
@@ -517,6 +590,7 @@ class DatasetCreation extends React.Component {
                   <span>Таблица</span>
                 </div>
                 <div className={b('field')}>
+                  {console.log('566 selectedTable  = ', selectedTable)}
                   <YCSelect
                     cls={b('field-database-tables')}
                     items={databaseTables.map(tableName => {

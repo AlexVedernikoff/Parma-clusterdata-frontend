@@ -717,6 +717,8 @@ class DataSource extends React.Component {
   };
 
   onClickConnectionMoreMenuItem = async (event, value) => {
+    console.log('сработала функция onClickConnectionMoreMenuItem()');
+    console.log('и её value = ', value);
     try {
       const { datasetId, onClickConnectionMenuItem } = this.props;
       const { dataset: { connection } = {} } = this.state;
@@ -743,6 +745,7 @@ class DataSource extends React.Component {
       }
 
       if (onClickConnectionMenuItem) {
+        console.log('onClickConnectionMenuItem = ', onClickConnectionMenuItem);
         onClickConnectionMenuItem({ item: value, datasetId, connection });
       }
     } catch (error) {
@@ -844,6 +847,7 @@ class DataSource extends React.Component {
 
     return (
       <React.Fragment>
+        {console.log('850 origin = ', origin)}
         <ConnectionInfo
           isProcessing={isProcessingSource || isProcessingMaterialization}
           origin={origin}
@@ -893,7 +897,7 @@ class DataSource extends React.Component {
     return (
       <Dialog visible={visible} onClose={onClose}>
         <div className={b()}>
-          <Dialog.Header caption="Материализация данных" hr={false} onClose={onClose} />
+          <Dialog.Header caption="Материализация данных!!" hr={false} onClose={onClose} />
           <div className={b('content')}>{this.renderContent()}</div>
           <ErrorDialog
             ref={this.errorDialogRef}

@@ -24,6 +24,7 @@ function ConnectionInfo(props) {
 
   return (
     <div className={b('connection')}>
+      {/* Слоник */}
       <Icon
         className={b('connector-icon')}
         data={Utils.getConnectorIcon({ type: connectionType })}

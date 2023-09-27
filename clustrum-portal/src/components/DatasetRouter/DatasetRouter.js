@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import block from 'bem-cn-lite';
 import PropTypes from 'prop-types';
@@ -51,13 +53,17 @@ class DatasetRouter extends PureComponent {
               render={props => {
                 const { match: { params: { datasetId } = {} } = {} } = props;
 
+                // console.log('origin 57 = ', this.props);
+
                 return (
                   <PageContainer withoutSidePanel={BUILD_SETTINGS.isLib}>
+                    <div> !!!!!!!!!!!!!!!!!!!!!!</div>
                     <DatasetCreationPage
                       {...props}
                       modeId={REPLACE_SOURCE_MODE_ID}
                       datasetId={datasetId}
                       sdk={sdk}
+                      origin={origin}
                     />
                   </PageContainer>
                 );
@@ -78,4 +84,12 @@ class DatasetRouter extends PureComponent {
   }
 }
 
-export default DatasetRouter;
+// export default DatasetRouter;
+
+const mapStatetoProps = state => {
+  return {
+    origin: state,
+  };
+};
+
+export default connect(mapStatetoProps, null)(DatasetRouter);

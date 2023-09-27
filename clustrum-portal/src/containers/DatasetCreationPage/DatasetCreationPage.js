@@ -385,6 +385,8 @@ class DatasetCreationPage extends React.Component {
       toastError: { type, message, requestId } = {},
     } = this.state;
 
+    // console.log('this.state = ', this.state);
+
     if (redirect) {
       return (
         <Redirect
@@ -425,7 +427,7 @@ class DatasetCreationPage extends React.Component {
                 size="n"
                 view="default"
                 tone="default"
-                text="Сохранить"
+                text="Сохранить4444"
                 onClick={this.replaceSource}
                 progress={isActionProgress}
               />

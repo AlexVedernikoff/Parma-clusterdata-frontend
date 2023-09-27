@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Loader } from '@kamatech-data-ui/common/src';
+import { useSelector } from 'react-redux';
 
 import DatasetCreation from '../../components/DatasetCreation/DatasetCreation';
 import SelectConnection from '../../containers/SelectConnection/SelectConnection';
@@ -25,6 +26,10 @@ function DatasetCreationSettings(props) {
     isLoadingConnection,
     onEntryClick,
   } = props;
+
+  // console.log('DCS props = ', props);
+  // const dataTest = useSelector(state => state.dataset);
+  // console.log('dataTest = ', dataTest);
 
   if (isLoadingConnection) {
     return (
