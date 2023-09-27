@@ -75,20 +75,22 @@ export default function WizardBuild(props) {
       <Provider store={store}>
         <DndProvider backend={HTML5Backend}>
           <BrowserRouter>
-            <Pointerfocus />
-            <Switch>
-              <Route
-                path="*"
-                component={props => (
-                  <Wizard
-                    {...props}
-                    onExport={handleExport}
-                    sdk={sdk}
-                    entryId={entryId}
-                  />
-                )}
-              />
-            </Switch>
+            <div className="clustrum">
+              <Pointerfocus />
+              <Switch>
+                <Route
+                  path="*"
+                  component={props => (
+                    <Wizard
+                      {...props}
+                      onExport={handleExport}
+                      sdk={sdk}
+                      entryId={entryId}
+                    />
+                  )}
+                />
+              </Switch>
+            </div>
           </BrowserRouter>
         </DndProvider>
       </Provider>

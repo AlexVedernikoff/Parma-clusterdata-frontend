@@ -49,7 +49,9 @@ export default function DatasetBuild(props) {
   return (
     <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
       <Provider store={store}>
-        <DatasetRouter sdk={sdk} {...props} />
+        <div className="clustrum">
+          <DatasetRouter sdk={sdk} {...props} />
+        </div>
       </Provider>
     </ConfigProvider>
   );

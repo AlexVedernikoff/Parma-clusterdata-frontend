@@ -142,7 +142,7 @@
   color: var(--ace-color-brackets);
 }
 
-.clustrum-ace-editor .ace-clustrum .ace_gutter {
+.clustrum .clustrum-ace-editor .ace-clustrum .ace_gutter {
   font-family: Arial;
   color: #333;
   overflow: hidden;

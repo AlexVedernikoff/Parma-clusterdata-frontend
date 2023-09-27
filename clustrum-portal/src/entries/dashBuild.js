@@ -58,20 +58,22 @@ export default function DashBuild(props) {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <DndProvider backend={HTML5Backend}>
-            <Pointerfocus />
-            <Switch>
-              <Route
-                path="*"
-                render={() => (
-                  <Dash
-                    defaultEntryId={entryId}
-                    hasRightSideContent={!hideRightSideContent}
-                    onFiltersChange={onFiltersChange}
-                    onTabChange={onTabChange}
-                  />
-                )}
-              />
-            </Switch>
+            <div className="clustrum">
+              <Pointerfocus />
+              <Switch>
+                <Route
+                  path="*"
+                  render={() => (
+                    <Dash
+                      defaultEntryId={entryId}
+                      hasRightSideContent={!hideRightSideContent}
+                      onFiltersChange={onFiltersChange}
+                      onTabChange={onTabChange}
+                    />
+                  )}
+                />
+              </Switch>
+            </div>
           </DndProvider>
         </ConnectedRouter>
       </Provider>

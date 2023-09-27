@@ -120,7 +120,7 @@
   color: var(--ace-color-brackets);
 }
 
-.clustrum-ace-editor .ace-clustrum .ace_gutter {
+.clustrum .clustrum-ace-editor .ace-clustrum .ace_gutter {
   font-family: Arial;
   color: #333;
   overflow: hidden;
@@ -3017,7 +3017,7 @@
   opacity: 1;
 }
 
-.rdt {
+.clustrum .rdt {
   position: relative;
   font-family: Yandex Sans Text Web, HelveticaNeue, Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -3870,7 +3870,7 @@ td.rdtYear:hover {
   width: 100%;
 }
 
-h2 {
+.clustrum h2 {
   font-weight: 200;
 }
 
@@ -4014,15 +4014,15 @@ hr {
   box-sizing: inherit;
 }
 
-body,
+.clustrum,
 html {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-a,
-a:visited {
+.clustrum a,
+.clustrum a:visited {
   text-decoration: none;
 }
 
@@ -4030,12 +4030,12 @@ html {
   box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.clustrum h1,
+.clustrum h2,
+.clustrum h3,
+.clustrum h4,
+.clustrum h5,
+.clustrum h6 {
   margin: 0;
 }
 
