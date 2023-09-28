@@ -105,7 +105,6 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       size="small"
       showSorterTooltip={false}
       title={(): string | null => title}
-      scroll={{ y: '100%' }}
       pagination={{
         total: Number(totalRowsCount),
         current: initPageState + 1,
