@@ -33,7 +33,7 @@ export const DialogPivotTable = <T extends IItem>(
     if (formulaError) {
       console.error(formulaError);
       openNotification({
-        message: 'Сохранение невозможно, некорректная формура расчета итогов',
+        title: 'Сохранение невозможно, некорректная формура расчета итогов',
         type: NotificationType.Error,
         duration: 6,
         actions: [

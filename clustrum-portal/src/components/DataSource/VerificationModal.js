@@ -129,7 +129,7 @@ class VerificationModal extends React.Component {
     if (!showErrorPrev && showError) {
       const title = this.getErrorTitle();
       this.openNotification({
-        message: title,
+        title,
         key: `${errorType}_toast`,
         type: NotificationType.Error,
         actions: [

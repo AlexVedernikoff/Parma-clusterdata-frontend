@@ -287,7 +287,7 @@ class DataSource extends React.Component {
       const title = this.getErrorTitle();
 
       this.openNotification({
-        message: title,
+        title,
         key: `${errorType}_toast`,
         type: NotificationType.Error,
         actions: [

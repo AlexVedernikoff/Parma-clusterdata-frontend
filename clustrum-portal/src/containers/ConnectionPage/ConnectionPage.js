@@ -414,7 +414,8 @@ class ConnectionPage extends React.Component {
 
   showNotification({ name, type, content, allowAutoHiding = false }) {
     const actions = [];
-    const duration = allowAutoHiding ? 6 : 0;
+    const duration = allowAutoHiding ? 6 : null;
+    const openNotification = this.context;
     let message;
 
     if (type === 'error') {
@@ -426,9 +427,8 @@ class ConnectionPage extends React.Component {
     } else {
       message = getSuccessTitle()[name];
     }
-
-    this.context({
-      message: message,
+    openNotification({
+      title: message,
       key: name,
       description: content,
       type,

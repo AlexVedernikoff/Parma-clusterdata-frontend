@@ -52,7 +52,7 @@ export const DialogPivotTableBody = <T extends IItem>({
     } catch (error) {
       setFormulaError(error as RejectFormulaError);
       openNotification({
-        message: (error as RejectFormulaError).response.data.message,
+        title: (error as RejectFormulaError).response.data.message,
         type: NotificationType.Error,
         duration: 6,
         actions: [

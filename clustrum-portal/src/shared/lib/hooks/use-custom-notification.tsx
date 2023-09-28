@@ -21,6 +21,7 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
 
     return (
       <Space direction="vertical">
+        {description}
         {actions.map(({ label, onClick }) => {
           const onActionClick = (): void => {
             onClick();
@@ -31,7 +32,6 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
           };
           return (
             <Space key={label} direction="vertical">
-              {description}
               <Typography.Link onClick={onActionClick}>{label}</Typography.Link>
             </Space>
           );
@@ -42,8 +42,8 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
 
   function openNotification(props: NotificationProps): void {
     const {
-      message, // заголовок
-      description, // тело
+      title,
+      description,
       actions = [],
       type = NotificationType.Info,
       placement = 'bottomRight',
@@ -56,7 +56,7 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
     const fullDescription = getDescriptionWithAction(description, actions, key);
 
     api[type]({
-      message,
+      message: title,
       description: fullDescription,
       placement,
       style: {

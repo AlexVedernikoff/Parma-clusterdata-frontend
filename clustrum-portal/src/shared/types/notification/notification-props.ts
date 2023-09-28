@@ -3,7 +3,7 @@ import { NotificationAction, NotificationType } from '@shared/types/notification
 import { NotificationPlacement } from 'antd/es/notification/interface';
 
 export interface NotificationProps {
-  message: string;
+  title: string;
   description?: ReactNode;
   actions?: NotificationAction[];
   type?: NotificationType;

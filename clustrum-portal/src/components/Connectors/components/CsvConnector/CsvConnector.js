@@ -12,7 +12,7 @@ import ArrowBack from '../../subcomponents/ArrowBack/ArrowBack';
 import {
   CSV_TOAST_NAME,
   FIELD_TYPES,
-  TOAST_TIMEOUT_DEFAULT,
+  NOTIFICATION_TIMEOUT_DEFAULT,
 } from '../../../../constants';
 import Utils from '../../../../helpers/utils';
 import iconCsv from '@kamatech-data-ui/clustrum/src/icons/csv.svg';
@@ -473,11 +473,12 @@ class CsvConnector extends React.Component {
           this.onChangeCallback,
         );
       } catch (error) {
-        this.context({
+        const openNotification = this.context;
+        openNotification({
           key: CSV_TOAST_NAME,
-          message: 'Ошибка: не удалось загрузить подлючение',
+          title: 'Ошибка: не удалось загрузить подлючение',
           type: NotificationType.Error,
-          duration: TOAST_TIMEOUT_DEFAULT / 1000,
+          duration: NOTIFICATION_TIMEOUT_DEFAULT,
         });
 
         this.setState(
@@ -553,11 +554,12 @@ class CsvConnector extends React.Component {
           this.onChangeCallback,
         );
       } catch (error) {
-        this.context({
+        const openNotification = this.context;
+        openNotification({
           key: CSV_TOAST_NAME,
-          message: 'Ошибка: не удалось получить превью',
+          title: 'Ошибка: не удалось получить превью',
           type: NotificationType.Error,
-          duration: TOAST_TIMEOUT_DEFAULT / 1000,
+          duration: NOTIFICATION_TIMEOUT_DEFAULT,
         });
 
         this.setState({

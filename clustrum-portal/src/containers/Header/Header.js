@@ -82,7 +82,7 @@ class Header extends React.PureComponent {
     switch (this.props.dash.exportStatus) {
       case ExportStatusEnum.PENDING: {
         this.props.openNotification({
-          message: 'Экспорт выполняется, ожидайте загрузку файла',
+          title: 'Экспорт выполняется, ожидайте загрузку файла',
           key: 'DASHBOARD',
           type: NotificationType.Info,
           duration: 6,
@@ -91,7 +91,7 @@ class Header extends React.PureComponent {
       }
       case ExportStatusEnum.SUCCESS: {
         this.props.openNotification({
-          message: 'Экспорт выполнен',
+          title: 'Экспорт выполнен',
           key: 'DASHBOARD',
           type: NotificationType.Success,
           duration: 6,
@@ -101,7 +101,7 @@ class Header extends React.PureComponent {
       }
       case ExportStatusEnum.ERROR: {
         this.props.openNotification({
-          message: 'Ошибка выполнения экспорта',
+          title: 'Ошибка выполнения экспорта',
           key: 'DASHBOARD',
           type: NotificationType.Error,
           duration: 6,

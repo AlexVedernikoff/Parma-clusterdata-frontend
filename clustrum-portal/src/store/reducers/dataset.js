@@ -272,7 +272,7 @@ export function updateDatasetByValidation({
     if (actionTypeNotification) {
       openNotification({
         key: 'success_update_dataset',
-        message: getToastTitle('NOTIFICATION_SUCCESS', actionTypeNotification),
+        title: getToastTitle('NOTIFICATION_SUCCESS', actionTypeNotification),
         type: NotificationType.Success,
       });
     }
@@ -486,7 +486,7 @@ const dispatchFetchPreviewDataset = async (
       }
       openNotification({
         key: 'error_fetch_dataset',
-        message: getToastTitle('NOTIFICATION_FAILURE', 'preview'),
+        title: getToastTitle('NOTIFICATION_FAILURE', 'preview'),
         type: NotificationType.Error,
         duration: 60,
         actions,
@@ -571,7 +571,7 @@ const dispatchFetchHistoryDataset = async (
 
       openNotification({
         key: 'error_fetch_history_dataset',
-        message: getToastTitle('NOTIFICATION_FAILURE', 'history'),
+        title: getToastTitle('NOTIFICATION_FAILURE', 'history'),
         type: NotificationType.Error,
         timeout: 6,
         actions,
@@ -703,7 +703,7 @@ export function validateDataset({
 
         openNotification({
           key: 'error_dataset_validation',
-          message: getToastTitle('NOTIFICATION_FAILURE', 'validate'),
+          title: getToastTitle('NOTIFICATION_FAILURE', 'validate'),
           type: NotificationType.Error,
           duration: 30,
           description: fieldErrors.length ? (
@@ -791,7 +791,7 @@ export function syncDataSet({ datasetErrorDialogRef, openNotification }) {
       // });
       openNotification({
         key: 'success_sync_dataset',
-        message: getToastTitle('NOTIFICATION_SUCCESS', 'sync'),
+        title: getToastTitle('NOTIFICATION_SUCCESS', 'sync'),
         type: NotificationType.Success,
       });
     } catch (error) {
@@ -812,7 +812,7 @@ export function syncDataSet({ datasetErrorDialogRef, openNotification }) {
 
       openNotification({
         key: 'error_sync_dataset',
-        message: getToastTitle('NOTIFICATION_FAILURE', 'sync'),
+        title: getToastTitle('NOTIFICATION_FAILURE', 'sync'),
         type: NotificationType.Error,
         duration: 30,
         actions,
@@ -845,7 +845,7 @@ export function saveDataset({ datasetErrorDialogRef, openNotification }) {
 
       openNotification({
         key: 'success_save_dataset',
-        message: getToastTitle('NOTIFICATION_SUCCESS', 'save'),
+        title: getToastTitle('NOTIFICATION_SUCCESS', 'save'),
         type: NotificationType.Success,
       });
     } catch (error) {
@@ -866,7 +866,7 @@ export function saveDataset({ datasetErrorDialogRef, openNotification }) {
 
       openNotification({
         key: 'error_save_dataset',
-        message: getToastTitle('NOTIFICATION_FAILURE', 'save'),
+        title: getToastTitle('NOTIFICATION_FAILURE', 'save'),
         type: NotificationType.Error,
         duration: 30,
         actions,
@@ -920,7 +920,7 @@ export function fetchFieldTypes({ openNotification }) {
     }
     openNotification({
       key: 'error_fetch_types',
-      message: getToastTitle('NOTIFICATION_FAILURE', 'types'),
+      title: getToastTitle('NOTIFICATION_FAILURE', 'types'),
       type: NotificationType.Error,
     });
 

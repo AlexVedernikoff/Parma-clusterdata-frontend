@@ -315,8 +315,9 @@ class DatasetCreationPage extends React.Component {
   };
 
   showNotification({ name, type }) {
-    this.context({
-      message: getErrorTitle()[name],
+    const openNotification = this.context;
+    openNotification({
+      title: getErrorTitle()[name],
       key: name,
       type,
       actions: [

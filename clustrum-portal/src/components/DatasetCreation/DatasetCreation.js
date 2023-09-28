@@ -127,6 +127,7 @@ class DatasetCreation extends React.Component {
         );
       } catch (error) {
         const { response: { status: responseStatus } = {} } = error;
+        const openNotification = this.context;
 
         this.setState(
           {
@@ -141,9 +142,9 @@ class DatasetCreation extends React.Component {
           status: responseStatus,
         });
 
-        this.context({
+        openNotification({
           key: TOAST_NAME,
-          message: title,
+          title,
           type: NotificationType.Error,
         });
       }
@@ -198,6 +199,7 @@ class DatasetCreation extends React.Component {
         );
       } catch (error) {
         const { response: { status: responseStatus } = {} } = error;
+        const openNotification = this.context;
 
         this.setState(
           {
@@ -212,9 +214,9 @@ class DatasetCreation extends React.Component {
           status: responseStatus,
         });
 
-        this.context({
+        openNotification({
           key: TOAST_NAME,
-          message: title,
+          title,
           type: NotificationType.Error,
         });
       }

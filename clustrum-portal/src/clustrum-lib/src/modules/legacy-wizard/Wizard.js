@@ -121,8 +121,9 @@ class Wizard extends Component {
         title: 'Сохранить чарт',
         onNotify: ({ error }) => {
           if (error && error.response && error.response.status === 400) {
-            this.context({
-              message: 'Диаграмма с таким именем уже существует',
+            const openNotification = this.context;
+            openNotification({
+              title: 'Диаграмма с таким именем уже существует',
               key: 'WIZARD',
               type: NotificationType.Error,
             });

@@ -61,10 +61,10 @@ export const entryDialoguesNotify = (dialogName, errorDialogRef, openNotificatio
         }
         const duration = allowAutoHiding ? 6 : 0;
         openNotification({
-          message: title,
+          title,
           key: `${dialogName}_${NotificationType.Error}`,
           type: NotificationType.Error,
-          duration: duration,
+          duration,
           actions,
         });
       }
