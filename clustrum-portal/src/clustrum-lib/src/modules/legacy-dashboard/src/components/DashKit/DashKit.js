@@ -77,7 +77,7 @@ DashKit.propTypes = {
         whom: PropTypes.string.isRequired,
       }),
     ).isRequired,
-    aliases: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))),
+    aliases: PropTypes.any, // TODO при внедрении TypeScript, типизировать ([strings] | "") возможно, пустая строка должна валидироваться в пустой массив
   }).isRequired,
   onItemEdit: PropTypes.func,
   onChange: PropTypes.func,

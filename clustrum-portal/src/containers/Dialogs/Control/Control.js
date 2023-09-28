@@ -43,16 +43,15 @@ class Control extends React.PureComponent {
     data: PropTypes.shape({
       title: PropTypes.string,
       showTitle: PropTypes.bool,
-      sourceType: PropTypes.oneOf(Object.values(CONTROL_SOURCE_TYPE)).isRequired,
+      sourceType: PropTypes.oneOf(Object.values(CONTROL_SOURCE_TYPE)),
       dataset: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        fieldId: PropTypes.string.isRequired,
+        id: PropTypes.string,
+        fieldId: PropTypes.string,
       }),
       external: PropTypes.shape({
-        // entryId: PropTypes.string.isRequired
         entryId: PropTypes.string,
       }),
-      control: PropTypes.object.isRequired,
+      control: PropTypes.object,
     }),
     defaults: PropTypes.object,
     availableItems: PropTypes.object,

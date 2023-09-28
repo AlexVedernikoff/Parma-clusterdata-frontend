@@ -188,7 +188,7 @@ PluginWidget.propTypes = {
       title: PropTypes.string,
       data: PropTypes.shape({
         uuid: PropTypes.string.isRequired,
-        params: PropTypes.object,
+        params: PropTypes.any, // TODO при внедрении TypeScript, типизировать ({} | "") возможно, пустая строка должна валидироваться в пустой объект
         description: PropTypes.string,
       }).isRequired,
     }).isRequired,
