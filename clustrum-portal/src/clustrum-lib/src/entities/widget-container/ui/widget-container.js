@@ -63,7 +63,7 @@ export class WidgetContainer extends React.Component {
     onLoad: PropTypes.func,
     requestIdPrefix: PropTypes.string,
     silentLoading: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
-    onStateAndParamsChange: PropTypes.func.isRequired,
+    onStateAndParamsChange: PropTypes.func,
 
     editMode: PropTypes.shape({
       config: PropTypes.object.isRequired,

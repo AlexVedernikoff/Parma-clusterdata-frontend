@@ -19,10 +19,10 @@ class FormulaEditor extends React.Component {
   };
 
   static propTypes = {
-    formula: PropTypes.string.isRequired,
-    aceModeUrl: PropTypes.string.isRequired,
+    formula: PropTypes.string,
+    aceModeUrl: PropTypes.string,
     datasetId: PropTypes.string.isRequired,
-    annotations: PropTypes.array.isRequired,
+    annotations: PropTypes.array,
     fields: PropTypes.array.isRequired,
     sdk: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
