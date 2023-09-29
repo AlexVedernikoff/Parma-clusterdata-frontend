@@ -19,6 +19,9 @@ import {
   selectSort,
   selectTitleLayerSource,
   selectVisualization,
+  selectNeedAutoNumberingRows,
+  selectNeedSteppedLayout,
+  selectSteppedLayoutIndentation,
 } from '../../../../../reducers/visualization';
 import { UpdateArgs } from '../types';
 
@@ -41,4 +44,7 @@ export const useUpdateViewSelector = (): UpdateArgs =>
     titleLayerSource: selectTitleLayerSource(state),
     updates: selectUpdates(state),
     coordType: selectCoordType(state),
+    needAutoNumberingRows: selectNeedAutoNumberingRows(state),
+    needSteppedLayout: selectNeedSteppedLayout(state),
+    steppedLayoutIndentation: selectSteppedLayoutIndentation(state),
   }));

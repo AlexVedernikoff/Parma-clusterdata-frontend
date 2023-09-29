@@ -3,6 +3,7 @@ import { VisualizationType } from '@clustrum-lib/entities/visualization-factory/
 
 export const pivotTableDialogFields = (
   placeholderType: string,
+  needSubTotal: boolean | undefined,
 ): Array<{
   id: keyof ISubTotalsSettings;
   text: string;
@@ -21,7 +22,7 @@ export const pivotTableDialogFields = (
       ? 'Расположить строку с итогами сверху'
       : 'Расположить столбец с итогами слева',
     type: VisualizationType.CheckBox,
-    visible: false,
+    visible: needSubTotal === true,
   },
   {
     id: 'customName',
