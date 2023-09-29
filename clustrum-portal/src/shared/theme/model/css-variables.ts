@@ -6,7 +6,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
   return [
     {
       variable: '--antd-color-primary',
-      value: ant.colorPrimary,
+      value: ant.token?.colorPrimary ?? '',
     },
     {
       variable: '--clustrum-default-font-family',

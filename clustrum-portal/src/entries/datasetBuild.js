@@ -54,7 +54,7 @@ export default function DatasetBuild(props) {
   setCssVariables(theme);
 
   return (
-    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
+    <ConfigProvider theme={{ ...ant }} locale={ruRU}>
       <Provider store={store}>
         <div className="clustrum">
           <DatasetRouter sdk={sdk} {...props} />

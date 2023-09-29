@@ -303,11 +303,7 @@ class Header extends React.PureComponent {
     if (canEdit) {
       return [
         this.#hasVisibleExpandedFilters() ? (
-          <Popover
-            zIndex={1070}
-            placement="bottom"
-            content={<span>Расширенный фильтр</span>}
-          >
+          <Popover placement="bottom" content={<span>Расширенный фильтр</span>}>
             <Button
               onClick={openExpandedFilter}
               key="button-expanded-filter-panel"
@@ -315,7 +311,7 @@ class Header extends React.PureComponent {
             />
           </Popover>
         ) : null,
-        <Popover zIndex={1070} placement="bottom" content={<span>Сбросить фильтры</span>}>
+        <Popover placement="bottom" content={<span>Сбросить фильтры</span>}>
           <Button
             onClick={() => this.onClearFilters()}
             key="button-clear-filters"
@@ -324,11 +320,7 @@ class Header extends React.PureComponent {
         </Popover>,
         <>
           {isDashExportButtonVisible && (
-            <Popover
-              zIndex={1070}
-              placement="bottom"
-              content={<span>Экспортировать</span>}
-            >
+            <Popover placement="bottom" content={<span>Экспортировать</span>}>
               <Dropdown menu={{ items: exportItems }} trigger={['click']}>
                 <Button icon={<DownloadOutlined />}></Button>
               </Dropdown>
@@ -337,11 +329,7 @@ class Header extends React.PureComponent {
         </>,
         <>
           {isEditButtonVisible && (
-            <Popover
-              zIndex={1070}
-              placement="bottom"
-              content={<span>Редактировать</span>}
-            >
+            <Popover placement="bottom" content={<span>Редактировать</span>}>
               <Button
                 onClick={() => setMode(MODE.EDIT)}
                 key="button-edit"

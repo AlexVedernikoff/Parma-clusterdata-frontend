@@ -59,7 +59,7 @@ export default function DashBuild(props) {
   setCssVariables(theme);
 
   return (
-    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
+    <ConfigProvider theme={{ ...theme.ant }} locale={ruRU}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <DndProvider backend={HTML5Backend}>

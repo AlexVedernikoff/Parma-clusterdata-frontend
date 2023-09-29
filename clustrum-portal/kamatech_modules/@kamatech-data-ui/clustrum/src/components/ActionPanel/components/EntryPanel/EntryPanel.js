@@ -131,7 +131,7 @@ class EntryPanel extends React.Component {
 
     const disabled = Boolean(entry.fake);
     const accent = $appSettingsStore.getState().theme.layout.colorAccent;
-    const primary = $appSettingsStore.getState().theme.ant.colorPrimary;
+    const primary = $appSettingsStore.getState().theme.ant.token.colorPrimary;
 
     const iconColor = isFavorite ? accent : primary;
 

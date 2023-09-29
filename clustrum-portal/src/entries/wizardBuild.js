@@ -77,7 +77,7 @@ export default function WizardBuild(props) {
   setCssVariables(theme);
 
   return (
-    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
+    <ConfigProvider theme={{ ...theme.ant }} locale={ruRU}>
       <Provider store={store}>
         <DndProvider backend={HTML5Backend}>
           <BrowserRouter>

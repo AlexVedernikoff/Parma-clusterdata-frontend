@@ -1,3 +1,5 @@
+import { ThemeConfig } from 'antd';
+
 export interface AppSettings {
   env: string;
   appEnv: string;
@@ -25,7 +27,7 @@ export interface AppSettings {
 }
 
 export interface Theme {
-  ant: AntTheme;
+  ant: ThemeConfig;
   app: AppTheme;
   layout: LayoutTheme;
   filters: FiltersTheme;
