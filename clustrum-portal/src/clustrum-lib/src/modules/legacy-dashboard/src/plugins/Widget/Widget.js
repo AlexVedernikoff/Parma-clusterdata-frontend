@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const b = block('dashkit-plugin-widget');
 
@@ -188,7 +188,7 @@ PluginWidget.propTypes = {
       title: PropTypes.string,
       data: PropTypes.shape({
         uuid: PropTypes.string.isRequired,
-        params: PropTypes.object,
+        params: PropTypes.any, // TODO при внедрении TypeScript, типизировать ({} | "") возможно, пустая строка должна валидироваться в пустой объект
         description: PropTypes.string,
       }).isRequired,
     }).isRequired,

@@ -3753,7 +3753,7 @@
   align-items: center;
   border-bottom: 1px solid var(--color-divider);
   z-index: 220;
-  background: var(--color-base);
+  background: var(--clustrum-default-background-panel-color);
 }
 
 .action-panel__create-widget-btn {
@@ -3988,7 +3988,7 @@
   text-overflow: ellipsis;
 }
 
-.notification {
+.clustrum .notification {
   box-sizing: border-box;
   color: #000;
   font-family: Arial, HelveticaNeue, Helvetica, sans-serif;
@@ -4148,7 +4148,7 @@
 }
 
 #root,
-body,
+.clustrum,
 html {
   height: 100%;
 }
@@ -4534,6 +4534,11 @@ html {
   --text-title-font-size: 24px;
   --text-title-line-height: 28px;
   --yc-font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.clustrum.yc-root,
+.yc-root .modal,
+.yc-root .popup2 {
   font-family: var(--yc-font-family);
   font-size: var(--text-body-font-size);
   line-height: var(--text-body-line-height);
@@ -4686,14 +4691,14 @@ html {
   box-sizing: inherit;
 }
 
-body,
+.clustrum,
 html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.yc-root .button2 {
+.clustrum.yc-root .button2 {
   font-family: var(--yc-font-family);
 }
 
@@ -4797,7 +4802,7 @@ html {
     0 1px 2px 0 var(--yc-lego-color-grayscale-10);
 }
 
-.yc-root .button2.button2_theme_websearch {
+.clustrum.yc-root .button2.button2_theme_websearch {
   font-family: var(--yc-font-family);
 }
 
@@ -4911,7 +4916,7 @@ html {
   background-color: var(--yc-lego-color-medium-light-hover);
 }
 
-.yc-root .textinput__control {
+.clustrum.yc-root .textinput__control {
   font-family: var(--yc-font-family);
 }
 
@@ -4990,7 +4995,7 @@ html {
   background-color: var(--yc-lego-color-medium-light-disabled);
 }
 
-.yc-root .textinput_theme_websearch .textinput__control {
+.clustrum.yc-root .textinput_theme_websearch .textinput__control {
   font-family: var(--yc-font-family);
   color: var(--yc-lego-color-text-primary);
 }
@@ -5109,7 +5114,7 @@ html {
   color: var(--yc-lego-color-input-disabled);
 }
 
-.yc-root .checkbox {
+.clustrum.yc-root .checkbox {
   font-family: var(--yc-font-family);
 }
 
@@ -5250,7 +5255,7 @@ html {
   box-shadow: 0 0 0 2px var(--yc-lego-color-utilityfocus-solid);
 }
 
-.yc-root .radiobox_theme_normal {
+.clustrum.yc-root .radiobox_theme_normal {
   font-family: var(--yc-font-family);
 }
 
@@ -5304,7 +5309,7 @@ html {
   }
 }
 
-.yc-root .radiobox_view_classic.radiobox_theme_pseudo {
+.clustrum.yc-root .radiobox_view_classic.radiobox_theme_pseudo {
   font-family: var(--yc-font-family);
   color: var(--yc-lego-color-text-primary);
 }
@@ -5440,7 +5445,7 @@ html {
   }
 }
 
-.yc-root .radio-button {
+.clustrum.yc-root .radio-button {
   font-family: var(--yc-font-family);
 }
 
@@ -5750,7 +5755,7 @@ html {
   -webkit-text-fill-color: var(--yc-lego-color-text-primary);
 }
 
-.yc-root .textarea_theme_normal .textarea__control {
+.clustrum.yc-root .textarea_theme_normal .textarea__control {
   font-family: var(--yc-font-family);
   color: var(--yc-lego-color-text-primary);
 }
@@ -5970,7 +5975,7 @@ html {
   color: var(--yc-lego-color-text-primary);
 }
 
-.yc-root .tumbler_theme_normal {
+.clustrum.yc-root .tumbler_theme_normal {
   font-family: var(--yc-font-family);
 }
 

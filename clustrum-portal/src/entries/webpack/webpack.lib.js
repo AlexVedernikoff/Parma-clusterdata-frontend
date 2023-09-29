@@ -1,9 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const dotenv = require('dotenv').config({ path: path.resolve('./environment/.env') });
 const { PORTAL_ASSETS_PATH } = require('../../../src/context-path.js');
-
-const primaryColor = dotenv.parsed?.PRIMARY_COLOR;
 
 module.exports = {
   mode: 'production',
@@ -117,7 +114,6 @@ module.exports = {
       BUILD_SETTINGS: JSON.stringify({
         isLib: true,
       }),
-      'process.env.REACT_APP_PRIMARY_COLOR': JSON.stringify(primaryColor),
     }),
   ],
 };

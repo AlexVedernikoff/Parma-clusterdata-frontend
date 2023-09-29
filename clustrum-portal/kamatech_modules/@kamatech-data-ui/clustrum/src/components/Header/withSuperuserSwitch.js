@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { ENABLE, DISABLE, COOKIE_TOGGLE_SWITCH_MODE_NAME } from '../../constants/common';
 import Utils from '../../utils';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const NEXT_SWITCH_MODE_MAP = {
   [ENABLE]: DISABLE,

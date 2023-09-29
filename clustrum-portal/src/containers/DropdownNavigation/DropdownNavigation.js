@@ -23,9 +23,9 @@ class DropdownNavigation extends React.PureComponent {
     includeClickableType: PropTypes.oneOf(Object.values(ENTRY_TYPE)),
     excludeClickableType: PropTypes.oneOf(Object.values(ENTRY_TYPE)),
     size: PropTypes.string,
-    navigationPath: PropTypes.string.isRequired,
+    navigationPath: PropTypes.string,
     changeNavigationPath: PropTypes.func.isRequired,
-    path: PropTypes.string.isRequired,
+    path: PropTypes.string,
   };
 
   static defaultProps = { size: 'n' };

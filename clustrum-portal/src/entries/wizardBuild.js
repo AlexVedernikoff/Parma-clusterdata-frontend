@@ -16,7 +16,6 @@ import { Pointerfocus } from 'lego-on-react';
 import { Wizard } from '@clustrum-lib-legacy';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import { SDK } from '@kamatech-data-ui/clustrum';
-import { ANT_TOKEN } from '@shared/config/theme';
 import ruRU from 'antd/locale/ru_RU';
 import reducers from '../reducers';
 import { exportWidget } from '../services/dashboard/export/export-widget';
@@ -30,7 +29,8 @@ import './../css/card.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
-import { $appSettingsStore, setAppSettingsEvent } from '@entities/app-settings';
+import { $appSettingsStore, setAppSettingsEvent } from '@shared/app-settings';
+import { setCssVariables } from '@shared/theme';
 import { NotificationContext } from '@entities/notification';
 import { useCustomNotification } from '@shared/lib/hooks';
 
@@ -59,41 +59,49 @@ const sdk = new SDK({
 export default function WizardBuild(props) {
   const { entryId } = props;
 
-  const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
   const [openNotification, contextHolder] = useCustomNotification();
+  const [setAppSettings] = useUnit([setAppSettingsEvent]);
+
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,
+    stateUuid: props.stateUuid,
+    theme,
   });
 
   const handleExport = (id, name, options) => {
     exportWidget({ id, name }, undefined, options);
   };
 
+  setCssVariables(theme);
+
   return (
-    <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
       <Provider store={store}>
         <NotificationContext.Provider value={openNotification}>
           {contextHolder}
           <DndProvider backend={HTML5Backend}>
             <BrowserRouter>
-              <Pointerfocus />
-              <Switch>
-                <Route
-                  path="*"
-                  component={props => (
-                    <Wizard
-                      {...props}
-                      onExport={handleExport}
-                      sdk={sdk}
-                      entryId={entryId}
-                    />
-                  )}
-                />
-              </Switch>
+              <div className="clustrum">
+                <Pointerfocus />
+                <Switch>
+                  <Route
+                    path="*"
+                    component={props => (
+                      <Wizard
+                        {...props}
+                        onExport={handleExport}
+                        sdk={sdk}
+                        entryId={entryId}
+                      />
+                    )}
+                  />
+                </Switch>
+              </div>
             </BrowserRouter>
           </DndProvider>
         </NotificationContext.Provider>

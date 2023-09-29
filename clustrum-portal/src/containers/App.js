@@ -14,7 +14,7 @@ import { compose } from 'recompose';
 
 import { exportWidget } from '../services/dashboard/export/export-widget';
 import { PageContainer } from '@widgets/page-container';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,

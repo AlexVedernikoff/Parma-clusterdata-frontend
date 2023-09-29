@@ -11,7 +11,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
-import { ANT_TOKEN } from '@shared/config/theme';
 import ruRU from 'antd/locale/ru_RU';
 
 import reducers from '../reducers';
@@ -32,6 +31,7 @@ import { DndProvider } from 'react-dnd';
 import { logVersion } from '../utils/version-logger';
 import { NotificationContext } from '@entities/notification';
 import { useCustomNotification } from '@shared/lib/hooks';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const middlewares = [thunkMiddleware];
 
@@ -51,10 +51,11 @@ logVersion();
 
 function AppEntry() {
   const [openNotification, contextHolder] = useCustomNotification();
+  const { ant } = $appSettingsStore.getState().theme;
 
   return (
     <AppContainer>
-      <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+      <ConfigProvider theme={{ token: ant }} locale={ruRU}>
         <Provider store={store}>
           <NotificationContext.Provider value={openNotification}>
             {contextHolder}

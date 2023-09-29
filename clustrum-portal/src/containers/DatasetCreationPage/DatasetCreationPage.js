@@ -9,7 +9,7 @@ import ConnectionSelection from '../ConnectionSelection/ConnectionSelection';
 import { TOAST_TYPES, REPLACE_SOURCE_MODE_ID } from '../../constants';
 import Utils from '../../helpers/utils';
 import { getSearchParam } from '../../helpers/QueryParams';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 import { NotificationType } from '@shared/types/notification';
 import { NotificationContext } from '@entities/notification';
 
@@ -126,16 +126,28 @@ class DatasetCreationPage extends React.Component {
       selectedTable,
     });
 
+    let dataSetByVersion = false;
+
     try {
       const { id } = await sdk.bi.createDataSet(data);
-
+      dataSetByVersion = await sdk.bi.getDataSetByVersion({
+        dataSetId: id,
+        version: 'draft',
+      });
       this.setState({ redirect: `/datasets/${id}` });
     } catch (error) {
-      this.showNotification({
-        name: TOAST_TYPES.CREATE_DATASET,
-        type: NotificationType.Error,
-      });
-
+      if (!dataSetByVersion && error.response.data.code === 500) {
+        this.showNotification({
+          name: TOAST_TYPES.CREATE_DATASET,
+          type: NotificationType.Error,
+          title: `Набор данных с названием ${datasetTitle} уже существует.`,
+        });
+      } else {
+        this.showNotification({
+          name: TOAST_TYPES.CREATE_DATASET,
+          type: NotificationType.Error,
+        });
+      }
       this.setState({
         toastError: {
           ...Utils.getNormalizedError(error),
@@ -314,10 +326,10 @@ class DatasetCreationPage extends React.Component {
     }
   };
 
-  showNotification({ name, type }) {
+  showNotification({ name, type, title }) {
     const openNotification = this.context;
     openNotification({
-      title: getErrorTitle()[name],
+      title: title || getErrorTitle()[name],
       key: name,
       type,
       actions: [

@@ -9,7 +9,6 @@ import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { ANT_TOKEN } from '@shared/config/theme';
 
 import './../css/clustrum/colors.css';
 import './../css/app.css';
@@ -23,7 +22,7 @@ import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
 import { useUnit } from 'effector-react';
-import { setAppSettingsEvent } from '@entities/app-settings';
+import { setAppSettingsEvent, $appSettingsStore } from '@shared/app-settings';
 import { NotificationContext } from '@entities/notification';
 import { useCustomNotification } from '@shared/lib/hooks';
 
@@ -43,6 +42,8 @@ function Dash() {
   const searchParams = new URL(window.location.href).searchParams;
   const [openNotification, contextHolder] = useCustomNotification();
 
+  const { ant } = $appSettingsStore.getState().theme;
+
   setAppSettings({
     hideSubHeader: searchParams.get('hide-header-btns') === 'true',
     hideTabs: searchParams.get('hide-tabs') === 'true',
@@ -54,7 +55,7 @@ function Dash() {
   });
 
   return (
-    <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+    <ConfigProvider theme={{ token: ant }} locale={ruRU}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <NotificationContext.Provider value={openNotification}>

@@ -169,7 +169,7 @@ export class TableAdapter extends React.PureComponent {
     }).isRequired,
     onLoad: PropTypes.func.isRequired,
     onError: PropTypes.func.isRequired,
-    onStateAndParamsChange: PropTypes.func.isRequired,
+    onStateAndParamsChange: PropTypes.func,
     onPageControlClick: PropTypes.func.isRequired,
     paginateInfo: PropTypes.object,
     ownWidgetParams: PropTypes.instanceOf(Map),

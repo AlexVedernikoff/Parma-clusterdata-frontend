@@ -15,10 +15,10 @@ const b = block('clustrum-ace-editor');
 
 class AceEditor extends React.Component {
   static propTypes = {
-    formula: PropTypes.string.isRequired,
+    formula: PropTypes.string,
     modePath: PropTypes.string.isRequired,
     aceModeUrl: PropTypes.string.isRequired,
-    annotations: PropTypes.array.isRequired,
+    annotations: PropTypes.array,
     onChange: PropTypes.func.isRequired,
     forwardedRef: PropTypes.object,
     isAutocompleteEnabled: PropTypes.bool,

@@ -14,7 +14,7 @@ class DatasetField extends React.PureComponent {
     datasetId: PropTypes.string,
     fieldId: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    parentBlock: PropTypes.func.isRequired,
+    parentBlock: PropTypes.func,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {

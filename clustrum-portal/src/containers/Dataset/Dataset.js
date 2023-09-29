@@ -56,7 +56,7 @@ class Dataset extends React.Component {
 
   static propTypes = {
     datasetId: PropTypes.string.isRequired,
-    datasetName: PropTypes.string.isRequired,
+    datasetName: PropTypes.string,
     initialDatasetName: PropTypes.string,
     sdk: PropTypes.object.isRequired,
     initialFetchDataset: PropTypes.func.isRequired,

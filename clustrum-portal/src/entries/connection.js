@@ -17,7 +17,6 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { ANT_TOKEN } from '@shared/config/theme';
 import { $appSettingsStore } from '@entities/app-settings';
 import { NotificationContext } from '@entities/notification';
 import { useCustomNotification } from '@shared/lib/hooks';
@@ -38,10 +37,11 @@ logVersion();
 
 function Connection() {
   const [openNotification, contextHolder] = useCustomNotification();
+  const { ant } = $appSettingsStore.getState().theme;
 
   return (
     <AppContainer>
-      <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+      <ConfigProvider theme={{ token: ant }} locale={ruRU}>
         <Provider store={store}>
           <NotificationContext.Provider value={openNotification}>
             {contextHolder}

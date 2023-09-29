@@ -828,7 +828,7 @@ class DialogFilter extends PureComponent {
             tone="default"
             type="radio"
             placeholder="size s"
-            width="min"
+            width="fixed"
             val={operation}
             onChange={newValue => this.onSelectChange(newValue)}
           >

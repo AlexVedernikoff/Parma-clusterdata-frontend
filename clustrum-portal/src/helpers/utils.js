@@ -9,7 +9,7 @@ import iconPostgres from '@kamatech-data-ui/clustrum/src/icons/postgres.svg';
 import iconMysql from '@kamatech-data-ui/clustrum/src/icons/mysql.svg';
 import iconYt from '@kamatech-data-ui/clustrum/src/icons/yt.svg';
 import iconUndefined from '@kamatech-data-ui/clustrum/src/icons/undefined.svg';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 export default class Utils {
   static sizes = ['Bytes', 'Kb', 'Mb', 'Gb', 'Tb'];
