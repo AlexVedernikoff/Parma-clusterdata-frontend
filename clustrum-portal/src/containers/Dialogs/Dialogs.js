@@ -4,6 +4,7 @@ import Title from './Title/Title';
 import Widget from './Widget/Widget';
 import Control from './Control/Control';
 import { DashboardTabsSettings } from '@clustrum-lib';
+import DashboardSettings from './DashboardSettings/dashboard-settings';
 import { DialogType } from '@clustrum-lib/shared/types';
 
 // TODO: посмотреть не будут ли тормозить диалоги со сложным содержимым из-за того, что происходит mount/unmount
@@ -19,6 +20,8 @@ function Dialogs({ openedDialog }) {
       return <Widget />;
     case DialogType.Control:
       return <Control />;
+    case DialogType.DashboardSettings:
+      return <DashboardSettings />;
   }
   return null;
 }
