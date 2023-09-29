@@ -131,9 +131,8 @@ class TableRow extends React.PureComponent {
             (value?.rowSpan > 1 ? ' high_row_span_cell' : '');
 
           if (value?.rowSpan === HIDDEN_ROW_SPAN) {
-            return (
-              <td key={columnIndex} className={classNameValue + ' hidden_cell'}></td>
-            );
+            const hiddenCellClassNameValue = classNameValue + ' hidden_cell';
+            return <td key={columnIndex} className={hiddenCellClassNameValue}></td>;
           }
 
           const paddingLeft = {
