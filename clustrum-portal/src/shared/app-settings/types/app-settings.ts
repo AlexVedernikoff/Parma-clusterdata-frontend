@@ -59,16 +59,6 @@ export interface LayoutTheme {
   colorAccent: string;
 }
 
-export interface AntTheme {
-  colorPrimary: string;
-  colorSuccess: string;
-  colorWarning: string;
-  colorError: string;
-  colorLink: string;
-  colorSplit: string;
-  colorBorder: string;
-}
-
 export interface User {
   lang: string;
   login: string | null;

@@ -9,7 +9,10 @@ import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { setAppSettingsEvent, $appSettingsStore } from '@shared/app-settings';
+import {
+  setAppSettingsEvent,
+  combineDefaultThemeAndPropsTheme,
+} from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -40,7 +43,7 @@ logVersion();
 export default function DashBuild(props) {
   const { entryId, hideRightSideContent, onFiltersChange, onTabChange } = props;
 
-  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
+  const theme = combineDefaultThemeAndPropsTheme(props.theme);
 
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({

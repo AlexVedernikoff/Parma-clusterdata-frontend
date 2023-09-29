@@ -1,5 +1,5 @@
 import { createEvent, createStore } from 'effector';
-import { AppSettings } from '../types';
+import { AppSettings } from '@shared/app-settings';
 import { DEFAULT_ENV_VARIABLES } from '../lib/constants';
 
 const getInitialConfig = (): AppSettings => {

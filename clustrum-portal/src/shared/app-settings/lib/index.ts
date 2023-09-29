@@ -1,0 +1,1 @@
+export { combineDefaultThemeAndPropsTheme } from './utils';

@@ -16,7 +16,11 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { $appSettingsStore, setAppSettingsEvent } from '@shared/app-settings';
+import {
+  $appSettingsStore,
+  combineDefaultThemeAndPropsTheme,
+  setAppSettingsEvent,
+} from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
 
 const sdk = new SDK({
@@ -33,7 +37,7 @@ logVersion();
 export default function NavigationBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
 
-  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
+  const theme = combineDefaultThemeAndPropsTheme(props.theme);
 
   setAppSettings({
     hideHeader: props.hideHeader,

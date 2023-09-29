@@ -1,1 +1,1 @@
-export { AppSettings } from './app-settings';
+export { AppSettings, Theme } from './app-settings';
