@@ -7,6 +7,7 @@ export interface AppSettings {
   hideSubHeader: boolean | null;
   hideTabs: boolean | null;
   hideEdit: boolean | null;
+  hideDashExport: boolean | null;
   enableCaching: boolean | null;
   cacheMode: boolean | null;
   exportMode: boolean | null;
@@ -20,6 +21,50 @@ export interface AppSettings {
   menu: Menu;
   metrikaOAuthClientId: string;
   mapLayerSource: string;
+  theme: Theme;
+}
+
+export interface Theme {
+  ant: AntTheme;
+  app: AppTheme;
+  layout: LayoutTheme;
+  filters: FiltersTheme;
+  widget: WidgetTheme;
+  tabs: TabsTheme;
+}
+
+export interface TabsTheme {
+  tabType: 'line' | 'card' | 'editable-card' | undefined;
+}
+
+export interface WidgetTheme {
+  borderShadow: string;
+}
+
+export interface FiltersTheme {
+  backgroundFilterColor: string;
+  borderFilterColor: string;
+  labelFilterColor: string;
+}
+export interface AppTheme {
+  font: string;
+}
+
+export interface LayoutTheme {
+  backgroundContentColor: string;
+  backgroundPanelColor: string;
+  showBreadcrumbs: boolean | null;
+  colorAccent: string;
+}
+
+export interface AntTheme {
+  colorPrimary: string;
+  colorSuccess: string;
+  colorWarning: string;
+  colorError: string;
+  colorLink: string;
+  colorSplit: string;
+  colorBorder: string;
 }
 
 export interface User {

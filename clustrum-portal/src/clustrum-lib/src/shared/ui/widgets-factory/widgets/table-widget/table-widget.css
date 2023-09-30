@@ -29,6 +29,8 @@
 }
 
 .table-widget__content.table-widget__content--string {
+  max-height: 200px;
+  overflow-y: scroll;
   color: #020202;
   font-size: var(--table-body-font-size);
   font-style: normal;
@@ -75,6 +77,10 @@
 
 .ant-table-wrapper .ant-spin-nested-loading .ant-spin-container .ant-table-pagination {
   flex: none;
+}
+
+.ant-table-wrapper .ant-table-pagination.ant-pagination {
+  margin: 8px 0;
 }
 
 .ant-table-cell {

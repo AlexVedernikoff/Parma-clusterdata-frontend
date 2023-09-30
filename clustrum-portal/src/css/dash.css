@@ -854,7 +854,7 @@
   opacity: 1;
 }
 
-.rdt {
+.clustrum .rdt {
   position: relative;
   font-family: Yandex Sans Text Web, HelveticaNeue, Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -3465,7 +3465,7 @@ td.rdtYear:hover {
   --data-table-color-footer-area: var(--data-table-color-base);
 }
 
-.yfm {
+.clustrum .yfm {
   font-family: 'Lato', Segoe UI, Arial, Helvetica, sans-serif, Apple Color Emoji,
     Segoe UI Emoji, Segoe UI Symbol;
   font-size: 16px;
@@ -3574,16 +3574,16 @@ td.rdtYear:hover {
   margin-top: 15px;
 }
 
-.yfm code,
-.yfm kbd,
-.yfm pre {
+.clustrum .yfm code,
+.clustrum .yfm kbd,
+.clustrum .yfm pre {
   font-family: monospace;
   font-size: 1em;
   -webkit-font-feature-settings: normal;
   font-feature-settings: normal;
 }
 
-.yfm input {
+.clustrum .yfm input {
   margin: 0;
   overflow: visible;
   font-family: inherit;
@@ -4648,6 +4648,7 @@ td.data-table__td.chartkit-table__cell.chartkit-table__cell_type_FLOAT {
   width: 1033px;
   height: 400px;
   background-color: white;
+  overflow: visible !important;
 }
 
 .widget-visibility-dropdown {

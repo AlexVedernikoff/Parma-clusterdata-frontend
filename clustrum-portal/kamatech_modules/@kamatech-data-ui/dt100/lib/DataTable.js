@@ -806,7 +806,11 @@ class DataTableView extends React.Component {
       typeof accessor === 'function'
         ? row => accessor(row)
         : row => {
-            return row.hasOwnProperty(accessor) ? row[accessor] : undefined;
+            return row.hasOwnProperty(accessor)
+              ? accessor === 'formula'
+                ? row.source
+                : row[accessor]
+              : undefined;
           };
 
     const _getTitle =

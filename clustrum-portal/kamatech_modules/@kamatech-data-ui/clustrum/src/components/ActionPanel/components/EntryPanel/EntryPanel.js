@@ -12,7 +12,7 @@ import {
   formatPath,
   navigationItems,
 } from '../../../../../../common/src/components/Navigation/utils/header-navigation-utils';
-import { ANT_TOKEN, COLOR_ACCENT } from '@shared/config/theme';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const b = block('dl-entry-panel');
 
@@ -130,7 +130,10 @@ class EntryPanel extends React.Component {
     const { entry: { isFavorite } = {}, entry, isNavigationVisible } = this.state;
 
     const disabled = Boolean(entry.fake);
-    const iconColor = isFavorite ? COLOR_ACCENT : ANT_TOKEN.token.colorPrimary;
+    const accent = $appSettingsStore.getState().theme.layout.colorAccent;
+    const primary = $appSettingsStore.getState().theme.ant.colorPrimary;
+
+    const iconColor = isFavorite ? accent : primary;
 
     const standardBtns = [
       <Button

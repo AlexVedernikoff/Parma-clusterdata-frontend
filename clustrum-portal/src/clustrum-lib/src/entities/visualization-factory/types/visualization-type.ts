@@ -1,7 +1,8 @@
 export enum VisualizationType {
-  TextInput = 'textinput',
-  RangePicker = 'rangepicker',
+  TextInput = 'textInput',
+  NumberInput = 'numberInput',
+  Slider = 'slider',
   Select = 'select',
   CheckBox = 'checkbox',
-  DndContainer = 'dndcontaier',
+  DndContainer = 'dndContainer',
 }

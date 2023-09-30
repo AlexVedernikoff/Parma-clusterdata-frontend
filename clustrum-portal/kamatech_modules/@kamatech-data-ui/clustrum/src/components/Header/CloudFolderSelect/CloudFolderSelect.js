@@ -4,7 +4,7 @@ import block from 'bem-cn-lite';
 import CloudFolderSelect from '@kamatech-data-ui/common/src/components/CloudFolderSelect/CloudFolderSelect';
 import noop from 'lodash/noop';
 import Utils from '../../../utils';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 // import './CloudFolderSelect.scss';
 
 const CURRENT_FOLDER_COOKIE_NAME = 'dl_current_cloud_folder_id';

@@ -4,7 +4,7 @@
   gap: 8px;
   width: 100%;
   padding: 24px;
-  background-color: #f5f5f5;
+  background-color: var(--clustrum-default-background-panel-color);
 }
 
 .header-wrapper__breadcrumb {
@@ -47,6 +47,10 @@
   display: flex;
   gap: 8px;
   align-items: center;
+}
+
+.ant-tooltip .ant-tooltip-arrow {
+  --antd-arrow-background-color: #fff;
 }
 
 .ant-tooltip-content > .ant-tooltip-inner {

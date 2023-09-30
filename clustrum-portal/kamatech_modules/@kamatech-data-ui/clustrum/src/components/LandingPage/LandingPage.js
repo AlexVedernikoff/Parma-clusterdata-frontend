@@ -9,7 +9,7 @@ import ErrorContent, {
 import Header from '../Header/Header';
 import Utils from '../../utils';
 import { Pointerfocus } from 'lego-on-react';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 // import './LandingPage.scss';
 // import '../../styles/common.scss';

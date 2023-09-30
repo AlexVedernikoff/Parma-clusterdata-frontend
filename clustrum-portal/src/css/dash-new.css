@@ -56,8 +56,7 @@
 }
 
 .action-panel {
-  background: #f9fdff;
-
+  background: var(--clustrum-default-background-panel-color);
   padding: 0;
 }
 

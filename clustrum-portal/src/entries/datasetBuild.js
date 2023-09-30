@@ -16,8 +16,8 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { ANT_TOKEN } from '@shared/config/theme';
-import { $appSettingsStore, setAppSettingsEvent } from '@entities/app-settings';
+import { $appSettingsStore, setAppSettingsEvent } from '@shared/app-settings';
+import { setCssVariables } from '@shared/theme';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,
@@ -38,21 +38,27 @@ logVersion();
 
 export default function DatasetBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+
+  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
+
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,
-    hideTabs: props.hideTabs,
-    hideEdit: props.hideEdit,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,
     stateUuid: props.stateUuid,
+    theme,
   });
 
+  setCssVariables(theme);
+
   return (
-    <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
       <Provider store={store}>
-        <DatasetRouter sdk={sdk} {...props} />
+        <div className="clustrum">
+          <DatasetRouter sdk={sdk} {...props} />
+        </div>
       </Provider>
     </ConfigProvider>
   );

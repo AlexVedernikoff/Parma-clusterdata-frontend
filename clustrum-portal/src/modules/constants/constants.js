@@ -1,4 +1,4 @@
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 export const IS_DEVELOPMENT = $appSettingsStore.getState().env === 'development';
 

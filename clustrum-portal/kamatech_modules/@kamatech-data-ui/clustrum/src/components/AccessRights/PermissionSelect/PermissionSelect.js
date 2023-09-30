@@ -4,7 +4,7 @@ import block from 'bem-cn-lite';
 import Utils from '../../../utils';
 import { Select } from 'lego-on-react';
 import { PERMISSION, DL } from '../../../constants/common';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 // import './PermissionSelect.scss';
 

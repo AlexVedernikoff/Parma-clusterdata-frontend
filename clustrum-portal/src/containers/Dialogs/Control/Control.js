@@ -43,16 +43,15 @@ class Control extends React.PureComponent {
     data: PropTypes.shape({
       title: PropTypes.string,
       showTitle: PropTypes.bool,
-      sourceType: PropTypes.oneOf(Object.values(CONTROL_SOURCE_TYPE)).isRequired,
+      sourceType: PropTypes.oneOf(Object.values(CONTROL_SOURCE_TYPE)),
       dataset: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        fieldId: PropTypes.string.isRequired,
+        id: PropTypes.string,
+        fieldId: PropTypes.string,
       }),
       external: PropTypes.shape({
-        // entryId: PropTypes.string.isRequired
         entryId: PropTypes.string,
       }),
-      control: PropTypes.object.isRequired,
+      control: PropTypes.object,
     }),
     defaults: PropTypes.object,
     availableItems: PropTypes.object,
@@ -348,7 +347,7 @@ class Control extends React.PureComponent {
 
   render() {
     const { visible, closeDialog } = this.props;
-    const { title, showTitle, error, isExpandedFilter } = this.state;
+    const { title, showTitle: needShowTitle, error, isExpandedFilter } = this.state;
 
     // TODO: вот это место выглядит не очень хорошо, сделано для того, чтобы проще обновлялись под-диалоги
     return visible ? (
@@ -372,8 +371,8 @@ class Control extends React.PureComponent {
                 view="default"
                 tone="default"
                 size="s"
-                checked={showTitle}
-                onChange={() => this.setState({ showTitle: !showTitle })}
+                checked={needShowTitle}
+                onChange={() => this.setState({ showTitle: !needShowTitle })}
               >
                 Показывать
               </LegoCheckBox>

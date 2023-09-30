@@ -2,7 +2,14 @@ import React from 'react';
 
 import Icon from '@kamatech-data-ui/common/src/components/Icon/Icon';
 
-import { ArrowRightOutlined, ArrowUpOutlined, DatabaseOutlined } from '@ant-design/icons';
+import {
+  ArrowRightOutlined,
+  ArrowUpOutlined,
+  DatabaseOutlined,
+  MenuOutlined,
+  PieChartOutlined,
+  AlignRightOutlined,
+} from '@ant-design/icons';
 import iconVisLines from 'icons/vis-lines.svg';
 import iconOlMap from 'icons/map.svg';
 import iconVisGeopolygon from 'icons/vis-geopolygon.svg';
@@ -15,20 +22,14 @@ import iconVisPivot from 'icons/vis-pivot.svg';
 import iconVisFlatTable from 'icons/vis-flat-table.svg';
 import iconVisColumns from 'icons/vis-columns.svg';
 import iconVisColumns100p from 'icons/vis-column-100p.svg';
-import iconX from 'icons/x.svg';
-import iconY from 'icons/y.svg';
 import iconSize from 'icons/size.svg';
 import iconDimensionsTreemap from 'icons/dimensions-treemap.svg';
-import iconDimensionsPie from 'icons/dimensions-pie.svg';
-import iconMeasures from 'icons/measures.svg';
 import iconMeasuresTable from 'icons/measures-table.svg';
-import iconRows from 'icons/rows.svg';
-import iconColumns from 'icons/columns.svg';
 import iconPoints from 'icons/points.svg';
 import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
 import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',
@@ -742,7 +743,7 @@ const PIE_VISUALIZATION = {
       id: 'dimensions',
       type: 'dimensions',
       title: 'section_dimensions',
-      icon: <Icon data={iconDimensionsPie} width="24" />,
+      icon: <PieChartOutlined width="16" />,
       items: [],
       required: false,
       capacity: 1,
@@ -752,7 +753,7 @@ const PIE_VISUALIZATION = {
       id: 'measures',
       type: 'measures',
       title: 'section_measures',
-      icon: <Icon data={iconMeasures} width="24" />,
+      icon: <AlignRightOutlined width="16" style={{ transform: 'rotate(90deg)' }} />,
       items: [],
       required: true,
       capacity: Infinity,
@@ -837,7 +838,7 @@ const FLAT_TABLE_VISUALIZATION = {
       id: 'flat-table-columns',
       type: 'flat-table-columns',
       title: 'section_columns',
-      icon: <Icon data={iconColumns} width="24" />,
+      icon: <MenuOutlined width="16" style={{ transform: 'rotate(90deg)' }} />,
       items: [],
       onChange: onTableDimensionsChange,
       required: true,
@@ -889,7 +890,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       id: 'pivot-table-columns',
       type: 'pivot-table-columns',
       title: 'section_columns',
-      icon: <Icon data={iconColumns} width="24" />,
+      icon: <MenuOutlined width="16" style={{ transform: 'rotate(90deg)' }} />,
       items: [],
       onChange: onTableDimensionsChange,
       capacity: 5,
@@ -1149,7 +1150,7 @@ const CARD_VISUALIZATION = {
       id: 'flat-table-columns',
       type: 'flat-table-columns',
       title: 'section_columns',
-      icon: <Icon data={iconColumns} width="24" />,
+      icon: <MenuOutlined width="16" style={{ transform: 'rotate(90deg)' }} />,
       items: [],
       onChange: onTableDimensionsChange,
       required: true,
@@ -1175,7 +1176,7 @@ const INDICATOR_VISUALIZATION = {
       id: 'flat-table-columns',
       type: 'flat-table-columns',
       title: 'section_measure',
-      icon: <Icon data={iconColumns} width="24" />,
+      icon: <MenuOutlined width="16" style={{ transform: 'rotate(90deg)' }} />,
       items: [],
       onChange: onTableDimensionsChange,
       required: true,

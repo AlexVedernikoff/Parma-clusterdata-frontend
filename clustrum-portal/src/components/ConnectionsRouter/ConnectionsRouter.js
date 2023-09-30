@@ -6,9 +6,10 @@ import { Pointerfocus } from 'lego-on-react';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import { Connectors } from '../Connectors/Connectors';
 import ConnectionPage from '../../containers/ConnectionPage/ConnectionPage';
+import { getConnectorType } from '../../containers/ConnectionPage/getConnectorType';
 import { getConnectorsMap } from '../../constants';
 import { PageContainer } from '@widgets/page-container';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const b = block('connections-router');
 
@@ -40,33 +41,28 @@ class ConnectionsRouter extends PureComponent {
             <Route
               path={'/connections/new'}
               render={() => (
-                <Switch>
-                  <Route
-                    exact
-                    path={'/connections/new'}
-                    render={props => (
-                      <PageContainer>
-                        <Connectors {...props} sdk={sdk} />
-                      </PageContainer>
-                    )}
-                  />
-                  <Route
-                    path={'/connections/new/:connectorType'}
-                    render={props => {
-                      const { params: { connectorType } = {} } = props.match;
-
-                      if (Object.keys(getConnectorsMap()).includes(connectorType)) {
-                        return (
-                          <PageContainer>
-                            <ConnectionPage {...props} sdk={sdk} />
-                          </PageContainer>
-                        );
-                      }
-
-                      return <Redirect to={'/connections/new'} />;
-                    }}
-                  />
-                </Switch>
+                <Route
+                  exact
+                  path={'/connections/new'}
+                  render={props => {
+                    const connectorType = getConnectorType(props.location.search);
+                    if (!connectorType) {
+                      return (
+                        <PageContainer>
+                          <Connectors {...props} sdk={sdk} />
+                        </PageContainer>
+                      );
+                    }
+                    if (Object.keys(getConnectorsMap()).includes(connectorType)) {
+                      return (
+                        <PageContainer>
+                          <ConnectionPage {...props} sdk={sdk} />
+                        </PageContainer>
+                      );
+                    }
+                    return <Redirect to={'/connections/new'} />;
+                  }}
+                />
               )}
             />
             <Route

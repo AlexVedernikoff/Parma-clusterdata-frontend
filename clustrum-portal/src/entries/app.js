@@ -11,7 +11,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Utils } from '@kamatech-data-ui/clustrum';
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
-import { ANT_TOKEN } from '@shared/config/theme';
 import ruRU from 'antd/locale/ru_RU';
 
 import reducers from '../reducers';
@@ -30,6 +29,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 
 import { logVersion } from '../utils/version-logger';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const middlewares = [thunkMiddleware];
 
@@ -47,10 +47,12 @@ Utils.setBodyFeatures();
 
 logVersion();
 
+const { ant } = $appSettingsStore.getState().theme;
+
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+      <ConfigProvider theme={{ token: ant }} locale={ruRU}>
         <Provider store={store}>
           <DndProvider backend={HTML5Backend}>
             <BrowserRouter>

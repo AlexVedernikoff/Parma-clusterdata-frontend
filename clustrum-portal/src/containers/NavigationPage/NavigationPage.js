@@ -9,7 +9,7 @@ import { DL } from '@kamatech-data-ui/clustrum/src/constants/common';
 
 import { Pointerfocus } from 'lego-on-react';
 import { PageContainer } from '@widgets/page-container';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const b = block('navigation-page');
 

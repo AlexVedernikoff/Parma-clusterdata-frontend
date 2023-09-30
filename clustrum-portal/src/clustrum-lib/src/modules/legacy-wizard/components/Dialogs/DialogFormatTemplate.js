@@ -22,7 +22,7 @@ class DialogFormatTemplate extends PureComponent {
       actionType = templateFormat.actionType;
       action = templateFormat.action;
     }
-    let viewFormat = this.props.item.viewFormat;
+    let viewFormat = this.props.item.viewFormat || '';
     this.state = {
       item: this.props.item,
       valueTemplate: valueTemplate,
@@ -86,7 +86,7 @@ class DialogFormatTemplate extends PureComponent {
                 tone="default"
                 type="radio"
                 placeholder="size m"
-                width="70"
+                width="max"
                 val={this.state.actionType}
                 options={data}
                 onChange={newValue => {

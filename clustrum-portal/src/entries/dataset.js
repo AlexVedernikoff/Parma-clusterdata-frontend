@@ -18,8 +18,7 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { ANT_TOKEN } from '@shared/config/theme';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,
@@ -38,10 +37,12 @@ Utils.setBodyFeatures();
 
 logVersion();
 
+const { ant } = $appSettingsStore.getState().theme;
+
 function render() {
   ReactDOM.render(
     <AppContainer>
-      <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+      <ConfigProvider theme={{ token: ant }} locale={ruRU}>
         <Provider store={store}>
           <DatasetRouter sdk={sdk} />
         </Provider>

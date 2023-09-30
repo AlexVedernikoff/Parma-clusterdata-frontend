@@ -1,4 +1,14 @@
 :root {
+  /* Clustrum (красная тема) */
+  --clustrum-default-color-primary: #bb2649;
+  --clustrum-default-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica,
+    sans-serif;
+  --clustrum-default-background-content-color: #fff;
+  --clustrum-default-background-panel-color: #fff;
+  --clustrum-default-background-filter-color: #fff;
+  --clustrum-default-label-filter-color: #000;
+  --clustrum-default-widget-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
+  --clustrum-default-border-filter-color: gba(0, 0, 0, 0.06);
   /* Цвета antdesign (красная тема) */
   --antd-color-primary: #bb2649;
   --antd-color-info: #fad54d;
@@ -11,4 +21,8 @@
   --antd-color-border: rgba(0, 0, 0, 0.15);
   --antd-background-color-base: #fff;
   --antd-color-text-disabled: rgba(0, 0, 0, 0.25);
+  --antd-color-dimension-item-base: #f5f5f5;
+  --antd-color-dimension-item-hover: rgba(0, 0, 0, 0.04);
+  --antd-color-measure-item-base: #ebf4fe;
+  --antd-color-measure-item-hover: #dcedfd;
 }
