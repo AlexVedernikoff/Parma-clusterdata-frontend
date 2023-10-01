@@ -95,6 +95,18 @@ class DatasetCreation extends React.Component {
 
   async componentDidMount() {
     const { sdk, connectionId, connectionType } = this.props;
+    // Используем localStorage, чтобы пробросить данные между разными вкладками браузера
+    const datasetSourceOrigin =
+      JSON.parse(localStorage.getItem('datasetSourceOrigin')) || {};
+    const { table_name, table_db_name } = datasetSourceOrigin;
+
+    if (table_name && table_db_name) {
+      this.setState({
+        selectedTable: table_name,
+        selectedDatabase: table_db_name,
+      });
+    }
+
     const isNeedDatabaseList =
       connectionId &&
       ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
@@ -116,7 +128,7 @@ class DatasetCreation extends React.Component {
         this.setState(
           {
             databases: sortedDatabases,
-            selectedDatabase: sortedDatabases[0],
+            selectedDatabase: table_db_name || sortedDatabases[0],
             isLoadingDatabasesList: false,
           },
           this.onChangeCallback,
@@ -167,6 +179,11 @@ class DatasetCreation extends React.Component {
     const { selectedDatabase } = this.state;
     const { selectedDatabase: selectedDatabasePrev } = prevState;
 
+    // Используем localStorage, чтобы пробросить данные между разными вкладками браузера
+    const datasetSourceOrigin =
+      JSON.parse(localStorage.getItem('datasetSourceOrigin')) || {};
+    const { table_name, table_db_name } = datasetSourceOrigin;
+
     const isNeedDatabaseTableList =
       connectionId &&
       ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
@@ -188,7 +205,10 @@ class DatasetCreation extends React.Component {
         this.setState(
           {
             databaseTables: sortedDatabaseTables,
-            selectedTable: sortedDatabaseTables[0],
+            selectedTable:
+              !table_db_name || selectedDatabase !== table_db_name
+                ? sortedDatabaseTables[0]
+                : table_name,
             isLoadingDatabaseTablesList: false,
           },
           this.onChangeCallback,
