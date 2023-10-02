@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Switch } from 'antd';
+import { Switch, Modal, Space } from 'antd';
 
-import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 import { DialogType } from '@clustrum-lib/shared/types';
 import { getSettings, isDialogVisible } from '../../../store/selectors/dash';
 import { closeDialog, setSettings } from '../../../store/actions/dash';
@@ -12,22 +11,22 @@ function DashboardSettings(props) {
   const [checked, setChecked] = useState(settings.needSyncFilters ?? false);
 
   return (
-    <Dialog visible={visible} onClose={closeDialog}>
-      <Dialog.Header caption="Настройки аналитической панели" />
-      <Dialog.Body>
+    <Modal
+      title="Настройки аналитической панели"
+      open={visible}
+      cancelText="Отменить"
+      onCancel={closeDialog}
+      okText="Сохранить"
+      onOk={() => {
+        setSettings({ ...settings, needSyncFilters: checked });
+        closeDialog();
+      }}
+    >
+      <Space>
         <Switch checked={checked} onChange={setChecked} />
         Связать одинаковые фильтры
-      </Dialog.Body>
-      <Dialog.Footer
-        textButtonApply="Сохранить"
-        textButtonCancel="Отменить"
-        onClickButtonCancel={closeDialog}
-        onClickButtonApply={() => {
-          setSettings({ ...settings, needSyncFilters: checked });
-          closeDialog();
-        }}
-      />
-    </Dialog>
+      </Space>
+    </Modal>
   );
 }
 
