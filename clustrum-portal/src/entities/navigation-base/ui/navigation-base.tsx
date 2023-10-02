@@ -18,7 +18,7 @@ import {
 } from '../types';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 import { $pathInFolder } from '@entities/navigation-base';
-import { useCustomNotification } from '@shared/lib/hooks';
+import { useCustomNotification } from '@clustrum-lib/shared/lib/notification';
 import { unsecuredCopyToClipboard } from '../lib/utils';
 
 /**

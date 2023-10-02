@@ -25,8 +25,10 @@ import { getConnectorType } from './getConnectorType';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 import { normalizeDestination } from '@kamatech-data-ui/clustrum-core-plugins/utils';
 import { Button } from 'antd';
-import { NotificationContext } from '@entities/notification';
-import { NotificationType } from '@shared/types/notification';
+import {
+  NotificationContext,
+  NotificationType,
+} from '@clustrum-lib/shared/lib/notification';
 
 const b = block('connection-page');
 

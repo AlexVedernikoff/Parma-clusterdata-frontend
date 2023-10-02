@@ -15,8 +15,10 @@ import {
 import Utils from '../../helpers/utils';
 import SelectConnection from '../../containers/SelectConnection/SelectConnection';
 import { getSearchParam } from '../../helpers/QueryParams';
-import { NotificationType } from '@shared/types/notification';
-import { NotificationContext } from '@entities/notification';
+import {
+  NotificationContext,
+  NotificationType,
+} from '@clustrum-lib/shared/lib/notification';
 
 const b = block('dataset-creation');
 

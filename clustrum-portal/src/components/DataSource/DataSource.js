@@ -16,8 +16,10 @@ import ErrorView from '../ErrorView/ErrorView';
 import { Stage } from './Stage';
 import MaterializationSettings from './components/MaterializationCustomSettings/MaterializationSettings';
 import Utils from '../../helpers/utils';
-import { NotificationType } from '@shared/types/notification';
-import { NotificationContext } from '@entities/notification';
+import {
+  NotificationContext,
+  NotificationType,
+} from '@clustrum-lib/shared/lib/notification';
 
 // import './DataSource.scss';
 

@@ -8,7 +8,7 @@ import Utils from '../../helpers/utils';
 import { TAB_DATA, TAB_DATASET, DATASET_TABS } from '../../constants';
 import { Icon } from '@kamatech-data-ui/common/src';
 import iconPlus from '@kamatech-data-ui/clustrum/src/icons/plus.svg';
-import { NotificationContext } from '@entities/notification';
+import { NotificationContext } from '@clustrum-lib/shared/lib/notification';
 
 const b = block('dataset-panel');
 

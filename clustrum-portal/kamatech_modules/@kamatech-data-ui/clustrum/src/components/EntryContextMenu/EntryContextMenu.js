@@ -14,7 +14,7 @@ import navigateHelper from '../../libs/navigateHelper';
 import ErrorDialog from '../ErrorDialog/ErrorDialog';
 import { ContextMenuActions } from '@entities/navigation-base/types';
 import { getEntry } from '@kamatech-data-ui/clustrum-core-plugins/components/schema/general';
-import { NotificationContext } from '@entities/notification';
+import { NotificationContext } from '@clustrum-lib/shared/lib/notification';
 
 const ConfiguredEntryContextMenu = withConfiguredEntryContextMenu(EntryContextMenu);
 const defaultPopupDirections = ['bottom-center', 'bottom-left', 'bottom-right'];

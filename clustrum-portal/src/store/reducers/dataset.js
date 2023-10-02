@@ -31,7 +31,7 @@ import {
   CHANGE_AMOUNT_HISTORY_ROWS,
 } from '../../actions/dataset';
 import { CalcModes } from '../../../kamatech_modules/@kamatech-data-ui/clustrum';
-import { NotificationType } from '@shared/types/notification';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification';
 
 function getMessageText() {
   return {

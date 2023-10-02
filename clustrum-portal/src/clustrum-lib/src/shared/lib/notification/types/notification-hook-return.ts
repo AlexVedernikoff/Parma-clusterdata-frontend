@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { NotificationProps } from '@shared/types/notification/notification-props';
+import { NotificationProps } from '@lib-shared/lib/notification/types/notification-props';
 
 export type UseCustomNotificationReturnType = [
   (args: NotificationProps) => void,

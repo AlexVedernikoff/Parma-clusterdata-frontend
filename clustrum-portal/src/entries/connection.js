@@ -17,9 +17,11 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { $appSettingsStore } from '@entities/app-settings';
-import { NotificationContext } from '@entities/notification';
-import { useCustomNotification } from '@shared/lib/hooks';
+import { $appSettingsStore } from '@shared/app-settings';
+import {
+  NotificationContext,
+  useCustomNotification,
+} from '@clustrum-lib/shared/lib/notification';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,

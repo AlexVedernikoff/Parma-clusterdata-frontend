@@ -9,8 +9,10 @@ import {
   RejectFormulaError,
 } from './types';
 import { DialogPivotTableBody } from './DialogPivotTableBody';
-import { useCustomNotification } from '@shared/lib/hooks';
-import { NotificationType } from '@shared/types/notification';
+import {
+  useCustomNotification,
+  NotificationType,
+} from '@clustrum-lib/shared/lib/notification';
 
 export const DialogPivotTable = <T extends IItem>(
   props: DialogPivotTableProps<T>,

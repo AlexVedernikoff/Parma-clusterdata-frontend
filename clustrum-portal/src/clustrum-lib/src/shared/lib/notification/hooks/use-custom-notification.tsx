@@ -5,16 +5,17 @@ import {
   NotificationProps,
   NotificationType,
   UseCustomNotificationReturnType,
-} from '@shared/types/notification';
+} from '../types';
+import classes from './use-custom-notification.module.css';
 
 export function useCustomNotification(): UseCustomNotificationReturnType {
   const [api, contextHolder] = notification.useNotification();
 
-  function getDescriptionWithAction(
+  const getDescriptionWithAction = (
     description: ReactNode,
     actions: NotificationAction[],
     key?: string,
-  ): ReactNode {
+  ): ReactNode => {
     if (!actions?.length) {
       return description;
     }
@@ -23,7 +24,7 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
       <Space direction="vertical">
         {description}
         {actions.map(({ label, onClick }) => {
-          const onActionClick = (): void => {
+          const handleActionClick = (): void => {
             onClick();
             if (!key) {
               return;
@@ -32,15 +33,15 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
           };
           return (
             <Space key={label} direction="vertical">
-              <Typography.Link onClick={onActionClick}>{label}</Typography.Link>
+              <Typography.Link onClick={handleActionClick}>{label}</Typography.Link>
             </Space>
           );
         })}
       </Space>
     );
-  }
+  };
 
-  function openNotification(props: NotificationProps): void {
+  const openNotification = (props: NotificationProps): void => {
     const {
       title,
       description,
@@ -59,17 +60,13 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
       message: title,
       description: fullDescription,
       placement,
-      style: {
-        width: 400,
-        minHeight: 84,
-        zIndex: 21202,
-        ...style,
-      },
+      className: classes['custom-notification'],
+      style: { ...style },
       duration,
       onClose,
       key,
     });
-  }
+  };
 
   return [openNotification, contextHolder];
 }

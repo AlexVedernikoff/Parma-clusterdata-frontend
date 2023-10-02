@@ -27,8 +27,10 @@ import './../css/dash-redesign.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
-import { useCustomNotification } from '@shared/lib/hooks';
-import { NotificationContext } from '@entities/notification';
+import {
+  NotificationContext,
+  useCustomNotification,
+} from '@clustrum-lib/shared/lib/notification';
 
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');

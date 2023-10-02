@@ -12,7 +12,7 @@ import iconPreviewBottom from '@kamatech-data-ui/clustrum/src/icons/preview-bott
 import iconPreviewExpand from '@kamatech-data-ui/clustrum/src/icons/preview-expand.svg';
 import iconPreviewSide from '@kamatech-data-ui/clustrum/src/icons/preview-side.svg';
 import { changeAmountPreviewRows } from '../../store/reducers/dataset';
-import { NotificationContext } from '@entities/notification';
+import { NotificationContext } from '@clustrum-lib/shared/lib/notification';
 
 const b = block('preview-header');
 

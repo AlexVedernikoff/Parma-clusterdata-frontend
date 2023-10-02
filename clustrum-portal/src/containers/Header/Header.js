@@ -42,7 +42,7 @@ import {
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { $appSettingsStore } from '@shared/app-settings';
-import { NotificationType } from '@shared/types/notification';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification';
 
 const b = block('dash-header');
 

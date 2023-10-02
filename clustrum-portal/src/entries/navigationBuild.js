@@ -18,8 +18,10 @@ import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { $appSettingsStore, setAppSettingsEvent } from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
-import { useCustomNotification } from '@shared/lib/hooks';
-import { NotificationContext } from '@entities/notification';
+import {
+  NotificationContext,
+  useCustomNotification,
+} from '@clustrum-lib/shared/lib/notification';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,

@@ -31,8 +31,10 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { $appSettingsStore, setAppSettingsEvent } from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
-import { NotificationContext } from '@entities/notification';
-import { useCustomNotification } from '@shared/lib/hooks';
+import {
+  NotificationContext,
+  useCustomNotification,
+} from '@clustrum-lib/shared/lib/notification';
 
 const middlewares = [thunkMiddleware];
 

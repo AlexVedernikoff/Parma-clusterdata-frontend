@@ -9,7 +9,7 @@ import DialogCreateDashboard from './DialogCreateDashboard/DialogCreateDashboard
 import DialogUnlock from './DialogUnlock/DialogUnlock';
 import DialogAccess from './DialogAccess/DialogAccess';
 import DialogSaveEditorChart from './DialogSaveEditorChart/DialogSaveEditorChart';
-import { NotificationType } from '@shared/types/notification';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 export const ENTRY_DIALOG = {
   COPY: 'copy',

@@ -18,8 +18,10 @@ import Utils from '../../../../helpers/utils';
 import iconCsv from '@kamatech-data-ui/clustrum/src/icons/csv.svg';
 import { getErrorMessage } from '../../utils';
 import { getSearchParam } from '../../../../helpers/QueryParams';
-import { NotificationType } from '@shared/types/notification';
-import { NotificationContext } from '@entities/notification';
+import {
+  NotificationContext,
+  NotificationType,
+} from '@clustrum-lib/shared/lib/notification';
 
 const b = block('csv-connector2');
 

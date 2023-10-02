@@ -1,5 +1,8 @@
 import { CSSProperties, ReactNode } from 'react';
-import { NotificationAction, NotificationType } from '@shared/types/notification';
+import {
+  NotificationAction,
+  NotificationType,
+} from '@lib-shared/lib/notification/types/index';
 import { NotificationPlacement } from 'antd/es/notification/interface';
 
 export interface NotificationProps {
