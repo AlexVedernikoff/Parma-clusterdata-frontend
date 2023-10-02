@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Modal, Space } from 'antd';
 
-import { DialogType } from '@clustrum-lib/shared/types';
-import { getSettings, isDialogVisible } from '../../../store/selectors/dash';
-import { closeDialog, setSettings } from '../../../store/actions/dash';
+import { DialogType } from '@lib-shared/types';
+// eslint-disable-next-line
+// @ts-ignore
+import { getSettings, isDialogVisible } from '../../../../../store/selectors/dash';
+import { closeDialog, setSettings } from '../../../../../store/actions/dash';
+import {
+  DashboardSettingsProps,
+  DashboardSettingsState,
+} from '../types/dashboard-settings-props';
 
-function DashboardSettings(props) {
+function DashboardSettings(props: DashboardSettingsProps): JSX.Element {
   const { visible, closeDialog, settings, setSettings } = props;
   const [checked, setChecked] = useState(settings.needSyncFilters ?? false);
 
@@ -17,7 +23,7 @@ function DashboardSettings(props) {
       cancelText="Отменить"
       onCancel={closeDialog}
       okText="Сохранить"
-      onOk={() => {
+      onOk={(): void => {
         setSettings({ ...settings, needSyncFilters: checked });
         closeDialog();
       }}
@@ -30,7 +36,7 @@ function DashboardSettings(props) {
   );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: unknown): DashboardSettingsState => ({
   settings: getSettings(state),
   visible: isDialogVisible(state, DialogType.DashboardSettings),
 });
@@ -40,4 +46,7 @@ const mapDispatchToProps = {
   closeDialog,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardSettings);
+export const DashboardSettingsComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DashboardSettings);
