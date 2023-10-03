@@ -136,11 +136,17 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     setSortingMaps(INITIAL_SORTING_MAPS_STATE);
   };
 
+  let slicedDataSource = dataSource;
+
+  if (dataSource.length > pageSize) {
+    slicedDataSource = dataSource.slice(0, pageSize - 1);
+  }
+
   return (
     <Table
       className="table-widget"
       columns={modifiedColumns}
-      dataSource={dataSource}
+      dataSource={slicedDataSource}
       size="small"
       showSorterTooltip={false}
       title={(): string | null => title}
