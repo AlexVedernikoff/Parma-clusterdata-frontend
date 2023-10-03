@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { updatePreview } from '../../../../../actions';
 
-/* eslint-disable */
+/* eslint-disable max-params */
 export const updatePreviewShort = <T>(
   params: T,
   dispatch: Dispatch,

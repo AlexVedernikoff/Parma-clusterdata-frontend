@@ -7,3 +7,6 @@ export { DndItemType } from './dnd-item-type';
 export { DndItemData } from './dnd-item-data';
 export { Filter } from './filter';
 export { FieldProperties } from './field-properties';
+export { Dataset, DatasetMode } from './dataset';
+export { FieldAggregation } from './field-aggregation';
+export { ItemTypes } from './item-types';

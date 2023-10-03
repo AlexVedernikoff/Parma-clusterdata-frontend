@@ -1,8 +1,4 @@
-import { Dataset } from '@lib-features/visualizations-list/types/dataset';
-import {
-  FieldAggregation,
-  ItemTypes,
-} from '@lib-features/visualizations-list/types/enums';
+import { Dataset, FieldAggregation, ItemTypes } from './';
 
 export interface FieldProperties {
   avatar_id: string | null;

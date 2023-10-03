@@ -1,5 +1,5 @@
 import { DndContainerProps } from '@lib-shared/ui/drag-n-drop/types';
-import { DndItemData } from '@lib-entities/visualization-factory/types';
+import { DndItemData } from './';
 import { ContainerProps } from './container-props';
 
 export function isDndContainerProps(

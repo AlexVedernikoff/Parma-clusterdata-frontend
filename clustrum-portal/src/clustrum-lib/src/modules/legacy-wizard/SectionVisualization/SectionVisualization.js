@@ -7,7 +7,7 @@ import { Tooltip } from 'lego-on-react';
 import iconError from 'icons/error.svg';
 import { VisualizationFactory } from '@lib-entities/visualization-factory';
 import { VisualizationAdapter } from '@lib-widgets/section-visualization';
-import { COORD_ITEMS } from '@lib-widgets/section-visualization/lib/constants';
+import { COORD_ITEMS } from '@lib-widgets/section-visualization';
 
 import {
   CloseOutlined,
