@@ -30,6 +30,7 @@ export interface Theme {
   layout: LayoutTheme;
   filters: FiltersTheme;
   widget: WidgetTheme;
+  dashboard: DashboardTheme;
   tabs: TabsTheme;
 }
 
@@ -39,6 +40,26 @@ export interface TabsTheme {
 
 export interface WidgetTheme {
   borderShadow: string;
+}
+export interface DashboardTheme {
+  table: TableStyle;
+}
+export interface TableStyle {
+  pagination: TablePagination;
+}
+
+export interface TablePagination {
+  fontStyle: FontStyle;
+  defaultPageSize: number;
+}
+
+export interface FontStyle {
+  weight: string;
+  family: string;
+  size: string;
+  lineHeight: string;
+  color: string;
+  style: string;
 }
 
 export interface FiltersTheme {

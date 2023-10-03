@@ -2,7 +2,7 @@ import { Theme } from '../../app-settings/types/app-settings';
 import { CssVariables } from '../types/theme';
 
 const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
-  const { ant, app, layout, filters, widget } = themeObj;
+  const { ant, app, layout, filters, widget, dashboard } = themeObj;
   return [
     {
       variable: '--antd-color-primary',
@@ -35,6 +35,30 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-default-border-filter-color',
       value: filters.borderFilterColor,
+    },
+    {
+      variable: '--clustrum-dashboard-pagination-font-family',
+      value: dashboard.table.pagination.fontStyle.family,
+    },
+    {
+      variable: '--clustrum-dashboard-pagination-font-weight',
+      value: dashboard.table.pagination.fontStyle.weight,
+    },
+    {
+      variable: '--clustrum-dashboard-pagination-line-height',
+      value: dashboard.table.pagination.fontStyle.lineHeight,
+    },
+    {
+      variable: '--clustrum-dashboard-pagination-font-size',
+      value: dashboard.table.pagination.fontStyle.size,
+    },
+    {
+      variable: '--clustrum-dashboard-pagination-font-style',
+      value: dashboard.table.pagination.fontStyle.style,
+    },
+    {
+      variable: '--clustrum-dashboard-pagination-font-color',
+      value: dashboard.table.pagination.fontStyle.color,
     },
   ];
 };

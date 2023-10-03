@@ -117,6 +117,18 @@
   overflow: visible !important;
 }
 
+.table-widget-pagination a {
+  font-size: var(--clustrum-dashboard-pagination-font-size);
+  font-family: var(--clustrum-dashboard-pagination-font-family);
+  font-style: var(--clustrum-dashboard-pagination-font-style);
+  line-height: var(--clustrum-dashboard-pagination-line-height);
+}
+
+.table-widget .ant-pagination-item:not(.ant-pagination-item-active) a {
+  color: var(--clustrum-dashboard-pagination-font-color);
+  font-weight: var(--clustrum-dashboard-pagination-font-weight);
+}
+
 .ant-tooltip-content > .ant-tooltip-inner {
   color: #000;
   background-color: #fff;

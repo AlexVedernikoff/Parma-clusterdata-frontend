@@ -5,6 +5,8 @@ import { selectNeedUniqueRows } from '../../../../../../../reducers/visualizatio
 import './table-widget.css';
 import { useSelector } from 'react-redux';
 import { ESortDir, ISortMap, ISortMapItem } from './types/table-widget-types';
+// eslint-disable-next-line no-restricted-imports
+import { $appSettingsStore } from '@shared/app-settings';
 
 const INITIAL_MAP_STATE = {
   differenceValue: {},
@@ -39,6 +41,8 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   // функция configureStore в проекте не имеет типизации, поэтому ставим state: any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sortData = useSelector((state: any) => state.visualization?.sort);
+  const defaultPaginationPageSize = $appSettingsStore.getState().theme.dashboard.table
+    .pagination.defaultPageSize;
 
   useEffect(() => {
     setSortMapState(({ sortMap }) => {
@@ -108,10 +112,11 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       pagination={{
         total: Number(totalRowsCount),
         current: initPageState + 1,
-        defaultPageSize: 10,
+        defaultPageSize: defaultPaginationPageSize,
         showTotal: (total: number): string => `Всего: ${total}`,
         onChange: changeHandler,
         showSizeChanger: true,
+        className: 'table-widget-pagination',
       }}
       onChange={handleChange}
     />

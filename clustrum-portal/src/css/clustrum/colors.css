@@ -25,4 +25,11 @@
   --antd-color-dimension-item-hover: rgba(0, 0, 0, 0.04);
   --antd-color-measure-item-base: #ebf4fe;
   --antd-color-measure-item-hover: #dcedfd;
+  --clustrum-dashboard-pagination-font-family: 'Inter', 'Open Sans', 'Helvetica Neue',
+    Arial, Helvetica, sans-serif;
+  --clustrum-dashboard-pagination-font-weight: 400;
+  --clustrum-dashboard-pagination-font-size: '14px';
+  --clustrum-dashboard-pagination-line-height: '22px';
+  --clustrum-dashboard-pagination-font-style: 'normal';
+  --clustrum-dashboard-pagination-font-color: 'inherit';
 }

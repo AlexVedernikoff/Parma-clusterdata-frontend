@@ -1,6 +1,9 @@
 import { createEvent, createStore } from 'effector';
 import { AppSettings } from '../types';
-import { DEFAULT_ENV_VARIABLES } from '../lib/constants';
+import {
+  DEFAULT_ENV_VARIABLES,
+  DEFAULT_FONT_FAMILY,
+} from '@shared/app-settings/lib/constants';
 
 const getInitialConfig = (): AppSettings => {
   const biHost = process.env.REACT_APP_CLUSTRUM_BI_HOST ?? DEFAULT_ENV_VARIABLES.biHost;
@@ -22,7 +25,7 @@ const getInitialConfig = (): AppSettings => {
         colorBorder: 'rgba(0, 0, 0, 0.15)',
       },
       app: {
-        font: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+        font: DEFAULT_FONT_FAMILY,
       },
       layout: {
         backgroundContentColor: '#fff',
@@ -37,6 +40,21 @@ const getInitialConfig = (): AppSettings => {
       },
       widget: {
         borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
+      },
+      dashboard: {
+        table: {
+          pagination: {
+            defaultPageSize: 10,
+            fontStyle: {
+              family: DEFAULT_FONT_FAMILY,
+              size: '14px',
+              weight: '400',
+              lineHeight: '22px',
+              style: 'normal',
+              color: 'rgba(0, 0, 0, 0.88)',
+            },
+          },
+        },
       },
       tabs: {
         tabType: 'card',
