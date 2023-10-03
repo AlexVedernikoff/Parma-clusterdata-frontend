@@ -45,6 +45,7 @@ export interface FiltersTheme {
   backgroundFilterColor: string;
   borderFilterColor: string;
   labelFilterColor: string;
+  labelShadingColor: string;
 }
 export interface AppTheme {
   font: string;
