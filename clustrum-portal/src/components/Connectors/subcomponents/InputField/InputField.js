@@ -13,7 +13,7 @@ class InputField extends React.Component {
   static propTypes = {
     valueType: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.any, // TODO при внедрении TypeScript, решить какой будет тип
     error: PropTypes.string,
     inputType: PropTypes.oneOf(['text', 'password', 'number']),
     widthSize: PropTypes.oneOf(['s', 'm', 'l']),
@@ -45,7 +45,7 @@ class InputField extends React.Component {
             size="s"
             view="default"
             tone="default"
-            text={value}
+            text={String(value)}
             placeholder={placeholder}
             onChange={this._onChange}
             hasClear={hasClear}

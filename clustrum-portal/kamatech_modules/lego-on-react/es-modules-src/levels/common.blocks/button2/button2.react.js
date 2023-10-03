@@ -294,7 +294,7 @@ export default decl(
   {
     propTypes: {
       baseline: PropTypes.bool,
-      theme: PropTypes.string.isRequired,
+      theme: PropTypes.string,
       size: PropTypes.oneOf(['ns', 'xs', 's', 'm', 'l', 'n', 'head']),
       id: PropTypes.string,
       name: PropTypes.string,

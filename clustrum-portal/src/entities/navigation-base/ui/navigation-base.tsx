@@ -18,6 +18,8 @@ import {
 } from '../types';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 import { $pathInFolder } from '@entities/navigation-base';
+import { unsecuredCopyToClipboard } from '../lib/utils';
+import { useUnit } from 'effector-react';
 
 /**
  * TODO
@@ -35,6 +37,7 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     currentPageEntry,
     onUpdate,
   } = props;
+  const [pathInFolder] = useUnit([$pathInFolder]);
 
   const refDialogues = useRef() as React.RefObject<EntryDialogues> | undefined;
   const refErrorDialog = useRef() as React.RefObject<ErrorDialog> | undefined;
@@ -180,8 +183,12 @@ export function NavigationBase(props: NavigationBase): ReactElement {
     updateEffector(response);
   }
 
-  function copyEntryId(entry: NavigationEntryData): Promise<void> {
-    return navigator.clipboard.writeText(entry.entryId);
+  async function copyEntryId(entry: NavigationEntryData): Promise<void> {
+    if (window.isSecureContext && navigator.clipboard) {
+      return await navigator.clipboard.writeText(entry.entryId);
+    } else {
+      return unsecuredCopyToClipboard(entry.entryId);
+    }
   }
 
   async function deleteEntry(entry: NavigationEntryData): Promise<void> {
@@ -234,17 +241,17 @@ export function NavigationBase(props: NavigationBase): ReactElement {
         return;
       }
       case 'connection': {
-        const currentPath = path ? `?currentPath=${encodeURIComponent(path)}` : '';
+        const currentPath = `?currentPath=${encodeURIComponent(pathInFolder)}`;
         window.location.assign(`${sdk.config.endpoints.connections}/new${currentPath}`);
         break;
       }
       case 'dataset': {
-        const currentPath = path ? `?currentPath=${encodeURIComponent(path)}` : '';
+        const currentPath = `?currentPath=${encodeURIComponent(pathInFolder)}`;
         window.location.assign(`${sdk.config.endpoints.dataset}/new${currentPath}`);
         break;
       }
       case 'widget': {
-        const queryPath = path ? `/?currentPath=${encodeURIComponent(path)}` : '';
+        const queryPath = `?currentPath=${encodeURIComponent(pathInFolder)}`;
         window.location.assign(`${sdk.config.endpoints.wizard}${queryPath}`);
         break;
       }

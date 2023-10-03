@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { InputFilterControlProps } from './types';
 
 import styles from './input-filter-control.module.css';
+import { LabelWithHover } from '../../label-with-hover';
 
 export function InputFilterControl(props: InputFilterControlProps): JSX.Element | null {
   const {
@@ -43,7 +44,7 @@ export function InputFilterControl(props: InputFilterControlProps): JSX.Element 
   return (
     <div className={classNames(styles['input-filter-control'], className)}>
       <label className={styles['input-filter-control__label']}>
-        {needShowTitle && `${label}:`}
+        {needShowTitle && <LabelWithHover label={label} />}
         <Input
           placeholder={placeholder}
           value={value}

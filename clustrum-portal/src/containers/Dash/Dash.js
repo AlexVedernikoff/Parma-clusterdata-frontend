@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import Body from '../Body/Body';
 import Dialogs from '../Dialogs/Dialogs';
 
+import { MODE } from '../../modules/constants/constants';
 import PageHead from '../../components/PageHeader/PageHeader';
 
 import { load as loadDash, setErrorMode } from '../../store/actions/dash';
@@ -26,7 +27,7 @@ import ExpandedFilter from '../ExpandedFilter/ExpandedFilter';
 import { resetWizard } from '../../actions';
 import { WizardSavingStatus } from './WizardSavingStatus';
 import { exportWidget } from '../../services/dashboard/export/export-widget';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,
@@ -122,12 +123,13 @@ class Dash extends React.PureComponent {
       hasRightSideContent,
       onFiltersChange,
       onTabChange,
+      dashMode,
     } = this.props;
-
+    const isDashShow = dashMode === MODE.VIEW || dashMode === MODE.EDIT;
     return (
       <React.Fragment>
         {!BUILD_SETTINGS.isLib && <PageHead title={title} />}
-        <Header hasRightSideContent={hasRightSideContent} />
+        {isDashShow && <Header hasRightSideContent={hasRightSideContent} />}
         <Body onFiltersChange={onFiltersChange} onTabChange={onTabChange} />
         <Dialogs />
         <SideSlidingPanel
@@ -158,6 +160,7 @@ const mapStateToProps = state => ({
   canEdit: canEdit(state),
   title: getEntryTitle(state),
   widgetEditorUUID: getWidgetEditorUUID(state),
+  dashMode: state.dash.mode,
 });
 
 const mapDispatchToProps = {

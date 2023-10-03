@@ -10,6 +10,8 @@ import { PlacementPosition } from '@lib-shared/ui/filter-controls-factory/types'
 import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
 
 import styles from './datepicker-filter-control.module.css';
+import { LabelWithHover } from '../../label-with-hover';
+import { renderCustomDate } from '../../custom-date';
 
 const POPUP_WIDTH = 288;
 
@@ -37,7 +39,6 @@ export function DatepickerFilterControl(
       setDate(currentValue);
     } else {
       setDate(null);
-      onChange?.('');
     }
   }, [defaultValue]);
 
@@ -72,10 +73,11 @@ export function DatepickerFilterControl(
   return (
     <div className={classNames(styles['datepicker-control'], className)}>
       <label className={styles['datepicker-control__label']}>
-        {needShowTitle && `${label}:`}
+        {needShowTitle && <LabelWithHover label={label} />}
         <div ref={pickerRef}>
           <DatePicker
             disabledDate={hasDisabled}
+            dateRender={renderCustomDate(dateFormat)}
             format={dateFormat}
             locale={ruRU.DatePicker}
             picker="date"

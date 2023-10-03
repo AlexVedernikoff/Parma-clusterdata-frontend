@@ -16,9 +16,13 @@ function Dataset({
 }) {
   const [path, setPath] = useState();
 
-  useEffect(async () => {
+  const updatePath = async () => {
     const { key } = await sdk.getEntry({ entryId });
     setPath(key);
+  };
+
+  useEffect(() => {
+    updatePath();
   }, [entryId]);
 
   return (

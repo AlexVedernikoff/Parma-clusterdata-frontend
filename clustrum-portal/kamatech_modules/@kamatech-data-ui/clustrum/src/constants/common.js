@@ -1,4 +1,4 @@
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 export const KeyCodes = {
   ARROW_UP: 38,
   ARROW_DOWN: 40,

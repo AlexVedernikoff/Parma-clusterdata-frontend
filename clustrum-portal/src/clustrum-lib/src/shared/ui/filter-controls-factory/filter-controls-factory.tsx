@@ -127,6 +127,10 @@ export class FilterControlsFactory extends React.PureComponent<
             className: styles['filter-controls-factory__control'],
             key: param,
           };
+          const defaultValue = convertToPlainValue(
+            actualParams[param] as string,
+            props.fieldDataType,
+          );
 
           switch (type) {
             case ControlType.Select:
@@ -141,10 +145,7 @@ export class FilterControlsFactory extends React.PureComponent<
               return (
                 <InputFilterControl
                   onChange={this.handleChangeInput(param, props.fieldDataType)}
-                  defaultValue={convertToPlainValue(
-                    actualParams[param] as string,
-                    props.fieldDataType,
-                  )}
+                  defaultValue={defaultValue}
                   {...props}
                 />
               );
@@ -152,7 +153,7 @@ export class FilterControlsFactory extends React.PureComponent<
               return (
                 <DatepickerFilterControl
                   onChange={this.handleChangeDefault(param)}
-                  defaultValue={actualParams[param] as string}
+                  defaultValue={defaultValue}
                   {...props}
                 />
               );
@@ -160,7 +161,7 @@ export class FilterControlsFactory extends React.PureComponent<
               return (
                 <RangeDatepickerFilterControl
                   onChange={this.handleChangeRangeDatepicker(param)}
-                  defaultValue={actualParams[param] as string}
+                  defaultValue={defaultValue}
                   {...props}
                 />
               );

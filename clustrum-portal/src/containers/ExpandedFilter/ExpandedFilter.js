@@ -130,7 +130,7 @@ function ExpandedFilter({
 }
 
 ExpandedFilter.propTypes = {
-  isExpandedFilterOpen: PropTypes.bool.isRequired,
+  isExpandedFilterOpen: PropTypes.bool,
   closeExpandedFilter: PropTypes.func.isRequired,
   tabData: PropTypes.object,
   sidebarTabData: PropTypes.object,

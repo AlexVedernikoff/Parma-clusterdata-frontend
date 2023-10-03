@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDomServer from 'react-dom/server';
 
-import { Options, GridFlow, Cell, DateType } from '../types';
+import { Options, GridFlow, Cell, DateType, CssStyles } from '../types';
 import { camelCaseCss, numberFormatter, NULL_ALIAS } from '../lib';
 import { diffFormatter } from './diff-formatter';
 import { renderDate, renderDiff, renderText } from './cell-renders';
+import { CELL_BASIC_WIDTH, CELL_SYMBOLS_LIMIT } from '../lib/constants';
 
 function reverseGridFlow(gridFlow: GridFlow): GridFlow {
   return gridFlow === GridFlow.Column ? GridFlow.Row : GridFlow.Column;
@@ -77,6 +78,21 @@ function getResultValue(cell: Cell, options: Options): JSX.Element | string {
   }
 }
 
+const getStylesFromValidCell = (cell: Cell): CssStyles => {
+  if (cell.type.toLowerCase() !== 'string') {
+    return {};
+  }
+
+  const len = String(cell.value).length;
+
+  if (len > CELL_SYMBOLS_LIMIT) {
+    return {
+      width: CELL_BASIC_WIDTH + Math.floor(len / 2),
+    };
+  }
+  return {};
+};
+
 export function createCell(
   type: string,
   cell: Cell = {} as Cell,
@@ -104,13 +120,14 @@ export function createCell(
 
   const isNullClass = isNullValue ? 'is_null' : '';
   const extraClasses = [resultSchemaIdClass, isNullClass];
+  const additionalSyles = getStylesFromValidCell(cell);
 
   return (
     <div
       className={`table-widget__content table-widget__content--${type} ${extraClasses.join(
         ' ',
       )}`}
-      style={camelCaseCss(options.contentCss)}
+      style={{ ...camelCaseCss(options.contentCss), ...additionalSyles }}
       key={cell.value?.toString()}
     >
       {/* todo Внимание хардкор. Нужно вводить новый тип "ссылка". В принципе в case 'text' есть задатки */}

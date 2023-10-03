@@ -87,7 +87,7 @@ import DialogFormatTemplate from '../components/Dialogs/DialogFormatTemplate';
 import { NullAlias } from '@kamatech-data-ui/chartkit/lib/components/Widget/Table/NullAlias';
 import { VisualizationType } from '@lib-entities/visualization-factory/types';
 import { VisualizationsList } from '@lib-features/visualizations-list';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 import { DialogPivotTable } from '../components/Dialogs/DialogPivotTable';
 import cloneDeep from 'lodash/cloneDeep';
 import { Dialogs } from './types';

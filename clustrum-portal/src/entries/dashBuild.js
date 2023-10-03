@@ -9,8 +9,8 @@ import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { ANT_TOKEN } from '@shared/config/theme';
-import { setAppSettingsEvent } from '@entities/app-settings';
+import { setAppSettingsEvent, $appSettingsStore } from '@shared/app-settings';
+import { setCssVariables } from '@shared/theme';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Dash from '../containers/Dash/Dash';
@@ -40,37 +40,45 @@ logVersion();
 export default function DashBuild(props) {
   const { entryId, hideRightSideContent, onFiltersChange, onTabChange } = props;
 
+  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
+
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,
     hideTabs: props.hideTabs,
     hideEdit: props.hideEdit,
+    hideDashExport: props.hideDashExport,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,
     stateUuid: props.stateUuid,
+    theme,
   });
 
+  setCssVariables(theme);
+
   return (
-    <ConfigProvider theme={{ ...ANT_TOKEN }} locale={ruRU}>
+    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <DndProvider backend={HTML5Backend}>
-            <Pointerfocus />
-            <Switch>
-              <Route
-                path="*"
-                render={() => (
-                  <Dash
-                    defaultEntryId={entryId}
-                    hasRightSideContent={!hideRightSideContent}
-                    onFiltersChange={onFiltersChange}
-                    onTabChange={onTabChange}
-                  />
-                )}
-              />
-            </Switch>
+            <div className="clustrum">
+              <Pointerfocus />
+              <Switch>
+                <Route
+                  path="*"
+                  render={() => (
+                    <Dash
+                      defaultEntryId={entryId}
+                      hasRightSideContent={!hideRightSideContent}
+                      onFiltersChange={onFiltersChange}
+                      onTabChange={onTabChange}
+                    />
+                  )}
+                />
+              </Switch>
+            </div>
           </DndProvider>
         </ConnectedRouter>
       </Provider>

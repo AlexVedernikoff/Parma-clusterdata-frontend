@@ -5,7 +5,7 @@ import Logo from './Logo/Logo';
 import Menu from './Menu/Menu';
 import Search from './Search/Search';
 import UserAvatar from './UserAvatar/UserAvatar';
-import { $appSettingsStore } from '@entities/app-settings';
+import { $appSettingsStore } from '@shared/app-settings';
 
 // import './Header.scss';
 
