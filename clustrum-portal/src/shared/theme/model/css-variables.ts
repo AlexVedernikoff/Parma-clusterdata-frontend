@@ -37,6 +37,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: filters.borderFilterColor,
     },
     {
+      variable: '--clustrum-filter-label-shading-color',
+      value: filters.labelShadingColor,
+    },
+    {
       variable: '--clustrum-dashboard-pagination-font-family',
       value: dashboard.table.pagination.fontStyle.family,
     },
