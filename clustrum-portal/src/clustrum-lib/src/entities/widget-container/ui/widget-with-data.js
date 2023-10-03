@@ -110,11 +110,11 @@ export class WidgetWithData extends React.PureComponent {
           widgetType: 'map',
           params: params,
           data: {
-            shared: editMode.config?.shared ? editMode.config.shared : {},
+            shared: editMode?.config?.shared ? editMode.config.shared : {},
             geoJson: {
-              coordType: editMode.config.shared.coordType,
-              titleLayerSource: editMode.config.shared.titleLayerSource,
-              widgetType: editMode.config.shared.visualization.id,
+              coordType: editMode?.config.shared.coordType,
+              titleLayerSource: editMode?.config.shared.titleLayerSource,
+              widgetType: editMode?.config.shared.visualization.id,
             },
           },
         };
