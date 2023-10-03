@@ -423,6 +423,7 @@ class ConnectionPage extends React.Component {
     if (type === 'error') {
       message = getErrorTitle()[name];
       actions.push({
+        isForceCloseAfterClick: true,
         label: 'Подробнее',
         onClick: this.errorDialogRef.current.open,
       });

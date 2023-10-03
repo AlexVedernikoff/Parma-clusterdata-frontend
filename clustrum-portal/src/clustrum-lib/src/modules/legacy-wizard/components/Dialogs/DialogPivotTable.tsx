@@ -36,12 +36,14 @@ export const DialogPivotTable = <T extends IItem>(
       console.error(formulaError);
       openNotification({
         title: 'Сохранение невозможно, некорректная формура расчета итогов',
+        key: `${formulaError.response.data.message}`,
         type: NotificationType.Error,
         duration: 6,
         actions: [
           {
             label: 'Сбросить формулу',
             onClick: clearFormulaField,
+            isForceCloseAfterClick: true,
           },
         ],
       });

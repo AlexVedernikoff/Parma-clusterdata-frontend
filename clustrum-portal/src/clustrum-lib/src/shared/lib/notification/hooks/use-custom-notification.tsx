@@ -14,7 +14,7 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
   const getDescriptionWithAction = (
     description: ReactNode,
     actions: NotificationAction[],
-    key?: string,
+    key: string,
   ): ReactNode => {
     if (!actions?.length) {
       return description;
@@ -23,14 +23,14 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
     return (
       <Space direction="vertical">
         {description}
-        {actions.map(({ label, onClick }) => {
+        {actions.map(({ label, onClick, isForceCloseAfterClick }) => {
           const handleActionClick = (): void => {
             onClick();
-            if (!key) {
-              return;
+            if (isForceCloseAfterClick) {
+              api.destroy(key);
             }
-            api.destroy(key);
           };
+
           return (
             <Space key={label} direction="vertical">
               <Typography.Link onClick={handleActionClick}>{label}</Typography.Link>

@@ -48,6 +48,7 @@ export const entryDialoguesNotify = (dialogName, errorDialogRef, openNotificatio
           allowAutoHiding = false;
           actions = [
             {
+              isForceCloseAfterClick: true,
               label: 'Подробнее',
               onClick() {
                 errorDialogRef.current.open({

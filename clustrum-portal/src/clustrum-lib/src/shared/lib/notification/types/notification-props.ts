@@ -7,6 +7,7 @@ import { NotificationPlacement } from 'antd/es/notification/interface';
 
 export interface NotificationProps {
   title: string;
+  key: string;
   description?: ReactNode;
   actions?: NotificationAction[];
   type?: NotificationType;
@@ -14,5 +15,4 @@ export interface NotificationProps {
   style?: CSSProperties;
   duration?: number;
   onClose?: () => void;
-  key?: string;
 }
