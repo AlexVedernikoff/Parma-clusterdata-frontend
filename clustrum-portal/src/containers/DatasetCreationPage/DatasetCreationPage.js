@@ -336,7 +336,6 @@ class DatasetCreationPage extends React.Component {
       type,
       actions: [
         {
-          isForceCloseAfterClick: true,
           label: 'Подробнее',
           onClick: this.errorDialogRef.current.open,
         },

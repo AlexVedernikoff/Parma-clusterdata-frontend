@@ -294,7 +294,6 @@ class DataSource extends React.Component {
         type: NotificationType.Error,
         actions: [
           {
-            isForceCloseAfterClick: true,
             label: 'Подробнее',
             onClick: this.errorDialogRef.current.open,
           },

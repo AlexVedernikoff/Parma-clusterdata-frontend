@@ -480,7 +480,6 @@ const dispatchFetchPreviewDataset = async (
 
       if (datasetErrorDialogRef) {
         actions.push({
-          isForceCloseAfterClick: true,
           label: 'Подробнее',
           onClick: datasetErrorDialogRef.current && datasetErrorDialogRef.current.open,
         });
@@ -565,7 +564,6 @@ const dispatchFetchHistoryDataset = async (
 
       if (datasetErrorDialogRef) {
         actions.push({
-          isForceCloseAfterClick: true,
           label: 'Подробнее',
           onClick: datasetErrorDialogRef.current && datasetErrorDialogRef.current.open,
         });
@@ -807,7 +805,6 @@ export function syncDataSet({ datasetErrorDialogRef, openNotification }) {
 
       if (datasetErrorDialogRef) {
         actions.push({
-          isForceCloseAfterClick: true,
           label: 'Подробнее',
           onClick: datasetErrorDialogRef.current.open,
         });
@@ -862,7 +859,6 @@ export function saveDataset({ datasetErrorDialogRef, openNotification }) {
 
       if (datasetErrorDialogRef) {
         actions.push({
-          isForceCloseAfterClick: true,
           label: 'Подробнее',
           onClick: datasetErrorDialogRef.current.open,
         });

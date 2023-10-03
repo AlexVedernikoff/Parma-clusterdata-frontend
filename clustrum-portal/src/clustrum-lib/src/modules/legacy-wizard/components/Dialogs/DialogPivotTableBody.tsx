@@ -53,16 +53,17 @@ export const DialogPivotTableBody = <T extends IItem>({
       }
     } catch (error) {
       setFormulaError(error as RejectFormulaError);
+      const errorMsg = (error as RejectFormulaError).response.data.message;
+
       openNotification({
-        title: (error as RejectFormulaError).response.data.message,
-        key: `${(error as RejectFormulaError).response.data.message}`,
+        title: errorMsg,
+        key: `${errorMsg}`,
         type: NotificationType.Error,
         duration: 6,
         actions: [
           {
             label: 'Сбросить формулу',
             onClick: clearFormulaField,
-            isForceCloseAfterClick: true,
           },
         ],
       });

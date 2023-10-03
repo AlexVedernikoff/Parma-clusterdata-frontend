@@ -43,7 +43,6 @@ export const DialogPivotTable = <T extends IItem>(
           {
             label: 'Сбросить формулу',
             onClick: clearFormulaField,
-            isForceCloseAfterClick: true,
           },
         ],
       });
