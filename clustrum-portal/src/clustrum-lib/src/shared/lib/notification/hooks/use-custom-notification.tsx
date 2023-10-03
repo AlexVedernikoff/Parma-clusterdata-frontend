@@ -23,7 +23,7 @@ export function useCustomNotification(): UseCustomNotificationReturnType {
     return (
       <Space direction="vertical">
         {description}
-        {actions.map(({ label, onClick, isForceCloseAfterClick }) => {
+        {actions.map(({ label, onClick, isForceCloseAfterClick = true }) => {
           const handleActionClick = (): void => {
             onClick();
             if (isForceCloseAfterClick) {
