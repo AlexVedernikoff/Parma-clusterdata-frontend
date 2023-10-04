@@ -12,6 +12,21 @@ const getInitialConfig = (): AppSettings => {
 
   return {
     theme: {
+      appWidgets: {
+        tableWidget: {
+          cell: {
+            numberType: {
+              align: 'left',
+            },
+            textType: {
+              align: 'right',
+            },
+            dateType: {
+              align: 'center',
+            },
+          },
+        },
+      },
       ant: {
         token: {
           colorPrimary: '#bb2649',
@@ -41,6 +56,7 @@ const getInitialConfig = (): AppSettings => {
         backgroundFilterColor: '#fff',
         borderFilterColor: 'rgba(0, 0, 0, 0.06)',
         labelFilterColor: '#252625',
+        labelShadingColor: '#fff',
       },
       widget: {
         borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',

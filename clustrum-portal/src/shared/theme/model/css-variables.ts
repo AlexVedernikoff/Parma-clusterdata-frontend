@@ -2,8 +2,20 @@ import { Theme } from '../../app-settings/types/app-settings';
 import { CssVariables } from '../types/theme';
 
 const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
-  const { ant, app, layout, filters, widget } = themeObj;
+  const { ant, app, layout, filters, widget, appWidgets } = themeObj;
   return [
+    {
+      variable: '--clustrum-table-widget-cell-numbertype-aling',
+      value: appWidgets?.tableWidget?.cell?.numberType?.align ?? 'left',
+    },
+    {
+      variable: '--clustrum-table-widget-cell-texttype-align',
+      value: appWidgets?.tableWidget?.cell?.textType?.align ?? 'right',
+    },
+    {
+      variable: '--clustrum-table-widget-cell-datetype-align',
+      value: appWidgets?.tableWidget?.cell?.dateType?.align ?? 'center',
+    },
     {
       variable: '--antd-color-primary',
       value: ant.token?.colorPrimary ?? '',
@@ -35,6 +47,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-default-border-filter-color',
       value: filters.borderFilterColor,
+    },
+    {
+      variable: '--clustrum-filter-label-shading-color',
+      value: filters.labelShadingColor,
     },
   ];
 };

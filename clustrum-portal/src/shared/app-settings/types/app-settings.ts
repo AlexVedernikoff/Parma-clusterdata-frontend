@@ -1,4 +1,5 @@
 import { ThemeConfig } from 'antd';
+import { AppWidgets } from '@shared/app-settings/types';
 
 export interface AppSettings {
   env: string;
@@ -33,6 +34,7 @@ export interface Theme {
   filters: FiltersTheme;
   widget: WidgetTheme;
   tabs: TabsTheme;
+  appWidgets: AppWidgets;
 }
 
 export interface TabsTheme {
@@ -47,6 +49,7 @@ export interface FiltersTheme {
   backgroundFilterColor: string;
   borderFilterColor: string;
   labelFilterColor: string;
+  labelShadingColor: string;
 }
 export interface AppTheme {
   font: string;
