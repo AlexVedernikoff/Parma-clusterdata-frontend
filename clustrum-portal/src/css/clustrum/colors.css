@@ -7,6 +7,7 @@
   --clustrum-default-background-panel-color: #fff;
   --clustrum-default-background-filter-color: #fff;
   --clustrum-default-label-filter-color: #000;
+  --clustrum-default-widget-background-color: #fff;
   --clustrum-default-widget-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
   --clustrum-default-border-filter-color: gba(0, 0, 0, 0.06);
   --clustrum-filter-label-shading-color: #fff;
@@ -32,14 +33,15 @@
   --clustrum-filter-label-line-height: 22px;
   --clustrum-filter-label-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial',
     'Helvetica';
-  --clustrum-filter-select-font-weight: 400;
-  --clustrum-filter-select-font-size: 14px;
-  --clustrum-filter-select-line-height: 22px;
-  --clustrum-filter-select-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial',
+  --clustrum-filter-control-font-weight: 400;
+  --clustrum-filter-control-font-size: 14px;
+  --clustrum-filter-control-line-height: 22px;
+  --clustrum-filter-control-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial',
     'Helvetica';
-  --clustrum-filter-select-border-size: 1px;
-  --clustrum-filter-select-border-style: solid;
-  --clustrum-filter-select-border-color: rgba(0, 0, 0, 0.15);
-  --clustrum-filter-select-border-radius: 50%;
+  --clustrum-filter-control-border-size: 1px;
+  --clustrum-filter-control-border-style: solid;
+  /* --clustrum-filter-control-border-color: rgba(0, 0, 0, 0.15); */
+  --clustrum-filter-control-border-color: green;
+  --clustrum-filter-control-border-radius: 4px;
   --clustrum-filter-text-align: left;
 }

@@ -57,40 +57,44 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: filters.labelFontSize,
     },
     {
-      variable: '--clustrum-filter-select-font-weight',
-      value: filters.selectFontWeight,
+      variable: '--clustrum-filter-control-font-weight',
+      value: filters.controlFontWeight,
     },
     {
-      variable: '--clustrum-filter-select-font-family',
-      value: filters.selectFontFamily,
+      variable: '--clustrum-filter-control-font-family',
+      value: filters.controlFontFamily,
     },
     {
-      variable: '--clustrum-filter-select-line-height',
-      value: filters.selectLineHeight,
+      variable: '--clustrum-filter-control-line-height',
+      value: filters.controlLineHeight,
     },
     {
-      variable: '--clustrum-filter-select-font-size',
-      value: filters.selectFontSize,
+      variable: '--clustrum-filter-control-font-size',
+      value: filters.controlFontSize,
     },
     {
-      variable: '--clustrum-filter-select-border-size',
-      value: filters.selectBorderSize,
+      variable: '--clustrum-filter-control-border-size',
+      value: filters.controlBorderSize,
     },
     {
-      variable: '--clustrum-filter-select-border-style',
-      value: filters.selectBorderStyle,
+      variable: '--clustrum-filter-control-border-style',
+      value: filters.controlBorderStyle,
     },
     {
-      variable: '--clustrum-filter-select-border-color',
-      value: filters.selectBorderColor,
+      variable: '--clustrum-filter-control-border-color',
+      value: filters.controlBorderColor,
     },
     {
-      variable: '--clustrum-filter-select-border-radius',
-      value: filters.selectBorderRadius,
+      variable: '--clustrum-filter-control-border-radius',
+      value: filters.controlBorderRadius,
     },
     {
       variable: '--clustrum-filter-text-align',
       value: filters.textAlign,
+    },
+    {
+      variable: '--clustrum-default-widget-background-color',
+      value: widget.backgroundColor,
     },
   ];
 };

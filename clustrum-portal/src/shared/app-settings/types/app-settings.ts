@@ -38,14 +38,15 @@ export interface TabsTheme {
 }
 
 export interface WidgetTheme {
+  backgroundColor: string;
   borderShadow: string;
 }
 
 export interface FiltersTheme {
-  selectBorderRadius: string;
-  selectBorderColor: string;
-  selectBorderStyle: string;
-  selectBorderSize: string;
+  controlBorderRadius: string;
+  controlBorderColor: string;
+  controlBorderStyle: string;
+  controlBorderSize: string;
   backgroundFilterColor: string;
   textAlign: string;
   borderFilterColor: string;
@@ -55,10 +56,10 @@ export interface FiltersTheme {
   labelFontWeight: string;
   labelFontFamily: string;
   labelLineHeight: string;
-  selectFontSize: string;
-  selectLineHeight: string;
-  selectFontFamily: string;
-  selectFontWeight: string;
+  controlFontSize: string;
+  controlLineHeight: string;
+  controlFontFamily: string;
+  controlFontWeight: string;
 }
 export interface AppTheme {
   font: string;

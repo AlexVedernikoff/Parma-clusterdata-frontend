@@ -711,9 +711,9 @@
 
 .dashkit-grid-item.react-grid-item {
   border-radius: 0.5rem;
-  border: none;
   overflow: hidden;
-  background-color: var(--white);
+  border: none;
+  background-color: var(--clustrum-default-widget-background-color);
   box-shadow: var(--clustrum-default-widget-shadow);
 }
 
