@@ -57,6 +57,50 @@ const getInitialConfig = (): AppSettings => {
       tabs: {
         tabType: 'card',
       },
+      dashboard: {
+        widget: {
+          pivotTable: {
+            th: {
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '13px',
+                weight: '600',
+                style: 'normal',
+                lineHeight: '1.2',
+                color: '#000',
+              },
+            },
+            td: {
+              align: {
+                string: 'left',
+                date: 'middle',
+                number: 'right',
+              },
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '13px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '1.2',
+                color: '#000',
+              },
+            },
+            total: {
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '13px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '1.2',
+                color: '#000',
+              },
+            },
+            layout: {
+              tableBorderColor: 'transparent',
+            },
+          },
+        },
+      },
     },
     env: 'development',
     appEnv: 'development',
