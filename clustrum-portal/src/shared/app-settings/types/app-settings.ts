@@ -43,6 +43,7 @@ export interface WidgetTheme {
 }
 
 export interface FiltersTheme {
+  controlFilterColor: string;
   controlBorderRadius: string;
   controlBorderColor: string;
   controlBorderStyle: string;

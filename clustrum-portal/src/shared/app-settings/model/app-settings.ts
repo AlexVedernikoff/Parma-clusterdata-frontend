@@ -33,8 +33,8 @@ const getInitialConfig = (): AppSettings => {
       filters: {
         backgroundFilterColor: '#fff',
         borderFilterColor: 'rgba(0, 0, 0, 0.06)',
-        labelFilterColor: '#252625',
         labelShadingColor: '#fff',
+        labelFilterColor: '',
         controlBorderRadius: '',
         controlBorderColor: '',
         controlBorderStyle: '',
@@ -48,6 +48,7 @@ const getInitialConfig = (): AppSettings => {
         controlLineHeight: '',
         controlFontFamily: '',
         controlFontWeight: '',
+        controlFilterColor: '',
       },
       widget: {
         borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',

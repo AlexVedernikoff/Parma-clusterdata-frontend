@@ -29,6 +29,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: filters.labelFilterColor,
     },
     {
+      variable: '--clustrum-default-control-filter-color',
+      value: filters.controlFilterColor,
+    },
+    {
       variable: '--clustrum-default-widget-shadow',
       value: widget.borderShadow,
     },
