@@ -12,6 +12,7 @@ import ruRU from 'antd/locale/ru_RU';
 import {
   setAppSettingsEvent,
   combineDefaultThemeAndPropsTheme,
+  $appSettingsStore,
 } from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
 import { DndProvider } from 'react-dnd';
@@ -43,9 +44,12 @@ logVersion();
 export default function DashBuild(props) {
   const { entryId, hideRightSideContent, onFiltersChange, onTabChange } = props;
 
-  const theme = combineDefaultThemeAndPropsTheme(props.theme);
+  const [setAppSettings, appSettingsStore] = useUnit([
+    setAppSettingsEvent,
+    $appSettingsStore,
+  ]);
+  const theme = combineDefaultThemeAndPropsTheme(props.theme, appSettingsStore.theme);
 
-  const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,

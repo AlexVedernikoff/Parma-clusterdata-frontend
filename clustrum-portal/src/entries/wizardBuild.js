@@ -61,9 +61,12 @@ const sdk = new SDK({
 export default function WizardBuild(props) {
   const { entryId } = props;
 
-  const theme = combineDefaultThemeAndPropsTheme(props.theme);
+  const [setAppSettings, appSettingsStore] = useUnit([
+    setAppSettingsEvent,
+    $appSettingsStore,
+  ]);
+  const theme = combineDefaultThemeAndPropsTheme(props.theme, appSettingsStore.theme);
 
-  const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,

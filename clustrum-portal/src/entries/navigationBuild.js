@@ -35,9 +35,12 @@ Utils.setBodyFeatures();
 logVersion();
 
 export default function NavigationBuild(props) {
-  const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const [setAppSettings, appSettingsStore] = useUnit([
+    setAppSettingsEvent,
+    $appSettingsStore,
+  ]);
 
-  const theme = combineDefaultThemeAndPropsTheme(props.theme);
+  const theme = combineDefaultThemeAndPropsTheme(props.theme, appSettingsStore.theme);
 
   setAppSettings({
     hideHeader: props.hideHeader,
