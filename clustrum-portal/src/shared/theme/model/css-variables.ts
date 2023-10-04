@@ -5,7 +5,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
   const { ant, app, layout, filters, widget, appWidgets } = themeObj;
   return [
     {
-      variable: '--clustrum-table-widget-cell-numbertype-aling',
+      variable: '--clustrum-table-widget-cell-numbertype-align',
       value: appWidgets?.tableWidget?.cell?.numberType?.align ?? 'left',
     },
     {
