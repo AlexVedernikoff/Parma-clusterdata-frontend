@@ -58,16 +58,18 @@ const getInitialConfig = (): AppSettings => {
         borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
       },
       dashboard: {
-        table: {
-          pagination: {
-            defaultPageSize: 10,
-            fontStyle: {
-              family: DEFAULT_FONT_FAMILY,
-              size: '14px',
-              weight: '400',
-              lineHeight: '22px',
-              style: 'normal',
-              color: 'rgba(0, 0, 0, 0.88)',
+        widget: {
+          table: {
+            pagination: {
+              defaultPageSize: 10,
+              fontStyle: {
+                family: DEFAULT_FONT_FAMILY,
+                size: '14px',
+                weight: '400',
+                lineHeight: '22px',
+                style: 'normal',
+                color: 'rgba(0, 0, 0, 0.88)',
+              },
             },
           },
         },

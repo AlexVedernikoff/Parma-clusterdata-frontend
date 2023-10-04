@@ -45,9 +45,14 @@ export interface WidgetTheme {
   borderShadow: string;
 }
 export interface DashboardTheme {
-  table: TableStyle;
+  widget: DashboardWidgetTheme;
 }
-export interface TableStyle {
+
+export interface DashboardWidgetTheme {
+  table: TableTheme;
+}
+
+export interface TableTheme {
   pagination: TablePagination;
 }
 

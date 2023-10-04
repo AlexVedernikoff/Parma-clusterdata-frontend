@@ -55,27 +55,29 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     },
     {
       variable: '--clustrum-dashboard-pagination-font-family',
-      value: dashboard?.table?.pagination?.fontStyle?.family ?? DEFAULT_FONT_FAMILY,
+      value:
+        dashboard?.widget?.table?.pagination?.fontStyle?.family ?? DEFAULT_FONT_FAMILY,
     },
     {
       variable: '--clustrum-dashboard-pagination-font-weight',
-      value: dashboard?.table?.pagination?.fontStyle?.weight ?? '400',
+      value: dashboard?.widget?.table?.pagination?.fontStyle?.weight ?? '400',
     },
     {
       variable: '--clustrum-dashboard-pagination-line-height',
-      value: dashboard?.table?.pagination?.fontStyle?.lineHeight ?? '22px',
+      value: dashboard?.widget?.table?.pagination?.fontStyle?.lineHeight ?? '22px',
     },
     {
       variable: '--clustrum-dashboard-pagination-font-size',
-      value: dashboard?.table?.pagination?.fontStyle?.size ?? '14px',
+      value: dashboard?.widget?.table?.pagination?.fontStyle?.size ?? '14px',
     },
     {
       variable: '--clustrum-dashboard-pagination-font-style',
-      value: dashboard?.table?.pagination?.fontStyle?.style ?? 'normal',
+      value: dashboard?.widget?.table?.pagination?.fontStyle?.style ?? 'normal',
     },
     {
       variable: '--clustrum-dashboard-pagination-font-color',
-      value: dashboard?.table?.pagination?.fontStyle?.color ?? 'rgba(0, 0, 0, 0.88)',
+      value:
+        dashboard?.widget?.table?.pagination?.fontStyle?.color ?? 'rgba(0, 0, 0, 0.88)',
     },
   ];
 };

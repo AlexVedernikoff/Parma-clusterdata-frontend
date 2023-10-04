@@ -41,8 +41,8 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   // функция configureStore в проекте не имеет типизации, поэтому ставим state: any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sortData = useSelector((state: any) => state.visualization?.sort);
-  const defaultPaginationPageSize = $appSettingsStore.getState().theme.dashboard.table
-    .pagination.defaultPageSize;
+  const defaultPaginationPageSize = $appSettingsStore.getState().theme.dashboard.widget
+    .table.pagination.defaultPageSize;
 
   useEffect(() => {
     setSortMapState(({ sortMap }) => {
