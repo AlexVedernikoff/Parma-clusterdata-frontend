@@ -704,9 +704,7 @@ class OLMap extends React.Component {
   };
 
   isHeatMap = () => {
-    return (
-      this.props.data.data.geoJson.widgetType.toLowerCase() === 'heatMap'.toLowerCase()
-    );
+    return this.props.data.data.geoJson?.widgetType?.toLowerCase() === 'heatmap';
   };
 
   /*
