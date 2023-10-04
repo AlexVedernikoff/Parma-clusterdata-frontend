@@ -42,14 +42,19 @@ export interface WidgetTheme {
 }
 
 export interface FiltersTheme {
-  labelTextAlign: string;
   backgroundFilterColor: string;
+  textAlign: string;
   borderFilterColor: string;
   labelFilterColor: string;
   labelShadingColor: string;
+  labelFontSize: string;
   labelFontWeight: string;
   labelFontFamily: string;
   labelLineHeight: string;
+  selectFontSize: string;
+  selectLineHeight: string;
+  selectFontFamily: string;
+  selectFontWeight: string;
 }
 export interface AppTheme {
   font: string;

@@ -53,8 +53,28 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: filters.labelLineHeight,
     },
     {
+      variable: '--clustrum-filter-label-font-size',
+      value: filters.labelFontSize,
+    },
+    {
+      variable: '--clustrum-filter-select-font-weight',
+      value: filters.selectFontWeight,
+    },
+    {
+      variable: '--clustrum-filter-select-font-family',
+      value: filters.selectFontFamily,
+    },
+    {
+      variable: '--clustrum-filter-select-line-height',
+      value: filters.selectLineHeight,
+    },
+    {
+      variable: '--clustrum-filter-select-font-size',
+      value: filters.selectFontSize,
+    },
+    {
       variable: '--clustrum-filter-text-align',
-      value: filters.labelTextAlign,
+      value: filters.textAlign,
     },
   ];
 };

@@ -10,11 +10,15 @@
   width: 100%;
   color: var(--clustrum-default-label-filter-color);
   font-weight: var(--clustrum-filter-label-font-weight);
+  font-size: var(--clustrum-filter-label-font-size);
   font-family: var(--clustrum-filter-label-font-family);
   line-height: var(--clustrum-filter-label-line-height);
-  text-align: var(--clustrum-filter-text-align);
 }
 
 .select-filter-control__select {
   width: 100%;
+  font-weight: var(--clustrum-select-label-font-weight);
+  font-size: var(--clustrum-select-label-font-size);
+  font-family: var(--clustrum-select-label-font-family);
+  line-height: var(--clustrum-select-label-line-height);
 }
