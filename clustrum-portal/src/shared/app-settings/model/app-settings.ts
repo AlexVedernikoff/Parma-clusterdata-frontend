@@ -86,6 +86,7 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             total: {
+              backgroundColor: 'transparent',
               font: {
                 family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
                 size: '13px',

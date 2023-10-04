@@ -21,6 +21,34 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: ant.colorPrimary,
     },
     {
+      variable: '--antd-final-table-column-total-color',
+      value: dashboard?.widget?.pivotTable?.total?.font?.color,
+    },
+    {
+      variable: '--antd-final-table-column-total-weight',
+      value: dashboard?.widget?.pivotTable?.total?.font?.weight,
+    },
+    {
+      variable: '--antd-final-table-column-total-size',
+      value: dashboard?.widget?.pivotTable?.total?.font?.size,
+    },
+    {
+      variable: '--antd-final-table-column-total-style',
+      value: dashboard?.widget?.pivotTable?.total?.font?.style,
+    },
+    {
+      variable: '--antd-final-table-column-total-line-height',
+      value: dashboard?.widget?.pivotTable?.total?.font?.lineHeight,
+    },
+    {
+      variable: '--antd-final-table-column-total-font-family',
+      value: dashboard?.widget?.pivotTable?.total?.font?.family,
+    },
+    {
+      variable: '--antd-final-table-column-total-background-color',
+      value: dashboard?.widget?.pivotTable?.total?.backgroundColor,
+    },
+    {
       variable: '--clustrum-default-font-family',
       value: app.font,
     },

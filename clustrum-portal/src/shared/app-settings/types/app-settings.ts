@@ -56,6 +56,7 @@ export interface LayoutPivotTableWidgetTheme {
 }
 export interface TotalPivotTableWidgetTheme {
   font: FontItemTheme;
+  backgroundColor: string;
 }
 
 export interface CellPivotTableWidgetTheme {
