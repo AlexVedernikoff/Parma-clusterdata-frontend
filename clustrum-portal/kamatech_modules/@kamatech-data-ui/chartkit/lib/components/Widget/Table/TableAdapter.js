@@ -87,7 +87,7 @@ const handleCellClick = (column, row) => {
 function getColumnsAndNames({ head, context }, clickCallback, field, prevSelectedCell) {
   return head.reduce(
     (result, column, index) => {
-      const { name, type, ...options } = column;
+      const { name, type, resultSchemaId, ...options } = column;
       const columnName = `${index}_name=${name}`;
 
       const columnData = {
@@ -96,6 +96,7 @@ function getColumnsAndNames({ head, context }, clickCallback, field, prevSelecte
         render: ({ value }) => createCell(type, value, options),
         context,
         field,
+        resultSchemaId,
         columnName,
         prevSelectedCell,
         clickCallback,
@@ -138,14 +139,12 @@ function getAntdColumnParams(col, index, total) {
 
 function getAntdColumn(col, index, total) {
   return {
+    id: col.resultSchemaId,
     title: col.header,
     key: index,
     dataIndex: col.dataIndex,
-    sorter: (row1, row2) => {
-      const left = row1[col.dataIndex].value;
-      const right = row2[col.dataIndex].value;
-      return left > right ? 1 : left < right ? -1 : 0;
-    },
+    // Используется функция-заглушка, так как сортировка происходит на стороне бэка
+    sorter: () => {},
     onCell: row => ({
       onClick: () => handleCellClick(col, row),
     }),

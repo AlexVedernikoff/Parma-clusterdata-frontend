@@ -1,6 +1,6 @@
 {
   "name": "clustrum",
-  "version": "0.3.0",
+  "version": "1.3.0",
   "author": "parmalogica",
   "description": "BI solution",
   "main": "bundle.js",

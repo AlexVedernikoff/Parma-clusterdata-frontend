@@ -1,6 +1,6 @@
 {
   "name": "@clustrum/clustrum-portal",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "clustrum-portal",
   "license": "MIT",
   "main": "index.js",
@@ -26,7 +26,8 @@
     "stylelint": "stylelint **/*.{css,scss}",
     "stylelint:fix": "stylelint **/*.{css,scss} --fix",
     "stylelint:pre-commit": "stylelint --fix --allow-empty-input",
-    "npm-package-build": "npm run build:lib && cd src/entries/npmBuild && chmod +x ./npmBuild.sh && ./npmBuild.sh && cd ../dist && npm pack"
+    "npm-package-build": "npm run build:lib && cd src/entries/npmBuild && chmod +x ./npmBuild.sh && ./npmBuild.sh && cd ../dist && npm pack",
+    "local-front:fix-out-of-memory": "node --max_old_space_size=8192 ./node_modules/webpack/bin/webpack.js --watch --config webpack/webpack.local-front.js"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json}": "npm run eslint:pre-commit",
@@ -152,6 +153,9 @@
     "dotenv": "5.0.1",
     "eslint": "8.38.0",
     "eslint-config-prettier": "8.5.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-import-resolver-typescript": "2.5.0",
+    "eslint-plugin-boundaries": "3.1.1",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.5.0",

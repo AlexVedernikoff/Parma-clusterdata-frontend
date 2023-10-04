@@ -27,7 +27,7 @@ export function NavigationPage({ sdk }: NavigationPage): ReactElement | null {
   ]);
 
   const place = useCurrentPlace();
-  const { path: entryId, root } = useParams<{ path?: string; root?: string }>();
+  const { path: entryId } = useParams<{ path?: string; root?: string }>();
 
   const getNavigation = (): void => {
     if (entryId) {
