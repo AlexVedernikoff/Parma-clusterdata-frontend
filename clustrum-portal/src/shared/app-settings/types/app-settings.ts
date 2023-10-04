@@ -31,6 +31,24 @@ export interface Theme {
   filters: FiltersTheme;
   widget: WidgetTheme;
   tabs: TabsTheme;
+  dashboard: Dashboard;
+}
+
+export interface Dashboard {
+  header: Header;
+}
+
+export interface Header {
+  font: Font;
+}
+
+export interface Font {
+  family: string;
+  size: string;
+  weight: string;
+  style: string;
+  lineHeight: string;
+  color: string;
 }
 
 export interface TabsTheme {

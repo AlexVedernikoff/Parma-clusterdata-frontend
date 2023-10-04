@@ -3,6 +3,11 @@
   --clustrum-default-color-primary: #bb2649;
   --clustrum-default-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica,
     sans-serif;
+  --clustrum-dashboard-header-font-size: 30px;
+  --clustrum-dashboard-header-font-weight: 400;
+  --clustrum-dashboard-header-font-style: normal;
+  --clustrum-dashboard-header-font-lineHeight: 30px;
+  --clustrum-dashboard-header-font-color: #111729;
   --clustrum-default-background-content-color: #fff;
   --clustrum-default-background-panel-color: #fff;
   --clustrum-default-background-filter-color: #fff;

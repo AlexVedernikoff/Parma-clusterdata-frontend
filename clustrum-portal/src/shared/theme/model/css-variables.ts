@@ -2,7 +2,7 @@ import { Theme } from '../../app-settings/types/app-settings';
 import { CssVariables } from '../types/theme';
 
 const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
-  const { ant, app, layout, filters, widget } = themeObj;
+  const { ant, app, layout, filters, widget, dashboard } = themeObj;
   return [
     {
       variable: '--antd-color-primary',
@@ -35,6 +35,30 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-default-border-filter-color',
       value: filters.borderFilterColor,
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-family',
+      value: dashboard.header.font.family,
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-size',
+      value: dashboard.header.font.size,
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-weight',
+      value: dashboard.header.font.weight,
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-style',
+      value: dashboard.header.font.style,
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-lineHeight',
+      value: dashboard.header.font.lineHeight,
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-color',
+      value: dashboard.header.font.color,
     },
   ];
 };

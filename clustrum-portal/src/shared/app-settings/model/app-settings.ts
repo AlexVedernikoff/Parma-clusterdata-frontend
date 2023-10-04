@@ -41,6 +41,18 @@ const getInitialConfig = (): AppSettings => {
       tabs: {
         tabType: 'card',
       },
+      dashboard: {
+        header: {
+          font: {
+            family: 'Golos Text',
+            size: '30px',
+            weight: '400',
+            style: 'normal',
+            lineHeight: '45px',
+            color: '#111729',
+          },
+        },
+      },
     },
     env: 'development',
     appEnv: 'development',
