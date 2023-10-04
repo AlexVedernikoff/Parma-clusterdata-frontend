@@ -4,7 +4,6 @@ import {
   TableWidgetProps,
   isExtendedColumnType,
   AntdSortingOrder,
-  SortingOrder,
   SortingMapDataItem,
   SortingMaps,
   SortingMap,
@@ -14,8 +13,13 @@ import {
 import { selectNeedUniqueRows } from '../../../../../../../reducers/visualization';
 import './table-widget.css';
 import { useSelector } from 'react-redux';
-import { FilterValue, SorterResult } from 'antd/es/table/interface';
+import {
+  FilterValue,
+  SorterResult,
+  TableCurrentDataSource,
+} from 'antd/es/table/interface';
 import { FIRST_PAGE_INDEX, INITIAL_SORTING_MAPS_STATE } from './lib/constants';
+import { SortingOrder } from '@lib-shared/types';
 
 export function TableWidget(props: TableWidgetProps): JSX.Element {
   const {
@@ -135,13 +139,19 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     { current: selectedPage, pageSize: selectedPageSize }: TablePaginationConfig,
     filters: Record<string, FilterValue | null>,
     sorter: SorterResult<object> | SorterResult<object>[],
+    extra: TableCurrentDataSource<object>,
+    // eslint-disable-next-line max-params
   ): void => {
-    handleSort(sorter);
+    if (extra.action === 'sort') {
+      handleSort(sorter);
+    }
 
-    if (selectedPageSize !== undefined && selectedPageSize !== pageSize) {
-      handlePageSizeChange(selectedPageSize);
-    } else if (selectedPage !== undefined && selectedPage !== pageSize) {
-      handlePageChange(selectedPage);
+    if (extra.action === 'paginate') {
+      if (selectedPageSize !== undefined && selectedPageSize !== pageSize) {
+        handlePageSizeChange(selectedPageSize);
+      } else if (selectedPage !== undefined && selectedPage !== pageSize) {
+        handlePageChange(selectedPage);
+      }
     }
 
     setSortingMaps(INITIAL_SORTING_MAPS_STATE);

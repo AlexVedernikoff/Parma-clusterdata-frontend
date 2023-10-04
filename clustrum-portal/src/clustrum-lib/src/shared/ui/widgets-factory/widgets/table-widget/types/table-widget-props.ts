@@ -1,5 +1,5 @@
+import { PaginateInfo } from '@lib-shared/types';
 import { ExtendedColumnType } from './column-types';
-import { PaginateInfo } from './pagination-types';
 
 export interface TableWidgetProps {
   totalRowsCount: string;

@@ -6,11 +6,6 @@ export enum AntdSortingOrder {
 
 export type AntdSortingOrderKey = keyof typeof AntdSortingOrder;
 
-export enum SortingOrder {
-  Asc = 'asc',
-  Desc = 'desc',
-}
-
 export interface SortingMapDataItem {
   title: string;
   direction: AntdSortingOrderKey;
