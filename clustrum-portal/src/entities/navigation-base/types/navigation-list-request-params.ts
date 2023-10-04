@@ -1,8 +1,8 @@
+import { SortingOrder } from '@clustrum-lib/shared/types';
 import { Places } from '@shared/config/routing';
-import { Order } from '@shared/types';
 
 export interface NavigationListRequestParams {
-  orderBy?: Order;
+  orderBy?: SortingOrder;
   page: number | null;
   pageSize: number;
   token: string;

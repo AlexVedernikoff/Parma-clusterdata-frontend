@@ -27,6 +27,7 @@ const getInitialConfig = (): AppSettings => {
     hideSubHeader: null,
     hideTabs: null,
     hideEdit: null,
+    hideDashExport: null,
     enableCaching: null,
     cacheMode: null,
     exportMode: null,

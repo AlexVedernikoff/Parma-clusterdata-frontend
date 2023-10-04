@@ -46,6 +46,7 @@ export default function DashBuild(props) {
     hideSubHeader: props.hideSubHeader,
     hideTabs: props.hideTabs,
     hideEdit: props.hideEdit,
+    hideDashExport: props.hideDashExport,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,

@@ -174,7 +174,7 @@ const FieldSettingsEditor = props => {
           tone="default"
           text={title}
           error={isTitleError ? titleErrorMessage : ''}
-          onChange={title => modifyField({ title })}
+          onChange={title => modifyField({ title }, { validate: true })}
         />
         {isDisplayElement && (
           <CheckBox

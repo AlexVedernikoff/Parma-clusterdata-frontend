@@ -3,6 +3,7 @@ import { Button, Dropdown, Input, Space } from 'antd';
 import { CloseOutlined, DownOutlined, SearchOutlined } from '@ant-design/icons';
 import { MenuInfo } from 'rc-menu/lib/interface';
 // TODO: не по FSD, надо куда-то переместить
+// eslint-disable-next-line boundaries/element-types
 import { Header } from '@entities/header';
 // TODO: данные функции перенести в clustrum-portal
 import {

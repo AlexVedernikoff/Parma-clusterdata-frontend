@@ -6,6 +6,7 @@ import { Icon } from '@kamatech-data-ui/common/src';
 import { ActionPanel } from '@kamatech-data-ui/clustrum';
 import Utils from './../../helpers/utils';
 import { getConnectorsMap, getFakeEntry } from '../../constants';
+import { appendSearchParams } from '../../helpers/QueryParams';
 
 const b = block('connectors');
 
@@ -51,11 +52,12 @@ export function Connectors({ sdk, location: { search } }) {
 
       <div className={b('list')}>
         {connectionsList.map(([connector, title]) => {
+          const newSearch = appendSearchParams(search, { connectorType: connector });
           return (
             <Link
               key={connector}
               className={b('link')}
-              to={`/connections/new/${connector}${search}`}
+              to={`/connections/new?${newSearch}`}
             >
               <Button
                 cls={b('connector-btn')}

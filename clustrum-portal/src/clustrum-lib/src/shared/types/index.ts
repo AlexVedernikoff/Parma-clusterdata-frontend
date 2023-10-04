@@ -8,3 +8,5 @@ export {
   Permissions,
 } from './navigation-entry-data';
 export { EntryScope } from './entry-scope';
+export { SortingOrder } from './sorting-order';
+export { PaginateInfo } from './paginate-info';

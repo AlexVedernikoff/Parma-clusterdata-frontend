@@ -9,5 +9,5 @@ export const convertToPartialMatchValue = (
     return valueInput;
   }
 
-  return `${valueInput}${PARTIAL_MATCH_POSTFIX}`;
+  return valueInput && `${valueInput}${PARTIAL_MATCH_POSTFIX}`;
 };

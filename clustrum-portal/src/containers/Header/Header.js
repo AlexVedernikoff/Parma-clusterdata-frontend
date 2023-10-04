@@ -196,6 +196,7 @@ class Header extends React.PureComponent {
         items={items}
         layout={jointLayout}
         toggleWidgetVisibility={this.toggleWidgetVisibility}
+        hint={'Скрытие элементов аналитической панели'}
       />,
       <Button
         title="Открыть панель расширенных фильтров"
@@ -296,6 +297,9 @@ class Header extends React.PureComponent {
       },
     ].filter(Boolean);
 
+    const isEditButtonVisible = !$appSettingsStore.getState().hideEdit;
+    const isDashExportButtonVisible = !$appSettingsStore.getState().hideDashExport;
+
     if (canEdit) {
       return [
         this.#hasVisibleExpandedFilters() ? (
@@ -314,13 +318,17 @@ class Header extends React.PureComponent {
             icon={<ClearOutlined />}
           />
         </Popover>,
-        <Popover placement="bottom" content={<span>Экспортировать</span>}>
-          <Dropdown menu={{ items: exportItems }} trigger={['click']}>
-            <Button icon={<DownloadOutlined />}></Button>
-          </Dropdown>
-        </Popover>,
         <>
-          {!$appSettingsStore.getState().hideEdit && (
+          {isDashExportButtonVisible && (
+            <Popover placement="bottom" content={<span>Экспортировать</span>}>
+              <Dropdown menu={{ items: exportItems }} trigger={['click']}>
+                <Button icon={<DownloadOutlined />}></Button>
+              </Dropdown>
+            </Popover>
+          )}
+        </>,
+        <>
+          {isEditButtonVisible && (
             <Popover placement="bottom" content={<span>Редактировать</span>}>
               <Button
                 onClick={() => setMode(MODE.EDIT)}
