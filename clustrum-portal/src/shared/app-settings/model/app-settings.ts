@@ -12,6 +12,21 @@ const getInitialConfig = (): AppSettings => {
 
   return {
     theme: {
+      appWidgets: {
+        tableWidget: {
+          cell: {
+            numberType: {
+              align: 'left',
+            },
+            textType: {
+              align: 'right',
+            },
+            dateType: {
+              align: 'center',
+            },
+          },
+        },
+      },
       ant: {
         colorPrimary: '#bb2649',
         colorSuccess: '#52c41a',

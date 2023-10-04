@@ -1,3 +1,5 @@
+import { AppWidgets } from '@shared/app-settings/types';
+
 export interface AppSettings {
   env: string;
   appEnv: string;
@@ -31,6 +33,7 @@ export interface Theme {
   filters: FiltersTheme;
   widget: WidgetTheme;
   tabs: TabsTheme;
+  appWidgets: AppWidgets;
 }
 
 export interface TabsTheme {

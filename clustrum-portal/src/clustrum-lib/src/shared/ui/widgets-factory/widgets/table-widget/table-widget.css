@@ -24,11 +24,21 @@
   opacity: 0.5;
 }
 
+.table-widget__content--integer,
+.table-widget__content--float,
+.table-widget__content--double,
+.table-widget__content--long,
 .table-widget__content--number {
-  text-align: right;
+  text-align: var(--clustrum-table-widget-cell-numbertype-aling);
 }
 
-.table-widget__content.table-widget__content--string {
+.table-widget__content--date,
+.table-widget__content--datetime {
+  text-align: var(--clustrum-table-widget-cell-datetype-align);
+}
+
+.table-widget__content--string,
+.table-widget__content--text {
   max-height: 200px;
   overflow-y: scroll;
   color: #020202;
@@ -37,6 +47,7 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
+  text-align: var(--clustrum-table-widget-cell-texttype-align);
 }
 
 .ant-table-wrapper {
