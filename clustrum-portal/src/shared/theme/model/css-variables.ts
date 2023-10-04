@@ -3,8 +3,20 @@ import { CssVariables } from '../types/theme';
 import { DEFAULT_FONT_FAMILY } from '@shared/app-settings/lib/constants';
 
 const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
-  const { ant, app, layout, filters, widget, dashboard } = themeObj;
+  const { ant, app, layout, filters, widget, appWidgets, dashboard } = themeObj;
   return [
+    {
+      variable: '--clustrum-table-widget-cell-numbertype-aling',
+      value: appWidgets?.tableWidget?.cell?.numberType?.align ?? 'left',
+    },
+    {
+      variable: '--clustrum-table-widget-cell-texttype-align',
+      value: appWidgets?.tableWidget?.cell?.textType?.align ?? 'right',
+    },
+    {
+      variable: '--clustrum-table-widget-cell-datetype-align',
+      value: appWidgets?.tableWidget?.cell?.dateType?.align ?? 'center',
+    },
     {
       variable: '--antd-color-primary',
       value: ant.colorPrimary,
