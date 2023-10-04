@@ -26,16 +26,20 @@
   --antd-color-dimension-item-hover: rgba(0, 0, 0, 0.04);
   --antd-color-measure-item-base: #ebf4fe;
   --antd-color-measure-item-hover: #dcedfd;
-  /* Шрифты */
+
   --clustrum-filter-label-font-weight: 400;
-  --clustrum-filter-label-font-size: '14px';
-  --clustrum-filter-label-line-height: '22px';
+  --clustrum-filter-label-font-size: 14px;
+  --clustrum-filter-label-line-height: 22px;
   --clustrum-filter-label-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial',
     'Helvetica';
   --clustrum-filter-select-font-weight: 400;
-  --clustrum-filter-select-font-size: '14px';
-  --clustrum-filter-select-line-height: '22px';
+  --clustrum-filter-select-font-size: 14px;
+  --clustrum-filter-select-line-height: 22px;
   --clustrum-filter-select-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial',
     'Helvetica';
-  --clustrum-filter-text-align: 'left';
+  --clustrum-filter-select-border-size: 1px;
+  --clustrum-filter-select-border-style: solid;
+  --clustrum-filter-select-border-color: rgba(0, 0, 0, 0.15);
+  --clustrum-filter-select-border-radius: 50%;
+  --clustrum-filter-text-align: left;
 }

@@ -73,6 +73,22 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: filters.selectFontSize,
     },
     {
+      variable: '--clustrum-filter-select-border-size',
+      value: filters.selectBorderSize,
+    },
+    {
+      variable: '--clustrum-filter-select-border-style',
+      value: filters.selectBorderStyle,
+    },
+    {
+      variable: '--clustrum-filter-select-border-color',
+      value: filters.selectBorderColor,
+    },
+    {
+      variable: '--clustrum-filter-select-border-radius',
+      value: filters.selectBorderRadius,
+    },
+    {
       variable: '--clustrum-filter-text-align',
       value: filters.textAlign,
     },

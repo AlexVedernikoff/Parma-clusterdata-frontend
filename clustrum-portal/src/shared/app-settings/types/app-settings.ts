@@ -42,6 +42,10 @@ export interface WidgetTheme {
 }
 
 export interface FiltersTheme {
+  selectBorderRadius: string;
+  selectBorderColor: string;
+  selectBorderStyle: string;
+  selectBorderSize: string;
   backgroundFilterColor: string;
   textAlign: string;
   borderFilterColor: string;

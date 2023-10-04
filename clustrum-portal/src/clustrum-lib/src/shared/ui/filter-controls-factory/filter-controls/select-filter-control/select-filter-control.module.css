@@ -17,8 +17,13 @@
 
 .select-filter-control__select {
   width: 100%;
-  font-weight: var(--clustrum-select-label-font-weight);
-  font-size: var(--clustrum-select-label-font-size);
-  font-family: var(--clustrum-select-label-font-family);
-  line-height: var(--clustrum-select-label-line-height);
+  color: var(--clustrum-default-label-filter-color);
+  font-weight: var(--clustrum-filter-select-font-weight);
+  font-size: var(--clustrum-filter-select-font-size);
+  font-family: var(--clustrum-filter-select-font-family);
+  line-height: var(--clustrum-filter-select-line-height);
+  border:
+    var(--clustrum-filter-select-border-size)
+    var(--clustrum-filter-select-border-style) var(--clustrum-filter-select-border-color);
+  border-radius: var(--clustrum-filter-select-border-radius);
 }
