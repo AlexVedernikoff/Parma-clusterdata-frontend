@@ -52,6 +52,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       variable: '--clustrum-filter-label-line-height',
       value: filters.labelLineHeight,
     },
+    {
+      variable: '--clustrum-filter-text-align',
+      value: filters.labelTextAlign,
+    },
   ];
 };
 

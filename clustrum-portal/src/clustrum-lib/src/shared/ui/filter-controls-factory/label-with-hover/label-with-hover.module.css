@@ -5,6 +5,7 @@
   font-weight: var(--clustrum-filter-label-font-weight);
   font-family: var(--clustrum-filter-label-font-family);
   line-height: var(--clustrum-filter-label-line-height);
+  text-align: var(--clustrum-filter-text-align);
 }
 
 .label-with-hover::after {

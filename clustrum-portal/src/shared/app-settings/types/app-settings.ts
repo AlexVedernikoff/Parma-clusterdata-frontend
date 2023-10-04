@@ -42,6 +42,7 @@ export interface WidgetTheme {
 }
 
 export interface FiltersTheme {
+  labelTextAlign: string;
   backgroundFilterColor: string;
   borderFilterColor: string;
   labelFilterColor: string;

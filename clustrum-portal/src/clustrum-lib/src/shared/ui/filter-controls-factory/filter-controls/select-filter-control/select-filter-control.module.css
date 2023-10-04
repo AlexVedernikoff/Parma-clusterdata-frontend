@@ -1,6 +1,7 @@
 .select-filter-control {
   display: flex;
   width: 100%;
+  text-align: var(--clustrum-filter-text-align);
 }
 
 .select-filter-control__label {
@@ -8,9 +9,10 @@
   flex-direction: column;
   width: 100%;
   color: var(--clustrum-default-label-filter-color);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
+  font-weight: var(--clustrum-filter-label-font-weight);
+  font-family: var(--clustrum-filter-label-font-family);
+  line-height: var(--clustrum-filter-label-line-height);
+  text-align: var(--clustrum-filter-text-align);
 }
 
 .select-filter-control__select {

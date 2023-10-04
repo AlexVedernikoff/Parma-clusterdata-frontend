@@ -31,4 +31,5 @@
   --clustrum-filter-label-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial',
     'Helvetica';
   --clustrum-filter-label-line-height: '22px';
+  --clustrum-filter-text-align: 'left';
 }
