@@ -1,7 +1,7 @@
 :root {
   /* Clustrum (красная тема) */
-  --clustrum-default-color-primary: #bb2649;
-  --clustrum-default-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica,
+  --clustrum-color-primary: #bb2649;
+  --clustrum-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica,
     sans-serif;
   --clustrum-dashboard-header-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', Arial,
     Helvetica, sans-serif;
@@ -10,8 +10,13 @@
   --clustrum-dashboard-header-font-style: normal;
   --clustrum-dashboard-header-font-lineHeight: 30px;
   --clustrum-dashboard-header-font-color: #111729;
-  --clustrum-default-background-content-color: #fff;
-  --clustrum-default-background-panel-color: #fff;
+  --clustrum-background-content-color: #fff;
+  --clustrum-background-panel-color: #fff;
+  --clustrum-background-filter-color: #fff;
+  --clustrum-label-filter-color: #000;
+  --clustrum-widget-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
+  --clustrum-border-filter-color: gba(0, 0, 0, 0.06);
+  --clustrum-filter-label-shading-color: #fff;
 
   --clustrum-dashboard-header-padding-left: 24px;
   --clustrum-dashboard-header-padding-top: 24px;
@@ -47,7 +52,25 @@
   --clustrum-dashboard-widget-pivot-table-total-hover-font-color: #000;
   --clustrum-dashboard-widget-pivot-table-total-hover-background-color: #fafafa;
 
-  --clustrum-dashboard-widget-pivot-table-layout-table-border-color: transparent;
+  --clustrum-dashboard-widget-pivot-table-layout-border-color: unset;
+  --clustrum-dashboard-widget-pivot-table-layout-border-radius: unset;
+  --clustrum-dashboard-widget-pivot-table-layout-border-style: none;
+  --clustrum-dashboard-widget-pivot-table-layout-border-size: unset;
+
+  --clustrum-dashboard-widget-pivot-table-layout-margin: 0;
+
+  --clustrum-dashboard-widget-container-height: 2.5rem;
+  --clustrum-dashboard-widget-container-border-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
+  --clustrum-dashboard-widget-container-border-color: #ededed;
+  --clustrum-dashboard-widget-container-border-radius: 'unset';
+  --clustrum-dashboard-widget-container-border-style: 'none';
+  --clustrum-dashboard-widget-container-border-size: 'unset';
+
+  --clustrum-dashboard-widget-table-layout-margin: 0px;
+  --clustrum-dashboard-widget-table-layout-border-radius: unset;
+  --clustrum-dashboard-widget-table-layout-border-color: unset;
+  --clustrum-dashboard-widget-table-layout-border-style: 'none';
+  --clustrum-dashboard-widget-table-layout-border-size: 'unset';
 
   /* Цвета antdesign (красная тема) */
   --antd-color-primary: #bb2649;
@@ -135,5 +158,5 @@
   --clustrum-dashboard-tabs-tab-default-font-style: normal;
   --clustrum-dashboard-tabs-tab-default-font-weight: 600;
   --clustrum-dashboard-tabs-tab-default-font-line-height: 22px;
-  --clustrum-dashboard-tabs-tab-default-font-color: #000000e0;
+  --clustrum-dashboard-tabs-tab-font-color: #000000e0;
 }

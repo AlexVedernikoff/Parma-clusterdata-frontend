@@ -3741,7 +3741,7 @@ td.rdtYear:hover {
 
 .wizard .action-panel {
   box-sizing: border-box;
-  background-color: var(--clustrum-default-background-panel-color);
+  background-color: var(--clustrum-background-panel-color);
 }
 
 .wizard .action-panel .wizard__fullscreen-btn {
