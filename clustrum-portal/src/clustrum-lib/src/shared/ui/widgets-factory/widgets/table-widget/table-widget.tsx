@@ -29,16 +29,17 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     onOrderByClickInWizard,
   } = props;
 
-  const [initPageState, setInitPageState] = useState(initPage);
-  const [page, setPage] = useState(initPageState);
+  const [antdPage, setAntdPage] = useState(initPage);
+  const [page, setPage] = useState(antdPage);
   const [pageSize, setPageSize] = useState(10);
   const isNeedUniqueRows = useSelector(state => selectNeedUniqueRows(state));
 
   useEffect(() => {
-    setInitPageState(FIRST_PAGE_INDEX);
+    // TODO: Зачем этот код?
+    setAntdPage(FIRST_PAGE_INDEX);
 
     if (isNeedUniqueRows) {
-      setInitPageState(FIRST_PAGE_INDEX);
+      setAntdPage(FIRST_PAGE_INDEX);
     }
   }, [pageSize, isNeedUniqueRows]);
   const [sortingMaps, setSortingMaps] = useState<SortingMaps>(INITIAL_SORTING_MAPS_STATE);
@@ -87,8 +88,7 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     const { sortingMapOfChanges } = sortingMaps;
 
     const sortingOrderKey: AntdSortingOrderKey | undefined =
-      // eslint-disable-next-line no-prototype-builtins
-      typeof item.title === 'string' && sortingMapOfChanges.hasOwnProperty(item.title)
+      typeof item.title === 'string' && sortingMapOfChanges[item.title]
         ? sortingMapOfChanges[item.title]
         : undefined;
 
@@ -105,9 +105,14 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     return itemTable;
   });
 
-  const handlePageChange = (page: number, pageSize: number): void => {
-    setInitPageState(page - 1);
+  const handlePageChange = (page: number): void => {
+    setAntdPage(page - 1);
     setPage(page - 1);
+  };
+
+  const handlePageSizeChange = (pageSize: number): void => {
+    setAntdPage(FIRST_PAGE_INDEX);
+    setPage(FIRST_PAGE_INDEX);
     setPageSize(pageSize);
   };
 
@@ -127,11 +132,17 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
   };
 
   const handleChange = (
-    pagination: TablePaginationConfig,
+    { current: selectedPage, pageSize: selectedPageSize }: TablePaginationConfig,
     filters: Record<string, FilterValue | null>,
     sorter: SorterResult<object> | SorterResult<object>[],
   ): void => {
     handleSort(sorter);
+
+    if (selectedPageSize !== undefined && selectedPageSize !== pageSize) {
+      handlePageSizeChange(selectedPageSize);
+    } else if (selectedPage !== undefined && selectedPage !== pageSize) {
+      handlePageChange(selectedPage);
+    }
 
     setSortingMaps(INITIAL_SORTING_MAPS_STATE);
   };
@@ -153,11 +164,10 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       scroll={{ y: '100%' }}
       pagination={{
         total: Number(totalRowsCount),
-        current: initPageState + 1,
+        current: antdPage + 1,
         defaultPageSize: 10,
         showTotal: (total: number): string => `Всего: ${total}`,
         showSizeChanger: true,
-        onChange: handlePageChange,
       }}
       onChange={handleChange}
     />
