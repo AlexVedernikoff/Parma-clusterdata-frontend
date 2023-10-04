@@ -2,6 +2,9 @@
   position: relative;
   height: 22px;
   overflow: hidden;
+  font-weight: var(--clustrum-filter-label-font-weight);
+  font-family: var(--clustrum-filter-label-font-family);
+  line-height: var(--clustrum-filter-label-line-height);
 }
 
 .label-with-hover::after {

@@ -26,4 +26,9 @@
   --antd-color-dimension-item-hover: rgba(0, 0, 0, 0.04);
   --antd-color-measure-item-base: #ebf4fe;
   --antd-color-measure-item-hover: #dcedfd;
+  /* Шрифты */
+  --clustrum-filter-label-font-weight: 400;
+  --clustrum-filter-label-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial',
+    'Helvetica';
+  --clustrum-filter-label-line-height: '22px';
 }

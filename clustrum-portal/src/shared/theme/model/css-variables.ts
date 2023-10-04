@@ -40,6 +40,18 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       variable: '--clustrum-filter-label-shading-color',
       value: filters.labelShadingColor,
     },
+    {
+      variable: '--clustrum-filter-label-font-weight',
+      value: filters.labelFontWeight,
+    },
+    {
+      variable: '--clustrum-filter-label-font-family',
+      value: filters.labelFontFamily,
+    },
+    {
+      variable: '--clustrum-filter-label-line-height',
+      value: filters.labelLineHeight,
+    },
   ];
 };
 
