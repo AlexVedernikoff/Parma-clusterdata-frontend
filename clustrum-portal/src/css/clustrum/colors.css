@@ -56,12 +56,12 @@
   --antd-color-dimension-item-hover: rgba(0, 0, 0, 0.04);
   --antd-color-measure-item-base: #ebf4fe;
   --antd-color-measure-item-hover: #dcedfd;
-  --antd-final-table-column-total-font-family: 'Inter', 'Open Sans', 'Helvetica Neue',
-    Arial, Helvetica, sans-serif;
-  --antd-final-table-column-total-color: rgba(0, 0, 0, 0.88);
-  --antd-final-table-column-total-weight: 600;
-  --antd-final-table-column-total-size: 14px;
-  --antd-final-table-column-total-style: normal;
-  --antd-final-table-column-total-background-color: transparent;
-  --antd-final-table-column-total-line-height: 1.5;
+  --clustrum-dashboard-widget-table-total-font-family: 'Inter', 'Open Sans',
+    'Helvetica Neue', Arial, Helvetica, sans-serif;
+  --clustrum-dashboard-widget-table-total-font-color: rgba(0, 0, 0, 0.88);
+  --clustrum-dashboard-widget-table-total-font-weight: 600;
+  --clustrum-dashboard-widget-table-total-font-size: 14px;
+  --clustrum-dashboard-widget-table-total-font-style: normal;
+  --clustrum-dashboard-widget-table-total-background-color: transparent;
+  --clustrum-dashboard-widget-table-total-font-line-height: 1.5;
 }
