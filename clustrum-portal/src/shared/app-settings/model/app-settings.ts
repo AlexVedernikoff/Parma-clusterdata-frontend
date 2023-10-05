@@ -60,10 +60,10 @@ const getInitialConfig = (): AppSettings => {
       dashboard: {
         header: {
           padding: {
-            left: '0px',
-            right: '0px',
-            top: '0px',
-            bottom: '0px',
+            left: '24px',
+            right: '24px',
+            top: '24px',
+            bottom: '24px',
           },
         },
         widget: {

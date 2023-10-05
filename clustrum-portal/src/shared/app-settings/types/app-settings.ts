@@ -39,14 +39,14 @@ export interface Theme {
 
 export interface DashboardTheme {
   widget: DashboardWidgetTheme;
-  header: Header;
+  header: DashboardHeaderTheme;
 }
 
-export interface Header {
-  padding: Padding;
+export interface DashboardHeaderTheme {
+  padding: PaddingTheme;
 }
 
-export interface Padding {
+export interface PaddingTheme {
   left: string;
   right: string;
   top: string;
