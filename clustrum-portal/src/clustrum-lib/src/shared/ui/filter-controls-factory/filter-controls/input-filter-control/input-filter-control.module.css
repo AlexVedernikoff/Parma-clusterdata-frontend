@@ -7,11 +7,11 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  color: var(--clustrum-default-label-filter-color);
-  font-weight: var(--clustrum-filter-label-font-weight);
-  font-size: var(--clustrum-filter-label-font-size);
-  font-family: var(--clustrum-filter-label-font-family);
-  line-height: var(--clustrum-filter-label-line-height);
+  color: var(--clustrum-dashboard-widget-filter-label-color);
+  font-weight: var(--clustrum-dashboard-widget-filter-label-font-weight);
+  font-size: var(--clustrum-dashboard-widget-filter-label-font-size);
+  font-family: var(--clustrum-dashboard-widget-filter-label-font-family);
+  line-height: var(--clustrum-dashboard-widget-filter-label-line-height);
 }
 
 .input-filter-control__label input {

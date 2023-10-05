@@ -45,28 +45,6 @@ const getInitialConfig = (): AppSettings => {
         showBreadcrumbs: true,
         colorAccent: '#ffd700',
       },
-      filters: {
-        backgroundFilterColor: 'rgba(0, 0, 0, 0)',
-        borderFilterColor: 'rgba(0, 0, 0, 0)',
-        labelFilterColor: '#909EB4',
-        labelShadingColor: 'rgba(0, 0, 0, 0)',
-        labelFontWeight: '400',
-        labelFontSize: '14px',
-        labelFontFamily:
-          "'Golos Text', 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial', 'Helvetica'",
-        labelLineHeight: '21px',
-        textAlign: 'left',
-        controlFontSize: '16px',
-        controlLineHeight: '24px',
-        controlFontFamily:
-          "'Golos Text', 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial', 'Helvetica'",
-        controlFontWeight: '400',
-        controlBorderRadius: '4px',
-        controlBorderColor: '#D7DDE4',
-        controlBorderStyle: 'solid',
-        controlBorderSize: '1px',
-        controlFilterColor: '#111729',
-      },
       widget: {
         borderShadow: 'rgba(0, 0, 0, 0)',
         backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -115,6 +93,15 @@ const getInitialConfig = (): AppSettings => {
             layout: {
               tableBorderColor: 'transparent',
             },
+          },
+          filter: {
+            label: {
+              font: {},
+              shadingColor: '',
+            },
+            backgroundFilterColor: undefined,
+            controlFilterColor: undefined,
+            borderFilterColor: undefined,
           },
         },
       },

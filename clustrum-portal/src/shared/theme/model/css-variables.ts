@@ -2,7 +2,7 @@ import { Theme } from '../../app-settings/types/app-settings';
 import { CssVariables } from '../types/theme';
 
 const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
-  const { ant, app, layout, filters, widget, appWidgets, dashboard } = themeObj;
+  const { ant, app, layout, widget, appWidgets, dashboard } = themeObj;
   return [
     {
       variable: '--clustrum-table-widget-cell-numbertype-align',
@@ -34,15 +34,11 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     },
     {
       variable: '--clustrum-default-background-filter-color',
-      value: filters.backgroundFilterColor,
-    },
-    {
-      variable: '--clustrum-default-label-filter-color',
-      value: filters.labelFilterColor,
+      value: dashboard?.widget?.filter?.backgroundFilterColor,
     },
     {
       variable: '--clustrum-default-control-filter-color',
-      value: filters.controlFilterColor,
+      value: dashboard?.widget?.filter?.controlFilterColor,
     },
     {
       variable: '--clustrum-default-widget-shadow',
@@ -50,11 +46,11 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     },
     {
       variable: '--clustrum-default-border-filter-color',
-      value: filters.borderFilterColor,
+      value: dashboard?.widget?.filter?.borderFilterColor,
     },
     {
-      variable: '--clustrum-filter-label-shading-color',
-      value: filters.labelShadingColor,
+      variable: '--clustrum-dashboard-widget-filter-label-shading-color',
+      value: dashboard?.widget?.filter?.label?.shadingColor,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-th-font-family',
@@ -133,61 +129,65 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.pivotTable?.layout?.tableBorderColor,
     },
     {
-      variable: '--clustrum-filter-label-font-weight',
-      value: filters.labelFontWeight,
+      variable: '--clustrum-dashboard-widget-filter-label-color',
+      value: dashboard?.widget?.filter?.label?.font?.color,
     },
     {
-      variable: '--clustrum-filter-label-font-family',
-      value: filters.labelFontFamily,
+      variable: '--clustrum-dashboard-widget-filter-label-font-weight',
+      value: dashboard?.widget?.filter?.label?.font?.weight,
     },
     {
-      variable: '--clustrum-filter-label-line-height',
-      value: filters.labelLineHeight,
+      variable: '--clustrum-dashboard-widget-filter-label-font-family',
+      value: dashboard?.widget?.filter?.label?.font?.family,
     },
     {
-      variable: '--clustrum-filter-label-font-size',
-      value: filters.labelFontSize,
+      variable: '--clustrum-dashboard-widget-filter-label-line-height',
+      value: dashboard?.widget?.filter?.label?.font?.lineHeight,
     },
     {
-      variable: '--clustrum-filter-control-font-weight',
-      value: filters.controlFontWeight,
+      variable: '--clustrum-dashboard-widget-filter-label-font-size',
+      value: dashboard?.widget?.filter?.label?.font?.size,
     },
-    {
-      variable: '--clustrum-filter-control-font-family',
-      value: filters.controlFontFamily,
-    },
-    {
-      variable: '--clustrum-filter-control-line-height',
-      value: filters.controlLineHeight,
-    },
-    {
-      variable: '--clustrum-filter-control-font-size',
-      value: filters.controlFontSize,
-    },
-    {
-      variable: '--clustrum-filter-control-border-size',
-      value: filters.controlBorderSize,
-    },
-    {
-      variable: '--clustrum-filter-control-border-style',
-      value: filters.controlBorderStyle,
-    },
-    {
-      variable: '--clustrum-filter-control-border-color',
-      value: filters.controlBorderColor,
-    },
-    {
-      variable: '--clustrum-filter-control-border-radius',
-      value: filters.controlBorderRadius,
-    },
-    {
-      variable: '--clustrum-filter-text-align',
-      value: filters.textAlign,
-    },
-    {
-      variable: '--clustrum-default-widget-background-color',
-      value: widget.backgroundColor,
-    },
+    // {
+    //   variable: '--clustrum-filter-control-font-weight',
+    //   value: filters.controlFontWeight,
+    // },
+    // {
+    //   variable: '--clustrum-filter-control-font-family',
+    //   value: filters.controlFontFamily,
+    // },
+    // {
+    //   variable: '--clustrum-filter-control-line-height',
+    //   value: filters.controlLineHeight,
+    // },
+    // {
+    //   variable: '--clustrum-filter-control-font-size',
+    //   value: filters.controlFontSize,
+    // },
+    // {
+    //   variable: '--clustrum-filter-control-border-size',
+    //   value: filters.controlBorderSize,
+    // },
+    // {
+    //   variable: '--clustrum-filter-control-border-style',
+    //   value: filters.controlBorderStyle,
+    // },
+    // {
+    //   variable: '--clustrum-filter-control-border-color',
+    //   value: filters.controlBorderColor,
+    // },
+    // {
+    //   variable: '--clustrum-filter-control-border-radius',
+    //   value: filters.controlBorderRadius,
+    // },
+    // {
+    //   variable: '--clustrum-filter-text-align',
+    //   value: filters.textAlign,
+    // },
+    // {
+    //   variable: '--clustrum-default-widget-background-color',
+    //   value: widget.backgroundColor,
+    // },
   ];
 };
 

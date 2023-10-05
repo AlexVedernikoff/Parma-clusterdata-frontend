@@ -6,12 +6,10 @@
   --clustrum-default-background-content-color: #fff;
   --clustrum-default-background-panel-color: #fff;
   --clustrum-default-background-filter-color: #fff;
-  --clustrum-default-label-filter-color: #000;
   --clustrum-default-control-filter-color: #000;
   --clustrum-default-widget-background-color: #fff;
   --clustrum-default-widget-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
   --clustrum-default-border-filter-color: gba(0, 0, 0, 0.06);
-  --clustrum-filter-label-shading-color: #fff;
   --clustrum-table-widget-cell-numbertype-align: left;
   --clustrum-table-widget-cell-texttype-align: right;
   --clustrum-table-widget-cell-datetype-align: center;
@@ -59,11 +57,15 @@
   --antd-color-measure-item-base: #ebf4fe;
   --antd-color-measure-item-hover: #dcedfd;
 
-  --clustrum-filter-label-font-weight: 400;
-  --clustrum-filter-label-font-size: 14px;
-  --clustrum-filter-label-line-height: 22px;
-  --clustrum-filter-label-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial',
-    'Helvetica';
+  --clustrum-dashboard-widget-filter-label-color: #000;
+  --clustrum-dashboard-widget-filter-label-shading-color: #fff;
+  --clustrum-dashboard-widget-filter-label-font-weight: 400;
+  --clustrum-dashboard-widget-filter-label-font-size: 14px;
+  --clustrum-dashboard-widget-filter-label-font-style: normal;
+  --clustrum-dashboard-widget-filter-label-line-height: 22px;
+  --clustrum-dashboard-widget-filter-label-font-family: 'Inter', 'Open Sans',
+    'Helvetica Neue', 'Arial', 'Helvetica';
+
   --clustrum-filter-control-font-weight: 400;
   --clustrum-filter-control-font-size: 14px;
   --clustrum-filter-control-line-height: 22px;

@@ -2,9 +2,9 @@
   position: relative;
   height: 22px;
   overflow: hidden;
-  font-weight: var(--clustrum-filter-label-font-weight);
-  font-family: var(--clustrum-filter-label-font-family);
-  line-height: var(--clustrum-filter-label-line-height);
+  font-weight: var(--clustrum-dashboard-widget-filter-label-font-weight);
+  font-family: var(--clustrum-dashboard-widget-filter-label-font-family);
+  line-height: var(--clustrum-dashboard-widget-filter-label-line-height);
   text-align: var(--clustrum-filter-text-align);
 }
 
@@ -15,7 +15,7 @@
   display: block;
   width: 30%;
   height: 100%;
-  background-color: var(--clustrum-filter-label-shading-color);
+  background-color: var(--clustrum-dashboard-widget-filter-label-shading-color);
   opacity: 0.5;
   content: '';
 }

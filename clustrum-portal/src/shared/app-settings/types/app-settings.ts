@@ -30,7 +30,6 @@ export interface Theme {
   ant: AntTheme;
   app: AppTheme;
   layout: LayoutTheme;
-  filters: FiltersTheme;
   widget: WidgetTheme;
   tabs: TabsTheme;
   appWidgets: AppWidgets;
@@ -42,6 +41,7 @@ export interface DashboardTheme {
 }
 
 export interface DashboardWidgetTheme {
+  filter: FiltersTheme;
   pivotTable: PivotTableWidgetTheme;
 }
 
@@ -91,25 +91,16 @@ export interface WidgetTheme {
   borderShadow: string;
 }
 
+export interface FilterLabelTheme {
+  shadingColor: string;
+  font: FontItemTheme;
+}
+
 export interface FiltersTheme {
-  controlFilterColor: string;
-  controlBorderRadius: string;
-  controlBorderColor: string;
-  controlBorderStyle: string;
-  controlBorderSize: string;
-  backgroundFilterColor: string;
-  textAlign: string;
-  borderFilterColor: string;
-  labelFilterColor: string;
-  labelShadingColor: string;
-  labelFontSize: string;
-  labelFontWeight: string;
-  labelFontFamily: string;
-  labelLineHeight: string;
-  controlFontSize: string;
-  controlLineHeight: string;
-  controlFontFamily: string;
-  controlFontWeight: string;
+  backgroundFilterColor: string | null | undefined;
+  controlFilterColor: string | null | undefined;
+  borderFilterColor: string | null | undefined;
+  label: FilterLabelTheme;
 }
 export interface AppTheme {
   font: string;
