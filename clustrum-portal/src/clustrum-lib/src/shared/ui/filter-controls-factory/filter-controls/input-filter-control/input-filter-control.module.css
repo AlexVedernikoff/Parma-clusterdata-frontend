@@ -18,13 +18,13 @@
 .input-filter-control__label input {
   width: 100%;
   color: var(--clustrum-dashboard-widget-filter-control-color);
-  font-weight: var(--clustrum-dashboard-widget-filter-control-weight);
-  font-size: var(--clustrum-dashboard-widget-filter-control-size);
+  font-weight: var(--clustrum-dashboard-widget-filter-control-font-weight);
+  font-size: var(--clustrum-dashboard-widget-filter-control-font-size);
   font-family: var(--clustrum-dashboard-widget-filter-control-font-family);
   line-height: var(--clustrum-dashboard-widget-filter-control-line-height);
   border:
-    var(--clustrum-filter-control-border-size)
-    var(--clustrum-filter-control-border-style)
-    var(--clustrum-filter-control-border-color);
-  border-radius: var(--clustrum-filter-control-border-radius);
+    var(--clustrum-dashboard-widget-filter-control-border-size)
+    var(--clustrum-dashboard-widget-filter-control-border-style)
+    var(--clustrum-dashboard-widget-filter-control-border-color);
+  border-radius: var(--clustrum-dashboard-widget-filter-control-border-radius);
 }

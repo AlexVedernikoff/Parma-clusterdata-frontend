@@ -75,6 +75,12 @@ export interface FontItemTheme {
   lineHeight?: string;
   color?: string;
 }
+export interface BorderItemTheme {
+  color?: string;
+  size?: string;
+  style?: string;
+  radius?: string;
+}
 
 export interface CellAlignByData {
   string: string;
@@ -97,6 +103,7 @@ export interface FilterLabelTheme {
 }
 export interface FilterControlTheme {
   font: FontItemTheme;
+  border: BorderItemTheme;
 }
 
 export interface FiltersTheme {

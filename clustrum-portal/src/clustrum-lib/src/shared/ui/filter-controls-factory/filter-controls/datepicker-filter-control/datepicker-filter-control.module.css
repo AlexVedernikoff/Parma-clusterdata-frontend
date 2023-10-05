@@ -16,8 +16,8 @@
 
 .datepicker-control__label input {
   color: var(--clustrum-dashboard-widget-filter-control-color) !important;
-  font-weight: var(--clustrum-dashboard-widget-filter-control-weight) !important;
-  font-size: var(--clustrum-dashboard-widget-filter-control-size) !important;
+  font-weight: var(--clustrum-dashboard-widget-filter-control-font-weight) !important;
+  font-size: var(--clustrum-dashboard-widget-filter-control-font-size) !important;
   font-family: var(--clustrum-dashboard-widget-filter-control-font-family) !important;
   line-height: var(--clustrum-dashboard-widget-filter-control-line-height) !important;
 }

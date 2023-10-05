@@ -117,6 +117,12 @@ const getInitialConfig = (): AppSettings => {
                 lineHeight: '22px',
                 color: '#252625',
               },
+              border: {
+                radius: '4px',
+                color: '#D7DDE4',
+                style: 'solid',
+                size: '1px',
+              },
             },
           },
         },

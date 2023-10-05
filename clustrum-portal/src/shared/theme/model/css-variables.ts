@@ -153,7 +153,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.filter?.control?.font?.color,
     },
     {
-      variable: '--clustrum-dashboard-widget-filter-control-weight',
+      variable: '--clustrum-dashboard-widget-filter-control-font-weight',
       value: dashboard?.widget?.filter?.control?.font?.weight,
     },
     {
@@ -165,25 +165,25 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.filter?.control?.font?.lineHeight,
     },
     {
-      variable: '--clustrum-dashboard-widget-filter-control-size',
+      variable: '--clustrum-dashboard-widget-filter-control-font-size',
       value: dashboard?.widget?.filter?.control?.font?.size,
     },
-    // {
-    //   variable: '--clustrum-filter-control-border-size',
-    //   value: filters.controlBorderSize,
-    // },
-    // {
-    //   variable: '--clustrum-filter-control-border-style',
-    //   value: filters.controlBorderStyle,
-    // },
-    // {
-    //   variable: '--clustrum-filter-control-border-color',
-    //   value: filters.controlBorderColor,
-    // },
-    // {
-    //   variable: '--clustrum-filter-control-border-radius',
-    //   value: filters.controlBorderRadius,
-    // },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-border-size',
+      value: dashboard?.widget?.filter?.control?.border?.size,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-border-style',
+      value: dashboard?.widget?.filter?.control?.border?.style,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-border-color',
+      value: dashboard?.widget?.filter?.control?.border?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-border-radius',
+      value: dashboard?.widget?.filter?.control?.border?.radius,
+    },
     // {
     //   variable: '--clustrum-filter-text-align',
     //   value: filters.textAlign,
