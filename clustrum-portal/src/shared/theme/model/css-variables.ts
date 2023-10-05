@@ -9,6 +9,18 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: ant.colorPrimary,
     },
     {
+      variable: '--clustrum-dashboard-widget-table-td-numbertype-align',
+      value: dashboard?.widget?.table?.td?.numberType?.align,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-td-texttype-align',
+      value: dashboard?.widget?.table?.td?.textType?.align,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-td-datetype-align',
+      value: dashboard?.widget?.table?.td?.dateType?.align,
+    },
+    {
       variable: '--clustrum-dashboard-widget-table-total-font-color',
       value: dashboard?.widget?.table?.total?.font?.color ?? 'rgba(0, 0, 0, 0.88)',
     },

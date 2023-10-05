@@ -44,6 +44,7 @@ export interface DashboardWidgetTheme {
 }
 
 export interface TableWidgetTheme {
+  td: CellPivotTableWidgetTheme;
   total: TotalPivotTableWidgetTheme;
 }
 
@@ -75,7 +76,7 @@ export interface CellPivotTableWidgetTheme {
   numberType: CellPivotTableWidgetStyle;
   textType: CellPivotTableWidgetStyle;
   dateType: CellPivotTableWidgetStyle;
-  font: FontItemTheme;
+  font?: FontItemTheme;
 }
 
 export interface TitlePivotTableWidgetTheme {

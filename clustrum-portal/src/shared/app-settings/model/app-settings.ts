@@ -45,6 +45,17 @@ const getInitialConfig = (): AppSettings => {
       dashboard: {
         widget: {
           table: {
+            td: {
+              numberType: {
+                align: 'left',
+              },
+              textType: {
+                align: 'right',
+              },
+              dateType: {
+                align: 'center',
+              },
+            },
             total: {
               backgroundColor: 'transparent',
               font: {
