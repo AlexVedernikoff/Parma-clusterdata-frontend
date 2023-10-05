@@ -41,12 +41,12 @@ Utils.setBodyFeatures();
 logVersion();
 
 export default function DatasetBuild(props) {
-  const [setAppSettings, appSettingsStore] = useUnit([
-    setAppSettingsEvent,
-    $appSettingsStore,
-  ]);
+  const [setAppSettings] = useUnit([setAppSettingsEvent]);
 
-  const theme = combineDefaultThemeAndPropsTheme(props.theme, appSettingsStore.theme);
+  const theme = combineDefaultThemeAndPropsTheme(
+    props.theme,
+    $appSettingsStore.getState().theme,
+  );
 
   setAppSettings({
     hideHeader: props.hideHeader,

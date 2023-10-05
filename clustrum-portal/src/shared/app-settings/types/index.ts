@@ -1,4 +1,4 @@
-export { AppSettings, Theme } from './app-settings';
+export { AppSettings, Theme, PropsTheme } from './app-settings';
 
 export { TableWidget } from './app-table-widget-settings';
 

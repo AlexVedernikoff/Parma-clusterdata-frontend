@@ -1,14 +1,14 @@
-import { Theme } from '@shared/app-settings';
+import { Theme, PropsTheme } from '@shared/app-settings';
 
 export function combineDefaultThemeAndPropsTheme(
-  propsTheme: Theme,
+  propsTheme: PropsTheme,
   appTheme: Theme,
 ): Theme {
   const combinedTheme = propsTheme
     ? {
         ...propsTheme,
         ant: {
-          token: { ...propsTheme.ant.token },
+          token: { ...propsTheme.ant },
           components: {
             ...appTheme.ant.components,
           },

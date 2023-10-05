@@ -37,6 +37,10 @@ export interface Theme {
   appWidgets: AppWidgets;
 }
 
+export interface PropsTheme extends Omit<Theme, 'ant'> {
+  ant: ThemeConfig['token'];
+}
+
 export interface TabsTheme {
   tabType: 'line' | 'card' | 'editable-card' | undefined;
 }

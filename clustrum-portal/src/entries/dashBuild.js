@@ -44,11 +44,11 @@ logVersion();
 export default function DashBuild(props) {
   const { entryId, hideRightSideContent, onFiltersChange, onTabChange } = props;
 
-  const [setAppSettings, appSettingsStore] = useUnit([
-    setAppSettingsEvent,
-    $appSettingsStore,
-  ]);
-  const theme = combineDefaultThemeAndPropsTheme(props.theme, appSettingsStore.theme);
+  const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const theme = combineDefaultThemeAndPropsTheme(
+    props.theme,
+    $appSettingsStore.getState().theme,
+  );
 
   setAppSettings({
     hideHeader: props.hideHeader,
