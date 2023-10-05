@@ -1,5 +1,3 @@
-import { WIZARD_ITEM_TYPES } from '@lib-shared/config/wizard-item-types';
-
 export enum MeasureType {
   Absolute = 'absolute',
   Relative = 'relative',

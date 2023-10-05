@@ -30,7 +30,7 @@ import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
 import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 import { $appSettingsStore } from '@shared/app-settings';
-import { WIZARD_ITEM_TYPES } from '@clustrum-lib/shared/config/wizard-item-types';
+import { WIZARD_ITEM_TYPES } from '@clustrum-lib';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',
