@@ -112,8 +112,6 @@ const getInitialConfig = (): AppSettings => {
               },
               shadingColor: '#fff',
             },
-            backgroundFilterColor: '#fff',
-            borderFilterColor: 'rgba(0, 0, 0, 0.06)',
             control: {
               font: {
                 family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",

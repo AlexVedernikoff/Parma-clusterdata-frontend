@@ -72,6 +72,7 @@
   --clustrum-dashboard-widget-filter-control-color: #000;
   --clustrum-dashboard-widget-filter-control-font-weight: 400;
   --clustrum-dashboard-widget-filter-control-font-size: 14px;
+  --clustrum-dashboard-widget-filter-control-font-style: normal;
   --clustrum-dashboard-widget-filter-control-line-height: 22px;
   --clustrum-dashboard-widget-filter-control-font-family: 'Inter', 'Open Sans',
     'Helvetica Neue', 'Arial', 'Helvetica';

@@ -149,6 +149,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.filter?.control?.font?.family,
     },
     {
+      variable: '--clustrum-dashboard-widget-filter-control-font-style',
+      value: dashboard?.widget?.filter?.control?.font?.style,
+    },
+    {
       variable: '--clustrum-dashboard-widget-filter-control-line-height',
       value: dashboard?.widget?.filter?.control?.font?.lineHeight,
     },

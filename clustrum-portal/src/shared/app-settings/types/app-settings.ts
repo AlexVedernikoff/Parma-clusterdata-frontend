@@ -112,8 +112,6 @@ export interface FilterWrapperTheme {
 }
 
 export interface FiltersTheme {
-  backgroundFilterColor: string;
-  borderFilterColor: string | null | undefined;
   label: FilterLabelTheme;
   control: FilterControlTheme;
   wrapper: FilterWrapperTheme;

@@ -23,6 +23,7 @@
   font-weight: var(--clustrum-dashboard-widget-filter-control-font-weight) !important;
   font-size: var(--clustrum-dashboard-widget-filter-control-font-size) !important;
   font-family: var(--clustrum-dashboard-widget-filter-control-font-family) !important;
+  font-style: var(--clustrum-dashboard-widget-filter-control-font-style) !important;
   line-height: var(--clustrum-dashboard-widget-filter-control-line-height) !important;
 }
 
