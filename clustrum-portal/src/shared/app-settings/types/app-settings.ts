@@ -1,5 +1,3 @@
-import { AppWidgets } from '@shared/app-settings/types';
-
 export interface AppSettings {
   env: string;
   appEnv: string;
@@ -33,7 +31,6 @@ export interface Theme {
   filters: FiltersTheme;
   widget: WidgetTheme;
   tabs: TabsTheme;
-  appWidgets: AppWidgets;
   dashboard: DashboardTheme;
 }
 
@@ -51,13 +48,27 @@ export interface DashboardWidgetTheme {
   table: TableWidgetTheme;
 }
 
+export type TextAlignTheme = 'left' | 'right' | 'center';
+
+export interface TableWidgetTdType {
+  align: TextAlignTheme;
+}
+
+export interface TableWidgetTdTheme {
+  numberType: TableWidgetTdType;
+  textType: TableWidgetTdType;
+  dateType: TableWidgetTdType;
+  font?: FontItemTheme;
+}
+
 export interface TableWidgetTheme {
+  td: TableWidgetTdTheme;
   total: TotalPivotTableWidgetTheme;
 }
 
 export interface PivotTableWidgetTheme {
   th: TitlePivotTableWidgetTheme;
-  td: CellPivotTableWidgetTheme;
+  td: TableWidgetTdTheme;
   total: TotalPivotTableWidgetTheme;
   layout: LayoutPivotTableWidgetTheme;
 }
@@ -75,11 +86,6 @@ export interface TotalPivotTableWidgetTheme {
   backgroundColor: string;
 }
 
-export interface CellPivotTableWidgetTheme {
-  font: FontItemTheme;
-  align: CellAlignByData;
-}
-
 export interface TitlePivotTableWidgetTheme {
   font: FontItemTheme;
 }
@@ -91,12 +97,6 @@ export interface FontItemTheme {
   style?: string;
   lineHeight?: string;
   color?: string;
-}
-
-export interface CellAlignByData {
-  string: string;
-  date: string;
-  number: string;
 }
 
 export interface TabsTheme {

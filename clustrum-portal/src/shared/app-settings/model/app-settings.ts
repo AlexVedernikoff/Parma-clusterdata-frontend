@@ -12,21 +12,6 @@ const getInitialConfig = (): AppSettings => {
 
   return {
     theme: {
-      appWidgets: {
-        tableWidget: {
-          cell: {
-            numberType: {
-              align: 'left',
-            },
-            textType: {
-              align: 'right',
-            },
-            dateType: {
-              align: 'center',
-            },
-          },
-        },
-      },
       ant: {
         colorPrimary: '#bb2649',
         colorSuccess: '#52c41a',
@@ -71,6 +56,17 @@ const getInitialConfig = (): AppSettings => {
         },
         widget: {
           table: {
+            td: {
+              numberType: {
+                align: 'left',
+              },
+              textType: {
+                align: 'right',
+              },
+              dateType: {
+                align: 'center',
+              },
+            },
             total: {
               backgroundColor: 'transparent',
               font: {
@@ -95,10 +91,14 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             td: {
-              align: {
-                string: 'left',
-                date: 'middle',
-                number: 'right',
+              numberType: {
+                align: 'left',
+              },
+              textType: {
+                align: 'right',
+              },
+              dateType: {
+                align: 'center',
               },
               font: {
                 family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
