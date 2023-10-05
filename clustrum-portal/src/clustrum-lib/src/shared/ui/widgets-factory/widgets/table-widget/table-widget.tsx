@@ -20,6 +20,8 @@ import {
 } from 'antd/es/table/interface';
 import { FIRST_PAGE_INDEX, INITIAL_SORTING_MAPS_STATE } from './lib/constants';
 import { SortingOrder } from '@lib-shared/types';
+// eslint-disable-next-line no-restricted-imports
+import { $appSettingsStore } from '@shared/app-settings';
 
 export function TableWidget(props: TableWidgetProps): JSX.Element {
   const {
@@ -54,6 +56,8 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
     (state: { visualization: { sort?: SortingMapDataItem[] } }) =>
       state.visualization?.sort,
   );
+  const defaultPaginationPageSize = $appSettingsStore.getState().theme.dashboard.widget
+    .table.pagination.defaultPageSize;
 
   useEffect(() => {
     setSortingMaps(({ currentSortingMap }) => {
@@ -174,9 +178,10 @@ export function TableWidget(props: TableWidgetProps): JSX.Element {
       pagination={{
         total: Number(totalRowsCount),
         current: antdPage + 1,
-        defaultPageSize: 10,
+        defaultPageSize: defaultPaginationPageSize,
         showTotal: (total: number): string => `Всего: ${total}`,
         showSizeChanger: true,
+        className: 'table-widget-pagination',
       }}
       onChange={handleChange}
     />

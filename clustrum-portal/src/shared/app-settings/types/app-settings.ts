@@ -64,6 +64,7 @@ export interface TableWidgetTdTheme {
 export interface TableWidgetTheme {
   td: TableWidgetTdTheme;
   total: TotalPivotTableWidgetTheme;
+  pagination: TablePaginationTheme;
 }
 
 export interface PivotTableWidgetTheme {
@@ -105,6 +106,11 @@ export interface TabsTheme {
 
 export interface WidgetTheme {
   borderShadow: string;
+}
+
+export interface TablePaginationTheme {
+  font: FontItemTheme;
+  defaultPageSize: number;
 }
 
 export interface FiltersTheme {

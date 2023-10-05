@@ -64,6 +64,13 @@
   --antd-color-dimension-item-hover: rgba(0, 0, 0, 0.04);
   --antd-color-measure-item-base: #ebf4fe;
   --antd-color-measure-item-hover: #dcedfd;
+  --clustrum-dashboard-widget-table-pagination-font-family: 'Inter', 'Open Sans',
+    'Helvetica Neue', Arial, Helvetica, sans-serif;
+  --clustrum-dashboard-widget-table-pagination-font-weight: 400;
+  --clustrum-dashboard-widget-table-pagination-font-size: '14px';
+  --clustrum-dashboard-widget-table-pagination-line-height: '22px';
+  --clustrum-dashboard-widget-table-pagination-font-style: 'normal';
+  --clustrum-dashboard-widget-table-pagination-font-color: 'inherit';
   --clustrum-dashboard-widget-table-total-font-family: 'Inter', 'Open Sans',
     'Helvetica Neue', Arial, Helvetica, sans-serif;
   --clustrum-dashboard-widget-table-total-font-color: rgba(0, 0, 0, 0.88);
