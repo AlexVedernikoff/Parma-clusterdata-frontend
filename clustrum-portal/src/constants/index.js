@@ -30,7 +30,9 @@ import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
 import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 import { $appSettingsStore } from '@shared/app-settings';
-import { WIZARD_ITEM_TYPES } from '@clustrum-lib';
+// Пока полный импорт, а не просто через @clustrum-lib, так как импорт через @clustrum-lib приводит к зацикливанию
+// Будет исправлено после полного рефакторинга Wizard
+import { WIZARD_ITEM_TYPES } from '@clustrum-lib/shared/config/wizard-item-types';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',
