@@ -10,6 +10,7 @@
   font-weight: var(--clustrum-dashboard-widget-filter-label-font-weight);
   font-size: var(--clustrum-dashboard-widget-filter-label-font-size);
   font-family: var(--clustrum-dashboard-widget-filter-label-font-family);
+  font-style: var(--clustrum-dashboard-widget-filter-label-font-style);
   line-height: var(--clustrum-dashboard-widget-filter-label-line-height);
 }
 

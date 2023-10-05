@@ -97,8 +97,7 @@ export interface FilterLabelTheme {
 }
 
 export interface FiltersTheme {
-  backgroundFilterColor: string | null | undefined;
-  controlFilterColor: string | null | undefined;
+  backgroundFilterColor: string;
   borderFilterColor: string | null | undefined;
   label: FilterLabelTheme;
 }

@@ -36,10 +36,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       variable: '--clustrum-default-background-filter-color',
       value: dashboard?.widget?.filter?.backgroundFilterColor,
     },
-    {
-      variable: '--clustrum-default-control-filter-color',
-      value: dashboard?.widget?.filter?.controlFilterColor,
-    },
+    // {
+    //   variable: '--clustrum-default-control-filter-color',
+    //   value: dashboard?.widget?.filter?.controlFilterColor,
+    // },
     {
       variable: '--clustrum-default-widget-shadow',
       value: widget.borderShadow,
@@ -147,6 +147,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-dashboard-widget-filter-label-font-size',
       value: dashboard?.widget?.filter?.label?.font?.size,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-label-font-style',
+      value: dashboard?.widget?.filter?.label?.font?.style,
     },
     // {
     //   variable: '--clustrum-filter-control-font-weight',

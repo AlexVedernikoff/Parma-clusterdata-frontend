@@ -96,12 +96,18 @@ const getInitialConfig = (): AppSettings => {
           },
           filter: {
             label: {
-              font: {},
-              shadingColor: '',
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '14px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#252625',
+              },
+              shadingColor: '#fff',
             },
-            backgroundFilterColor: undefined,
-            controlFilterColor: undefined,
-            borderFilterColor: undefined,
+            backgroundFilterColor: '#fff',
+            borderFilterColor: 'rgba(0, 0, 0, 0.06)',
           },
         },
       },
