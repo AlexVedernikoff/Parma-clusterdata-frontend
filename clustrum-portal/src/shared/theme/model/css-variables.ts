@@ -22,31 +22,33 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     },
     {
       variable: '--antd-final-table-column-total-color',
-      value: dashboard?.widget?.pivotTable?.total?.font?.color,
+      value: dashboard?.widget?.pivotTable?.total?.font?.color ?? 'rgba(0, 0, 0, 0.88)',
     },
     {
       variable: '--antd-final-table-column-total-weight',
-      value: dashboard?.widget?.pivotTable?.total?.font?.weight,
+      value: dashboard?.widget?.pivotTable?.total?.font?.weight ?? '600',
     },
     {
       variable: '--antd-final-table-column-total-size',
-      value: dashboard?.widget?.pivotTable?.total?.font?.size,
+      value: dashboard?.widget?.pivotTable?.total?.font?.size ?? '14px',
     },
     {
       variable: '--antd-final-table-column-total-style',
-      value: dashboard?.widget?.pivotTable?.total?.font?.style,
+      value: dashboard?.widget?.pivotTable?.total?.font?.style ?? 'normal',
     },
     {
       variable: '--antd-final-table-column-total-line-height',
-      value: dashboard?.widget?.pivotTable?.total?.font?.lineHeight,
+      value: dashboard?.widget?.pivotTable?.total?.font?.lineHeight ?? '1.5',
     },
     {
       variable: '--antd-final-table-column-total-font-family',
-      value: dashboard?.widget?.pivotTable?.total?.font?.family,
+      value:
+        dashboard?.widget?.pivotTable?.total?.font?.family ??
+        "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
     },
     {
       variable: '--antd-final-table-column-total-background-color',
-      value: dashboard?.widget?.pivotTable?.total?.backgroundColor,
+      value: dashboard?.widget?.pivotTable?.total?.backgroundColor ?? 'transparent',
     },
     {
       variable: '--clustrum-default-font-family',
