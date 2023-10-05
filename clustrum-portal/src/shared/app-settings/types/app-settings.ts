@@ -43,14 +43,27 @@ export interface DashboardWidgetTheme {
   table: TableWidgetTheme;
 }
 
+export type TextAlignTheme = 'left' | 'right' | 'center';
+
+export interface TableWidgetTdType {
+  align: TextAlignTheme;
+}
+
+export interface TableWidgetTdTheme {
+  numberType: TableWidgetTdType;
+  textType: TableWidgetTdType;
+  dateType: TableWidgetTdType;
+  font?: FontItemTheme;
+}
+
 export interface TableWidgetTheme {
-  td: CellPivotTableWidgetTheme;
+  td: TableWidgetTdTheme;
   total: TotalPivotTableWidgetTheme;
 }
 
 export interface PivotTableWidgetTheme {
   th: TitlePivotTableWidgetTheme;
-  td: CellPivotTableWidgetTheme;
+  td: TableWidgetTdTheme;
   total: TotalPivotTableWidgetTheme;
   layout: LayoutPivotTableWidgetTheme;
 }
@@ -66,17 +79,6 @@ export interface LayoutPivotTableWidgetTheme {
 export interface TotalPivotTableWidgetTheme {
   font: FontItemTheme;
   backgroundColor: string;
-}
-
-export interface CellPivotTableWidgetStyle {
-  align: string;
-}
-
-export interface CellPivotTableWidgetTheme {
-  numberType: CellPivotTableWidgetStyle;
-  textType: CellPivotTableWidgetStyle;
-  dateType: CellPivotTableWidgetStyle;
-  font?: FontItemTheme;
 }
 
 export interface TitlePivotTableWidgetTheme {
