@@ -59,6 +59,19 @@ const getInitialConfig = (): AppSettings => {
       },
       dashboard: {
         widget: {
+          table: {
+            total: {
+              backgroundColor: 'transparent',
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '13px',
+                weight: '600',
+                style: 'normal',
+                lineHeight: '1.5',
+                color: '#000',
+              },
+            },
+          },
           pivotTable: {
             th: {
               font: {

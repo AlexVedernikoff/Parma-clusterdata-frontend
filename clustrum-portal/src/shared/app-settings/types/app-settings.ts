@@ -43,6 +43,11 @@ export interface DashboardTheme {
 
 export interface DashboardWidgetTheme {
   pivotTable: PivotTableWidgetTheme;
+  table: TableWidgetTheme;
+}
+
+export interface TableWidgetTheme {
+  total: TotalPivotTableWidgetTheme;
 }
 
 export interface PivotTableWidgetTheme {
@@ -51,6 +56,12 @@ export interface PivotTableWidgetTheme {
   total: TotalPivotTableWidgetTheme;
   layout: LayoutPivotTableWidgetTheme;
 }
+
+export interface TotalTableWidgetTheme {
+  font: FontItemTheme;
+  backgroundColor: string;
+}
+
 export interface LayoutPivotTableWidgetTheme {
   tableBorderColor: string;
 }
