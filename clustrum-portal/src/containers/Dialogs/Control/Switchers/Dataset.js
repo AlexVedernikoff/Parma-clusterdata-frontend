@@ -18,7 +18,11 @@ function Dataset({
 
   const updatePath = async () => {
     const { key } = await sdk.getEntry({ entryId });
-    setPath(key);
+    const path = key
+      .split('/')
+      .slice(0, -1)
+      .join('/');
+    setPath(path);
   };
 
   useEffect(() => {

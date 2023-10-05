@@ -12,21 +12,6 @@ const getInitialConfig = (): AppSettings => {
 
   return {
     theme: {
-      appWidgets: {
-        tableWidget: {
-          cell: {
-            numberType: {
-              align: 'left',
-            },
-            textType: {
-              align: 'right',
-            },
-            dateType: {
-              align: 'center',
-            },
-          },
-        },
-      },
       ant: {
         colorPrimary: '#bb2649',
         colorSuccess: '#52c41a',
@@ -58,8 +43,30 @@ const getInitialConfig = (): AppSettings => {
         tabType: 'card',
       },
       dashboard: {
+        header: {
+          font: {
+            family:
+              "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
+            size: '30px',
+            weight: '400',
+            style: 'normal',
+            lineHeight: '30px',
+            color: '#111729',
+          },
+        },
         widget: {
           table: {
+            td: {
+              numberType: {
+                align: 'left',
+              },
+              textType: {
+                align: 'right',
+              },
+              dateType: {
+                align: 'center',
+              },
+            },
             total: {
               hover: {
                 backgroundColor: '#fafafa',
@@ -88,10 +95,14 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             td: {
-              align: {
-                string: 'left',
-                date: 'middle',
-                number: 'right',
+              numberType: {
+                align: 'left',
+              },
+              textType: {
+                align: 'right',
+              },
+              dateType: {
+                align: 'center',
               },
               font: {
                 family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",

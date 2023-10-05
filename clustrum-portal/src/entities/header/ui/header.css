@@ -33,8 +33,12 @@
 .header-wrapper__left-side-title {
   margin: 0;
   overflow: hidden;
-  font-size: 30px;
-  line-height: 30px;
+  color: var(--clustrum-dashboard-header-font-color);
+  font-weight: var(--clustrum-dashboard-header-font-weight);
+  font-size: var(--clustrum-dashboard-header-font-size);
+  font-family: var(--clustrum-dashboard-header-font-family);
+  font-style: var(--clustrum-dashboard-header-font-style);
+  line-height: var(--clustrum-dashboard-header-font-lineHeight);
   white-space: nowrap;
   text-overflow: ellipsis;
 }
