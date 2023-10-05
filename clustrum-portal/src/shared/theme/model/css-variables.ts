@@ -9,6 +9,36 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: ant.colorPrimary,
     },
     {
+      variable: '--clustrum-dashboard-widget-table-total-font-color',
+      value: dashboard?.widget?.table?.total?.font?.color ?? 'rgba(0, 0, 0, 0.88)',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-total-font-weight',
+      value: dashboard?.widget?.table?.total?.font?.weight ?? '600',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-total-font-size',
+      value: dashboard?.widget?.table?.total?.font?.size ?? '14px',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-total-font-style',
+      value: dashboard?.widget?.table?.total?.font?.style ?? 'normal',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-total-font-line-height',
+      value: dashboard?.widget?.table?.total?.font?.lineHeight ?? '1.5',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-total-font-family',
+      value:
+        dashboard?.widget?.table?.total?.font?.family ??
+        "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-total-background-color',
+      value: dashboard?.widget?.table?.total?.backgroundColor ?? 'transparent',
+    },
+    {
       variable: '--clustrum-default-font-family',
       value: app.font,
     },
@@ -39,6 +69,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-filter-label-shading-color',
       value: filters.labelShadingColor,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-pivot-table-total-background-color',
+      value: dashboard?.widget?.pivotTable?.total?.backgroundColor ?? 'transparent',
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-th-font-family',
