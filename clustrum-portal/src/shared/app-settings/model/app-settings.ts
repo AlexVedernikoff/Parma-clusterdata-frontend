@@ -60,11 +60,12 @@ const getInitialConfig = (): AppSettings => {
       dashboard: {
         header: {
           font: {
-            family: 'Golos Text',
+            family:
+              "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
             size: '30px',
             weight: '400',
             style: 'normal',
-            lineHeight: '45px',
+            lineHeight: '30px',
             color: '#111729',
           },
         },
