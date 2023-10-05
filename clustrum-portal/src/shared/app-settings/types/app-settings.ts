@@ -1,5 +1,3 @@
-import { AppWidgets } from '@shared/app-settings/types';
-
 export interface AppSettings {
   env: string;
   appEnv: string;
@@ -31,35 +29,61 @@ export interface Theme {
   app: AppTheme;
   layout: LayoutTheme;
   tabs: TabsTheme;
-  appWidgets: AppWidgets;
   dashboard: DashboardTheme;
+}
+
+export interface DashboardHeaderTheme {
+  font: FontItemTheme;
 }
 
 export interface DashboardTheme {
   widget: DashboardWidgetTheme;
+  header: DashboardHeaderTheme;
 }
 
 export interface DashboardWidgetTheme {
   filter: FiltersTheme;
   pivotTable: PivotTableWidgetTheme;
+  table: TableWidgetTheme;
+}
+
+export type TextAlignTheme = 'left' | 'right' | 'center';
+
+export interface TableWidgetTdType {
+  align: TextAlignTheme;
+}
+
+export interface TableWidgetTdTheme {
+  numberType: TableWidgetTdType;
+  textType: TableWidgetTdType;
+  dateType: TableWidgetTdType;
+  font?: FontItemTheme;
+}
+
+export interface TableWidgetTheme {
+  td: TableWidgetTdTheme;
+  total: TotalPivotTableWidgetTheme;
+  pagination: TablePaginationTheme;
 }
 
 export interface PivotTableWidgetTheme {
   th: TitlePivotTableWidgetTheme;
-  td: CellPivotTableWidgetTheme;
+  td: TableWidgetTdTheme;
   total: TotalPivotTableWidgetTheme;
   layout: LayoutPivotTableWidgetTheme;
 }
+
+export interface TotalTableWidgetTheme {
+  font: FontItemTheme;
+  backgroundColor: string;
+}
+
 export interface LayoutPivotTableWidgetTheme {
   tableBorderColor: string;
 }
 export interface TotalPivotTableWidgetTheme {
   font: FontItemTheme;
-}
-
-export interface CellPivotTableWidgetTheme {
-  font: FontItemTheme;
-  align: CellAlignByData;
+  backgroundColor: string;
 }
 
 export interface TitlePivotTableWidgetTheme {
@@ -84,12 +108,6 @@ export interface BackgroundItemTheme {
   color?: string;
 }
 
-export interface CellAlignByData {
-  string: string;
-  date: string;
-  number: string;
-}
-
 export interface TabsTheme {
   tabType: 'line' | 'card' | 'editable-card' | undefined;
 }
@@ -109,6 +127,11 @@ export interface FilterWrapperTheme {
   border: BorderItemTheme;
   boxShadow: string;
   textAlign: string;
+}
+
+export interface TablePaginationTheme {
+  font: FontItemTheme;
+  defaultPageSize: number;
 }
 
 export interface FiltersTheme {
