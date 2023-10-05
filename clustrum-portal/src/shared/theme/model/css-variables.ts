@@ -50,27 +50,27 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     },
     {
       variable: '--clustrum-dashboard-header-font-family',
-      value: dashboard.header.font.family,
+      value: dashboard?.header?.font?.family,
     },
     {
       variable: '--clustrum-dashboard-header-font-size',
-      value: dashboard.header.font.size,
+      value: dashboard?.header?.font?.size,
     },
     {
       variable: '--clustrum-dashboard-header-font-weight',
-      value: dashboard.header.font.weight,
+      value: dashboard?.header?.font?.weight,
     },
     {
       variable: '--clustrum-dashboard-header-font-style',
-      value: dashboard.header.font.style,
+      value: dashboard?.header?.font?.style,
     },
     {
       variable: '--clustrum-dashboard-header-font-lineHeight',
-      value: dashboard.header.font.lineHeight,
+      value: dashboard?.header?.font?.lineHeight,
     },
     {
       variable: '--clustrum-dashboard-header-font-color',
-      value: dashboard.header.font.color,
+      value: dashboard?.header?.font?.color,
     },
     {
       variable: '--clustrum-filter-label-shading-color',
