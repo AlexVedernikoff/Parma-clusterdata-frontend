@@ -29,12 +29,12 @@
 .table-widget__content--double,
 .table-widget__content--long,
 .table-widget__content--number {
-  text-align: var(--clustrum-table-widget-cell-numbertype-align);
+  text-align: var(--clustrum-dashboard-widget-pivot-table-td-numbertype-align);
 }
 
 .table-widget__content--date,
 .table-widget__content--datetime {
-  text-align: var(--clustrum-table-widget-cell-datetype-align);
+  text-align: var(--clustrum-dashboard-widget-pivot-table-td-datetype-align);
 }
 
 .table-widget__content--string,
@@ -47,7 +47,7 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: var(--clustrum-table-widget-cell-texttype-align);
+  text-align: var(--clustrum-dashboard-widget-pivot-table-td-texttype-align);
 }
 
 .ant-table-wrapper {

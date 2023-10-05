@@ -1,5 +1,3 @@
-import { AppWidgets } from '@shared/app-settings/types';
-
 export interface AppSettings {
   env: string;
   appEnv: string;
@@ -33,7 +31,6 @@ export interface Theme {
   filters: FiltersTheme;
   widget: WidgetTheme;
   tabs: TabsTheme;
-  appWidgets: AppWidgets;
   dashboard: DashboardTheme;
 }
 
@@ -58,9 +55,15 @@ export interface TotalPivotTableWidgetTheme {
   font: FontItemTheme;
 }
 
+export interface CellPivotTableWidgetStyle {
+  align: string;
+}
+
 export interface CellPivotTableWidgetTheme {
+  numberType: CellPivotTableWidgetStyle;
+  textType: CellPivotTableWidgetStyle;
+  dateType: CellPivotTableWidgetStyle;
   font: FontItemTheme;
-  align: CellAlignByData;
 }
 
 export interface TitlePivotTableWidgetTheme {
@@ -74,12 +77,6 @@ export interface FontItemTheme {
   style?: string;
   lineHeight?: string;
   color?: string;
-}
-
-export interface CellAlignByData {
-  string: string;
-  date: string;
-  number: string;
 }
 
 export interface TabsTheme {
