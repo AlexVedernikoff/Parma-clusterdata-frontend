@@ -58,6 +58,17 @@ const getInitialConfig = (): AppSettings => {
         tabType: 'card',
       },
       dashboard: {
+        header: {
+          font: {
+            family:
+              "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
+            size: '30px',
+            weight: '400',
+            style: 'normal',
+            lineHeight: '30px',
+            color: '#111729',
+          },
+        },
         widget: {
           table: {
             total: {

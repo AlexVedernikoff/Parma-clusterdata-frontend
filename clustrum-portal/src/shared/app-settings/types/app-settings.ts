@@ -37,8 +37,13 @@ export interface Theme {
   dashboard: DashboardTheme;
 }
 
+export interface DashboardHeaderTheme {
+  font: FontItemTheme;
+}
+
 export interface DashboardTheme {
   widget: DashboardWidgetTheme;
+  header: DashboardHeaderTheme;
 }
 
 export interface DashboardWidgetTheme {

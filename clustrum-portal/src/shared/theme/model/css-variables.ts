@@ -79,6 +79,32 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: filters.borderFilterColor,
     },
     {
+      variable: '--clustrum-dashboard-header-font-family',
+      value:
+        dashboard?.header?.font?.family ??
+        "'Inter', 'Open Sans', 'Helvetica Neue', Arial,Helvetica, sans-serif",
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-size',
+      value: dashboard?.header?.font?.size ?? '30px',
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-weight',
+      value: dashboard?.header?.font?.weight ?? '400',
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-style',
+      value: dashboard?.header?.font?.style ?? 'normal',
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-lineHeight',
+      value: dashboard?.header?.font?.lineHeight ?? '30px',
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-color',
+      value: dashboard?.header?.font?.color ?? '#111729',
+    },
+    {
       variable: '--clustrum-filter-label-shading-color',
       value: filters.labelShadingColor,
     },
