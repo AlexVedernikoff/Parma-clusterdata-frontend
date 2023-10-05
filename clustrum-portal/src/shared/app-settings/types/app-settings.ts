@@ -35,6 +35,52 @@ export interface Theme {
   dashboard: DashboardTheme;
   tabs: TabsTheme;
   appWidgets: AppWidgets;
+  dashboard: DashboardTheme;
+}
+
+export interface DashboardTheme {
+  widget: DashboardWidgetTheme;
+}
+
+export interface DashboardWidgetTheme {
+  pivotTable: PivotTableWidgetTheme;
+}
+
+export interface PivotTableWidgetTheme {
+  th: TitlePivotTableWidgetTheme;
+  td: CellPivotTableWidgetTheme;
+  total: TotalPivotTableWidgetTheme;
+  layout: LayoutPivotTableWidgetTheme;
+}
+export interface LayoutPivotTableWidgetTheme {
+  tableBorderColor: string;
+}
+export interface TotalPivotTableWidgetTheme {
+  font: FontItemTheme;
+}
+
+export interface CellPivotTableWidgetTheme {
+  font: FontItemTheme;
+  align: CellAlignByData;
+}
+
+export interface TitlePivotTableWidgetTheme {
+  font: FontItemTheme;
+}
+
+export interface FontItemTheme {
+  family?: string;
+  size?: string;
+  weight?: string;
+  style?: string;
+  lineHeight?: string;
+  color?: string;
+}
+
+export interface CellAlignByData {
+  string: string;
+  date: string;
+  number: string;
 }
 
 export interface TabsTheme {
