@@ -1,24 +1,25 @@
 import { Theme } from '../../app-settings/types/app-settings';
 import { CssVariables } from '../types/theme';
+import { DEFAULT_FONT_FAMILY } from '@shared/app-settings';
 
 const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
-  const { ant, app, layout, filters, widget, appWidgets, dashboard } = themeObj;
+  const { ant, app, layout, filters, widget, dashboard } = themeObj;
   return [
-    {
-      variable: '--clustrum-table-widget-cell-numbertype-align',
-      value: appWidgets?.tableWidget?.cell?.numberType?.align ?? 'left',
-    },
-    {
-      variable: '--clustrum-table-widget-cell-texttype-align',
-      value: appWidgets?.tableWidget?.cell?.textType?.align ?? 'right',
-    },
-    {
-      variable: '--clustrum-table-widget-cell-datetype-align',
-      value: appWidgets?.tableWidget?.cell?.dateType?.align ?? 'center',
-    },
     {
       variable: '--antd-color-primary',
       value: ant.colorPrimary,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-td-numbertype-align',
+      value: dashboard?.widget?.table?.td?.numberType?.align,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-td-texttype-align',
+      value: dashboard?.widget?.table?.td?.textType?.align,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-td-datetype-align',
+      value: dashboard?.widget?.table?.td?.dateType?.align,
     },
     {
       variable: '--clustrum-dashboard-widget-table-total-font-color',
@@ -79,6 +80,32 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: filters.borderFilterColor,
     },
     {
+      variable: '--clustrum-dashboard-header-font-family',
+      value:
+        dashboard?.header?.font?.family ??
+        "'Inter', 'Open Sans', 'Helvetica Neue', Arial,Helvetica, sans-serif",
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-size',
+      value: dashboard?.header?.font?.size ?? '30px',
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-weight',
+      value: dashboard?.header?.font?.weight ?? '400',
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-style',
+      value: dashboard?.header?.font?.style ?? 'normal',
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-lineHeight',
+      value: dashboard?.header?.font?.lineHeight ?? '30px',
+    },
+    {
+      variable: '--clustrum-dashboard-header-font-color',
+      value: dashboard?.header?.font?.color ?? '#111729',
+    },
+    {
       variable: '--clustrum-filter-label-shading-color',
       value: filters.labelShadingColor,
     },
@@ -125,6 +152,18 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-dashboard-widget-pivot-table-th-font-color',
       value: dashboard?.widget?.pivotTable?.th?.font?.lineHeight,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-pivot-table-td-numbertype-align',
+      value: dashboard?.widget?.pivotTable?.td?.numberType?.align,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-pivot-table-td-texttype-align',
+      value: dashboard?.widget?.pivotTable?.td?.textType?.align,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-pivot-table-td-datetype-align',
+      value: dashboard?.widget?.pivotTable?.td?.dateType?.align,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-td-font-family',
@@ -175,8 +214,32 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.pivotTable?.total?.font?.lineHeight,
     },
     {
-      variable: '--clustrum-dashboard-widget-pivot-table-layout-table-border-color',
+      variable: '--clustrum-dashboard-widget-table-pivot-table-layout-table-border-color',
       value: dashboard?.widget?.pivotTable?.layout?.tableBorderColor,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-pagination-font-family',
+      value: dashboard?.widget?.table?.pagination?.font?.family ?? DEFAULT_FONT_FAMILY,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-pagination-font-weight',
+      value: dashboard?.widget?.table?.pagination?.font?.weight ?? '400',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-pagination-line-height',
+      value: dashboard?.widget?.table?.pagination?.font?.lineHeight ?? '22px',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-pagination-font-size',
+      value: dashboard?.widget?.table?.pagination?.font?.size ?? '14px',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-pagination-font-style',
+      value: dashboard?.widget?.table?.pagination?.font?.style ?? 'normal',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-pagination-font-color',
+      value: dashboard?.widget?.table?.pagination?.font?.color ?? 'rgba(0, 0, 0, 0.88)',
     },
   ];
 };

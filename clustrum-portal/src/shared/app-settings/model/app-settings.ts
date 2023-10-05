@@ -1,6 +1,6 @@
 import { createEvent, createStore } from 'effector';
 import { AppSettings } from '../types';
-import { DEFAULT_ENV_VARIABLES } from '../lib/constants';
+import { DEFAULT_ENV_VARIABLES, DEFAULT_FONT_FAMILY } from '../lib/constants';
 
 const getInitialConfig = (): AppSettings => {
   const biHost = process.env.REACT_APP_CLUSTRUM_BI_HOST ?? DEFAULT_ENV_VARIABLES.biHost;
@@ -12,21 +12,6 @@ const getInitialConfig = (): AppSettings => {
 
   return {
     theme: {
-      appWidgets: {
-        tableWidget: {
-          cell: {
-            numberType: {
-              align: 'left',
-            },
-            textType: {
-              align: 'right',
-            },
-            dateType: {
-              align: 'center',
-            },
-          },
-        },
-      },
       ant: {
         colorPrimary: '#bb2649',
         colorSuccess: '#52c41a',
@@ -37,7 +22,7 @@ const getInitialConfig = (): AppSettings => {
         colorBorder: 'rgba(0, 0, 0, 0.15)',
       },
       app: {
-        font: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+        font: DEFAULT_FONT_FAMILY,
       },
       layout: {
         backgroundContentColor: '#fff',
@@ -65,9 +50,40 @@ const getInitialConfig = (): AppSettings => {
             top: '24px',
             bottom: '24px',
           },
+          font: {
+            family:
+              "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
+            size: '30px',
+            weight: '400',
+            style: 'normal',
+            lineHeight: '30px',
+            color: '#111729',
+          },
         },
         widget: {
           table: {
+            pagination: {
+              defaultPageSize: 10,
+              font: {
+                family: DEFAULT_FONT_FAMILY,
+                size: '14px',
+                weight: '400',
+                lineHeight: '22px',
+                style: 'normal',
+                color: 'rgba(0, 0, 0, 0.88)',
+              },
+            },
+            td: {
+              numberType: {
+                align: 'left',
+              },
+              textType: {
+                align: 'right',
+              },
+              dateType: {
+                align: 'center',
+              },
+            },
             total: {
               backgroundColor: 'transparent',
               font: {
@@ -92,10 +108,14 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             td: {
-              align: {
-                string: 'left',
-                date: 'middle',
-                number: 'right',
+              numberType: {
+                align: 'left',
+              },
+              textType: {
+                align: 'right',
+              },
+              dateType: {
+                align: 'center',
               },
               font: {
                 family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",

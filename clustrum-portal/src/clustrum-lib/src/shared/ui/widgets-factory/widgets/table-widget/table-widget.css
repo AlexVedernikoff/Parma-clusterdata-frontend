@@ -29,12 +29,12 @@
 .table-widget__content--double,
 .table-widget__content--long,
 .table-widget__content--number {
-  text-align: var(--clustrum-table-widget-cell-numbertype-align);
+  text-align: var(--clustrum-dashboard-widget-table-td-numbertype-align);
 }
 
 .table-widget__content--date,
 .table-widget__content--datetime {
-  text-align: var(--clustrum-table-widget-cell-datetype-align);
+  text-align: var(--clustrum-dashboard-widget-table-td-datetype-align);
 }
 
 .table-widget__content--string,
@@ -47,7 +47,7 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: var(--clustrum-table-widget-cell-texttype-align);
+  text-align: var(--clustrum-dashboard-widget-table-td-texttype-align);
 }
 
 .ant-table-wrapper {
@@ -132,6 +132,18 @@
 
 .table-widget .ant-table-header {
   overflow: visible !important;
+}
+
+.table-widget-pagination a {
+  font-size: var(--clustrum-dashboard-widget-table-pagination-font-size);
+  font-family: var(--clustrum-dashboard-widget-table-pagination-font-family);
+  font-style: var(--clustrum-dashboard-widget-table-pagination-font-style);
+  line-height: var(--clustrum-dashboard-widget-table-pagination-line-height);
+}
+
+.table-widget .ant-pagination-item:not(.ant-pagination-item-active) a {
+  color: var(--clustrum-dashboard-widget-table-pagination-font-color);
+  font-weight: var(--clustrum-dashboard-widget-table-pagination-font-weight);
 }
 
 .ant-tooltip-content > .ant-tooltip-inner {
