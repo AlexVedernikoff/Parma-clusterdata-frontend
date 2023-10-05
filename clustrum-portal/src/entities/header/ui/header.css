@@ -20,6 +20,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-top: var(--clustrum-dashboard-header-padding-top);
+  padding-right: var(--clustrum-dashboard-header-padding-right);
+  padding-bottom: var(--clustrum-dashboard-header-padding-bottom);
+  padding-left: var(--clustrum-dashboard-header-padding-left);
 }
 
 .header-wrapper__left-side {

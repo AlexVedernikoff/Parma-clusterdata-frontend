@@ -53,6 +53,22 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: filters.labelShadingColor,
     },
     {
+      variable: '--clustrum-dashboard-header-padding-left',
+      value: dashboard.header.padding.left,
+    },
+    {
+      variable: '--clustrum-dashboard-header-padding-right',
+      value: dashboard.header.padding.right,
+    },
+    {
+      variable: '--clustrum-dashboard-header-padding-top',
+      value: dashboard.header.padding.top,
+    },
+    {
+      variable: '--clustrum-dashboard-header-padding-bottom',
+      value: dashboard.header.padding.bottom,
+    },
+    {
       variable: '--clustrum-dashboard-widget-pivot-table-th-font-family',
       value: dashboard?.widget?.pivotTable?.th?.font?.family,
     },

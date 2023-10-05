@@ -58,6 +58,14 @@ const getInitialConfig = (): AppSettings => {
         tabType: 'card',
       },
       dashboard: {
+        header: {
+          padding: {
+            left: '24px',
+            right: '24px',
+            top: '24px',
+            bottom: '24px',
+          },
+        },
         widget: {
           pivotTable: {
             th: {
