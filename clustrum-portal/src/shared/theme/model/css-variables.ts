@@ -51,6 +51,14 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.table?.total?.backgroundColor ?? 'transparent',
     },
     {
+      variable: '--clustrum-dashboard-widget-table-total-hover-font-color',
+      value: dashboard?.widget?.table?.total?.hover?.fontColor ?? '#000;',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-total-hover-background-color',
+      value: dashboard?.widget?.table?.total?.hover.backgroundColor ?? '#fafafa',
+    },
+    {
       variable: '--clustrum-default-font-family',
       value: app.font,
     },
@@ -81,6 +89,14 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-filter-label-shading-color',
       value: filters.labelShadingColor,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-pivot-table-total-hover-font-color',
+      value: dashboard?.widget?.table?.total?.hover?.fontColor ?? '#000;',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-pivot-table-total-hover-background-color',
+      value: dashboard?.widget?.table?.total?.hover.backgroundColor ?? '#fafafa',
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-total-background-color',
