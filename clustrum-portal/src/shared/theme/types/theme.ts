@@ -1,4 +1,4 @@
 export interface CssVariables {
   variable: string;
-  value: string;
+  value: string | null | undefined;
 }

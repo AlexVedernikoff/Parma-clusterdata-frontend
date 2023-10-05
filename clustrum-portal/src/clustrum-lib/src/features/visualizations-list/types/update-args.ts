@@ -5,9 +5,9 @@ import {
   Dataset,
   FieldProperties,
 } from '@lib-entities/visualization-factory/types';
-import { PaginateInfo } from './paginate-info';
 import { IntRange } from './common-services';
 import { VisualizationItem } from './visualization-item';
+import { PaginateInfo } from '@lib-shared/types';
 
 export interface CommonSelectionProps {
   dataset: Dataset;

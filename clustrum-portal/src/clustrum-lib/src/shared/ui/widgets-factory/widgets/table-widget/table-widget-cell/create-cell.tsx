@@ -5,7 +5,11 @@ import { Options, GridFlow, Cell, DateType, CssStyles } from '../types';
 import { camelCaseCss, numberFormatter, NULL_ALIAS } from '../lib';
 import { diffFormatter } from './diff-formatter';
 import { renderDate, renderDiff, renderText } from './cell-renders';
-import { CELL_BASIC_WIDTH, CELL_SYMBOLS_LIMIT } from '../lib/constants';
+import {
+  CELL_BASIC_WIDTH,
+  CELL_SYMBOLS_LIMIT,
+  CELL_BASIC_COEFF_WIDTH_DIVISION,
+} from '../lib/constants';
 
 function reverseGridFlow(gridFlow: GridFlow): GridFlow {
   return gridFlow === GridFlow.Column ? GridFlow.Row : GridFlow.Column;
@@ -79,18 +83,26 @@ function getResultValue(cell: Cell, options: Options): JSX.Element | string {
 }
 
 const getStylesFromValidCell = (cell: Cell): CssStyles => {
-  if (cell.type.toLowerCase() !== 'string') {
-    return {};
-  }
+  const resultStyle = {
+    width: 'inherit',
+  };
 
-  const len = String(cell.value).length;
-
-  if (len > CELL_SYMBOLS_LIMIT) {
-    return {
-      width: CELL_BASIC_WIDTH + Math.floor(len / 2),
-    };
+  switch (cell.type.toLowerCase()) {
+    case 'string':
+    case 'text': {
+      const len = String(cell.value).length;
+      if (len > CELL_SYMBOLS_LIMIT) {
+        resultStyle.width = String(
+          CELL_BASIC_WIDTH + Math.floor(len / CELL_BASIC_COEFF_WIDTH_DIVISION),
+        );
+      }
+      break;
+    }
+    default: {
+      break;
+    }
   }
-  return {};
+  return resultStyle;
 };
 
 export function createCell(

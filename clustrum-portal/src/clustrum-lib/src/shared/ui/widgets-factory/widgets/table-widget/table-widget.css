@@ -24,11 +24,21 @@
   opacity: 0.5;
 }
 
+.table-widget__content--integer,
+.table-widget__content--float,
+.table-widget__content--double,
+.table-widget__content--long,
 .table-widget__content--number {
-  text-align: right;
+  text-align: var(--clustrum-table-widget-cell-numbertype-align);
 }
 
-.table-widget__content.table-widget__content--string {
+.table-widget__content--date,
+.table-widget__content--datetime {
+  text-align: var(--clustrum-table-widget-cell-datetype-align);
+}
+
+.table-widget__content--string,
+.table-widget__content--text {
   max-height: 200px;
   overflow-y: scroll;
   color: #020202;
@@ -37,6 +47,7 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
+  text-align: var(--clustrum-table-widget-cell-texttype-align);
 }
 
 .ant-table-wrapper {
@@ -88,7 +99,13 @@
 }
 
 .table-widget .ant-table-thead > tr:nth-of-type(2) > .ant-table-cell {
-  background-color: #fff;
+  color: var(--clustrum-dashboard-widget-table-total-font-color);
+  font-weight: var(--clustrum-dashboard-widget-table-total-font-weight);
+  font-size: var(--clustrum-dashboard-widget-table-total-font-size);
+  font-family: var(--clustrum-dashboard-widget-table-total-font-family);
+  font-style: var(--clustrum-dashboard-widget-table-total-font-style);
+  line-height: var(--clustrum-dashboard-widget-table-total-font-line-height);
+  background-color: var(--clustrum-dashboard-widget-table-total-background-color);
   border-right: 1px solid transparent;
 }
 

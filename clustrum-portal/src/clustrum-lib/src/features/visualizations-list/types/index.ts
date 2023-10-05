@@ -1,6 +1,5 @@
 export { MeasureType, NullAlias, ChartId } from './enums';
 export { Color } from './color';
-export { PaginateInfo } from './paginate-info';
 export { Placeholder } from './placeholder';
 export { UpdateArgs } from './update-args';
 export { UpdatePreviewParams } from './update-preview-params';
