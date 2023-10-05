@@ -84,7 +84,6 @@ function getResultValue(cell: Cell, options: Options): JSX.Element | string {
 
 const getStylesFromValidCell = (cell: Cell): CssStyles => {
   const resultStyle = {
-    textAlign: 'inherit',
     width: 'inherit',
   };
 
@@ -97,24 +96,8 @@ const getStylesFromValidCell = (cell: Cell): CssStyles => {
           CELL_BASIC_WIDTH + Math.floor(len / CELL_BASIC_COEFF_WIDTH_DIVISION),
         );
       }
-      resultStyle.textAlign = 'right';
       break;
     }
-    case 'datetime':
-    case 'date': {
-      resultStyle.textAlign = 'center';
-      break;
-    }
-
-    case 'integer':
-    case 'float':
-    case 'double':
-    case 'long':
-    case 'number': {
-      resultStyle.textAlign = 'left';
-      break;
-    }
-
     default: {
       break;
     }

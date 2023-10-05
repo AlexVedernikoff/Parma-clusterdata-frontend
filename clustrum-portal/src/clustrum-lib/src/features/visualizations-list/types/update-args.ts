@@ -3,9 +3,9 @@ import { Dataset } from './dataset';
 import { MeasureType, NullAlias } from './enums';
 import { FieldProperties } from './field-properties';
 import { Filter } from './filter';
-import { PaginateInfo } from './paginate-info';
 import { IntRange } from './common-services';
 import { VisualizationItem } from './visualization-item';
+import { PaginateInfo } from '@lib-shared/types';
 
 export interface CommonSelectionProps {
   dataset: Dataset;

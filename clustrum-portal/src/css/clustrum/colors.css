@@ -12,6 +12,36 @@
   --clustrum-default-widget-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
   --clustrum-default-border-filter-color: gba(0, 0, 0, 0.06);
   --clustrum-filter-label-shading-color: #fff;
+  --clustrum-table-widget-cell-numbertype-align: left;
+  --clustrum-table-widget-cell-texttype-align: right;
+  --clustrum-table-widget-cell-datetype-align: center;
+
+  --clustrum-dashboard-widget-pivot-table-th-font-family: 'Inter', 'Open Sans',
+    'Helvetica Neue', Arial, Helvetica, sans-serif;
+  --clustrum-dashboard-widget-pivot-table-th-font-size: 13px;
+  --clustrum-dashboard-widget-pivot-table-th-font-weight: 600;
+  --clustrum-dashboard-widget-pivot-table-th-font-style: normal;
+  --clustrum-dashboard-widget-pivot-table-th-font-line-height: 1.2;
+  --clustrum-dashboard-widget-pivot-table-th-font-color: #000;
+
+  --clustrum-dashboard-widget-pivot-table-td-font-family: 'Inter', 'Open Sans',
+    'Helvetica Neue', Arial, Helvetica, sans-serif;
+  --clustrum-dashboard-widget-pivot-table-td-font-size: 13px;
+  --clustrum-dashboard-widget-pivot-table-td-font-weight: 600;
+  --clustrum-dashboard-widget-pivot-table-td-font-style: normal;
+  --clustrum-dashboard-widget-pivot-table-td-font-line-height: 1.2;
+  --clustrum-dashboard-widget-pivot-table-td-font-color: #000;
+
+  --clustrum-dashboard-widget-pivotTable-td-font-family: 'Inter', 'Open Sans',
+    'Helvetica Neue', Arial, Helvetica, sans-serif;
+  --clustrum-dashboard-widget-pivot-table-total-font-size: 13px;
+  --clustrum-dashboard-widget-pivot-table-total-font-weight: 600;
+  --clustrum-dashboard-widget-pivot-table-total-font-style: normal;
+  --clustrum-dashboard-widget-pivot-table-total-font-line-height: 1.2;
+  --clustrum-dashboard-widget-pivot-table-total-font-color: #000;
+
+  --clustrum-dashboard-widget-pivot-table-layout-table-border-color: transparent;
+
   /* Цвета antdesign (красная тема) */
   --antd-color-primary: #bb2649;
   --antd-color-info: #fad54d;
