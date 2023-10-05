@@ -108,6 +108,16 @@ const getInitialConfig = (): AppSettings => {
             },
             backgroundFilterColor: '#fff',
             borderFilterColor: 'rgba(0, 0, 0, 0.06)',
+            control: {
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '14px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#252625',
+              },
+            },
           },
         },
       },

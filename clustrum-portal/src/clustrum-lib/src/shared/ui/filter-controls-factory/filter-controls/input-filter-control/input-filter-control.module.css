@@ -17,11 +17,11 @@
 
 .input-filter-control__label input {
   width: 100%;
-  color: var(--clustrum-default-control-filter-color);
-  font-weight: var(--clustrum-filter-control-font-weight);
-  font-size: var(--clustrum-filter-control-font-size);
-  font-family: var(--clustrum-filter-control-font-family);
-  line-height: var(--clustrum-filter-control-line-height);
+  color: var(--clustrum-dashboard-widget-filter-control-color);
+  font-weight: var(--clustrum-dashboard-widget-filter-control-weight);
+  font-size: var(--clustrum-dashboard-widget-filter-control-size);
+  font-family: var(--clustrum-dashboard-widget-filter-control-font-family);
+  line-height: var(--clustrum-dashboard-widget-filter-control-line-height);
   border:
     var(--clustrum-filter-control-border-size)
     var(--clustrum-filter-control-border-style)

@@ -70,12 +70,12 @@
     'Helvetica Neue', 'Arial', 'Helvetica';
 
   /* Контроллы (фильтры) */
-  --clustrum-default-control-filter-color: #000;
-  --clustrum-filter-control-font-weight: 400;
-  --clustrum-filter-control-font-size: 14px;
-  --clustrum-filter-control-line-height: 22px;
-  --clustrum-filter-control-font-family: 'Inter', 'Open Sans', 'Helvetica Neue', 'Arial',
-    'Helvetica';
+  --clustrum-dashboard-widget-filter-control-color: #000;
+  --clustrum-dashboard-widget-filter-control-weight: 400;
+  --clustrum-dashboard-widget-filter-control-size: 14px;
+  --clustrum-dashboard-widget-filter-control-line-height: 22px;
+  --clustrum-dashboard-widget-filter-control-font-family: 'Inter', 'Open Sans',
+    'Helvetica Neue', 'Arial', 'Helvetica';
   --clustrum-filter-control-border-size: 1px;
   --clustrum-filter-control-border-style: solid;
   --clustrum-filter-control-border-color: rgba(0, 0, 0, 0.15);

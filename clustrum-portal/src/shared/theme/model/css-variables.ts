@@ -36,10 +36,6 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       variable: '--clustrum-default-background-filter-color',
       value: dashboard?.widget?.filter?.backgroundFilterColor,
     },
-    // {
-    //   variable: '--clustrum-default-control-filter-color',
-    //   value: dashboard?.widget?.filter?.controlFilterColor,
-    // },
     {
       variable: '--clustrum-default-widget-shadow',
       value: widget.borderShadow,
@@ -152,22 +148,26 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       variable: '--clustrum-dashboard-widget-filter-label-font-style',
       value: dashboard?.widget?.filter?.label?.font?.style,
     },
-    // {
-    //   variable: '--clustrum-filter-control-font-weight',
-    //   value: filters.controlFontWeight,
-    // },
-    // {
-    //   variable: '--clustrum-filter-control-font-family',
-    //   value: filters.controlFontFamily,
-    // },
-    // {
-    //   variable: '--clustrum-filter-control-line-height',
-    //   value: filters.controlLineHeight,
-    // },
-    // {
-    //   variable: '--clustrum-filter-control-font-size',
-    //   value: filters.controlFontSize,
-    // },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-color',
+      value: dashboard?.widget?.filter?.control?.font?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-weight',
+      value: dashboard?.widget?.filter?.control?.font?.weight,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-font-family',
+      value: dashboard?.widget?.filter?.control?.font?.family,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-line-height',
+      value: dashboard?.widget?.filter?.control?.font?.lineHeight,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-size',
+      value: dashboard?.widget?.filter?.control?.font?.size,
+    },
     // {
     //   variable: '--clustrum-filter-control-border-size',
     //   value: filters.controlBorderSize,

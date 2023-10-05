@@ -18,10 +18,10 @@
 
 .select-filter-control__select :global(.ant-select-selector) {
   width: 100% !important;
-  font-weight: var(--clustrum-filter-control-font-weight) !important;
-  font-size: var(--clustrum-filter-control-font-size) !important;
-  font-family: var(--clustrum-filter-control-font-family) !important;
-  line-height: var(--clustrum-filter-control-line-height) !important;
+  font-weight: var(--clustrum-dashboard-widget-filter-control-weight) !important;
+  font-size: var(--clustrum-dashboard-widget-filter-control-size) !important;
+  font-family: var(--clustrum-dashboard-widget-filter-control-font-family) !important;
+  line-height: var(--clustrum-dashboard-widget-filter-control-line-height) !important;
   border:
     var(--clustrum-filter-control-border-size)
     var(--clustrum-filter-control-border-style)
@@ -30,5 +30,5 @@
 }
 
 .select-filter-control__select :global(.ant-select-selection-item) {
-  color: var(--clustrum-default-control-filter-color) !important;
+  color: var(--clustrum-dashboard-widget-filter-control-color) !important;
 }

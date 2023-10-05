@@ -95,11 +95,15 @@ export interface FilterLabelTheme {
   shadingColor: string;
   font: FontItemTheme;
 }
+export interface FilterControlTheme {
+  font: FontItemTheme;
+}
 
 export interface FiltersTheme {
   backgroundFilterColor: string;
   borderFilterColor: string | null | undefined;
   label: FilterLabelTheme;
+  control: FilterControlTheme;
 }
 export interface AppTheme {
   font: string;
