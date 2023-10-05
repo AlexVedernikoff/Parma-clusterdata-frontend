@@ -1,9 +1,6 @@
 import { createEvent, createStore } from 'effector';
 import { AppSettings } from '../types';
-import {
-  DEFAULT_ENV_VARIABLES,
-  DEFAULT_FONT_FAMILY,
-} from '@shared/app-settings/lib/constants';
+import { DEFAULT_ENV_VARIABLES, DEFAULT_FONT_FAMILY } from '../lib/constants';
 
 const getInitialConfig = (): AppSettings => {
   const biHost = process.env.REACT_APP_CLUSTRUM_BI_HOST ?? DEFAULT_ENV_VARIABLES.biHost;
@@ -57,12 +54,15 @@ const getInitialConfig = (): AppSettings => {
       widget: {
         borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
       },
+      tabs: {
+        tabType: 'card',
+      },
       dashboard: {
         widget: {
           table: {
             pagination: {
               defaultPageSize: 10,
-              fontStyle: {
+              font: {
                 family: DEFAULT_FONT_FAMILY,
                 size: '14px',
                 weight: '400',
@@ -72,13 +72,6 @@ const getInitialConfig = (): AppSettings => {
               },
             },
           },
-        },
-      },
-      tabs: {
-        tabType: 'card',
-      },
-      dashboard: {
-        widget: {
           pivotTable: {
             th: {
               font: {

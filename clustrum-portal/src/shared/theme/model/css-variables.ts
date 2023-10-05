@@ -1,6 +1,6 @@
 import { Theme } from '../../app-settings/types/app-settings';
 import { CssVariables } from '../types/theme';
-import { DEFAULT_FONT_FAMILY } from '@shared/app-settings/lib/constants';
+import { DEFAULT_FONT_FAMILY } from '@shared/app-settings';
 
 const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
   const { ant, app, layout, filters, widget, appWidgets, dashboard } = themeObj;
@@ -126,34 +126,32 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.pivotTable?.total?.font?.lineHeight,
     },
     {
-      variable: '--clustrum-dashboard-widget-pivot-table-layout-table-border-color',
+      variable: '--clustrum-dashboard-widget-table-pivot-table-layout-table-border-color',
       value: dashboard?.widget?.pivotTable?.layout?.tableBorderColor,
     },
     {
-      variable: '--clustrum-dashboard-pagination-font-family',
-      value:
-        dashboard?.widget?.table?.pagination?.fontStyle?.family ?? DEFAULT_FONT_FAMILY,
+      variable: '--clustrum-dashboard-widget-table-pagination-font-family',
+      value: dashboard?.widget?.table?.pagination?.font?.family ?? DEFAULT_FONT_FAMILY,
     },
     {
-      variable: '--clustrum-dashboard-pagination-font-weight',
-      value: dashboard?.widget?.table?.pagination?.fontStyle?.weight ?? '400',
+      variable: '--clustrum-dashboard-widget-table-pagination-font-weight',
+      value: dashboard?.widget?.table?.pagination?.font?.weight ?? '400',
     },
     {
-      variable: '--clustrum-dashboard-pagination-line-height',
-      value: dashboard?.widget?.table?.pagination?.fontStyle?.lineHeight ?? '22px',
+      variable: '--clustrum-dashboard-widget-table-pagination-line-height',
+      value: dashboard?.widget?.table?.pagination?.font?.lineHeight ?? '22px',
     },
     {
-      variable: '--clustrum-dashboard-pagination-font-size',
-      value: dashboard?.widget?.table?.pagination?.fontStyle?.size ?? '14px',
+      variable: '--clustrum-dashboard-widget-table-pagination-font-size',
+      value: dashboard?.widget?.table?.pagination?.font?.size ?? '14px',
     },
     {
-      variable: '--clustrum-dashboard-pagination-font-style',
-      value: dashboard?.widget?.table?.pagination?.fontStyle?.style ?? 'normal',
+      variable: '--clustrum-dashboard-widget-table-pagination-font-style',
+      value: dashboard?.widget?.table?.pagination?.font?.style ?? 'normal',
     },
     {
-      variable: '--clustrum-dashboard-pagination-font-color',
-      value:
-        dashboard?.widget?.table?.pagination?.fontStyle?.color ?? 'rgba(0, 0, 0, 0.88)',
+      variable: '--clustrum-dashboard-widget-pagination-font-color',
+      value: dashboard?.widget?.table?.pagination?.font?.color ?? 'rgba(0, 0, 0, 0.88)',
     },
   ];
 };

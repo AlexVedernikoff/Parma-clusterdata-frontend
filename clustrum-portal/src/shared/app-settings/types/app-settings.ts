@@ -32,7 +32,6 @@ export interface Theme {
   layout: LayoutTheme;
   filters: FiltersTheme;
   widget: WidgetTheme;
-  dashboard: DashboardTheme;
   tabs: TabsTheme;
   appWidgets: AppWidgets;
   dashboard: DashboardTheme;
@@ -44,6 +43,7 @@ export interface DashboardTheme {
 
 export interface DashboardWidgetTheme {
   pivotTable: PivotTableWidgetTheme;
+  table: TableTheme;
 }
 
 export interface PivotTableWidgetTheme {
@@ -90,30 +90,14 @@ export interface TabsTheme {
 export interface WidgetTheme {
   borderShadow: string;
 }
-export interface DashboardTheme {
-  widget: DashboardWidgetTheme;
-}
-
-export interface DashboardWidgetTheme {
-  table: TableTheme;
-}
 
 export interface TableTheme {
-  pagination: TablePagination;
+  pagination: TablePaginationTheme;
 }
 
-export interface TablePagination {
-  fontStyle: FontStyle;
+export interface TablePaginationTheme {
+  font: FontItemTheme;
   defaultPageSize: number;
-}
-
-export interface FontStyle {
-  weight: string;
-  family: string;
-  size: string;
-  lineHeight: string;
-  color: string;
-  style: string;
 }
 
 export interface FiltersTheme {
