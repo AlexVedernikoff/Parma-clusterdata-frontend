@@ -91,8 +91,7 @@ export function NavigationEntries(props: NavigationProps): ReactElement {
     onContextMenuClick: onContextMenuClick,
   });
 
-  // TODO: разобраться с типом any, не удалось вытащить из библиотеки
-  const handleActionOnRow = (rowData: NavigationEntryData): any => ({
+  const handleActionOnRow = (rowData: NavigationEntryData): { onClick: () => void } => ({
     onClick: (): void => {
       if (!place) {
         return;
