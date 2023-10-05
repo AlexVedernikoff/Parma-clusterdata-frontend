@@ -30,7 +30,6 @@ export interface Theme {
   ant: AntTheme;
   app: AppTheme;
   layout: LayoutTheme;
-  widget: WidgetTheme;
   tabs: TabsTheme;
   appWidgets: AppWidgets;
   dashboard: DashboardTheme;
@@ -81,6 +80,9 @@ export interface BorderItemTheme {
   style?: string;
   radius?: string;
 }
+export interface BackgroundItemTheme {
+  color?: string;
+}
 
 export interface CellAlignByData {
   string: string;
@@ -92,18 +94,21 @@ export interface TabsTheme {
   tabType: 'line' | 'card' | 'editable-card' | undefined;
 }
 
-export interface WidgetTheme {
-  backgroundColor: string;
-  borderShadow: string;
-}
-
 export interface FilterLabelTheme {
   shadingColor: string;
   font: FontItemTheme;
 }
+
 export interface FilterControlTheme {
   font: FontItemTheme;
   border: BorderItemTheme;
+}
+
+export interface FilterWrapperTheme {
+  background: BackgroundItemTheme;
+  border: BorderItemTheme;
+  boxShadow: string;
+  textAlign: string;
 }
 
 export interface FiltersTheme {
@@ -111,6 +116,7 @@ export interface FiltersTheme {
   borderFilterColor: string | null | undefined;
   label: FilterLabelTheme;
   control: FilterControlTheme;
+  wrapper: FilterWrapperTheme;
 }
 export interface AppTheme {
   font: string;

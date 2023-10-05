@@ -1,7 +1,7 @@
 .select-filter-control {
   display: flex;
   width: 100%;
-  text-align: var(--clustrum-filter-text-align);
+  text-align: var(--clustrum-dashboard-widget-filter-wrapper-textAlign);
 }
 
 .select-filter-control__label {

@@ -8,7 +8,7 @@
   font-family: var(--clustrum-dashboard-widget-filter-label-font-family);
   font-style: var(--clustrum-dashboard-widget-filter-label-font-style);
   line-height: var(--clustrum-dashboard-widget-filter-label-line-height);
-  text-align: var(--clustrum-filter-text-align);
+  text-align: var(--clustrum-dashboard-widget-filter-wrapper-textAlign);
 }
 
 .label-with-hover::after {

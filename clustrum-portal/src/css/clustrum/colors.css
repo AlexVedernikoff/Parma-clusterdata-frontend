@@ -5,8 +5,6 @@
     sans-serif;
   --clustrum-default-background-content-color: #fff;
   --clustrum-default-background-panel-color: #fff;
-  --clustrum-default-widget-background-color: #fff;
-  --clustrum-default-widget-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
   --clustrum-table-widget-cell-numbertype-align: left;
   --clustrum-table-widget-cell-texttype-align: right;
   --clustrum-table-widget-cell-datetype-align: center;
@@ -55,9 +53,10 @@
   --antd-color-measure-item-hover: #dcedfd;
 
   /* Общее (фильтры) */
-  --clustrum-default-background-filter-color: #fff;
-  --clustrum-default-border-filter-color: rgba(0, 0, 0, 0.06);
-  --clustrum-filter-text-align: left;
+  --clustrum-dashboard-widget-filter-wrapper-background-color: #fff;
+  --clustrum-dashboard-widget-filter-wrapper-border-color: rgba(0, 0, 0, 0.06);
+  --clustrum-dashboard-widget-filter-wrapper-boxShadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
+  --clustrum-dashboard-widget-filter-wrapper-textAlign: left;
 
   /* Лейблы (фильтры) */
   --clustrum-dashboard-widget-filter-label-color: #000;

@@ -2,7 +2,7 @@ import { Theme } from '../../app-settings/types/app-settings';
 import { CssVariables } from '../types/theme';
 
 const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
-  const { ant, app, layout, widget, appWidgets, dashboard } = themeObj;
+  const { ant, app, layout, appWidgets, dashboard } = themeObj;
   return [
     {
       variable: '--clustrum-table-widget-cell-numbertype-align',
@@ -31,22 +31,6 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-default-background-panel-color',
       value: layout.backgroundPanelColor,
-    },
-    {
-      variable: '--clustrum-default-background-filter-color',
-      value: dashboard?.widget?.filter?.backgroundFilterColor,
-    },
-    {
-      variable: '--clustrum-default-widget-shadow',
-      value: widget.borderShadow,
-    },
-    {
-      variable: '--clustrum-default-border-filter-color',
-      value: dashboard?.widget?.filter?.borderFilterColor,
-    },
-    {
-      variable: '--clustrum-dashboard-widget-filter-label-shading-color',
-      value: dashboard?.widget?.filter?.label?.shadingColor,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-th-font-family',
@@ -149,6 +133,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.filter?.label?.font?.style,
     },
     {
+      variable: '--clustrum-dashboard-widget-filter-label-shading-color',
+      value: dashboard?.widget?.filter?.label?.shadingColor,
+    },
+    {
       variable: '--clustrum-dashboard-widget-filter-control-color',
       value: dashboard?.widget?.filter?.control?.font?.color,
     },
@@ -184,14 +172,22 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       variable: '--clustrum-dashboard-widget-filter-control-border-radius',
       value: dashboard?.widget?.filter?.control?.border?.radius,
     },
-    // {
-    //   variable: '--clustrum-filter-text-align',
-    //   value: filters.textAlign,
-    // },
-    // {
-    //   variable: '--clustrum-default-widget-background-color',
-    //   value: widget.backgroundColor,
-    // },
+    {
+      variable: '--clustrum-dashboard-widget-filter-wrapper-border-color',
+      value: dashboard?.widget?.filter?.wrapper?.border?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-wrapper-background-color',
+      value: dashboard?.widget?.filter?.wrapper?.background?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-wrapper-boxShadow',
+      value: dashboard?.widget?.filter?.wrapper?.boxShadow,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-wrapper-textAlign',
+      value: dashboard?.widget?.filter?.wrapper?.textAlign,
+    },
   ];
 };
 

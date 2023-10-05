@@ -45,10 +45,6 @@ const getInitialConfig = (): AppSettings => {
         showBreadcrumbs: true,
         colorAccent: '#ffd700',
       },
-      widget: {
-        borderShadow: 'rgba(0, 0, 0, 0)',
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      },
       tabs: {
         tabType: 'card',
       },
@@ -95,6 +91,16 @@ const getInitialConfig = (): AppSettings => {
             },
           },
           filter: {
+            wrapper: {
+              background: {
+                color: '#fff',
+              },
+              border: {
+                color: 'rgba(0, 0, 0, 0.06);',
+              },
+              boxShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
+              textAlign: 'left',
+            },
             label: {
               font: {
                 family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
