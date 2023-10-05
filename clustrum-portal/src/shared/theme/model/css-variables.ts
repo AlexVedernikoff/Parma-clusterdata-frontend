@@ -118,11 +118,11 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-total-hover-font-color',
-      value: dashboard?.widget?.table?.total?.hover?.fontColor ?? '#000;',
+      value: dashboard?.widget?.pivotTable?.total?.hover?.fontColor ?? '#000;',
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-total-hover-background-color',
-      value: dashboard?.widget?.table?.total?.hover.backgroundColor ?? '#fafafa',
+      value: dashboard?.widget?.pivotTable?.total?.hover.backgroundColor ?? '#fafafa',
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-total-background-color',

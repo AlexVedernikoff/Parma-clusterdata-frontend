@@ -69,7 +69,7 @@ export interface TableWidgetTheme {
 export interface PivotTableWidgetTheme {
   th: TitlePivotTableWidgetTheme;
   td: TableWidgetTdTheme;
-  total: TotalPivotTableWidgetTheme;
+  total: TotalTableWidgetTheme;
   layout: LayoutPivotTableWidgetTheme;
 }
 
@@ -86,10 +86,6 @@ export interface HoverTheme {
 
 export interface LayoutPivotTableWidgetTheme {
   tableBorderColor: string;
-}
-export interface TotalPivotTableWidgetTheme {
-  font: FontItemTheme;
-  backgroundColor: string;
 }
 
 export interface TitlePivotTableWidgetTheme {
