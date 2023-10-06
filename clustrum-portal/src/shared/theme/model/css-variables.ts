@@ -90,6 +90,22 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.header?.font?.color ?? '#111729',
     },
     {
+      variable: '--clustrum-dashboard-header-padding-left',
+      value: dashboard?.header?.padding?.left ?? '24px',
+    },
+    {
+      variable: '--clustrum-dashboard-header-padding-right',
+      value: dashboard?.header?.padding?.right ?? '24px',
+    },
+    {
+      variable: '--clustrum-dashboard-header-padding-top',
+      value: dashboard?.header?.padding?.top ?? '24px',
+    },
+    {
+      variable: '--clustrum-dashboard-header-padding-bottom',
+      value: dashboard?.header?.padding?.bottom ?? '24px',
+    },
+    {
       variable: '--clustrum-dashboard-widget-pivot-table-total-background-color',
       value: dashboard?.widget?.pivotTable?.total?.backgroundColor ?? 'transparent',
     },
