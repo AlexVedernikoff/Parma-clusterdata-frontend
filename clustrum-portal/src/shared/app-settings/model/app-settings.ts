@@ -44,6 +44,12 @@ const getInitialConfig = (): AppSettings => {
       },
       dashboard: {
         header: {
+          padding: {
+            left: '24px',
+            right: '24px',
+            top: '24px',
+            bottom: '24px',
+          },
           font: {
             family:
               "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
