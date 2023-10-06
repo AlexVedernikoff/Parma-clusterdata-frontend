@@ -71,28 +71,30 @@ export interface TableWidgetTdTheme {
 
 export interface TableWidgetTheme {
   td: TableWidgetTdTheme;
-  total: TotalPivotTableWidgetTheme;
+  total: TotalTableWidgetTheme;
   pagination: TablePaginationTheme;
 }
 
 export interface PivotTableWidgetTheme {
   th: TitlePivotTableWidgetTheme;
   td: TableWidgetTdTheme;
-  total: TotalPivotTableWidgetTheme;
+  total: TotalTableWidgetTheme;
   layout: LayoutPivotTableWidgetTheme;
 }
 
 export interface TotalTableWidgetTheme {
   font: FontItemTheme;
   backgroundColor: string;
+  hover: HoverTheme;
+}
+
+export interface HoverTheme {
+  backgroundColor: string;
+  fontColor: string;
 }
 
 export interface LayoutPivotTableWidgetTheme {
   tableBorderColor: string;
-}
-export interface TotalPivotTableWidgetTheme {
-  font: FontItemTheme;
-  backgroundColor: string;
 }
 
 export interface TitlePivotTableWidgetTheme {
