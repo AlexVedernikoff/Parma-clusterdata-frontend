@@ -89,7 +89,7 @@ class NavigationMinimalService extends React.PureComponent {
     }
     this.setState({
       path: entry.key,
-      root: PLACE.ORIGIN_ROOT,
+      root: this.state.root,
     });
   };
 
@@ -103,7 +103,7 @@ class NavigationMinimalService extends React.PureComponent {
     } else {
       this.setState({
         path: crumb.path,
-        root: PLACE.ORIGIN_ROOT,
+        root: this.state.root,
       });
     }
   };
