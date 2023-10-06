@@ -34,13 +34,21 @@ export interface Theme {
   dashboard: DashboardTheme;
 }
 
+export interface DashboardTheme {
+  header: DashboardHeaderTheme;
+  widget: DashboardWidgetTheme;
+}
+
 export interface DashboardHeaderTheme {
+  padding: PaddingTheme;
   font: FontItemTheme;
 }
 
-export interface DashboardTheme {
-  widget: DashboardWidgetTheme;
-  header: DashboardHeaderTheme;
+export interface PaddingTheme {
+  left: string;
+  right: string;
+  top: string;
+  bottom: string;
 }
 
 export interface DashboardWidgetTheme {
