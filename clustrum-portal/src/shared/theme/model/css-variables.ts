@@ -254,7 +254,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.table?.pagination?.font?.style ?? 'normal',
     },
     {
-      variable: '--clustrum-dashboard-widget-pagination-font-color',
+      variable: '--clustrum-dashboard-widget-table-pagination-font-color',
       value: dashboard?.widget?.table?.pagination?.font?.color ?? 'rgba(0, 0, 0, 0.88)',
     },
   ];
