@@ -12,19 +12,12 @@ import {
 } from '../../../../api/Dashboard';
 import { store } from '../../../../store';
 import { endExport, exportError, startExport } from '../../../../store/actions/dash';
-import {
-  FIRST_EXPORT_STATUS_REQUEST_DELAY,
-  TIME_BETWEEN_EXPORT_STATUS_REQUESTS,
-} from '../consts/timer-consts';
 import { CreateStateUuidFunc } from '../../create-dash-state';
 import { ExportWidgetOptions } from './types/ExportWidgetOptions';
 import { WidgetData } from './types/WidgetData';
 import { clientFileName } from '../utils/clientFileName';
 import { startExportStatusTimer } from '../utils/startExportStatusTimer';
-import {
-  dashboardExportFilename,
-  widgetExportFilename,
-} from '@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
+import { widgetExportFilename } from '@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import moment from 'moment';
 
 async function getStateUuid(
@@ -78,8 +71,6 @@ export const exportWidget = async (
     } = await exportWizardAsync(data);
 
     startExportStatusTimer(
-      FIRST_EXPORT_STATUS_REQUEST_DELAY,
-      TIME_BETWEEN_EXPORT_STATUS_REQUESTS,
       () => getExportExcelStatus(serverFileName),
       async () => {
         try {

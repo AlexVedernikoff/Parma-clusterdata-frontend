@@ -13,14 +13,13 @@ import {
   downloadExportedExcel,
   exportExcelAsync,
   exportPdf,
+  exportWizardAsync,
   getExportExcelStatus,
 } from '../../../../api/Dashboard';
 import { startExportStatusTimer } from '../utils/startExportStatusTimer';
-import {
-  FIRST_EXPORT_STATUS_REQUEST_DELAY,
-  TIME_BETWEEN_EXPORT_STATUS_REQUESTS,
-} from '../consts/timer-consts';
+import { FIRST_EXPORT_STATUS_REQUEST_DELAY } from '../consts/timer-consts';
 import { clientFileName } from '../utils/clientFileName';
+import { TabItem } from '.';
 
 const exportedPagesUrl = (url: string, tabId: string, stateUuid: string) => {
   const baseUrl = `${url}?tab=${tabId}&hide-header-btns=true&export-mode=true`;
@@ -101,8 +100,6 @@ const exportToExcel = async (
     } = await exportExcelAsync(data);
 
     startExportStatusTimer(
-      FIRST_EXPORT_STATUS_REQUEST_DELAY,
-      TIME_BETWEEN_EXPORT_STATUS_REQUESTS,
       () => getExportExcelStatus(serverFileName),
       async () => {
         try {
@@ -125,6 +122,66 @@ const exportToExcel = async (
   }
 };
 
+const exportFromTemplate = async (
+  entry: Entry,
+  tab: Tab,
+  format = ExportFormat.XLSX,
+  stateUuid: string,
+) => {
+  const exportConfig = {
+    format,
+    delimiter: null,
+    floatDelimiter: null,
+    encoding: null,
+  };
+  const hasExportTemplateKey: keyof TabItem =
+    format === ExportFormat.XLSX_FROM_TEMPLATE
+      ? 'hasExportTemplateXlsx'
+      : 'hasExportTemplateDocx';
+  const items = tab.items.filter((item): boolean => Boolean(item[hasExportTemplateKey]));
+
+  const data = items.map(({ data }) => ({
+    createdAt: moment().format(),
+    id: data[0].data.uuid,
+    exportConfig,
+    name: clientFileName(entry.name, data[0]?.widgetId),
+    stateUuid,
+    tabTitle: tab.title,
+  }));
+
+  try {
+    const serverFileNames = await Promise.all(
+      data.map(async item => await exportWizardAsync(item)),
+    );
+    Promise.all(
+      serverFileNames.map(async item => {
+        const serverFileName = item.data.fileName;
+        startExportStatusTimer(
+          () => getExportExcelStatus(serverFileName),
+          async () => {
+            try {
+              const response = await downloadExportedExcel(serverFileName);
+
+              saveAs(
+                new Blob([response.data], { type: response.headers['content-type'] }),
+                `${clientFileName(entry.name, tab.title)}.${dashboardExportFilename(
+                  format,
+                )}`,
+              );
+            } catch {
+              store.dispatch(exportError());
+            }
+          },
+          () => store.dispatch(exportError()),
+        );
+      }),
+    );
+    setTimeout(() => store.dispatch(endExport()), FIRST_EXPORT_STATUS_REQUEST_DELAY);
+  } catch {
+    store.dispatch(exportError());
+  }
+};
+
 export const exportDashboard = (
   entry: Entry,
   tab: Tab,
@@ -137,6 +194,10 @@ export const exportDashboard = (
     case ExportFormat.PDF:
       exportToPdf(entry, tab, stateUuid);
 
+      break;
+    case ExportFormat.XLSX_FROM_TEMPLATE:
+    case ExportFormat.DOCX_FROM_TEMPLATE:
+      exportFromTemplate(entry, tab, format, stateUuid);
       break;
     default:
       exportToExcel(entry, tab, format, stateUuid);
