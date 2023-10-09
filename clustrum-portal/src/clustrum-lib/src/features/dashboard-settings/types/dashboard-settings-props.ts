@@ -1,4 +1,4 @@
-import { DashboardSettings } from '@lib-shared/types/dashboard-settings';
+import { DashboardSettings } from './dashboard-settings';
 
 export interface DashboardSettingsState {
   visible: boolean;
