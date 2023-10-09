@@ -1,3 +1,5 @@
+import { ThemeConfig } from 'antd';
+
 export interface AppSettings {
   env: string;
   appEnv: string;
@@ -25,7 +27,7 @@ export interface AppSettings {
 }
 
 export interface Theme {
-  ant: AntTheme;
+  ant: ThemeConfig;
   app: AppTheme;
   layout: LayoutTheme;
   tabs: TabsTheme;
@@ -62,14 +64,17 @@ export interface TableWidgetTdType {
 }
 
 export interface TableWidgetTdTheme {
-  numberType: TableWidgetTdType;
-  textType: TableWidgetTdType;
-  dateType: TableWidgetTdType;
+  numberType?: TableWidgetTdType;
+  textType?: TableWidgetTdType;
+  dateType?: TableWidgetTdType;
   font?: FontItemTheme;
 }
-
+export interface TableWidgetThTheme {
+  font?: FontItemTheme;
+}
 export interface TableWidgetTheme {
   td: TableWidgetTdTheme;
+  th: TableWidgetThTheme;
   total: TotalTableWidgetTheme;
   pagination: TablePaginationTheme;
 }
@@ -118,6 +123,10 @@ export interface BackgroundItemTheme {
   color?: string;
 }
 
+export interface PropsTheme extends Omit<Theme, 'ant'> {
+  ant: ThemeConfig['token'];
+}
+
 export interface TabsTheme {
   tabType: 'line' | 'card' | 'editable-card' | undefined;
 }
@@ -158,16 +167,6 @@ export interface LayoutTheme {
   backgroundPanelColor: string;
   showBreadcrumbs: boolean | null;
   colorAccent: string;
-}
-
-export interface AntTheme {
-  colorPrimary: string;
-  colorSuccess: string;
-  colorWarning: string;
-  colorError: string;
-  colorLink: string;
-  colorSplit: string;
-  colorBorder: string;
 }
 
 export interface User {

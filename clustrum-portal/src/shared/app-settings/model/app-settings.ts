@@ -13,13 +13,20 @@ const getInitialConfig = (): AppSettings => {
   return {
     theme: {
       ant: {
-        colorPrimary: '#bb2649',
-        colorSuccess: '#52c41a',
-        colorWarning: '#faad14',
-        colorError: '#ff4d4f',
-        colorLink: '#bb2649',
-        colorSplit: 'rgba(0, 0, 0, 0.06)',
-        colorBorder: 'rgba(0, 0, 0, 0.15)',
+        token: {
+          colorPrimary: '#bb2649',
+          colorSuccess: '#52c41a',
+          colorWarning: '#faad14',
+          colorError: '#ff4d4f',
+          colorLink: '#bb2649',
+          colorSplit: 'rgba(0, 0, 0, 0.06)',
+          colorBorder: 'rgba(0, 0, 0, 0.15)',
+        },
+        components: {
+          Popover: {
+            zIndexPopup: 1070,
+          },
+        },
       },
       app: {
         font: DEFAULT_FONT_FAMILY,
@@ -65,14 +72,23 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             td: {
-              numberType: {
-                align: 'left',
+              font: {
+                family: DEFAULT_FONT_FAMILY,
+                size: '14px',
+                weight: '400',
+                lineHeight: '22px',
+                style: 'normal',
+                color: 'rgba(0, 0, 0, 0.88)',
               },
-              textType: {
-                align: 'right',
-              },
-              dateType: {
-                align: 'center',
+            },
+            th: {
+              font: {
+                family: DEFAULT_FONT_FAMILY,
+                size: '14px',
+                weight: '400',
+                lineHeight: '22px',
+                style: 'normal',
+                color: 'rgba(0, 0, 0, 0.88)',
               },
             },
             total: {

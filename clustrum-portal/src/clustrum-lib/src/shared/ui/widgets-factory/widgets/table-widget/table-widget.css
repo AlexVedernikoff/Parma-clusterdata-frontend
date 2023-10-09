@@ -16,6 +16,12 @@
 }
 
 .table-widget__content {
+  color: var(--clustrum-dashboard-widget-table-td-font-color);
+  font-weight: var(--clustrum-dashboard-widget-table-td-font-weight);
+  font-size: var(--clustrum-dashboard-widget-table-td-font-size);
+  font-family: var(--clustrum-dashboard-widget-table-td-font-family);
+  font-style: var(--clustrum-dashboard-widget-table-td-font-style);
+  line-height: var(--clustrum-dashboard-widget-table-td-font-line-height);
   background-clip: padding-box;
 }
 
@@ -41,11 +47,7 @@
 .table-widget__content--text {
   max-height: 200px;
   overflow-y: scroll;
-  color: #020202;
-  font-size: var(--table-body-font-size);
-  font-style: normal;
   font-stretch: normal;
-  line-height: normal;
   letter-spacing: normal;
   text-align: var(--clustrum-dashboard-widget-table-td-texttype-align);
 }
@@ -128,7 +130,12 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--clustrum-dashboard-widget-table-th-font-color);
+  font-weight: var(--clustrum-dashboard-widget-table-th-font-weight);
+  font-size: var(--clustrum-dashboard-widget-table-th-font-size);
+  font-family: var(--clustrum-dashboard-widget-table-th-font-family);
+  font-style: var(--clustrum-dashboard-widget-table-th-font-style);
+  line-height: var(--clustrum-dashboard-widget-table-th-font-line-height);
 }
 
 .table-widget .ant-table-header {
