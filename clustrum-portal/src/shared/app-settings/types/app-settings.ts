@@ -63,14 +63,17 @@ export interface TableWidgetTdType {
 }
 
 export interface TableWidgetTdTheme {
-  numberType: TableWidgetTdType;
-  textType: TableWidgetTdType;
-  dateType: TableWidgetTdType;
+  numberType?: TableWidgetTdType;
+  textType?: TableWidgetTdType;
+  dateType?: TableWidgetTdType;
   font?: FontItemTheme;
 }
-
+export interface TableWidgetThTheme {
+  font?: FontItemTheme;
+}
 export interface TableWidgetTheme {
   td: TableWidgetTdTheme;
+  th: TableWidgetThTheme;
   total: TotalTableWidgetTheme;
   pagination: TablePaginationTheme;
 }
