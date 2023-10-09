@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { Empty, Table } from 'antd';
+import { Empty, Table, TableProps } from 'antd';
 import { useUnit } from 'effector-react';
 import { generatePath, useHistory } from 'react-router';
 import {
@@ -91,7 +91,9 @@ export function NavigationEntries(props: NavigationProps): ReactElement {
     onContextMenuClick: onContextMenuClick,
   });
 
-  const handleActionOnRow = (rowData: NavigationEntryData): { onClick: () => void } => ({
+  const handleActionOnRow: TableProps<NavigationEntryData>['onRow'] = (
+    rowData: NavigationEntryData,
+  ) => ({
     onClick: (): void => {
       if (!place) {
         return;
