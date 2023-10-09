@@ -1512,6 +1512,7 @@ export const sourcesSelector = state => state.dataset.raw_schema;
 export const rlsSelector = state => state.dataset.rls;
 export const aceModeUrlSelector = state => state.dataset.ace_url;
 export const previewEnabledSelector = state => state.dataset.preview_enabled;
+export const datasetSourceOriginSelector = state => state.dataset.origin;
 
 export const datasetPreviewSelector = state => state.dataset.preview;
 export const datasetHistorySelector = state => state.dataset.history;

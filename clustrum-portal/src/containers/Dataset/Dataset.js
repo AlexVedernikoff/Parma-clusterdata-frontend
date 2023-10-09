@@ -41,6 +41,7 @@ import {
   previewEnabledSelector,
   syncDataSet,
   datasetNameSelector,
+  datasetSourceOriginSelector,
 } from '../../store/reducers/dataset';
 
 import PageHead from '../../components/PageHeader/PageHeader';
@@ -160,7 +161,7 @@ class Dataset extends React.Component {
   };
 
   onClickConnectionMenuItem = async ({ item, datasetId, connection }) => {
-    const { sdk, initialFetchDataset } = this.props;
+    const { sdk, initialFetchDataset, datasetSourceOrigin } = this.props;
 
     try {
       this.setState({
@@ -180,7 +181,11 @@ class Dataset extends React.Component {
         }
         case REPLACE_SOURCE_MODE_ID: {
           const { id: connectionId } = connection;
-
+          // Используем localStorage, чтобы пробросить данные между разными вкладками браузера
+          localStorage.setItem(
+            'datasetSourceOrigin',
+            JSON.stringify(datasetSourceOrigin),
+          );
           window.open(`/datasets/source?id=${connectionId}`, '_blank');
 
           break;
@@ -517,6 +522,7 @@ const mapStateToProps = createStructuredSelector({
   savingDatasetDisabled: isSavingDatasetDisabledSelector,
   isProcessingSavingDataset: isSavingDatasetSelector,
   previewEnabled: previewEnabledSelector,
+  datasetSourceOrigin: datasetSourceOriginSelector,
 });
 const mapDispatchToProps = {
   initialFetchDataset,

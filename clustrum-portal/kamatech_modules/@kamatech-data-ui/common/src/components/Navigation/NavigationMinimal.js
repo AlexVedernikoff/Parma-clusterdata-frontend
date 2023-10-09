@@ -220,19 +220,17 @@ class NavigationMinimal extends React.Component {
               onChange={this.onChangeSearchInput}
             />
             {this.props.placeSelectNode}
-            {this.props.place === NAVIGATION_ROOT && (
-              <div className={b('header')}>
-                <div className={b('controls')}>
-                  <NavigationBreadcrumbs
-                    size="s"
-                    path={this.props.path}
-                    place={this.props.place}
-                    onClick={this.props.onCrumbClick}
-                    getPlaceParameters={this.props.getPlaceParameters}
-                  />
-                </div>
+            <div className={b('header')}>
+              <div className={b('controls')}>
+                <NavigationBreadcrumbs
+                  size="s"
+                  path={this.props.path}
+                  place={this.props.place}
+                  onClick={this.props.onCrumbClick}
+                  getPlaceParameters={this.props.getPlaceParameters}
+                />
               </div>
-            )}
+            </div>
             <NavigationEntries
               ref={this.refEntries}
               {...this.props}
@@ -241,6 +239,7 @@ class NavigationMinimal extends React.Component {
               getPlaceParameters={this.props.getPlaceParameters}
               focusSearchInput={this.focusSearchInput}
               clearSearchInput={this.clearSearchInput}
+              isPlaceSelectNode={!!this.props.placeSelectNode}
             />
             {hasButtonsChoose && this.renderFooter()}
           </div>

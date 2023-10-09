@@ -1411,7 +1411,7 @@
   display: none;
 }
 
-.clustrum .button2 {
+.button2 {
   display: inline-block;
   overflow: visible;
   box-sizing: border-box;
@@ -1425,10 +1425,13 @@
   text-align: center;
   white-space: nowrap;
   text-decoration: none;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   background: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   touch-action: manipulation;
+}
+
+.clustrum .button2 {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 .button2_disabled_yes {

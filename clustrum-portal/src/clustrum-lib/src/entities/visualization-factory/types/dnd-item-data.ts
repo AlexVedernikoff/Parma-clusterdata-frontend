@@ -12,6 +12,7 @@ export interface DndItemData {
   datasetId?: string;
   datasetName: string;
   description?: string;
+  filter?: DndItemFilter;
   formula?: string;
   guid?: string;
   hasArray?: boolean;
@@ -30,4 +31,16 @@ export interface DndItemData {
   type: string;
   valid?: boolean;
   verification_rules?: string;
+  direction?: string;
+}
+
+export interface DndItemFilter {
+  operation: FilterOperation;
+  value: string[];
+}
+
+export interface FilterOperation {
+  code: string;
+  title: string;
+  selectable: boolean;
 }

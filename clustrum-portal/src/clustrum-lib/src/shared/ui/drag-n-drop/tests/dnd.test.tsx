@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { DndContainer } from './dnd-container';
-import { DndItemData, DndItemProps } from './types';
+import { DndContainer } from '../dnd-container';
+import { DndItemProps } from '../types';
+import { DndItemData } from './dnd-item-data-test';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 
