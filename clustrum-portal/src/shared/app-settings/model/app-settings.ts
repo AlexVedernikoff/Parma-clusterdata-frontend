@@ -13,13 +13,20 @@ const getInitialConfig = (): AppSettings => {
   return {
     theme: {
       ant: {
-        colorPrimary: '#bb2649',
-        colorSuccess: '#52c41a',
-        colorWarning: '#faad14',
-        colorError: '#ff4d4f',
-        colorLink: '#bb2649',
-        colorSplit: 'rgba(0, 0, 0, 0.06)',
-        colorBorder: 'rgba(0, 0, 0, 0.15)',
+        token: {
+          colorPrimary: '#bb2649',
+          colorSuccess: '#52c41a',
+          colorWarning: '#faad14',
+          colorError: '#ff4d4f',
+          colorLink: '#bb2649',
+          colorSplit: 'rgba(0, 0, 0, 0.06)',
+          colorBorder: 'rgba(0, 0, 0, 0.15)',
+        },
+        components: {
+          Popover: {
+            zIndexPopup: 1070,
+          },
+        },
       },
       app: {
         font: DEFAULT_FONT_FAMILY,

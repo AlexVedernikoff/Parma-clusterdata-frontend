@@ -1,3 +1,5 @@
+import { ThemeConfig } from 'antd';
+
 export interface AppSettings {
   env: string;
   appEnv: string;
@@ -25,7 +27,7 @@ export interface AppSettings {
 }
 
 export interface Theme {
-  ant: AntTheme;
+  ant: ThemeConfig;
   app: AppTheme;
   layout: LayoutTheme;
   filters: FiltersTheme;
@@ -110,6 +112,10 @@ export interface FontItemTheme {
   color?: string;
 }
 
+export interface PropsTheme extends Omit<Theme, 'ant'> {
+  ant: ThemeConfig['token'];
+}
+
 export interface TabsTheme {
   tabType: 'line' | 'card' | 'editable-card' | undefined;
 }
@@ -138,16 +144,6 @@ export interface LayoutTheme {
   backgroundPanelColor: string;
   showBreadcrumbs: boolean | null;
   colorAccent: string;
-}
-
-export interface AntTheme {
-  colorPrimary: string;
-  colorSuccess: string;
-  colorWarning: string;
-  colorError: string;
-  colorLink: string;
-  colorSplit: string;
-  colorBorder: string;
 }
 
 export interface User {
