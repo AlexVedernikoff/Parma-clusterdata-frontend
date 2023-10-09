@@ -239,6 +239,7 @@ class NavigationMinimal extends React.Component {
               getPlaceParameters={this.props.getPlaceParameters}
               focusSearchInput={this.focusSearchInput}
               clearSearchInput={this.clearSearchInput}
+              isPlaceSelectNode={!!this.props.placeSelectNode}
             />
             {hasButtonsChoose && this.renderFooter()}
           </div>
