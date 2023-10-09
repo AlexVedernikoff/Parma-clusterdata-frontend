@@ -44,10 +44,10 @@ export default function DashBuild(props) {
 
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
-    hideHeader: props.hideHeader,
-    hideSubHeader: props.hideSubHeader,
-    hideTabs: props.hideTabs,
-    hideEdit: props.hideEdit,
+    hideHeader: !props.featureToggles?.header ?? false,
+    hideSubHeader: !props.featureToggles?.subHeader ?? false,
+    hideTabs: !props.featureToggles?.dashboard?.tabs ?? false,
+    hideEdit: !props.featureToggles?.dashboard?.edit ?? false,
     hideDashExport: props.hideDashExport,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,

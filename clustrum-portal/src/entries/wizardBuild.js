@@ -61,8 +61,8 @@ export default function WizardBuild(props) {
 
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   setAppSettings({
-    hideHeader: props.hideHeader,
-    hideSubHeader: props.hideSubHeader,
+    hideHeader: !props.featureToggles?.header ?? false,
+    hideSubHeader: !props.featureToggles?.subHeader ?? false,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,
