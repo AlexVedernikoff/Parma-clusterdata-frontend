@@ -710,11 +710,11 @@
 }
 
 .dashkit-grid-item.react-grid-item {
-  border-radius: 0.5rem;
-  border: none;
   overflow: hidden;
-  background-color: var(--white);
-  box-shadow: var(--clustrum-default-widget-shadow);
+  background-color: var(--clustrum-dashboard-widget-filter-wrapper-background-color);
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: var(--clustrum-dashboard-widget-filter-wrapper-box-shadow);
 }
 
 .expanded-filter {
