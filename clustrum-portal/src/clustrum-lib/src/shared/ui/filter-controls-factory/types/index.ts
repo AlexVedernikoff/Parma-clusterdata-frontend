@@ -16,3 +16,4 @@ export {
 export { ActualParamsReturnType } from './actual-params';
 export { ControlState } from './control-state';
 export { MemoizedHandlers } from './memoized-handlers';
+export { IntervalStringParams } from './interval-string-params';
