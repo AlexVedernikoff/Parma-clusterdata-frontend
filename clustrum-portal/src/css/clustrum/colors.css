@@ -90,4 +90,18 @@
   --clustrum-dashboard-widget-table-td-numbertype-align: left;
   --clustrum-dashboard-widget-table-td-texttype-align: right;
   --clustrum-dashboard-widget-table-td-datetype-align: center;
+  --clustrum-dashboard-widget-table-th-font-family: 'Inter', 'Open Sans', 'Helvetica Neue',
+    Arial, Helvetica, sans-serif;
+  --clustrum-dashboard-widget-table-th-font-size: 14px;
+  --clustrum-dashboard-widget-table-th-font-color: rgba(0, 0, 0, 0.88);
+  --clustrum-dashboard-widget-table-th-font-style: normal;
+  --clustrum-dashboard-widget-table-th-font-weight: 600;
+  --clustrum-dashboard-widget-table-th-font-line-height: 22px;
+  --clustrum-dashboard-widget-table-td-font-family: 'Inter', 'Open Sans', 'Helvetica Neue',
+    Arial, Helvetica, sans-serif;
+  --clustrum-dashboard-widget-table-td-font-size: 14px;
+  --clustrum-dashboard-widget-table-td-font-color: rgba(0, 0, 0, 0.88);
+  --clustrum-dashboard-widget-table-td-font-style: normal;
+  --clustrum-dashboard-widget-table-td-font-weight: 400;
+  --clustrum-dashboard-widget-table-td-font-line-height: 22px;
 }

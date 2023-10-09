@@ -81,14 +81,23 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             td: {
-              numberType: {
-                align: 'left',
+              font: {
+                family: DEFAULT_FONT_FAMILY,
+                size: '14px',
+                weight: '400',
+                lineHeight: '22px',
+                style: 'normal',
+                color: 'rgba(0, 0, 0, 0.88)',
               },
-              textType: {
-                align: 'right',
-              },
-              dateType: {
-                align: 'center',
+            },
+            th: {
+              font: {
+                family: DEFAULT_FONT_FAMILY,
+                size: '14px',
+                weight: '400',
+                lineHeight: '22px',
+                style: 'normal',
+                color: 'rgba(0, 0, 0, 0.88)',
               },
             },
             total: {
