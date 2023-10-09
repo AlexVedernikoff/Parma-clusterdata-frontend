@@ -7,7 +7,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
   return [
     {
       variable: '--antd-color-primary',
-      value: ant.token?.colorPrimary ?? '',
+      value: ant.token?.colorPrimary ?? '#bb2649',
     },
     {
       variable: '--clustrum-dashboard-widget-table-td-numbertype-align',
