@@ -282,27 +282,27 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.table?.th?.font?.color,
     },
     {
-      variable: '--clustrum-dashboard-widget-table-th-font-family',
+      variable: '--clustrum-dashboard-widget-table-td-font-family',
       value: dashboard?.widget?.table?.td?.font?.family,
     },
     {
-      variable: '--clustrum-dashboard-widget-table-th-font-size',
+      variable: '--clustrum-dashboard-widget-table-td-font-size',
       value: dashboard?.widget?.table?.td?.font?.size,
     },
     {
-      variable: '--clustrum-dashboard-widget-table-th-font-weight',
+      variable: '--clustrum-dashboard-widget-table-td-font-weight',
       value: dashboard?.widget?.table?.td?.font?.weight,
     },
     {
-      variable: '--clustrum-dashboard-widget-table-th-font-style',
+      variable: '--clustrum-dashboard-widget-table-td-font-style',
       value: dashboard?.widget?.table?.td?.font?.style,
     },
     {
-      variable: '--clustrum-dashboard-widget-table-th-font-line-height',
+      variable: '--clustrum-dashboard-widget-table-td-font-line-height',
       value: dashboard?.widget?.table?.td?.font?.lineHeight,
     },
     {
-      variable: '--clustrum-dashboard-widget-table-th-font-color',
+      variable: '--clustrum-dashboard-widget-table-td-font-color',
       value: dashboard?.widget?.table?.td?.font?.color,
     },
   ];

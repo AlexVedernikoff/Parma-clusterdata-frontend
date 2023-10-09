@@ -47,10 +47,7 @@
 .table-widget__content--text {
   max-height: 200px;
   overflow-y: scroll;
-  font-size: var(--table-body-font-size);
-  font-style: normal;
   font-stretch: normal;
-  line-height: normal;
   letter-spacing: normal;
   text-align: var(--clustrum-dashboard-widget-table-td-texttype-align);
 }
