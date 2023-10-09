@@ -76,6 +76,10 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             total: {
+              hover: {
+                backgroundColor: '#fafafa',
+                fontColor: '#000',
+              },
               backgroundColor: 'transparent',
               font: {
                 family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
@@ -118,6 +122,10 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             total: {
+              hover: {
+                backgroundColor: '#fafafa',
+                fontColor: '#000',
+              },
               backgroundColor: 'transparent',
               font: {
                 family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",

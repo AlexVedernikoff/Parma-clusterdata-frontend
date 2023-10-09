@@ -44,6 +44,8 @@
   --clustrum-dashboard-widget-pivot-table-total-font-line-height: 1.2;
   --clustrum-dashboard-widget-pivot-table-total-font-color: #000;
   --clustrum-dashboard-widget-pivot-table-total-background-color: transparent;
+  --clustrum-dashboard-widget-pivot-table-total-hover-font-color: #000;
+  --clustrum-dashboard-widget-pivot-table-total-hover-background-color: #fafafa;
 
   --clustrum-dashboard-widget-pivot-table-layout-table-border-color: transparent;
 
@@ -78,6 +80,8 @@
   --clustrum-dashboard-widget-table-total-font-style: normal;
   --clustrum-dashboard-widget-table-total-background-color: transparent;
   --clustrum-dashboard-widget-table-total-font-line-height: 1.5;
+  --clustrum-dashboard-widget-table-total-hover-font-color: #000;
+  --clustrum-dashboard-widget-table-total-hover-background-color: #fafafa;
   --clustrum-dashboard-widget-table-td-numbertype-align: left;
   --clustrum-dashboard-widget-table-td-texttype-align: right;
   --clustrum-dashboard-widget-table-td-datetype-align: center;
@@ -85,8 +89,8 @@
   /* Общее (фильтры) */
   --clustrum-dashboard-widget-filter-wrapper-background-color: #fff;
   --clustrum-dashboard-widget-filter-wrapper-border-color: rgba(0, 0, 0, 0.06);
-  --clustrum-dashboard-widget-filter-wrapper-boxShadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
-  --clustrum-dashboard-widget-filter-wrapper-textAlign: left;
+  --clustrum-dashboard-widget-filter-wrapper-box-shadow: 0px 2px 4px rgba(76, 77, 75, 0.1);
+  --clustrum-dashboard-widget-filter-wrapper-text-align: left;
 
   /* Лейблы (фильтры) */
   --clustrum-dashboard-widget-filter-label-color: #000;

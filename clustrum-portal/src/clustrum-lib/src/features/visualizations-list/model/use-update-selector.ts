@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import {
   selectDataset,
+  selectDatasetError,
   selectDimensions,
   selectMeasures,
   selectUpdates,
@@ -12,11 +13,15 @@ import {
   selectDiagramMagnitude,
   selectExportLimit,
   selectFilters,
+  selectMapLayerOpacity,
+  selectNeedAutoNumberingRows,
+  selectNeedSteppedLayout,
   selectNeedTotal,
   selectNeedUniqueRows,
   selectNullAlias,
   selectPaginateInfo,
   selectSort,
+  selectSteppedLayoutIndentation,
   selectTitleLayerSource,
   selectVisualization,
 } from '../../../../../reducers/visualization';
@@ -41,4 +46,9 @@ export const useUpdateViewSelector = (): UpdateArgs =>
     titleLayerSource: selectTitleLayerSource(state),
     updates: selectUpdates(state),
     coordType: selectCoordType(state),
+    datasetError: selectDatasetError(state),
+    needSteppedLayout: selectNeedSteppedLayout(state),
+    steppedLayoutIndentation: selectSteppedLayoutIndentation(state),
+    needAutoNumberingRows: selectNeedAutoNumberingRows(state),
+    mapLayerOpacity: selectMapLayerOpacity(state),
   }));

@@ -52,6 +52,14 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.table?.total?.backgroundColor ?? 'transparent',
     },
     {
+      variable: '--clustrum-dashboard-widget-table-total-hover-font-color',
+      value: dashboard?.widget?.table?.total?.hover?.fontColor ?? '#000;',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-total-hover-background-color',
+      value: dashboard?.widget?.table?.total?.hover.backgroundColor ?? '#fafafa',
+    },
+    {
       variable: '--clustrum-default-font-family',
       value: app.font,
     },
@@ -88,6 +96,14 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-dashboard-header-font-color',
       value: dashboard?.header?.font?.color ?? '#111729',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-pivot-table-total-hover-font-color',
+      value: dashboard?.widget?.pivotTable?.total?.hover?.fontColor ?? '#000;',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-pivot-table-total-hover-background-color',
+      value: dashboard?.widget?.pivotTable?.total?.hover.backgroundColor ?? '#fafafa',
     },
     {
       variable: '--clustrum-dashboard-header-padding-left',
@@ -218,7 +234,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.table?.pagination?.font?.style ?? 'normal',
     },
     {
-      variable: '--clustrum-dashboard-widget-pagination-font-color',
+      variable: '--clustrum-dashboard-widget-table-pagination-font-color',
       value: dashboard?.widget?.table?.pagination?.font?.color ?? 'rgba(0, 0, 0, 0.88)',
     },
     {
@@ -298,11 +314,11 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.filter?.wrapper?.background?.color,
     },
     {
-      variable: '--clustrum-dashboard-widget-filter-wrapper-boxShadow',
+      variable: '--clustrum-dashboard-widget-filter-wrapper-box-shadow',
       value: dashboard?.widget?.filter?.wrapper?.boxShadow,
     },
     {
-      variable: '--clustrum-dashboard-widget-filter-wrapper-textAlign',
+      variable: '--clustrum-dashboard-widget-filter-wrapper-text-align',
       value: dashboard?.widget?.filter?.wrapper?.textAlign,
     },
   ];

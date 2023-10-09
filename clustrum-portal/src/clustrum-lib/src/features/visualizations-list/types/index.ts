@@ -1,15 +1,5 @@
-export {
-  FieldAggregation,
-  MeasureType,
-  NullAlias,
-  ItemTypes,
-  DatasetMode,
-  ChartId,
-} from './enums';
+export { MeasureType, NullAlias, ChartId } from './enums';
 export { Color } from './color';
-export { Dataset } from './dataset';
-export { FieldProperties } from './field-properties';
-export { Filter } from './filter';
 export { Placeholder } from './placeholder';
 export { UpdateArgs } from './update-args';
 export { UpdatePreviewParams } from './update-preview-params';
