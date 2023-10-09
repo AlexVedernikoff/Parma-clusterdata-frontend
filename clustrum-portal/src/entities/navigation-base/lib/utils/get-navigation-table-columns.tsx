@@ -6,7 +6,7 @@ import moment from 'moment';
 import { ContextMenuActions, NavigationTableColumnConfigParams } from '../../types';
 import { NAVIGATION_ENTRY_ACTIONS } from '../constants';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
-import { CreateHyperlink } from './create-hyperlink';
+import { Hyperlink } from '../../ui/create-hyperlink';
 
 const stringSorter = (field: 'createdBy' | 'name') => (
   a: NavigationEntryData,
@@ -21,9 +21,7 @@ export const getNavigationTableColumns = ({
     title: 'Название',
     dataIndex: 'name',
     key: 'name',
-    render: (name, record): JSX.Element => (
-      <CreateHyperlink record={record} name={name} />
-    ),
+    render: (name, record): JSX.Element => <Hyperlink record={record} name={name} />,
     sorter: stringSorter('name'),
     width: '30%',
   },
