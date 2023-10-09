@@ -1,6 +1,6 @@
 import { createEvent, createStore } from 'effector';
 import { AppSettings } from '../types';
-import { DEFAULT_ENV_VARIABLES } from '../lib/constants';
+import { DEFAULT_ENV_VARIABLES, DEFAULT_FONT_FAMILY } from '../lib/constants';
 
 const getInitialConfig = (): AppSettings => {
   const biHost = process.env.REACT_APP_CLUSTRUM_BI_HOST ?? DEFAULT_ENV_VARIABLES.biHost;
@@ -13,16 +13,23 @@ const getInitialConfig = (): AppSettings => {
   return {
     theme: {
       ant: {
-        colorPrimary: '#bb2649',
-        colorSuccess: '#52c41a',
-        colorWarning: '#faad14',
-        colorError: '#ff4d4f',
-        colorLink: '#bb2649',
-        colorSplit: 'rgba(0, 0, 0, 0.06)',
-        colorBorder: 'rgba(0, 0, 0, 0.15)',
+        token: {
+          colorPrimary: '#bb2649',
+          colorSuccess: '#52c41a',
+          colorWarning: '#faad14',
+          colorError: '#ff4d4f',
+          colorLink: '#bb2649',
+          colorSplit: 'rgba(0, 0, 0, 0.06)',
+          colorBorder: 'rgba(0, 0, 0, 0.15)',
+        },
+        components: {
+          Popover: {
+            zIndexPopup: 1070,
+          },
+        },
       },
       app: {
-        font: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+        font: DEFAULT_FONT_FAMILY,
       },
       layout: {
         backgroundContentColor: '#fff',
@@ -34,12 +41,131 @@ const getInitialConfig = (): AppSettings => {
         backgroundFilterColor: '#fff',
         borderFilterColor: 'rgba(0, 0, 0, 0.06)',
         labelFilterColor: '#252625',
+        labelShadingColor: '#fff',
       },
       widget: {
         borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
       },
       tabs: {
         tabType: 'card',
+      },
+      dashboard: {
+        header: {
+          padding: {
+            left: '24px',
+            right: '24px',
+            top: '24px',
+            bottom: '24px',
+          },
+          font: {
+            family:
+              "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
+            size: '30px',
+            weight: '400',
+            style: 'normal',
+            lineHeight: '30px',
+            color: '#111729',
+          },
+        },
+        widget: {
+          table: {
+            pagination: {
+              defaultPageSize: 10,
+              font: {
+                family: DEFAULT_FONT_FAMILY,
+                size: '14px',
+                weight: '400',
+                lineHeight: '22px',
+                style: 'normal',
+                color: 'rgba(0, 0, 0, 0.88)',
+              },
+            },
+            td: {
+              font: {
+                family: DEFAULT_FONT_FAMILY,
+                size: '14px',
+                weight: '400',
+                lineHeight: '22px',
+                style: 'normal',
+                color: 'rgba(0, 0, 0, 0.88)',
+              },
+            },
+            th: {
+              font: {
+                family: DEFAULT_FONT_FAMILY,
+                size: '14px',
+                weight: '400',
+                lineHeight: '22px',
+                style: 'normal',
+                color: 'rgba(0, 0, 0, 0.88)',
+              },
+            },
+            total: {
+              hover: {
+                backgroundColor: '#fafafa',
+                fontColor: '#000',
+              },
+              backgroundColor: 'transparent',
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '13px',
+                weight: '600',
+                style: 'normal',
+                lineHeight: '1.5',
+                color: '#000',
+              },
+            },
+          },
+          pivotTable: {
+            th: {
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '13px',
+                weight: '600',
+                style: 'normal',
+                lineHeight: '1.2',
+                color: '#000',
+              },
+            },
+            td: {
+              numberType: {
+                align: 'left',
+              },
+              textType: {
+                align: 'right',
+              },
+              dateType: {
+                align: 'center',
+              },
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '13px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '1.2',
+                color: '#000',
+              },
+            },
+            total: {
+              hover: {
+                backgroundColor: '#fafafa',
+                fontColor: '#000',
+              },
+              backgroundColor: 'transparent',
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '13px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '1.2',
+                color: '#000',
+              },
+            },
+            layout: {
+              tableBorderColor: 'transparent',
+            },
+          },
+        },
       },
     },
     env: 'development',

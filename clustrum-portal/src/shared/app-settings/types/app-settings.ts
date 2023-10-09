@@ -1,3 +1,5 @@
+import { ThemeConfig } from 'antd';
+
 export interface AppSettings {
   env: string;
   appEnv: string;
@@ -25,12 +27,96 @@ export interface AppSettings {
 }
 
 export interface Theme {
-  ant: AntTheme;
+  ant: ThemeConfig;
   app: AppTheme;
   layout: LayoutTheme;
   filters: FiltersTheme;
   widget: WidgetTheme;
   tabs: TabsTheme;
+  dashboard: DashboardTheme;
+}
+
+export interface DashboardTheme {
+  header: DashboardHeaderTheme;
+  widget: DashboardWidgetTheme;
+}
+
+export interface DashboardHeaderTheme {
+  padding: PaddingTheme;
+  font: FontItemTheme;
+}
+
+export interface PaddingTheme {
+  left: string;
+  right: string;
+  top: string;
+  bottom: string;
+}
+
+export interface DashboardWidgetTheme {
+  pivotTable: PivotTableWidgetTheme;
+  table: TableWidgetTheme;
+}
+
+export type TextAlignTheme = 'left' | 'right' | 'center';
+
+export interface TableWidgetTdType {
+  align: TextAlignTheme;
+}
+
+export interface TableWidgetTdTheme {
+  numberType?: TableWidgetTdType;
+  textType?: TableWidgetTdType;
+  dateType?: TableWidgetTdType;
+  font?: FontItemTheme;
+}
+export interface TableWidgetThTheme {
+  font?: FontItemTheme;
+}
+export interface TableWidgetTheme {
+  td: TableWidgetTdTheme;
+  th: TableWidgetThTheme;
+  total: TotalTableWidgetTheme;
+  pagination: TablePaginationTheme;
+}
+
+export interface PivotTableWidgetTheme {
+  th: TitlePivotTableWidgetTheme;
+  td: TableWidgetTdTheme;
+  total: TotalTableWidgetTheme;
+  layout: LayoutPivotTableWidgetTheme;
+}
+
+export interface TotalTableWidgetTheme {
+  font: FontItemTheme;
+  backgroundColor: string;
+  hover: HoverTheme;
+}
+
+export interface HoverTheme {
+  backgroundColor: string;
+  fontColor: string;
+}
+
+export interface LayoutPivotTableWidgetTheme {
+  tableBorderColor: string;
+}
+
+export interface TitlePivotTableWidgetTheme {
+  font: FontItemTheme;
+}
+
+export interface FontItemTheme {
+  family?: string;
+  size?: string;
+  weight?: string;
+  style?: string;
+  lineHeight?: string;
+  color?: string;
+}
+
+export interface PropsTheme extends Omit<Theme, 'ant'> {
+  ant: ThemeConfig['token'];
 }
 
 export interface TabsTheme {
@@ -41,10 +127,16 @@ export interface WidgetTheme {
   borderShadow: string;
 }
 
+export interface TablePaginationTheme {
+  font: FontItemTheme;
+  defaultPageSize: number;
+}
+
 export interface FiltersTheme {
   backgroundFilterColor: string;
   borderFilterColor: string;
   labelFilterColor: string;
+  labelShadingColor: string;
 }
 export interface AppTheme {
   font: string;
@@ -55,16 +147,6 @@ export interface LayoutTheme {
   backgroundPanelColor: string;
   showBreadcrumbs: boolean | null;
   colorAccent: string;
-}
-
-export interface AntTheme {
-  colorPrimary: string;
-  colorSuccess: string;
-  colorWarning: string;
-  colorError: string;
-  colorLink: string;
-  colorSplit: string;
-  colorBorder: string;
 }
 
 export interface User {

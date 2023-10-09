@@ -1,5 +1,4 @@
-import { Dataset } from './dataset';
-import { FieldAggregation, ItemTypes } from './enums';
+import { Dataset, FieldAggregation, ItemTypes } from './';
 
 export interface FieldProperties {
   avatar_id: string | null;

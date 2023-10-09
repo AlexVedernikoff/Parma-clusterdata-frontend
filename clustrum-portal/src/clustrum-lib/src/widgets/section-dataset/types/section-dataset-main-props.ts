@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { DndItemData } from '@lib-shared/ui/drag-n-drop/types';
+import { DndItemData } from '@lib-entities/visualization-factory/types';
 
 export interface SectionDatasetMainProps {
   filteredMeasures: DndItemData[];

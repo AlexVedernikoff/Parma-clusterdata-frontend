@@ -16,6 +16,12 @@
 }
 
 .table-widget__content {
+  color: var(--clustrum-dashboard-widget-table-td-font-color);
+  font-weight: var(--clustrum-dashboard-widget-table-td-font-weight);
+  font-size: var(--clustrum-dashboard-widget-table-td-font-size);
+  font-family: var(--clustrum-dashboard-widget-table-td-font-family);
+  font-style: var(--clustrum-dashboard-widget-table-td-font-style);
+  line-height: var(--clustrum-dashboard-widget-table-td-font-line-height);
   background-clip: padding-box;
 }
 
@@ -24,19 +30,26 @@
   opacity: 0.5;
 }
 
+.table-widget__content--integer,
+.table-widget__content--float,
+.table-widget__content--double,
+.table-widget__content--long,
 .table-widget__content--number {
-  text-align: right;
+  text-align: var(--clustrum-dashboard-widget-table-td-numbertype-align);
 }
 
-.table-widget__content.table-widget__content--string {
+.table-widget__content--date,
+.table-widget__content--datetime {
+  text-align: var(--clustrum-dashboard-widget-table-td-datetype-align);
+}
+
+.table-widget__content--string,
+.table-widget__content--text {
   max-height: 200px;
   overflow-y: scroll;
-  color: #020202;
-  font-size: var(--table-body-font-size);
-  font-style: normal;
   font-stretch: normal;
-  line-height: normal;
   letter-spacing: normal;
+  text-align: var(--clustrum-dashboard-widget-table-td-texttype-align);
 }
 
 .ant-table-wrapper {
@@ -88,12 +101,19 @@
 }
 
 .table-widget .ant-table-thead > tr:nth-of-type(2) > .ant-table-cell {
-  background-color: #fff;
+  color: var(--clustrum-dashboard-widget-table-total-font-color);
+  font-weight: var(--clustrum-dashboard-widget-table-total-font-weight);
+  font-size: var(--clustrum-dashboard-widget-table-total-font-size);
+  font-family: var(--clustrum-dashboard-widget-table-total-font-family);
+  font-style: var(--clustrum-dashboard-widget-table-total-font-style);
+  line-height: var(--clustrum-dashboard-widget-table-total-font-line-height);
+  background-color: var(--clustrum-dashboard-widget-table-total-background-color);
   border-right: 1px solid transparent;
 }
 
 .table-widget .ant-table-thead > tr:nth-of-type(2):hover > .ant-table-cell {
-  background-color: #fafafa;
+  color: var(--clustrum-dashboard-widget-table-total-hover-font-color);
+  background-color: var(--clustrum-dashboard-widget-table-total-hover-background-color);
 }
 
 .table-widget .ant-table-thead > tr:nth-of-type(2) > .ant-table-cell::before {
@@ -110,11 +130,28 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--clustrum-dashboard-widget-table-th-font-color);
+  font-weight: var(--clustrum-dashboard-widget-table-th-font-weight);
+  font-size: var(--clustrum-dashboard-widget-table-th-font-size);
+  font-family: var(--clustrum-dashboard-widget-table-th-font-family);
+  font-style: var(--clustrum-dashboard-widget-table-th-font-style);
+  line-height: var(--clustrum-dashboard-widget-table-th-font-line-height);
 }
 
 .table-widget .ant-table-header {
   overflow: visible !important;
+}
+
+.table-widget-pagination a {
+  font-size: var(--clustrum-dashboard-widget-table-pagination-font-size);
+  font-family: var(--clustrum-dashboard-widget-table-pagination-font-family);
+  font-style: var(--clustrum-dashboard-widget-table-pagination-font-style);
+  line-height: var(--clustrum-dashboard-widget-table-pagination-line-height);
+}
+
+.table-widget .ant-pagination-item:not(.ant-pagination-item-active) a {
+  color: var(--clustrum-dashboard-widget-table-pagination-font-color);
+  font-weight: var(--clustrum-dashboard-widget-table-pagination-font-weight);
 }
 
 .ant-tooltip-content > .ant-tooltip-inner {

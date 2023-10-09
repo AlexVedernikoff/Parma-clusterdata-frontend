@@ -1,3 +1,4 @@
+import { PaginateInfo } from '@lib-shared/types';
 import { ActualParamsReturnType, DateParams, LoadedDataScheme } from '../types';
 
 export interface DashboardControlsDataDataset {
@@ -50,11 +51,6 @@ export interface ParamsKey {
 
 export interface ParamsProps {
   [key: string]: ParamsKey;
-}
-
-export interface PaginateInfo {
-  page: number;
-  pageSize: number;
 }
 
 export interface OnChangeParams {

@@ -1,6 +1,6 @@
+import { DndItemType } from '@lib-entities/visualization-factory/types';
 import { Color } from './color';
 import { ChartId } from './enums';
-import { FieldProperties } from './field-properties';
 import { Placeholder } from './placeholder';
 export interface VisualizationItem {
   id: ChartId;
@@ -10,11 +10,24 @@ export interface VisualizationItem {
   icon: JSX.Element;
   allowFilters: boolean;
   allowColors: boolean;
+  allowCoordType: boolean;
+  allowClusterPrecision: boolean;
   allowSort: boolean;
-  colorsCapacity: number;
+  allowTitleLayerSource: boolean;
+  allowUniqueRows: boolean;
+  allowTotal: boolean;
+  allowSteppedLayout: boolean;
+  allowAutoNumberingRows: boolean;
+  allowDiagramMagnitude: boolean;
+  allowMapLayerOpacity: boolean;
   allowNullAlias: boolean;
-  checkAllowedSort: (item: FieldProperties, visualization: VisualizationItem) => void;
-  checkAllowedColors: (item: FieldProperties, visualization: VisualizationItem) => void;
+  colorsCapacity: number;
+  checkAllowedSort: (
+    item: DndItemType,
+    visualization: VisualizationItem,
+    colors?: Color[],
+  ) => boolean;
+  checkAllowedColors: (item: DndItemType, visualization: VisualizationItem) => void;
   onColorsChange: () => void;
   placeholders: Placeholder[];
   colors: Color[];

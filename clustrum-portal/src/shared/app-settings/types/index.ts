@@ -1,1 +1,1 @@
-export { AppSettings } from './app-settings';
+export { AppSettings, Theme, PropsTheme } from './app-settings';

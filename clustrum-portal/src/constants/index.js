@@ -30,6 +30,9 @@ import iconIndicator from 'icons/indicator.svg';
 import { WIZARD_NODE_TYPE } from './constants';
 import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 import { $appSettingsStore } from '@shared/app-settings';
+// Пока полный импорт, а не просто через @clustrum-lib, так как импорт через @clustrum-lib приводит к зацикливанию
+// Будет исправлено после полного рефакторинга Wizard
+import { WIZARD_ITEM_TYPES } from '@clustrum-lib/shared/config/wizard-item-types';
 
 const _getSelectItemTitle = () => ({
   visits: 'Визиты',
@@ -214,19 +217,6 @@ export const REPLACE_SOURCE_MODE_ID = 'replace-source';
 export const TAB_DATASET = 'dataset';
 export const TAB_DATA = 'data';
 export const DATASET_TABS = [TAB_DATASET, TAB_DATA];
-
-////////////////////
-// TODO: удалить после замены в SectionVisualization
-export const ITEM_TYPES = {
-  DIMENSIONS: new Set(['DIMENSION']),
-  LATITUDE: new Set(['LATITUDE']),
-  LONGITUDE: new Set(['LONGITUDE']),
-  GEOPOLYGON: new Set(['GEOPOLYGON']),
-  MEASURES: new Set(['MEASURE']),
-  PSEUDO: new Set(['PSEUDO']),
-  DIMENSIONS_AND_PSEUDO: new Set(['DIMENSION', 'PSEUDO']),
-  ALL: new Set(['DIMENSION', 'MEASURE']),
-};
 
 export const CONFLICT_TOOLTIPS = {
   'not-existing': 'Поле отсутствует в датасете',
@@ -428,7 +418,7 @@ const LINE_VISUALIZATION = {
   onColorsChange: onLineChartColorsChange,
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'x',
       type: 'x',
       title: 'section_x',
@@ -438,7 +428,7 @@ const LINE_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'y',
       type: 'y',
       title: 'section_y',
@@ -456,7 +446,7 @@ const MULTILINE_VISUALIZATION = {
   name: 'label_visualization_multiline',
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'x',
       type: 'x',
       title: 'section_x',
@@ -466,7 +456,7 @@ const MULTILINE_VISUALIZATION = {
       capacity: Infinity,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'y',
       type: 'y',
       title: 'section_y',
@@ -513,7 +503,7 @@ const AREA_VISUALIZATION = {
   onColorsChange: onLineChartColorsChange,
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'x',
       type: 'x',
       title: 'section_x',
@@ -523,7 +513,7 @@ const AREA_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'y',
       type: 'y',
       title: 'section_y',
@@ -564,12 +554,12 @@ const COLUMN_VISUALIZATION = {
     return selectedItems.some(selectedItem => selectedItem.guid === item.guid);
   },
   checkAllowedColors: item => {
-    return ITEM_TYPES.DIMENSIONS_AND_PSEUDO.has(item.type);
+    return WIZARD_ITEM_TYPES.DIMENSIONS_AND_PSEUDO.has(item.type);
   },
   onColorsChange: onLineChartColorsChange,
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
       id: 'x',
       type: 'x',
       title: 'section_x',
@@ -579,7 +569,7 @@ const COLUMN_VISUALIZATION = {
       capacity: 2,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'y',
       type: 'y',
       title: 'section_y',
@@ -590,7 +580,7 @@ const COLUMN_VISUALIZATION = {
     },
     // Скрыто по просьбе аналитика Кластрум
     // {
-    //   allowedTypes: ITEM_TYPES.ALL,
+    //   allowedTypes: WIZARD_ITEM_TYPES.ALL,
     //   id: 'additional_measure',
     //   type: 'additional_measure',
     //   title: 'additional_data',
@@ -599,7 +589,7 @@ const COLUMN_VISUALIZATION = {
     //   capacity: Infinity,
     // },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'signatures',
       type: 'signatures',
       title: 'signatures',
@@ -625,7 +615,7 @@ const COLUMN_PLAN_FACT_VISUALIZATION = {
   allowDiagramMagnitude: true,
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
       id: 'x',
       type: 'x',
       title: 'section_x',
@@ -635,7 +625,7 @@ const COLUMN_PLAN_FACT_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'section_plan',
       type: 'y',
       title: 'section_plan',
@@ -645,7 +635,7 @@ const COLUMN_PLAN_FACT_VISUALIZATION = {
       onChange: onYAxisChange,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'section_fact',
       type: 'y',
       title: 'section_fact',
@@ -683,7 +673,7 @@ const SCATTER_VISUALIZATION = {
   },
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'x',
       type: 'x',
       title: 'section_x',
@@ -693,7 +683,7 @@ const SCATTER_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'y',
       type: 'y',
       title: 'section_y',
@@ -704,7 +694,7 @@ const SCATTER_VISUALIZATION = {
       onChange: onYAxisChange,
     },
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'points',
       type: 'points',
       title: 'section_points',
@@ -739,7 +729,7 @@ const PIE_VISUALIZATION = {
   },
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'dimensions',
       type: 'dimensions',
       title: 'section_dimensions',
@@ -749,7 +739,7 @@ const PIE_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.All,
+      allowedTypes: WIZARD_ITEM_TYPES.All,
       id: 'measures',
       type: 'measures',
       title: 'section_measures',
@@ -784,7 +774,7 @@ const TREEMAP_VISUALIZATION = {
   },
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'dimensions',
       type: 'dimensions',
       title: 'section_dimensions',
@@ -795,7 +785,7 @@ const TREEMAP_VISUALIZATION = {
       capacity: Infinity,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'measures',
       type: 'measures',
       title: 'section_size',
@@ -834,7 +824,7 @@ const FLAT_TABLE_VISUALIZATION = {
   },
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'flat-table-columns',
       type: 'flat-table-columns',
       title: 'section_columns',
@@ -846,7 +836,7 @@ const FLAT_TABLE_VISUALIZATION = {
     },
     // Скрыто по просьбе аналитика Кластрум
     // {
-    //   allowedTypes: ITEM_TYPES.ALL,
+    //   allowedTypes: WIZARD_ITEM_TYPES.ALL,
     //   id: 'drill_down_measure',
     //   type: 'drill_down_measure',
     //   title: 'drill_down_measure',
@@ -883,10 +873,10 @@ const PIVOT_TABLE_VISUALIZATION = {
   checkAllowedColors: item => {
     return item.type === 'MEASURE';
   },
-  allowedColorsTypes: ITEM_TYPES.MEASURES,
+  allowedColorsTypes: WIZARD_ITEM_TYPES.MEASURES,
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
       id: 'pivot-table-columns',
       type: 'pivot-table-columns',
       title: 'section_columns',
@@ -896,7 +886,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       capacity: 5,
     },
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS_AND_PSEUDO,
       id: 'rows',
       type: 'rows',
       title: 'section_rows',
@@ -906,7 +896,7 @@ const PIVOT_TABLE_VISUALIZATION = {
       capacity: 5,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'measures',
       type: 'measures',
       title: 'section_measures',
@@ -930,7 +920,7 @@ const MAP_VISUALIZATION = {
   icon: <Icon data={iconOlMap} width="24" />,
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'latitudes',
       type: 'latitudes',
       title: 'section_latitudes',
@@ -939,7 +929,7 @@ const MAP_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'longitudes',
       type: 'longitudes',
       title: 'section_longitudes',
@@ -948,7 +938,7 @@ const MAP_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'geopolygon',
       type: 'geopolygon',
       title: 'section_geopolygon',
@@ -957,7 +947,7 @@ const MAP_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'measures',
       type: 'measures',
       title: 'section_measures',
@@ -967,7 +957,7 @@ const MAP_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'additional_measure',
       type: 'additional_measure',
       title: 'additional_measure',
@@ -976,7 +966,7 @@ const MAP_VISUALIZATION = {
       capacity: Infinity,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'map_color',
       type: 'map_color',
       title: 'map_color',
@@ -984,7 +974,7 @@ const MAP_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'map_size',
       type: 'map_size',
       title: 'map_size',
@@ -992,7 +982,7 @@ const MAP_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'tooltip_measure',
       type: 'tooltip_measure',
       title: 'tooltip_measure',
@@ -1014,7 +1004,7 @@ const HEATMAP_VISUALIZATION = {
   icon: <Icon data={iconVisGeopolygon} width="24" />,
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'geopolygon',
       type: 'geopolygon',
       title: 'section_geopolygon',
@@ -1023,7 +1013,7 @@ const HEATMAP_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'map_color',
       type: 'map_color',
       title: 'map_color',
@@ -1032,7 +1022,7 @@ const HEATMAP_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'tooltip_measure',
       type: 'tooltip_measure',
       title: 'tooltip_measure',
@@ -1040,7 +1030,7 @@ const HEATMAP_VISUALIZATION = {
       capacity: Infinity,
     },
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'drill_down_filter',
       type: 'drill_down_filter',
       title: 'drill_down_filter',
@@ -1063,7 +1053,7 @@ const MAP_CLUSTER_FOCUS_POINT_VISUALIZATION = {
   icon: <Icon data={iconOlMap} width="24" />,
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'latitudes',
       type: 'latitudes',
       title: 'section_latitudes',
@@ -1072,7 +1062,7 @@ const MAP_CLUSTER_FOCUS_POINT_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.DIMENSIONS,
+      allowedTypes: WIZARD_ITEM_TYPES.DIMENSIONS,
       id: 'longitudes',
       type: 'longitudes',
       title: 'section_longitudes',
@@ -1081,7 +1071,7 @@ const MAP_CLUSTER_FOCUS_POINT_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'measures',
       type: 'measures',
       title: 'section_measures',
@@ -1091,7 +1081,7 @@ const MAP_CLUSTER_FOCUS_POINT_VISUALIZATION = {
       capacity: Infinity,
     },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'focus_count',
       type: 'focus_count',
       title: 'focus_count',
@@ -1099,7 +1089,7 @@ const MAP_CLUSTER_FOCUS_POINT_VISUALIZATION = {
       capacity: Infinity,
     },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'administrative_divisions',
       type: 'administrative_divisions',
       title: 'administrative_divisions',
@@ -1108,7 +1098,7 @@ const MAP_CLUSTER_FOCUS_POINT_VISUALIZATION = {
       capacity: 1,
     },
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'additional_measure',
       type: 'additional_measure',
       title: 'additional_measure',
@@ -1146,7 +1136,7 @@ const CARD_VISUALIZATION = {
   },
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.ALL,
+      allowedTypes: WIZARD_ITEM_TYPES.ALL,
       id: 'flat-table-columns',
       type: 'flat-table-columns',
       title: 'section_columns',
@@ -1172,7 +1162,7 @@ const INDICATOR_VISUALIZATION = {
   allowTotal: false,
   placeholders: [
     {
-      allowedTypes: ITEM_TYPES.MEASURES,
+      allowedTypes: WIZARD_ITEM_TYPES.MEASURES,
       id: 'flat-table-columns',
       type: 'flat-table-columns',
       title: 'section_measure',
