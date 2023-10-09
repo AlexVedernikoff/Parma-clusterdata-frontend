@@ -16,10 +16,14 @@ import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import {
+  $appSettingsStore,
+  combineDefaultThemeAndPropsTheme,
+  setAppSettingsEvent,
+} from '@shared/app-settings';
+import {
   NotificationContext,
   useCustomNotification,
 } from '@clustrum-lib/shared/lib/notification';
-import { $appSettingsStore, setAppSettingsEvent } from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
 
 const sdk = new SDK({
@@ -40,7 +44,10 @@ export default function DatasetBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   const [openNotification, contextHolder] = useCustomNotification();
 
-  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
+  const theme = combineDefaultThemeAndPropsTheme(
+    props.theme,
+    $appSettingsStore.getState().theme,
+  );
 
   setAppSettings({
     hideHeader: props.hideHeader,
@@ -55,7 +62,7 @@ export default function DatasetBuild(props) {
   setCssVariables(theme);
 
   return (
-    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
+    <ConfigProvider theme={{ ...ant }} locale={ruRU}>
       <Provider store={store}>
         <div className="clustrum">
           <NotificationContext.Provider value={openNotification}>

@@ -9,7 +9,11 @@ import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { setAppSettingsEvent, $appSettingsStore } from '@shared/app-settings';
+import {
+  setAppSettingsEvent,
+  combineDefaultThemeAndPropsTheme,
+  $appSettingsStore,
+} from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -45,9 +49,12 @@ export default function DashBuild(props) {
   const { entryId, hideRightSideContent, onFiltersChange, onTabChange } = props;
 
   const [openNotification, contextHolder] = useCustomNotification();
-  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
-
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const theme = combineDefaultThemeAndPropsTheme(
+    props.theme,
+    $appSettingsStore.getState().theme,
+  );
+
   setAppSettings({
     hideHeader: props.hideHeader,
     hideSubHeader: props.hideSubHeader,
@@ -64,7 +71,7 @@ export default function DashBuild(props) {
   setCssVariables(theme);
 
   return (
-    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
+    <ConfigProvider theme={{ ...theme.ant }} locale={ruRU}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <NotificationContext.Provider value={openNotification}>

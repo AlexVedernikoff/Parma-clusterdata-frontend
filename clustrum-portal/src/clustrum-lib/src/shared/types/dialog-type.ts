@@ -5,4 +5,5 @@ export enum DialogType {
   Control = 'control',
   Tabs = 'tabs',
   Connections = 'connections',
+  DashboardSettings = 'dashboardSettings',
 }

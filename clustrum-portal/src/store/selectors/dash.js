@@ -3,7 +3,7 @@ import isEqual from 'lodash/isEqual';
 import { ItemType } from '@clustrum-lib/shared/types';
 import { MODE } from '../../modules/constants/constants';
 
-const getCurrentPage = state => {
+export const getCurrentPage = state => {
   const pageIndex = state.dash.data
     ? state.dash.data.pages.findIndex(({ id }) => id === state.dash.pageId)
     : -1;

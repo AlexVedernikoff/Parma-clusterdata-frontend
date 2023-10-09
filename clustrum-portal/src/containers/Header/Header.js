@@ -39,9 +39,11 @@ import {
   DownOutlined,
   EditOutlined,
   FilterOutlined,
+  SettingOutlined,
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { $appSettingsStore } from '@shared/app-settings';
+import { DialogType } from '@clustrum-lib/shared/types';
 import { NotificationType } from '@clustrum-lib/shared/lib/notification';
 
 const b = block('dash-header');
@@ -189,6 +191,12 @@ class Header extends React.PureComponent {
     ];
 
     return [
+      <Button
+        title="Настройки аналитической панели"
+        onClick={() => this.props.openDialog(DialogType.DashboardSettings)}
+        key="button-settings"
+        icon={<SettingOutlined />}
+      />,
       <WidgetVisibilityDropdown
         key="widget-visibility"
         items={items}

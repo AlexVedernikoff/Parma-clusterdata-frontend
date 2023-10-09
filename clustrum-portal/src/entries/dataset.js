@@ -43,7 +43,7 @@ function DatasetEntry() {
 
   return (
     <AppContainer>
-      <ConfigProvider theme={{ token: ant }} locale={ruRU}>
+      <ConfigProvider theme={{ ...ant }} locale={ruRU}>
         <Provider store={store}>
           <NotificationContext.Provider value={openNotification}>
             {contextHolder}
