@@ -1,19 +1,19 @@
 .select-filter-control {
   display: flex;
   width: 100%;
-  text-align: var(--clustrum-dashboard-widget-filter-wrapper-textAlign);
+  text-align: var(--clustrum-dashboard-widget-filter-wrapper-text-align);
 }
 
 .select-filter-control__label {
   display: flex;
   flex-direction: column;
   width: 100%;
-  color: var(--clustrum-dashboard-widget-filter-label-color);
+  color: var(--clustrum-dashboard-widget-filter-label-font-color);
   font-weight: var(--clustrum-dashboard-widget-filter-label-font-weight);
   font-size: var(--clustrum-dashboard-widget-filter-label-font-size);
   font-family: var(--clustrum-dashboard-widget-filter-label-font-family);
   font-style: var(--clustrum-dashboard-widget-filter-label-font-style);
-  line-height: var(--clustrum-dashboard-widget-filter-label-line-height);
+  line-height: var(--clustrum-dashboard-widget-filter-label-font-line-height);
 }
 
 .select-filter-control__select :global(.ant-select-selector) {
@@ -22,7 +22,10 @@
   font-size: var(--clustrum-dashboard-widget-filter-control-font-size) !important;
   font-family: var(--clustrum-dashboard-widget-filter-control-font-family) !important;
   font-style: var(--clustrum-dashboard-widget-filter-control-font-style) !important;
-  line-height: var(--clustrum-dashboard-widget-filter-control-line-height) !important;
+  line-height:
+    var(
+      --clustrum-dashboard-widget-filter-control-font-line-height
+    ) !important;
   border:
     var(--clustrum-dashboard-widget-filter-control-border-size)
     var(--clustrum-dashboard-widget-filter-control-border-style)
@@ -31,5 +34,5 @@
 }
 
 .select-filter-control__select :global(.ant-select-selection-item) {
-  color: var(--clustrum-dashboard-widget-filter-control-color) !important;
+  color: var(--clustrum-dashboard-widget-filter-control-font-color) !important;
 }

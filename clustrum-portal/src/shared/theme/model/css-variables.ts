@@ -238,7 +238,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.table?.pagination?.font?.color ?? 'rgba(0, 0, 0, 0.88)',
     },
     {
-      variable: '--clustrum-dashboard-widget-filter-label-color',
+      variable: '--clustrum-dashboard-widget-filter-label-font-color',
       value: dashboard?.widget?.filter?.label?.font?.color,
     },
     {
@@ -250,7 +250,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.filter?.label?.font?.family,
     },
     {
-      variable: '--clustrum-dashboard-widget-filter-label-line-height',
+      variable: '--clustrum-dashboard-widget-filter-label-font-line-height',
       value: dashboard?.widget?.filter?.label?.font?.lineHeight,
     },
     {
@@ -266,7 +266,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.filter?.label?.shadingColor,
     },
     {
-      variable: '--clustrum-dashboard-widget-filter-control-color',
+      variable: '--clustrum-dashboard-widget-filter-control-font-color',
       value: dashboard?.widget?.filter?.control?.font?.color,
     },
     {
@@ -282,7 +282,7 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: dashboard?.widget?.filter?.control?.font?.style,
     },
     {
-      variable: '--clustrum-dashboard-widget-filter-control-line-height',
+      variable: '--clustrum-dashboard-widget-filter-control-font-line-height',
       value: dashboard?.widget?.filter?.control?.font?.lineHeight,
     },
     {

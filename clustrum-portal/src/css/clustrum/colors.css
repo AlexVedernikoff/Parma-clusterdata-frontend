@@ -93,21 +93,21 @@
   --clustrum-dashboard-widget-filter-wrapper-text-align: left;
 
   /* Лейблы (фильтры) */
-  --clustrum-dashboard-widget-filter-label-color: #000;
+  --clustrum-dashboard-widget-filter-label-font-color: #000;
   --clustrum-dashboard-widget-filter-label-shading-color: #fff;
   --clustrum-dashboard-widget-filter-label-font-weight: 400;
   --clustrum-dashboard-widget-filter-label-font-size: 14px;
   --clustrum-dashboard-widget-filter-label-font-style: normal;
-  --clustrum-dashboard-widget-filter-label-line-height: 22px;
+  --clustrum-dashboard-widget-filter-label-font-line-height: 22px;
   --clustrum-dashboard-widget-filter-label-font-family: 'Inter', 'Open Sans',
     'Helvetica Neue', 'Arial', 'Helvetica';
 
   /* Контроллы (фильтры) */
-  --clustrum-dashboard-widget-filter-control-color: #000;
+  --clustrum-dashboard-widget-filter-control-font-color: #000;
   --clustrum-dashboard-widget-filter-control-font-weight: 400;
   --clustrum-dashboard-widget-filter-control-font-size: 14px;
   --clustrum-dashboard-widget-filter-control-font-style: normal;
-  --clustrum-dashboard-widget-filter-control-line-height: 22px;
+  --clustrum-dashboard-widget-filter-control-font-line-height: 22px;
   --clustrum-dashboard-widget-filter-control-font-family: 'Inter', 'Open Sans',
     'Helvetica Neue', 'Arial', 'Helvetica';
   --clustrum-dashboard-widget-filter-control-border-size: 1px;

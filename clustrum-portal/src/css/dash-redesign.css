@@ -714,7 +714,7 @@
   background-color: var(--clustrum-dashboard-widget-filter-wrapper-background-color);
   border: none;
   border-radius: 0.5rem;
-  box-shadow: var(--clustrum-dashboard-widget-filter-wrapper-boxShadow);
+  box-shadow: var(--clustrum-dashboard-widget-filter-wrapper-box-shadow);
 }
 
 .expanded-filter {
