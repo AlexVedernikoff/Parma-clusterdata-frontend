@@ -21,6 +21,7 @@ const getInitialConfig = (): AppSettings => {
           colorLink: '#bb2649',
           colorSplit: 'rgba(0, 0, 0, 0.06)',
           colorBorder: 'rgba(0, 0, 0, 0.15)',
+          colorPrimaryHover: '#c74861',
         },
         components: {
           Popover: {
