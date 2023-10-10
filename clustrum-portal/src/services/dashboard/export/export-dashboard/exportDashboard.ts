@@ -37,6 +37,10 @@ const exportedPagesUrls = (entry: Entry, tabId: string, stateUuid: string) => {
   ];
 };
 
+const endExportDispatch = () => {
+  store.dispatch(endExport());
+};
+
 const exportToPdf = async (entry: Entry, tab: Tab, stateUuid: string) => {
   const margin = 40;
 
@@ -135,10 +139,19 @@ const exportFromTemplate = async (
     encoding: null,
   };
 
-  const hasExportTemplateKey: keyof TabItem =
-    format === ExportFormat.XLSX_FROM_TEMPLATE
-      ? 'hasExportTemplateXlsx'
-      : 'hasExportTemplateDocx';
+  let hasExportTemplateKey: keyof TabItem;
+  switch (format) {
+    case ExportFormat.XLSX_FROM_TEMPLATE:
+      hasExportTemplateKey = 'hasExportTemplateXlsx';
+      break;
+    case ExportFormat.DOCX_FROM_TEMPLATE:
+      hasExportTemplateKey = 'hasExportTemplateDocx';
+      break;
+    default:
+      console.error('Unknown format to export from template');
+      store.dispatch(exportError());
+      return;
+  }
 
   const items = tab.items.filter((item): boolean => Boolean(item[hasExportTemplateKey]));
 
@@ -178,7 +191,7 @@ const exportFromTemplate = async (
         );
       }),
     );
-    setTimeout(() => store.dispatch(endExport()), FIRST_EXPORT_STATUS_REQUEST_DELAY);
+    setTimeout(endExportDispatch, FIRST_EXPORT_STATUS_REQUEST_DELAY);
   } catch {
     store.dispatch(exportError());
   }
