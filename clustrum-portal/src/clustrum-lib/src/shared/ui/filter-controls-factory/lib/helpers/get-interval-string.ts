@@ -5,13 +5,14 @@ import { IntervalStringParams } from '../../types';
 export const getIntervalString = (
   from: Dayjs,
   to: Dayjs,
-  { dateFormat = DEFAULT_DATE_FORMAT, withDefaultTime = false }: IntervalStringParams,
+  {
+    dateFormat = DEFAULT_DATE_FORMAT,
+    withDefaultTime = false,
+  }: IntervalStringParams = {},
 ): string => {
-  if (withDefaultTime) {
-    return `__interval_${from.format(dateFormat)}${START_TIME}_${to.format(
-      dateFormat,
-    )}${END_TIME}`;
-  }
+  const [startTime, endTime] = withDefaultTime ? [START_TIME, END_TIME] : ['', ''];
 
-  return `__interval_${from.format(dateFormat)}_${to.format(dateFormat)}`;
+  return `__interval_${from.format(dateFormat)}${startTime}_${to.format(
+    dateFormat,
+  )}${endTime}`;
 };
