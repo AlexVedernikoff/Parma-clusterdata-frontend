@@ -39,7 +39,7 @@ const getInitialConfig = (): AppSettings => {
       },
       dashboard: {
         tabs: {
-          tabType: 'line',
+          tabType: 'card',
           tab: {
             active: {
               font: {
