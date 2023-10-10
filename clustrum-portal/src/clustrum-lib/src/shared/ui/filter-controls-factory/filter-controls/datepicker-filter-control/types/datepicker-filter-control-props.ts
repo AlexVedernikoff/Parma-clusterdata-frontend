@@ -1,6 +1,9 @@
+import { FieldDataType } from '../../../types';
+
 export interface DatepickerFilterControlProps {
   className?: string;
   dateFormat?: string;
+  fieldDataType?: FieldDataType;
   label: string;
   maxDate?: string;
   minDate?: string;
