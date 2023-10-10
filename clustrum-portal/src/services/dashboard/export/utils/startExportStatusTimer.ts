@@ -1,38 +1,29 @@
 import { ExportStatus } from '../../../../api/Dashboard';
 
-export const startExportStatusTimer = (
-  firstDelay: number,
-  timeBetweenRequests: number,
+export const startExportStatusTimer = async (
   getExportStatusFunc: () => Promise<ExportStatus>,
   successCallback: Function,
   errorHandler: (status: ExportStatus) => void,
-) => {
-  setTimeout(async () => {
-    try {
-      const status = await getExportStatusFunc();
+): Promise<void> => {
+  try {
+    const status = await getExportStatusFunc();
 
-      switch (status) {
-        case ExportStatus.InProgress:
-          startExportStatusTimer(
-            timeBetweenRequests,
-            timeBetweenRequests,
-            getExportStatusFunc,
-            successCallback,
-            errorHandler,
-          );
+    switch (status) {
+      case ExportStatus.InProgress:
+        await startExportStatusTimer(getExportStatusFunc, successCallback, errorHandler);
 
-          break;
-        case ExportStatus.Completed:
-          successCallback();
+        break;
+      case ExportStatus.Completed:
+        await successCallback();
 
-          break;
-        default:
-          errorHandler(ExportStatus.NotStarted);
+        break;
+      default:
+        errorHandler(ExportStatus.NotStarted);
 
-          break;
-      }
-    } catch {
-      errorHandler(ExportStatus.Failed);
+        break;
     }
-  }, firstDelay);
+  } catch {
+    errorHandler(ExportStatus.Failed);
+  }
+  return;
 };

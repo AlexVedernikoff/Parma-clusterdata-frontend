@@ -8,6 +8,7 @@ export enum ExportFormat {
   XML = 'xml',
   ZIP = 'zip',
   DOCX_FROM_TEMPLATE = 'docx_from_template',
+  DOCX = 'docx',
 }
 
 export function dashboardExportFilename(format: ExportFormat): string {
@@ -15,9 +16,9 @@ export function dashboardExportFilename(format: ExportFormat): string {
     case ExportFormat.CSV:
       return ExportFormat.ZIP;
     case ExportFormat.XLSX_FROM_TEMPLATE:
-      return ExportFormat.ZIP;
+      return ExportFormat.XLSX;
     case ExportFormat.DOCX_FROM_TEMPLATE:
-      return ExportFormat.ZIP;
+      return ExportFormat.DOCX;
     default:
       return format;
   }
