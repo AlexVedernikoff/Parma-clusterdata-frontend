@@ -48,7 +48,6 @@ export default function DashBuild(props) {
     hideSubHeader: !props.featureToggles?.subHeader ?? false,
     hideTabs: !props.featureToggles?.dashboard?.tabs ?? false,
     hideEdit: !props.featureToggles?.dashboard?.edit ?? false,
-    hideDashExport: props.hideDashExport,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,

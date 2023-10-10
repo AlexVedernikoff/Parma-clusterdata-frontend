@@ -316,7 +316,6 @@ class Header extends React.PureComponent {
     ].filter(Boolean);
 
     const isEditButtonVisible = !$appSettingsStore.getState().hideEdit;
-    // const isDashExportButtonVisible = !$appSettingsStore.getState().hideDashExport;
     const isDashExportButtonVisible = exportItems.length > 0;
 
     if (canEdit) {
