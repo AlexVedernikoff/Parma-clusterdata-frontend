@@ -37,7 +37,7 @@ export function RangeDatepickerFilterControl(
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const parsedDates = defaultValue?.length && defaultValue.match(INTERVAL_FORMAT_REGEX);
+    const parsedDates = defaultValue?.match(INTERVAL_FORMAT_REGEX);
 
     if (!parsedDates) {
       setDateRange(null);

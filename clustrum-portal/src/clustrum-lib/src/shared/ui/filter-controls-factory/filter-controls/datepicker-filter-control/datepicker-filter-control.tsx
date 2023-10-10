@@ -40,7 +40,7 @@ export function DatepickerFilterControl(
   useEffect(() => {
     let dateWithoutTime = defaultValue;
     if (fieldDataType === FieldDataType.DateTime) {
-      const parsedDates = defaultValue && defaultValue.match(INTERVAL_FORMAT_REGEX);
+      const parsedDates = defaultValue?.match(INTERVAL_FORMAT_REGEX);
       if (parsedDates) {
         dateWithoutTime = parsedDates[1];
       }
