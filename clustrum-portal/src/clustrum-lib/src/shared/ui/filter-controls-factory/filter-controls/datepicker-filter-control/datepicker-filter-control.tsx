@@ -6,10 +6,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { DatepickerFilterControlProps } from './types';
-import {
-  FieldDataType,
-  PlacementPosition,
-} from '@lib-shared/ui/filter-controls-factory/types';
+import { FieldDataType, PlacementPosition } from '../../types';
 import { DEFAULT_DATE_FORMAT, INTERVAL_FORMAT_REGEX } from '../../lib/constants';
 import { getIntervalString } from '../../lib/helpers';
 
