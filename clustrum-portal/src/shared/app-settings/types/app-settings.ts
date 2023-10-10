@@ -41,6 +41,15 @@ export interface DashboardTheme {
   tabs: TabsTheme;
 }
 
+export interface DefaultTabTheme {
+  font: FontItemTheme;
+}
+
+export interface TabTheme {
+  active: DefaultTabTheme;
+  default: DefaultTabTheme;
+}
+
 export interface DashboardHeaderTheme {
   padding: PaddingTheme;
   font: FontItemTheme;
@@ -121,6 +130,7 @@ export interface PropsTheme extends Omit<Theme, 'ant'> {
 
 export interface TabsTheme {
   tabType: 'line' | 'card' | 'editable-card' | undefined;
+  tab: TabTheme;
 }
 
 export interface WidgetTheme {

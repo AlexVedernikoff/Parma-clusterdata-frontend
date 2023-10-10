@@ -49,6 +49,30 @@ const getInitialConfig = (): AppSettings => {
       dashboard: {
         tabs: {
           tabType: 'line',
+          tab: {
+            active: {
+              font: {
+                family:
+                  "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                size: '14px',
+                weight: '600',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#bb2649',
+              },
+            },
+            default: {
+              font: {
+                family:
+                  "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                size: '14px',
+                weight: '600',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#000000e0',
+              },
+            },
+          },
         },
         header: {
           padding: {
