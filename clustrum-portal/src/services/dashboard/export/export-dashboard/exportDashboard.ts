@@ -169,7 +169,7 @@ const exportFromTemplate = async (
       data.map(async item => await exportWizardAsync(item)),
     );
     Promise.all(
-      serverFileNames.map(async item => {
+      serverFileNames.map(async (item, index) => {
         const serverFileName = item.data.fileName;
         startExportStatusTimer(
           () => getExportExcelStatus(serverFileName),
@@ -179,9 +179,10 @@ const exportFromTemplate = async (
 
               saveAs(
                 new Blob([response.data], { type: response.headers['content-type'] }),
-                `${clientFileName(entry.name, tab.title)}.${dashboardExportFilename(
-                  format,
-                )}`,
+                `${clientFileName(
+                  entry.name,
+                  items[index].data[0].title,
+                )}.${dashboardExportFilename(format)}`,
               );
             } catch {
               store.dispatch(exportError());
