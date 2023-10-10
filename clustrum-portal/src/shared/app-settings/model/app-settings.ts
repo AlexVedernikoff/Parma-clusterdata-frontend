@@ -37,15 +37,6 @@ const getInitialConfig = (): AppSettings => {
         showBreadcrumbs: true,
         colorAccent: '#ffd700',
       },
-      filters: {
-        backgroundFilterColor: '#fff',
-        borderFilterColor: 'rgba(0, 0, 0, 0.06)',
-        labelFilterColor: '#252625',
-        labelShadingColor: '#fff',
-      },
-      widget: {
-        borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
-      },
       dashboard: {
         tabs: {
           tabType: 'line',
@@ -187,6 +178,45 @@ const getInitialConfig = (): AppSettings => {
             },
             layout: {
               tableBorderColor: 'transparent',
+            },
+          },
+          filter: {
+            wrapper: {
+              background: {
+                color: '#fff',
+              },
+              border: {
+                color: 'rgba(0, 0, 0, 0.06);',
+              },
+              boxShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
+              textAlign: 'left',
+            },
+            label: {
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '14px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#252625',
+              },
+              shadingColor: '#fff',
+            },
+            control: {
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '14px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#252625',
+              },
+              border: {
+                radius: '4px',
+                color: '#D7DDE4',
+                style: 'solid',
+                size: '1px',
+              },
             },
           },
         },

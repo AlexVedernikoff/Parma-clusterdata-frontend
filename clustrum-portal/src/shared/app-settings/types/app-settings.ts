@@ -30,8 +30,6 @@ export interface Theme {
   ant: ThemeConfig;
   app: AppTheme;
   layout: LayoutTheme;
-  filters: FiltersTheme;
-  widget: WidgetTheme;
   dashboard: DashboardTheme;
 }
 
@@ -63,6 +61,7 @@ export interface PaddingTheme {
 }
 
 export interface DashboardWidgetTheme {
+  filter: FiltersTheme;
   pivotTable: PivotTableWidgetTheme;
   table: TableWidgetTheme;
 }
@@ -123,6 +122,15 @@ export interface FontItemTheme {
   lineHeight?: string;
   color?: string;
 }
+export interface BorderItemTheme {
+  color?: string;
+  size?: string;
+  style?: string;
+  radius?: string;
+}
+export interface BackgroundItemTheme {
+  color?: string;
+}
 
 export interface PropsTheme extends Omit<Theme, 'ant'> {
   ant: ThemeConfig['token'];
@@ -133,8 +141,21 @@ export interface TabsTheme {
   tab: TabTheme;
 }
 
-export interface WidgetTheme {
-  borderShadow: string;
+export interface FilterLabelTheme {
+  shadingColor: string;
+  font: FontItemTheme;
+}
+
+export interface FilterControlTheme {
+  font: FontItemTheme;
+  border: BorderItemTheme;
+}
+
+export interface FilterWrapperTheme {
+  background: BackgroundItemTheme;
+  border: BorderItemTheme;
+  boxShadow: string;
+  textAlign: string;
 }
 
 export interface TablePaginationTheme {
@@ -143,10 +164,9 @@ export interface TablePaginationTheme {
 }
 
 export interface FiltersTheme {
-  backgroundFilterColor: string;
-  borderFilterColor: string;
-  labelFilterColor: string;
-  labelShadingColor: string;
+  label: FilterLabelTheme;
+  control: FilterControlTheme;
+  wrapper: FilterWrapperTheme;
 }
 export interface AppTheme {
   font: string;

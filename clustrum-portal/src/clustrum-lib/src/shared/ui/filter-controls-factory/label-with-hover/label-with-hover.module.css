@@ -2,6 +2,13 @@
   position: relative;
   height: 22px;
   overflow: hidden;
+  color: var(--clustrum-dashboard-widget-filter-label-font-color);
+  font-weight: var(--clustrum-dashboard-widget-filter-label-font-weight);
+  font-size: var(--clustrum-dashboard-widget-filter-label-font-size);
+  font-family: var(--clustrum-dashboard-widget-filter-label-font-family);
+  font-style: var(--clustrum-dashboard-widget-filter-label-font-style);
+  line-height: var(--clustrum-dashboard-widget-filter-label-font-line-height);
+  text-align: var(--clustrum-dashboard-widget-filter-wrapper-text-align);
 }
 
 .label-with-hover::after {
@@ -11,7 +18,7 @@
   display: block;
   width: 30%;
   height: 100%;
-  background-color: var(--clustrum-filter-label-shading-color);
+  background-color: var(--clustrum-dashboard-widget-filter-label-shading-color);
   opacity: 0.5;
   content: '';
 }

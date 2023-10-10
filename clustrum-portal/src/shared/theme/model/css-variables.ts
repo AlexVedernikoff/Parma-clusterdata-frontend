@@ -1,9 +1,10 @@
+/* eslint-disable max-lines */
 import { Theme } from '../../app-settings/types/app-settings';
 import { CssVariables } from '../types/theme';
 import { DEFAULT_FONT_FAMILY } from '@shared/app-settings';
 
 const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
-  const { ant, app, layout, filters, widget, dashboard } = themeObj;
+  const { ant, app, layout, dashboard } = themeObj;
   return [
     {
       variable: '--antd-color-primary',
@@ -72,22 +73,6 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: layout.backgroundPanelColor,
     },
     {
-      variable: '--clustrum-default-background-filter-color',
-      value: filters.backgroundFilterColor,
-    },
-    {
-      variable: '--clustrum-default-label-filter-color',
-      value: filters.labelFilterColor,
-    },
-    {
-      variable: '--clustrum-default-widget-shadow',
-      value: widget.borderShadow,
-    },
-    {
-      variable: '--clustrum-default-border-filter-color',
-      value: filters.borderFilterColor,
-    },
-    {
       variable: '--clustrum-dashboard-header-font-family',
       value:
         dashboard?.header?.font?.family ??
@@ -112,10 +97,6 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-dashboard-header-font-color',
       value: dashboard?.header?.font?.color ?? '#111729',
-    },
-    {
-      variable: '--clustrum-filter-label-shading-color',
-      value: filters.labelShadingColor,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-total-hover-font-color',
@@ -304,6 +285,90 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-dashboard-widget-table-td-font-color',
       value: dashboard?.widget?.table?.td?.font?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-label-font-color',
+      value: dashboard?.widget?.filter?.label?.font?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-label-font-weight',
+      value: dashboard?.widget?.filter?.label?.font?.weight,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-label-font-family',
+      value: dashboard?.widget?.filter?.label?.font?.family,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-label-font-line-height',
+      value: dashboard?.widget?.filter?.label?.font?.lineHeight,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-label-font-size',
+      value: dashboard?.widget?.filter?.label?.font?.size,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-label-font-style',
+      value: dashboard?.widget?.filter?.label?.font?.style,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-label-shading-color',
+      value: dashboard?.widget?.filter?.label?.shadingColor,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-font-color',
+      value: dashboard?.widget?.filter?.control?.font?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-font-weight',
+      value: dashboard?.widget?.filter?.control?.font?.weight,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-font-family',
+      value: dashboard?.widget?.filter?.control?.font?.family,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-font-style',
+      value: dashboard?.widget?.filter?.control?.font?.style,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-font-line-height',
+      value: dashboard?.widget?.filter?.control?.font?.lineHeight,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-font-size',
+      value: dashboard?.widget?.filter?.control?.font?.size,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-border-size',
+      value: dashboard?.widget?.filter?.control?.border?.size,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-border-style',
+      value: dashboard?.widget?.filter?.control?.border?.style,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-border-color',
+      value: dashboard?.widget?.filter?.control?.border?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-control-border-radius',
+      value: dashboard?.widget?.filter?.control?.border?.radius,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-wrapper-border-color',
+      value: dashboard?.widget?.filter?.wrapper?.border?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-wrapper-background-color',
+      value: dashboard?.widget?.filter?.wrapper?.background?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-wrapper-box-shadow',
+      value: dashboard?.widget?.filter?.wrapper?.boxShadow,
+    },
+    {
+      variable: '--clustrum-dashboard-widget-filter-wrapper-text-align',
+      value: dashboard?.widget?.filter?.wrapper?.textAlign,
     },
     {
       variable: '--clustrum-dashboard-tab-active-font-family',

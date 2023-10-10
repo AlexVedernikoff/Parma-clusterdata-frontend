@@ -5,8 +5,8 @@
   width: 100%;
   height: 100%;
   padding: 20px 24px;
-  background-color: var(--clustrum-default-background-filter-color);
-  border: 1px solid var(--clustrum-default-border-filter-color);
+  background-color: var(--clustrum-dashboard-widget-filter-wrapper-background-color);
+  border: 1px solid var(--clustrum-dashboard-widget-filter-wrapper-border-color);
   border-radius: 6px;
 }
 
