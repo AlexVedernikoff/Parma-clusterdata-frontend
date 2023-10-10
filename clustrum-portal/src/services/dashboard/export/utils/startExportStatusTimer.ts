@@ -10,11 +10,11 @@ export const startExportStatusTimer = async (
 
     switch (status) {
       case ExportStatus.InProgress:
-        startExportStatusTimer(getExportStatusFunc, successCallback, errorHandler);
+        await startExportStatusTimer(getExportStatusFunc, successCallback, errorHandler);
 
         break;
       case ExportStatus.Completed:
-        successCallback();
+        await successCallback();
 
         break;
       default:
@@ -25,4 +25,5 @@ export const startExportStatusTimer = async (
   } catch {
     errorHandler(ExportStatus.Failed);
   }
+  return;
 };

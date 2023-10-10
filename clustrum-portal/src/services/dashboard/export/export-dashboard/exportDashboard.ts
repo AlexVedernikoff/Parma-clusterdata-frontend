@@ -6,6 +6,7 @@ import {
 } from '../../../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { Entry } from './types/Entry';
 import { Tab } from './types/Tab';
+import { SuccessCallbackProps } from './types/ExportDashboard';
 import { PORTAL_PATH } from '../../../../context-path';
 import { store } from '../../../../store';
 import { endExport, exportError, startExport } from '../../../../store/actions/dash';
@@ -20,6 +21,7 @@ import { startExportStatusTimer } from '../utils/startExportStatusTimer';
 import { FIRST_EXPORT_STATUS_REQUEST_DELAY } from '../consts/timer-consts';
 import { clientFileName } from '../utils/clientFileName';
 import { TabItem } from '.';
+import { AxiosResponse } from 'axios';
 
 const exportedPagesUrl = (url: string, tabId: string, stateUuid: string) => {
   const baseUrl = `${url}?tab=${tabId}&hide-header-btns=true&export-mode=true`;
@@ -35,10 +37,6 @@ const exportedPagesUrls = (entry: Entry, tabId: string, stateUuid: string) => {
       url: exportedPagesUrl(url, tabId, stateUuid),
     },
   ];
-};
-
-const endExportDispatch = () => {
-  store.dispatch(endExport());
 };
 
 const exportToPdf = async (entry: Entry, tab: Tab, stateUuid: string) => {
@@ -126,6 +124,52 @@ const exportToExcel = async (
   }
 };
 
+const getHasExportTemplateKey = (format: ExportFormat) => {
+  switch (format) {
+    case ExportFormat.XLSX_FROM_TEMPLATE:
+      return 'hasExportTemplateXlsx';
+    case ExportFormat.DOCX_FROM_TEMPLATE:
+      return 'hasExportTemplateDocx';
+    default:
+      return null;
+  }
+};
+
+const successCallback = ({
+  serverFileName,
+  items,
+  index,
+  entry,
+  format,
+}: SuccessCallbackProps) => async () => {
+  try {
+    const response = await downloadExportedExcel(serverFileName);
+
+    saveAs(
+      new Blob([response.data], { type: response.headers['content-type'] }),
+      `${clientFileName(
+        entry.name,
+        items[index].data[0].title,
+      )}.${dashboardExportFilename(format)}`,
+    );
+  } catch {
+    store.dispatch(exportError());
+  }
+};
+
+const getStartExportStatusTimerPromises = (
+  items: TabItem[],
+  entry: Entry,
+  format: ExportFormat,
+) => async (item: AxiosResponse<{ fileName: string }>, index: number) => {
+  const serverFileName = item.data.fileName;
+  return startExportStatusTimer(
+    () => getExportExcelStatus(serverFileName),
+    successCallback({ serverFileName, items, index, entry, format }),
+    () => store.dispatch(exportError()),
+  );
+};
+
 const exportFromTemplate = async (
   entry: Entry,
   tab: Tab,
@@ -139,18 +183,12 @@ const exportFromTemplate = async (
     encoding: null,
   };
 
-  let hasExportTemplateKey: keyof TabItem;
-  switch (format) {
-    case ExportFormat.XLSX_FROM_TEMPLATE:
-      hasExportTemplateKey = 'hasExportTemplateXlsx';
-      break;
-    case ExportFormat.DOCX_FROM_TEMPLATE:
-      hasExportTemplateKey = 'hasExportTemplateDocx';
-      break;
-    default:
-      console.error('Unknown format to export from template');
-      store.dispatch(exportError());
-      return;
+  const hasExportTemplateKey: keyof TabItem | null = getHasExportTemplateKey(format);
+
+  if (!hasExportTemplateKey) {
+    console.error('Unknown format to export from template');
+    store.dispatch(exportError());
+    return;
   }
 
   const items = tab.items.filter((item): boolean => Boolean(item[hasExportTemplateKey]));
@@ -165,34 +203,14 @@ const exportFromTemplate = async (
   }));
 
   try {
-    const serverFileNames = await Promise.all(
+    const serverFileNames = (await Promise.all(
       data.map(async item => await exportWizardAsync(item)),
-    );
-    Promise.all(
-      serverFileNames.map(async (item, index) => {
-        const serverFileName = item.data.fileName;
-        startExportStatusTimer(
-          () => getExportExcelStatus(serverFileName),
-          async () => {
-            try {
-              const response = await downloadExportedExcel(serverFileName);
+    )) as AxiosResponse<{ fileName: string }>[];
 
-              saveAs(
-                new Blob([response.data], { type: response.headers['content-type'] }),
-                `${clientFileName(
-                  entry.name,
-                  items[index].data[0].title,
-                )}.${dashboardExportFilename(format)}`,
-              );
-            } catch {
-              store.dispatch(exportError());
-            }
-          },
-          () => store.dispatch(exportError()),
-        );
-      }),
+    await Promise.all(
+      serverFileNames.map(getStartExportStatusTimerPromises(items, entry, format)),
     );
-    setTimeout(endExportDispatch, FIRST_EXPORT_STATUS_REQUEST_DELAY);
+    store.dispatch(endExport());
   } catch {
     store.dispatch(exportError());
   }
