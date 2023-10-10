@@ -32,13 +32,13 @@ export interface Theme {
   layout: LayoutTheme;
   filters: FiltersTheme;
   widget: WidgetTheme;
-  tabs: TabsTheme;
   dashboard: DashboardTheme;
 }
 
 export interface DashboardTheme {
   header: DashboardHeaderTheme;
   widget: DashboardWidgetTheme;
+  tabs: TabsTheme;
 }
 
 export interface DashboardHeaderTheme {

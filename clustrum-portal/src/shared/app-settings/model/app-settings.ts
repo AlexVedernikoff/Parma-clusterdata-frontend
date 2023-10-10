@@ -46,10 +46,10 @@ const getInitialConfig = (): AppSettings => {
       widget: {
         borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
       },
-      tabs: {
-        tabType: 'card',
-      },
       dashboard: {
+        tabs: {
+          tabType: 'line',
+        },
         header: {
           padding: {
             left: '24px',

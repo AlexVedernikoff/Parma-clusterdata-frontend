@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -26,7 +26,7 @@ function Tabs(props) {
 
   const activeTabId = getSearchParam('tab') ?? tabs[0].id;
 
-  const tabType = $appSettingsStore.getState().theme.tabs.tabType;
+  const tabType = $appSettingsStore.getState().theme?.dashboard?.tabs?.tabType;
 
   return (
     <div className="tabs-wrapper">
