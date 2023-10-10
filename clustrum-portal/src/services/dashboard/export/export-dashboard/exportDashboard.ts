@@ -134,10 +134,12 @@ const exportFromTemplate = async (
     floatDelimiter: null,
     encoding: null,
   };
+
   const hasExportTemplateKey: keyof TabItem =
     format === ExportFormat.XLSX_FROM_TEMPLATE
       ? 'hasExportTemplateXlsx'
       : 'hasExportTemplateDocx';
+
   const items = tab.items.filter((item): boolean => Boolean(item[hasExportTemplateKey]));
 
   const data = items.map(({ data }) => ({
