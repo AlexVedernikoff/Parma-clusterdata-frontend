@@ -28,7 +28,7 @@ import { resetWizard } from '../../actions';
 import { WizardSavingStatus } from './WizardSavingStatus';
 import { exportWidget } from '../../services/dashboard/export/export-widget';
 import { $appSettingsStore } from '@shared/app-settings';
-import { NotificationContext } from '@clustrum-lib/shared/lib/notification';
+import { NotificationContext } from '@clustrum-lib';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,

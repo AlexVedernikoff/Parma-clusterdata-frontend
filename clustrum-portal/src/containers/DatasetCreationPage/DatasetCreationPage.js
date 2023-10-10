@@ -10,10 +10,8 @@ import { TOAST_TYPES, REPLACE_SOURCE_MODE_ID } from '../../constants';
 import Utils from '../../helpers/utils';
 import { getSearchParam } from '../../helpers/QueryParams';
 import { $appSettingsStore } from '@shared/app-settings';
-import {
-  NotificationContext,
-  NotificationType,
-} from '@clustrum-lib/shared/lib/notification';
+import { NotificationContext } from '@clustrum-lib';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 const b = block('dataset-creation-page');
 

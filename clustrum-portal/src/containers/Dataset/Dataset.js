@@ -48,7 +48,7 @@ import PageHead from '../../components/PageHeader/PageHeader';
 import VerificationModal from '../../components/DataSource/VerificationModal';
 import { Button } from 'antd';
 import { BarChartOutlined, BlockOutlined, SafetyOutlined } from '@ant-design/icons';
-import { NotificationContext } from '@clustrum-lib/shared/lib/notification';
+import { NotificationContext } from '@clustrum-lib';
 
 const b = block('dataset');
 

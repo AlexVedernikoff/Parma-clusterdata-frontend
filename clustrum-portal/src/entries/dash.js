@@ -23,10 +23,7 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { useUnit } from 'effector-react';
 import { setAppSettingsEvent, $appSettingsStore } from '@shared/app-settings';
-import {
-  useCustomNotification,
-  NotificationContext,
-} from '@clustrum-lib/shared/lib/notification';
+import { useCustomNotification, NotificationContext } from '@clustrum-lib';
 
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');

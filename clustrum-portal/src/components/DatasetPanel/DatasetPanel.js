@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button, RadioButton, TextInput } from 'lego-on-react';
-
-// import './DatasetPanel.scss';
 import Utils from '../../helpers/utils';
 import { TAB_DATA, TAB_DATASET, DATASET_TABS } from '../../constants';
 import { Icon } from '@kamatech-data-ui/common/src';
 import iconPlus from '@kamatech-data-ui/clustrum/src/icons/plus.svg';
-import { NotificationContext } from '@clustrum-lib/shared/lib/notification';
+import { NotificationContext } from '@clustrum-lib';
 
 const b = block('dataset-panel');
 

@@ -26,7 +26,7 @@ import {
   updateRLS,
 } from '../../store/reducers/dataset';
 import { load as loadDash, openDialog } from 'store/actions/dash';
-import { NotificationContext } from '@clustrum-lib/shared/lib/notification';
+import { NotificationContext } from '@clustrum-lib';
 
 const b = block('dataset-editor');
 

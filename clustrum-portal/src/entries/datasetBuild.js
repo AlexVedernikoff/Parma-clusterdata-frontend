@@ -20,10 +20,7 @@ import {
   combineDefaultThemeAndPropsTheme,
   setAppSettingsEvent,
 } from '@shared/app-settings';
-import {
-  NotificationContext,
-  useCustomNotification,
-} from '@clustrum-lib/shared/lib/notification';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 import { setCssVariables } from '@shared/theme';
 
 const sdk = new SDK({

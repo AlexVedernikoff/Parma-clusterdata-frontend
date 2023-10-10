@@ -44,7 +44,7 @@ import {
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { $appSettingsStore } from '@shared/app-settings';
 import { DialogType } from '@clustrum-lib/shared/types';
-import { NotificationType } from '@clustrum-lib/shared/lib/notification';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 const b = block('dash-header');
 

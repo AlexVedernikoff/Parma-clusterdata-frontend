@@ -18,10 +18,7 @@ import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { $appSettingsStore } from '@shared/app-settings';
-import {
-  NotificationContext,
-  useCustomNotification,
-} from '@clustrum-lib/shared/lib/notification';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,

@@ -9,7 +9,7 @@ import { ConnectionInfo, DataSourceButton, Status } from './components';
 import ErrorView from '../ErrorView/ErrorView';
 import { Stage } from './Stage';
 import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
-import { NotificationContext } from '@lib-shared/lib/notification';
+import { NotificationContext } from '@clustrum-lib';
 
 const b = block('data-source');
 

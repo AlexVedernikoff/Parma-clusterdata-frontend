@@ -29,10 +29,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 
 import { logVersion } from '../utils/version-logger';
-import {
-  NotificationContext,
-  useCustomNotification,
-} from '@clustrum-lib/shared/lib/notification';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 import { $appSettingsStore } from '@shared/app-settings';
 
 const middlewares = [thunkMiddleware];
