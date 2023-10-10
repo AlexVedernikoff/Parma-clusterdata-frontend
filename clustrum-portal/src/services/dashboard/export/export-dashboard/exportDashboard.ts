@@ -13,6 +13,7 @@ import {
   downloadExportedExcel,
   exportExcelAsync,
   exportPdf,
+  exportWordAsync,
   getExportExcelStatus,
 } from '../../../../api/Dashboard';
 import { startExportStatusTimer } from '../utils/startExportStatusTimer';
@@ -21,6 +22,7 @@ import {
   TIME_BETWEEN_EXPORT_STATUS_REQUESTS,
 } from '../consts/timer-consts';
 import { clientFileName } from '../utils/clientFileName';
+import { $dashboardWidgets } from '@clustrum-lib/entities/widget-container';
 
 const exportedPagesUrl = (url: string, tabId: string, stateUuid: string) => {
   const baseUrl = `${url}?tab=${tabId}&hide-header-btns=true&export-mode=true`;
@@ -64,6 +66,25 @@ const exportToPdf = async (entry: Entry, tab: Tab, stateUuid: string) => {
     const response = await exportPdf(data);
 
     saveAs(new Blob([response.data]), `${clientFileName(entry.name, tab.title)}.pdf`);
+
+    store.dispatch(endExport());
+  } catch {
+    store.dispatch(exportError());
+  }
+};
+
+const exportToWord = async (entry: Entry, tab: Tab) => {
+  const dashboardWidgets = $dashboardWidgets.getState();
+  const exportConfig = {
+    entryId: entry.entryId,
+    tabId: tab.id,
+    dashboardWidgets: dashboardWidgets,
+  };
+
+  try {
+    const response = await exportWordAsync(exportConfig);
+
+    saveAs(new Blob([response.data]), `${clientFileName(entry.name, tab.title)}.docx`);
 
     store.dispatch(endExport());
   } catch {
@@ -136,6 +157,10 @@ export const exportDashboard = (
   switch (format) {
     case ExportFormat.PDF:
       exportToPdf(entry, tab, stateUuid);
+
+      break;
+    case ExportFormat.DOCX:
+      exportToWord(entry, tab);
 
       break;
     default:
