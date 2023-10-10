@@ -6,7 +6,7 @@ import moment from 'moment';
 import { ContextMenuActions, NavigationTableColumnConfigParams } from '../../types';
 import { NAVIGATION_ENTRY_ACTIONS } from '../constants';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
-import { Hyperlink } from '../../ui/create-hyperlink';
+import { Hyperlink } from '../../ui/hyperlink';
 
 const stringSorter = (field: 'createdBy' | 'name') => (
   a: NavigationEntryData,

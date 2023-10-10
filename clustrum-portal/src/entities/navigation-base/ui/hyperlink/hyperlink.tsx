@@ -2,17 +2,17 @@ import React from 'react';
 import { NavigationScope } from '@clustrum-lib/shared/types';
 import { generatePath } from 'react-router';
 import { useUnit } from 'effector-react';
-import { $place } from '@entities/navigation-base/model/navigation-base';
+import { $place } from '../../model/navigation-base';
 import {
   MAP_NAVIGATION_SCOPE_TO_PATH,
   MAP_PLACE_TO_PATH_IN_FOLDER,
-} from '@entities/navigation-base/lib/constants';
+} from '../../lib/constants';
 import { Space } from 'antd';
-import { getIconByScope } from '@entities/navigation-base/lib/utils';
-import { CreateHyperlinkProps } from './types';
+import { getIconByScope } from '../../lib/utils';
+import { HyperLinkProps } from './types';
 import Link from 'antd/es/typography/Link';
 
-export function Hyperlink(props: CreateHyperlinkProps): JSX.Element {
+export function Hyperlink(props: HyperLinkProps): JSX.Element {
   const { record, name } = props;
   const [place] = useUnit([$place]);
 

@@ -1,6 +1,6 @@
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 
-export interface CreateHyperlinkProps {
+export interface HyperLinkProps {
   record: NavigationEntryData;
   name: string;
 }
