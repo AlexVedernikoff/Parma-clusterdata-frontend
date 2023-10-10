@@ -261,6 +261,9 @@ class Header extends React.PureComponent {
       tab => tab.id === dash?.tabId,
     );
 
+    // TODO: сейчас за отображения этих двух опций экспорта отвечают м свойства
+    // в feature toggles, и вот эти две переменные, которые присылаются с бека.
+    // Возможно, они больше не нужны и их можно удалить, но этот вопрос требует исследования.
     const { hasExportTemplateXlsx, hasExportTemplateDocx } = selectedTab ?? {};
 
     const {
