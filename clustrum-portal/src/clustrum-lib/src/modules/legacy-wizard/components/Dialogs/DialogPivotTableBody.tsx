@@ -10,8 +10,8 @@ import {
 import { VisualizationType } from '@clustrum-lib/entities/visualization-factory/types';
 import { pivotTableDialogFields } from './helper';
 import { VisualizationFactory } from '@clustrum-lib/entities/visualization-factory';
-import { useCustomNotification } from '@clustrum-lib';
-import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
+import { useCustomNotification } from '@lib-shared/lib/notification';
+import { NotificationType } from '@lib-shared/lib/notification/types';
 
 export const DialogPivotTableBody = <T extends IItem>({
   subTotalsSettings,

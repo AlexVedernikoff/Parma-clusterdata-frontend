@@ -56,8 +56,8 @@ import { getNavigationPathFromKey } from '../../../../helpers/utils-dash';
 import PageHead from '../../../../components/PageHeader/PageHeader';
 import { FullscreenOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Space } from 'antd';
-import { NotificationContext } from '@clustrum-lib';
-import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
+import { NotificationContext } from '@lib-shared/lib/notification';
+import { NotificationType } from '@lib-shared/lib/notification/types';
 
 const b = block('wizard');
 
