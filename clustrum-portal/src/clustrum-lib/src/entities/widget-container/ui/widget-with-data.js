@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line no-restricted-imports
-import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
+import { WidgetType } from '@lib-shared/ui/widgets-factory/types';
 import { WidgetFactory } from '@lib-shared/ui/widgets-factory';
 import { $dashboardWidgets } from '../model/dashboard-widget';
 // eslint-disable-next-line no-restricted-imports
