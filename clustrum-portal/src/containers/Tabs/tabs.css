@@ -15,3 +15,21 @@
 .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab:not(.ant-tabs-tab-active) {
   background: var(--color-contrast-4-solid);
 }
+
+.ant-tabs-nav .ant-tabs-tab .ant-tabs-tab-btn {
+  color: var(--clustrum-dashboard-tabs-tab-default-font-color);
+  font-weight: var(--clustrum-dashboard-tabs-tab-default-font-weight);
+  font-size: var(--clustrum-dashboard-tabs-tab-default-font-size);
+  font-family: var(--clustrum-dashboard-tabs-tab-default-font-family);
+  font-style: var(----clustrum-dashboard-tabs-tab-default-font-style);
+  line-height: var(--clustrum-dashboard-tabs-tab-default-font-line-height);
+}
+
+.ant-tabs-nav .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--clustrum-dashboard-tabs-tab-active-font-color);
+  font-weight: var(--clustrum-dashboard-tabs-tab-active-font-weight);
+  font-size: var(--clustrum-dashboard-tabs-tab-active-font-size);
+  font-family: var(--clustrum-dashboard-tabs-tab-active-font-family);
+  font-style: var(----clustrum-dashboard-tabs-tab-active-font-style);
+  line-height: var(--clustrum-dashboard-tabs-tab-active-font-line-height);
+}

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Theme } from '../../app-settings/types/app-settings';
 import { CssVariables } from '../types/theme';
 import { DEFAULT_FONT_FAMILY } from '@shared/app-settings';
@@ -372,6 +373,54 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-dashboard-widget-filter-wrapper-text-align',
       value: dashboard?.widget?.filter?.wrapper?.textAlign,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-active-font-family',
+      value: dashboard?.tabs?.tab?.active?.font?.family,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-active-font-style',
+      value: dashboard?.tabs?.tab?.active?.font?.style,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-active-font-size',
+      value: dashboard?.tabs?.tab?.active?.font?.size,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-active-font-weight',
+      value: dashboard?.tabs?.tab?.active?.font?.weight,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-active-font-line-height',
+      value: dashboard?.tabs?.tab?.active?.font?.lineHeight,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-active-font-color',
+      value: dashboard?.tabs?.tab?.active?.font?.color,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-default-font-family',
+      value: dashboard?.tabs?.tab?.default?.font?.family,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-default-font-style',
+      value: dashboard?.tabs?.tab?.default?.font?.style,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-default-font-size',
+      value: dashboard?.tabs?.tab?.default?.font?.size,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-default-font-weight',
+      value: dashboard?.tabs?.tab?.default?.font?.weight,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-default-font-line-height',
+      value: dashboard?.tabs?.tab?.default?.font?.lineHeight,
+    },
+    {
+      variable: '--clustrum-dashboard-tabs-tab-default-font-color',
+      value: dashboard?.tabs?.tab?.default?.font?.color,
     },
   ];
 };

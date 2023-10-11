@@ -30,13 +30,22 @@ export interface Theme {
   ant: ThemeConfig;
   app: AppTheme;
   layout: LayoutTheme;
-  tabs: TabsTheme;
   dashboard: DashboardTheme;
 }
 
 export interface DashboardTheme {
   header: DashboardHeaderTheme;
   widget: DashboardWidgetTheme;
+  tabs: TabsTheme;
+}
+
+export interface DefaultTabTheme {
+  font: FontItemTheme;
+}
+
+export interface TabTheme {
+  active: DefaultTabTheme;
+  default: DefaultTabTheme;
 }
 
 export interface DashboardHeaderTheme {
@@ -129,6 +138,7 @@ export interface PropsTheme extends Omit<Theme, 'ant'> {
 
 export interface TabsTheme {
   tabType: 'line' | 'card' | 'editable-card' | undefined;
+  tab: TabTheme;
 }
 
 export interface FilterLabelTheme {
