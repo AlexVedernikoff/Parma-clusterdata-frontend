@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+// eslint-disable-next-line no-restricted-imports
+import { WidgetType } from '@clustrum-lib/shared/ui/widgets-factory/types';
 import { WidgetFactory } from '@lib-shared/ui/widgets-factory';
 import { $dashboardWidgets } from '../model/dashboard-widget';
 // eslint-disable-next-line no-restricted-imports
@@ -164,8 +165,11 @@ export class WidgetWithData extends React.PureComponent {
             : null,
         };
 
-        if (loaded.widgetType === 'table' || loaded.widgetType === 'pivotTable') {
-          let dashboardWidgets = $dashboardWidgets.getState();
+        if (
+          loaded.widgetType === WidgetType.Table ||
+          loaded.widgetType === WidgetType.PivotTable
+        ) {
+          const dashboardWidgets = $dashboardWidgets.getState();
           dashboardWidgets.push(dashboardWidget);
 
           $dashboardWidgets.setState(dashboardWidgets);
