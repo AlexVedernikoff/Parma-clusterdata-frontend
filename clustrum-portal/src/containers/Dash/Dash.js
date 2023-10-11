@@ -124,12 +124,18 @@ class Dash extends React.PureComponent {
       onFiltersChange,
       onTabChange,
       dashMode,
+      featureToggles,
     } = this.props;
     const isDashShow = dashMode === MODE.VIEW || dashMode === MODE.EDIT;
     return (
       <React.Fragment>
         {!BUILD_SETTINGS.isLib && <PageHead title={title} />}
-        {isDashShow && <Header hasRightSideContent={hasRightSideContent} />}
+        {isDashShow && (
+          <Header
+            hasRightSideContent={hasRightSideContent}
+            featureToggles={featureToggles}
+          />
+        )}
         <Body onFiltersChange={onFiltersChange} onTabChange={onTabChange} />
         <Dialogs />
         <SideSlidingPanel

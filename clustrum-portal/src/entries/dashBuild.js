@@ -38,7 +38,13 @@ if (IS_INTERNAL) {
 logVersion();
 
 export default function DashBuild(props) {
-  const { entryId, hideRightSideContent, onFiltersChange, onTabChange } = props;
+  const {
+    entryId,
+    hideRightSideContent,
+    onFiltersChange,
+    onTabChange,
+    featureToggles,
+  } = props;
 
   const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
 
@@ -73,6 +79,7 @@ export default function DashBuild(props) {
                       hasRightSideContent={!hideRightSideContent}
                       onFiltersChange={onFiltersChange}
                       onTabChange={onTabChange}
+                      featureToggles={featureToggles}
                     />
                   )}
                 />
