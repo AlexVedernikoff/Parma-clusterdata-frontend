@@ -84,7 +84,26 @@ const getInitialConfig = (): AppSettings => {
           },
         },
         widget: {
+          container: {
+            borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
+            height: '2.5rem',
+            border: {
+              radius: '0.5rem',
+              color: '#ededed',
+              style: 'none',
+              size: 'unset',
+            },
+          },
           table: {
+            layout: {
+              margin: '0',
+              border: {
+                radius: 'unset',
+                color: 'unset',
+                style: 'none',
+                size: 'unset',
+              },
+            },
             pagination: {
               defaultPageSize: 10,
               font: {
@@ -178,7 +197,13 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             layout: {
-              tableBorderColor: 'transparent',
+              margin: '0',
+              border: {
+                radius: 'unset',
+                color: 'unset',
+                style: 'none',
+                size: 'unset',
+              },
             },
           },
           filter: {

@@ -64,6 +64,13 @@ export interface DashboardWidgetTheme {
   filter: FiltersTheme;
   pivotTable: PivotTableWidgetTheme;
   table: TableWidgetTheme;
+  container: ContainerWidgetTheme;
+}
+
+export interface ContainerWidgetTheme {
+  borderShadow: string;
+  height: string;
+  border: BorderTheme;
 }
 
 export type TextAlignTheme = 'left' | 'right' | 'center';
@@ -86,13 +93,19 @@ export interface TableWidgetTheme {
   th: TableWidgetThTheme;
   total: TotalTableWidgetTheme;
   pagination: TablePaginationTheme;
+  layout: TableLayoutTheme;
+}
+
+export interface TableLayoutTheme {
+  margin: string;
+  border: BorderTheme;
 }
 
 export interface PivotTableWidgetTheme {
   th: TitlePivotTableWidgetTheme;
   td: TableWidgetTdTheme;
   total: TotalTableWidgetTheme;
-  layout: LayoutPivotTableWidgetTheme;
+  layout: TableLayoutTheme;
 }
 
 export interface TotalTableWidgetTheme {
@@ -104,10 +117,6 @@ export interface TotalTableWidgetTheme {
 export interface HoverTheme {
   backgroundColor: string;
   fontColor: string;
-}
-
-export interface LayoutPivotTableWidgetTheme {
-  tableBorderColor: string;
 }
 
 export interface TitlePivotTableWidgetTheme {
@@ -140,6 +149,12 @@ export interface TabsTheme {
   tabType: 'line' | 'card' | 'editable-card' | undefined;
   tab: TabTheme;
 }
+export interface BorderTheme {
+  radius: string;
+  color: string;
+  style: string;
+  size: string;
+}
 
 export interface FilterLabelTheme {
   shadingColor: string;
@@ -156,6 +171,9 @@ export interface FilterWrapperTheme {
   border: BorderItemTheme;
   boxShadow: string;
   textAlign: string;
+}
+export interface TabsTheme {
+  tabType: 'line' | 'card' | 'editable-card' | undefined;
 }
 
 export interface TablePaginationTheme {

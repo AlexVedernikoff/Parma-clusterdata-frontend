@@ -1,5 +1,5 @@
 .tabs-wrapper {
-  background: var(--clustrum-default-background-panel-color);
+  background: var(--clustrum-background-panel-color);
 }
 
 .ant-tabs-top > .ant-tabs-nav {
@@ -17,7 +17,7 @@
 }
 
 .ant-tabs-nav .ant-tabs-tab .ant-tabs-tab-btn {
-  color: var(--clustrum-dashboard-tabs-tab-default-font-color);
+  color: var(--clustrum-dashboard-tabs-tab-font-color);
   font-weight: var(--clustrum-dashboard-tabs-tab-default-font-weight);
   font-size: var(--clustrum-dashboard-tabs-tab-default-font-size);
   font-family: var(--clustrum-dashboard-tabs-tab-default-font-family);

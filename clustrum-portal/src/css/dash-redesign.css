@@ -714,7 +714,12 @@
   background-color: var(--clustrum-dashboard-widget-filter-wrapper-background-color);
   border: none;
   border-radius: 0.5rem;
-  box-shadow: var(--clustrum-dashboard-widget-filter-wrapper-box-shadow);
+  box-shadow: var(--clustrum-dashboard-widget-filter-wrapper-box-shadow);  
+  border-radius: var(--clustrum-dashboard-widget-container-border-radius);
+  border-color: var(--clustrum-dashboard-widget-container-border-color);
+  border-style: var(--clustrum-dashboard-widget-container-border-style);
+  border-width: var(--clustrum-dashboard-widget-container-border-size);
+  overflow: hidden;
 }
 
 .expanded-filter {
@@ -727,8 +732,8 @@
 
 .dashkit-plugin-widget__tabs {
   background: transparent;
-  border-bottom: 1px solid var(--neutral-100);
-  height: 2.5rem;
+  border-bottom: 1px solid var(--clustrum-container-border-color);
+  height: var(--clustrum-dashboard-widget-container-height);
   padding-right: 4.5rem;
   padding-left: 1rem;
 }
@@ -1290,6 +1295,11 @@
 .dashkit-plugin-widget .chartkit .chartkit-table {
   margin: 0;
   overflow: auto;
+  margin: var(--clustrum-dashboard-widget-table-layout-margin);
+  border-radius: var(--clustrum-dashboard-widget-table-layout-border-radius);
+  border-color: var(--clustrum-dashboard-widget-table-layout-border-color);
+  border-style: var(--clustrum-dashboard-widget-table-layout-border-style);
+  border-width: var(--clustrum-dashboard-widget-table-layout-border-size);
 }
 
 .data-table__box {
@@ -1522,7 +1532,7 @@
 .action-panel {
   margin: 0;
   border: none;
-  background: var(--clustrum-default-background-panel-color);
+  background: var(--clustrum-background-panel-color);
 }
 
 .yc-header {
