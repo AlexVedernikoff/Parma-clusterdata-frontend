@@ -18,7 +18,10 @@ import {
 } from '../types';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
 import { $pathInFolder } from '@entities/navigation-base';
-import { useCustomNotification } from '@clustrum-lib';
+// Импорт сделан напрямую к @clustrum-lib/shared/lib/notification, а не к просто @clustrum-lib,
+// так как простой @clustrum-lib сейчас приведёт к зацикливанию в этом файле.
+// TODO: поменять импорт, после окончания рефакторинга clustrum-lib.
+import { useCustomNotification } from '@clustrum-lib/shared/lib/notification';
 import { unsecuredCopyToClipboard } from '../lib/utils';
 import { useUnit } from 'effector-react';
 
