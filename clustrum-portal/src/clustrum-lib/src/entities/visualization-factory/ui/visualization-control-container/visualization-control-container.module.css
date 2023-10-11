@@ -314,19 +314,23 @@
   height: 16px;
 }
 
-.subcontainer :global(.dimension-item.drag-hovered.drag-hovered-remove .item-right-icon.cross-icon) {
+.subcontainer
+  :global(.dimension-item.drag-hovered.drag-hovered-remove .item-right-icon.cross-icon) {
   display: block;
 }
 
-.subcontainer :global(.dimension-item.drag-hovered.drag-hovered-swap .item-right-icon.swap-icon) {
+.subcontainer
+  :global(.dimension-item.drag-hovered.drag-hovered-swap .item-right-icon.swap-icon) {
   display: block;
 }
 
-.subcontainer :global(.measure-item.drag-hovered.drag-hovered-remove .item-right-icon.cross-icon) {
+.subcontainer
+  :global(.measure-item.drag-hovered.drag-hovered-remove .item-right-icon.cross-icon) {
   display: block;
 }
 
-.subcontainer :global(.measure-item.drag-hovered.drag-hovered-swap .item-right-icon.swap-icon) {
+.subcontainer
+  :global(.measure-item.drag-hovered.drag-hovered-swap .item-right-icon.swap-icon) {
   display: block;
 }
 

@@ -208,7 +208,7 @@ export const DAYS = [
   'sunday',
 ];
 
-export const TOAST_TIMEOUT_DEFAULT = 60000;
+export const NOTIFICATION_TIMEOUT_DEFAULT = 60;
 
 export const TOAST_NAME = 'dialog_footer_error';
 export const CSV_TOAST_NAME = 'csv_error';

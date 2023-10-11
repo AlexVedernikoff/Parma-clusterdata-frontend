@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import moment from 'moment';
 import configureStore from 'store/configureStore';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
 import ConnectionsRouter from '../components/ConnectionsRouter/ConnectionsRouter';
@@ -19,6 +18,7 @@ import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { $appSettingsStore } from '@shared/app-settings';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,
@@ -26,30 +26,34 @@ const sdk = new SDK({
   currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
 });
 
-const toaster = new Toaster();
-
 const store = configureStore({
   sdk,
-  toaster,
 });
 
 Utils.setBodyFeatures();
 
 logVersion();
 
-const { ant } = $appSettingsStore.getState().theme;
+function Connection() {
+  const [openNotification, contextHolder] = useCustomNotification();
+  const { ant } = $appSettingsStore.getState().theme;
 
-function render() {
-  ReactDOM.render(
+  return (
     <AppContainer>
       <ConfigProvider theme={{ ...ant }} locale={ruRU}>
         <Provider store={store}>
-          <ConnectionsRouter sdk={sdk} />
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <ConnectionsRouter sdk={sdk} />
+          </NotificationContext.Provider>
         </Provider>
       </ConfigProvider>
-    </AppContainer>,
-    document.getElementById('root'),
+    </AppContainer>
   );
+}
+
+function render() {
+  ReactDOM.render(<Connection />, document.getElementById('root'));
 }
 
 moment.locale('ru');

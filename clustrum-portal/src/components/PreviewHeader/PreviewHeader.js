@@ -4,14 +4,12 @@ import block from 'bem-cn-lite';
 import { Icon } from '@kamatech-data-ui/common/src';
 import { TextInput, Button } from 'lego-on-react';
 import _debounce from 'lodash/debounce';
-
-// import './PreviewHeader.scss';
-
 import iconPreviewClose from '@kamatech-data-ui/clustrum/src/icons/preview-close.svg';
 import iconPreviewBottom from '@kamatech-data-ui/clustrum/src/icons/preview-bottom.svg';
 import iconPreviewExpand from '@kamatech-data-ui/clustrum/src/icons/preview-expand.svg';
 import iconPreviewSide from '@kamatech-data-ui/clustrum/src/icons/preview-side.svg';
 import { changeAmountPreviewRows } from '../../store/reducers/dataset';
+import { NotificationContext } from '@clustrum-lib';
 
 const b = block('preview-header');
 
@@ -37,6 +35,8 @@ class PreviewHeader extends React.Component {
       amountPreviewRows: this.props.amountPreviewRows,
     };
   }
+
+  static contextType = NotificationContext;
 
   static getDerivedStateFromProps(props, state) {
     const { amountPreviewRowsProps } = props;
@@ -69,6 +69,7 @@ class PreviewHeader extends React.Component {
 
   changeAmountPreviewRows = amountPreviewRows => {
     const amountPreviewRowsNumber = Number(amountPreviewRows);
+    const openNotification = this.context;
 
     if (amountPreviewRowsNumber === 0) {
       return this.setState({
@@ -88,6 +89,7 @@ class PreviewHeader extends React.Component {
         () => {
           this.debouncedChangeAmountPreviewRows({
             amountPreviewRows: amountPreviewRowsNumber,
+            openNotification,
           });
         },
       );

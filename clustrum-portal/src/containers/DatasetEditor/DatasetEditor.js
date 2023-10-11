@@ -26,6 +26,7 @@ import {
   updateRLS,
 } from '../../store/reducers/dataset';
 import { load as loadDash, openDialog } from 'store/actions/dash';
+import { NotificationContext } from '@clustrum-lib';
 
 const b = block('dataset-editor');
 
@@ -47,6 +48,8 @@ class DatasetEditor extends React.Component {
     searchKeyword: PropTypes.string,
     isVerification: PropTypes.bool,
   };
+
+  static contextType = NotificationContext;
 
   static getDerivedStateFromProps(props, state) {
     const { isDisplayHiddenFields } = state;
@@ -127,6 +130,7 @@ class DatasetEditor extends React.Component {
       datasetErrorDialogRef,
     } = this.props;
     const { guid } = field;
+    const openNotification = this.context;
 
     if (guid) {
       switch (actionType) {
@@ -137,6 +141,7 @@ class DatasetEditor extends React.Component {
             updatePreview,
             validateEnabled,
             datasetErrorDialogRef,
+            openNotification,
           });
 
           break;
@@ -148,6 +153,7 @@ class DatasetEditor extends React.Component {
             updatePreview,
             validateEnabled,
             datasetErrorDialogRef,
+            openNotification,
           });
 
           break;
@@ -159,6 +165,7 @@ class DatasetEditor extends React.Component {
             updatePreview,
             validateEnabled,
             datasetErrorDialogRef,
+            openNotification,
           });
 
           break;
@@ -171,12 +178,14 @@ class DatasetEditor extends React.Component {
               updatePreview,
               validateEnabled,
               datasetErrorDialogRef,
+              openNotification,
             });
           } else {
             updateDatasetByValidation({
               updatePreview,
               validateEnabled,
               datasetErrorDialogRef,
+              openNotification,
             });
           }
 

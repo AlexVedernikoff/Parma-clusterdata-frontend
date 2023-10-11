@@ -13,6 +13,5 @@ export { default as Tabs } from './components/Tabs/Tabs';
 export { default as TextArea } from './components/TextArea/TextArea';
 export { default as TextInput } from './components/TextInput/TextInput';
 export { default as Timeline } from './components/Timeline/Timeline';
-export { default as Toaster } from './components/Toaster';
 export { default as YCSelect } from './components/YCSelect/YCSelect';
 export { default as HelpTooltip } from './components/HelpTooltip/HelpTooltip';
