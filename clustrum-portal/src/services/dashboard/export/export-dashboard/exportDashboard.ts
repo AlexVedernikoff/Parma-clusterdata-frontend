@@ -77,8 +77,10 @@ const exportToExcel = async (
   format = ExportFormat.XLSX,
   stateUuid: string,
 ) => {
+  const formatAllTabs = format + '_all_tabs';
+
   const exportConfig = {
-    format,
+    format: format === ExportFormat.XLSX ? formatAllTabs : format,
     delValues: null,
     delNumbers: null,
     encoding: null,
