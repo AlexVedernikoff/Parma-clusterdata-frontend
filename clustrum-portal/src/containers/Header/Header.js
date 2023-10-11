@@ -285,6 +285,10 @@ class Header extends React.PureComponent {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</a>,
         key: '4',
       },
+      {
+        label: <a onClick={() => this.#exportClickHandler(ExportFormat.DOCX)}>DOCX</a>,
+        key: '5',
+      },
       hasExportTemplateXlsx && {
         label: (
           <a onClick={() => this.#exportClickHandler(ExportFormat.XLSX_FROM_TEMPLATE)}>
