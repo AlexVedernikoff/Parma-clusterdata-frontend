@@ -10,6 +10,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
       value: ant.token?.colorPrimary ?? '#bb2649',
     },
     {
+      variable: '--antd-color-primary-hover',
+      value: ant.token?.colorPrimaryHover,
+    },
+    {
       variable: '--clustrum-dashboard-widget-table-td-numbertype-align',
       value: dashboard?.widget?.table?.td?.numberType?.align,
     },
