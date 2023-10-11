@@ -146,23 +146,22 @@ export class WidgetWithData extends React.PureComponent {
           responseOptions: {
             includeConfig: true,
           },
-          pageSize: paginateInfo ? paginateInfo.pageSize : null,
-          page: paginateInfo ? paginateInfo.page : null,
+          pageSize: paginateInfo?.pageSize ?? null,
+          page: paginateInfo?.page ?? null,
           enableCaching: $appSettingsStore.getState().enableCaching
             ? $appSettingsStore.getState().enableCaching
             : false,
           cacheMode: $appSettingsStore.getState().cacheMode
             ? $appSettingsStore.getState().cacheMode
             : null,
-          orderBy:
-            orderBy && orderBy.direction
-              ? [
-                  {
-                    direction: orderBy.direction,
-                    field: orderBy.field,
-                  },
-                ]
-              : null,
+          orderBy: orderBy?.direction
+            ? [
+                {
+                  direction: orderBy.direction,
+                  field: orderBy.field,
+                },
+              ]
+            : null,
         };
 
         if (loaded.widgetType === 'table' || loaded.widgetType === 'pivotTable') {

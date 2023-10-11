@@ -78,7 +78,7 @@ const exportToWord = async (entry: Entry, tab: Tab) => {
   const exportConfig = {
     entryId: entry.entryId,
     tabId: tab.id,
-    dashboardWidgets: dashboardWidgets,
+    dashboardWidgets,
   };
 
   try {
