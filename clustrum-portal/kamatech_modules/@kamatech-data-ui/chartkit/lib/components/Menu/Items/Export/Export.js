@@ -2,12 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { RadioButton, Select } from 'lego-on-react';
+import { Select } from 'lego-on-react';
+import { Radio, Space } from 'antd';
 import Modal from '../Modal/Modal';
 import Icon, { extend } from '../../../Icon/Icon';
 import { getStorageState } from '../../../../modules/export/export';
 import { ExportFormat } from '../../../../modules/export/ExportFormat';
 import { Encoding } from '../../../../modules/export/Encoding';
+import s from './export.module.css';
+import { radioButtonStyle } from './export-radiobutton-styles.js';
+
+const AVAILABLE_FORMATS = ['XLSX', 'XLS', 'CSV'];
 
 extend({
   download: <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />,
@@ -162,24 +167,41 @@ class Export extends React.PureComponent {
     );
   }
 
+  radioButtonChange = e => this.changeFormat(e.target.value);
+
   render() {
     const { hasExportTemplateXlsx, hasExportTemplateDocx } = this.props;
 
-    const radioButtons = [
-      <RadioButton.Radio value={ExportFormat.XLSX}>XLSX</RadioButton.Radio>,
-      <RadioButton.Radio value={ExportFormat.XLS}>XLS</RadioButton.Radio>,
-      <RadioButton.Radio value={ExportFormat.CSV}>CSV</RadioButton.Radio>,
-      hasExportTemplateXlsx && (
-        <RadioButton.Radio value={ExportFormat.XLSX_FROM_TEMPLATE}>
+    const radioButtons = AVAILABLE_FORMATS.map(format => (
+      <Radio.Button
+        value={ExportFormat[format]}
+        style={radioButtonStyle}
+        key={ExportFormat[format]}
+      >
+        {format}
+      </Radio.Button>
+    ));
+    hasExportTemplateXlsx &&
+      radioButtons.push(
+        <Radio.Button
+          value={ExportFormat.XLSX_FROM_TEMPLATE}
+          style={radioButtonStyle}
+          key={ExportFormat.XLSX_FROM_TEMPLATE}
+        >
           XLSX (из шаблона)
-        </RadioButton.Radio>
-      ),
-      hasExportTemplateDocx && (
-        <RadioButton.Radio value={ExportFormat.DOCX_FROM_TEMPLATE}>
+        </Radio.Button>,
+      );
+
+    hasExportTemplateDocx &&
+      radioButtons.push(
+        <Radio.Button
+          value={ExportFormat.DOCX_FROM_TEMPLATE}
+          style={radioButtonStyle}
+          key={ExportFormat.DOCX_FROM_TEMPLATE}
+        >
           DOCX (из шаблона)
-        </RadioButton.Radio>
-      ),
-    ].filter(Boolean);
+        </Radio.Button>,
+      );
 
     return (
       <Modal element={this.props.element}>
@@ -190,17 +212,16 @@ class Export extends React.PureComponent {
           })}
         >
           <Block title="Формат">
-            <RadioButton
-              theme="normal"
-              view="default"
-              tone="default"
-              size="s"
+            <Radio.Group
               value={this.state.format}
-              freeWidth={true}
-              onChange={event => this.changeFormat(event.target.value)}
+              size="large"
+              className={s['radio-button']}
+              onChange={this.radioButtonChange}
             >
-              {radioButtons}
-            </RadioButton>
+              <Space direction="vertical" className={s['space-container']} align="center">
+                {radioButtons}
+              </Space>
+            </Radio.Group>
           </Block>
           {this.renderSettings()}
           <div className={b('hint')}>
