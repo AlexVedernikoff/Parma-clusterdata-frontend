@@ -70,8 +70,8 @@ export default function WizardBuild(props) {
   );
 
   setAppSettings({
-    hideHeader: props.hideHeader,
-    hideSubHeader: props.hideSubHeader,
+    hideHeader: !props.featureToggles?.header ?? false,
+    hideSubHeader: !props.featureToggles?.subHeader ?? false,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,
