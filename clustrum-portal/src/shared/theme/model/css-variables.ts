@@ -216,19 +216,19 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-border-radius',
-      value: dashboard?.widget?.pivotTable?.layout?.border.radius,
+      value: dashboard?.widget?.pivotTable?.layout?.border?.radius,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-border-color',
-      value: dashboard?.widget?.pivotTable?.layout?.border.color,
+      value: dashboard?.widget?.pivotTable?.layout?.border?.color,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-border-style',
-      value: dashboard?.widget?.pivotTable?.layout?.border.style,
+      value: dashboard?.widget?.pivotTable?.layout?.border?.style,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-border-size',
-      value: dashboard?.widget?.pivotTable?.layout?.border.size,
+      value: dashboard?.widget?.pivotTable?.layout?.border?.size,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-margin',
@@ -466,6 +466,10 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     {
       variable: '--clustrum-dashboard-widget-table-layout-margin',
       value: dashboard?.widget?.table?.layout?.margin ?? '0',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-layout-padding',
+      value: dashboard?.widget?.table?.layout?.padding ?? '0',
     },
     {
       variable: '--clustrum-dashboard-widget-table-layout-border-radius',
