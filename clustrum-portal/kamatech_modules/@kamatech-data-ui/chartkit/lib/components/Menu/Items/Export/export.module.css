@@ -10,12 +10,12 @@
   padding: 4px 10px;
 }
 
-.radio-button {
-  border: none !important;
-  background-color: transparent !important;
-  font-size: 13px !important;
-  height: 26px !important;
-  color: black !important;
+.space-container :global(.ant-radio-button-wrapper) {
+  border: none;
+  background-color: transparent;
+  font-size: 13px;
+  height: 26px;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
