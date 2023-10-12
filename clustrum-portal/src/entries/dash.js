@@ -23,6 +23,7 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { useUnit } from 'effector-react';
 import { setAppSettingsEvent, $appSettingsStore } from '@shared/app-settings';
+import { useCustomNotification, NotificationContext } from '@clustrum-lib';
 
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');
@@ -38,6 +39,7 @@ function Dash() {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
 
   const searchParams = new URL(window.location.href).searchParams;
+  const [openNotification, contextHolder] = useCustomNotification();
 
   const { ant } = $appSettingsStore.getState().theme;
 
@@ -55,7 +57,10 @@ function Dash() {
     <ConfigProvider theme={{ ...ant }} locale={ruRU}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <App />
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <App />
+          </NotificationContext.Provider>
         </ConnectedRouter>
       </Provider>
     </ConfigProvider>

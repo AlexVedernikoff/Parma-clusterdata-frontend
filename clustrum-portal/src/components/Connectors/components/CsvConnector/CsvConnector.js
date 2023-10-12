@@ -6,19 +6,20 @@ import Dropzone from 'react-dropzone';
 import { Button, RadioButton } from 'lego-on-react';
 import { Icon, YCSelect } from '@kamatech-data-ui/common/src';
 import { PathSelect } from '@kamatech-data-ui/clustrum';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import DataTable from '@kamatech-data-ui/dt100/lib';
 import ContainerLoader from '../../../../components/ContainerLoader/ContainerLoader';
 import ArrowBack from '../../subcomponents/ArrowBack/ArrowBack';
 import {
   CSV_TOAST_NAME,
   FIELD_TYPES,
-  TOAST_TIMEOUT_DEFAULT,
+  NOTIFICATION_TIMEOUT_DEFAULT,
 } from '../../../../constants';
 import Utils from '../../../../helpers/utils';
 import iconCsv from '@kamatech-data-ui/clustrum/src/icons/csv.svg';
 import { getErrorMessage } from '../../utils';
 import { getSearchParam } from '../../../../helpers/QueryParams';
+import { NotificationContext } from '@clustrum-lib';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 const b = block('csv-connector2');
 
@@ -322,6 +323,8 @@ class CsvConnector extends React.Component {
     emptyFields: PropTypes.array,
   };
 
+  static contextType = NotificationContext;
+
   static defaultProps = {
     viewStepId: VIEW_STEPS.CSV_LOADING,
   };
@@ -382,8 +385,6 @@ class CsvConnector extends React.Component {
       await this.fetchConnection();
     }
   }
-
-  toaster = new Toaster();
 
   getSelectItem = ({ items = [] }) => {
     return items.map(item => ({
@@ -472,11 +473,12 @@ class CsvConnector extends React.Component {
           this.onChangeCallback,
         );
       } catch (error) {
-        this.toaster.createToast({
-          name: CSV_TOAST_NAME,
+        const openNotification = this.context;
+        openNotification({
+          key: CSV_TOAST_NAME,
           title: 'Ошибка: не удалось загрузить подлючение',
-          type: 'error',
-          timeout: TOAST_TIMEOUT_DEFAULT,
+          type: NotificationType.Error,
+          duration: NOTIFICATION_TIMEOUT_DEFAULT,
         });
 
         this.setState(
@@ -552,11 +554,12 @@ class CsvConnector extends React.Component {
           this.onChangeCallback,
         );
       } catch (error) {
-        this.toaster.createToast({
-          name: CSV_TOAST_NAME,
+        const openNotification = this.context;
+        openNotification({
+          key: CSV_TOAST_NAME,
           title: 'Ошибка: не удалось получить превью',
-          type: 'error',
-          timeout: TOAST_TIMEOUT_DEFAULT,
+          type: NotificationType.Error,
+          duration: NOTIFICATION_TIMEOUT_DEFAULT,
         });
 
         this.setState({

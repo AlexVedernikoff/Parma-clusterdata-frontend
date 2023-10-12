@@ -1,18 +1,38 @@
 .select-filter-control {
   display: flex;
   width: 100%;
+  text-align: var(--clustrum-dashboard-widget-filter-wrapper-text-align);
 }
 
 .select-filter-control__label {
   display: flex;
   flex-direction: column;
   width: 100%;
-  color: var(--clustrum-default-label-filter-color);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
+  color: var(--clustrum-dashboard-widget-filter-label-font-color);
+  font-weight: var(--clustrum-dashboard-widget-filter-label-font-weight);
+  font-size: var(--clustrum-dashboard-widget-filter-label-font-size);
+  font-family: var(--clustrum-dashboard-widget-filter-label-font-family);
+  font-style: var(--clustrum-dashboard-widget-filter-label-font-style);
+  line-height: var(--clustrum-dashboard-widget-filter-label-font-line-height);
 }
 
-.select-filter-control__select {
-  width: 100%;
+.select-filter-control__select :global(.ant-select-selector) {
+  width: 100% !important;
+  font-weight: var(--clustrum-dashboard-widget-filter-control-font-weight) !important;
+  font-size: var(--clustrum-dashboard-widget-filter-control-font-size) !important;
+  font-family: var(--clustrum-dashboard-widget-filter-control-font-family) !important;
+  font-style: var(--clustrum-dashboard-widget-filter-control-font-style) !important;
+  line-height:
+    var(
+      --clustrum-dashboard-widget-filter-control-font-line-height
+    ) !important;
+  border:
+    var(--clustrum-dashboard-widget-filter-control-border-size)
+    var(--clustrum-dashboard-widget-filter-control-border-style)
+    var(--clustrum-dashboard-widget-filter-control-border-color) !important;
+  border-radius: var(--clustrum-dashboard-widget-filter-control-border-radius) !important;
+}
+
+.select-filter-control__select :global(.ant-select-selection-item) {
+  color: var(--clustrum-dashboard-widget-filter-control-font-color) !important;
 }

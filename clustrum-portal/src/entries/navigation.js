@@ -19,6 +19,7 @@ import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { $appSettingsStore } from '@shared/app-settings';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,
@@ -31,21 +32,28 @@ Utils.setBodyFeatures();
 
 logVersion();
 
-const { ant } = $appSettingsStore.getState().theme;
+function NavigationEntity() {
+  const [openNotification, contextHolder] = useCustomNotification();
+  const { ant } = $appSettingsStore.getState().theme;
 
-function render() {
-  ReactDOM.render(
+  return (
     <AppContainer>
       <ConfigProvider theme={{ ...ant }} locale={ruRU}>
         <Provider store={store}>
-          <Router>
-            <NavigationPage sdk={sdk} />
-          </Router>
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <Router>
+              <NavigationPage sdk={sdk} />
+            </Router>
+          </NotificationContext.Provider>
         </Provider>
       </ConfigProvider>
-    </AppContainer>,
-    document.getElementById('root'),
+    </AppContainer>
   );
+}
+
+function render() {
+  ReactDOM.render(<NavigationEntity />, document.getElementById('root'));
 }
 
 moment.locale('ru');

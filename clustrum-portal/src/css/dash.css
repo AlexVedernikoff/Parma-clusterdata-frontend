@@ -2367,6 +2367,9 @@ td.rdtYear:hover {
   height: 100%;
   overflow: auto;
   flex: 1;
+  margin: var(--clustrum-dashboard-widget-table-layout-margin);
+  border: var(--clustrum-dashboard-widget-table-layout-border);
+  border-radius: var(--clustrum-dashboard-widget-table-layout-border-radius);
 }
 
 .chartkit-table__title {

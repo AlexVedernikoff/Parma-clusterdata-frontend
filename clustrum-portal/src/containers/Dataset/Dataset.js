@@ -28,8 +28,6 @@ import {
   saveDataset,
   toggleVisibilityPreview,
   toggleVisibilityHistory,
-  updateDatasetByValidation,
-  changeAmountPreviewRows,
   datasetKeySelector,
   datasetErrorSelector,
   datasetPreviewErrorSelector,
@@ -50,6 +48,7 @@ import PageHead from '../../components/PageHeader/PageHeader';
 import VerificationModal from '../../components/DataSource/VerificationModal';
 import { Button } from 'antd';
 import { BarChartOutlined, BlockOutlined, SafetyOutlined } from '@ant-design/icons';
+import { NotificationContext } from '@clustrum-lib';
 
 const b = block('dataset');
 
@@ -66,10 +65,10 @@ class Dataset extends React.Component {
     toggleVisibilityPreview: PropTypes.func.isRequired,
     toggleVisibilityHistory: PropTypes.func.isRequired,
     syncDataSet: PropTypes.func.isRequired,
-    updateDatasetByValidation: PropTypes.func.isRequired,
     saveDataset: PropTypes.func.isRequired,
-    changeAmountPreviewRows: PropTypes.func.isRequired,
   };
+
+  static contextType = NotificationContext;
 
   state = {
     isVisibleDatasetCreationDialog: false,
@@ -89,10 +88,12 @@ class Dataset extends React.Component {
 
   componentDidMount() {
     const { datasetId, initialFetchDataset } = this.props;
+    const openNotification = this.context;
 
     initialFetchDataset({
       datasetId,
       datasetErrorDialogRef: this.datasetErrorDialogRef,
+      openNotification,
     });
 
     window.addEventListener('beforeunload', this.confirmClosePage);
@@ -168,11 +169,13 @@ class Dataset extends React.Component {
         isProcessingSource: true,
       });
 
+      const openNotification = this.context;
+
       switch (item) {
         case 'update-dataset-schema': {
           await sdk.bi.modifyDatasetSource({ datasetId });
           this.closeDataSource();
-          initialFetchDataset({ datasetId });
+          initialFetchDataset({ datasetId, openNotification });
 
           break;
         }
@@ -399,7 +402,7 @@ class Dataset extends React.Component {
     if (datasetError) {
       return this.renderErrorContent();
     }
-
+    const openNotification = this.context;
     return (
       <div className={b()}>
         {!BUILD_SETTINGS.isLib && <PageHead title={datasetName} />}
@@ -442,6 +445,7 @@ class Dataset extends React.Component {
               onClick={() =>
                 saveDataset({
                   datasetErrorDialogRef: this.datasetErrorDialogRef,
+                  openNotification,
                 })
               }
               key="save-dataset-btn"
@@ -527,8 +531,6 @@ const mapDispatchToProps = {
   toggleVisibilityPreview,
   toggleVisibilityHistory,
   syncDataSet,
-  updateDatasetByValidation,
-  changeAmountPreviewRows,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(Dataset);
