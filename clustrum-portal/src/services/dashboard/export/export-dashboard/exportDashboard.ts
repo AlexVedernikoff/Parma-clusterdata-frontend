@@ -256,6 +256,7 @@ export const exportDashboard = (
     case ExportFormat.XLSX_FROM_TEMPLATE:
     case ExportFormat.DOCX_FROM_TEMPLATE:
       exportFromTemplate(entry, tab, format, stateUuid);
+
       break;
     default:
       exportToExcel(entry, tab, format, stateUuid);
