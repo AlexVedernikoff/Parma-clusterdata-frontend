@@ -6,8 +6,9 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { DatepickerFilterControlProps } from './types';
-import { PlacementPosition } from '@lib-shared/ui/filter-controls-factory/types';
-import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
+import { FieldDataType, PlacementPosition } from '../../types';
+import { DEFAULT_DATE_FORMAT, INTERVAL_FORMAT_REGEX } from '../../lib/constants';
+import { getIntervalString } from '../../lib/helpers';
 
 import styles from './datepicker-filter-control.module.css';
 import { LabelWithHover } from '../../label-with-hover';
@@ -25,6 +26,7 @@ export function DatepickerFilterControl(
     minDate,
     defaultValue,
     dateFormat = DEFAULT_DATE_FORMAT,
+    fieldDataType,
     onChange,
     showTitle: needShowTitle,
   } = props;
@@ -33,21 +35,32 @@ export function DatepickerFilterControl(
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const currentValue = defaultValue && dayjs(defaultValue);
+    let dateWithoutTime = defaultValue;
+    if (fieldDataType === FieldDataType.DateTime) {
+      const parsedDates = defaultValue?.match(INTERVAL_FORMAT_REGEX);
+      if (parsedDates) {
+        dateWithoutTime = parsedDates[1];
+      }
+    }
+    const currentValue = dateWithoutTime && dayjs(dateWithoutTime);
 
     if (currentValue && currentValue?.isValid()) {
       setDate(currentValue);
     } else {
       setDate(null);
     }
-  }, [defaultValue]);
+  }, [defaultValue, fieldDataType]);
 
   const handleChange = (dateValue: Dayjs | null): void => {
     if (!onChange) {
       return;
     }
     if (dateValue) {
-      onChange(dateValue.format(DEFAULT_DATE_FORMAT));
+      const withDefaultTime = fieldDataType === FieldDataType.DateTime;
+      const dateString = withDefaultTime
+        ? getIntervalString(dateValue, dateValue, { withDefaultTime })
+        : dateValue.format(DEFAULT_DATE_FORMAT);
+      onChange(dateString);
     } else {
       onChange('');
     }

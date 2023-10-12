@@ -9,7 +9,11 @@ import { store, history } from '../store';
 import { IS_INTERNAL } from '../modules/constants/constants';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { setAppSettingsEvent, $appSettingsStore } from '@shared/app-settings';
+import {
+  setAppSettingsEvent,
+  combineDefaultThemeAndPropsTheme,
+  $appSettingsStore,
+} from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -27,6 +31,7 @@ import './../css/dash-redesign.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 
 Utils.setBodyFeatures();
 moment.locale(process.env.BEM_LANG || 'ru');
@@ -46,9 +51,12 @@ export default function DashBuild(props) {
     featureToggles,
   } = props;
 
-  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
-
+  const [openNotification, contextHolder] = useCustomNotification();
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const theme = combineDefaultThemeAndPropsTheme(
+    props.theme,
+    $appSettingsStore.getState().theme,
+  );
   setAppSettings({
     hideHeader: !props.featureToggles?.header ?? false,
     hideSubHeader: !props.featureToggles?.subHeader ?? false,
@@ -64,28 +72,31 @@ export default function DashBuild(props) {
   setCssVariables(theme);
 
   return (
-    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
+    <ConfigProvider theme={{ ...theme.ant }} locale={ruRU}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <DndProvider backend={HTML5Backend}>
-            <div className="clustrum">
-              <Pointerfocus />
-              <Switch>
-                <Route
-                  path="*"
-                  render={() => (
-                    <Dash
-                      defaultEntryId={entryId}
-                      hasRightSideContent={!hideRightSideContent}
-                      onFiltersChange={onFiltersChange}
-                      onTabChange={onTabChange}
-                      featureToggles={featureToggles}
-                    />
-                  )}
-                />
-              </Switch>
-            </div>
-          </DndProvider>
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <DndProvider backend={HTML5Backend}>
+              <div className="clustrum">
+                <Pointerfocus />
+                <Switch>
+                  <Route
+                    path="*"
+                    render={() => (
+                      <Dash
+                        defaultEntryId={entryId}
+                        hasRightSideContent={!hideRightSideContent}
+                        onFiltersChange={onFiltersChange}
+                        onTabChange={onTabChange}
+                        featureToggles={featureToggles}
+                      />
+                    )}
+                  />
+                </Switch>
+              </div>
+            </DndProvider>
+          </NotificationContext.Provider>
         </ConnectedRouter>
       </Provider>
     </ConfigProvider>

@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import { Dialog, Loader } from '@kamatech-data-ui/common/src';
 import { RadioBox } from 'lego-on-react';
 import { ErrorDialog } from '@kamatech-data-ui/clustrum';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 
 import { REPLACE_SOURCE_MODE_ID } from '../../constants';
 import {
@@ -17,6 +16,8 @@ import ErrorView from '../ErrorView/ErrorView';
 import { Stage } from './Stage';
 import MaterializationSettings from './components/MaterializationCustomSettings/MaterializationSettings';
 import Utils from '../../helpers/utils';
+import { NotificationContext } from '@clustrum-lib';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 // import './DataSource.scss';
 
@@ -199,6 +200,9 @@ class DataSource extends React.Component {
     error: PropTypes.object,
   };
 
+  static contextType = NotificationContext;
+  openNotification = this.context;
+
   static getDerivedStateFromProps(props) {
     const { error, errorType, progress } = props;
 
@@ -247,8 +251,6 @@ class DataSource extends React.Component {
 
   _materializationStatusTimer = null;
 
-  toaster = new Toaster();
-
   onEntryClick = async (entry, closeNavModal, materializationCustomSettings) => {
     closeNavModal();
 
@@ -284,11 +286,10 @@ class DataSource extends React.Component {
     if (!showErrorPrev && showError) {
       const title = this.getErrorTitle();
 
-      this.toaster.createToast({
+      this.openNotification({
         title,
-        name: `${errorType}_toast`,
-        type: 'error',
-        allowAutoHiding: false,
+        key: `${errorType}_toast`,
+        type: NotificationType.Error,
         actions: [
           {
             label: 'Подробнее',

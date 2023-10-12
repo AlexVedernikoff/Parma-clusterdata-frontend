@@ -4,6 +4,8 @@ import block from 'bem-cn-lite';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
+import isEqual from 'lodash/isEqual';
+
 import Loader from '../../components/Loader/Loader';
 import Error from '../Error/Error';
 import TableOfContent from '../TableOfContent/TableOfContent';
@@ -17,6 +19,7 @@ import {
   getSettings,
   getWidgetForReloadUUID,
   getHashState,
+  getCurrentPage,
 } from '../../store/selectors/dash';
 import {
   openItemDialog,
@@ -105,23 +108,114 @@ class Body extends React.PureComponent {
     return isEmpty && !isSended;
   };
 
-  handleFiltersChange = data => {
-    const { config, itemsStateAndParams } = data;
-    const { onFiltersChange } = this.props;
+  getAllFilters = () => {
+    const { getCurrentPage } = this.props;
+    const filters = getCurrentPage.tabs
+      .flatMap(tab => tab.items)
+      .filter(item => item.type === 'control');
+    return filters;
+  };
 
-    if (!onFiltersChange) {
+  needSyncFilters = (filter1, filter2) => {
+    // Это один и тот же фильтр
+    if (filter1.id === filter2.id) {
+      return false;
+    }
+
+    // Разные датасеты и/или поля
+    if (filter1.data.dataset.fieldId !== filter2.data.dataset.fieldId) {
+      return false;
+    }
+
+    // Разные типы контролов (input, select, datepicker)
+    if (filter1.data.control.elementType !== filter2.data.control.elementType) {
+      return false;
+    }
+
+    // Разные значения свойства "мультиселект" у селектов
+    if (
+      filter1.data.control.elementType === 'select' &&
+      filter1.data.control.multiselectable !== filter2.data.control.multiselectable
+    ) {
+      return false;
+    }
+
+    // Разные значения свойства "диапазон" у датапикера
+    if (
+      filter1.data.control.elementType === 'datepicker' &&
+      filter1.data.control.isRange !== filter2.data.control.isRange
+    ) {
+      return false;
+    }
+
+    // Разные значения по умолчанию
+    if (!isEqual(filter1.defaults, filter2.defaults)) {
+      return false;
+    }
+
+    // Разные доступные значения
+    if (!isEqual(filter1.availableItems, filter2.availableItems)) {
+      return false;
+    }
+
+    return true;
+  };
+
+  updateFilterValue(hashState, filter, value) {
+    if (filter.id in hashState) {
+      hashState[filter.id].params[filter.data.dataset.fieldId].value = value;
       return;
     }
 
-    // данные приходят в странном виде - несколько секций с отлдичающимся наполнением
+    hashState[filter.id] = {
+      params: {
+        [filter.data.dataset.fieldId]: {
+          initiatorItem: filter,
+          value,
+        },
+      },
+    };
+  }
+
+  syncFilters = (changedFilters, hashState) => {
+    const allFilters = this.getAllFilters();
+    for (const changedFilter of changedFilters) {
+      const changedFilterFull = allFilters.find(
+        filter => filter.id === changedFilter.controlId,
+      );
+      for (const filter of allFilters) {
+        if (this.needSyncFilters(filter, changedFilterFull)) {
+          this.updateFilterValue(hashState, filter, changedFilter.value);
+        }
+      }
+    }
+    setHashState(hashState);
+  };
+
+  handleFiltersChange = data => {
+    const { config, itemsStateAndParams } = data;
+    const { onFiltersChange, settings } = this.props;
+
+    const actualParams = Object.values(itemsStateAndParams).filter(value =>
+      Boolean(value.params),
+    );
+
+    // данные приходят в странном виде - несколько секций с отличающимся наполнением
     // нас устроит любая из них с типом 'control', поэтому берём первую
     // обязательно из config-а, т.к. в `itemsStateAndParams` могут быть секции из других табов
-    const id = config.items.filter(item => item.type === 'control')[0].id;
+    const controls = config.items.filter(item => item.type === 'control');
+
+    if (!actualParams.length || !controls.length) {
+      return;
+    }
+
+    const id = controls[0].id;
     const filtersData = itemsStateAndParams[id].params;
     const rawFilters = Object.keys(filtersData).map(key => ({
       id: key,
       value: filtersData[key].value,
       datasetId: filtersData[key].initiatorItem.data.dataset?.id,
+      controlId: filtersData[key].initiatorItem.id,
     }));
 
     const filtersParams = rawFilters.reduce(
@@ -134,7 +228,12 @@ class Body extends React.PureComponent {
       .filter(item => this.isNewFilterValue(item));
 
     if (newFilters.length) {
-      onFiltersChange(newFilters, filtersParams);
+      if (onFiltersChange) {
+        onFiltersChange(newFilters, filtersParams);
+      }
+      if (settings.needSyncFilters) {
+        this.syncFilters(newFilters, itemsStateAndParams);
+      }
     }
   };
 
@@ -234,6 +333,7 @@ const mapStateToProps = state => ({
   tabData: getCurrentTab(state),
   dashKitRef: state.dash.dashKitRef,
   widgetForReloadUUID: getWidgetForReloadUUID(state),
+  getCurrentPage: getCurrentPage(state),
 });
 
 const mapDispatchToProps = {

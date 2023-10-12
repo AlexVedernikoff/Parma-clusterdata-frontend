@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button, RadioButton, TextInput } from 'lego-on-react';
-
-// import './DatasetPanel.scss';
 import Utils from '../../helpers/utils';
 import { TAB_DATA, TAB_DATASET, DATASET_TABS } from '../../constants';
 import { Icon } from '@kamatech-data-ui/common/src';
 import iconPlus from '@kamatech-data-ui/clustrum/src/icons/plus.svg';
+import { NotificationContext } from '@clustrum-lib';
 
 const b = block('dataset-panel');
 
@@ -16,6 +15,8 @@ class DatasetPanel extends React.Component {
     tab: PropTypes.oneOf(DATASET_TABS),
     switchTab: PropTypes.func.isRequired,
   };
+
+  static contextType = NotificationContext;
 
   render() {
     const {
@@ -31,6 +32,11 @@ class DatasetPanel extends React.Component {
     } = this.props;
 
     const multisourcesEnabled = Utils.isEnabledFeature('multisources');
+
+    const openNotification = this.context;
+    const syncDataWithNotification = () => {
+      syncDataSet({ openNotification });
+    };
 
     return (
       <div className={b()}>
@@ -57,7 +63,7 @@ class DatasetPanel extends React.Component {
               view="default"
               tone="default"
               text="Синхронизировать"
-              onClick={syncDataSet}
+              onClick={syncDataWithNotification}
             />
             <Button
               disabled={!previewEnabled}

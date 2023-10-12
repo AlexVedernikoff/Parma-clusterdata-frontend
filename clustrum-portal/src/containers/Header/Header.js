@@ -31,8 +31,6 @@ import { LAYOUT_ID } from '../../constants/constants';
 import { getLayoutId } from '../../utils/helpers';
 import BrowserPrint from '../BrowserPrint/BrowserPrint';
 import { exportDashboard } from './model/exportDashboard';
-import { Toaster } from '../../../kamatech_modules/@kamatech-data-ui/common/src';
-import { NOTIFY_TYPES } from '../../../kamatech_modules/@kamatech-data-ui/clustrum/src/constants/common';
 import { ExportStatusEnum } from '../../../kamatech_modules/kamatech-ui/enums/export-status.enum';
 import { Button, Dropdown, Space, Popover } from 'antd';
 import {
@@ -41,9 +39,12 @@ import {
   DownOutlined,
   EditOutlined,
   FilterOutlined,
+  SettingOutlined,
 } from '@ant-design/icons';
 import { ExportFormat } from '../../../kamatech_modules/@kamatech-data-ui/chartkit/lib/modules/export/ExportFormat';
 import { $appSettingsStore } from '@shared/app-settings';
+import { DialogType } from '@clustrum-lib/shared/types';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 const b = block('dash-header');
 
@@ -62,12 +63,10 @@ class Header extends React.PureComponent {
     openExpandedFilter: PropTypes.func.isRequired,
     exportStatusReset: PropTypes.func.isRequired,
     hasRightSideContent: PropTypes.bool,
-    featureToggles: PropTypes.object,
+    openNotification: PropTypes.func.isRequired,
   };
 
   static contextType = SignalContext;
-
-  toaster = new Toaster();
 
   state = {
     progress: false,
@@ -84,30 +83,30 @@ class Header extends React.PureComponent {
 
     switch (this.props.dash.exportStatus) {
       case ExportStatusEnum.PENDING: {
-        this.toaster.createToast({
+        this.props.openNotification({
           title: 'Экспорт выполняется, ожидайте загрузку файла',
-          name: 'DASHBOARD',
-          type: NOTIFY_TYPES.INFO,
-          allowAutoHiding: true,
+          key: 'DASHBOARD',
+          type: NotificationType.Info,
+          duration: 6,
         });
         break;
       }
       case ExportStatusEnum.SUCCESS: {
-        this.toaster.createToast({
+        this.props.openNotification({
           title: 'Экспорт выполнен',
-          name: 'DASHBOARD',
-          type: NOTIFY_TYPES.SUCCESS,
-          allowAutoHiding: true,
+          key: 'DASHBOARD',
+          type: NotificationType.Success,
+          duration: 6,
         });
         this.props.exportStatusReset();
         break;
       }
       case ExportStatusEnum.ERROR: {
-        this.toaster.createToast({
+        this.props.openNotification({
           title: 'Ошибка выполнения экспорта',
-          name: 'DASHBOARD',
-          type: NOTIFY_TYPES.ERROR,
-          allowAutoHiding: true,
+          key: 'DASHBOARD',
+          type: NotificationType.Error,
+          duration: 6,
         });
         this.props.exportStatusReset();
         break;
@@ -192,6 +191,12 @@ class Header extends React.PureComponent {
     ];
 
     return [
+      <Button
+        title="Настройки аналитической панели"
+        onClick={() => this.props.openDialog(DialogType.DashboardSettings)}
+        key="button-settings"
+        icon={<SettingOutlined />}
+      />,
       <WidgetVisibilityDropdown
         key="widget-visibility"
         items={items}
@@ -297,6 +302,10 @@ class Header extends React.PureComponent {
       showCsvOption && {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</a>,
         key: '4',
+      },
+      {
+        label: <a onClick={() => this.#exportClickHandler(ExportFormat.DOCX)}>DOCX</a>,
+        key: '5',
       },
       hasExportTemplateXlsx &&
         showXlsxWithTemplateOption && {

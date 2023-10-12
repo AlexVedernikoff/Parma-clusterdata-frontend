@@ -29,8 +29,13 @@ import './../css/card.css';
 import './../css/clustrum/styles.css';
 
 import { logVersion } from '../utils/version-logger';
-import { $appSettingsStore, setAppSettingsEvent } from '@shared/app-settings';
+import {
+  $appSettingsStore,
+  combineDefaultThemeAndPropsTheme,
+  setAppSettingsEvent,
+} from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 
 const middlewares = [thunkMiddleware];
 
@@ -57,9 +62,13 @@ const sdk = new SDK({
 export default function WizardBuild(props) {
   const { entryId } = props;
 
-  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
-
+  const [openNotification, contextHolder] = useCustomNotification();
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const theme = combineDefaultThemeAndPropsTheme(
+    props.theme,
+    $appSettingsStore.getState().theme,
+  );
+
   setAppSettings({
     hideHeader: !props.featureToggles?.header ?? false,
     hideSubHeader: !props.featureToggles?.subHeader ?? false,
@@ -77,28 +86,31 @@ export default function WizardBuild(props) {
   setCssVariables(theme);
 
   return (
-    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
+    <ConfigProvider theme={{ ...theme.ant }} locale={ruRU}>
       <Provider store={store}>
-        <DndProvider backend={HTML5Backend}>
-          <BrowserRouter>
-            <div className="clustrum">
-              <Pointerfocus />
-              <Switch>
-                <Route
-                  path="*"
-                  component={props => (
-                    <Wizard
-                      {...props}
-                      onExport={handleExport}
-                      sdk={sdk}
-                      entryId={entryId}
-                    />
-                  )}
-                />
-              </Switch>
-            </div>
-          </BrowserRouter>
-        </DndProvider>
+        <NotificationContext.Provider value={openNotification}>
+          {contextHolder}
+          <DndProvider backend={HTML5Backend}>
+            <BrowserRouter>
+              <div className="clustrum">
+                <Pointerfocus />
+                <Switch>
+                  <Route
+                    path="*"
+                    component={props => (
+                      <Wizard
+                        {...props}
+                        onExport={handleExport}
+                        sdk={sdk}
+                        entryId={entryId}
+                      />
+                    )}
+                  />
+                </Switch>
+              </div>
+            </BrowserRouter>
+          </DndProvider>
+        </NotificationContext.Provider>
       </Provider>
     </ConfigProvider>
   );

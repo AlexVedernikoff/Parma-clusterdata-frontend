@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
-import { Icon, Loader, Toaster, YCSelect, TextInput } from '@kamatech-data-ui/common/src';
+import { Icon, Loader, YCSelect, TextInput } from '@kamatech-data-ui/common/src';
 import { PathSelect } from '@kamatech-data-ui/clustrum';
 
 import getErrorMessageHelper from './getErrorMessageHelper';
@@ -15,6 +15,8 @@ import {
 import Utils from '../../helpers/utils';
 import SelectConnection from '../../containers/SelectConnection/SelectConnection';
 import { getSearchParam } from '../../helpers/QueryParams';
+import { NotificationContext } from '@clustrum-lib';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 const b = block('dataset-creation');
 
@@ -72,6 +74,8 @@ class DatasetCreation extends React.Component {
     }
   }
 
+  static contextType = NotificationContext;
+
   state = {
     connectionType: '',
     connectionName: '',
@@ -95,6 +99,18 @@ class DatasetCreation extends React.Component {
 
   async componentDidMount() {
     const { sdk, connectionId, connectionType } = this.props;
+    // Используем localStorage, чтобы пробросить данные между разными вкладками браузера
+    const datasetSourceOrigin =
+      JSON.parse(localStorage.getItem('datasetSourceOrigin')) || {};
+    const { table_name, table_db_name } = datasetSourceOrigin;
+
+    if (table_name && table_db_name) {
+      this.setState({
+        selectedTable: table_name,
+        selectedDatabase: table_db_name,
+      });
+    }
+
     const isNeedDatabaseList =
       connectionId &&
       ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
@@ -116,13 +132,14 @@ class DatasetCreation extends React.Component {
         this.setState(
           {
             databases: sortedDatabases,
-            selectedDatabase: sortedDatabases[0],
+            selectedDatabase: table_db_name || sortedDatabases[0],
             isLoadingDatabasesList: false,
           },
           this.onChangeCallback,
         );
       } catch (error) {
         const { response: { status: responseStatus } = {} } = error;
+        const openNotification = this.context;
 
         this.setState(
           {
@@ -137,11 +154,10 @@ class DatasetCreation extends React.Component {
           status: responseStatus,
         });
 
-        this.toaster.createToast({
-          name: TOAST_NAME,
+        openNotification({
+          key: TOAST_NAME,
           title,
-          type: 'error',
-          allowAutoHiding: false,
+          type: NotificationType.Error,
         });
       }
     } else if (isYtConnection && !connectionId) {
@@ -167,6 +183,11 @@ class DatasetCreation extends React.Component {
     const { selectedDatabase } = this.state;
     const { selectedDatabase: selectedDatabasePrev } = prevState;
 
+    // Используем localStorage, чтобы пробросить данные между разными вкладками браузера
+    const datasetSourceOrigin =
+      JSON.parse(localStorage.getItem('datasetSourceOrigin')) || {};
+    const { table_name, table_db_name } = datasetSourceOrigin;
+
     const isNeedDatabaseTableList =
       connectionId &&
       ['clickhouse', 'mysql', 'mssql', 'postgres', 'oracle'].includes(connectionType);
@@ -188,13 +209,17 @@ class DatasetCreation extends React.Component {
         this.setState(
           {
             databaseTables: sortedDatabaseTables,
-            selectedTable: sortedDatabaseTables[0],
+            selectedTable:
+              !table_db_name || selectedDatabase !== table_db_name
+                ? sortedDatabaseTables[0]
+                : table_name,
             isLoadingDatabaseTablesList: false,
           },
           this.onChangeCallback,
         );
       } catch (error) {
         const { response: { status: responseStatus } = {} } = error;
+        const openNotification = this.context;
 
         this.setState(
           {
@@ -209,17 +234,14 @@ class DatasetCreation extends React.Component {
           status: responseStatus,
         });
 
-        this.toaster.createToast({
-          name: TOAST_NAME,
+        openNotification({
+          key: TOAST_NAME,
           title,
-          type: 'error',
-          allowAutoHiding: false,
+          type: NotificationType.Error,
         });
       }
     }
   }
-
-  toaster = new Toaster();
 
   _databaseNameInpRef = React.createRef();
 

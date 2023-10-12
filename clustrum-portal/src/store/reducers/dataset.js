@@ -31,6 +31,7 @@ import {
   CHANGE_AMOUNT_HISTORY_ROWS,
 } from '../../actions/dataset';
 import { CalcModes } from '../../../kamatech_modules/@kamatech-data-ui/clustrum';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 function getMessageText() {
   return {
@@ -230,12 +231,13 @@ export function updateDatasetByValidation({
   updatePreview = false,
   validateEnabled = true,
   datasetErrorDialogRef,
+  openNotification,
 } = {}) {
-  return async (dispatch, getState, { toaster }) => {
+  return async (dispatch, getState) => {
     let fetchingPreviewEnabled;
 
     if (validateEnabled) {
-      const updates = await dispatch(validateDataset());
+      const updates = await dispatch(validateDataset({ openNotification }));
 
       fetchingPreviewEnabled = checkFetchingPreview({ updatePreview, updates });
     }
@@ -261,22 +263,23 @@ export function updateDatasetByValidation({
             resultSchema,
             limit: amountPreviewRows,
             datasetErrorDialogRef,
+            openNotification,
           }),
         );
       }
     }
 
     if (actionTypeNotification) {
-      toaster.createToast({
-        name: 'success_update_dataset',
+      openNotification({
+        key: 'success_update_dataset',
         title: getToastTitle('NOTIFICATION_SUCCESS', actionTypeNotification),
-        type: 'success',
+        type: NotificationType.Success,
       });
     }
   };
 }
 
-export function changeAmountPreviewRows({ amountPreviewRows }) {
+export function changeAmountPreviewRows({ amountPreviewRows, openNotification }) {
   return (dispatch, getState) => {
     dispatch({
       type: CHANGE_AMOUNT_PREVIEW_ROWS,
@@ -294,6 +297,7 @@ export function changeAmountPreviewRows({ amountPreviewRows }) {
         datasetId,
         resultSchema,
         limit: amountPreviewRows,
+        openNotification,
       }),
     );
   };
@@ -307,7 +311,11 @@ export function setDocumentTitle() {
   };
 }
 
-export function initialFetchDataset({ datasetId, datasetErrorDialogRef }) {
+export function initialFetchDataset({
+  datasetId,
+  datasetErrorDialogRef,
+  openNotification,
+}) {
   return async (dispatch, getState, { sdk }) => {
     try {
       dispatch({
@@ -316,7 +324,7 @@ export function initialFetchDataset({ datasetId, datasetErrorDialogRef }) {
       });
 
       const data = await Promise.all([
-        dispatch(fetchFieldTypes()),
+        dispatch(fetchFieldTypes(openNotification)),
         sdk.bi.getDataSetByVersion({ dataSetId: datasetId, version: 'draft' }),
       ]);
 
@@ -340,7 +348,7 @@ export function initialFetchDataset({ datasetId, datasetErrorDialogRef }) {
 
       dispatch(setDocumentTitle());
 
-      dispatch(validateDataset({ initial: true }));
+      dispatch(validateDataset({ initial: true, openNotification }));
 
       const {
         dataset: {
@@ -357,6 +365,7 @@ export function initialFetchDataset({ datasetId, datasetErrorDialogRef }) {
             resultSchema,
             limit: amountPreviewRows,
             datasetErrorDialogRef,
+            openNotification,
           }),
         );
       }
@@ -365,6 +374,7 @@ export function initialFetchDataset({ datasetId, datasetErrorDialogRef }) {
         fetchHistoryDataset({
           datasetId,
           limit: amountHistoryRows,
+          openNotification,
         }),
       );
     } catch (error) {
@@ -420,10 +430,10 @@ function setEmptyPreview() {
 }
 
 const dispatchFetchPreviewDataset = async (
-  { datasetId, resultSchema, version, limit, datasetErrorDialogRef },
+  { datasetId, resultSchema, version, limit, datasetErrorDialogRef, openNotification },
   dispatch,
   getState,
-  { sdk, toaster },
+  { sdk },
 ) => {
   try {
     dispatch({
@@ -474,12 +484,11 @@ const dispatchFetchPreviewDataset = async (
           onClick: datasetErrorDialogRef.current && datasetErrorDialogRef.current.open,
         });
       }
-
-      toaster.createToast({
-        name: 'error_fetch_dataset',
+      openNotification({
+        key: 'error_fetch_dataset',
         title: getToastTitle('NOTIFICATION_FAILURE', 'preview'),
-        type: 'error',
-        timeout: 60000,
+        type: NotificationType.Error,
+        duration: 60,
         actions,
       });
     }
@@ -495,6 +504,7 @@ export function fetchPreviewDataset({
   limit = 100,
   debounceEnabled = false,
   datasetErrorDialogRef,
+  openNotification,
 }) {
   return debounceEnabled
     ? debouncedFetchPreviewDataset.bind(this, {
@@ -503,6 +513,7 @@ export function fetchPreviewDataset({
         version,
         limit,
         datasetErrorDialogRef,
+        openNotification,
       })
     : dispatchFetchPreviewDataset.bind(this, {
         datasetId,
@@ -510,14 +521,15 @@ export function fetchPreviewDataset({
         version,
         limit,
         datasetErrorDialogRef,
+        openNotification,
       });
 }
 
 const dispatchFetchHistoryDataset = async (
-  { datasetId, limit, datasetErrorDialogRef },
+  { datasetId, limit, datasetErrorDialogRef, openNotification },
   dispatch,
   getState,
-  { sdk, toaster },
+  { sdk },
 ) => {
   try {
     dispatch({
@@ -557,11 +569,11 @@ const dispatchFetchHistoryDataset = async (
         });
       }
 
-      toaster.createToast({
-        name: 'error_fetch_history_dataset',
+      openNotification({
+        key: 'error_fetch_history_dataset',
         title: getToastTitle('NOTIFICATION_FAILURE', 'history'),
-        type: 'error',
-        timeout: 60000,
+        type: NotificationType.Error,
+        timeout: 6,
         actions,
       });
     }
@@ -570,15 +582,22 @@ const dispatchFetchHistoryDataset = async (
 
 const debouncedFetchHistoryDataset = _debounce(dispatchFetchHistoryDataset, 3000);
 
-export function fetchHistoryDataset({ datasetId, limit, debounceEnabled = false }) {
+export function fetchHistoryDataset({
+  datasetId,
+  limit,
+  debounceEnabled = false,
+  openNotification,
+}) {
   return debounceEnabled
     ? debouncedFetchHistoryDataset.bind(this, {
         datasetId,
         limit,
+        openNotification,
       })
     : dispatchFetchHistoryDataset.bind(this, {
         datasetId,
         limit,
+        openNotification,
       });
 }
 
@@ -619,8 +638,9 @@ function prepareUpdates(updates) {
 export function validateDataset({
   isProcessingDatasetOnRequest = false,
   initial = false,
+  openNotification,
 } = {}) {
-  return async (dispatch, getState, { sdk, toaster }) => {
+  return async (dispatch, getState, { sdk }) => {
     try {
       dispatch({
         type: VALIDATE_DATASET.REQUEST,
@@ -681,12 +701,12 @@ export function validateDataset({
           },
         });
 
-        toaster.createToast({
-          name: 'error_dataset_validation',
+        openNotification({
+          key: 'error_dataset_validation',
           title: getToastTitle('NOTIFICATION_FAILURE', 'validate'),
-          type: 'error',
-          timeout: 30000,
-          content: fieldErrors.length ? (
+          type: NotificationType.Error,
+          duration: 30,
+          description: fieldErrors.length ? (
             <DatasetFieldErrors fieldErrors={fieldErrors} />
           ) : (
             <>
@@ -700,8 +720,8 @@ export function validateDataset({
   };
 }
 
-export function syncDataSet({ datasetErrorDialogRef }) {
-  return async (dispatch, getState, { sdk, toaster }) => {
+export function syncDataSet({ datasetErrorDialogRef, openNotification }) {
+  return async (dispatch, getState, { sdk }) => {
     try {
       dispatch({
         type: SYNC_DATASET.REQUEST,
@@ -733,7 +753,7 @@ export function syncDataSet({ datasetErrorDialogRef }) {
 
       dispatch(setDocumentTitle());
 
-      dispatch(validateDataset({ initial: true }));
+      dispatch(validateDataset({ initial: true, openNotification }));
 
       const {
         dataset: {
@@ -750,6 +770,7 @@ export function syncDataSet({ datasetErrorDialogRef }) {
             resultSchema,
             limit: amountPreviewRows,
             datasetErrorDialogRef,
+            openNotification,
           }),
         );
       }
@@ -758,6 +779,7 @@ export function syncDataSet({ datasetErrorDialogRef }) {
         fetchHistoryDataset({
           datasetId,
           limit: amountHistoryRows,
+          openNotification,
         }),
       );
 
@@ -767,11 +789,10 @@ export function syncDataSet({ datasetErrorDialogRef }) {
       //     type: SYNC_DATASET.SUCCESS,
       //     payload: {dataSetId: datasetId, datasetErrorDialogRef: datasetErrorDialogRef}
       // });
-
-      toaster.createToast({
-        name: 'success_sync_dataset',
+      openNotification({
+        key: 'success_sync_dataset',
         title: getToastTitle('NOTIFICATION_SUCCESS', 'sync'),
-        type: 'success',
+        type: NotificationType.Success,
       });
     } catch (error) {
       dispatch({
@@ -789,19 +810,19 @@ export function syncDataSet({ datasetErrorDialogRef }) {
         });
       }
 
-      toaster.createToast({
-        name: 'error_sync_dataset',
+      openNotification({
+        key: 'error_sync_dataset',
         title: getToastTitle('NOTIFICATION_FAILURE', 'sync'),
-        type: 'error',
-        timeout: 30000,
+        type: NotificationType.Error,
+        duration: 30,
         actions,
       });
     }
   };
 }
 
-export function saveDataset({ datasetErrorDialogRef }) {
-  return async (dispatch, getState, { sdk, toaster }) => {
+export function saveDataset({ datasetErrorDialogRef, openNotification }) {
+  return async (dispatch, getState, { sdk }) => {
     try {
       dispatch({
         type: SAVE_DATASET.REQUEST,
@@ -822,10 +843,10 @@ export function saveDataset({ datasetErrorDialogRef }) {
         payload: {},
       });
 
-      toaster.createToast({
-        name: 'success_save_dataset',
+      openNotification({
+        key: 'success_save_dataset',
         title: getToastTitle('NOTIFICATION_SUCCESS', 'save'),
-        type: 'success',
+        type: NotificationType.Success,
       });
     } catch (error) {
       dispatch({
@@ -843,19 +864,19 @@ export function saveDataset({ datasetErrorDialogRef }) {
         });
       }
 
-      toaster.createToast({
-        name: 'error_save_dataset',
+      openNotification({
+        key: 'error_save_dataset',
         title: getToastTitle('NOTIFICATION_FAILURE', 'save'),
-        type: 'error',
-        timeout: 30000,
+        type: NotificationType.Error,
+        duration: 30,
         actions,
       });
     }
   };
 }
 
-export function fetchFieldTypes() {
-  return async (dispatch, getState, { sdk, toaster }) => {
+export function fetchFieldTypes({ openNotification }) {
+  return async (dispatch, getState, { sdk }) => {
     let types;
 
     try {
@@ -897,11 +918,10 @@ export function fetchFieldTypes() {
         },
       });
     }
-
-    toaster.createToast({
-      name: 'error_fetch_types',
+    openNotification({
+      key: 'error_fetch_types',
       title: getToastTitle('NOTIFICATION_FAILURE', 'types'),
-      type: 'error',
+      type: NotificationType.Error,
     });
 
     return types;
@@ -1492,6 +1512,7 @@ export const sourcesSelector = state => state.dataset.raw_schema;
 export const rlsSelector = state => state.dataset.rls;
 export const aceModeUrlSelector = state => state.dataset.ace_url;
 export const previewEnabledSelector = state => state.dataset.preview_enabled;
+export const datasetSourceOriginSelector = state => state.dataset.origin;
 
 export const datasetPreviewSelector = state => state.dataset.preview;
 export const datasetHistorySelector = state => state.dataset.history;

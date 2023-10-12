@@ -1,6 +1,5 @@
 import '../EntryIcon/EntryIcon';
 import '../PathSelect/PathSelect';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import { NOTIFY_TYPES } from '../../constants/common';
 import Utils from '../../utils';
 
@@ -10,6 +9,7 @@ import DialogCreateDashboard from './DialogCreateDashboard/DialogCreateDashboard
 import DialogUnlock from './DialogUnlock/DialogUnlock';
 import DialogAccess from './DialogAccess/DialogAccess';
 import DialogSaveEditorChart from './DialogSaveEditorChart/DialogSaveEditorChart';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 export const ENTRY_DIALOG = {
   COPY: 'copy',
@@ -25,13 +25,11 @@ export const ENTRY_DIALOG = {
   SAVE_EDITOR_CHART: 'save_editor_chart',
 };
 
-export const entryDialoguesNotify = (dialogName, errorDialogRef) => ({
+export const entryDialoguesNotify = (dialogName, errorDialogRef, openNotification) => ({
   message: title,
   type,
   error,
 }) => {
-  // eslint-disable-line no-unused-vars
-  const toaster = new Toaster();
   switch (dialogName) {
     case ENTRY_DIALOG.SAVE_WIDGET:
     case ENTRY_DIALOG.CREATE_DASHBOARD:
@@ -61,11 +59,12 @@ export const entryDialoguesNotify = (dialogName, errorDialogRef) => ({
             },
           ];
         }
-        toaster.createToast({
+        const duration = allowAutoHiding ? 6 : 0;
+        openNotification({
           title,
-          name: `${dialogName}_${NOTIFY_TYPES.ERROR}`,
-          type: NOTIFY_TYPES.ERROR,
-          allowAutoHiding,
+          key: `${dialogName}_${NotificationType.Error}`,
+          type: NotificationType.Error,
+          duration,
           actions,
         });
       }
