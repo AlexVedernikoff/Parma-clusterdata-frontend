@@ -1,11 +1,22 @@
-.radio-button *[class='ant-radio-button ant-radio-button-checked'] {
+.radio-button-checked *[class='ant-radio-button ant-radio-button-checked'] {
   background-color: white;
   border-radius: 5px;
   transition: background-color 0.5s linear;
 }
 
 .space-container {
-  background-color: var(--yc-lego-color-grayscale-10);
+  background-color: var(--antd-color-medium-grey);
   border-radius: 5px;
-  padding: 4px 10px 4px 10px;
+  padding: 4px 10px;
+}
+
+.radio-button {
+  border: none !important;
+  background-color: transparent !important;
+  font-size: 13px !important;
+  height: 26px !important;
+  color: black !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

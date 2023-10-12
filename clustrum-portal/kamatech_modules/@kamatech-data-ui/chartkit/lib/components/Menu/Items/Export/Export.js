@@ -9,8 +9,7 @@ import Icon, { extend } from '../../../Icon/Icon';
 import { getStorageState } from '../../../../modules/export/export';
 import { ExportFormat } from '../../../../modules/export/ExportFormat';
 import { Encoding } from '../../../../modules/export/Encoding';
-import s from './export.module.css';
-import { radioButtonStyle } from './export-radiobutton-styles.js';
+import styles from './export.module.css';
 
 const AVAILABLE_FORMATS = ['XLSX', 'XLS', 'CSV'];
 
@@ -175,8 +174,8 @@ class Export extends React.PureComponent {
     const radioButtons = AVAILABLE_FORMATS.map(format => (
       <Radio.Button
         value={ExportFormat[format]}
-        style={radioButtonStyle}
         key={ExportFormat[format]}
+        className={styles['radio-button']}
       >
         {format}
       </Radio.Button>
@@ -185,7 +184,7 @@ class Export extends React.PureComponent {
       radioButtons.push(
         <Radio.Button
           value={ExportFormat.XLSX_FROM_TEMPLATE}
-          style={radioButtonStyle}
+          className={styles['radio-button']}
           key={ExportFormat.XLSX_FROM_TEMPLATE}
         >
           XLSX (из шаблона)
@@ -196,7 +195,7 @@ class Export extends React.PureComponent {
       radioButtons.push(
         <Radio.Button
           value={ExportFormat.DOCX_FROM_TEMPLATE}
-          style={radioButtonStyle}
+          className={styles['radio-button']}
           key={ExportFormat.DOCX_FROM_TEMPLATE}
         >
           DOCX (из шаблона)
@@ -215,10 +214,14 @@ class Export extends React.PureComponent {
             <Radio.Group
               value={this.state.format}
               size="large"
-              className={s['radio-button']}
+              className={styles['radio-button-checked']}
               onChange={this.radioButtonChange}
             >
-              <Space direction="vertical" className={s['space-container']} align="center">
+              <Space
+                direction="vertical"
+                className={styles['space-container']}
+                align="center"
+              >
                 {radioButtons}
               </Space>
             </Radio.Group>

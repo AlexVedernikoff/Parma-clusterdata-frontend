@@ -54,6 +54,7 @@
   --antd-color-primary-hover: #c74861;
   --antd-color-selection: #faebec;
   --antd-text-color-selection: var(--antd-color-primary);
+  --antd-color-medium-grey: rgba(0, 0, 0, 0.07);
   --antd-color-light-grey: rgba(0, 0, 0, 0.06);
   --antd-color-title: #262626;
   --antd-color-split: rgba(0, 0, 0, 0.06);
