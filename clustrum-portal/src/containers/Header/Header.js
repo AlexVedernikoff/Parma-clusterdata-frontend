@@ -295,7 +295,7 @@ class Header extends React.PureComponent {
             XLSX (из шаблона)
           </a>
         ),
-        key: '5',
+        key: '6',
       },
       hasExportTemplateDocx && {
         label: (
@@ -303,7 +303,7 @@ class Header extends React.PureComponent {
             DOCX (из шаблона)
           </a>
         ),
-        key: '6',
+        key: '7',
       },
     ].filter(Boolean);
 
