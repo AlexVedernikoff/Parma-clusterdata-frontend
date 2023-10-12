@@ -219,7 +219,7 @@ const exportFromTemplate = async (
     createdAt: moment().format(),
     id: data[0].data.uuid,
     exportConfig,
-    name: clientFileName(entry.name, data[0]?.widgetId),
+    name: clientFileName(entry.name, data[0]?.title),
     stateUuid,
     tabTitle: tab.title,
   }));

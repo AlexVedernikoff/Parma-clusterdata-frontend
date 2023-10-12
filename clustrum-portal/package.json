@@ -1,6 +1,6 @@
 {
   "name": "@clustrum/clustrum-portal",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "clustrum-portal",
   "license": "MIT",
   "main": "index.js",
