@@ -65,8 +65,8 @@
   --clustrum-dashboard-widget-container-border-radius: 'unset';
   --clustrum-dashboard-widget-container-border-style: 'none';
   --clustrum-dashboard-widget-container-border-size: 'unset';
-
-  --clustrum-dashboard-widget-table-layout-margin: 0px;
+  --clustrum-dashboard-widget-table-layout-margin: 0;
+  --clustrum-dashboard-widget-table-layout-padding: 0;
   --clustrum-dashboard-widget-table-layout-border-radius: unset;
   --clustrum-dashboard-widget-table-layout-border-color: unset;
   --clustrum-dashboard-widget-table-layout-border-style: 'none';

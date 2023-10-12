@@ -97,8 +97,9 @@ export interface TableWidgetTheme {
 }
 
 export interface TableLayoutTheme {
+  padding?: string;
   margin: string;
-  border: BorderTheme;
+  border?: BorderTheme;
 }
 
 export interface PivotTableWidgetTheme {

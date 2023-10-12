@@ -97,6 +97,7 @@ const getInitialConfig = (): AppSettings => {
           table: {
             layout: {
               margin: '0',
+              padding: '0',
               border: {
                 radius: 'unset',
                 color: 'unset',

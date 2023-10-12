@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  padding: 24px;
   padding-top: var(--clustrum-dashboard-header-padding-top);
   padding-right: var(--clustrum-dashboard-header-padding-right);
   padding-bottom: var(--clustrum-dashboard-header-padding-bottom);
