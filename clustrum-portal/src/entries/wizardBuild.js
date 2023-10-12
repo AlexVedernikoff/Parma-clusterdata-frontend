@@ -35,6 +35,7 @@ import {
   setAppSettingsEvent,
 } from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 
 const middlewares = [thunkMiddleware];
 
@@ -61,6 +62,7 @@ const sdk = new SDK({
 export default function WizardBuild(props) {
   const { entryId } = props;
 
+  const [openNotification, contextHolder] = useCustomNotification();
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
   const theme = combineDefaultThemeAndPropsTheme(
     props.theme,
@@ -86,26 +88,29 @@ export default function WizardBuild(props) {
   return (
     <ConfigProvider theme={{ ...theme.ant }} locale={ruRU}>
       <Provider store={store}>
-        <DndProvider backend={HTML5Backend}>
-          <BrowserRouter>
-            <div className="clustrum">
-              <Pointerfocus />
-              <Switch>
-                <Route
-                  path="*"
-                  component={props => (
-                    <Wizard
-                      {...props}
-                      onExport={handleExport}
-                      sdk={sdk}
-                      entryId={entryId}
-                    />
-                  )}
-                />
-              </Switch>
-            </div>
-          </BrowserRouter>
-        </DndProvider>
+        <NotificationContext.Provider value={openNotification}>
+          {contextHolder}
+          <DndProvider backend={HTML5Backend}>
+            <BrowserRouter>
+              <div className="clustrum">
+                <Pointerfocus />
+                <Switch>
+                  <Route
+                    path="*"
+                    component={props => (
+                      <Wizard
+                        {...props}
+                        onExport={handleExport}
+                        sdk={sdk}
+                        entryId={entryId}
+                      />
+                    )}
+                  />
+                </Switch>
+              </div>
+            </BrowserRouter>
+          </DndProvider>
+        </NotificationContext.Provider>
       </Provider>
     </ConfigProvider>
   );

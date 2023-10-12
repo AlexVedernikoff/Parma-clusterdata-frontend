@@ -1,8 +1,18 @@
 import { Dayjs } from 'dayjs';
-import { DEFAULT_DATE_FORMAT } from '../constants';
+import { DEFAULT_DATE_FORMAT, END_TIME, START_TIME } from '../constants';
+import { IntervalStringParams } from '../../types';
 
 export const getIntervalString = (
   from: Dayjs,
   to: Dayjs,
-  dateFormat: string = DEFAULT_DATE_FORMAT,
-): string => `__interval_${from.format(dateFormat)}_${to.format(dateFormat)}`;
+  {
+    dateFormat = DEFAULT_DATE_FORMAT,
+    withDefaultTime = false,
+  }: IntervalStringParams = {},
+): string => {
+  const [startTime, endTime] = withDefaultTime ? [START_TIME, END_TIME] : ['', ''];
+
+  return `__interval_${from.format(dateFormat)}${startTime}_${to.format(
+    dateFormat,
+  )}${endTime}`;
+};

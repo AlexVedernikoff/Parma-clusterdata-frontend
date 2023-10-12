@@ -196,10 +196,20 @@ class Body extends React.PureComponent {
     const { config, itemsStateAndParams } = data;
     const { onFiltersChange, settings } = this.props;
 
+    const actualParams = Object.values(itemsStateAndParams).filter(value =>
+      Boolean(value.params),
+    );
+
     // данные приходят в странном виде - несколько секций с отличающимся наполнением
     // нас устроит любая из них с типом 'control', поэтому берём первую
     // обязательно из config-а, т.к. в `itemsStateAndParams` могут быть секции из других табов
-    const id = config.items.filter(item => item.type === 'control')[0].id;
+    const controls = config.items.filter(item => item.type === 'control');
+
+    if (!actualParams.length || !controls.length) {
+      return;
+    }
+
+    const id = controls[0].id;
     const filtersData = itemsStateAndParams[id].params;
     const rawFilters = Object.keys(filtersData).map(key => ({
       id: key,

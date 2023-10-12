@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { WidgetType } from '@lib-shared/ui/widgets-factory/types';
 import { WidgetFactory } from '@lib-shared/ui/widgets-factory';
-
+import { $dashboardWidgets } from '../model/dashboard-widget';
+// eslint-disable-next-line no-restricted-imports
+import { $appSettingsStore } from '@shared/app-settings';
 import ChartsModule from '@kamatech-data-ui/chartkit/lib/modules/charts/charts';
 import ErrorDispatcher from '@kamatech-data-ui/chartkit/lib/modules/error-dispatcher/error-dispatcher';
 import { getParamsValue } from '@lib-shared/lib/utils';
@@ -135,6 +137,42 @@ export class WidgetWithData extends React.PureComponent {
         headers: { 'X-Request-ID': requestId },
         cancelToken: requestCancelToken,
         orderBy,
+      }).then(loaded => {
+        const dashboardWidget = {
+          id,
+          path: source,
+          params: getParamsValue(params),
+          config: null,
+          responseOptions: {
+            includeConfig: true,
+          },
+          pageSize: paginateInfo?.pageSize ?? null,
+          page: paginateInfo?.page ?? null,
+          enableCaching: $appSettingsStore.getState().enableCaching
+            ? $appSettingsStore.getState().enableCaching
+            : false,
+          cacheMode: $appSettingsStore.getState().cacheMode
+            ? $appSettingsStore.getState().cacheMode
+            : null,
+          orderBy: orderBy?.direction
+            ? [
+                {
+                  direction: orderBy.direction,
+                  field: orderBy.field,
+                },
+              ]
+            : null,
+        };
+
+        if (
+          loaded.widgetType === WidgetType.Table ||
+          loaded.widgetType === WidgetType.PivotTable
+        ) {
+          const dashboardWidgets = $dashboardWidgets.getState();
+          dashboardWidgets.push(dashboardWidget);
+
+          $dashboardWidgets.setState(dashboardWidgets);
+        }
       });
 
       if (this._isMounted) {

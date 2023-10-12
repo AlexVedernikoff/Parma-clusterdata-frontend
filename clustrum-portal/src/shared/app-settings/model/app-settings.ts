@@ -21,6 +21,7 @@ const getInitialConfig = (): AppSettings => {
           colorLink: '#bb2649',
           colorSplit: 'rgba(0, 0, 0, 0.06)',
           colorBorder: 'rgba(0, 0, 0, 0.15)',
+          colorPrimaryHover: '#c74861',
         },
         components: {
           Popover: {
@@ -37,19 +38,34 @@ const getInitialConfig = (): AppSettings => {
         showBreadcrumbs: true,
         colorAccent: '#ffd700',
       },
-      filters: {
-        backgroundFilterColor: '#fff',
-        borderFilterColor: 'rgba(0, 0, 0, 0.06)',
-        labelFilterColor: '#252625',
-        labelShadingColor: '#fff',
-      },
-      widget: {
-        borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
-      },
-      tabs: {
-        tabType: 'card',
-      },
       dashboard: {
+        tabs: {
+          tabType: 'card',
+          tab: {
+            active: {
+              font: {
+                family:
+                  "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                size: '14px',
+                weight: '600',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#bb2649',
+              },
+            },
+            default: {
+              font: {
+                family:
+                  "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                size: '14px',
+                weight: '600',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#000000e0',
+              },
+            },
+          },
+        },
         header: {
           padding: {
             left: '24px',
@@ -68,7 +84,26 @@ const getInitialConfig = (): AppSettings => {
           },
         },
         widget: {
+          container: {
+            borderShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
+            height: '2.5rem',
+            border: {
+              radius: '0.5rem',
+              color: '#ededed',
+              style: 'none',
+              size: 'unset',
+            },
+          },
           table: {
+            layout: {
+              margin: '0',
+              border: {
+                radius: 'unset',
+                color: 'unset',
+                style: 'none',
+                size: 'unset',
+              },
+            },
             pagination: {
               defaultPageSize: 10,
               font: {
@@ -162,7 +197,52 @@ const getInitialConfig = (): AppSettings => {
               },
             },
             layout: {
-              tableBorderColor: 'transparent',
+              margin: '0',
+              border: {
+                radius: 'unset',
+                color: 'unset',
+                style: 'none',
+                size: 'unset',
+              },
+            },
+          },
+          filter: {
+            wrapper: {
+              background: {
+                color: '#fff',
+              },
+              border: {
+                color: 'rgba(0, 0, 0, 0.06);',
+              },
+              boxShadow: '0px 2px 4px rgba(76, 77, 75, 0.1)',
+              textAlign: 'left',
+            },
+            label: {
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '14px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#252625',
+              },
+              shadingColor: '#fff',
+            },
+            control: {
+              font: {
+                family: "'Inter', 'Open Sans', 'Helvetica Neue', Arial, Helvetica",
+                size: '14px',
+                weight: '400',
+                style: 'normal',
+                lineHeight: '22px',
+                color: '#252625',
+              },
+              border: {
+                radius: '4px',
+                color: '#D7DDE4',
+                style: 'solid',
+                size: '1px',
+              },
             },
           },
         },

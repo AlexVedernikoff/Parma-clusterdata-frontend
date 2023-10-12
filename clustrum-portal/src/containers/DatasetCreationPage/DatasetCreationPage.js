@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 import { Button } from 'lego-on-react';
 import { ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
-import { Toaster } from '@kamatech-data-ui/common/src';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
 import ConnectionSelection from '../ConnectionSelection/ConnectionSelection';
 import { TOAST_TYPES, REPLACE_SOURCE_MODE_ID } from '../../constants';
 import Utils from '../../helpers/utils';
 import { getSearchParam } from '../../helpers/QueryParams';
 import { $appSettingsStore } from '@shared/app-settings';
+import { NotificationContext } from '@clustrum-lib';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 const b = block('dataset-creation-page');
 
@@ -25,6 +26,8 @@ class DatasetCreationPage extends React.Component {
     history: PropTypes.object.isRequired,
     modeId: PropTypes.oneOf([REPLACE_SOURCE_MODE_ID]),
   };
+
+  static contextType = NotificationContext;
 
   state = {
     fetchError: undefined,
@@ -45,7 +48,6 @@ class DatasetCreationPage extends React.Component {
     }
   }
 
-  toaster = new Toaster();
   errorDialogRef = React.createRef();
 
   async _fetchConnection(connectionId) {
@@ -135,13 +137,16 @@ class DatasetCreationPage extends React.Component {
       this.setState({ redirect: `/datasets/${id}` });
     } catch (error) {
       if (!dataSetByVersion && error.response.data.code === 500) {
-        this._showToast({
+        this.showNotification({
           name: TOAST_TYPES.CREATE_DATASET,
-          type: 'error',
+          type: NotificationType.Error,
           title: `Набор данных с названием ${datasetTitle} уже существует.`,
         });
       } else {
-        this._showToast({ name: TOAST_TYPES.CREATE_DATASET, type: 'error' });
+        this.showNotification({
+          name: TOAST_TYPES.CREATE_DATASET,
+          type: NotificationType.Error,
+        });
       }
       this.setState({
         toastError: {
@@ -321,12 +326,12 @@ class DatasetCreationPage extends React.Component {
     }
   };
 
-  _showToast({ name, type, title }) {
-    return this.toaster.createToast({
-      name,
-      type,
+  showNotification({ name, type, title }) {
+    const openNotification = this.context;
+    openNotification({
       title: title || getErrorTitle()[name],
-      allowAutoHiding: false,
+      key: name,
+      type,
       actions: [
         {
           label: 'Подробнее',

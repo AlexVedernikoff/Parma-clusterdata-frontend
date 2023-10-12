@@ -14,11 +14,14 @@ import navigateHelper from '../../libs/navigateHelper';
 import ErrorDialog from '../ErrorDialog/ErrorDialog';
 import { ContextMenuActions } from '@entities/navigation-base/types';
 import { getEntry } from '@kamatech-data-ui/clustrum-core-plugins/components/schema/general';
+import { NotificationContext } from '@clustrum-lib/shared/lib/notification';
 
 const ConfiguredEntryContextMenu = withConfiguredEntryContextMenu(EntryContextMenu);
 const defaultPopupDirections = ['bottom-center', 'bottom-left', 'bottom-right'];
 
 class EntryContextMenuService extends React.PureComponent {
+  static contextType = NotificationContext;
+  openNotification = this.context;
   refDialogues = React.createRef();
   refErrorDialog = React.createRef();
 
@@ -38,7 +41,11 @@ class EntryContextMenuService extends React.PureComponent {
         entryId: entry.entryId,
         initName: entry.name || Utils.getNameByIndex({ path: entry.key, index: -1 }),
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.RENAME, this.refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.RENAME,
+          this.refErrorDialog,
+          this.openNotification,
+        ),
       },
     });
     if (response.status === 'success') {
@@ -61,7 +68,11 @@ class EntryContextMenuService extends React.PureComponent {
         entryId: entry.entryId,
         description: entryData?.description || '',
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.DESCRIBE, this.refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.DESCRIBE,
+          this.refErrorDialog,
+          this.openNotification,
+        ),
       },
     });
 
@@ -78,7 +89,11 @@ class EntryContextMenuService extends React.PureComponent {
         initDestination: Utils.getPathBefore({ path: entry.key }),
         inactiveEntryKey: entry.scope === 'folder' ? entry.key : undefined,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.MOVE, this.refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.MOVE,
+          this.refErrorDialog,
+          this.openNotification,
+        ),
       },
     });
     if (response.status === 'success') {
@@ -93,7 +108,11 @@ class EntryContextMenuService extends React.PureComponent {
         entryId: entry.entryId,
         initDestination: Utils.getPathBefore({ path: entry.key }),
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.COPY, this.refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.COPY,
+          this.refErrorDialog,
+          this.openNotification,
+        ),
       },
     });
     if (response.status === 'success') {
@@ -109,7 +128,11 @@ class EntryContextMenuService extends React.PureComponent {
       dialogProps: {
         entry,
         withError: false,
-        onNotify: entryDialoguesNotify(ENTRY_DIALOG.DELETE, this.refErrorDialog),
+        onNotify: entryDialoguesNotify(
+          ENTRY_DIALOG.DELETE,
+          this.refErrorDialog,
+          this.openNotification,
+        ),
       },
     });
     if (response.status === 'success') {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { useUnit } from 'effector-react';
 import configureStore from 'store/configureStore';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
 import DatasetRouter from '../components/DatasetRouter/DatasetRouter';
@@ -21,6 +20,7 @@ import {
   combineDefaultThemeAndPropsTheme,
   setAppSettingsEvent,
 } from '@shared/app-settings';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 import { setCssVariables } from '@shared/theme';
 
 const sdk = new SDK({
@@ -29,11 +29,8 @@ const sdk = new SDK({
   currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
 });
 
-const toaster = new Toaster();
-
 const store = configureStore({
   sdk,
-  toaster,
 });
 
 Utils.setBodyFeatures();
@@ -42,6 +39,7 @@ logVersion();
 
 export default function DatasetBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const [openNotification, contextHolder] = useCustomNotification();
 
   const theme = combineDefaultThemeAndPropsTheme(
     props.theme,
@@ -64,7 +62,10 @@ export default function DatasetBuild(props) {
     <ConfigProvider theme={{ ...ant }} locale={ruRU}>
       <Provider store={store}>
         <div className="clustrum">
-          <DatasetRouter sdk={sdk} {...props} />
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <DatasetRouter sdk={sdk} {...props} />
+          </NotificationContext.Provider>
         </div>
       </Provider>
     </ConfigProvider>
