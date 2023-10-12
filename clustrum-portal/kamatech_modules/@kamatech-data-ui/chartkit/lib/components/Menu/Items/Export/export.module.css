@@ -1,4 +1,4 @@
-.radio-button-checked *[class='ant-radio-button ant-radio-button-checked'] {
+.radio-button-checked :global(.ant-radio-button.ant-radio-button-checked) {
   background-color: white;
   border-radius: 5px;
   transition: background-color 0.5s linear;
