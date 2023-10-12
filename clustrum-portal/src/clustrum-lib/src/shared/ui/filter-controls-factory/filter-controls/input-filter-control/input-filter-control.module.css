@@ -7,7 +7,25 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
+  color: var(--clustrum-dashboard-widget-filter-label-font-color);
+  font-weight: var(--clustrum-dashboard-widget-filter-label-font-weight);
+  font-size: var(--clustrum-dashboard-widget-filter-label-font-size);
+  font-family: var(--clustrum-dashboard-widget-filter-label-font-family);
+  font-style: var(--clustrum-dashboard-widget-filter-label-font-style);
+  line-height: var(--clustrum-dashboard-widget-filter-label-font-line-height);
+}
+
+.input-filter-control__label input {
+  width: 100%;
+  color: var(--clustrum-dashboard-widget-filter-control-font-color);
+  font-weight: var(--clustrum-dashboard-widget-filter-control-font-weight);
+  font-size: var(--clustrum-dashboard-widget-filter-control-font-size);
+  font-family: var(--clustrum-dashboard-widget-filter-control-font-family);
+  font-style: var(--clustrum-dashboard-widget-filter-control-font-style);
+  line-height: var(--clustrum-dashboard-widget-filter-control-font-line-height);
+  border:
+    var(--clustrum-dashboard-widget-filter-control-border-size)
+    var(--clustrum-dashboard-widget-filter-control-border-style)
+    var(--clustrum-dashboard-widget-filter-control-border-color);
+  border-radius: var(--clustrum-dashboard-widget-filter-control-border-radius);
 }

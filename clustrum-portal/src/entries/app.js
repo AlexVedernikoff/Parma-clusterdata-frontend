@@ -29,6 +29,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 
 import { logVersion } from '../utils/version-logger';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 import { $appSettingsStore } from '@shared/app-settings';
 
 const middlewares = [thunkMiddleware];
@@ -47,23 +48,30 @@ Utils.setBodyFeatures();
 
 logVersion();
 
-const { ant } = $appSettingsStore.getState().theme;
+function AppEntry() {
+  const [openNotification, contextHolder] = useCustomNotification();
+  const { ant } = $appSettingsStore.getState().theme;
 
-function render() {
-  ReactDOM.render(
+  return (
     <AppContainer>
       <ConfigProvider theme={{ ...ant }} locale={ruRU}>
         <Provider store={store}>
-          <DndProvider backend={HTML5Backend}>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </DndProvider>
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <DndProvider backend={HTML5Backend}>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </DndProvider>
+          </NotificationContext.Provider>
         </Provider>
       </ConfigProvider>
-    </AppContainer>,
-    document.getElementById('root'),
+    </AppContainer>
   );
+}
+
+function render() {
+  ReactDOM.render(<AppEntry />, document.getElementById('root'));
 }
 
 render();

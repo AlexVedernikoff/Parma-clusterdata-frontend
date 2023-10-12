@@ -22,6 +22,7 @@ import {
   setAppSettingsEvent,
 } from '@shared/app-settings';
 import { setCssVariables } from '@shared/theme';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 
 const sdk = new SDK({
   endpoints: $appSettingsStore.getState().endpoints,
@@ -36,6 +37,7 @@ logVersion();
 
 export default function NavigationBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const [openNotification, contextHolder] = useCustomNotification();
 
   const theme = combineDefaultThemeAndPropsTheme(
     props.theme,
@@ -59,7 +61,10 @@ export default function NavigationBuild(props) {
       <Provider store={store}>
         <Router>
           <div className="clustrum">
-            <NavigationPage sdk={sdk} />
+            <NotificationContext.Provider value={openNotification}>
+              {contextHolder}
+              <NavigationPage sdk={sdk} />
+            </NotificationContext.Provider>
           </div>
         </Router>
       </Provider>

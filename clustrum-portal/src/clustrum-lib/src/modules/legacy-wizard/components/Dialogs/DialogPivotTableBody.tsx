@@ -7,10 +7,11 @@ import {
   MainDialogPivotTableFieldsProps,
   RejectFormulaError,
 } from './types';
-import { NOTIFY_TYPES } from '@kamatech-data-ui/clustrum/src/constants/common';
 import { VisualizationType } from '@clustrum-lib/entities/visualization-factory/types';
 import { pivotTableDialogFields } from './helper';
 import { VisualizationFactory } from '@clustrum-lib/entities/visualization-factory';
+import { useCustomNotification } from '@lib-shared/lib/notification';
+import { NotificationType } from '@lib-shared/lib/notification/types';
 
 export const DialogPivotTableBody = <T extends IItem>({
   subTotalsSettings,
@@ -20,11 +21,11 @@ export const DialogPivotTableBody = <T extends IItem>({
   item,
   fields,
   aceModeUrl,
-  toaster,
   clearFormulaField,
   setFormulaError,
 }: MainDialogPivotTableFieldsProps<T>): JSX.Element => {
   const { datasetId } = item;
+  const [openNotification, contextHolder] = useCustomNotification();
   const onChangeFields = (key: keyof ISubTotalsSettings, type: VisualizationType) => (
     value: string | boolean,
   ) =>
@@ -50,10 +51,13 @@ export const DialogPivotTableBody = <T extends IItem>({
       }
     } catch (error) {
       setFormulaError(error as RejectFormulaError);
-      toaster.createToast({
-        title: (error as RejectFormulaError).response.data.message,
-        type: NOTIFY_TYPES.ERROR,
-        allowAutoHiding: true,
+      const errorMsg = (error as RejectFormulaError).response.data.message;
+
+      openNotification({
+        title: errorMsg,
+        key: `${errorMsg}`,
+        type: NotificationType.Error,
+        duration: 6,
         actions: [
           {
             label: 'Сбросить формулу',
@@ -67,6 +71,7 @@ export const DialogPivotTableBody = <T extends IItem>({
 
   return (
     <div className="dialog-pivot-table-container">
+      {contextHolder}
       <div className="subcontainer">
         {pivotTableDialogFields(placeholderType, subTotalsSettings['needSubTotal'])
           .filter(({ visible }) => visible)

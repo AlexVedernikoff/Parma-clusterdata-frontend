@@ -5,8 +5,8 @@ import { DownOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import { ContextMenuActions, NavigationTableColumnConfigParams } from '../../types';
 import { NAVIGATION_ENTRY_ACTIONS } from '../constants';
-import { getIconByScope } from '.';
 import { NavigationEntryData } from '@clustrum-lib/shared/types';
+import { Hyperlink } from '../../ui/hyperlink';
 
 const stringSorter = (field: 'createdBy' | 'name') => (
   a: NavigationEntryData,
@@ -21,12 +21,7 @@ export const getNavigationTableColumns = ({
     title: 'Название',
     dataIndex: 'name',
     key: 'name',
-    render: (name, record) => (
-      <Space size="middle">
-        {getIconByScope(record.scope)}
-        {name}
-      </Space>
-    ),
+    render: (name, record): JSX.Element => <Hyperlink record={record} name={name} />,
     sorter: stringSorter('name'),
     width: '30%',
   },

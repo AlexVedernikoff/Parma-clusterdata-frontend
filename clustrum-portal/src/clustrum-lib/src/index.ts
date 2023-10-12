@@ -14,3 +14,4 @@ export { DashboardSettings } from '@lib-features/dashboard-settings';
 export { CommonSwitcherDatasetContainer } from '@lib-entities/common-switcher-dataset-container';
 export { WidgetContainer } from '@lib-entities/widget-container';
 export { WIZARD_ITEM_TYPES } from '@lib-shared/config/wizard-item-types';
+export { NotificationContext, useCustomNotification } from '@lib-shared/lib/notification';

@@ -2,18 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { CastIconsFactory } from '@clustrum-lib/shared/ui/cast-icons-factory';
 import Dialog from '@kamatech-data-ui/common/src/components/Dialog/Dialog';
 import cloneDeep from 'lodash/cloneDeep';
-
-import { Toaster } from '@kamatech-data-ui/common/src';
 import {
   DialogPivotTableProps,
   IItem,
   ISubTotalsSettings,
   RejectFormulaError,
 } from './types';
-import { NOTIFY_TYPES } from '@kamatech-data-ui/clustrum/src/constants/common';
 import { DialogPivotTableBody } from './DialogPivotTableBody';
-
-const toaster = new Toaster();
+import { useCustomNotification } from '@lib-shared/lib/notification';
+import { NotificationType } from '@lib-shared/lib/notification/types';
 
 export const DialogPivotTable = <T extends IItem>(
   props: DialogPivotTableProps<T>,
@@ -21,6 +18,7 @@ export const DialogPivotTable = <T extends IItem>(
   const { item, callback } = props;
   const [subTotalsSettings, setSubTotalsSettings] = useState<ISubTotalsSettings>({});
   const [formulaError, setFormulaError] = useState<RejectFormulaError | null>(null);
+  const [openNotification, contextHolder] = useCustomNotification();
 
   useEffect(() => {
     setSubTotalsSettings(item.subTotalsSettings ?? {});
@@ -34,10 +32,11 @@ export const DialogPivotTable = <T extends IItem>(
   const onApply = () => {
     if (formulaError) {
       console.error(formulaError);
-      toaster.createToast({
+      openNotification({
         title: 'Сохранение невозможно, некорректная формура расчета итогов',
-        type: NOTIFY_TYPES.ERROR,
-        allowAutoHiding: true,
+        key: `${formulaError.response.data.message}`,
+        type: NotificationType.Error,
+        duration: 6,
         actions: [
           {
             label: 'Сбросить формулу',
@@ -54,6 +53,7 @@ export const DialogPivotTable = <T extends IItem>(
 
   return (
     <Dialog visible onClose={callback}>
+      {contextHolder}
       <div className={`dialog-filter dialog-filter-${item.type?.toLowerCase()}`}>
         <Dialog.Header
           caption={item.title}
@@ -65,7 +65,6 @@ export const DialogPivotTable = <T extends IItem>(
             setSubTotalsSettings={setSubTotalsSettings}
             clearFormulaField={clearFormulaField}
             setFormulaError={setFormulaError}
-            toaster={toaster}
             {...props}
           />
         </Dialog.Body>

@@ -1,4 +1,4 @@
-import { FieldDataType } from './filed-data-type';
+import { FieldDataType } from './field-data-type';
 
 export interface LoadedData {
   uiScheme: LoadedDataScheme[];
