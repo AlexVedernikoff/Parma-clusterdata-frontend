@@ -196,16 +196,12 @@ class Body extends React.PureComponent {
     const { config, itemsStateAndParams } = data;
     const { onFiltersChange, settings } = this.props;
 
-    const actualParams = Object.values(itemsStateAndParams).filter(value =>
-      Boolean(value.params),
-    );
-
     // данные приходят в странном виде - несколько секций с отличающимся наполнением
     // нас устроит любая из них с типом 'control', поэтому берём первую
     // обязательно из config-а, т.к. в `itemsStateAndParams` могут быть секции из других табов
     const controls = config.items.filter(item => item.type === 'control');
 
-    if (!actualParams.length || !controls.length) {
+    if (!controls.length) {
       return;
     }
 
@@ -237,16 +233,31 @@ class Body extends React.PureComponent {
     }
   };
 
+  isItemsStateAndParamsValid = inspectedData => {
+    if (!inspectedData || typeof inspectedData !== 'object') {
+      return false;
+    }
+    if (Object.keys(inspectedData).length === 0) {
+      return false;
+    }
+    for (let inspectedItem in inspectedData) {
+      if (!inspectedData[inspectedItem].params) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   onChange = data => {
     const { config, itemsStateAndParams } = data;
 
     if (config) {
       this.props.setCurrentTabData(config);
     }
+
     if (
       this.props.hashState !== itemsStateAndParams &&
-      itemsStateAndParams &&
-      Object.keys(itemsStateAndParams).length
+      this.isItemsStateAndParamsValid(itemsStateAndParams)
     ) {
       this.onStateChange(itemsStateAndParams);
       this.handleFiltersChange(data);
