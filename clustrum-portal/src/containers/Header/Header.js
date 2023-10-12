@@ -279,6 +279,7 @@ class Header extends React.PureComponent {
             xlsx: showXlsxOption = true,
             xls: showXlsOption = true,
             csv: showCsvOption = true,
+            docx: showDocxOption = true,
             xlsxWithTemplate: showXlsxWithTemplateOption = true,
             docxWithTemplate: showDocWithTemplateOption = true,
           } = {},
@@ -303,7 +304,7 @@ class Header extends React.PureComponent {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</a>,
         key: '4',
       },
-      {
+      showDocxOption && {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.DOCX)}>DOCX</a>,
         key: '5',
       },
