@@ -128,6 +128,7 @@ class Dash extends React.PureComponent {
       onFiltersChange,
       onTabChange,
       dashMode,
+      featureToggles,
     } = this.props;
     const isDashShow = dashMode === MODE.VIEW || dashMode === MODE.EDIT;
     return (
@@ -137,6 +138,7 @@ class Dash extends React.PureComponent {
           <Header
             hasRightSideContent={hasRightSideContent}
             openNotification={this.openNotification}
+            featureToggles={featureToggles}
           />
         )}
         <Body onFiltersChange={onFiltersChange} onTabChange={onTabChange} />

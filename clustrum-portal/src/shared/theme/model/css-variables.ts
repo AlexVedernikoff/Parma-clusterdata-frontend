@@ -216,19 +216,19 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-border-radius',
-      value: dashboard?.widget?.pivotTable?.layout?.border.radius,
+      value: dashboard?.widget?.pivotTable?.layout?.border?.radius,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-border-color',
-      value: dashboard?.widget?.pivotTable?.layout?.border.color,
+      value: dashboard?.widget?.pivotTable?.layout?.border?.color,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-border-style',
-      value: dashboard?.widget?.pivotTable?.layout?.border.style,
+      value: dashboard?.widget?.pivotTable?.layout?.border?.style,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-border-size',
-      value: dashboard?.widget?.pivotTable?.layout?.border.size,
+      value: dashboard?.widget?.pivotTable?.layout?.border?.size,
     },
     {
       variable: '--clustrum-dashboard-widget-pivot-table-layout-margin',
@@ -440,48 +440,52 @@ const setCssVariablesValues = (themeObj: Theme): CssVariables[] => {
     },
     {
       variable: '--clustrum-dashboard-widget-container-height',
-      value: dashboard?.widget.container.height ?? '2.5rem',
+      value: dashboard?.widget?.container?.height ?? '2.5rem',
     },
     {
       variable: '--clustrum-dashboard-widget-container-border-shadow',
       value:
-        dashboard?.widget.container.borderShadow ?? '0px 2px 4px rgba(76, 77, 75, 0.1)',
+        dashboard?.widget?.container?.borderShadow ?? '0px 2px 4px rgba(76, 77, 75, 0.1)',
     },
     {
       variable: '--clustrum-dashboard-widget-container-border-color',
-      value: dashboard?.widget.container.border.color ?? '#ededed',
+      value: dashboard?.widget?.container?.border?.color ?? '#ededed',
     },
     {
       variable: '--clustrum-dashboard-widget-container-border-radius',
-      value: dashboard?.widget.container.border.radius ?? '0.5rem',
+      value: dashboard?.widget?.container?.border?.radius ?? '0.5rem',
     },
     {
       variable: '--clustrum-dashboard-widget-container-border-style',
-      value: dashboard?.widget.container.border.style ?? 'none',
+      value: dashboard?.widget?.container?.border?.style ?? 'none',
     },
     {
       variable: '--clustrum-dashboard-widget-container-border-size',
-      value: dashboard?.widget.container.border.size ?? 'unset',
+      value: dashboard?.widget?.container?.border?.size ?? 'unset',
     },
     {
       variable: '--clustrum-dashboard-widget-table-layout-margin',
-      value: dashboard?.widget?.table?.layout.margin ?? '0',
+      value: dashboard?.widget?.table?.layout?.margin ?? '0',
+    },
+    {
+      variable: '--clustrum-dashboard-widget-table-layout-padding',
+      value: dashboard?.widget?.table?.layout?.padding ?? '0',
     },
     {
       variable: '--clustrum-dashboard-widget-table-layout-border-radius',
-      value: dashboard?.widget?.table?.layout.border.radius ?? 'unset',
+      value: dashboard?.widget?.table?.layout?.border?.radius ?? 'unset',
     },
     {
       variable: '--clustrum-dashboard-widget-table-layout-border-color',
-      value: dashboard?.widget?.table?.layout.border.color ?? 'unset',
+      value: dashboard?.widget?.table?.layout?.border?.color ?? 'unset',
     },
     {
       variable: '--clustrum-dashboard-widget-table-layout-border-size',
-      value: dashboard?.widget?.table?.layout.border.size ?? 'unset',
+      value: dashboard?.widget?.table?.layout?.border?.size ?? 'unset',
     },
     {
       variable: '--clustrum-dashboard-widget-table-layout-border-style',
-      value: dashboard?.widget?.table?.layout.border.style ?? 'none',
+      value: dashboard?.widget?.table?.layout?.border?.style ?? 'none',
     },
   ];
 };

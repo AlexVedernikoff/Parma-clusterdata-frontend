@@ -9,7 +9,6 @@ export interface AppSettings {
   hideSubHeader: boolean | null;
   hideTabs: boolean | null;
   hideEdit: boolean | null;
-  hideDashExport: boolean | null;
   enableCaching: boolean | null;
   cacheMode: boolean | null;
   exportMode: boolean | null;
@@ -97,8 +96,9 @@ export interface TableWidgetTheme {
 }
 
 export interface TableLayoutTheme {
+  padding?: string;
   margin: string;
-  border: BorderTheme;
+  border?: BorderTheme;
 }
 
 export interface PivotTableWidgetTheme {

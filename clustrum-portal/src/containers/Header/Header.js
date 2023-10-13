@@ -266,49 +266,70 @@ class Header extends React.PureComponent {
       tab => tab.id === dash?.tabId,
     );
 
+    // TODO: сейчас за отображения этих двух опций экспорта отвечают м свойства
+    // в feature toggles, и вот эти две переменные, которые присылаются с бека.
+    // Возможно, они больше не нужны и их можно удалить, но этот вопрос требует исследования.
     const { hasExportTemplateXlsx, hasExportTemplateDocx } = selectedTab ?? {};
 
+    const {
+      featureToggles: {
+        dashboard: {
+          export: {
+            pdf: showPdfOption = true,
+            xlsx: showXlsxOption = true,
+            xls: showXlsOption = true,
+            csv: showCsvOption = true,
+            docx: showDocxOption = true,
+            xlsxWithTemplate: showXlsxWithTemplateOption = true,
+            docxWithTemplate: showDocWithTemplateOption = true,
+          } = {},
+        } = {},
+      } = {},
+    } = this.props;
+
     const exportItems = [
-      {
+      showPdfOption && {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.PDF)}>PDF</a>,
         key: '1',
       },
-      {
+      showXlsxOption && {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.XLSX)}>XLSX</a>,
         key: '2',
       },
-      {
+      showXlsOption && {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.XLS)}>XLS</a>,
         key: '3',
       },
-      {
+      showCsvOption && {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.CSV)}>CSV</a>,
         key: '4',
       },
-      {
+      showDocxOption && {
         label: <a onClick={() => this.#exportClickHandler(ExportFormat.DOCX)}>DOCX</a>,
         key: '5',
       },
-      hasExportTemplateXlsx && {
-        label: (
-          <a onClick={() => this.#exportClickHandler(ExportFormat.XLSX_FROM_TEMPLATE)}>
-            XLSX (из шаблона)
-          </a>
-        ),
-        key: '6',
-      },
-      hasExportTemplateDocx && {
-        label: (
-          <a onClick={() => this.#exportClickHandler(ExportFormat.DOCX_FROM_TEMPLATE)}>
-            DOCX (из шаблона)
-          </a>
-        ),
-        key: '7',
-      },
+      hasExportTemplateXlsx &&
+        showXlsxWithTemplateOption && {
+          label: (
+            <a onClick={() => this.#exportClickHandler(ExportFormat.XLSX_FROM_TEMPLATE)}>
+              XLSX (из шаблона)
+            </a>
+          ),
+          key: '5',
+        },
+      hasExportTemplateDocx &&
+        showDocWithTemplateOption && {
+          label: (
+            <a onClick={() => this.#exportClickHandler(ExportFormat.DOCX_FROM_TEMPLATE)}>
+              DOCX (из шаблона)
+            </a>
+          ),
+          key: '6',
+        },
     ].filter(Boolean);
 
     const isEditButtonVisible = !$appSettingsStore.getState().hideEdit;
-    const isDashExportButtonVisible = !$appSettingsStore.getState().hideDashExport;
+    const isDashExportButtonVisible = exportItems.length > 0;
 
     if (canEdit) {
       return [

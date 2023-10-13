@@ -43,7 +43,13 @@ if (IS_INTERNAL) {
 logVersion();
 
 export default function DashBuild(props) {
-  const { entryId, hideRightSideContent, onFiltersChange, onTabChange } = props;
+  const {
+    entryId,
+    hideRightSideContent,
+    onFiltersChange,
+    onTabChange,
+    featureToggles,
+  } = props;
 
   const [openNotification, contextHolder] = useCustomNotification();
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
@@ -51,13 +57,11 @@ export default function DashBuild(props) {
     props.theme,
     $appSettingsStore.getState().theme,
   );
-
   setAppSettings({
-    hideHeader: props.hideHeader,
-    hideSubHeader: props.hideSubHeader,
-    hideTabs: props.hideTabs,
-    hideEdit: props.hideEdit,
-    hideDashExport: props.hideDashExport,
+    hideHeader: !props.featureToggles?.header ?? false,
+    hideSubHeader: !props.featureToggles?.subHeader ?? false,
+    hideTabs: !props.featureToggles?.dashboard?.tabs ?? false,
+    hideEdit: !props.featureToggles?.dashboard?.edit ?? false,
     enableCaching: props.enableCaching,
     cacheMode: props.cacheMode,
     exportMode: props.exportMode,
@@ -85,6 +89,7 @@ export default function DashBuild(props) {
                         hasRightSideContent={!hideRightSideContent}
                         onFiltersChange={onFiltersChange}
                         onTabChange={onTabChange}
+                        featureToggles={featureToggles}
                       />
                     )}
                   />

@@ -97,6 +97,7 @@ const getInitialConfig = (): AppSettings => {
           table: {
             layout: {
               margin: '0',
+              padding: '0',
               border: {
                 radius: 'unset',
                 color: 'unset',
@@ -264,7 +265,6 @@ const getInitialConfig = (): AppSettings => {
     hideSubHeader: null,
     hideTabs: null,
     hideEdit: null,
-    hideDashExport: null,
     enableCaching: null,
     cacheMode: null,
     exportMode: null,

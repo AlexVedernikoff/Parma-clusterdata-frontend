@@ -44,9 +44,6 @@ function Dash() {
   const { ant } = $appSettingsStore.getState().theme;
 
   setAppSettings({
-    hideSubHeader: searchParams.get('hide-header-btns') === 'true',
-    hideTabs: searchParams.get('hide-tabs') === 'true',
-    hideEdit: searchParams.get('hide-edit') === 'true',
     enableCaching: searchParams.get('enable-caching') === 'true',
     cacheMode: searchParams.get('cache-mode'),
     exportMode: searchParams.get('export-mode'),
