@@ -166,7 +166,9 @@ class Export extends React.PureComponent {
     );
   }
 
-  radioButtonChange = e => this.changeFormat(e.target.value);
+  radioButtonChange(e) {
+    this.changeFormat(e.target.value);
+  }
 
   render() {
     const { hasExportTemplateXlsx, hasExportTemplateDocx } = this.props;
@@ -215,7 +217,7 @@ class Export extends React.PureComponent {
               value={this.state.format}
               size="large"
               className={styles['radio-button-checked']}
-              onChange={this.radioButtonChange}
+              onChange={this.radioButtonChange.bind(this)}
             >
               <Space
                 direction="vertical"
