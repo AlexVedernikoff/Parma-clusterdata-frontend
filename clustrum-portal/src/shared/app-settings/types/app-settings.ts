@@ -1,3 +1,5 @@
+import { ThemeConfig } from 'antd';
+
 export interface AppSettings {
   env: string;
   appEnv: string;
@@ -7,7 +9,6 @@ export interface AppSettings {
   hideSubHeader: boolean | null;
   hideTabs: boolean | null;
   hideEdit: boolean | null;
-  hideDashExport: boolean | null;
   enableCaching: boolean | null;
   cacheMode: boolean | null;
   exportMode: boolean | null;
@@ -25,27 +26,50 @@ export interface AppSettings {
 }
 
 export interface Theme {
-  ant: AntTheme;
+  ant: ThemeConfig;
   app: AppTheme;
   layout: LayoutTheme;
-  filters: FiltersTheme;
-  widget: WidgetTheme;
-  tabs: TabsTheme;
   dashboard: DashboardTheme;
 }
 
-export interface DashboardHeaderTheme {
+export interface DashboardTheme {
+  header: DashboardHeaderTheme;
+  widget: DashboardWidgetTheme;
+  tabs: TabsTheme;
+}
+
+export interface DefaultTabTheme {
   font: FontItemTheme;
 }
 
-export interface DashboardTheme {
-  widget: DashboardWidgetTheme;
-  header: DashboardHeaderTheme;
+export interface TabTheme {
+  active: DefaultTabTheme;
+  default: DefaultTabTheme;
+}
+
+export interface DashboardHeaderTheme {
+  padding: PaddingTheme;
+  font: FontItemTheme;
+}
+
+export interface PaddingTheme {
+  left: string;
+  right: string;
+  top: string;
+  bottom: string;
 }
 
 export interface DashboardWidgetTheme {
+  filter: FiltersTheme;
   pivotTable: PivotTableWidgetTheme;
   table: TableWidgetTheme;
+  container: ContainerWidgetTheme;
+}
+
+export interface ContainerWidgetTheme {
+  borderShadow: string;
+  height: string;
+  border: BorderTheme;
 }
 
 export type TextAlignTheme = 'left' | 'right' | 'center';
@@ -55,36 +79,44 @@ export interface TableWidgetTdType {
 }
 
 export interface TableWidgetTdTheme {
-  numberType: TableWidgetTdType;
-  textType: TableWidgetTdType;
-  dateType: TableWidgetTdType;
+  numberType?: TableWidgetTdType;
+  textType?: TableWidgetTdType;
+  dateType?: TableWidgetTdType;
   font?: FontItemTheme;
 }
-
+export interface TableWidgetThTheme {
+  font?: FontItemTheme;
+}
 export interface TableWidgetTheme {
   td: TableWidgetTdTheme;
-  total: TotalPivotTableWidgetTheme;
+  th: TableWidgetThTheme;
+  total: TotalTableWidgetTheme;
   pagination: TablePaginationTheme;
+  layout: TableLayoutTheme;
+}
+
+export interface TableLayoutTheme {
+  padding?: string;
+  margin: string;
+  border?: BorderTheme;
 }
 
 export interface PivotTableWidgetTheme {
   th: TitlePivotTableWidgetTheme;
   td: TableWidgetTdTheme;
-  total: TotalPivotTableWidgetTheme;
-  layout: LayoutPivotTableWidgetTheme;
+  total: TotalTableWidgetTheme;
+  layout: TableLayoutTheme;
 }
 
 export interface TotalTableWidgetTheme {
   font: FontItemTheme;
   backgroundColor: string;
+  hover: HoverTheme;
 }
 
-export interface LayoutPivotTableWidgetTheme {
-  tableBorderColor: string;
-}
-export interface TotalPivotTableWidgetTheme {
-  font: FontItemTheme;
+export interface HoverTheme {
   backgroundColor: string;
+  fontColor: string;
 }
 
 export interface TitlePivotTableWidgetTheme {
@@ -99,13 +131,49 @@ export interface FontItemTheme {
   lineHeight?: string;
   color?: string;
 }
+export interface BorderItemTheme {
+  color?: string;
+  size?: string;
+  style?: string;
+  radius?: string;
+}
+export interface BackgroundItemTheme {
+  color?: string;
+}
+
+export interface PropsTheme extends Omit<Theme, 'ant'> {
+  ant: ThemeConfig['token'];
+}
 
 export interface TabsTheme {
   tabType: 'line' | 'card' | 'editable-card' | undefined;
+  tab: TabTheme;
+}
+export interface BorderTheme {
+  radius: string;
+  color: string;
+  style: string;
+  size: string;
 }
 
-export interface WidgetTheme {
-  borderShadow: string;
+export interface FilterLabelTheme {
+  shadingColor: string;
+  font: FontItemTheme;
+}
+
+export interface FilterControlTheme {
+  font: FontItemTheme;
+  border: BorderItemTheme;
+}
+
+export interface FilterWrapperTheme {
+  background: BackgroundItemTheme;
+  border: BorderItemTheme;
+  boxShadow: string;
+  textAlign: string;
+}
+export interface TabsTheme {
+  tabType: 'line' | 'card' | 'editable-card' | undefined;
 }
 
 export interface TablePaginationTheme {
@@ -114,10 +182,9 @@ export interface TablePaginationTheme {
 }
 
 export interface FiltersTheme {
-  backgroundFilterColor: string;
-  borderFilterColor: string;
-  labelFilterColor: string;
-  labelShadingColor: string;
+  label: FilterLabelTheme;
+  control: FilterControlTheme;
+  wrapper: FilterWrapperTheme;
 }
 export interface AppTheme {
   font: string;
@@ -128,16 +195,6 @@ export interface LayoutTheme {
   backgroundPanelColor: string;
   showBreadcrumbs: boolean | null;
   colorAccent: string;
-}
-
-export interface AntTheme {
-  colorPrimary: string;
-  colorSuccess: string;
-  colorWarning: string;
-  colorError: string;
-  colorLink: string;
-  colorSplit: string;
-  colorBorder: string;
 }
 
 export interface User {

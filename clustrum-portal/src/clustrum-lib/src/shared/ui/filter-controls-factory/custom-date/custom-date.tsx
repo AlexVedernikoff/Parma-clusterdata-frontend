@@ -7,9 +7,13 @@ export const renderCustomDate = (format: string): ((current: Dayjs) => JSX.Eleme
   const newCell = (current: Dayjs): JSX.Element => {
     const styles = { width: ANT_RANGE_DEFAULT_TD_WIDTH };
     return (
-      <td title={current.format(format)} className="ant-picker-cell" style={styles}>
+      <div
+        title={current.format(format)}
+        className="ant-picker-cell-inner"
+        style={styles}
+      >
         {current.date()}
-      </td>
+      </div>
     );
   };
   return newCell;

@@ -22,7 +22,6 @@ import { TableTheme } from './TableTheme';
 const b = cn('data-table');
 
 const HIDDEN_ROW_SPAN = -1;
-const DEFAULT_ROW_SPAN = 1;
 const DEFAULT_CELL_PADDING_LEFT = 10;
 
 const ICON_ASC = (
@@ -128,10 +127,12 @@ class TableRow extends React.PureComponent {
           const classNameValue =
             column._className +
             (isValueSelected ? ' selected' : '') +
-            (isTotalCell ? ' chartkit-table__cell_is-total-cell' : '');
+            (isTotalCell ? ' chartkit-table__cell_is-total-cell' : '') +
+            (value?.rowSpan > 1 ? ' high_row_span_cell' : '');
 
           if (value?.rowSpan === HIDDEN_ROW_SPAN) {
-            return;
+            const hiddenCellClassNameValue = classNameValue + ' hidden_cell';
+            return <td key={columnIndex} className={hiddenCellClassNameValue}></td>;
           }
 
           const paddingLeft = {
@@ -154,7 +155,6 @@ class TableRow extends React.PureComponent {
                 ...paddingLeft,
               }}
               onClick={column._getOnClick({ row, index, footer })}
-              rowSpan={value?.rowSpan || DEFAULT_ROW_SPAN}
             >
               {footer ? (
                 <div className={b('footer')}>

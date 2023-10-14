@@ -3,8 +3,11 @@
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  padding: 24px;
-  background-color: var(--clustrum-default-background-panel-color);
+  padding-top: var(--clustrum-dashboard-header-padding-top);
+  padding-right: var(--clustrum-dashboard-header-padding-right);
+  padding-bottom: var(--clustrum-dashboard-header-padding-bottom);
+  padding-left: var(--clustrum-dashboard-header-padding-left);
+  background-color: var(--clustrum-background-panel-color);
 }
 
 .header-wrapper__breadcrumb {

@@ -61,12 +61,14 @@ class NavigationEntries extends React.Component {
     userLogin: PropTypes.string,
     getPlaceParameters: PropTypes.func.isRequired,
     modalView: PropTypes.bool,
+    isPlaceSelectNode: PropTypes.bool,
   };
   static defaultProps = {
     mode: MODE_FULL,
     place: NAVIGATION_ROOT,
     searchPlaceholder: 'Фильтр по имени',
     modalView: false,
+    isPlaceSelectNode: false,
   };
   static getDerivedStateFromProps(nextProps, prevState) {
     const { sdk, scope, path, place } = nextProps;
@@ -390,6 +392,13 @@ class NavigationEntries extends React.Component {
       </Dropdown>
     );
 
+    if (this.props.isPlaceSelectNode) {
+      return (
+        <div className={b('entries-header')}>
+          <div className={b('custom')}>{this.props.children}</div>
+        </div>
+      );
+    }
     return (
       <div className={b('entries-header')}>
         {modalView ? (

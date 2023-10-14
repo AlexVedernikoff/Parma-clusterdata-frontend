@@ -1,4 +1,5 @@
-import { DndContainerProps, DndItemData } from '@lib-shared/ui/drag-n-drop/types';
+import { DndItemType } from './dnd-item-type';
+import { DndContainerProps } from '@lib-shared/ui/drag-n-drop/types';
 import {
   CheckboxProps,
   InputNumberProps,
@@ -8,7 +9,7 @@ import {
 } from 'antd';
 
 export type ContainerProps =
-  | DndContainerProps<DndItemData>
+  | DndContainerProps<DndItemType>
   | SliderSingleProps
   | CheckboxProps
   | InputNumberProps

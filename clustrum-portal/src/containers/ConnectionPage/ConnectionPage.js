@@ -5,7 +5,7 @@ import block from 'bem-cn-lite';
 import _intersection from 'lodash/intersection';
 import { ActionPanel, ErrorContent, ErrorDialog } from '@kamatech-data-ui/clustrum';
 import { Types } from '@kamatech-data-ui/clustrum/src/components/ErrorContent/ErrorContent';
-import { Loader, Toaster } from '@kamatech-data-ui/common/src';
+import { Loader } from '@kamatech-data-ui/common/src';
 import GeneralConnector from '../../components/Connectors/components/GeneralConnector/GeneralConnector';
 import ChOverYtConnector from '../../components/Connectors/components/ChOverYtConnector/ChOverYtConnector';
 import CsvConnector from '../../components/Connectors/components/CsvConnector/CsvConnector';
@@ -25,6 +25,8 @@ import { getConnectorType } from './getConnectorType';
 import { getNavigationPathFromKey } from '../../helpers/utils-dash';
 import { normalizeDestination } from '@kamatech-data-ui/clustrum-core-plugins/utils';
 import { Button } from 'antd';
+import { NotificationContext } from '@clustrum-lib';
+import { NotificationType } from '@clustrum-lib/shared/lib/notification/types';
 
 const b = block('connection-page');
 
@@ -81,11 +83,10 @@ class ConnectionPage extends React.Component {
   static propTypes = {
     sdk: PropTypes.object.isRequired,
   };
-
+  static contextType = NotificationContext;
   constructor(props) {
     super(props);
 
-    this.toaster = new Toaster();
     this.errorDialogRef = React.createRef();
 
     this.state = {
@@ -196,9 +197,9 @@ class ConnectionPage extends React.Component {
 
         window.open(`/navigation/${entryId}`, '_self');
       } else {
-        this._showToast({
+        this.showNotification({
           name: TOAST_TYPES.CREATE_CONNECTION,
-          type: 'success',
+          type: NotificationType.Success,
           content: (
             <div className={b('create-dataset-btn-wrap')}>
               {ConnectionPage.getDatasetCreateButton(
@@ -212,7 +213,10 @@ class ConnectionPage extends React.Component {
         this.setState({ redirect: `/connections/${connectionId}` });
       }
     } catch (error) {
-      this._showToast({ name: TOAST_TYPES.CREATE_CONNECTION, type: 'error' });
+      this.showNotification({
+        name: TOAST_TYPES.CREATE_CONNECTION,
+        type: NotificationType.Error,
+      });
 
       this.setState({
         toastError: {
@@ -245,9 +249,9 @@ class ConnectionPage extends React.Component {
         connectionState,
       });
 
-      this._showToast({
+      this.showNotification({
         name: TOAST_TYPES.MODIFY_CONNECTION,
-        type: 'success',
+        type: NotificationType.Success,
         allowAutoHiding: true,
       });
 
@@ -265,7 +269,10 @@ class ConnectionPage extends React.Component {
         dbType: dbType,
       });
     } catch (error) {
-      this._showToast({ name: TOAST_TYPES.MODIFY_CONNECTION, type: 'error' });
+      this.showNotification({
+        name: TOAST_TYPES.MODIFY_CONNECTION,
+        type: NotificationType.Error,
+      });
 
       this.setState({
         toastError: {
@@ -292,7 +299,10 @@ class ConnectionPage extends React.Component {
 
       this.setState({ isVerifySuccess: true });
     } catch (error) {
-      this._showToast({ name: TOAST_TYPES.VERIFY_CONNECTION, type: 'error' });
+      this.showNotification({
+        name: TOAST_TYPES.VERIFY_CONNECTION,
+        type: NotificationType.Error,
+      });
 
       this.setState({
         toastError: {
@@ -324,7 +334,10 @@ class ConnectionPage extends React.Component {
 
       this.setState({ redirect: `/connections/${entryId}${search ? search : ''}` });
     } catch (error) {
-      this._showToast({ name: TOAST_TYPES.UPLOAD_CSV, type: 'error' });
+      this.showNotification({
+        name: TOAST_TYPES.UPLOAD_CSV,
+        type: NotificationType.Error,
+      });
 
       this.setState({
         toastError: {
@@ -358,7 +371,7 @@ class ConnectionPage extends React.Component {
         connectionState,
       });
 
-      this._showToast({
+      this.showNotification({
         name: TOAST_TYPES.CREATE_CONNECTION,
         type: 'success',
         content: (
@@ -377,7 +390,7 @@ class ConnectionPage extends React.Component {
         isActionProgress: false,
       });
     } catch (error) {
-      this._showToast({ name: TOAST_TYPES.SAVE_CSV, type: 'error' });
+      this.showNotification({ name: TOAST_TYPES.SAVE_CSV, type: NotificationType.Error });
 
       this.setState({
         toastError: {
@@ -399,27 +412,28 @@ class ConnectionPage extends React.Component {
     );
   }
 
-  _showToast({ name, type, content, allowAutoHiding = false }) {
+  showNotification({ name, type, content, allowAutoHiding = false }) {
     const actions = [];
-    let title;
+    const duration = allowAutoHiding ? 6 : null;
+    const openNotification = this.context;
+    let message;
 
     if (type === 'error') {
-      title = getErrorTitle()[name];
+      message = getErrorTitle()[name];
       actions.push({
         label: 'Подробнее',
         onClick: this.errorDialogRef.current.open,
       });
     } else {
-      title = getSuccessTitle()[name];
+      message = getSuccessTitle()[name];
     }
-
-    return this.toaster.createToast({
-      title,
-      name,
+    openNotification({
+      title: message,
+      key: name,
+      description: content,
       type,
-      content,
       actions,
-      allowAutoHiding,
+      duration,
     });
   }
 

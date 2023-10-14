@@ -1,4 +1,4 @@
-import { DndItemData } from '@lib-shared/ui/drag-n-drop/types';
+import { DndItemData } from '@lib-entities/visualization-factory/types';
 
 export interface SectionDatasetItemProps {
   itemData: DndItemData;

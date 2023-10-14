@@ -28,8 +28,6 @@ import {
   saveDataset,
   toggleVisibilityPreview,
   toggleVisibilityHistory,
-  updateDatasetByValidation,
-  changeAmountPreviewRows,
   datasetKeySelector,
   datasetErrorSelector,
   datasetPreviewErrorSelector,
@@ -43,12 +41,14 @@ import {
   previewEnabledSelector,
   syncDataSet,
   datasetNameSelector,
+  datasetSourceOriginSelector,
 } from '../../store/reducers/dataset';
 
 import PageHead from '../../components/PageHeader/PageHeader';
 import VerificationModal from '../../components/DataSource/VerificationModal';
 import { Button } from 'antd';
 import { BarChartOutlined, BlockOutlined, SafetyOutlined } from '@ant-design/icons';
+import { NotificationContext } from '@clustrum-lib';
 
 const b = block('dataset');
 
@@ -65,10 +65,10 @@ class Dataset extends React.Component {
     toggleVisibilityPreview: PropTypes.func.isRequired,
     toggleVisibilityHistory: PropTypes.func.isRequired,
     syncDataSet: PropTypes.func.isRequired,
-    updateDatasetByValidation: PropTypes.func.isRequired,
     saveDataset: PropTypes.func.isRequired,
-    changeAmountPreviewRows: PropTypes.func.isRequired,
   };
+
+  static contextType = NotificationContext;
 
   state = {
     isVisibleDatasetCreationDialog: false,
@@ -88,10 +88,12 @@ class Dataset extends React.Component {
 
   componentDidMount() {
     const { datasetId, initialFetchDataset } = this.props;
+    const openNotification = this.context;
 
     initialFetchDataset({
       datasetId,
       datasetErrorDialogRef: this.datasetErrorDialogRef,
+      openNotification,
     });
 
     window.addEventListener('beforeunload', this.confirmClosePage);
@@ -159,7 +161,7 @@ class Dataset extends React.Component {
   };
 
   onClickConnectionMenuItem = async ({ item, datasetId, connection }) => {
-    const { sdk, initialFetchDataset } = this.props;
+    const { sdk, initialFetchDataset, datasetSourceOrigin } = this.props;
 
     try {
       this.setState({
@@ -167,17 +169,23 @@ class Dataset extends React.Component {
         isProcessingSource: true,
       });
 
+      const openNotification = this.context;
+
       switch (item) {
         case 'update-dataset-schema': {
           await sdk.bi.modifyDatasetSource({ datasetId });
           this.closeDataSource();
-          initialFetchDataset({ datasetId });
+          initialFetchDataset({ datasetId, openNotification });
 
           break;
         }
         case REPLACE_SOURCE_MODE_ID: {
           const { id: connectionId } = connection;
-
+          // Используем localStorage, чтобы пробросить данные между разными вкладками браузера
+          localStorage.setItem(
+            'datasetSourceOrigin',
+            JSON.stringify(datasetSourceOrigin),
+          );
           window.open(`/datasets/source?id=${connectionId}`, '_blank');
 
           break;
@@ -394,7 +402,7 @@ class Dataset extends React.Component {
     if (datasetError) {
       return this.renderErrorContent();
     }
-
+    const openNotification = this.context;
     return (
       <div className={b()}>
         {!BUILD_SETTINGS.isLib && <PageHead title={datasetName} />}
@@ -437,6 +445,7 @@ class Dataset extends React.Component {
               onClick={() =>
                 saveDataset({
                   datasetErrorDialogRef: this.datasetErrorDialogRef,
+                  openNotification,
                 })
               }
               key="save-dataset-btn"
@@ -513,6 +522,7 @@ const mapStateToProps = createStructuredSelector({
   savingDatasetDisabled: isSavingDatasetDisabledSelector,
   isProcessingSavingDataset: isSavingDatasetSelector,
   previewEnabled: previewEnabledSelector,
+  datasetSourceOrigin: datasetSourceOriginSelector,
 });
 const mapDispatchToProps = {
   initialFetchDataset,
@@ -521,8 +531,6 @@ const mapDispatchToProps = {
   toggleVisibilityPreview,
   toggleVisibilityHistory,
   syncDataSet,
-  updateDatasetByValidation,
-  changeAmountPreviewRows,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(Dataset);

@@ -6,9 +6,9 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import { shouldMoveDropdown } from '@lib-shared/lib/utils';
 import { Range, RangeDatepickerFilterControlProps } from './types';
-import { PlacementPosition } from '@lib-shared/ui/filter-controls-factory/types';
+import { FieldDataType, PlacementPosition } from '../../types';
 import { getIntervalString } from '../../lib/helpers';
-import { DEFAULT_DATE_FORMAT } from '../../lib/constants';
+import { DEFAULT_DATE_FORMAT, INTERVAL_FORMAT_REGEX } from '../../lib/constants';
 
 import styles from './range-datepicker-filter-control.module.css';
 import { LabelWithHover } from '../../label-with-hover';
@@ -17,7 +17,6 @@ import { renderCustomDate } from '../../custom-date';
 const { RangePicker } = DatePicker;
 const RANGE_PLACEHOLDER: [string, string] = ['От дд.мм.гггг', 'До дд.мм.гггг'];
 const POPUP_WIDTH = 576;
-const intervalFormat = /^__interval_(\d{4}-\d{2}-\d{2})_(\d{4}-\d{2}-\d{2})$/;
 
 export function RangeDatepickerFilterControl(
   props: RangeDatepickerFilterControlProps,
@@ -29,6 +28,7 @@ export function RangeDatepickerFilterControl(
     minDate,
     defaultValue,
     dateFormat = DEFAULT_DATE_FORMAT,
+    fieldDataType,
     onChange,
     showTitle: needShowTitle,
   } = props;
@@ -37,7 +37,7 @@ export function RangeDatepickerFilterControl(
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const parsedDates = defaultValue?.length && defaultValue.match(intervalFormat);
+    const parsedDates = defaultValue?.match(INTERVAL_FORMAT_REGEX);
 
     if (!parsedDates) {
       setDateRange(null);
@@ -57,7 +57,8 @@ export function RangeDatepickerFilterControl(
       return;
     }
     if (values?.[0] && values?.[1]) {
-      onChange(getIntervalString(values[0], values[1]));
+      const withDefaultTime = fieldDataType === FieldDataType.DateTime;
+      onChange(getIntervalString(values[0], values[1], { withDefaultTime }));
     } else {
       onChange('');
     }

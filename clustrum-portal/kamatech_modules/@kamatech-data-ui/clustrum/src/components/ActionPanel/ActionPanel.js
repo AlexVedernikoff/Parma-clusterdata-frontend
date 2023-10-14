@@ -59,9 +59,6 @@ class ActionPanel extends React.Component {
     } = this.props;
 
     const { entry } = this.state;
-    // TODO: метод возвращает название поля "isFavorite" с опечаткой, как "asFavorite".
-    // Временное решение в ожидании правок на бэкенде.
-    const modifiedEntry = { ...entry, isFavorite: entry?.asFavorite };
 
     const className = b(false, mix);
 
@@ -73,7 +70,7 @@ class ActionPanel extends React.Component {
           <div className={className}>
             <EntryPanel
               sdk={sdk}
-              entry={modifiedEntry}
+              entry={entry}
               additionalEntryItems={additionalEntryItems}
               rightItems={rightItems}
             />

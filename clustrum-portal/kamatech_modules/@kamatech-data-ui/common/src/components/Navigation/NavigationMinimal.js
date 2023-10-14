@@ -54,14 +54,6 @@ class NavigationMinimal extends React.Component {
     searchValue: '',
   };
 
-  componentDidMount() {
-    this.offsetPopupPosition();
-  }
-
-  componentDidUpdate() {
-    window.requestAnimationFrame(this.offsetPopupPosition);
-  }
-
   refPopup = React.createRef();
   refSearchInput = React.createRef();
   refEntries = React.createRef();
@@ -102,46 +94,6 @@ class NavigationMinimal extends React.Component {
     if (!this.refEntries.current.state.isLoading) {
       this.props.onChooseFolder(this.props.path);
       this.props.onClose(event);
-    }
-  };
-
-  offsetPopupPosition = () => {
-    // offset popup if not in viewport
-    if (
-      this.props.visible &&
-      this.refPopup.current &&
-      this.refPopup.current.containerRef.current
-    ) {
-      const popupComponent = this.refPopup.current;
-      const node = popupComponent.containerRef.current;
-      const { left, height, top, width } = node.getBoundingClientRect();
-      const {
-        width: bodyWidth,
-        height: bodyHeight,
-      } = document.body.getBoundingClientRect();
-      let secondaryOffset = 0;
-      let tailOffset = 0;
-      // REMARK: _direction - доступ к нему костыль
-      // в нем содержится информация о наиболее подходящем (по мнению popup) popupDirections
-      if (['top', 'bottom'].includes(popupComponent._direction.split('-')[0])) {
-        if (left < 0) {
-          secondaryOffset = Math.ceil(Math.abs(left));
-        } else if (left + width > bodyWidth) {
-          secondaryOffset = -Math.ceil(Math.abs(left - width));
-        }
-        tailOffset = -secondaryOffset;
-      } else {
-        if (top < 0) {
-          // eslint-disable-line no-lonely-if
-          secondaryOffset = Math.ceil(Math.abs(top));
-        } else if (top + height > bodyHeight) {
-          secondaryOffset = -Math.ceil(Math.abs(top - height));
-        }
-        tailOffset = -secondaryOffset;
-      }
-      if (secondaryOffset !== 0) {
-        this.setState({ secondaryOffset, tailOffset });
-      }
     }
   };
 
@@ -199,7 +151,6 @@ class NavigationMinimal extends React.Component {
     return (
       <Popup
         autoclosable
-        motionless
         hasTail={hasTail}
         theme="normal"
         secondaryOffset={this.state.secondaryOffset}
@@ -220,19 +171,17 @@ class NavigationMinimal extends React.Component {
               onChange={this.onChangeSearchInput}
             />
             {this.props.placeSelectNode}
-            {this.props.place === NAVIGATION_ROOT && (
-              <div className={b('header')}>
-                <div className={b('controls')}>
-                  <NavigationBreadcrumbs
-                    size="s"
-                    path={this.props.path}
-                    place={this.props.place}
-                    onClick={this.props.onCrumbClick}
-                    getPlaceParameters={this.props.getPlaceParameters}
-                  />
-                </div>
+            <div className={b('header')}>
+              <div className={b('controls')}>
+                <NavigationBreadcrumbs
+                  size="s"
+                  path={this.props.path}
+                  place={this.props.place}
+                  onClick={this.props.onCrumbClick}
+                  getPlaceParameters={this.props.getPlaceParameters}
+                />
               </div>
-            )}
+            </div>
             <NavigationEntries
               ref={this.refEntries}
               {...this.props}
@@ -241,6 +190,7 @@ class NavigationMinimal extends React.Component {
               getPlaceParameters={this.props.getPlaceParameters}
               focusSearchInput={this.focusSearchInput}
               clearSearchInput={this.clearSearchInput}
+              isPlaceSelectNode={!!this.props.placeSelectNode}
             />
             {hasButtonsChoose && this.renderFooter()}
           </div>

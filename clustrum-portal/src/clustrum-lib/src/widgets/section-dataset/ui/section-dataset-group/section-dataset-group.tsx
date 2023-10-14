@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
 import { WIZARD_ITEM_TYPES } from '@lib-shared/config/wizard-item-types';
 import { DndContainer } from '@lib-shared/ui/drag-n-drop';
-import { DndItemData, DndItemProps } from '@lib-shared/ui/drag-n-drop/types';
+import { DndItemProps } from '@lib-shared/ui/drag-n-drop/types';
+import { DndItemData } from '@lib-entities/visualization-factory/types';
 import { SectionDatasetGroupProps } from '../../types';
 import { SectionDatasetItem } from '../section-dataset-item';
 import { DATASET_DND_ITEM_SIZE } from '../../lib/constants';

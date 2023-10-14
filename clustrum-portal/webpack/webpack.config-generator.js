@@ -231,9 +231,6 @@ exports.generateConfig = (
         component: 'dash',
         templateParameters: {
           dotenv: '<%- dotenv %>',
-          hideEdit: '<%= hideEdit %>',
-          hideSubHeader: '<%= hideSubHeader %>',
-          hideTabs: '<%= hideTabs %>',
           enableCaching: '<%= enableCaching %>',
           cacheMode: '<%= cacheMode %>',
           exportMode: '<%= exportMode %>',

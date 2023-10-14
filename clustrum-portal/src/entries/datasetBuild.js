@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { useUnit } from 'effector-react';
 import configureStore from 'store/configureStore';
-import Toaster from '@kamatech-data-ui/common/src/components/Toaster';
 import { SDK, Utils } from '@kamatech-data-ui/clustrum';
 
 import DatasetRouter from '../components/DatasetRouter/DatasetRouter';
@@ -16,7 +15,12 @@ import './../css/clustrum/styles.css';
 import { logVersion } from '../utils/version-logger';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
-import { $appSettingsStore, setAppSettingsEvent } from '@shared/app-settings';
+import {
+  $appSettingsStore,
+  combineDefaultThemeAndPropsTheme,
+  setAppSettingsEvent,
+} from '@shared/app-settings';
+import { NotificationContext, useCustomNotification } from '@clustrum-lib';
 import { setCssVariables } from '@shared/theme';
 
 const sdk = new SDK({
@@ -25,11 +29,8 @@ const sdk = new SDK({
   currentCloudFolderId: $appSettingsStore.getState().currentCloudFolderId,
 });
 
-const toaster = new Toaster();
-
 const store = configureStore({
   sdk,
-  toaster,
 });
 
 Utils.setBodyFeatures();
@@ -38,8 +39,12 @@ logVersion();
 
 export default function DatasetBuild(props) {
   const [setAppSettings] = useUnit([setAppSettingsEvent]);
+  const [openNotification, contextHolder] = useCustomNotification();
 
-  const theme = props.theme ? props.theme : $appSettingsStore.getState().theme;
+  const theme = combineDefaultThemeAndPropsTheme(
+    props.theme,
+    $appSettingsStore.getState().theme,
+  );
 
   setAppSettings({
     hideHeader: props.hideHeader,
@@ -54,10 +59,13 @@ export default function DatasetBuild(props) {
   setCssVariables(theme);
 
   return (
-    <ConfigProvider theme={{ token: theme.ant }} locale={ruRU}>
+    <ConfigProvider theme={{ ...ant }} locale={ruRU}>
       <Provider store={store}>
         <div className="clustrum">
-          <DatasetRouter sdk={sdk} {...props} />
+          <NotificationContext.Provider value={openNotification}>
+            {contextHolder}
+            <DatasetRouter sdk={sdk} {...props} />
+          </NotificationContext.Provider>
         </div>
       </Provider>
     </ConfigProvider>

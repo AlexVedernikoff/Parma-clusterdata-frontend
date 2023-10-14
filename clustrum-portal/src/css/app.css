@@ -2094,6 +2094,19 @@
   background: var(--data-table-color-stripe);
 }
 
+.data-table__table .data-table__row .data-table__td {
+  border: 1px solid var(--data-table-border-color);
+}
+
+.data-table__table .data-table__row .high_row_span_cell {
+  border-bottom: none;
+}
+
+.data-table__table .data-table__row .hidden_cell {
+  border-bottom: none;
+  border-top: none;
+}
+
 .data-table_highlight-rows .data-table__row:hover {
   background: var(--data-table-color-hover-area);
 }
@@ -3740,7 +3753,7 @@ td.rdtYear:hover {
 
 .wizard .action-panel {
   box-sizing: border-box;
-  background-color: var(--clustrum-default-background-panel-color);
+  background-color: var(--clustrum-background-panel-color);
 }
 
 .wizard .action-panel .wizard__fullscreen-btn {

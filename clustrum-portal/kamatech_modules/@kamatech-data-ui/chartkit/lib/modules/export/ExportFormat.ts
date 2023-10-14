@@ -3,6 +3,7 @@ export enum ExportFormat {
   XLSX = 'xlsx',
   XLSX_FROM_TEMPLATE = 'xlsx_from_template',
   XLS = 'xls',
+  DOCX = 'docx',
   CSV = 'csv',
   JSON = 'json',
   XML = 'xml',
@@ -15,9 +16,11 @@ export function dashboardExportFilename(format: ExportFormat): string {
     case ExportFormat.CSV:
       return ExportFormat.ZIP;
     case ExportFormat.XLSX_FROM_TEMPLATE:
-      return ExportFormat.ZIP;
+      return ExportFormat.XLSX;
     case ExportFormat.DOCX_FROM_TEMPLATE:
-      return ExportFormat.ZIP;
+      return ExportFormat.DOCX;
+    case ExportFormat.DOCX:
+      return ExportFormat.DOCX;
     default:
       return format;
   }
