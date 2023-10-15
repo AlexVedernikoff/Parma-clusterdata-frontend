@@ -167,17 +167,28 @@ class Export extends React.PureComponent {
   }
 
   radioButtonChange(e) {
+    const prevCheckedButton = document.getElementById(this.state.format);
+    const newCheckedButton = document.getElementById(e.target.value);
+    const prevCoordinate = prevCheckedButton.getBoundingClientRect();
+    const newCoordinate = newCheckedButton.getBoundingClientRect();
+    const difference = prevCoordinate.top - newCoordinate.top;
     this.changeFormat(e.target.value);
+    this.setAnimationProperty(difference);
+  }
+
+  setAnimationProperty(difference) {
+    const root = document.documentElement;
+    root.style.setProperty('--exportFormatButtonCoordDiff', difference + 'px');
   }
 
   render() {
     const { hasExportTemplateXlsx, hasExportTemplateDocx } = this.props;
 
-    const radioButtons = AVAILABLE_FORMATS.map(format => (
+    const radioButtons = AVAILABLE_FORMATS.map((format, i) => (
       <Radio.Button
         value={ExportFormat[format]}
         key={ExportFormat[format]}
-        className={styles['radio-button']}
+        id={ExportFormat[format]}
       >
         {format}
       </Radio.Button>
@@ -186,8 +197,8 @@ class Export extends React.PureComponent {
       radioButtons.push(
         <Radio.Button
           value={ExportFormat.XLSX_FROM_TEMPLATE}
-          className={styles['radio-button']}
           key={ExportFormat.XLSX_FROM_TEMPLATE}
+          id={ExportFormat.XLSX_FROM_TEMPLATE}
         >
           XLSX (из шаблона)
         </Radio.Button>,
@@ -197,8 +208,8 @@ class Export extends React.PureComponent {
       radioButtons.push(
         <Radio.Button
           value={ExportFormat.DOCX_FROM_TEMPLATE}
-          className={styles['radio-button']}
           key={ExportFormat.DOCX_FROM_TEMPLATE}
+          id={ExportFormat.DOCX_FROM_TEMPLATE}
         >
           DOCX (из шаблона)
         </Radio.Button>,
