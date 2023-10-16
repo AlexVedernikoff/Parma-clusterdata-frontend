@@ -27,6 +27,7 @@ import { SDK } from '../../modules/sdk';
 import { SIGNAL } from '@kamatech-data-ui/types/signal-types';
 import { SignalContext } from '@kamatech-data-ui/context/signal-context';
 import WidgetVisibilityDropdown from '../../components/WidgetVisibilityDropdown/WidgetVisibilityDropdown';
+import { WithHover } from '../../components/WidgetVisibilityDropdown/WithHover';
 import { LAYOUT_ID } from '../../constants/constants';
 import { getLayoutId } from '../../utils/helpers';
 import BrowserPrint from '../BrowserPrint/BrowserPrint';
@@ -190,13 +191,19 @@ class Header extends React.PureComponent {
       },
     ];
 
+    const WidgetVisibilityDropdownHover = WithHover(
+      WidgetVisibilityDropdown,
+      {
+        key: 'widget-visibility',
+        items,
+        layout: jointLayout,
+        toggleWidgetVisibility: this.toggleWidgetVisibility,
+      },
+      'Скрытие элементов аналитической панели',
+    );
+
     return [
-      <WidgetVisibilityDropdown
-        key="widget-visibility"
-        items={items}
-        layout={jointLayout}
-        toggleWidgetVisibility={this.toggleWidgetVisibility}
-      />,
+      <WidgetVisibilityDropdownHover />,
       <Button
         title="Открыть панель расширенных фильтров"
         onClick={this.props.openExpandedFilter}
